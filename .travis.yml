@@ -15,8 +15,6 @@ notifications:
 branches:
   only:
   - master
-  - testing
-  - development
 script:
 - mvn --settings .travis.settings.xml clean cobertura:cobertura deploy
 after_success:
