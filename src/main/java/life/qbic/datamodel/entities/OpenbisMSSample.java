@@ -20,45 +20,33 @@ import java.util.Map;
 
 import life.qbic.xml.properties.Property;
 
-/**
- * Class representing a sample created in a sample preparation that will be used to measure data
- * 
- * @author Andreas Friedrich
- *
- */
-public class OpenbisTestSample extends AOpenbisSample {
-
-  String Q_SAMPLE_TYPE;
+public class OpenbisMSSample extends AOpenbisSample {
 
   /**
-   * Create a new Test Sample
+   * Create a new MS Run Sample
    * 
    * @param openbisName Code of the sample
    * @param experiment Experiment the sample is attached to
-   * @param secondaryName Secondary Name of the sample (e.g. humanly readable identifier)
+   * @param secondaryName Secondary name of the sample (e.g. humanly readable identifier)
    * @param additionalNotes Free text notes for the sample
-   * @param factors A list of conditions of this sample
-   * @param sampleType Measurement type of this sample (e.g. protein)
-   * @param parent Extract parent of this sample
+   * @param factors A list of conditions for the sample
+   * @param primaryTissue The primary tissue of this biological sample
+   * @param tissueDetailed Detailed tissue information
+   * @param parent Entity parent this sample was extracted from
    */
-  public OpenbisTestSample(String openbisName, String space, String experiment,
-      String secondaryName, String additionalNotes, List<Property> factors, String sampleType,
-      String parent, String extID) {
+  public OpenbisMSSample(String openbisName, String space, String experiment, String secondaryName,
+      String additionalNotes, List<Property> factors, String parent, String extID) {
     super(openbisName, space, experiment, secondaryName, additionalNotes, factors, parent, extID,
-        "Q_TEST_SAMPLE");
-    this.Q_SAMPLE_TYPE = sampleType;
+        "Q_MS_RUN");
   }
 
-  public OpenbisTestSample(int tempID, List<AOpenbisSample> parents, String sampleType,
-      String secondaryName, String externalID, List<Property> newFactors, String additionalNotes) {
-    super(tempID, parents, "Q_TEST_SAMPLE", secondaryName, externalID, newFactors, additionalNotes);
-    this.Q_SAMPLE_TYPE = sampleType;
+  public OpenbisMSSample(int tempID, List<AOpenbisSample> parents, String secondaryName,
+      String externalID, List<Property> newFactors, String additionalNotes) {
+    super(tempID, parents, "Q_MS_RUN", secondaryName, externalID, newFactors, additionalNotes);
   }
 
   public Map<String, String> getValueMap() {
     Map<String, String> res = super.getValueMap();
-    res.put("Q_SAMPLE_TYPE", Q_SAMPLE_TYPE);
     return res;
   }
-
 }

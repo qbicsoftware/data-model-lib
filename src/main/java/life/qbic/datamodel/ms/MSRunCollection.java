@@ -1,4 +1,4 @@
-package life.qbic.datamodel.entities;
+package life.qbic.datamodel.ms;
 
 public class MSRunCollection {
 

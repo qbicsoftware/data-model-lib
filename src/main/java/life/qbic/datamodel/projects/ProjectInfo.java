@@ -1,4 +1,4 @@
-package projects;
+package life.qbic.datamodel.projects;
 
 public class ProjectInfo {
 

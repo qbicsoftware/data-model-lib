@@ -4,6 +4,10 @@ package life.qbic.datamodel.codes;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Helper functions used for sample creation
  * 
@@ -11,6 +15,9 @@ import java.util.List;
  * 
  */
 public class SampleCodeFunctions {
+
+  private static final Logger logger = LogManager.getLogger(SampleCodeFunctions.class);
+
 
   /**
    * Checks if a String fits the QBiC barcode pattern
@@ -21,6 +28,41 @@ public class SampleCodeFunctions {
   public static boolean isQbicBarcode(String code) {
     String pattern = "Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}";
     return code.matches(pattern);
+  }
+
+  public static boolean isMeasurementOfBarcode(String code, String type) {
+    try {
+      String prefix = type.split("_")[1];
+      code = code.replaceFirst(prefix, "");
+    } catch (ArrayIndexOutOfBoundsException e) {
+      return false;
+    }
+    return isQbicBarcode(code);
+  }
+
+  public static int compareSampleCodes(String c1, String c2) {
+    if (!c1.startsWith("Q") || c1.contains("ENTITY") || !c2.startsWith("Q")
+        || c2.contains("ENTITY"))
+      return c1.compareTo(c2);
+    try {
+      // compares sample codes by projects, ending letters (999A --> 001B) and numbers (001A -->
+      // 002A)
+      int projCompare = c1.substring(0, 5).compareTo(c2.substring(0, 5));
+      int numCompare = c1.substring(5, 8).compareTo(c2.substring(5, 8));
+      int letterCompare = c1.substring(8, 9).compareTo(c2.substring(8, 9));
+      if (projCompare != 0)
+        return projCompare;
+      else {
+        if (letterCompare != 0)
+          return letterCompare;
+        else
+          return numCompare;
+      }
+    } catch (Exception e) {
+      logger.warn("Could not split code " + c1 + " or " + c2
+          + ". Falling back to primitive lexicographical comparison.");
+    }
+    return c1.compareTo(c2);
   }
 
   /**
@@ -45,7 +87,7 @@ public class SampleCodeFunctions {
    * @return the next letter in the alphabet relative to the input char
    */
   public static char incrementUppercase(char c) {
-    if (c == 'Z')
+    if (c == 'X')
       return 'A';
     else {
       int charValue = c;
@@ -53,7 +95,26 @@ public class SampleCodeFunctions {
     }
   }
 
-  public static void main(String[] args) {}
+  /**
+   * Increments to the next sample string in the order, meaning the project code stays the same and
+   * the 3 letter number is incremented, except if it's 999, then the following letter is
+   * incremented and the number starts with 001 again.
+   * 
+   * @param code a 10 digit sample code
+   * @return a new sample code
+   */
+  public static String incrementSampleCode(String code) {
+    String old = code.substring(5, 8);
+    String num = "";
+    int newNum = Integer.parseInt(old) + 1;
+    char letter = code.charAt(8);
+    if (newNum > 999) {
+      num = "001" + incrementUppercase(letter);
+    } else
+      num = createCountString(newNum, 3) + letter;
+    String res = code.substring(0, 5) + num;
+    return res + checksum(res);
+  }
 
   /**
    * Creates a string with leading zeroes from a number
@@ -137,13 +198,34 @@ public class SampleCodeFunctions {
   }
 
   /**
+   * Returns a String denoting the range of a list of barcodes as used in QBiC
+   * 
+   * @param ids List of code strings
+   * @return String denoting a range of the barcodes
+   */
+  public static String getBarcodeRange(List<String> ids) {
+    String head = getProjectPrefix(ids.get(0));
+    String min = ids.get(0).substring(5, 8);
+    String max = min;
+    for (String id : ids) {
+      String num = id.substring(5, 8);
+      if (num.compareTo(min) < 0)
+        min = num;
+      if (num.compareTo(max) > 0)
+        max = num;
+    }
+    return head + min + "-" + max;
+  }
+
+  /**
    * Returns the 4 or 5 character project prefix used for samples in openBIS.
    * 
    * @param sample sample ID starting with a standard project prefix.
    * @return Project prefix of the sample
    */
   public static String getProjectPrefix(String sample) {
-    if (isInteger("" + sample.charAt(4)))
+    boolean numeric = StringUtils.isNumeric("" + sample.charAt(4));
+    if (numeric)
       return sample.substring(0, 4);
     else
       return sample.substring(0, 5);

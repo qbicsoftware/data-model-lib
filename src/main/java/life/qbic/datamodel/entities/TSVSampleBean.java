@@ -3,7 +3,6 @@ package life.qbic.datamodel.entities;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class TSVSampleBean implements ISampleBean {
@@ -16,7 +15,6 @@ public class TSVSampleBean implements ISampleBean {
   private String secondaryName;
   private String parents;
   private Map<String, Object> metadata;
-  // private List<TSVSampleBean> children;
 
   public TSVSampleBean(String code, String exp, String proj, String space, String sType,
       String secondaryName, String parents, Map<String, Object> metadata) {
@@ -38,18 +36,6 @@ public class TSVSampleBean implements ISampleBean {
     this.metadata = metadata;
     this.parents = "";
   }
-
-  // public void addChild(TSVSampleBean c) {
-  // children.add(c);
-  // }
-  //
-  // public void addChildren(List<TSVSampleBean> children) {
-  // this.children.addAll(children);
-  // }
-  //
-  // public List<TSVSampleBean> getChildren() {
-  // return children;
-  // }
 
   public String toString() {
     return code + "\t" + experiment + "\t" + secondaryName + "\t" + sampleType + "\t" + parents

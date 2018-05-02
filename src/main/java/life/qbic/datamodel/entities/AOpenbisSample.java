@@ -1,3 +1,18 @@
+/*******************************************************************************
+ * QBiC Project Wizard enables users to create hierarchical experiments including different study
+ * conditions using factorial design. Copyright (C) "2016" Andreas Friedrich
+ *
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * GNU General Public License as published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+ * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with this program. If
+ * not, see <http://www.gnu.org/licenses/>.
+ *******************************************************************************/
 package life.qbic.datamodel.entities;
 
 import java.util.ArrayList;
@@ -15,13 +30,18 @@ import life.qbic.xml.properties.Property;
  */
 public abstract class AOpenbisSample {
 
-  String sampleType;
-  String code;
-  String experiment;
-  String Q_SECONDARY_NAME;
-  List<Property> factors;
-  String Q_ADDITIONAL_NOTES;
-  String parent;
+  private int tempID;
+  private List<Integer> tempParentIDs;
+  private String space;
+  private String sampleType;
+  private String code;
+  private String experiment;
+  private String Q_SECONDARY_NAME;
+  private List<Property> factors;
+  private String Q_ADDITIONAL_NOTES;
+  private String parent;
+  private String Q_EXTERNALDB_ID;
+  private List<AOpenbisSample> parents;
 
   /**
    * Constructor of an abstract openbis sample
@@ -33,14 +53,71 @@ public abstract class AOpenbisSample {
    * @param factors A list of conditions of this sample
    * @param parent A parent sample code this sample is attached to
    */
-  AOpenbisSample(String code, String experiment, String secondaryName, String additionalNotes,
-      List<Property> factors, String parent) {
+  AOpenbisSample(String code, String space, String experiment, String secondaryName,
+      String additionalNotes, List<Property> factors, String parent, String externalID,
+      String sampleType) {
     this.code = code;
+    this.space = space;
     this.experiment = experiment;
+    this.sampleType = sampleType;
     this.Q_ADDITIONAL_NOTES = additionalNotes;
     this.Q_SECONDARY_NAME = secondaryName;
     this.factors = factors;
     this.parent = parent;
+    this.Q_EXTERNALDB_ID = externalID;
+  }
+
+  // this is the new version for entities
+  AOpenbisSample(int tempID, String secondaryName, String additionalNotes, List<Property> factors,
+      String externalID, List<Integer> tempParentIDs, String sampleType) {
+    this.tempID = tempID;
+    this.sampleType = sampleType;
+    this.Q_SECONDARY_NAME = secondaryName;
+    this.Q_ADDITIONAL_NOTES = additionalNotes;
+    this.Q_EXTERNALDB_ID = externalID;
+    this.factors = factors;
+    this.tempParentIDs = tempParentIDs;
+  }
+
+  // this is the new version for all child samples
+  AOpenbisSample(int tempID, List<AOpenbisSample> parents, String sampleType, String secondaryName,
+      String externalID, List<Property> newFactors, String additionalNotes) {
+    this.parents = parents;
+    this.tempID = tempID;
+    this.sampleType = sampleType;
+    this.Q_SECONDARY_NAME = secondaryName;
+    this.Q_ADDITIONAL_NOTES = additionalNotes;
+    this.Q_EXTERNALDB_ID = externalID;
+    Map<String, Property> oldFactors = new HashMap<String, Property>();
+    this.tempParentIDs = new ArrayList<Integer>();
+    this.parent = "";
+    for (AOpenbisSample s : parents) {
+      this.tempParentIDs.add(s.getTempID());
+      if (s.getCode() != null)
+        parent += s.getCode() + " ";
+      for (Property f : s.getFactors()) {
+        String lab = f.getLabel();
+        if (oldFactors.containsKey(lab)) {
+          Property old = oldFactors.get(lab);
+          String value = old.getValue() + old.getUnit();
+          String newValue = f.getValue() + f.getUnit();
+          if (!value.equals(newValue))
+            oldFactors.put(lab, new Property(lab, "mixed", old.getType()));
+        } else
+          oldFactors.put(lab, f);
+      }
+    }
+    this.parent = parent.trim();
+    this.factors = new ArrayList<Property>();
+    if (parents.size() > 0) {
+      for (String lab : parents.get(0).getFactorLabels())
+        this.factors.add(oldFactors.get(lab));
+    }
+    this.factors.addAll(newFactors);
+  }
+
+  public List<AOpenbisSample> getParents() {
+    return parents;
   }
 
   public void setSampleType(String sampleType) {
@@ -71,6 +148,14 @@ public abstract class AOpenbisSample {
     this.parent = parent;
   }
 
+  public void setSpace(String space) {
+    this.space = space;
+  }
+
+  public String getSpace() {
+    return space;
+  }
+
   /**
    * Returns a map of all metadata fields and values of this sample
    * 
@@ -79,10 +164,12 @@ public abstract class AOpenbisSample {
   public Map<String, String> getValueMap() {
     Map<String, String> res = new HashMap<String, String>();
     res.put("EXPERIMENT", experiment);
+    res.put("SPACE", space);
     res.put("SAMPLE TYPE", sampleType);
     res.put("code", code);
     res.put("Q_ADDITIONAL_INFO", Q_ADDITIONAL_NOTES);
     res.put("Q_SECONDARY_NAME", Q_SECONDARY_NAME);
+    res.put("Q_EXTERNALDB_ID", Q_EXTERNALDB_ID);
     res.put("PARENT", parent);
     fillInFactors(res);
     return res;
@@ -116,6 +203,25 @@ public abstract class AOpenbisSample {
     return res;
   }
 
+  public List<String> getFactorStringsWithoutLabel() {
+    List<String> res = new ArrayList<String>();
+    for (Property f : factors) {
+      String cur = f.getValue(); // TODO null should be empty list
+      if (f.hasUnit())
+        cur += " " + f.getUnit();
+      res.add(cur);
+    }
+    return res;
+  }
+
+  public List<String> getFactorLabels() {
+    List<String> res = new ArrayList<String>();
+    for (Property f : factors) {
+      res.add(f.getLabel());
+    }
+    return res;
+  }
+
   public String getCode() {
     return code;
   }
@@ -128,6 +234,14 @@ public abstract class AOpenbisSample {
     return factors;
   }
 
+  public String getQ_EXTERNALDB_ID() {
+    return Q_EXTERNALDB_ID;
+  }
+
+  public void setQ_EXTERNALDB_ID(String extID) {
+    this.Q_EXTERNALDB_ID = extID;
+  }
+
   public String getQ_ADDITIONAL_NOTES() {
     return Q_ADDITIONAL_NOTES;
   }
@@ -137,6 +251,18 @@ public abstract class AOpenbisSample {
   }
 
   public String toString() {
-    return sampleType + " " + code + " " + Q_SECONDARY_NAME;
+    return "<" + sampleType + " " + code + " " + Q_SECONDARY_NAME + ">";
+  }
+
+  public Integer getTempID() {
+    return tempID;
+  }
+
+  public List<Integer> getTempParentIDs() {
+    return tempParentIDs;
+  }
+
+  public void addFactor(Property factor) {
+    this.factors.add(factor);
   }
 }
