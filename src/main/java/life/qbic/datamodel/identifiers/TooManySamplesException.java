@@ -1,4 +1,4 @@
-package life.qbic.datamodel.entities;
+package life.qbic.datamodel.identifiers;
 
 public class TooManySamplesException extends Exception {
 

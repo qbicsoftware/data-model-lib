@@ -20,7 +20,7 @@ import java.util.Comparator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import life.qbic.datamodel.codes.SampleCodeFunctions;
+import life.qbic.datamodel.identifiers.SampleCodeFunctions;
 import life.qbic.datamodel.printing.IBarcodeBean;
 
 /**

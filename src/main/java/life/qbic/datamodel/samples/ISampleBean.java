@@ -1,4 +1,4 @@
-package life.qbic.datamodel.entities;
+package life.qbic.datamodel.samples;
 
 import java.util.ArrayList;
 import java.util.Map;

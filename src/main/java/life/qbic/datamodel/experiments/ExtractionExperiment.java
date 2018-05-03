@@ -15,44 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *******************************************************************************/
-package life.qbic.datamodel.entities;
+package life.qbic.datamodel.experiments;
 
-import java.util.List;
 
-public abstract class AExperiment {
-  
-  private String space;
-  private String project;
-  private String code;
-  
-  private List<AOpenbisSample> samples;
-  
-  public AExperiment(String space, String project, String code) {
-    this.space = space;
-    this.project = project;
-    this.code = code;
+public class ExtractionExperiment extends AExperiment {
+
+  public ExtractionExperiment(String space, String project, String code) {
+    super(space, project, code);
   }
-  
-  public String getID() {
-    return "/"+space+"/"+project+"/"+code;
-  }
-  
-  /**
-   * Adds a single sample to the list of samples of this experiment
-   */
-  public void addSample(AOpenbisSample sample) {
-    samples.add(sample);
-  }
-  
-  /**
-   * Sets the list of samples in this experiment
-   */
-  public void setSamples(List<AOpenbisSample> samples) {
-    this.samples = samples;
-  }
-  
-  public List<AOpenbisSample> getSamples() {
-    return samples;
-  }
-  
+
 }

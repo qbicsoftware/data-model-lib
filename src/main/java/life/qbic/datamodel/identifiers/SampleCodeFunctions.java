@@ -1,4 +1,4 @@
-package life.qbic.datamodel.codes;
+package life.qbic.datamodel.identifiers;
 
 
 import java.util.ArrayList;
