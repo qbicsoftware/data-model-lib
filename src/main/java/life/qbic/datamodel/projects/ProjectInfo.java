@@ -8,8 +8,29 @@ public class ProjectInfo {
   private String contact;
   private String manager;
   private boolean isPilot;
+  private String space;
+  private String projectCode;
+  private int projectID;
 
-  public ProjectInfo() {}
+  public ProjectInfo(String space, String projectCode, String projectName, int projectID,
+      String investigator, String contact, String manager) {
+    super();
+    this.space = space;
+    this.projectCode = projectCode;
+    this.secondaryName = projectName;
+    this.projectID = projectID;
+    this.investigator = investigator;
+    this.contact = contact;
+    this.manager = manager;
+  }
+
+  public ProjectInfo(String space, String project, String shortName, int id) {
+    super();
+    this.space = space;
+    this.projectCode = project;
+    this.secondaryName = shortName;
+    this.projectID = id;
+  }
 
   public ProjectInfo(String description, String secondaryName, boolean isPilot, String investigator,
       String contact, String manager) {
@@ -53,4 +74,37 @@ public class ProjectInfo {
     return manager;
   }
 
+
+  public void setManager(String name) {
+    this.manager = name;
+  }
+
+  public void setContact(String name) {
+    this.contact = name;
+  }
+
+  public void setInvestigator(String name) {
+    this.investigator = name;
+  }
+
+  @Override
+  public String toString() {
+    String res = projectCode + " (" + secondaryName + ")\n";
+    res += "PI: " + investigator + ", ";
+    res += "Ctct: " + contact + ", ";
+    res += "Mngr: " + manager;
+    return res;
+  }
+
+  public String getProjectCode() {
+    return projectCode;
+  }
+
+  public String getSpace() {
+    return space;
+  }
+
+  public int getProjectID() {
+    return projectID;
+  }
 }
