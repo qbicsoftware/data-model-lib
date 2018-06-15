@@ -1,9 +1,11 @@
 package life.qbic.datamodel.samples;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
 
 public class TSVSampleBean implements ISampleBean {
 
@@ -13,18 +15,18 @@ public class TSVSampleBean implements ISampleBean {
   private String space;
   private String sampleType;
   private String secondaryName;
-  private String parents;
+  private List<String> parentIDs;
   private Map<String, Object> metadata;
 
   public TSVSampleBean(String code, String exp, String proj, String space, String sType,
-      String secondaryName, String parents, Map<String, Object> metadata) {
+      String secondaryName, List<String> parentIDs, Map<String, Object> metadata) {
     this.code = code;
     this.experiment = exp;
     this.project = proj;
     this.space = space;
     this.sampleType = sType;
     this.secondaryName = secondaryName;
-    this.parents = parents;
+    this.parentIDs = parentIDs;
     this.metadata = metadata;
   }
 
@@ -34,31 +36,32 @@ public class TSVSampleBean implements ISampleBean {
     this.sampleType = sampleType;
     this.secondaryName = secondaryName;
     this.metadata = metadata;
-    this.parents = "";
+    this.parentIDs = new ArrayList<String>();
   }
 
   public String toString() {
-    return code + "\t" + experiment + "\t" + secondaryName + "\t" + sampleType + "\t" + parents
-        + "\t\t" + metadata;
+    return code + "\t" + experiment + "\t" + secondaryName + "\t" + sampleType + "\t"
+        + getParentIDs() + "\t" + metadata;
   }
 
   public boolean hasParents() {
-    return getParents() != null && !getParents().equals("");
+    return parentIDs.isEmpty();
   }
 
-  public ArrayList<String> fetchParentIDs() {
-    if (!hasParents())
-      return new ArrayList<String>();
-    else {
-      if (parents.contains(",")) {
-        ArrayList<String> res = new ArrayList<String>();
-        for (String p : Arrays.asList(getParents().split(","))) {
-          res.add(p.trim());
-        }
-        return res;
-      } else
-        return new ArrayList<String>(Arrays.asList(getParents()));
-    }
+  public List<String> getParentIDs() {
+    return parentIDs;
+    // if (!hasParents())
+    // return new ArrayList<String>();
+    // else {
+    // if (parents.contains(",")) {
+    // ArrayList<String> res = new ArrayList<String>();
+    // for (String p : Arrays.asList(getParents().split(","))) {
+    // res.add(p.trim());
+    // }
+    // return res;
+    // } else
+    // return new ArrayList<String>(Arrays.asList(getParents()));
+    // }
   }
 
   @Override
@@ -118,12 +121,9 @@ public class TSVSampleBean implements ISampleBean {
     this.secondaryName = secName;
   }
 
-  public String getParents() {
-    return parents;
-  }
-
-  public void setParents(String parents) {
-    this.parents = parents;
+  public void setParents(List<ISampleBean> parents) {
+    for (ISampleBean p : parents)
+      addParent(p);
   }
 
   public Map<String, Object> getMetadata() {
@@ -134,11 +134,14 @@ public class TSVSampleBean implements ISampleBean {
     this.metadata = metadata;
   }
 
-  public void addParent(String parent) {
-    if (hasParents())
-      parents = parents + "," + parent;
-    else
-      parents = parent;
+  public void addParent(ISampleBean parent) {
+    addParentID(parent.getCode());
+  }
+
+  public void addParentID(String id) {
+    if (!hasParents())
+      parentIDs = new ArrayList<String>();
+    parentIDs.add(id);
   }
 
   @Override
@@ -153,7 +156,7 @@ public class TSVSampleBean implements ISampleBean {
   @Override
   public ISampleBean copy() {
     TSVSampleBean res = new TSVSampleBean(code, experiment, project, space, sampleType,
-        secondaryName, parents, new HashMap<String, Object>(metadata));
+        secondaryName, parentIDs, new HashMap<String, Object>(metadata));
     return res;
   }
 }

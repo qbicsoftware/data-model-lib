@@ -1,6 +1,6 @@
 package life.qbic.datamodel.samples;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 
@@ -10,7 +10,7 @@ public interface ISampleBean {
 
   String getCode();
 
-  ArrayList<String> fetchParentIDs();
+  List<String> getParentIDs();
 
   String getType();
 
