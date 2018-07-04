@@ -1,25 +1,78 @@
+# Build script for Travis CI
+#
+
+# use fast-boot container-based hosts
+sudo: false 
+dist: trusty
+
+# no need to check for oracle's java
 language: java
-jdk:
-- openjdk8
+jdk: openjdk8
+
+# speed up builds by caching maven local repository
 cache:
   directories:
   - "$HOME/.m2/repository"
-sudo: false
+
+# as agreed in our SOP
+branches:
+  only:
+  - master
+  - development
+
+# added to make logs look cleaner, crisper, certified fresh
+before_install: unset _JAVA_OPTIONS 
+
+# speed up builds by telling Travis that we don't need any special "installation"
+install: true
+
+# check if we need to add a license file for Vaadin charts
+before_script: if [ "$VAADIN_CHARTS_LICENSE_CODE" != "" ]; then
+                  echo "$VAADIN_CHARTS_LICENSE_CODE" > ~/.vaadin.charts.developer.license;
+               fi;
+
+# as agreed in our SOP, build everything (don't deploy, just try to 'mvn install' locally, which covers all phases)
+script: mvn --quiet --activate-profiles !development-build,!release-build --settings .travis.settings.xml clean cobertura:cobertura install
+# upload code coverage report, generate maven site (javadocs, documentation, static code analysis, etc.)
+after_success: 
+- bash <(curl -s https://codecov.io/bash)
+- mvn --quiet --activate-profiles !development-build,!release-build --settings .travis.settings.xml site
+
+# upload to maven
+deploy:
+  # as agreed in our SOP, builds on development branch will deploy to our maven repository after validating
+  # the artifact has a proper SNAPSHOT version
+  # artifact will be installed in our testing instance if it is a .war file
+- skip_cleanup: true
+  provider: script
+  script: mvn --quiet --activate-profiles development-build,!release-build --settings .travis.settings.xml deploy
+  on:
+    branch: development
+    condition: '"$TRAVIS_EVENT_TYPE" = "push"'
+  # as agreed in our SOP, tagging a commit on the master branch will upload to our maven repository
+  # after validating the artifact has a proper release version
+  # artifact will be installed in our testing instance if it is a .war file
+- skip_cleanup: true
+  provider: script
+  script: mvn --quiet --activate-profiles !development-build,release-build --settings .travis.settings.xml deploy
+  on:
+    branch: master
+    condition: '"$TRAVIS_EVENT_TYPE" = "push"'
+
+# change according to your needs, but we recommend to deactivate email notifications
+# for now, we configured Travis to send a notification to the #travis-ci channel 
 notifications:
   email:
     on_success: never
     on_failure: never
-  slack:
+  slack: 
     on_success: never
     on_failure: always
-branches:
-  only:
-  - master
-script:
-- mvn --settings .travis.settings.xml clean cobertura:cobertura deploy
-after_success:
-- bash <(curl -s https://codecov.io/bash)
-- mvn site
+    # edit the following section if you want to get slack notifications
+    rooms:
+      - secure: "***"
+#
+# credentials
 env:
   global:
   - secure: DyLu0Fv7hGC0igXj3gQP7ATYt9u7vAu0J2ZS+WeyvEihyPx57SUZiAuoasfDIROuEv0jSxay1x7qSje4sB8IZZOqzzojNw0KLm7Xz2CbHTi7NqUtdT0jifP4ELGdZC6ewnRP8oWnMmynNIqJTqjGUHWhQiUvXa0h5TqlQnIZWBEZjCNxCjxDGA8OG+XkSzPO7BTGwiIyTdpWm3gASMC+2e3BYmlqyIAS4AQWtyF2Cgg6HMCc1UMgnU6ZLPsup7SQodKsCFdwEkill4gUBcBf3vCDEslwKCpmHgzCj1CMxLpklik/PLVTcFY6krp9xiGNAwV6db+NZ4hmDzhx20GfO1lR2/RCTy5LNkb1D3NroQtVC0K9wKoEAoQhnCDTAtk++JHMQut/U5U1S7WoVUv00Z0DuHhgqt4SE+L7oGspZL9ZQJuo8UQjwjFPaTStE5FPvb/cZgS+diWRY8UVZcqQJSfgeDb4UKGf5ijZ997JWf2WgrOs7DcTYT8m/cUH6Tf3nI5vS0p4kBam4unaSlvKwDRiffn0/wkYdDYeFaLowaL7tvkp3ct6QcWDbv0fIfKnnv7OVycKmvD/iO4J6UHszfnrgpNoVUFFU3sxzHlrfxmFcC16hN2RYn/AcqoLwLecDnvgPBEjfa2lMGmfkPSR8/mw3+gEG4i5lYhLV1Fjn5c=
