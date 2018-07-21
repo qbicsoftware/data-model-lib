@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class SampleSummary {
+public class SampleSummary implements Comparable<SampleSummary> {
 
   private int id;
   private Set<Integer> parentIDs;
@@ -185,6 +185,11 @@ public class SampleSummary {
     } else if (!source.equals(other.source))
       return false;
     return true;
+  }
+
+  @Override
+  public int compareTo(SampleSummary s) {
+    return Integer.compare(this.id, s.id);
   }
 
 }
