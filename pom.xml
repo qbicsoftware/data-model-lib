@@ -4,7 +4,7 @@
 	<groupId>life.qbic</groupId>
 	<artifactId>data-model-lib</artifactId>
 	<packaging>jar</packaging>
-	<version>0.2.2</version>
+	<version>0.2.3</version>
 	<name>Data Model Library</name>
 	<url>http://maven.apache.org</url>
 	<properties>
@@ -39,7 +39,7 @@
 		<dependency>
 			<groupId>life.qbic</groupId>
 			<artifactId>xml-manager-lib</artifactId>
-			<version>1.0.1</version>
+			<version>1.1.1</version>
 		</dependency>
 
 	</dependencies>
