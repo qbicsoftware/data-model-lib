@@ -122,6 +122,7 @@ public class TSVSampleBean implements ISampleBean {
   }
 
   public void setParents(List<ISampleBean> parents) {
+    parentIDs = new ArrayList<String>();
     for (ISampleBean p : parents)
       addParent(p);
   }
