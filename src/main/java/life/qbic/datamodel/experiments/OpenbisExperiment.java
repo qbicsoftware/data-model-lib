@@ -29,7 +29,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class OpenbisExperiment {
 
-  private String openbisName;
+  private String experimentCode;
   private ExperimentType type;
   private String Q_SECONDARY_NAME;
   private String Q_ADDITIONAL_NOTES;
@@ -41,31 +41,31 @@ public class OpenbisExperiment {
   /**
    * Creates a new Openbis Experiment
    * 
-   * @param name Name of the experiment
+   * @param code of the experiment
    * @param type Experiment type
    * @param props Map with experimental properties
    */
-  public OpenbisExperiment(String name, ExperimentType type, Map<String, Object> props) {
+  public OpenbisExperiment(String code, ExperimentType type, Map<String, Object> props) {
     this.properties = props;
-    this.openbisName = name;
+    this.experimentCode = code;
     this.type = type;
   }
 
   /**
    * Creates a new Openbis Experiment
    * 
-   * @param name Name of the experiment
+   * @param code of the experiment
    * @param type Experiment type
    */
-  public OpenbisExperiment(String name, ExperimentType type, int person, Map<String, Object> props) {
+  public OpenbisExperiment(String code, ExperimentType type, int person, Map<String, Object> props) {
     this.properties = props;
-    this.openbisName = name;
+    this.experimentCode = code;
     this.type = type;
     this.personID = person;
   }
 
-  public String getOpenbisName() {
-    return openbisName;
+  public String getExperimentCode() {
+    return experimentCode;
   }
 
   public void setMetadata(Map<String, Object> properties) {
@@ -124,6 +124,6 @@ public class OpenbisExperiment {
     }
     if (!res.isEmpty())
       res = res.substring(2);
-    return "#EXP " + openbisName + ":" + type + ":{" + res + "}";
+    return "#EXP " + experimentCode + ":" + type + ":{" + res + "}";
   }
 }
