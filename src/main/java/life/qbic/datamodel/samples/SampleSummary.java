@@ -189,7 +189,7 @@ public class SampleSummary implements Comparable<SampleSummary> {
 
   @Override
   public int compareTo(SampleSummary s) {
-    return Integer.compare(this.id, s.id);
+    return Integer.toString(this.id).compareTo(Integer.toString(s.id));
   }
 
 }
