@@ -12,28 +12,10 @@ public class ProjectInfo {
   private String projectCode;
   private int projectID;
 
-  public ProjectInfo(String space, String projectCode, String projectName, int projectID,
-      String investigator, String contact, String manager) {
-    super();
-    this.space = space;
-    this.projectCode = projectCode;
-    this.secondaryName = projectName;
-    this.projectID = projectID;
-    this.investigator = investigator;
-    this.contact = contact;
-    this.manager = manager;
-  }
-
-  public ProjectInfo(String space, String project, String shortName, int id) {
-    super();
-    this.space = space;
-    this.projectCode = project;
-    this.secondaryName = shortName;
-    this.projectID = id;
-  }
-
-  public ProjectInfo(String description, String secondaryName, boolean isPilot, String investigator,
+  public ProjectInfo(String space, String code, String description, String secondaryName, boolean isPilot, String investigator,
       String contact, String manager) {
+    this.space = space;
+    this.projectCode = code;
     this.description = description;
     this.secondaryName = secondaryName;
     this.isPilot = isPilot;

@@ -146,7 +146,7 @@ public class SampleSummary implements Comparable<SampleSummary> {
     final int prime = 31;
     int result = 1;
     result = prime * result + ((factorValue == null) ? 0 : factorValue.hashCode());
-    // result = prime * result + (leaf ? 1231 : 1237);
+     result = prime * result + (leaf ? 1231 : 1237);
     result = prime * result + ((name == null) ? 0 : name.hashCode());
     result = prime * result + ((parentIDs == null) ? 0 : parentIDs.hashCode());
     result = prime * result + ((source == null) ? 0 : source.hashCode());
@@ -167,8 +167,8 @@ public class SampleSummary implements Comparable<SampleSummary> {
         return false;
     } else if (!factorValue.equals(other.factorValue))
       return false;
-    // if (leaf != other.leaf)
-    // return false;
+     if (leaf != other.leaf)
+     return false;
     if (name == null) {
       if (other.name != null)
         return false;
@@ -189,7 +189,7 @@ public class SampleSummary implements Comparable<SampleSummary> {
 
   @Override
   public int compareTo(SampleSummary s) {
-    return Integer.compare(this.id, s.id);
+    return Integer.toString(this.id).compareTo(Integer.toString(s.id));
   }
 
 }

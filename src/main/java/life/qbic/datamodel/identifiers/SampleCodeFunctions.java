@@ -2,11 +2,15 @@ package life.qbic.datamodel.identifiers;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import life.qbic.datamodel.experiments.ExperimentType;
 
 /**
  * Helper functions used for sample creation
@@ -18,6 +22,18 @@ public class SampleCodeFunctions {
 
   private static final Logger logger = LogManager.getLogger(SampleCodeFunctions.class);
 
+  public static Map<String, ExperimentType> sampleTypesToExpTypes =
+      new HashMap<String, ExperimentType>() {
+        {
+          put("Q_BIOLOGICAL_ENTITY", ExperimentType.Q_EXPERIMENTAL_DESIGN);
+          put("Q_BIOLOGICAL_SAMPLE", ExperimentType.Q_SAMPLE_EXTRACTION);
+          put("Q_TEST_SAMPLE", ExperimentType.Q_SAMPLE_PREPARATION);
+          put("Q_NGS_SINGLE_SAMPLE_RUN", ExperimentType.Q_NGS_SINGLE_SAMPLE_RUN);
+          put("Q_MS_RUN", ExperimentType.Q_MS_MEASUREMENT);
+          put("Q_MHC_LIGAND_EXTRACT", ExperimentType.Q_MHC_LIGAND_EXTRACTION);
+          put("Q_ATTACHMENT_SAMPLE", ExperimentType.Q_PROJECT_DETAILS);
+        }
+      };
 
   /**
    * Checks if a String fits the QBiC barcode pattern
@@ -218,16 +234,16 @@ public class SampleCodeFunctions {
   }
 
   /**
-   * Returns the 4 or 5 character project prefix used for samples in openBIS.
+   * Returns the 5 character project prefix used for samples in openBIS.
    * 
    * @param sample sample ID starting with a standard project prefix.
    * @return Project prefix of the sample
    */
   public static String getProjectPrefix(String sample) {
-    boolean numeric = StringUtils.isNumeric("" + sample.charAt(4));
-    if (numeric)
-      return sample.substring(0, 4);
-    else
+    // boolean numeric = StringUtils.isNumeric("" + sample.charAt(4));
+    // if (numeric)
+    // return sample.substring(0, 4);
+    // else
       return sample.substring(0, 5);
   }
 }
