@@ -10,13 +10,13 @@ import life.qbic.api.v1.qbicobject.QbicSample
  *
  * @author: Sven Fillinger
  */
-class Converter<T> {
+class Converter {
 
     /**
      * Links the correct adapter to a given openBIS object.
      */
     private final static Map ADAPTER_LEXICON = [
-            ("life.qbic.api.v1.OpenbisSample".replace('.', '')): {object -> new QbicSample(object)}
+            ("ch.ethz.sis.openbis.generic.asapi.v3.dto.sample.Sample".replace('.', '')): {object -> new QbicSample(object)}
     ]
 
     /**
@@ -33,7 +33,7 @@ class Converter<T> {
      * @param T An openBIS object to convert
      * @return A QBiC object or the original object, if no adapter was found
      */
-     T convert(T object) {
+     Object convert(Object object) {
         getAdapterForClass(object.class)(object)
     }
 

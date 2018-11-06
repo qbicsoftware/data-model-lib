@@ -24,17 +24,17 @@ class QbicSample implements SampleAdapter{
     }
 
     @Override
-    def getCode() {
+    String getCode() {
+        return this.openbisSample.getCode()
+    }
+
+    @Override
+    List<QbicSample> getComponents() {
         return null
     }
 
     @Override
-    def getComponents() {
-        return null
-    }
-
-    @Override
-    def getContainer() {
+    QbicSample getContainer() {
         return null
     }
 

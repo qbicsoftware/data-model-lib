@@ -1,29 +1,30 @@
 package life.qbic.api.v1
 
-import conversion.Converter
-
+import ch.ethz.sis.openbis.generic.asapi.v3.dto.sample.Sample
 /**
  * Example entry point for a showcase of the openBIS object adapter usage.
  */
 class Main {
 
     static void main(String[] args){
-        def oSample = new OpenbisSample() // create an example openBIS qbicobject
-        def otherChild = new OpenbisSample() // create another openBIS qbicobject
-        oSample.otherChildren = [otherChild] // and add this as child
 
-        def converter = new Converter()
+        def submitter = new Submitter()
 
-        def qSample = converter.convert(oSample)
+        def fakeQuery = {
+            def result = []
+            result << new Sample().tap {
+                code = "QHIPP000A3"
+            }
+            result << new Sample().tap {
+                code = "QHIPP001B1"
+            }
+        }
 
-        print(qSample.getChildren())
+        def result = submitter.submit fakeQuery
+        println result.class
+        println result.code
 
     }
 
 }
 
-class OpenbisSample {
-
-    List<OpenbisSample> otherChildren
-
-}

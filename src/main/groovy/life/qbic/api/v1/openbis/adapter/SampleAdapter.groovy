@@ -1,5 +1,6 @@
 package life.qbic.api.v1.openbis.adapter
 
+import life.qbic.api.v1.qbicobject.QbicAttachment
 import life.qbic.api.v1.qbicobject.QbicSample
 
 /**
@@ -13,11 +14,11 @@ interface SampleAdapter {
 
     List<QbicSample> getChildren()
 
-    def getCode()
+    String getCode()
 
-    def getComponents()
+    List<QbicSample> getComponents()
 
-    def getContainer()
+    QbicSample getContainer()
 
     def getDataSets()
 
