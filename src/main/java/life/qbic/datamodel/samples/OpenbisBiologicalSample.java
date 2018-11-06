@@ -23,7 +23,7 @@ import java.util.Map;
 import life.qbic.xml.properties.Property;
 
 /**
- * Class representing a sample created in a sample extraction experiment and from which test samples
+ * Class representing a qbicobject created in a qbicobject extraction experiment and from which test samples
  * may be prepared
  * 
  * @author Andreas Friedrich
@@ -37,14 +37,14 @@ public class OpenbisBiologicalSample extends AOpenbisSample {
   /**
    * Create a new Biological Sample
    * 
-   * @param openbisName Code of the sample
-   * @param experiment Experiment the sample is attached to
-   * @param secondaryName Secondary name of the sample (e.g. humanly readable identifier)
-   * @param additionalNotes Free text notes for the sample
-   * @param factors A list of conditions for the sample
-   * @param primaryTissue The primary tissue of this biological sample
+   * @param openbisName Code of the qbicobject
+   * @param experiment Experiment the qbicobject is attached to
+   * @param secondaryName Secondary name of the qbicobject (e.g. humanly readable identifier)
+   * @param additionalNotes Free text notes for the qbicobject
+   * @param factors A list of conditions for the qbicobject
+   * @param primaryTissue The primary tissue of this biological qbicobject
    * @param tissueDetailed Detailed tissue information
-   * @param parent Entity parent this sample was extracted from
+   * @param parent Entity parent this qbicobject was extracted from
    */
   public OpenbisBiologicalSample(String openbisName, String space, String experiment,
       String secondaryName, String additionalNotes, List<Property> factors, String primaryTissue,

@@ -40,7 +40,7 @@ public abstract class AExperiment {
   }
   
   /**
-   * Adds a single sample to the list of samples of this experiment
+   * Adds a single qbicobject to the list of samples of this experiment
    */
   public void addSample(AOpenbisSample sample) {
     samples.add(sample);

@@ -44,14 +44,14 @@ public abstract class AOpenbisSample {
   private List<AOpenbisSample> parents;
 
   /**
-   * Constructor of an abstract openbis sample
+   * Constructor of an abstract openbis qbicobject
    * 
-   * @param code The sample code of the sample
-   * @param experiment The experiment the sample is attached to
-   * @param secondaryName A secondary name the sample might have
+   * @param code The qbicobject code of the qbicobject
+   * @param experiment The experiment the qbicobject is attached to
+   * @param secondaryName A secondary name the qbicobject might have
    * @param additionalNotes Free text additional notes
-   * @param factors A list of conditions of this sample
-   * @param parent A parent sample code this sample is attached to
+   * @param factors A list of conditions of this qbicobject
+   * @param parent A parent qbicobject code this qbicobject is attached to
    */
   AOpenbisSample(String code, String space, String experiment, String secondaryName,
       String additionalNotes, List<Property> factors, String parent, String externalID,
@@ -157,7 +157,7 @@ public abstract class AOpenbisSample {
   }
 
   /**
-   * Returns a map of all metadata fields and values of this sample
+   * Returns a map of all metadata fields and values of this qbicobject
    * 
    * @return
    */

@@ -21,7 +21,7 @@ import java.util.Map;
 import life.qbic.xml.properties.Property;
 
 /**
- * Class representing a sample created in a sample preparation that will be used to measure data
+ * Class representing a qbicobject created in a qbicobject preparation that will be used to measure data
  * 
  * @author Andreas Friedrich
  *
@@ -33,13 +33,13 @@ public class OpenbisTestSample extends AOpenbisSample {
   /**
    * Create a new Test Sample
    * 
-   * @param openbisName Code of the sample
-   * @param experiment Experiment the sample is attached to
-   * @param secondaryName Secondary Name of the sample (e.g. humanly readable identifier)
-   * @param additionalNotes Free text notes for the sample
-   * @param factors A list of conditions of this sample
-   * @param sampleType Measurement type of this sample (e.g. protein)
-   * @param parent Extract parent of this sample
+   * @param openbisName Code of the qbicobject
+   * @param experiment Experiment the qbicobject is attached to
+   * @param secondaryName Secondary Name of the qbicobject (e.g. humanly readable identifier)
+   * @param additionalNotes Free text notes for the qbicobject
+   * @param factors A list of conditions of this qbicobject
+   * @param sampleType Measurement type of this qbicobject (e.g. protein)
+   * @param parent Extract parent of this qbicobject
    */
   public OpenbisTestSample(String openbisName, String space, String experiment,
       String secondaryName, String additionalNotes, List<Property> factors, String sampleType,

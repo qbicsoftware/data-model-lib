@@ -6,7 +6,7 @@ import java.util.Comparator;
 import life.qbic.datamodel.printing.IBarcodeBean;
 
 /**
- * Compares IBarcodeBeans by the sample description
+ * Compares IBarcodeBeans by the qbicobject description
  * @author Andreas Friedrich
  *
  */

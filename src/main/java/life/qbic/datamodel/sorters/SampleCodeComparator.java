@@ -24,7 +24,7 @@ import life.qbic.datamodel.identifiers.SampleCodeFunctions;
 import life.qbic.datamodel.printing.IBarcodeBean;
 
 /**
- * Compares IBarcodeBeans by sample ID
+ * Compares IBarcodeBeans by qbicobject ID
  * 
  * @author Andreas Friedrich
  *
@@ -49,7 +49,7 @@ public class SampleCodeComparator implements Comparator<IBarcodeBean> {
         || c2.contains("ENTITY"))
       return o1.getCode().compareTo(o2.getCode());
     try {
-      // compares sample codes by projects, ending letters (999A --> 001B) and numbers (001A -->
+      // compares qbicobject codes by projects, ending letters (999A --> 001B) and numbers (001A -->
       // 002A)
       int projCompare = c1.substring(0, 5).compareTo(c2.substring(0, 5));
       int numCompare = c1.substring(5, 8).compareTo(c2.substring(5, 8));

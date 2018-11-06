@@ -20,7 +20,7 @@ package life.qbic.datamodel.printing;
 import java.util.List;
 
 /**
- * Bean item representing identifier, secondary name, a list of parent samples and sample type of samples to visualize in a table etc.
+ * Bean item representing identifier, secondary name, a list of parent samples and qbicobject type of samples to visualize in a table etc.
  * @author Andreas Friedrich
  *
  */

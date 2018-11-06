@@ -16,7 +16,7 @@
 package life.qbic.datamodel.samples;
 
 /**
- * Current sample type codes used in openBIS
+ * Current qbicobject type codes used in openBIS
  * 
  * @author Andreas Friedrich
  *

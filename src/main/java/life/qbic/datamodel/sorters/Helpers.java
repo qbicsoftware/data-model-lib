@@ -16,7 +16,7 @@
 package life.qbic.datamodel.sorters;
 
 /**
- * Helper functions used for sample creation
+ * Helper functions used for qbicobject creation
  * 
  * @author Andreas Friedrich
  * 

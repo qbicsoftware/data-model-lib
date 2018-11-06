@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 import life.qbic.datamodel.experiments.ExperimentType;
 
 /**
- * Helper functions used for sample creation
+ * Helper functions used for qbicobject creation
  * 
  * @author Andreas Friedrich
  * 
@@ -61,7 +61,7 @@ public class SampleCodeFunctions {
         || c2.contains("ENTITY"))
       return c1.compareTo(c2);
     try {
-      // compares sample codes by projects, ending letters (999A --> 001B) and numbers (001A -->
+      // compares qbicobject codes by projects, ending letters (999A --> 001B) and numbers (001A -->
       // 002A)
       int projCompare = c1.substring(0, 5).compareTo(c2.substring(0, 5));
       int numCompare = c1.substring(5, 8).compareTo(c2.substring(5, 8));
@@ -112,12 +112,12 @@ public class SampleCodeFunctions {
   }
 
   /**
-   * Increments to the next sample string in the order, meaning the project code stays the same and
+   * Increments to the next qbicobject string in the order, meaning the project code stays the same and
    * the 3 letter number is incremented, except if it's 999, then the following letter is
    * incremented and the number starts with 001 again.
    * 
-   * @param code a 10 digit sample code
-   * @return a new sample code
+   * @param code a 10 digit qbicobject code
+   * @return a new qbicobject code
    */
   public static String incrementSampleCode(String code) {
     String old = code.substring(5, 8);
@@ -236,13 +236,13 @@ public class SampleCodeFunctions {
   /**
    * Returns the 5 character project prefix used for samples in openBIS.
    * 
-   * @param sample sample ID starting with a standard project prefix.
-   * @return Project prefix of the sample
+   * @param sample qbicobject ID starting with a standard project prefix.
+   * @return Project prefix of the qbicobject
    */
   public static String getProjectPrefix(String sample) {
-    // boolean numeric = StringUtils.isNumeric("" + sample.charAt(4));
+    // boolean numeric = StringUtils.isNumeric("" + qbicobject.charAt(4));
     // if (numeric)
-    // return sample.substring(0, 4);
+    // return qbicobject.substring(0, 4);
     // else
       return sample.substring(0, 5);
   }

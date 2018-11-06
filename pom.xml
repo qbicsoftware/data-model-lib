@@ -14,6 +14,12 @@
 	<name>Data Model Library</name>
 	<url>http://github.com/qbicsoftware/data-model-lib</url>
 	<description>A collection of QBiC data models.</description>
+
+	<properties>
+		<groovy.version>2.5.3</groovy.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
 	<packaging>jar</packaging>
 	<!-- we only need to tell maven where to find our parent pom and other QBiC dependencies -->
 	<repositories>
@@ -73,6 +79,17 @@
 			<groupId>life.qbic</groupId>
 			<artifactId>xml-manager-lib</artifactId>
 			<version>1.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy</artifactId>
+			<version>${groovy.version}</version>
+			<classifier>indy</classifier>
+		</dependency>
+		<dependency>
+			<groupId>life.qbic.openbis</groupId>
+			<artifactId>openbis-api</artifactId>
+			<version>18.06.1</version>
 		</dependency>
 	</dependencies>
 </project>

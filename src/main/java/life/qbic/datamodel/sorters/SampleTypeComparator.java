@@ -23,7 +23,7 @@ import java.util.Comparator;
 import life.qbic.datamodel.printing.IBarcodeBean;
 
 /**
- * Compares IBarcodeBeans by sample type (tissue or prepared samples)
+ * Compares IBarcodeBeans by qbicobject type (tissue or prepared samples)
  * @author Andreas Friedrich
  *
  */

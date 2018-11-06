@@ -3,7 +3,7 @@ package life.qbic.datamodel.printing;
 import java.util.List;
 
 /**
- * Interface for openBIS sample models. This can be used to hold, register or visualize sample
+ * Interface for openBIS qbicobject models. This can be used to hold, register or visualize qbicobject
  * metadata
  * 
  * @author Andreas Friedrich
