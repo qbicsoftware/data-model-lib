@@ -4,7 +4,7 @@
 Data Model Library, version 1.0.0-SNAPSHOT - A collection of QBiC data models.
 
 ## Author
-Created by Sven Fillinger, Luis de la Garza (sven.fillinger@qbic.uni-tuebingen.de).
+Created by Andreas Friedrich, Luis de la Garza, Sven Fillinger.
 
 ## Description
 
