@@ -33,7 +33,7 @@ public class ExperimentBean {
   /**
    * Creates a new ExperimentBean
    * 
-   * @param id of experiment
+   * @param ID of experiment
    * @param experimentTypeCode the type code of the experiment
    * @param numOfSamples number of samples in this experiment
    * @param date
