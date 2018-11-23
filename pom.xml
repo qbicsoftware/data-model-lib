@@ -15,7 +15,6 @@
 	<name>Data Model Library</name>
 	<url>http://github.com/qbicsoftware/data-model-lib</url>
 	<description>A collection of QBiC data models.</description>
-	<packaging>jar</packaging>
 	<!-- we only need to tell maven where to find our parent pom and other QBiC dependencies -->
 	<repositories>
 		<repository>
