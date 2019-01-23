@@ -72,7 +72,7 @@
 		<dependency>
 			<groupId>life.qbic</groupId>
 			<artifactId>xml-manager-lib</artifactId>
-			<version>1.4.0-SNAPSHOT</version>
+			<version>1.4.0</version>
 		</dependency>
 	</dependencies>
 </project>
