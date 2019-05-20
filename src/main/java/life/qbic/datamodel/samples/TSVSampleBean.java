@@ -13,12 +13,12 @@ public class TSVSampleBean implements ISampleBean {
   private String experiment;
   private String project;
   private String space;
-  private String sampleType;
+  private SampleType sampleType;
   private String secondaryName;
   private List<String> parentIDs;
   private Map<String, Object> metadata;
 
-  public TSVSampleBean(String code, String exp, String proj, String space, String sType,
+  public TSVSampleBean(String code, String exp, String proj, String space, SampleType sType,
       String secondaryName, List<String> parentIDs, Map<String, Object> metadata) {
     this.code = code;
     this.experiment = exp;
@@ -30,7 +30,7 @@ public class TSVSampleBean implements ISampleBean {
     this.metadata = metadata;
   }
 
-  public TSVSampleBean(String prelimCode, String sampleType, String secondaryName,
+  public TSVSampleBean(String prelimCode, SampleType sampleType, String secondaryName,
       Map<String, Object> metadata) {
     this.code = prelimCode;
     this.sampleType = sampleType;
@@ -105,11 +105,11 @@ public class TSVSampleBean implements ISampleBean {
     this.space = space;
   }
 
-  public String getType() {
+  public SampleType getType() {
     return sampleType;
   }
 
-  public void setSampleType(String sampleType) {
+  public void setSampleType(SampleType sampleType) {
     this.sampleType = sampleType;
   }
 
