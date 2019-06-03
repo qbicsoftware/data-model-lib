@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -247,6 +246,6 @@ public class SampleCodeFunctions {
     // if (numeric)
     // return sample.substring(0, 4);
     // else
-      return sample.substring(0, 5);
+    return sample.substring(0, 5);
   }
 }
