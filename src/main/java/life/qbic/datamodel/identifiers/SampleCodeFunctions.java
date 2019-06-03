@@ -6,11 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import life.qbic.datamodel.experiments.ExperimentType;
+import life.qbic.datamodel.samples.SampleType;
 
 /**
  * Helper functions used for sample creation
@@ -22,16 +22,18 @@ public class SampleCodeFunctions {
 
   private static final Logger logger = LogManager.getLogger(SampleCodeFunctions.class);
 
-  public static Map<String, ExperimentType> sampleTypesToExpTypes =
-      new HashMap<String, ExperimentType>() {
+  public static Map<SampleType, ExperimentType> sampleTypesToExpTypes =
+      new HashMap<SampleType, ExperimentType>() {
         {
-          put("Q_BIOLOGICAL_ENTITY", ExperimentType.Q_EXPERIMENTAL_DESIGN);
-          put("Q_BIOLOGICAL_SAMPLE", ExperimentType.Q_SAMPLE_EXTRACTION);
-          put("Q_TEST_SAMPLE", ExperimentType.Q_SAMPLE_PREPARATION);
-          put("Q_NGS_SINGLE_SAMPLE_RUN", ExperimentType.Q_NGS_SINGLE_SAMPLE_RUN);
-          put("Q_MS_RUN", ExperimentType.Q_MS_MEASUREMENT);
-          put("Q_MHC_LIGAND_EXTRACT", ExperimentType.Q_MHC_LIGAND_EXTRACTION);
-          put("Q_ATTACHMENT_SAMPLE", ExperimentType.Q_PROJECT_DETAILS);
+          put(SampleType.Q_BIOLOGICAL_ENTITY, ExperimentType.Q_EXPERIMENTAL_DESIGN);
+          put(SampleType.Q_BIOLOGICAL_SAMPLE, ExperimentType.Q_SAMPLE_EXTRACTION);
+          put(SampleType.Q_TEST_SAMPLE, ExperimentType.Q_SAMPLE_PREPARATION);
+          put(SampleType.Q_NGS_SINGLE_SAMPLE_RUN, ExperimentType.Q_NGS_SINGLE_SAMPLE_RUN);
+          put(SampleType.Q_MS_RUN, ExperimentType.Q_MS_MEASUREMENT);
+          put(SampleType.Q_MICROARRAY_RUN, ExperimentType.Q_MICROARRAY_MEASUREMENT);
+          put(SampleType.Q_BMI_GENERIC_IMAGING_RUN, ExperimentType.Q_BMI_GENERIC_IMAGING);
+          put(SampleType.Q_MHC_LIGAND_EXTRACT, ExperimentType.Q_MHC_LIGAND_EXTRACTION);
+          put(SampleType.Q_ATTACHMENT_SAMPLE, ExperimentType.Q_PROJECT_DETAILS);
         }
       };
 
@@ -244,6 +246,6 @@ public class SampleCodeFunctions {
     // if (numeric)
     // return sample.substring(0, 4);
     // else
-      return sample.substring(0, 5);
+    return sample.substring(0, 5);
   }
 }

@@ -12,7 +12,7 @@ public interface ISampleBean {
 
   List<String> getParentIDs();
 
-  String getType();
+  SampleType getType();
 
   boolean hasParents();
   
