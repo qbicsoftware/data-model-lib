@@ -73,5 +73,49 @@
 			<groupId>org.codehaus.groovy</groupId>
 			<artifactId>groovy</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.9.9</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
+		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version><!-- 3.6.2 is the minimum -->
+				<configuration>
+					<compilerId>groovy-eclipse-compiler</compilerId>
+					<compilerArguments>
+						<indy /><!-- optional; supported by batch 2.4.12-04+ -->
+						<configScript>config.groovy</configScript><!-- optional; supported 
+							by batch 2.4.13-02+ -->
+					</compilerArguments>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.codehaus.groovy</groupId>
+						<artifactId>groovy-eclipse-compiler</artifactId>
+						<version>3.3.0-01</version>
+					</dependency>
+					<dependency>
+						<groupId>org.codehaus.groovy</groupId>
+						<artifactId>groovy-eclipse-batch</artifactId>
+						<version>2.5.6-01</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<!--plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>properties-maven-plugin</artifactId> 
+				<version>1.0.0</version> <executions> <execution> <goals> <goal>set-system-properties</goal> 
+				</goals> <configuration> <properties> <property> <name>groovy.target.directory</name> 
+				<value>${project.build.directory}/classes</value> </property> <property> 
+				<name>groovy.parameters</name> <value>true</value> </property> </properties> 
+				</configuration> </execution> </executions> </plugin -->
+		</plugins>
+	</build>
 </project>

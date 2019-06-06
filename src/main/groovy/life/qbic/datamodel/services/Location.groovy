@@ -1,13 +1,8 @@
 package life.qbic.datamodel.services
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import io.micronaut.context.annotation.Property
-import io.micronaut.context.annotation.Requires
 import java.text.DateFormat
 import java.text.SimpleDateFormat
-import javax.inject.Singleton
-
-import org.json.JSONObject
 
 import java.util.Date
 
