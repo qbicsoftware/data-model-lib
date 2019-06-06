@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,14 +40,32 @@ public class SampleCodeFunctions {
       };
 
   /**
-   * Checks if a String fits the QBiC barcode pattern
+   * Checks if a String fits the QBiC barcode pattern and has a correct checksum
    * 
    * @param code A String that may be a barcode
-   * @return true if String is a QBiC barcode, false if not
+   * @return true if String is a QBiC barcode with matching checksum, false if not
    */
   public static boolean isQbicBarcode(String code) {
-    String pattern = "Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}";
-    return code.matches(pattern);
+    Pattern codePattern =
+        Pattern.compile("Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}", Pattern.CASE_INSENSITIVE);
+    Matcher matcher = codePattern.matcher(code);
+    if (matcher.find()) {
+      String base = code.substring(0, 9);
+      return checksum(base) == code.charAt(9);
+    }
+    return false;
+  }
+
+  /**
+   * Checks if a String fits the QBiC entity code pattern
+   * 
+   * @param code A String that may be a qbic entity code
+   * @return true if String is a QBiC entity code, false if not
+   */
+  public static boolean isQbicEntityCode(String code) {
+    Pattern entityPattern = Pattern.compile("Q[A-X0-9]{4}ENTITY-[0-9]*$", Pattern.CASE_INSENSITIVE);
+    Matcher matcher = entityPattern.matcher(code);
+    return matcher.find();
   }
 
   public static boolean isMeasurementOfBarcode(String code, String type) {
