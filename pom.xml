@@ -5,16 +5,15 @@
 	<parent>
 		<groupId>life.qbic</groupId>
 		<artifactId>parent-pom</artifactId>
-		<version>1.5.0</version>
+		<version>1.5.1</version>
 	</parent>
 	<artifactId>data-model-lib</artifactId>
 	<version>1.6.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>Data Model Library</name>
 	<url>http://github.com/qbicsoftware/data-model-lib</url>
 	<description>A collection of QBiC data models.</description>
-	<packaging>jar</packaging>
-	<!-- we only need to tell maven where to find our parent pom and other QBiC 
-		dependencies -->
+	<!-- we only need to tell maven where to find our parent pom and other QBiC dependencies -->
 	<repositories>
 		<repository>
 			<releases>
@@ -67,7 +66,7 @@
 		<dependency>
 			<groupId>life.qbic</groupId>
 			<artifactId>xml-manager-lib</artifactId>
-			<version>1.4.0</version>
+			<version>1.5.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.groovy</groupId>
