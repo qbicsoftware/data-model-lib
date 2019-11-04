@@ -49,7 +49,7 @@ public class SampleCodeFunctions {
     Pattern codePattern =
         Pattern.compile("Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}", Pattern.CASE_INSENSITIVE);
     Matcher matcher = codePattern.matcher(code);
-    if (matcher.find()) {
+    if (matcher.matches()) {
       String base = code.substring(0, 9);
       return checksum(base) == code.charAt(9);
     }
