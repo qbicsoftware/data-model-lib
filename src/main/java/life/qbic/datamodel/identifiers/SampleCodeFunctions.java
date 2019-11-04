@@ -7,10 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import life.qbic.datamodel.experiments.ExperimentType;
 import life.qbic.datamodel.samples.SampleType;
 
@@ -49,7 +47,7 @@ public class SampleCodeFunctions {
     Pattern codePattern =
         Pattern.compile("Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}", Pattern.CASE_INSENSITIVE);
     Matcher matcher = codePattern.matcher(code);
-    if (matcher.find()) {
+    if (matcher.matches()) {
       String base = code.substring(0, 9);
       return checksum(base) == code.charAt(9);
     }
