@@ -9,7 +9,7 @@
 	</parent>
 	<artifactId>data-model-lib</artifactId>
 	<packaging>jar</packaging>
-	<version>1.5.1</version>
+	<version>1.5.2</version>
 	<name>Data Model Library</name>
 	<url>http://github.com/qbicsoftware/data-model-lib</url>
 	<description>A collection of QBiC data models.</description>
