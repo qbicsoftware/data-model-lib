@@ -23,6 +23,15 @@ public class ProjectInfo {
     this.contact = contact;
     this.manager = manager;
   }
+  
+  public ProjectInfo(String space, String code, String description, String secondaryName, int id) {
+    this.space = space;
+    this.projectCode = code;
+    this.description = description;
+    this.secondaryName = secondaryName;
+    this.projectID = id;
+    this.isPilot = false;
+  }
 
   public boolean isPilot() {
     return isPilot;

@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.lang3.StringUtils;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import life.qbic.datamodel.experiments.ExperimentType;
+import life.qbic.datamodel.samples.SampleType;
 
 /**
  * Helper functions used for sample creation
@@ -22,28 +22,48 @@ public class SampleCodeFunctions {
 
   private static final Logger logger = LogManager.getLogger(SampleCodeFunctions.class);
 
-  public static Map<String, ExperimentType> sampleTypesToExpTypes =
-      new HashMap<String, ExperimentType>() {
+  public static Map<SampleType, ExperimentType> sampleTypesToExpTypes =
+      new HashMap<SampleType, ExperimentType>() {
         {
-          put("Q_BIOLOGICAL_ENTITY", ExperimentType.Q_EXPERIMENTAL_DESIGN);
-          put("Q_BIOLOGICAL_SAMPLE", ExperimentType.Q_SAMPLE_EXTRACTION);
-          put("Q_TEST_SAMPLE", ExperimentType.Q_SAMPLE_PREPARATION);
-          put("Q_NGS_SINGLE_SAMPLE_RUN", ExperimentType.Q_NGS_SINGLE_SAMPLE_RUN);
-          put("Q_MS_RUN", ExperimentType.Q_MS_MEASUREMENT);
-          put("Q_MHC_LIGAND_EXTRACT", ExperimentType.Q_MHC_LIGAND_EXTRACTION);
-          put("Q_ATTACHMENT_SAMPLE", ExperimentType.Q_PROJECT_DETAILS);
+          put(SampleType.Q_BIOLOGICAL_ENTITY, ExperimentType.Q_EXPERIMENTAL_DESIGN);
+          put(SampleType.Q_BIOLOGICAL_SAMPLE, ExperimentType.Q_SAMPLE_EXTRACTION);
+          put(SampleType.Q_TEST_SAMPLE, ExperimentType.Q_SAMPLE_PREPARATION);
+          put(SampleType.Q_NGS_SINGLE_SAMPLE_RUN, ExperimentType.Q_NGS_SINGLE_SAMPLE_RUN);
+          put(SampleType.Q_MS_RUN, ExperimentType.Q_MS_MEASUREMENT);
+          put(SampleType.Q_MICROARRAY_RUN, ExperimentType.Q_MICROARRAY_MEASUREMENT);
+          put(SampleType.Q_BMI_GENERIC_IMAGING_RUN, ExperimentType.Q_BMI_GENERIC_IMAGING);
+          put(SampleType.Q_MHC_LIGAND_EXTRACT, ExperimentType.Q_MHC_LIGAND_EXTRACTION);
+          put(SampleType.Q_ATTACHMENT_SAMPLE, ExperimentType.Q_PROJECT_DETAILS);
         }
       };
 
   /**
-   * Checks if a String fits the QBiC barcode pattern
+   * Checks if a String fits the QBiC barcode pattern and has a correct checksum
    * 
    * @param code A String that may be a barcode
-   * @return true if String is a QBiC barcode, false if not
+   * @return true if String is a QBiC barcode with matching checksum, false if not
    */
   public static boolean isQbicBarcode(String code) {
-    String pattern = "Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}";
-    return code.matches(pattern);
+    Pattern codePattern =
+        Pattern.compile("Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}", Pattern.CASE_INSENSITIVE);
+    Matcher matcher = codePattern.matcher(code);
+    if (matcher.matches()) {
+      String base = code.substring(0, 9);
+      return checksum(base) == code.charAt(9);
+    }
+    return false;
+  }
+
+  /**
+   * Checks if a String fits the QBiC entity code pattern
+   * 
+   * @param code A String that may be a qbic entity code
+   * @return true if String is a QBiC entity code, false if not
+   */
+  public static boolean isQbicEntityCode(String code) {
+    Pattern entityPattern = Pattern.compile("Q[A-X0-9]{4}ENTITY-[1-9][0-9]*", Pattern.CASE_INSENSITIVE);
+    Matcher matcher = entityPattern.matcher(code);
+    return matcher.find();
   }
 
   public static boolean isMeasurementOfBarcode(String code, String type) {
@@ -244,6 +264,6 @@ public class SampleCodeFunctions {
     // if (numeric)
     // return sample.substring(0, 4);
     // else
-      return sample.substring(0, 5);
+    return sample.substring(0, 5);
   }
 }
