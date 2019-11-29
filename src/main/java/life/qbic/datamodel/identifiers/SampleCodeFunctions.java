@@ -61,7 +61,7 @@ public class SampleCodeFunctions {
    * @return true if String is a QBiC entity code, false if not
    */
   public static boolean isQbicEntityCode(String code) {
-    Pattern entityPattern = Pattern.compile("Q[A-X0-9]{4}ENTITY-[0-9]*$", Pattern.CASE_INSENSITIVE);
+    Pattern entityPattern = Pattern.compile("Q[A-X0-9]{4}ENTITY-[1-9][0-9]*", Pattern.CASE_INSENSITIVE);
     Matcher matcher = entityPattern.matcher(code);
     return matcher.find();
   }
