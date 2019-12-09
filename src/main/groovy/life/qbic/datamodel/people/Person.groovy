@@ -1,12 +1,12 @@
-package life.qbic.datamodel.services;
+package life.qbic.datamodel.people;
 
-public class Person {
+class Person {
 
   private String firstName
   private String lastName
   private String email
 
-  public Person(String first, String last, String email) {
+  Person(String first, String last, String email) {
     this.firstName = first
     this.lastName = last
     this.email = email

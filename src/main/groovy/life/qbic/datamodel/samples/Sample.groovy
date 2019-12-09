@@ -1,6 +1,5 @@
-package life.qbic.datamodel.services;
+package life.qbic.datamodel.samples
 
-import javax.validation.Valid;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
