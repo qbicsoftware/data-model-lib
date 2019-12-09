@@ -1,10 +1,10 @@
-package life.qbic.datamodel.services
+package life.qbic.datamodel.samples
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import life.qbic.datamodel.people.Address
+
 import java.text.DateFormat
 import java.text.SimpleDateFormat
-
-import java.util.Date
 
 class Location  {
 

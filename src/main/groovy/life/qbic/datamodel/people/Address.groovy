@@ -1,4 +1,4 @@
-package life.qbic.datamodel.services
+package life.qbic.datamodel.people
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
