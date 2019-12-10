@@ -1,9 +1,8 @@
 package life.qbic.datamodel.workflows
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import io.swagger.v3.oas.annotations.media.Schema
 
-@Schema(name="Trace", description="Nextflow workflow job trace information.")
+
 class Trace {
 
     @JsonProperty("properties")
