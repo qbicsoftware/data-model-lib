@@ -20,6 +20,8 @@ import life.qbic.datamodel.samples.SampleType;
  */
 public class SampleCodeFunctions {
 
+  final public static String QBIC_SAMPLE_ID_SCHEMA = "Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}";
+
   private static final Logger logger = LogManager.getLogger(SampleCodeFunctions.class);
 
   public static Map<SampleType, ExperimentType> sampleTypesToExpTypes =
@@ -61,7 +63,7 @@ public class SampleCodeFunctions {
    * @return true if String is a QBiC entity code, false if not
    */
   public static boolean isQbicEntityCode(String code) {
-    Pattern entityPattern = Pattern.compile("Q[A-X0-9]{4}ENTITY-[1-9][0-9]*", Pattern.CASE_INSENSITIVE);
+    Pattern entityPattern = Pattern.compile(QBIC_SAMPLE_ID_SCHEMA, Pattern.CASE_INSENSITIVE);
     Matcher matcher = entityPattern.matcher(code);
     return matcher.find();
   }

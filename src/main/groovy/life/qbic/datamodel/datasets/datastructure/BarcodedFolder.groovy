@@ -1,5 +1,8 @@
 package life.qbic.datamodel.datasets.datastructure
 
+import life.qbic.datamodel.identifiers.SampleCodeFunctions
+import life.qbic.datamodel.samples.Sample
+
 /**
  * Specialisation version of a Folder object.
  * 
@@ -8,8 +11,6 @@ package life.qbic.datamodel.datasets.datastructure
  * @author: Sven Fillinger
  */
 class BarcodedFolder extends DataFolder {
-
-    final private static String PATTERN = $/Q\w{4}\d{3}[A-X][A-X0-9].*/$
 
     protected BarcodedFolder() {}
 
@@ -23,7 +24,7 @@ class BarcodedFolder extends DataFolder {
     }
 
     private void validateName() {
-        if (!(this.name =~ PATTERN)) {
+        if (!(this.name =~ SampleCodeFunctions.QBIC_SAMPLE_ID_SCHEMA)) {
             throw new IllegalArgumentException("Name must match the QBiC barcode regex!")
         }
     }
