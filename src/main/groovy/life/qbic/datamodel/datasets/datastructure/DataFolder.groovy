@@ -43,7 +43,16 @@ class DataFolder {
 
     @Override
     boolean equals(Object o) {
-
+        if (o == this) {
+            return true
+        }
+        if (!(o instanceof DataFolder)) {
+            return false
+        }
+        DataFolder folder = (DataFolder) o
+        return folder.name == name &&
+                folder.path == path &&
+                folder.children == children
     }
 
 }
