@@ -1,7 +1,6 @@
 package life.qbic.datamodel.datasets.datastructure
 
 import life.qbic.datamodel.identifiers.SampleCodeFunctions
-import life.qbic.datamodel.samples.Sample
 
 /**
  * Specialisation version of a Folder object.
@@ -14,7 +13,7 @@ class BarcodedFolder extends DataFolder {
 
     protected BarcodedFolder() {}
 
-    protected BarcodedFolder(String name, String path, List children) {
+    protected BarcodedFolder(String name, String path, List<?> children) {
         super(name, path, children)
         validateName()
     }
