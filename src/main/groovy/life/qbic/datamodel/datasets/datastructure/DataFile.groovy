@@ -9,7 +9,7 @@ import groovy.transform.ToString
  * @author: Sven Fillinger
  */
 @ToString(includeNames=true) // includes property names
-class DataFile implements Cloneable{
+class DataFile {
 
     /**
      * The file name
@@ -43,15 +43,6 @@ class DataFile implements Cloneable{
      */
     static DataFile create(String name, String path, String fileType) {
         new DataFile(name, path, fileType)
-    }
-
-    @Override
-    protected DataFile clone() throws CloneNotSupportedException {
-        try {
-            return (DataFile) super.clone()
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError()
-        }
     }
 
     @Override

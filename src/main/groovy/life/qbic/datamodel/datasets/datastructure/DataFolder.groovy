@@ -41,4 +41,9 @@ class DataFolder {
         return result
     }
 
+    @Override
+    boolean equals(Object o) {
+
+    }
+
 }
