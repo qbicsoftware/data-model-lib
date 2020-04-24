@@ -5,15 +5,15 @@ package life.qbic.datamodel.datasets.datastructure.files
  *
  * @author: Sven Fillinger
  */
-class FastqFile extends DataFile{
+class FastQFile extends DataFile{
 
     final private static String FILE_TYPE = "fastq.gz"
 
-    protected FastqFile(String name, String path, String fileType) {
+    protected FastQFile(String name, String path, String fileType) {
         super(name, path, fileType)
     }
 
-    static FastqFile create(String name, String path) {
-        new FastqFile(name, path, FILE_TYPE)
+    static FastQFile create(String name, String path) {
+        new FastQFile(name, path, FILE_TYPE)
     }
 }

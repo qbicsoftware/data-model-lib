@@ -1,6 +1,6 @@
 package life.qbic.datamodel.datasets.datastructure.folders
 
-import life.qbic.datamodel.datasets.datastructure.files.Fast5File
+import life.qbic.datamodel.datasets.datastructure.files.FastQFile
 
 /**
  * A class that is a special case of a BarcodedFolder.
@@ -9,16 +9,16 @@ import life.qbic.datamodel.datasets.datastructure.files.Fast5File
  *
  * @author: Sven Fillinger
  */
-class Fast5Folder extends BarcodedFolder {
+class FastQFolder extends BarcodedFolder {
 
-    protected Fast5Folder() {}
+    protected FastQFolder() {}
 
-    protected Fast5Folder(String name, String path, List<Fast5File> children) {
+    protected FastQFolder(String name, String path, List<FastQFile> children) {
         super(name, path, children)
     }
 
-    static Fast5Folder create(String name, String path, List<Fast5File> children) {
-        new Fast5Folder(name, path, children)
+    static FastQFolder create(String name, String path, List<FastQFile> children) {
+        new FastQFolder(name, path, children)
     }
 
 }
