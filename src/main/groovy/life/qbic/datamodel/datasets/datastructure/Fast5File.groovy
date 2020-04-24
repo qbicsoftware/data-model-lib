@@ -1,8 +1,7 @@
 package life.qbic.datamodel.datasets.datastructure
 
-
 /**
- * <add class description here>
+ * A specialisation of a DataFile, represents an Oxford Nanopore fast5 file
  *
  * @author: Sven Fillinger
  */

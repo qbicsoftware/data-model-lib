@@ -1,7 +1,7 @@
 package life.qbic.datamodel.datasets.datastructure
 
 /**
- * <add class description here>
+ * A specialisation of a DataFile, represents an NGS fastq file
  *
  * @author: Sven Fillinger
  */
