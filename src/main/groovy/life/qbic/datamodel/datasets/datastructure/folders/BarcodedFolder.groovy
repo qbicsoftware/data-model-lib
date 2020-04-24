@@ -24,7 +24,7 @@ class BarcodedFolder extends DataFolder {
 
     private void validateName() {
         if (!(this.name =~ SampleCodeFunctions.QBIC_SAMPLE_ID_SCHEMA)) {
-            throw new IllegalArgumentException("Name must match the QBiC barcode regex!")
+            throw new IllegalArgumentException("Name must match the QBiC barcode schema!")
         }
     }
 }
