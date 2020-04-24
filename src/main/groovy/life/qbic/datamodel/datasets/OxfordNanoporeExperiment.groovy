@@ -15,7 +15,7 @@ final class OxfordNanoporeExperiment {
 
     OxfordNanoporeExperiment(Map nanoPoreDatasetFileTree) {
         this.nanoPoreDatasetFileTree = nanoPoreDatasetFileTree
-        containsPooledMeasurement = (nanoPoreDatasetFileTree.name as String).endsWith("_pooled")
+        this.containsPooledMeasurement = (nanoPoreDatasetFileTree.name as String).endsWith("_pooled")
         createNanoporeRuns()
     }
 

@@ -17,7 +17,7 @@ class OxfordNanoporeMeasurement<T> {
     }
 
     private createFast5PassedContent() {
-        List content = (List) nanoporeMeasurementsFileTree."fast5_fail_folder".content
+        List content = (List) nanoporeMeasurementsFileTree."fast5_fail".content
         if (content.get(0) instanceof String) {
             fast5PassedContent = new ArrayList<>()
             content.each {fast5PassedContent.add(it as T)}
