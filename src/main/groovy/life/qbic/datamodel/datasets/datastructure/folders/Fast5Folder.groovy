@@ -1,4 +1,6 @@
-package life.qbic.datamodel.datasets.datastructure
+package life.qbic.datamodel.datasets.datastructure.folders
+
+import life.qbic.datamodel.datasets.datastructure.files.Fast5File
 
 /**
  * A class that is a special case of a BarcodedFolder.

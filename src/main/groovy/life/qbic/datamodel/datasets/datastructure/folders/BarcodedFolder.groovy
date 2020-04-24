@@ -1,4 +1,4 @@
-package life.qbic.datamodel.datasets.datastructure
+package life.qbic.datamodel.datasets.datastructure.folders
 
 import life.qbic.datamodel.identifiers.SampleCodeFunctions
 

@@ -1,4 +1,4 @@
-package life.qbic.datamodel.datasets.datastructure
+package life.qbic.datamodel.datasets.datastructure.files
 
 /**
  * A specialisation of a DataFile, represents an Oxford Nanopore fast5 file

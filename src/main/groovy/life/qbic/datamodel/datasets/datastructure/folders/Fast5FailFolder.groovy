@@ -1,4 +1,4 @@
-package life.qbic.datamodel.datasets.datastructure
+package life.qbic.datamodel.datasets.datastructure.folders
 
 /**
  * A special case of a DataFolder, its name is always fast5_fail.
