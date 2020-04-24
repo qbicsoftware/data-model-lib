@@ -7,10 +7,10 @@ package life.qbic.datamodel.datasets.datastructure
  */
 class Fast5File extends DataFile{
 
-    private static final String FILE_TYPE = "fast5"
+    final private static String FILE_TYPE = "fast5"
 
     protected Fast5File(String name, String path, String fileType) {
-       create(name, path, fileType)
+       super(name, path, fileType)
     }
 
     static Fast5File create(String name, String path) {

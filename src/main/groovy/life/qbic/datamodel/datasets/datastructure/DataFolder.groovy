@@ -1,5 +1,8 @@
-package life.qbic.datamodel.datasets.datastructure;
+package life.qbic.datamodel.datasets.datastructure
 
+import groovy.transform.ToString
+
+@ToString(includeNames=true)
 class DataFolder {
 
     private final String name
@@ -25,7 +28,17 @@ class DataFolder {
     }
 
     static DataFolder create(String name, String path, List children) {
+        new DataFolder(name, path, children)
+    }
 
+    @Override
+    int hashCode() {
+        int result = name.hashCode()
+        result = 31 * result + path.hashCode()
+        children.each {
+            result = 31 * result + it.hashCode()
+        }
+        return result
     }
 
 }
