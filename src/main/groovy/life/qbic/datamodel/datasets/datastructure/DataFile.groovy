@@ -67,4 +67,12 @@ class DataFile implements Cloneable{
                 && datafile.path == path
                 && datafile.fileType
     }
+
+    @Override
+    int hashCode() {
+        int result = name.hashCode()
+        result = 31 * result + path.hashCode()
+        result = 31 * result + fileType.hashCode()
+        return result
+    }
 }
