@@ -16,7 +16,7 @@ class Fast5File extends DataFile{
     }
 
     static Fast5File create(String name, String path) {
-        new Fast5File(name, path, FILE_TYPE)
+        return new Fast5File(name, path, FILE_TYPE)
     }
 
 }

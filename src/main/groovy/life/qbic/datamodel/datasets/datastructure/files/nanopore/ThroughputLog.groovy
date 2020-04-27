@@ -21,7 +21,7 @@ class ThroughputLog extends DataFile {
     }
 
     static ThroughputLog create(String name, String path) {
-        return ThroughputLog(name, path)
+        return new ThroughputLog(name, path)
     }
 
     private void validateName() {

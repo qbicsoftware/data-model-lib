@@ -21,7 +21,7 @@ class MuxScanDataLog extends DataFile {
     }
 
     static MuxScanDataLog create(String name, String path) {
-        return MuxScanDataLog(name, path)
+        return new MuxScanDataLog(name, path)
     }
 
     private void validateName() {

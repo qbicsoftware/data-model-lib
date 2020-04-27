@@ -21,7 +21,7 @@ class ReportMdLog extends DataFile {
     }
 
     static ReportMdLog create(String name, String path) {
-        return ReportMdLog(name, path)
+        return new ReportMdLog(name, path)
     }
 
     private void validateName() {

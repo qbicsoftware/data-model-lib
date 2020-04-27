@@ -21,7 +21,7 @@ class SequencingSummaryLog extends DataFile {
     }
 
     static SequencingSummaryLog create(String name, String path) {
-        return SequencingSummaryLog(name, path)
+        return new SequencingSummaryLog(name, path)
     }
 
     private void validateName() {

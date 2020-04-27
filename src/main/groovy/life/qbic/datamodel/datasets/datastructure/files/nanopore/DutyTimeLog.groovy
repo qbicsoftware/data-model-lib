@@ -21,7 +21,7 @@ class DutyTimeLog extends DataFile {
     }
 
     static DutyTimeLog create(String name, String path) {
-        return DutyTimeLog(name, path)
+        return new DutyTimeLog(name, path)
     }
 
     private void validateName() {

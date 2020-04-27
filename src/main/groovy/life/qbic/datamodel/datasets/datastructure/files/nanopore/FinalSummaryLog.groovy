@@ -21,7 +21,7 @@ class FinalSummaryLog extends DataFile {
     }
 
     static FinalSummaryLog create(String name, String path) {
-        return FinalSummaryLog(name, path)
+        return new FinalSummaryLog(name, path)
     }
 
     private void validateName() {

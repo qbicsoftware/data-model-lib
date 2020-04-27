@@ -21,7 +21,7 @@ class ReportPDFLog extends DataFile {
     }
 
     static ReportPDFLog create(String name, String path) {
-        return ReportPDFLog(name, path)
+        return new ReportPDFLog(name, path)
     }
 
     private void validateName() {

@@ -21,7 +21,7 @@ class DriftCorrectionLog extends DataFile {
     }
 
     static DriftCorrectionLog create(String name, String path) {
-        new DriftCorrectionLog(name, path)
+        return new DriftCorrectionLog(name, path)
     }
 
     private void validateName() {
