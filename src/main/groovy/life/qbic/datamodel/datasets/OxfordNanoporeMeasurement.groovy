@@ -27,7 +27,7 @@ class OxfordNanoporeMeasurement {
     private final MeasurementFolder measurementFolder
 
     OxfordNanoporeMeasurement(String name, String path, List<?> children) {
-        fast5PassedContent = new ArrayList()
+        fast5PassedContent = new ArrayList<>()
         fast5FailedContent = new ArrayList<>()
         fastQFailedContent = new ArrayList<>()
         fastQPassedContent = new ArrayList<>()
