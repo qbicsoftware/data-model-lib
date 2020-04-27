@@ -1,7 +1,7 @@
 package life.qbic.datamodel.datasets.datastructure.files
 
 /**
- * <add class description here>
+ *  A specialisation of a DataFile, represents an Oxford Nanopore report PDF log file
  *
  * @author: Sven Fillinger
  */
