@@ -15,13 +15,13 @@ class SequencingSummaryLog extends DataFile {
 
     protected SequencingSummaryLog() { }
 
-    protected SequencingSummaryLog(String name, String path) {
-        super(name, path, FILE_TYPE)
+    protected SequencingSummaryLog(String name, String relativePath) {
+        super(name, relativePath, FILE_TYPE)
         validateName()
     }
 
-    static SequencingSummaryLog create(String name, String path) {
-        return new SequencingSummaryLog(name, path)
+    static SequencingSummaryLog create(String name, String relativePath) {
+        return new SequencingSummaryLog(name, relativePath)
     }
 
     private void validateName() {

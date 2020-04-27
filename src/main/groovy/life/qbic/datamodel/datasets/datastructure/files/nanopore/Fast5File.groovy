@@ -11,12 +11,12 @@ class Fast5File extends DataFile{
 
     final private static String FILE_TYPE = "fast5"
 
-    protected Fast5File(String name, String path, String fileType) {
-       super(name, path, fileType)
+    protected Fast5File(String name, String relativePath, String fileType) {
+       super(name, relativePath, fileType)
     }
 
-    static Fast5File create(String name, String path) {
-        return new Fast5File(name, path, FILE_TYPE)
+    static Fast5File create(String name, String relativePath) {
+        return new Fast5File(name, relativePath, FILE_TYPE)
     }
 
 }

@@ -15,13 +15,13 @@ class FinalSummaryLog extends DataFile {
 
     protected FinalSummaryLog() { }
 
-    protected FinalSummaryLog(String name, String path) {
-        super(name, path, FILE_TYPE)
+    protected FinalSummaryLog(String name, String relativePath) {
+        super(name, relativePath, FILE_TYPE)
         validateName()
     }
 
-    static FinalSummaryLog create(String name, String path) {
-        return new FinalSummaryLog(name, path)
+    static FinalSummaryLog create(String name, String relativePath) {
+        return new FinalSummaryLog(name, relativePath)
     }
 
     private void validateName() {

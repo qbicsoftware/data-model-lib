@@ -15,13 +15,13 @@ class ReportMdLog extends DataFile {
 
     protected ReportMdLog() { }
 
-    protected ReportMdLog(String name, String path) {
-        super(name, path, FILE_TYPE)
+    protected ReportMdLog(String name, String relativePath) {
+        super(name, relativePath, FILE_TYPE)
         validateName()
     }
 
-    static ReportMdLog create(String name, String path) {
-        return new ReportMdLog(name, path)
+    static ReportMdLog create(String name, String relativePath) {
+        return new ReportMdLog(name, relativePath)
     }
 
     private void validateName() {

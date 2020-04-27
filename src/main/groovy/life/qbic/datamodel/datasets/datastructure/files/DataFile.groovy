@@ -19,7 +19,7 @@ class DataFile {
     /**
      * The file path
      */
-    final private String path
+    final private String relativePath
 
     /**
      * The file path
@@ -28,21 +28,25 @@ class DataFile {
 
     protected DataFile() {}
 
-    protected DataFile(String name, String path, String fileType){
+    protected DataFile(String name, String relativePath, String fileType){
         this.name = name
-        this.path = path
+        this.relativePath = relativePath
         this.fileType = fileType
     }
 
     /**
      * Static factory method to create DataFile objects.
      * @param name The file name
-     * @param path The file path
+     * @param relativePath The file path
      * @param fileType The file type
      * @return A new DataFile object
      */
-    static DataFile create(String name, String path, String fileType) {
-        new DataFile(name, path, fileType)
+    static DataFile create(String name, String relativePath, String fileType) {
+        new DataFile(name, relativePath, fileType)
+    }
+
+    String getRelativePath() {
+        return relativePath
     }
 
     @Override
@@ -55,14 +59,14 @@ class DataFile {
         }
         DataFile datafile = (DataFile) o
         return datafile.name == name
-                && datafile.path == path
+                && datafile.getRelativePath() == relativePath
                 && datafile.fileType
     }
 
     @Override
     int hashCode() {
         int result = name.hashCode()
-        result = 31 * result + path.hashCode()
+        result = 31 * result + relativePath.hashCode()
         result = 31 * result + fileType.hashCode()
         return result
     }

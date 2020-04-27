@@ -15,13 +15,13 @@ class DriftCorrectionLog extends DataFile {
 
     protected DriftCorrectionLog() { }
 
-    protected DriftCorrectionLog(String name, String path) {
-        super(name, path, FILE_TYPE)
+    protected DriftCorrectionLog(String name, String relativePath) {
+        super(name, relativePath, FILE_TYPE)
         validateName()
     }
 
-    static DriftCorrectionLog create(String name, String path) {
-        return new DriftCorrectionLog(name, path)
+    static DriftCorrectionLog create(String name, String relativePath) {
+        return new DriftCorrectionLog(name, relativePath)
     }
 
     private void validateName() {

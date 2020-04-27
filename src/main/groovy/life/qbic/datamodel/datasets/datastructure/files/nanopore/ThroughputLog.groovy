@@ -15,13 +15,13 @@ class ThroughputLog extends DataFile {
 
     protected ThroughputLog() { }
 
-    protected ThroughputLog(String name, String path) {
-        super(name, path, FILE_TYPE)
+    protected ThroughputLog(String name, String relativePath) {
+        super(name, relativePath, FILE_TYPE)
         validateName()
     }
 
-    static ThroughputLog create(String name, String path) {
-        return new ThroughputLog(name, path)
+    static ThroughputLog create(String name, String relativePath) {
+        return new ThroughputLog(name, relativePath)
     }
 
     private void validateName() {

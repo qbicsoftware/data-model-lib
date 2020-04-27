@@ -15,13 +15,13 @@ class ReportPDFLog extends DataFile {
 
     protected ReportPDFLog() { }
 
-    protected ReportPDFLog(String name, String path) {
-        super(name, path, FILE_TYPE)
+    protected ReportPDFLog(String name, String relativePath) {
+        super(name, relativePath, FILE_TYPE)
         validateName()
     }
 
-    static ReportPDFLog create(String name, String path) {
-        return new ReportPDFLog(name, path)
+    static ReportPDFLog create(String name, String relativePath) {
+        return new ReportPDFLog(name, relativePath)
     }
 
     private void validateName() {

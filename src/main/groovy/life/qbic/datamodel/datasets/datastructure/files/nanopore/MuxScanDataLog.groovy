@@ -15,13 +15,13 @@ class MuxScanDataLog extends DataFile {
 
     protected MuxScanDataLog() { }
 
-    protected MuxScanDataLog(String name, String path) {
-        super(name, path, FILE_TYPE)
+    protected MuxScanDataLog(String name, String relativePath) {
+        super(name, relativePath, FILE_TYPE)
         validateName()
     }
 
-    static MuxScanDataLog create(String name, String path) {
-        return new MuxScanDataLog(name, path)
+    static MuxScanDataLog create(String name, String relativePath) {
+        return new MuxScanDataLog(name, relativePath)
     }
 
     private void validateName() {

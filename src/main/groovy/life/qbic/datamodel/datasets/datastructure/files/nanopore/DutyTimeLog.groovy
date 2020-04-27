@@ -15,13 +15,13 @@ class DutyTimeLog extends DataFile {
 
     protected DutyTimeLog() { }
 
-    protected DutyTimeLog(String name, String path) {
-        super(name, path, FILE_TYPE)
+    protected DutyTimeLog(String name, String relativePath) {
+        super(name, relativePath, FILE_TYPE)
         validateName()
     }
 
-    static DutyTimeLog create(String name, String path) {
-        return new DutyTimeLog(name, path)
+    static DutyTimeLog create(String name, String relativePath) {
+        return new DutyTimeLog(name, relativePath)
     }
 
     private void validateName() {
