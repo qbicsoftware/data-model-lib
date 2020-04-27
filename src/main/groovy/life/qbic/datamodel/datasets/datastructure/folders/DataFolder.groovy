@@ -7,15 +7,15 @@ class DataFolder {
 
     private final String name
 
-    private final String path
+    private final String relativePath
 
     private final List<?> children
 
     protected DataFolder() {}
 
-    protected DataFolder(String name, String path, List children) {
+    protected DataFolder(String name, String relativePath, List children) {
         this.name = name
-        this.path = path
+        this.relativePath = relativePath
         this.children = new ArrayList<>()
         // Make a defensive copy of the mutable List object
         children.each { element ->
@@ -27,14 +27,22 @@ class DataFolder {
         }
     }
 
-    static DataFolder create(String name, String path, List children) {
-        new DataFolder(name, path, children)
+    static DataFolder create(String name, String relativePath, List children) {
+        new DataFolder(name, relativePath, children)
+    }
+
+    /**
+     * Returns the relative path of the folder
+     * @return
+     */
+    String getRelativePath() {
+        return relativePath
     }
 
     @Override
     int hashCode() {
         int result = name.hashCode()
-        result = 31 * result + path.hashCode()
+        result = 31 * result + relativePath.hashCode()
         children.each {
             result = 31 * result + it.hashCode()
         }
@@ -51,7 +59,7 @@ class DataFolder {
         }
         DataFolder folder = (DataFolder) o
         return folder.name == name &&
-                folder.path == path &&
+                folder.relativePath == relativePath &&
                 folder.children == children
     }
 

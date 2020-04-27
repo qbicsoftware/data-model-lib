@@ -14,13 +14,13 @@ class BarcodedFolder extends DataFolder {
 
     protected BarcodedFolder() {}
 
-    protected BarcodedFolder(String name, String path, List<?> children) {
-        super(name, path, children)
+    protected BarcodedFolder(String name, String relativePath, List<?> children) {
+        super(name, relativePath, children)
         validateName()
     }
 
-    static BarcodedFolder create(String name, String path, List children) {
-        new BarcodedFolder(name, path, children)
+    static BarcodedFolder create(String name, String relativePath, List children) {
+        new BarcodedFolder(name, relativePath, children)
     }
 
     private void validateName() {

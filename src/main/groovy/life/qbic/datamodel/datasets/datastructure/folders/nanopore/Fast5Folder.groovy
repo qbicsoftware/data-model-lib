@@ -13,12 +13,12 @@ class Fast5Folder extends BarcodedFolder {
 
     protected Fast5Folder() {}
 
-    protected Fast5Folder(String name, String path, List<Fast5File> children) {
-        super(name, path, children)
+    protected Fast5Folder(String name, String relativePath, List<Fast5File> children) {
+        super(name, relativePath, children)
     }
 
-    static Fast5Folder create(String name, String path, List<Fast5File> children) {
-        new Fast5Folder(name, path, children)
+    static Fast5Folder create(String name, String relativePath, List<Fast5File> children) {
+        new Fast5Folder(name, relativePath, children)
     }
 
 }

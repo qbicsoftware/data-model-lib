@@ -16,12 +16,12 @@ class FastQPassFolder extends DataFolder {
 
     protected FastQPassFolder() {}
 
-    protected FastQPassFolder(String path, List<?> children) {
-        super(NAME, path, children)
+    protected FastQPassFolder(String relativePath, List<?> children) {
+        super(NAME, relativePath, children)
     }
 
-    static FastQPassFolder create(String path, List<?> children) {
-        new FastQPassFolder(path, children)
+    static FastQPassFolder create(String relativePath, List<?> children) {
+        new FastQPassFolder(relativePath, children)
     }
 
 }

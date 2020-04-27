@@ -15,13 +15,13 @@ class MeasurementFolder extends DataFolder {
 
     protected MeasurementFolder(){}
 
-    protected MeasurementFolder(String name, String path, List<?> children) {
-        super(name, path, children)
+    protected MeasurementFolder(String name, String relativePath, List<?> children) {
+        super(name, relativePath, children)
         validateName()
     }
 
-    static MeasurementFolder create(String name, String path, List<?> children) {
-        new MeasurementFolder(name, path, children)
+    static MeasurementFolder create(String name, String relativePath, List<?> children) {
+        new MeasurementFolder(name, relativePath, children)
     }
 
     private void validateName() {

@@ -13,11 +13,11 @@ class Fast5PassFolder extends DataFolder {
 
     protected Fast5PassFolder() {}
 
-    protected Fast5PassFolder(String path, List<?> children) {
-        super(NAME, path, children)
+    protected Fast5PassFolder(String relativePath, List<?> children) {
+        super(NAME, relativePath, children)
     }
 
-    static Fast5PassFolder create(String path, List<?> children) {
-        new Fast5PassFolder(path, children)
+    static Fast5PassFolder create(String relativePath, List<?> children) {
+        new Fast5PassFolder(relativePath, children)
     }
 }

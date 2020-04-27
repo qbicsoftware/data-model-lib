@@ -16,12 +16,12 @@ class FastQFailFolder extends DataFolder {
 
     protected FastQFailFolder() {}
 
-    protected FastQFailFolder(String path, List<?> children) {
-        super(NAME, path, children)
+    protected FastQFailFolder(String relativePath, List<?> children) {
+        super(NAME, relativePath, children)
     }
 
-    static FastQFailFolder create(String path, List<?> children) {
-        new FastQFailFolder(path, children)
+    static FastQFailFolder create(String relativePath, List<?> children) {
+        new FastQFailFolder(relativePath, children)
     }
 
 }
