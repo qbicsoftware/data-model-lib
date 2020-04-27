@@ -1,6 +1,7 @@
 package life.qbic.datamodel.datasets
 
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
+import life.qbic.datamodel.datasets.datastructure.folders.nanopore.BarcodedFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nanopore.Fast5FailFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nanopore.Fast5PassFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nanopore.FastQFailFolder
@@ -26,6 +27,8 @@ class OxfordNanoporeMeasurement {
 
     private final MeasurementFolder measurementFolder
 
+    private final boolean pooledMeasurement
+
     OxfordNanoporeMeasurement(String name, String path, List<?> children) {
         fast5PassedContent = new ArrayList<>()
         fast5FailedContent = new ArrayList<>()
@@ -36,6 +39,8 @@ class OxfordNanoporeMeasurement {
         this.measurementFolder = MeasurementFolder.create(name, path, children)
 
         createContent()
+
+        pooledMeasurement = fast5PassedContent.get(0) instanceof BarcodedFolder
     }
 
     private void createContent() {
@@ -57,6 +62,14 @@ class OxfordNanoporeMeasurement {
                     logFiles.add(element as DataFile)
             }
         }
+    }
+
+    List getFastQPassedContent() {
+        return this.fast5PassedContent
+    }
+
+    boolean containsPooledSamples() {
+        return this.pooledMeasurement
     }
 
 

@@ -1,5 +1,6 @@
 package life.qbic.datamodel.datasets
 
+
 /**
  * Class that holds information about an Oxford Nanopore Experiment.
  *
@@ -11,17 +12,15 @@ final class OxfordNanoporeExperiment {
 
     final private boolean containsPooledMeasurement
 
-    private List<OxfordNanoporeMeasurement> measurements
+    private final List<OxfordNanoporeMeasurement> measurements
 
-    OxfordNanoporeExperiment(Map nanoPoreDatasetFileTree) {
+    private final String qbicId
+
+    OxfordNanoporeExperiment(String qbicId, List<OxfordNanoporeMeasurement> measurements) {
         this.nanoPoreDatasetFileTree = nanoPoreDatasetFileTree
-        this.containsPooledMeasurement = (nanoPoreDatasetFileTree.name as String).endsWith("_pooled")
-        createNanoporeRuns()
-    }
-
-    private void createNanoporeRuns(){
-        final def measurements = nanoPoreDatasetFileTree.measurements as List
-        measurements.each { measurements.add(new OxfordNanoporeMeasurement(it as Map)) }
+        this.containsPooledMeasurement = measurements.get(0).containsPooledSamples()
+        this.measurements = measurements
+        this.qbicId = qbicId
     }
 
     boolean containsPooledMeasurement() {
