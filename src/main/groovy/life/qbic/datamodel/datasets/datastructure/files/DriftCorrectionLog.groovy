@@ -7,7 +7,7 @@ package life.qbic.datamodel.datasets.datastructure.files
  */
 class DriftCorrectionLog extends DataFile {
 
-    final private static String FILE_TYPE = "CSV"
+    final private static String FILE_TYPE = "csv"
 
     final private static String NAME_SCHEMA = $/drift_correction_.*/$
 

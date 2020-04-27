@@ -7,16 +7,24 @@ package life.qbic.datamodel.datasets.datastructure.files
  */
 class DutyTimeLog extends DataFile {
 
-    final private static String FILE_TYPE = "CSV"
+    final private static String FILE_TYPE = "csv"
 
-    protected DriftCorrectionFile() { }
+    final private static String NAME_SCHEMA = $/duty_time_.*/$
 
-    protected DriftCorrectionFile(String name, String path) {
+    protected DutyTimeLog() { }
+
+    protected DutyTimeLog(String name, String path) {
         super(name, path, FILE_TYPE)
-
+        validateName()
     }
 
-    DriftCorrectionFile create(String name, String path) {
+    static DutyTimeLog create(String name, String path) {
+        return DutyTimeLog(name, path)
+    }
 
+    private void validateName() {
+        if (!(this.name =~ NAME_SCHEMA)) {
+            throw new IllegalArgumentException("Name must match the Nanopore drift correction schema!")
+        }
     }
 }
