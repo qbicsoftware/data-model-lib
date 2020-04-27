@@ -1,43 +1,64 @@
 package life.qbic.datamodel.datasets
 
+import life.qbic.datamodel.datasets.datastructure.files.DataFile
+import life.qbic.datamodel.datasets.datastructure.folders.nanopore.Fast5FailFolder
+import life.qbic.datamodel.datasets.datastructure.folders.nanopore.Fast5PassFolder
+import life.qbic.datamodel.datasets.datastructure.folders.nanopore.FastQFailFolder
+import life.qbic.datamodel.datasets.datastructure.folders.nanopore.FastQPassFolder
+import life.qbic.datamodel.datasets.datastructure.folders.nanopore.MeasurementFolder
+
 /**
- * <add class description here>
+ * A dataset that represents a Oxford Nanopore Measurement.
  *
  * @author: Sven Fillinger
  */
-class OxfordNanoporeMeasurement<T> {
+class OxfordNanoporeMeasurement {
 
-    final private Map nanoporeMeasurementsFileTree
+    private final List<?> fast5PassedContent
 
-    private List<T> fast5PassedContent
+    private final List<?> fast5FailedContent
 
-    OxfordNanoporeMeasurement(Map fileTree) {
-        this.nanoporeMeasurementsFileTree = fileTree
-        createFast5PassedContent()
+    private final List<?> fastQPassedContent
+
+    private final List<?> fastQFailedContent
+
+    private final List<DataFile> logFiles
+
+    private final MeasurementFolder measurementFolder
+
+    OxfordNanoporeMeasurement(String name, String path, List<?> children) {
+        fast5PassedContent = new ArrayList()
+        fast5FailedContent = new ArrayList<>()
+        fastQFailedContent = new ArrayList<>()
+        fastQPassedContent = new ArrayList<>()
+        logFiles = new ArrayList<>()
+
+        this.measurementFolder = MeasurementFolder.create(name, path, children)
+
+        createContent()
     }
 
-    private createFast5PassedContent() {
-        List content = (List) nanoporeMeasurementsFileTree."fast5_fail".content
-        if (content.get(0) instanceof String) {
-            fast5PassedContent = new ArrayList<>()
-            content.each {fast5PassedContent.add(it as T)}
-        } else if ((content.get(0) instanceof Map)){
-            fast5PassedContent = new ArrayList<>()
-            content.each {fast5PassedContent.add( new NanoporePooledFolder(it as Map) as T )}
-        } else {
-            throw new IllegalArgumentException("Only String.class or Map.class objects allowed.")
+    private void createContent() {
+        measurementFolder.children.each { element ->
+            switch (element) {
+                case element instanceof Fast5PassFolder:
+                    fast5PassedContent.add(element as Fast5PassFolder)
+                    break
+                case element instanceof Fast5FailFolder:
+                    fast5FailedContent.add(element as Fast5FailFolder)
+                    break
+                case element instanceof FastQPassFolder:
+                    fastQPassedContent.add(element as FastQPassFolder)
+                    break
+                case element instanceof FastQFailFolder:
+                    fastQFailedContent.add(element as FastQFailFolder)
+                    break
+                case element instanceof DataFile:
+                    logFiles.add(element as DataFile)
+            }
         }
     }
 
-    /**
-     *
-     * @return
-     */
-    List<T> getFast5PassedContent() {
-        return fast5PassedContent
-    }
-
-    List<T> get
 
 
 

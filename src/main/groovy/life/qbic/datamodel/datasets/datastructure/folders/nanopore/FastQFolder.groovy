@@ -1,4 +1,4 @@
-package life.qbic.datamodel.datasets.datastructure.folders
+package life.qbic.datamodel.datasets.datastructure.folders.nanopore
 
 import life.qbic.datamodel.datasets.datastructure.files.FastQFile
 

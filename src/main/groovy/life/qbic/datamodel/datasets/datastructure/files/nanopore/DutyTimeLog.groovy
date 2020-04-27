@@ -1,4 +1,6 @@
-package life.qbic.datamodel.datasets.datastructure.files
+package life.qbic.datamodel.datasets.datastructure.files.nanopore
+
+import life.qbic.datamodel.datasets.datastructure.files.DataFile
 
 /**
  * A specialisation of a DataFile, represents an Oxford Nanopore duty time log file

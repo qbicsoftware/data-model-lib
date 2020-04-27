@@ -1,4 +1,6 @@
-package life.qbic.datamodel.datasets.datastructure.folders
+package life.qbic.datamodel.datasets.datastructure.folders.nanopore
+
+import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 
 /**
  * A special case of a DataFolder, its name is always fast5_fail.
