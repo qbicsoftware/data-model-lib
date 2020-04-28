@@ -72,6 +72,27 @@ class OxfordNanoporeMeasurement {
         return this.pooledMeasurement
     }
 
+    /**
+     * This method is used to return the relative path of a Oxford Nanopore measurement.
+     *
+     * The path is always relative to the Oxford Nanopore experiment root folder.
+     *
+     * Example:
+     * QABCD001AE_nanopore_experiment
+     *      |
+     *      - 20200219_1107_1-E3-H3_PAE26974_454b8dc6 (measurement)
+     *      |        |
+     *      |        - ...
+     *      - 20200219_1107_2-E4-H1_PAE00000_454b8dc6
+     *
+     * The resulting relative path would be:
+     * <emph>QABCD001AE_nanopore_experiment/20200219_1107_1-E3-H3_PAE26974_454b8dc6</emph>
+     * @return String This returns the relative path within the Nanopore experiment
+     */
+    String getRelativePath() {
+        return this.relativePath
+    }
+
 
 
 
