@@ -19,7 +19,7 @@ class BarcodedFolder extends DataFolder {
         validateName()
     }
 
-    static BarcodedFolder create(String name, String relativePath, List children) {
+    static BarcodedFolder create(String name, String relativePath, List<?> children) {
         new BarcodedFolder(name, relativePath, children)
     }
 

@@ -27,7 +27,7 @@ class DataFolder {
         }
     }
 
-    static DataFolder create(String name, String relativePath, List children) {
+    static DataFolder create(String name, String relativePath, List<?> children) {
         new DataFolder(name, relativePath, children)
     }
 

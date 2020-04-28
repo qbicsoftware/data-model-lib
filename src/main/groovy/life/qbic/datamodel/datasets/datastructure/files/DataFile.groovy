@@ -68,8 +68,8 @@ class DataFile {
             return false
         }
         DataFile datafile = (DataFile) o
-        return datafile.name == name
-                && datafile.getRelativePath() == relativePath
+        return datafile.name == name \
+                && datafile.getRelativePath() == relativePath \
                 && datafile.fileType
     }
 

@@ -17,8 +17,4 @@ class FastQFolder extends BarcodedFolder {
         super(name, relativePath, children)
     }
 
-    static FastQFolder create(String name, String relativePath, List<FastQFile> children) {
-        new FastQFolder(name, relativePath, children)
-    }
-
 }
