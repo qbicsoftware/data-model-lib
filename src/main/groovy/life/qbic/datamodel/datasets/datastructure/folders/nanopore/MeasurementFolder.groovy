@@ -12,7 +12,7 @@ import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 class MeasurementFolder extends DataFolder {
 
     /**
-     * The name schema of a Oxford Nanopore experiment.
+     * The name schema of a Oxford Nanopore measurement (run).
      *
      * Example:
      * 20200219_1107_1-E3-H3_PAE26974_454b8dc6
