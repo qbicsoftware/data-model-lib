@@ -1,6 +1,7 @@
 package life.qbic.datamodel.datasets
 
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
+import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nanopore.BarcodedFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nanopore.Fast5FailFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nanopore.Fast5PassFolder
@@ -64,20 +65,36 @@ class OxfordNanoporeMeasurement {
         }
     }
 
-    List getFastQPassedContent() {
-        return this.fast5PassedContent
+    /**
+     * This method aggregates all fast5 files and fastq files of an Oxford Nanopore
+     * measurement by sample id.
+     *
+     * The resulting datastructure follows this map schema:
+     *
+     * "QBiC sample id":
+     *      "fast5fail": DataFolder
+     *      "fast5pass": DataFolder
+     *      "fastqfail": DataFolder
+     *      "fastqpass": DataFolder
+     * "Other sample id":   // In case of pooled samples
+     *      ...
+     * @return Map A nested map with sample ids and containing data folders
+     */
+    Map<String, Map<String, DataFolder>> getRawDataPerSample() {
+        return null
     }
 
+    /**
+     * This method returns a list of all log files from the Oxford Nanopore measurement.
+     *
+     * @return List A list of log files from the experiment
+     */
     List<DataFile> getLogFiles() {
         def logFileList = []
         this.logFiles.each { logfile ->
             logFileList.add(DataFile.create(logfile.getName(), logfile.getRelativePath(), logfile.getFileType()))
         }
         return logFileList
-    }
-
-    boolean containsPooledSamples() {
-        return this.pooledMeasurement
     }
 
     /**
