@@ -68,6 +68,14 @@ class OxfordNanoporeMeasurement {
         return this.fast5PassedContent
     }
 
+    List<DataFile> getLogFiles() {
+        def logFileList = []
+        this.logFiles.each { logfile ->
+            logFileList.add(DataFile.create(logfile.getName(), logfile.getRelativePath(), logfile.getFileType()))
+        }
+        return logFileList
+    }
+
     boolean containsPooledSamples() {
         return this.pooledMeasurement
     }

@@ -1,5 +1,6 @@
 package life.qbic.datamodel.datasets.datastructure.files
 
+import groovy.transform.CompileStatic
 import groovy.transform.ToString
 
 /**
@@ -9,6 +10,7 @@ import groovy.transform.ToString
  * @author: Sven Fillinger
  */
 @ToString(includeNames=true) // includes property names
+@CompileStatic
 class DataFile {
 
     /**
@@ -17,12 +19,12 @@ class DataFile {
     final private String name
 
     /**
-     * The file path
+     * The relative file path
      */
     final private String relativePath
 
     /**
-     * The file path
+     * The file type
      */
     final private String fileType
 
@@ -39,14 +41,22 @@ class DataFile {
      * @param name The file name
      * @param relativePath The file path
      * @param fileType The file type
-     * @return A new DataFile object
+     * @return DataFile Creates a new DataFile instance
      */
     static DataFile create(String name, String relativePath, String fileType) {
         new DataFile(name, relativePath, fileType)
     }
 
-    String getRelativePath() {
+    final String getRelativePath() {
         return relativePath
+    }
+
+    final String getName() {
+        return name
+    }
+
+    final String getFileType() {
+        return fileType
     }
 
     @Override
