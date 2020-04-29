@@ -108,7 +108,7 @@ final class OxfordNanoporeExperiment {
                 // Do nothing
             }
         }
-        throw new IllegalArgumentException("File is of unknown Oxford Nanopore file type.")
+        throw new IllegalArgumentException("File $name is of unknown Oxford Nanopore file type.")
     }
 
     /*
@@ -140,6 +140,6 @@ final class OxfordNanoporeExperiment {
                 // Do nothing
             }
         }
-        throw new IllegalArgumentException("File is of unknown Oxford Nanopore file type.")
+        throw new IllegalArgumentException("Folder $name is of unknown Oxford Nanopore folder type.")
     }
 }
