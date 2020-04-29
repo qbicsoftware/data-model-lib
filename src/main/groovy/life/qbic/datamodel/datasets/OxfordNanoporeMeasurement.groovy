@@ -4,7 +4,6 @@ import life.qbic.datamodel.datasets.datastructure.files.DataFile
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nanopore.BarcodedFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nanopore.Fast5FailFolder
-import life.qbic.datamodel.datasets.datastructure.folders.nanopore.Fast5Folder
 import life.qbic.datamodel.datasets.datastructure.folders.nanopore.Fast5PassFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nanopore.FastQFailFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nanopore.FastQPassFolder
@@ -70,7 +69,7 @@ class OxfordNanoporeMeasurement {
      * This method aggregates all fast5 files and fastq files of an Oxford Nanopore
      * measurement by sample id.
      *
-     * The resulting datastructure follows this map schema:
+     * The resulting data-structure follows this map schema:
      *
      * "QBiC sample id":
      *      "fast5fail": DataFolder
