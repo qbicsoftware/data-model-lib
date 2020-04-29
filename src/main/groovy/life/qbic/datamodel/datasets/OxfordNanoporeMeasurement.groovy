@@ -14,7 +14,7 @@ import life.qbic.datamodel.datasets.datastructure.folders.nanopore.MeasurementFo
  *
  * @author: Sven Fillinger
  */
-class OxfordNanoporeMeasurement {
+final class OxfordNanoporeMeasurement {
 
     private final List<?> fast5PassedContent
 
