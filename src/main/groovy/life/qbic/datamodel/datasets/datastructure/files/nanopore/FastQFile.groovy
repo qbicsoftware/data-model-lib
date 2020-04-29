@@ -3,23 +3,23 @@ package life.qbic.datamodel.datasets.datastructure.files.nanopore
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
 
 /**
- * A specialisation of a DataFile, represents an Oxford Nanopore fast5 file
+ * <add class description here>
  *
  * @author: Sven Fillinger
  */
-class Fast5File extends DataFile{
+class FastQFile extends DataFile {
 
     final private static String FILE_TYPE = "fast5"
 
-    final private static String NAME_SCHEMA = /.*\.fast5$/
+    final private static String NAME_SCHEMA = /.*\.fastq$|.*\.fastq\.gz$/
 
-    protected Fast5File(String name, String relativePath, String fileType) {
+    protected FastQFile(String name, String relativePath, String fileType) {
         super(name, relativePath, fileType)
         validateName()
     }
 
-    static Fast5File create(String name, String relativePath) {
-        return new Fast5File(name, relativePath, FILE_TYPE)
+    static FastQFile create(String name, String relativePath) {
+        return new FastQFile(name, relativePath, FILE_TYPE)
     }
 
     private void validateName() {
@@ -27,5 +27,4 @@ class Fast5File extends DataFile{
             throw new IllegalArgumentException("Name must match the Nanopore summary schema!")
         }
     }
-
 }

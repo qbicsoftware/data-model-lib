@@ -3,6 +3,8 @@ package life.qbic.datamodel.datasets
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 
+import java.lang.reflect.Method
+
 /**
  * Class that holds information about an Oxford Nanopore Experiment.
  *
@@ -13,6 +15,18 @@ final class OxfordNanoporeExperiment {
     private final List<OxfordNanoporeMeasurement> measurements
 
     private final String qbicId
+
+    private final static Set nanoporeFileTypes = [
+            "DriftCorrectionLog",
+            "DutyTimeLog",
+            "Fast5File",
+            "FinalSummaryLog",
+            "MuxScanDataLog",
+            "ReportMdLog",
+            "ReportPDFLog",
+            "SequencingSummaryLog",
+            "ThroughputLog"
+    ]
 
     private OxfordNanoporeExperiment(String qbicId, List<OxfordNanoporeMeasurement> measurements) {
         this.measurements = measurements
@@ -73,7 +87,19 @@ final class OxfordNanoporeExperiment {
     Helper method that creates a DataFile instance from a map
      */
     private static DataFile parseFile(Map fileTree) {
-        return null
+        def name = fileTree.get("name")
+        def path = fileTree.get("path")
+        for (String nanoPoreFileType : nanoporeFileTypes) {
+            Class<?> c = Class.forName(nanoPoreFileType)
+            Method method = c.getDeclaredMethod("create", String.class, String.class)
+            try {
+                DataFile dataFile = method.invoke(null, name, path) as DataFile
+                return dataFile
+            } catch (IllegalArgumentException e){
+                // Do nothing
+            }
+        }
+        throw new IllegalArgumentException("File is of unknown Oxford Nanopore file type.")
     }
 
     /*
