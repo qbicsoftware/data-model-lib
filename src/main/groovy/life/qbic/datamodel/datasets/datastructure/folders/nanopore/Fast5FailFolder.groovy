@@ -13,14 +13,22 @@ class Fast5FailFolder extends DataFolder {
 
     final private static String NAME = "fast5_fail"
 
+    final private static String NAME_SCHEMA = /fast5_fail/
+
     protected Fast5FailFolder() {}
 
     protected Fast5FailFolder(String relativePath, List<?> children) {
         super(NAME, relativePath, children)
+        validateName()
     }
 
     static Fast5FailFolder create(String relativePath, List<?> children) {
         new Fast5FailFolder(relativePath, children)
     }
 
+    private void validateName() {
+        if (!(this.name =~ NAME_SCHEMA)) {
+            throw new IllegalArgumentException("Name must match the Nanopore FastQPass directory schema!")
+        }
+    }
 }

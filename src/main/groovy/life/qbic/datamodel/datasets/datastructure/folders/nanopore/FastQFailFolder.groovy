@@ -14,14 +14,24 @@ class FastQFailFolder extends DataFolder {
 
     final private static String NAME = "fastq_fail"
 
+    final private static String NAME_SCHEMA = /fastq_fail/
+
     protected FastQFailFolder() {}
 
     protected FastQFailFolder(String relativePath, List<?> children) {
         super(NAME, relativePath, children)
+        validateName()
     }
 
     static FastQFailFolder create(String relativePath, List<?> children) {
         new FastQFailFolder(relativePath, children)
     }
+
+    private void validateName() {
+        if (!(this.name =~ NAME_SCHEMA)) {
+            throw new IllegalArgumentException("Name must match the Nanopore FastQFail directory schema!")
+        }
+    }
+
 
 }

@@ -12,16 +12,25 @@ import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
  */
 class FastQPassFolder extends DataFolder {
 
-    final private static String NAME = "fastq_fail"
+    final private static String NAME = "fastq_pass"
+
+    final private static String NAME_SCHEMA = /fastq_pass/
 
     protected FastQPassFolder() {}
 
     protected FastQPassFolder(String relativePath, List<?> children) {
         super(NAME, relativePath, children)
+        validateName()
     }
 
     static FastQPassFolder create(String relativePath, List<?> children) {
         new FastQPassFolder(relativePath, children)
+    }
+
+    private void validateName() {
+        if (!(this.name =~ NAME_SCHEMA)) {
+            throw new IllegalArgumentException("Name must match the Nanopore FastQPass directory schema!")
+        }
     }
 
 }

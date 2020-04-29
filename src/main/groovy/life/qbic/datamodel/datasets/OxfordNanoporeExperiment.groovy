@@ -28,6 +28,15 @@ final class OxfordNanoporeExperiment {
             "ThroughputLog"
     ]
 
+    private final static Set nanoporeFolderTypes = [
+            "Fast5Folder",
+            "FastQFolder",
+            "Fast5PassFolder",
+            "Fast5FailFolder",
+            "FastQPassFolder",
+            "FastQFailFolder"
+    ]
+
     private OxfordNanoporeExperiment(String qbicId, List<OxfordNanoporeMeasurement> measurements) {
         this.measurements = measurements
         this.qbicId = qbicId
@@ -106,6 +115,31 @@ final class OxfordNanoporeExperiment {
     Helper method that creates a DataFolder instance from a map
      */
     private static DataFolder parseFolder(Map fileTree) {
-        return null
+        def name = fileTree.get("name")
+        def path = fileTree.get("path")
+        def children = []
+        fileTree.get("children").each { Map unknownChild ->
+            try {
+                def child = parseFolder(unknownChild)
+                children.add(child)
+            } catch (IllegalArgumentException e) {
+                // We do not capture the second parse call, as we want to fail the parsing at this point.
+                // This means that we ultimately found an child of unknown type, which should
+                // break the parsing.
+                def child = parseFile(unknownChild)
+                children.add(child)
+            }
+        }
+        for (String nanoPoreFolderType : nanoporeFolderTypes) {
+            Class<?> c = Class.forName(nanoPoreFolderType)
+            Method method = c.getDeclaredMethod("create", String.class, String.class, List.class)
+            try {
+                DataFolder dataFolder = method.invoke(null, name, path, children) as DataFolder
+                return dataFolder
+            } catch (IllegalArgumentException e){
+                // Do nothing
+            }
+        }
+        throw new IllegalArgumentException("File is of unknown Oxford Nanopore file type.")
     }
 }

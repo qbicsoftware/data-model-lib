@@ -29,5 +29,4 @@ class DriftCorrectionLog extends DataFile {
             throw new IllegalArgumentException("Name must match the Nanopore drift correction schema!")
         }
     }
-
 }
