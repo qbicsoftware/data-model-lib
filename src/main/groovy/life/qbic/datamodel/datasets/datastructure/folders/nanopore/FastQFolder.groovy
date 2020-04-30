@@ -1,6 +1,6 @@
 package life.qbic.datamodel.datasets.datastructure.folders.nanopore
 
-import life.qbic.datamodel.datasets.datastructure.files.FastQFile
+import life.qbic.datamodel.datasets.datastructure.files.nanopore.FastQFile
 
 /**
  * A class that is a special case of a BarcodedFolder.
