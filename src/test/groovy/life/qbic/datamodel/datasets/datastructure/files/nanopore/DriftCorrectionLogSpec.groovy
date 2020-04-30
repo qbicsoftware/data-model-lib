@@ -10,16 +10,6 @@ import spock.lang.*
  */
 class DriftCorrectionLogSpec extends Specification {
 
-    @Shared Map propertyContainer
-
-    def setupSpec() {
-        propertyContainer = new HashMap()
-        propertyContainer.name = "drift_correction"
-    }    // runs once -  before the first feature method
-    def setup() {}        // runs before every feature method
-    def cleanup() {}      // runs after every feature method
-    def cleanupSpec() {}  // runs once -  after the last feature method
-
     def "shall create a DriftCorrectionLog instance"()  {
         given:
         final name = "drift_correction_testfile.log"
