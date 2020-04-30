@@ -1,4 +1,4 @@
-package life.qbic.datamodel.datasets.datastructure.files
+package life.qbic.datamodel.datasets.datastructure.files.nanopore
 
 import life.qbic.datamodel.datasets.datastructure.files.nanopore.DriftCorrectionLog
 import spock.lang.*
