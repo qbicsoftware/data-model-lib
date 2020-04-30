@@ -44,6 +44,9 @@ class DataFile {
      * @return DataFile Creates a new DataFile instance
      */
     static DataFile create(String name, String relativePath, String fileType) {
+        if ( !(relativePath.contains(name)))  {
+            throw new IllegalArgumentException("Name must be contained in the relative path.")
+        }
         new DataFile(name, relativePath, fileType)
     }
 
