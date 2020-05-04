@@ -36,6 +36,20 @@ class DataFileSpec extends Specification {
         thrown(IllegalArgumentException)
     }
 
+    def "name that does not contain the given file type shall throw an IllegalArgumentException"() {
+        given:
+        def name = "random_file_name.csv"
+        def relativePath = "a_relative/path/random_file_name.csv"
+
+        when:
+        DataFile.create(name, relativePath, "txt")
+
+        then:
+        final IllegalArgumentException exception = thrown()
+        assert exception.message == "File does not have the assumed type."
+    }
+
+
 
 
 }

@@ -11,7 +11,7 @@ class ReportMdLog extends DataFile {
 
     final private static String FILE_TYPE = "md"
 
-    final private static String NAME_SCHEMA = $/report.*/$
+    final private static String NAME_SCHEMA = $/report_.*/$
 
     protected ReportMdLog() { }
 

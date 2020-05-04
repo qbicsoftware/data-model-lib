@@ -11,7 +11,7 @@ class ReportPDFLog extends DataFile {
 
     final private static String FILE_TYPE = "pdf"
 
-    final private static String NAME_SCHEMA = $/report.*/$
+    final private static String NAME_SCHEMA = $/report_.*/$
 
     protected ReportPDFLog() { }
 

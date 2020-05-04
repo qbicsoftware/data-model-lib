@@ -7,33 +7,32 @@ import spock.lang.Specification
  *
  * @author: Sven Fillinger
  */
-class ReportPDFLogSpec extends Specification {
+class MuxScanDataLogSpec extends Specification {
 
-    def "shall create a ReportPDFLog instance"()  {
+    def "shall create a MaxScanDataLog instance"()  {
         given:
-        final name = "report_test.pdf"
-        final relativePath = "root/report_test.pdf"
+        final name = "mux_scan_data.csv"
+        final relativePath = "root/mux_scan_data.txt"
 
         when:
-        def dataObject = ReportPDFLog.create(name, relativePath)
+        def dataObject = MuxScanDataLog.create(name, relativePath)
 
         then:
-        assert dataObject instanceof ReportPDFLog
+        assert dataObject instanceof MuxScanDataLog
         assert dataObject.relativePath == relativePath
         assert dataObject.name == name
     }
 
     def "name not matching schema shall throw IllegalArgumentException"() {
         given:
-        final name = "test.pdf"
-        final relativePath = "root/test.pdf"
+        final name = "mux_scan.txt"
+        final relativePath = "root/mux_scan.txt"
 
         when:
-        def dataObject = ReportPDFLog.create(name, relativePath)
+        def dataObject = MuxScanDataLog.create(name, relativePath)
 
         then:
         thrown(IllegalArgumentException)
     }
-
 
 }
