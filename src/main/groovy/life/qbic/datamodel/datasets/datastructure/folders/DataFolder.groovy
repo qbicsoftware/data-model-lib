@@ -1,15 +1,17 @@
 package life.qbic.datamodel.datasets.datastructure.folders
 
+import groovy.transform.CompileStatic
 import groovy.transform.ToString
 
 @ToString(includeNames=true)
+@CompileStatic
 class DataFolder {
 
     private final String name
 
     private final String relativePath
 
-    private final List<?> children
+    private final List children
 
     protected DataFolder() {}
 
@@ -27,7 +29,7 @@ class DataFolder {
         }
     }
 
-    static DataFolder create(String name, String relativePath, List<?> children) {
+    static DataFolder create(String name, String relativePath, List children) {
         new DataFolder(name, relativePath, children)
     }
 
@@ -37,6 +39,18 @@ class DataFolder {
      */
     String getRelativePath() {
         return relativePath
+    }
+
+    /**
+     * Returns the children of the folder.
+     * @return
+     */
+    List getTheChildren() {
+        List copiedList = []
+        children.each { element ->
+            copiedList.add(element)
+        }
+        return copiedList
     }
 
     @Override

@@ -21,12 +21,12 @@ class MeasurementFolder extends DataFolder {
 
     protected MeasurementFolder(){}
 
-    protected MeasurementFolder(String name, String relativePath, List<?> children) {
+    protected MeasurementFolder(String name, String relativePath, List children) {
         super(name, relativePath, children)
         validateName()
     }
 
-    static MeasurementFolder create(String name, String relativePath, List<?> children) {
+    static MeasurementFolder create(String name, String relativePath, List children) {
         new MeasurementFolder(name, relativePath, children)
     }
 
