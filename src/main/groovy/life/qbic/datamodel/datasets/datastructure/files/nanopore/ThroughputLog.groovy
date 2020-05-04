@@ -13,7 +13,7 @@ class ThroughputLog extends DataFile {
 
     final private static String NAME_SCHEMA = $/throughput_.*/$
 
-    private ThroughputLog() { }
+    protected ThroughputLog() { }
 
     protected ThroughputLog(String name, String relativePath) {
         super(name, relativePath, FILE_TYPE)
