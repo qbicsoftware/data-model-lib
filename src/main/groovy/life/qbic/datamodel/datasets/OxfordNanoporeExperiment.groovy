@@ -10,11 +10,11 @@ import java.lang.reflect.Method
  *
  * @author: Sven Fillinger
  */
-final class OxfordNanoporeExperiment {
+final class OxfordNanoporeExperiment implements Experiment {
 
     private final List<OxfordNanoporeMeasurement> measurements
 
-    private final String qbicId
+    private final String sampleId
 
     private final static Set nanoporeFileTypes = [
             "DriftCorrectionLog",
@@ -37,9 +37,9 @@ final class OxfordNanoporeExperiment {
             "FastQFailFolder"
     ]
 
-    private OxfordNanoporeExperiment(String qbicId, List<OxfordNanoporeMeasurement> measurements) {
+    private OxfordNanoporeExperiment(String sampleId, List<OxfordNanoporeMeasurement> measurements) {
         this.measurements = measurements
-        this.qbicId = qbicId
+        this.sampleId = sampleId
     }
 
     /**
@@ -48,9 +48,14 @@ final class OxfordNanoporeExperiment {
      * @return OxfordNanoporeExperiment A new instance of a nanopore experiment.
      */
     static OxfordNanoporeExperiment create(Map nanoPoreSequencerOutput) {
-        final String qbicId = parseQbicIdFromRootFolder(nanoPoreSequencerOutput)
+        final String sampleId = parseQbicIdFromRootFolder(nanoPoreSequencerOutput)
         final List<OxfordNanoporeMeasurement> measurements = parseMeasurements(nanoPoreSequencerOutput)
-        return new OxfordNanoporeExperiment(qbicId, measurements)
+        return new OxfordNanoporeExperiment(sampleId, measurements)
+    }
+
+    @Override
+    String getSampleId() {
+        return this.sampleId
     }
 
     /*

@@ -1,10 +1,8 @@
 package life.qbic.datamodel.datasets.datastructure.folders
 
-import groovy.transform.CompileStatic
 import groovy.transform.ToString
 
 @ToString(includeNames=true)
-@CompileStatic
 class DataFolder {
 
     private final String name
@@ -15,21 +13,24 @@ class DataFolder {
 
     protected DataFolder() {}
 
-    protected DataFolder(String name, String relativePath, List children) {
+    protected DataFolder(String name, String relativePath, List childrenList) {
         this.name = name
         this.relativePath = relativePath
         this.children = new ArrayList<>()
         // Make a defensive copy of the mutable List object
-        children.each { element ->
+        for (Object element : childrenList) {
             try {
-                this.children.add(element.clone())
+                children.add(element.clone())
             } catch (CloneNotSupportedException) {
-                this.children.add(element)
+                children.add(element)
             }
         }
     }
 
-    static DataFolder create(String name, String relativePath, List children) {
+    protected static DataFolder create(String name, String relativePath, List children) {
+        if (!(relativePath.contains(name)))  {
+            throw new IllegalArgumentException("Name must be contained in the relative path.")
+        }
         new DataFolder(name, relativePath, children)
     }
 
@@ -39,6 +40,14 @@ class DataFolder {
      */
     String getRelativePath() {
         return relativePath
+    }
+
+    /**
+     * Returns the name of the folder
+     * @return
+     */
+    String getName() {
+        return name
     }
 
     /**

@@ -30,7 +30,7 @@ final class OxfordNanoporeMeasurement {
 
     private final boolean pooledMeasurement
 
-    OxfordNanoporeMeasurement(String name, String path, List<?> children) {
+    protected OxfordNanoporeMeasurement(String name, String path, List children) {
         fast5PassedContent = new ArrayList<>()
         fast5FailedContent = new ArrayList<>()
         fastQFailedContent = new ArrayList<>()
@@ -41,11 +41,15 @@ final class OxfordNanoporeMeasurement {
 
         createContent()
 
-        pooledMeasurement = fast5PassedContent.get(0) instanceof BarcodedFolder
+        pooledMeasurement = fast5PassedContent ? fast5PassedContent.get(0) instanceof BarcodedFolder : false
+    }
+
+    static OxfordNanoporeMeasurement create(String name, String path, List children) {
+        return new OxfordNanoporeMeasurement(name, path, children)
     }
 
     private void createContent() {
-        measurementFolder.children.each { element ->
+        measurementFolder.getTheChildren().each { element ->
             switch (element) {
                 case element instanceof Fast5PassFolder:
                     fast5PassedContent.add(element as Fast5PassFolder)
@@ -80,8 +84,10 @@ final class OxfordNanoporeMeasurement {
      *      ...
      * @return Map A nested map with sample ids and containing data folders
      */
-    Map<String, Map<String, DataFolder>> getRawDataPerSample() {
-        return null
+    Map<String, Map<String, DataFolder>> getRawDataPerSample(Experiment experiment) {
+        def result = new HashMap()
+        result.put(experiment, ["fast5pass": fast5PassedContent])
+        return result
     }
 
     /**

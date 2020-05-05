@@ -17,12 +17,12 @@ class Fast5FailFolder extends DataFolder {
 
     protected Fast5FailFolder() {}
 
-    protected Fast5FailFolder(String relativePath, List<?> children) {
+    protected Fast5FailFolder(String relativePath, List children) {
         super(NAME, relativePath, children)
         validateName()
     }
 
-    static Fast5FailFolder create(String relativePath, List<?> children) {
+    static Fast5FailFolder create(String relativePath, List children) {
         new Fast5FailFolder(relativePath, children)
     }
 
