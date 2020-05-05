@@ -16,13 +16,13 @@ import life.qbic.datamodel.datasets.datastructure.folders.nanopore.MeasurementFo
  */
 final class OxfordNanoporeMeasurement {
 
-    private final List<?> fast5PassedContent
+    private final List fast5PassedContent
 
-    private final List<?> fast5FailedContent
+    private final List fast5FailedContent
 
-    private final List<?> fastQPassedContent
+    private final List fastQPassedContent
 
-    private final List<?> fastQFailedContent
+    private final List fastQFailedContent
 
     private final List<DataFile> logFiles
 
@@ -51,19 +51,19 @@ final class OxfordNanoporeMeasurement {
     private void createContent() {
         measurementFolder.getTheChildren().each { element ->
             switch (element) {
-                case element instanceof Fast5PassFolder:
+                case Fast5PassFolder:
                     fast5PassedContent.add(element as Fast5PassFolder)
                     break
-                case element instanceof Fast5FailFolder:
+                case Fast5FailFolder:
                     fast5FailedContent.add(element as Fast5FailFolder)
                     break
-                case element instanceof FastQPassFolder:
+                case FastQPassFolder:
                     fastQPassedContent.add(element as FastQPassFolder)
                     break
-                case element instanceof FastQFailFolder:
+                case FastQFailFolder:
                     fastQFailedContent.add(element as FastQFailFolder)
                     break
-                case element instanceof DataFile:
+                case DataFile:
                     logFiles.add(element as DataFile)
             }
         }
@@ -86,7 +86,13 @@ final class OxfordNanoporeMeasurement {
      */
     Map<String, Map<String, DataFolder>> getRawDataPerSample(Experiment experiment) {
         def result = new HashMap()
-        result.put(experiment, ["fast5pass": fast5PassedContent])
+        def folders = [
+                "fast5fail": fast5FailedContent,
+                "fast5pass": fast5PassedContent,
+                "fastqpass": fastQPassedContent,
+                "fastqfail": fastQFailedContent
+        ]
+        result.put(experiment.getSampleId(), folders)
         return result
     }
 
