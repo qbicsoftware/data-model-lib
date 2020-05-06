@@ -14,6 +14,9 @@ class DataFolder {
     protected DataFolder() {}
 
     protected DataFolder(String name, String relativePath, List childrenList) {
+        if (!(relativePath.contains(name))) {
+            throw new IllegalArgumentException("Name must be contained in the relative path.")
+        }
         this.name = name
         this.relativePath = relativePath
         this.children = new ArrayList<>()
@@ -25,13 +28,6 @@ class DataFolder {
                 children.add(element)
             }
         }
-    }
-
-    protected static DataFolder create(String name, String relativePath, List children) {
-        if (!(relativePath.contains(name))) {
-            throw new IllegalArgumentException("Name must be contained in the relative path.")
-        }
-        new DataFolder(name, relativePath, children)
     }
 
     /**

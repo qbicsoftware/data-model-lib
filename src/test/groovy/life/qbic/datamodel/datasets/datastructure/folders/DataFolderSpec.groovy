@@ -1,6 +1,7 @@
 package life.qbic.datamodel.datasets.datastructure.folders
 
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
+import life.qbic.datamodel.datasets.datastructure.files.nanopore.Fast5File
 import spock.lang.Specification
 
 /**
@@ -15,11 +16,11 @@ class DataFolderSpec extends Specification {
         final def name = "TestDataFolder"
         final def relativePath = "root/TestDataFolder"
         final def children = []
-        final def datafile = DataFile.create("test.txt", "root/test.txt", "txt")
+        final def datafile = Fast5File.create("test.fast5", "root/test.fast5")
         children.add(datafile)
 
         when:
-        final def dataFolder = DataFolder.create(name, relativePath, children)
+        final def dataFolder = new DataFolder(name, relativePath, children)
 
         then:
         assert dataFolder.getTheChildren().get(0) instanceof DataFile
@@ -30,11 +31,11 @@ class DataFolderSpec extends Specification {
         final def name = "TestDataFolder"
         final def relativePath = "root/TestDataFolder"
         final def children = []
-        final def datafile = DataFile.create("test.txt", "root/test.txt", "txt")
+        final def datafile = Fast5File.create("test.fast5", "root/test.fast5")
         children.add(datafile)
 
         when:
-        final def dataFolder = DataFolder.create(name, relativePath, children)
+        final def dataFolder = new DataFolder(name, relativePath, children)
         dataFolder.getTheChildren().clear()
 
         then:
@@ -46,12 +47,12 @@ class DataFolderSpec extends Specification {
         final def name = "TestDataFolder"
         final def relativePath = "root/TestDataFolder"
         final def children = []
-        final def datafile = DataFile.create("test.txt", "root/test.txt", "txt")
+        final def datafile = Fast5File.create("test.fast5", "root/test.fast5")
         children.add(datafile)
 
         when:
-        final def dataFolder = DataFolder.create(name, relativePath, children)
-        final def otherDataFolder = DataFolder.create(name, relativePath, children)
+        final def dataFolder = new DataFolder(name, relativePath, children)
+        final def otherDataFolder = new DataFolder(name, relativePath, children)
 
         then:
         assert dataFolder.hashCode() == otherDataFolder.hashCode()

@@ -9,9 +9,9 @@ import life.qbic.datamodel.datasets.datastructure.files.DataFile
  */
 class FastQFile extends DataFile {
 
-    final private static String FILE_TYPE = "fast5"
+    final private static String FILE_TYPE = "fastq"
 
-    final private static String NAME_SCHEMA = /.*\.fastq$|.*\.fastq\.gz$/
+    final private static String NAME_SCHEMA = /.*\.fastq$/
 
     protected FastQFile(String name, String relativePath, String fileType) {
         super(name, relativePath, fileType)

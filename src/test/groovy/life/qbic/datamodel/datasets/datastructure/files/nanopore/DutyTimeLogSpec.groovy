@@ -11,8 +11,8 @@ class DutyTimeLogSpec extends Specification {
 
     def "shall create a DutyTimeLog instance"() {
         given:
-        final name = "duty_time_test.log"
-        final relativePath = "root/duty_time_test.log"
+        final name = "duty_time_test.csv"
+        final relativePath = "root/duty_time_test.csv"
 
         when:
         def dataObject = DutyTimeLog.create(name, relativePath)

@@ -32,26 +32,15 @@ class DataFile {
     protected DataFile() {}
 
     protected DataFile(String name, String relativePath, String fileType) {
-        this.name = name
-        this.relativePath = relativePath
-        this.fileType = fileType
-    }
-
-    /**
-     * Static factory method to create DataFile objects.
-     * @param name The file name
-     * @param relativePath The file path
-     * @param fileType The file type
-     * @return DataFile Creates a new DataFile instance
-     */
-    static DataFile create(String name, String relativePath, String fileType) {
         if (!(relativePath.contains(name))) {
             throw new IllegalArgumentException("Name must be contained in the relative path.")
         }
         if (!(name.endsWith(fileType))) {
             throw new IllegalArgumentException("File does not have the assumed type.")
         }
-        new DataFile(name, relativePath, fileType)
+        this.name = name
+        this.relativePath = relativePath
+        this.fileType = fileType
     }
 
     final String getRelativePath() {

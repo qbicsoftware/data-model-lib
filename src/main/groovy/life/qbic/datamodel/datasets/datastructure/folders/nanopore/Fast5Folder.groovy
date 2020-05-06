@@ -17,4 +17,9 @@ class Fast5Folder extends BarcodedFolder {
         super(name, relativePath, children)
     }
 
+    static Fast5Folder create(String name, String relativePath, List<Fast5File> children) {
+        return new Fast5Folder(name, relativePath, children)
+    }
+
+
 }

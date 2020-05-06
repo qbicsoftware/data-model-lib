@@ -1,6 +1,7 @@
 package life.qbic.datamodel.datasets.datastructure.folders.nanopore
 
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
+import life.qbic.datamodel.datasets.datastructure.files.nanopore.FastQFile
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 import spock.lang.Specification
 
@@ -16,7 +17,7 @@ class MeasurementFolderSpec extends Specification {
         final def name = "20200219_1107_1-E3-H3_PAE26974_454b8dc6_TestDataFolder"
         final def relativePath = "root/20200219_1107_1-E3-H3_PAE26974_454b8dc6_TestDataFolder"
         final def children = []
-        final def datafile = DataFile.create("test.txt", "root/test.txt", "txt")
+        final def datafile = FastQFile.create("test.fastq", "root/test.fastq")
         children.add(datafile)
 
         when:
@@ -32,7 +33,7 @@ class MeasurementFolderSpec extends Specification {
         final def name = "0219_1107_1-E3-H3_PAE26974_454b8dc6_TestDataFolder"
         final def relativePath = "root/0219_1107_1-E3-H3_PAE26974_454b8dc6_TestDataFolder"
         final def children = []
-        final def datafile = DataFile.create("test.txt", "root/test.txt", "txt")
+        final def datafile = FastQFile.create("test.fastq", "root/test.fastq")
         children.add(datafile)
 
         when:

@@ -103,7 +103,6 @@ final class OxfordNanoporeExperiment implements Experiment {
     /*
     Helper method that creates a DataFile instance from a map
      */
-
     private static DataFile parseFile(Map fileTree) {
         def name = fileTree.get("name")
         def path = fileTree.get("path")

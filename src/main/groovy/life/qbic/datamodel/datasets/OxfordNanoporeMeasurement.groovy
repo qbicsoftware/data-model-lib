@@ -71,10 +71,10 @@ final class OxfordNanoporeMeasurement {
      * The resulting data-structure follows this map schema:
      *
      * "QBiC sample id":
-     *      "fast5fail": DataFolder
-     *      "fast5pass": DataFolder
-     *      "fastqfail": DataFolder
-     *      "fastqpass": DataFolder
+     *      "fast5fail": List<DataFiles>
+     *      "fast5pass": List<DataFiles>
+     *      "fastqfail": List<DataFiles>
+     *      "fastqpass": List<DataFiles>
      * "Other sample id":   // In case of pooled samples
      *      ...
      * @return Map A nested map with sample ids and containing data folders

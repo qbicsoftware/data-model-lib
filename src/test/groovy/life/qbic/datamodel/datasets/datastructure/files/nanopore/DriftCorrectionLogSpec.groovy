@@ -12,8 +12,8 @@ class DriftCorrectionLogSpec extends Specification {
 
     def "shall create a DriftCorrectionLog instance"() {
         given:
-        final name = "drift_correction_testfile.log"
-        final path = "root/drift_correction_testfile.log"
+        final name = "drift_correction_testfile.csv"
+        final path = "root/drift_correction_testfile.csv"
 
         when:
         def dataObject = DriftCorrectionLog.create(name, path)

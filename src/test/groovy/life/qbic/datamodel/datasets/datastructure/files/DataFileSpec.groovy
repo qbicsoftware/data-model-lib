@@ -15,7 +15,7 @@ class DataFileSpec extends Specification {
         def relativePath = "a_relative/path/random_file_name.txt"
 
         when:
-        def dataFile = DataFile.create(name, relativePath, "txt")
+        def dataFile = new DataFile(name, relativePath, "txt")
 
         then:
         assert dataFile instanceof DataFile
@@ -30,7 +30,7 @@ class DataFileSpec extends Specification {
         def relativePath = "a_relative/path/random_file_name.txt"
 
         when:
-        DataFile.create(name, relativePath, "txt")
+        new DataFile(name, relativePath, "txt")
 
         then:
         thrown(IllegalArgumentException)
@@ -42,7 +42,7 @@ class DataFileSpec extends Specification {
         def relativePath = "a_relative/path/random_file_name.csv"
 
         when:
-        DataFile.create(name, relativePath, "txt")
+        new DataFile(name, relativePath, "txt")
 
         then:
         final IllegalArgumentException exception = thrown()

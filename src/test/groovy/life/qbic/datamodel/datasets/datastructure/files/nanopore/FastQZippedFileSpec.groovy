@@ -3,22 +3,22 @@ package life.qbic.datamodel.datasets.datastructure.files.nanopore
 import spock.lang.Specification
 
 /**
- * <add class description here>
+ * Tests for the FastQZippedFile class
  *
  * @author: Sven Fillinger
  */
-class FastQFileSpec extends Specification {
+class FastQZippedFileSpec extends Specification {
 
-    def "shall create a FastQFile instance"() {
+    def "shall create a FastQFile instance using fastq.gz"() {
         given:
-        final name = "test_file.fastq"
-        final relativePath = "root/test_file.fastq"
+        final name = "test_file.fastq.gz"
+        final relativePath = "root/test_file.fastq.gz"
 
         when:
-        def dataObject = FastQFile.create(name, relativePath)
+        def dataObject = FastQZippedFile.create(name, relativePath)
 
         then:
-        assert dataObject instanceof FastQFile
+        assert dataObject instanceof FastQZippedFile
         assert dataObject.relativePath == relativePath
         assert dataObject.name == name
     }
@@ -29,10 +29,12 @@ class FastQFileSpec extends Specification {
         final relativePath = "root/test_file.fasta"
 
         when:
-        def dataObject = FastQFile.create(name, relativePath)
+        def dataObject = FastQZippedFile.create(name, relativePath)
 
         then:
         thrown(IllegalArgumentException)
     }
+
+
 
 }
