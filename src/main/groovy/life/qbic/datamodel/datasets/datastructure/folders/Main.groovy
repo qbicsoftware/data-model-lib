@@ -3,7 +3,6 @@ package life.qbic.datamodel.datasets.datastructure.folders
 import life.qbic.datamodel.datasets.OxfordNanoporeMeasurement
 import life.qbic.datamodel.datasets.datastructure.files.nanopore.Fast5File
 import life.qbic.datamodel.datasets.datastructure.folders.nanopore.Fast5FailFolder
-import life.qbic.datamodel.datasets.datastructure.folders.nanopore.MeasurementFolder
 
 /**
  * <add class description here>
@@ -12,7 +11,7 @@ import life.qbic.datamodel.datasets.datastructure.folders.nanopore.MeasurementFo
  */
 class Main {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         def file = Fast5File.create("my.fast5", "root/fast5")
         def folder = Fast5FailFolder.create("root/fast5_fail", [file])
 

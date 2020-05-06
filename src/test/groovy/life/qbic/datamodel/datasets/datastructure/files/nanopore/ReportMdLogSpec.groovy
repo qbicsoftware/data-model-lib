@@ -9,7 +9,7 @@ import spock.lang.Specification
  */
 class ReportMdLogSpec extends Specification {
 
-    def "shall create a ReportMdLog instance"()  {
+    def "shall create a ReportMdLog instance"() {
         given:
         final name = "report_test.md"
         final relativePath = "root/report_test.md"

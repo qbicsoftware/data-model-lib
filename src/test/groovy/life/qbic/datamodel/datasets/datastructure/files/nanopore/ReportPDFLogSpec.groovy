@@ -9,7 +9,7 @@ import spock.lang.Specification
  */
 class ReportPDFLogSpec extends Specification {
 
-    def "shall create a ReportPDFLog instance"()  {
+    def "shall create a ReportPDFLog instance"() {
         given:
         final name = "report_test.pdf"
         final relativePath = "root/report_test.pdf"

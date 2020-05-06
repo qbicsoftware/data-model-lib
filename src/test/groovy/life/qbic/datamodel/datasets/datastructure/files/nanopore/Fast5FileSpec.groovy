@@ -9,7 +9,7 @@ import spock.lang.Specification
  */
 class Fast5FileSpec extends Specification {
 
-    def "shall create a Fast5File instance"()  {
+    def "shall create a Fast5File instance"() {
         given:
         final name = "test_file.fast5"
         final relativePath = "root/test_file.fast5"

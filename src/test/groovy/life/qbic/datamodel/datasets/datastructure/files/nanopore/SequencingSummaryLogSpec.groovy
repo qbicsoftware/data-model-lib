@@ -9,7 +9,7 @@ import spock.lang.Specification
  */
 class SequencingSummaryLogSpec extends Specification {
 
-    def "shall create a SequencingSummaryLog instance"()  {
+    def "shall create a SequencingSummaryLog instance"() {
         given:
         final name = "sequencing_summary_test.txt"
         final relativePath = "root/sequencing_summary_test.txt"

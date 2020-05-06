@@ -2,12 +2,7 @@ package life.qbic.datamodel.datasets
 
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
-import life.qbic.datamodel.datasets.datastructure.folders.nanopore.BarcodedFolder
-import life.qbic.datamodel.datasets.datastructure.folders.nanopore.Fast5FailFolder
-import life.qbic.datamodel.datasets.datastructure.folders.nanopore.Fast5PassFolder
-import life.qbic.datamodel.datasets.datastructure.folders.nanopore.FastQFailFolder
-import life.qbic.datamodel.datasets.datastructure.folders.nanopore.FastQPassFolder
-import life.qbic.datamodel.datasets.datastructure.folders.nanopore.MeasurementFolder
+import life.qbic.datamodel.datasets.datastructure.folders.nanopore.*
 
 /**
  * A dataset that represents a Oxford Nanopore Measurement.
@@ -130,8 +125,6 @@ final class OxfordNanoporeMeasurement {
         return this.relativePath
 
     }
-
-
 
 
 }

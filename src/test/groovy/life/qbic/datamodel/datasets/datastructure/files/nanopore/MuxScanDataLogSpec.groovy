@@ -9,7 +9,7 @@ import spock.lang.Specification
  */
 class MuxScanDataLogSpec extends Specification {
 
-    def "shall create a MaxScanDataLog instance"()  {
+    def "shall create a MaxScanDataLog instance"() {
         given:
         final name = "mux_scan_data.csv"
         final relativePath = "root/mux_scan_data.txt"

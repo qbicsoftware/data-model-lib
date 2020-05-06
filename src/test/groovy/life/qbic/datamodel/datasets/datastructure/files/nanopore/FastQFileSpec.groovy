@@ -9,7 +9,7 @@ import spock.lang.Specification
  */
 class FastQFileSpec extends Specification {
 
-    def "shall create a FastQFile instance"()  {
+    def "shall create a FastQFile instance"() {
         given:
         final name = "test_file.fastq"
         final relativePath = "root/test_file.fastq"
@@ -35,7 +35,7 @@ class FastQFileSpec extends Specification {
         thrown(IllegalArgumentException)
     }
 
-    def "shall create a FastQFile instance using fastq.gz"()  {
+    def "shall create a FastQFile instance using fastq.gz"() {
         given:
         final name = "test_file.fastq.gz"
         final relativePath = "root/test_file.fastq.gz"

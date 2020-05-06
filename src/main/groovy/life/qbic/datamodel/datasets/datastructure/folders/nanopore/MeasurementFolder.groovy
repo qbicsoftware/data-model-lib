@@ -19,7 +19,7 @@ class MeasurementFolder extends DataFolder {
      */
     final private static String NAME_SCHEMA = $/\d{4}(0?[1-9]|1[012])(0?[1-9]|[12][0-9]|3[01])_([01][0-9]|2[0-3])([0-5][0-9]).*/$
 
-    protected MeasurementFolder(){}
+    protected MeasurementFolder() {}
 
     protected MeasurementFolder(String name, String relativePath, List children) {
         super(name, relativePath, children)

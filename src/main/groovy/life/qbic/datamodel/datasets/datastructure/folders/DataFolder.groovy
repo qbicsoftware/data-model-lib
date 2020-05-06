@@ -2,7 +2,7 @@ package life.qbic.datamodel.datasets.datastructure.folders
 
 import groovy.transform.ToString
 
-@ToString(includeNames=true)
+@ToString(includeNames = true)
 class DataFolder {
 
     private final String name
@@ -28,7 +28,7 @@ class DataFolder {
     }
 
     protected static DataFolder create(String name, String relativePath, List children) {
-        if (!(relativePath.contains(name)))  {
+        if (!(relativePath.contains(name))) {
             throw new IllegalArgumentException("Name must be contained in the relative path.")
         }
         new DataFolder(name, relativePath, children)

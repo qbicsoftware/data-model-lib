@@ -13,7 +13,7 @@ class ReportPDFLog extends DataFile {
 
     final private static String NAME_SCHEMA = $/report_.*/$
 
-    protected ReportPDFLog() { }
+    protected ReportPDFLog() {}
 
     protected ReportPDFLog(String name, String relativePath) {
         super(name, relativePath, FILE_TYPE)

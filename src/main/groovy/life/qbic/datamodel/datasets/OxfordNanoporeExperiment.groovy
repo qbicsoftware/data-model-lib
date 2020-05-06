@@ -61,6 +61,7 @@ final class OxfordNanoporeExperiment implements Experiment {
     /*
     Helper method that parses the QBiC identifier from the root folder name
      */
+
     private static String parseQbicIdFromRootFolder(Map nanoPoreSequencerOutput) {
         def id = Objects.requireNonNull(nanoPoreSequencerOutput.get("name"), "The root folder must contain a name property.")
         return id
@@ -69,6 +70,7 @@ final class OxfordNanoporeExperiment implements Experiment {
     /*
     Helper method that creates the measurements from the sequencer output
      */
+
     private static List<OxfordNanoporeMeasurement> parseMeasurements(Map nanoPoreSequencerOutput) {
         final def measurements = []
         Objects.requireNonNull(nanoPoreSequencerOutput.get("children"), "The root folder must contain at least one measurement folder.")
@@ -84,6 +86,7 @@ final class OxfordNanoporeExperiment implements Experiment {
     /*
     Helper method that creates a list of mixed DataFolders and DataFiles instances
      */
+
     private static List parseMeasurementItems(List<Map> items) {
         final def children = []
         items.each { item ->
@@ -100,6 +103,7 @@ final class OxfordNanoporeExperiment implements Experiment {
     /*
     Helper method that creates a DataFile instance from a map
      */
+
     private static DataFile parseFile(Map fileTree) {
         def name = fileTree.get("name")
         def path = fileTree.get("path")
@@ -109,7 +113,7 @@ final class OxfordNanoporeExperiment implements Experiment {
             try {
                 DataFile dataFile = method.invoke(null, name, path) as DataFile
                 return dataFile
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 // Do nothing
             }
         }
@@ -119,6 +123,7 @@ final class OxfordNanoporeExperiment implements Experiment {
     /*
     Helper method that creates a DataFolder instance from a map
      */
+
     private static DataFolder parseFolder(Map fileTree) {
         def name = fileTree.get("name")
         def path = fileTree.get("path")
@@ -141,7 +146,7 @@ final class OxfordNanoporeExperiment implements Experiment {
             try {
                 DataFolder dataFolder = method.invoke(null, name, path, children) as DataFolder
                 return dataFolder
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 // Do nothing
             }
         }

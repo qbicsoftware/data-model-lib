@@ -13,7 +13,7 @@ class SequencingSummaryLog extends DataFile {
 
     final private static String NAME_SCHEMA = $/sequencing_summary_.*/$
 
-    protected SequencingSummaryLog() { }
+    protected SequencingSummaryLog() {}
 
     protected SequencingSummaryLog(String name, String relativePath) {
         super(name, relativePath, FILE_TYPE)

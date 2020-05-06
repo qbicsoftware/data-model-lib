@@ -5,7 +5,7 @@ import life.qbic.datamodel.identifiers.SampleCodeFunctions
 
 /**
  * Specialisation version of a Folder object.
- * 
+ *
  * The folder name must contain the QBiC barcode.
  *
  * @author: Sven Fillinger

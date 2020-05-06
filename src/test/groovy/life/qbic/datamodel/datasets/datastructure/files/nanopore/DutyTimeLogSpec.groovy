@@ -9,7 +9,7 @@ import spock.lang.Specification
  */
 class DutyTimeLogSpec extends Specification {
 
-    def "shall create a DutyTimeLog instance"()  {
+    def "shall create a DutyTimeLog instance"() {
         given:
         final name = "duty_time_test.log"
         final relativePath = "root/duty_time_test.log"

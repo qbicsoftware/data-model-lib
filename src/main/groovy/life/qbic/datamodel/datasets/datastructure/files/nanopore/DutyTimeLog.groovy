@@ -13,7 +13,7 @@ class DutyTimeLog extends DataFile {
 
     final private static String NAME_SCHEMA = $/duty_time_.*/$
 
-    protected DutyTimeLog() { }
+    protected DutyTimeLog() {}
 
     protected DutyTimeLog(String name, String relativePath) {
         super(name, relativePath, FILE_TYPE)

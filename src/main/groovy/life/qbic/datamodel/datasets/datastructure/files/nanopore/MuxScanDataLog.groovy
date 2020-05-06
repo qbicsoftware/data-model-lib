@@ -13,7 +13,7 @@ class MuxScanDataLog extends DataFile {
 
     final private static String NAME_SCHEMA = $/mux_scan_data.*/$
 
-    protected MuxScanDataLog() { }
+    protected MuxScanDataLog() {}
 
     protected MuxScanDataLog(String name, String relativePath) {
         super(name, relativePath, FILE_TYPE)

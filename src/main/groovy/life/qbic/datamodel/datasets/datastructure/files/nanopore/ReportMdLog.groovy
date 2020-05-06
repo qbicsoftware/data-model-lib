@@ -13,7 +13,7 @@ class ReportMdLog extends DataFile {
 
     final private static String NAME_SCHEMA = $/report_.*/$
 
-    protected ReportMdLog() { }
+    protected ReportMdLog() {}
 
     protected ReportMdLog(String name, String relativePath) {
         super(name, relativePath, FILE_TYPE)

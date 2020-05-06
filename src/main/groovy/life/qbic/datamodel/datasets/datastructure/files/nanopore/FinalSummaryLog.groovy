@@ -13,7 +13,7 @@ class FinalSummaryLog extends DataFile {
 
     final private static String NAME_SCHEMA = $/final_summary_.*/$
 
-    protected FinalSummaryLog() { }
+    protected FinalSummaryLog() {}
 
     protected FinalSummaryLog(String name, String relativePath) {
         super(name, relativePath, FILE_TYPE)

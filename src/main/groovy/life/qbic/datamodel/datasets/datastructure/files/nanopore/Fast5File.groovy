@@ -7,7 +7,7 @@ import life.qbic.datamodel.datasets.datastructure.files.DataFile
  *
  * @author: Sven Fillinger
  */
-class Fast5File extends DataFile{
+class Fast5File extends DataFile {
 
     final private static String FILE_TYPE = "fast5"
 

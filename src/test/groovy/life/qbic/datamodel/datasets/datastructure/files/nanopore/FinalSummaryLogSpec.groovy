@@ -9,7 +9,7 @@ import spock.lang.Specification
  */
 class FinalSummaryLogSpec extends Specification {
 
-    def "shall create a FinalSummaryLog instance"()  {
+    def "shall create a FinalSummaryLog instance"() {
         given:
         final name = "final_summary_test.txt"
         final relativePath = "root/final_summary_test.txt"

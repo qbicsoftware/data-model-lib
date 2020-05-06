@@ -13,7 +13,7 @@ class DriftCorrectionLog extends DataFile {
 
     final private static String NAME_SCHEMA = $/drift_correction_.*/$
 
-    protected DriftCorrectionLog() { }
+    protected DriftCorrectionLog() {}
 
     protected DriftCorrectionLog(String name, String relativePath) {
         super(name, relativePath, FILE_TYPE)

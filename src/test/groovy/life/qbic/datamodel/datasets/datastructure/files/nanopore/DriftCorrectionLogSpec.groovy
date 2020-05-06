@@ -1,7 +1,7 @@
 package life.qbic.datamodel.datasets.datastructure.files.nanopore
 
 import life.qbic.datamodel.datasets.datastructure.files.nanopore.DriftCorrectionLog
-import spock.lang.*
+import spock.lang.Specification
 
 /**
  * Test for the DriftCorrectionLog class
@@ -10,7 +10,7 @@ import spock.lang.*
  */
 class DriftCorrectionLogSpec extends Specification {
 
-    def "shall create a DriftCorrectionLog instance"()  {
+    def "shall create a DriftCorrectionLog instance"() {
         given:
         final name = "drift_correction_testfile.log"
         final path = "root/drift_correction_testfile.log"

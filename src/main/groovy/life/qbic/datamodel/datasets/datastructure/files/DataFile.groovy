@@ -9,7 +9,8 @@ import groovy.transform.ToString
  *
  * @author: Sven Fillinger
  */
-@ToString(includeNames=true) // includes property names
+@ToString(includeNames = true)
+// includes property names
 @CompileStatic
 class DataFile {
 
@@ -30,7 +31,7 @@ class DataFile {
 
     protected DataFile() {}
 
-    protected DataFile(String name, String relativePath, String fileType){
+    protected DataFile(String name, String relativePath, String fileType) {
         this.name = name
         this.relativePath = relativePath
         this.fileType = fileType
@@ -44,7 +45,7 @@ class DataFile {
      * @return DataFile Creates a new DataFile instance
      */
     static DataFile create(String name, String relativePath, String fileType) {
-        if (!(relativePath.contains(name)))  {
+        if (!(relativePath.contains(name))) {
             throw new IllegalArgumentException("Name must be contained in the relative path.")
         }
         if (!(name.endsWith(fileType))) {
@@ -66,8 +67,8 @@ class DataFile {
     }
 
     @Override
-    boolean equals(Object o){
-        if (o == this){
+    boolean equals(Object o) {
+        if (o == this) {
             return true
         }
         if (!(o instanceof DataFile)) {
@@ -75,8 +76,8 @@ class DataFile {
         }
         DataFile datafile = (DataFile) o
         return datafile.name == name \
-                && datafile.getRelativePath() == relativePath \
-                && datafile.fileType
+                 && datafile.getRelativePath() == relativePath \
+                 && datafile.fileType
     }
 
     @Override

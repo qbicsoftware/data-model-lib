@@ -9,7 +9,7 @@ import spock.lang.Specification
  */
 class ThroughputLogSpec extends Specification {
 
-    def "shall create a ThroughputLog instance"()  {
+    def "shall create a ThroughputLog instance"() {
         given:
         final name = "throughput_test.csv"
         final relativePath = "root/throughput_test.csv"

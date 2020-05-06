@@ -9,7 +9,8 @@ import life.qbic.datamodel.datasets.datastructure.folders.nanopore.Fast5PassFold
 import spock.lang.Shared
 import spock.lang.Specification
 
-import static org.mockito.Mockito.*
+import static org.mockito.Mockito.mock
+import static org.mockito.Mockito.when
 
 
 /**
@@ -19,10 +20,14 @@ import static org.mockito.Mockito.*
  */
 class OxfordNanoporeMeasurementSpec extends Specification {
 
-    @Shared Fast5PassFolder fast5PassedFolder
-    @Shared Fast5FailFolder fast5FailedFolder
-    @Shared List fastQPassedFolder
-    @Shared List fastQFailedFolder
+    @Shared
+    Fast5PassFolder fast5PassedFolder
+    @Shared
+    Fast5FailFolder fast5FailedFolder
+    @Shared
+    List fastQPassedFolder
+    @Shared
+    List fastQFailedFolder
 
     def setupSpec() {
         def fast5File = Fast5File.create("test.fast5", "root/fast5")
