@@ -55,11 +55,7 @@ class DataFolder {
      * @return
      */
     List getTheChildren() {
-        List copiedList = []
-        children.each { element ->
-            copiedList.add(element)
-        }
-        return copiedList
+        return this.children.collect{it}
     }
 
     @Override
