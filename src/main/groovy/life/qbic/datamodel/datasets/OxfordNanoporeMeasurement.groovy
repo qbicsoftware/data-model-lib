@@ -11,13 +11,7 @@ import life.qbic.datamodel.datasets.datastructure.folders.nanopore.*
  */
 final class OxfordNanoporeMeasurement {
 
-    private final List fast5PassedContent
-
-    private final List fast5FailedContent
-
-    private final List fastQPassedContent
-
-    private final List fastQFailedContent
+    private final Map<String, DataFolder> folders
 
     private final List<DataFile> logFiles
 
@@ -26,17 +20,14 @@ final class OxfordNanoporeMeasurement {
     private final boolean pooledMeasurement
 
     protected OxfordNanoporeMeasurement(String name, String path, List children) {
-        fast5PassedContent = new ArrayList<>()
-        fast5FailedContent = new ArrayList<>()
-        fastQFailedContent = new ArrayList<>()
-        fastQPassedContent = new ArrayList<>()
         logFiles = new ArrayList<>()
+        folders = new HashMap<>()
 
         this.measurementFolder = MeasurementFolder.create(name, path, children)
 
         createContent()
 
-        pooledMeasurement = fast5PassedContent ? fast5PassedContent.get(0) instanceof BarcodedFolder : false
+        pooledMeasurement = folders["fast5passed"] ? folders["fast5passed"].getTheChildren().get(0) instanceof Fast5Folder : false
     }
 
     static OxfordNanoporeMeasurement create(String name, String path, List children) {
@@ -47,16 +38,16 @@ final class OxfordNanoporeMeasurement {
         measurementFolder.getTheChildren().each { element ->
             switch (element) {
                 case Fast5PassFolder:
-                    fast5PassedContent.add(element as Fast5PassFolder)
+                    folders["fast5passed"] = element as Fast5PassFolder
                     break
                 case Fast5FailFolder:
-                    fast5FailedContent.add(element as Fast5FailFolder)
+                    folders["fast5failed"] = element as Fast5FailFolder
                     break
                 case FastQPassFolder:
-                    fastQPassedContent.add(element as FastQPassFolder)
+                    folders["fastqpass"] = element as FastQPassFolder
                     break
                 case FastQFailFolder:
-                    fastQFailedContent.add(element as FastQFailFolder)
+                    folders["fastqfail"] = element as FastQFailFolder
                     break
                 case DataFile:
                     logFiles.add(element as DataFile)
@@ -71,23 +62,49 @@ final class OxfordNanoporeMeasurement {
      * The resulting data-structure follows this map schema:
      *
      * "QBiC sample id":
-     *      "fast5fail": List<DataFiles>
-     *      "fast5pass": List<DataFiles>
-     *      "fastqfail": List<DataFiles>
-     *      "fastqpass": List<DataFiles>
+     *      "fast5fail": DataFolder
+     *      "fast5pass": DataFolder
+     *      "fastqfail": DataFolder
+     *      "fastqpass": DataFolder
      * "Other sample id":   // In case of pooled samples
      *      ...
      * @return Map A nested map with sample ids and containing data folders
      */
     Map<String, Map<String, DataFolder>> getRawDataPerSample(Experiment experiment) {
-        def result = new HashMap()
-        def folders = [
-                "fast5fail": fast5FailedContent,
-                "fast5pass": fast5PassedContent,
-                "fastqpass": fastQPassedContent,
-                "fastqfail": fastQFailedContent
+        if (pooledMeasurement) {
+            return prepareRawDataFromPooledMeasurement()
+        } else {
+            return prepareRawData(experiment.sampleId)
+        }
+    }
+
+    private Map<String, Map<String, DataFolder>> prepareRawDataFromPooledMeasurement() {
+        final def result = new HashMap()
+        final def pooledSampleIds = folders
+                .get("fast5failed")
+                .getTheChildren()
+                .collect { (it as BarcodedFolder).getSampleId() }
+        pooledSampleIds.each { sampleId ->
+            final def map = [
+                    "fast5fail": (folders.get("fast5failed") as DataFolder).getTheChildren().find {(it as BarcodedFolder).getSampleId()},
+                    "fast5pass": (folders.get("fast5passed") as DataFolder).getTheChildren().find {(it as BarcodedFolder).getSampleId()},
+                    "fastqpass": (folders.get("fastqpass") as DataFolder).getTheChildren().find {(it as BarcodedFolder).getSampleId()},
+                    "fastqfail": (folders.get("fastqfail") as DataFolder).getTheChildren().find {(it as BarcodedFolder).getSampleId()}
+            ]
+            result[sampleId] = map
+        }
+        return result
+    }
+
+    private Map<String, Map<String, DataFolder>> prepareRawData(String sampleId) {
+        final def result = new HashMap()
+        final def folders = [
+                "fast5fail": (folders.get("fast5failed") as DataFolder),
+                "fast5pass": (folders.get("fast5passed") as DataFolder),
+                "fastqpass": (folders.get("fastqpass") as DataFolder),
+                "fastqfail": (folders.get("fastqfail") as DataFolder)
         ]
-        result.put(experiment.getSampleId(), folders)
+        result.put(sampleId, folders)
         return result
     }
 
@@ -97,11 +114,7 @@ final class OxfordNanoporeMeasurement {
      * @return List A list of log files from the experiment
      */
     List<DataFile> getLogFiles() {
-        def logFileList = []
-        this.logFiles.each { logfile ->
-            logFileList.add(DataFile.create(logfile.getName(), logfile.getRelativePath(), logfile.getFileType()))
-        }
-        return logFileList
+        return logFiles.collect { it }
     }
 
     /**
@@ -123,7 +136,6 @@ final class OxfordNanoporeMeasurement {
      */
     String getRelativePath() {
         return this.relativePath
-
     }
 
 

@@ -58,19 +58,17 @@ final class OxfordNanoporeExperiment implements Experiment {
         return this.sampleId
     }
 
-    /*
-    Helper method that parses the QBiC identifier from the root folder name
+    /**
+     * Helper method that parses the QBiC identifier from the root folder name
      */
-
     private static String parseQbicIdFromRootFolder(Map nanoPoreSequencerOutput) {
         def id = Objects.requireNonNull(nanoPoreSequencerOutput.get("name"), "The root folder must contain a name property.")
         return id
     }
 
-    /*
-    Helper method that creates the measurements from the sequencer output
+    /**
+     * Helper method that creates the measurements from the sequencer output
      */
-
     private static List<OxfordNanoporeMeasurement> parseMeasurements(Map nanoPoreSequencerOutput) {
         final def measurements = []
         Objects.requireNonNull(nanoPoreSequencerOutput.get("children"), "The root folder must contain at least one measurement folder.")
@@ -83,10 +81,9 @@ final class OxfordNanoporeExperiment implements Experiment {
         return measurements
     }
 
-    /*
-    Helper method that creates a list of mixed DataFolders and DataFiles instances
+    /**
+     * Helper method that creates a list of mixed DataFolders and DataFiles instances
      */
-
     private static List parseMeasurementItems(List<Map> items) {
         final def children = []
         items.each { item ->
@@ -100,8 +97,8 @@ final class OxfordNanoporeExperiment implements Experiment {
         return children
     }
 
-    /*
-    Helper method that creates a DataFile instance from a map
+    /**
+     * Helper method that creates a DataFile instance from a map
      */
     private static DataFile parseFile(Map fileTree) {
         def name = fileTree.get("name")
@@ -119,10 +116,9 @@ final class OxfordNanoporeExperiment implements Experiment {
         throw new IllegalArgumentException("File $name is of unknown Oxford Nanopore file type.")
     }
 
-    /*
-    Helper method that creates a DataFolder instance from a map
+    /**
+     *Helper method that creates a DataFolder instance from a map
      */
-
     private static DataFolder parseFolder(Map fileTree) {
         def name = fileTree.get("name")
         def path = fileTree.get("path")

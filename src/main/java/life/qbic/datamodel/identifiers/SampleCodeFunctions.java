@@ -1,26 +1,24 @@
 package life.qbic.datamodel.identifiers;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import life.qbic.datamodel.experiments.ExperimentType;
 import life.qbic.datamodel.samples.SampleType;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Helper functions used for sample creation
- * 
+ *
  * @author Andreas Friedrich
- * 
  */
 public class SampleCodeFunctions {
 
-  final public static String QBIC_SAMPLE_ID_SCHEMA = "Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}";
+  public static final String QBIC_SAMPLE_ID_SCHEMA = "Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}";
 
   private static final Logger logger = LogManager.getLogger(SampleCodeFunctions.class);
 
@@ -41,7 +39,7 @@ public class SampleCodeFunctions {
 
   /**
    * Checks if a String fits the QBiC barcode pattern and has a correct checksum
-   * 
+   *
    * @param code A String that may be a barcode
    * @return true if String is a QBiC barcode with matching checksum, false if not
    */
@@ -58,7 +56,7 @@ public class SampleCodeFunctions {
 
   /**
    * Checks if a String fits the QBiC entity code pattern
-   * 
+   *
    * @param code A String that may be a qbic entity code
    * @return true if String is a QBiC entity code, false if not
    */
@@ -79,33 +77,35 @@ public class SampleCodeFunctions {
   }
 
   public static int compareSampleCodes(String c1, String c2) {
-    if (!c1.startsWith("Q") || c1.contains("ENTITY") || !c2.startsWith("Q")
-        || c2.contains("ENTITY"))
-      return c1.compareTo(c2);
+    if (!c1.startsWith("Q")
+        || c1.contains("ENTITY")
+        || !c2.startsWith("Q")
+        || c2.contains("ENTITY")) return c1.compareTo(c2);
     try {
       // compares sample codes by projects, ending letters (999A --> 001B) and numbers (001A -->
       // 002A)
       int projCompare = c1.substring(0, 5).compareTo(c2.substring(0, 5));
       int numCompare = c1.substring(5, 8).compareTo(c2.substring(5, 8));
       int letterCompare = c1.substring(8, 9).compareTo(c2.substring(8, 9));
-      if (projCompare != 0)
-        return projCompare;
+      if (projCompare != 0) return projCompare;
       else {
-        if (letterCompare != 0)
-          return letterCompare;
-        else
-          return numCompare;
+        if (letterCompare != 0) return letterCompare;
+        else return numCompare;
       }
     } catch (Exception e) {
-      logger.warn("Could not split code " + c1 + " or " + c2
-          + ". Falling back to primitive lexicographical comparison.");
+      logger.warn(
+          "Could not split code "
+              + c1
+              + " or "
+              + c2
+              + ". Falling back to primitive lexicographical comparison.");
     }
     return c1.compareTo(c2);
   }
 
   /**
    * Checks if a String can be parsed to an Integer
-   * 
+   *
    * @param s a String
    * @return true, if the String can be parsed to an Integer successfully, false otherwise
    */
@@ -120,13 +120,12 @@ public class SampleCodeFunctions {
 
   /**
    * Increments the value of an upper case char. When at "Z" restarts with "A".
-   * 
+   *
    * @param c the char to be incremented
    * @return the next letter in the alphabet relative to the input char
    */
   public static char incrementUppercase(char c) {
-    if (c == 'X')
-      return 'A';
+    if (c == 'X') return 'A';
     else {
       int charValue = c;
       return (char) (charValue + 1);
@@ -137,7 +136,7 @@ public class SampleCodeFunctions {
    * Increments to the next sample string in the order, meaning the project code stays the same and
    * the 3 letter number is incremented, except if it's 999, then the following letter is
    * incremented and the number starts with 001 again.
-   * 
+   *
    * @param code a 10 digit sample code
    * @return a new sample code
    */
@@ -148,15 +147,14 @@ public class SampleCodeFunctions {
     char letter = code.charAt(8);
     if (newNum > 999) {
       num = "001" + incrementUppercase(letter);
-    } else
-      num = createCountString(newNum, 3) + letter;
+    } else num = createCountString(newNum, 3) + letter;
     String res = code.substring(0, 5) + num;
     return res + checksum(res);
   }
 
   /**
    * Creates a string with leading zeroes from a number
-   * 
+   *
    * @param id number
    * @param length of the final string
    * @return the completed String with leading zeroes
@@ -171,7 +169,7 @@ public class SampleCodeFunctions {
 
   /**
    * Checks which of two Strings can be parsed to a larger Integer and returns it.
-   * 
+   *
    * @param a a String
    * @param b another String
    * @return the String that represents the larger number.
@@ -179,15 +177,13 @@ public class SampleCodeFunctions {
   public static String max(String a, String b) {
     int a1 = Integer.parseInt(a);
     int b1 = Integer.parseInt(b);
-    if (Math.max(a1, b1) == a1)
-      return a;
-    else
-      return b;
+    if (Math.max(a1, b1) == a1) return a;
+    else return b;
   }
 
   /**
    * Maps an integer to a char representation. This can be used for computing the checksum.
-   * 
+   *
    * @param i number to be mapped
    * @return char representing the input number
    */
@@ -207,7 +203,7 @@ public class SampleCodeFunctions {
    * Computes a checksum digit for a given String. This checksum is weighted position-specific,
    * meaning it will also most likely fail a check if there is a typo of the String resulting in a
    * swapping of two numbers.
-   * 
+   *
    * @param s String for which a checksum should be computed.
    * @return Character representing the checksum of the input String.
    */
@@ -223,7 +219,7 @@ public class SampleCodeFunctions {
 
   /**
    * Parses a whole String list to integers and returns them in another list.
-   * 
+   *
    * @param strings List of Strings
    * @return list of integer representations of the input list
    */
@@ -237,7 +233,7 @@ public class SampleCodeFunctions {
 
   /**
    * Returns a String denoting the range of a list of barcodes as used in QBiC
-   * 
+   *
    * @param ids List of code strings
    * @return String denoting a range of the barcodes
    */
@@ -247,17 +243,15 @@ public class SampleCodeFunctions {
     String max = min;
     for (String id : ids) {
       String num = id.substring(5, 8);
-      if (num.compareTo(min) < 0)
-        min = num;
-      if (num.compareTo(max) > 0)
-        max = num;
+      if (num.compareTo(min) < 0) min = num;
+      if (num.compareTo(max) > 0) max = num;
     }
     return head + min + "-" + max;
   }
 
   /**
    * Returns the 5 character project prefix used for samples in openBIS.
-   * 
+   *
    * @param sample sample ID starting with a standard project prefix.
    * @return Project prefix of the sample
    */
@@ -267,5 +261,20 @@ public class SampleCodeFunctions {
     // return sample.substring(0, 4);
     // else
     return sample.substring(0, 5);
+  }
+
+  /**
+   * Finds all QBiC sample ids in a String object.
+   * @param text The text to search
+   * @return A list of found ids. Is empty if no id was found.
+   */
+  public static List<String> findAllQbicSampleIds(String text) {
+    List<String> result = new ArrayList<>();
+    Pattern pattern = Pattern.compile(QBIC_SAMPLE_ID_SCHEMA, Pattern.CASE_INSENSITIVE);
+    Matcher m = pattern.matcher(text);
+    while (m.find()) {
+      result.add(m.group());
+    }
+    return result;
   }
 }

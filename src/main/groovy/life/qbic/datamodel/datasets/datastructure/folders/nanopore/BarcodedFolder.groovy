@@ -12,6 +12,8 @@ import life.qbic.datamodel.identifiers.SampleCodeFunctions
  */
 class BarcodedFolder extends DataFolder {
 
+    private String sampleId
+
     protected BarcodedFolder() {}
 
     protected BarcodedFolder(String name, String relativePath, List children) {
@@ -20,8 +22,21 @@ class BarcodedFolder extends DataFolder {
     }
 
     private void validateName() {
-        if (!(this.name =~ SampleCodeFunctions.QBIC_SAMPLE_ID_SCHEMA)) {
-            throw new IllegalArgumentException("Name must match the QBiC barcode schema!")
+        final def ids = SampleCodeFunctions.findAllQbicSampleIds(this.name)
+        if ( ids.isEmpty()) {
+            throw new IllegalArgumentException("Name must match the QBiC sample id schema!")
         }
+        if ( ids.size() > 1 ) {
+            throw new IllegalArgumentException("Name contained more than valid sample id!")
+        }
+        sampleId = ids.get(0)
+    }
+
+    /**
+     * Returns the sample id of the barcoded folder
+     * @return
+     */
+    String getSampleId() {
+        return this.sampleId
     }
 }
