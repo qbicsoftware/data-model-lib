@@ -62,6 +62,10 @@ final class OxfordNanoporeExperiment implements Experiment {
         return new OxfordNanoporeExperiment(sampleId, measurements)
     }
 
+    /**
+     * Provides a list of containing measurements.
+     * @return
+     */
     List<OxfordNanoporeMeasurement> getMeasurements() {
         return this.measurements
     }
@@ -76,7 +80,7 @@ final class OxfordNanoporeExperiment implements Experiment {
      */
     private static String parseQbicIdFromRootFolder(Map nanoPoreSequencerOutput) {
         def name = Objects.requireNonNull(nanoPoreSequencerOutput.get("name"), "The root folder must contain a name property.")
-        final def ids = SampleCodeFunctions.findAllQbicSampleIds(name)
+        final def ids = SampleCodeFunctions.findAllQbicSampleIds(name as String)
         if (ids.isEmpty()) {
             throw new IllegalArgumentException("No QBiC sample identifier found!")
         }
@@ -101,13 +105,13 @@ final class OxfordNanoporeExperiment implements Experiment {
         return measurements
     }
 
-    /**
+    /*
      * Helper method that creates a list of mixed DataFolders and DataFiles instances
      */
+
     private static List<?> parseMeasurementItems(List<Map> items) {
         final def children = []
         items.each { item ->
-            def itemName = Objects.requireNonNull(item.get("name") as String, "A measurement child must contain a name.")
             try {
                 def putativeFile = parseFile(item)
                 children.add(putativeFile)
@@ -119,13 +123,10 @@ final class OxfordNanoporeExperiment implements Experiment {
         return children
     }
 
-    private boolean isLogFile(String name) {
-
-    }
-
-    /**
+    /*
      * Helper method that creates a DataFile instance from a map
      */
+
     private static DataFile parseFile(Map fileTree) {
         def name = fileTree.get("name")
         def path = fileTree.get("path")
@@ -142,9 +143,10 @@ final class OxfordNanoporeExperiment implements Experiment {
         throw new IllegalArgumentException("File $name with path $path is of unknown Oxford Nanopore file type.")
     }
 
-    /**
+    /*
      * Helper method that creates a DataFolder instance from a map
      */
+
     private static DataFolder parseFolder(Map fileTree) {
         def name = fileTree.get("name") as String
         def path = fileTree.get("path") as String
@@ -159,6 +161,14 @@ final class OxfordNanoporeExperiment implements Experiment {
         }
         throw new IllegalArgumentException("Folder $name with path $path is of unknown Oxford Nanopore folder type.")
     }
+
+    /*
+     * Helper method that tries to create a DataFolder instance
+     * based on the DataFolder's different static factory create methods.
+     * As we do not know, whether a folder element is another typed folder
+     * such as FastQPassFolder or a named folder such as Fast5Folder, we have to
+     * try and fail.
+     */
 
     private static Optional<DataFolder> tryToCreateDataFolder(Method method,
                                                               String name,
@@ -183,6 +193,10 @@ final class OxfordNanoporeExperiment implements Experiment {
         return folder
     }
 
+    /*
+     * Helper method that parses the children of a folder.
+     */
+
     private static List parseChildren(List<Map> children) {
         def parsedChildren = []
         children.each { Map unknownChild ->
@@ -200,11 +214,17 @@ final class OxfordNanoporeExperiment implements Experiment {
         return parsedChildren
     }
 
+    /*
+    Determines the correct static create method for a data folder.
+     */
+
     private static Method determineMethod(Class c) {
         def method
         try {
+            // named folder (i.e. Fast5Folder)
             method = c.getDeclaredMethod("create", String.class, String.class, List.class)
         } catch (NoSuchMethodException e) {
+            // typed folder (i.e. FastQPassFolder)
             method = c.getDeclaredMethod("create", String.class, List.class)
         }
         return method
