@@ -53,7 +53,8 @@ final class OxfordNanoporeExperiment implements Experiment {
 
     /**
      * Static factory method that creates a new instance from a Oxford Nanopore sequencer output.
-     * @param nanoPoreSequencerOutput
+     *
+     * @param Map nanoPoreSequencerOutput
      * @return OxfordNanoporeExperiment A new instance of a nanopore experiment.
      */
     static OxfordNanoporeExperiment create(Map nanoPoreSequencerOutput) {
