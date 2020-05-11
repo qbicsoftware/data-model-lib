@@ -64,7 +64,7 @@ final class OxfordNanoporeExperiment implements Experiment {
     }
 
     /**
-     * Provides a list of containing measurements.
+     * Provides a list of measurements contained within the experiment folder.
      * @return
      */
     List<OxfordNanoporeMeasurement> getMeasurements() {
