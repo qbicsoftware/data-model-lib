@@ -48,11 +48,11 @@ final class OxfordNanoporeMeasurement {
     }
 
     private void assessPooledStatus() {
-        this.pooledSamplesMeasurement = folders["fast5passed"] ? folders["fast5passed"].getTheChildren().get(0) instanceof Fast5Folder : false
+        this.pooledSamplesMeasurement = folders["fast5pass"] ? folders["fast5pass"].getTheChildren().get(0) instanceof Fast5Folder : false
         // There can be still pooled samples in the failed folder, worst case is all
         // samples failed, so we need to check there to
         if (! pooledSamplesMeasurement) {
-            this.pooledSamplesMeasurement = folders["fast5failed"] ? folders["fast5failed"].getTheChildren().get(0) instanceof Fast5Folder : false
+            this.pooledSamplesMeasurement = folders["fast5fail"] ? folders["fast5fail"].getTheChildren().get(0) instanceof Fast5Folder : false
         }
     }
 
@@ -70,10 +70,10 @@ final class OxfordNanoporeMeasurement {
         measurementFolder.getTheChildren().each { element ->
             switch (element) {
                 case Fast5PassFolder:
-                    folders["fast5passed"] = element as Fast5PassFolder
+                    folders["fast5pass"] = element as Fast5PassFolder
                     break
                 case Fast5FailFolder:
-                    folders["fast5failed"] = element as Fast5FailFolder
+                    folders["fast5fail"] = element as Fast5FailFolder
                     break
                 case FastQPassFolder:
                     folders["fastqpass"] = element as FastQPassFolder
@@ -169,13 +169,13 @@ final class OxfordNanoporeMeasurement {
     private Map<String, Map<String, DataFolder>> prepareRawDataFromPooledMeasurement() {
         final def result = new HashMap()
         final def pooledSampleIds = folders
-                .get("fast5failed")
+                .get("fast5fail")
                 .getTheChildren()
                 .collect { (it as BarcodedFolder).getSampleId() }
         pooledSampleIds.each { sampleId ->
             final def map = [
-                    "fast5fail": (folders.get("fast5failed") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleId() },
-                    "fast5pass": (folders.get("fast5passed") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleId() },
+                    "fast5fail": (folders.get("fast5fail") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleId() },
+                    "fast5pass": (folders.get("fast5pass") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleId() },
                     "fastqpass": (folders.get("fastqpass") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleId() },
                     "fastqfail": (folders.get("fastqfail") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleId() }
             ]
@@ -187,8 +187,8 @@ final class OxfordNanoporeMeasurement {
     private Map<String, Map<String, DataFolder>> prepareRawData(String sampleId) {
         final def result = new HashMap()
         final def folders = [
-                "fast5fail": (folders.get("fast5failed") as DataFolder),
-                "fast5pass": (folders.get("fast5passed") as DataFolder),
+                "fast5fail": (folders.get("fast5fail") as DataFolder),
+                "fast5pass": (folders.get("fast5pass") as DataFolder),
                 "fastqpass": (folders.get("fastqpass") as DataFolder),
                 "fastqfail": (folders.get("fastqfail") as DataFolder)
         ]
