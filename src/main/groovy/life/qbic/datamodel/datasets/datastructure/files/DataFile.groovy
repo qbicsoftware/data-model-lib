@@ -38,9 +38,9 @@ class DataFile {
         if (!(name.endsWith(fileType))) {
             throw new IllegalArgumentException("File does not have the assumed type.")
         }
-        this.name = name
-        this.relativePath = relativePath
-        this.fileType = fileType
+        this.name = Objects.requireNonNull(name, "name must not be null")
+        this.relativePath = Objects.requireNonNull(relativePath, "relativePath must not be null")
+        this.fileType = Objects.requireNonNull(fileType, "fileType must not be null")
     }
 
     final String getRelativePath() {
