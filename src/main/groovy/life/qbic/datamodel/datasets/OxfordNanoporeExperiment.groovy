@@ -48,7 +48,7 @@ final class OxfordNanoporeExperiment implements Experiment {
 
     private OxfordNanoporeExperiment(String sampleId, List<OxfordNanoporeMeasurement> measurements) {
         this.measurements = Objects.requireNonNull(measurements, "measurements must not be null")
-        this.sampleId = sampleId
+        this.sampleId = Objects.requireNonNull(sampleId, "sampleId must not be null")
     }
 
     /**
