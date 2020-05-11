@@ -17,7 +17,7 @@ final class OxfordNanoporeMeasurement {
 
     private final MeasurementFolder measurementFolder
 
-    private final boolean pooledMeasurement
+    private final boolean pooledSamplesMeasurement
 
     protected OxfordNanoporeMeasurement(String name, String path, List children) {
         logFiles = new ArrayList<>()
@@ -27,7 +27,7 @@ final class OxfordNanoporeMeasurement {
 
         createContent()
 
-        pooledMeasurement = folders["fast5passed"] ? folders["fast5passed"].getTheChildren().get(0) instanceof Fast5Folder : false
+        pooledSamplesMeasurement = folders["fast5passed"] ? folders["fast5passed"].getTheChildren().get(0) instanceof Fast5Folder : false
     }
 
     static OxfordNanoporeMeasurement create(String name, String path, List children) {
@@ -71,7 +71,7 @@ final class OxfordNanoporeMeasurement {
      * @return Map A nested map with sample ids and containing data folders
      */
     Map<String, Map<String, DataFolder>> getRawDataPerSample(Experiment experiment) {
-        if (pooledMeasurement) {
+        if (pooledSamplesMeasurement) {
             return prepareRawDataFromPooledMeasurement()
         } else {
             return prepareRawData(experiment.sampleId)
