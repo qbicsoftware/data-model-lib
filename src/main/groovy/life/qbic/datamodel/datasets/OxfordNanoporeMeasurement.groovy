@@ -100,7 +100,7 @@ final class OxfordNanoporeMeasurement {
      *      "fastqpass": DataFolder
      * "Other sample id":   // In case of pooled samples
      *      ...
-     * @return Map A nested map with sample ids and containing data folders
+     * @return nested Map with sample ids and data folders
      */
     Map<String, Map<String, DataFolder>> getRawDataPerSample(Experiment experiment) {
         if (pooledSamplesMeasurement) {
