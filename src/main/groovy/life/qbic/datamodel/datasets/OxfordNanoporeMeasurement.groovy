@@ -12,7 +12,13 @@ import life.qbic.datamodel.datasets.datastructure.folders.nanopore.*
 final class OxfordNanoporeMeasurement {
 
     private static final enum METADATA_FIELD {
-        START_DATE, INSTRUMENT, FLOWCELL_ID, FLOWCELL_POSITION
+        ASIC_TEMP,
+        INSTRUMENT,
+        FLOWCELL_ID,
+        FLOWCELL_POSITION,
+        FLOWCELL_TYPE,
+        MACHINE_HOST,
+        START_DATE
     }
 
     private final Map<METADATA_FIELD, String> metadata
@@ -43,10 +49,13 @@ final class OxfordNanoporeMeasurement {
     }
 
     private void readMetaData(Map<String, String> metadata) {
-        this.metadata[METADATA_FIELD.START_DATE] = metadata["start_date"]
+        this.metadata[METADATA_FIELD.ASIC_TEMP] = metadata["asic_temp"]
         this.metadata[METADATA_FIELD.INSTRUMENT] = metadata["instrument"]
         this.metadata[METADATA_FIELD.FLOWCELL_ID] = metadata["flowcell_id"]
         this.metadata[METADATA_FIELD.FLOWCELL_POSITION] = metadata["flowcell_position"]
+        this.metadata[METADATA_FIELD.FLOWCELL_TYPE] = metadata["flowcell_type"]
+        this.metadata[METADATA_FIELD.MACHINE_HOST] = metadata["hostname"]
+        this.metadata[METADATA_FIELD.START_DATE] = metadata["start_date"]
     }
 
     private void createContent() {
@@ -123,6 +132,30 @@ final class OxfordNanoporeMeasurement {
      */
     String getFlowCellPosition() {
         return metadata.get(METADATA_FIELD.FLOWCELL_POSITION)
+    }
+
+    /**
+     * Provides access to the flow cell type.
+     * @return
+     */
+    String getFlowCellType() {
+        return metadata.get(METADATA_FIELD.FLOWCELL_TYPE)
+    }
+
+    /**
+     * Provides access to the machine host name.
+     * @return
+     */
+    String getMachineHost() {
+        return metadata.get(METADATA_FIELD.FLOWCELL_TYPE)
+    }
+
+    /**
+     *
+     * @return
+     */
+    String getAsicTemp() {
+        return metadata.get(METADATA_FIELD.ASIC_TEMP)
     }
 
     private Map<String, Map<String, DataFolder>> prepareRawDataFromPooledMeasurement() {
