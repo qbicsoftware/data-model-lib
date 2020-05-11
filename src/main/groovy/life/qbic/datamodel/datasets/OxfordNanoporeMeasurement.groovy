@@ -29,7 +29,7 @@ final class OxfordNanoporeMeasurement {
 
     private final MeasurementFolder measurementFolder
 
-    private final boolean pooledSamplesMeasurement
+    private boolean pooledSamplesMeasurement
 
     protected OxfordNanoporeMeasurement(String name, String path, List children, Map metadata) {
         this.logFiles = new ArrayList<>()
@@ -40,12 +40,20 @@ final class OxfordNanoporeMeasurement {
 
         readMetaData(metadata)
         createContent()
-
-        this.pooledSamplesMeasurement = folders["fast5passed"] ? folders["fast5passed"].getTheChildren().get(0) instanceof Fast5Folder : false
+        assessPooledStatus()
     }
 
     static OxfordNanoporeMeasurement create(String name, String path, List children, Map metadata) {
         return new OxfordNanoporeMeasurement(name, path, children, metadata)
+    }
+
+    private void assessPooledStatus() {
+        this.pooledSamplesMeasurement = folders["fast5passed"] ? folders["fast5passed"].getTheChildren().get(0) instanceof Fast5Folder : false
+        // There can be still pooled samples in the failed folder, worst case is all
+        // samples failed, so we need to check there to
+        if (! pooledSamplesMeasurement) {
+            this.pooledSamplesMeasurement = folders["fast5failed"] ? folders["fast5failed"].getTheChildren().get(0) instanceof Fast5Folder : false
+        }
     }
 
     private void readMetaData(Map<String, String> metadata) {
@@ -151,7 +159,7 @@ final class OxfordNanoporeMeasurement {
     }
 
     /**
-     *
+     * Provides access to the asic temperature.
      * @return
      */
     String getAsicTemp() {
