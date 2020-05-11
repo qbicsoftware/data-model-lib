@@ -101,7 +101,8 @@ final class OxfordNanoporeExperiment implements Experiment {
             def name = measurementItem.get("name") as String
             def relativePath = measurementItem.get("path") as String
             def children = parseMeasurementItems(measurementItem.get("children") as List)
-            measurements.add(new OxfordNanoporeMeasurement(name, relativePath, children))
+            def metadata = measurementItem.get("metadata") as Map
+            measurements.add(new OxfordNanoporeMeasurement(name, relativePath, children, metadata))
         }
         return measurements
     }

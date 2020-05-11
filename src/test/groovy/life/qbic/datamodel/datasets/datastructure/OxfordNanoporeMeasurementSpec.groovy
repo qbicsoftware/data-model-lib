@@ -35,8 +35,16 @@ class OxfordNanoporeMeasurementSpec extends Specification {
     Fast5Folder otherfast5PooledFolder
     @Shared
     FastQFolder otherfastQPooledFolder
+    @Shared
+    Map metaData
 
     def setupSpec() {
+        metaData = [
+                "start_date": "20201105 11:15",
+                "flowcell_id": "QABCD001AB_E12A345a01",
+                "instrument": "PCT0094",
+                "flowcell_position": "2-A3-D3"
+        ]
         def fast5File = Fast5File.create("test.fast5", "root/test.fast5")
         def fastQFile = FastQFile.create("test.fastq", "root/test.fastq")
         fast5FailedFolder = Fast5FailFolder.create("root/fast5_fail", [fast5File])
@@ -55,7 +63,8 @@ class OxfordNanoporeMeasurementSpec extends Specification {
         final def measurement = OxfordNanoporeMeasurement.create(
                 "20200219_1107_1-E3-H3_PAE26974_454b8dc6",
                 "path/20200219_1107_1-E3-H3_PAE26974_454b8dc6",
-                [fast5FailedFolder, fast5PassedFolder, fastQFailedFolder, fastQPassedFolder])
+                [fast5FailedFolder, fast5PassedFolder, fastQFailedFolder, fastQPassedFolder],
+                metaData)
 
         and:
         final def mockedExperiment = mock(Experiment.class)
@@ -82,7 +91,8 @@ class OxfordNanoporeMeasurementSpec extends Specification {
         final def measurement = OxfordNanoporeMeasurement.create(
                 "20200219_1107_1-E3-H3_PAE26974_454b8dc6",
                 "path/20200219_1107_1-E3-H3_PAE26974_454b8dc6",
-                [pooledFast5PassFolder, pooledFast5FailedFolder, pooledFastQPassFolder, pooledFastQFailedFolder])
+                [pooledFast5PassFolder, pooledFast5FailedFolder, pooledFastQPassFolder, pooledFastQFailedFolder],
+                metaData)
 
         and:
         final def mockedExperiment = mock(Experiment.class)

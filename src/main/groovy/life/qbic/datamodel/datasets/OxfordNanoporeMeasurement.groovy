@@ -11,6 +11,8 @@ import life.qbic.datamodel.datasets.datastructure.folders.nanopore.*
  */
 final class OxfordNanoporeMeasurement {
 
+    private final Map<String, String> metadata
+
     private final Map<String, DataFolder> folders
 
     private final List<DataFile> logFiles
@@ -19,19 +21,28 @@ final class OxfordNanoporeMeasurement {
 
     private final boolean pooledSamplesMeasurement
 
-    protected OxfordNanoporeMeasurement(String name, String path, List children) {
-        logFiles = new ArrayList<>()
-        folders = new HashMap<>()
+    protected OxfordNanoporeMeasurement(String name, String path, List children, Map metadata) {
+        this.logFiles = new ArrayList<>()
+        this.folders = new HashMap<>()
+        this.metadata = new HashMap()
 
         this.measurementFolder = MeasurementFolder.create(name, path, children)
 
+        readMetaData(metadata)
         createContent()
 
-        pooledSamplesMeasurement = folders["fast5passed"] ? folders["fast5passed"].getTheChildren().get(0) instanceof Fast5Folder : false
+        this.pooledSamplesMeasurement = folders["fast5passed"] ? folders["fast5passed"].getTheChildren().get(0) instanceof Fast5Folder : false
     }
 
-    static OxfordNanoporeMeasurement create(String name, String path, List children) {
-        return new OxfordNanoporeMeasurement(name, path, children)
+    static OxfordNanoporeMeasurement create(String name, String path, List children, Map metadata) {
+        return new OxfordNanoporeMeasurement(name, path, children, metadata)
+    }
+
+    private void readMetaData(Map<String, String> metadata) {
+        this.metadata["start_date"] = metadata["start_date"]
+        this.metadata["instrument"] = metadata["instrument"]
+        this.metadata["flowcell_id"] = metadata["flowcell_id"]
+        this.metadata["flowcell_position"] = metadata["flowcell_position"]
     }
 
     private void createContent() {
