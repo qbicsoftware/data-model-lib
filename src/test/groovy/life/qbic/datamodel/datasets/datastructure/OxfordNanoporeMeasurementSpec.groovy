@@ -9,8 +9,6 @@ import life.qbic.datamodel.datasets.datastructure.folders.nanopore.*
 import spock.lang.Shared
 import spock.lang.Specification
 
-import static org.mockito.Mockito.mock
-import static org.mockito.Mockito.when
 
 /**
  * <add class description here>
@@ -67,8 +65,8 @@ class OxfordNanoporeMeasurementSpec extends Specification {
                 metaData)
 
         and:
-        final def mockedExperiment = mock(Experiment.class)
-        when(mockedExperiment.getSampleId()).thenReturn("QABCD001AE")
+        final def mockedExperiment = Mock(Experiment.class)
+        mockedExperiment.getSampleId() >> "QABCD001AE"
 
         when:
         def result = measurement.getRawDataPerSample(mockedExperiment)
@@ -95,8 +93,8 @@ class OxfordNanoporeMeasurementSpec extends Specification {
                 metaData)
 
         and:
-        final def mockedExperiment = mock(Experiment.class)
-        when(mockedExperiment.getSampleId()).thenReturn("QABCD001AE")
+        final def mockedExperiment = Mock(Experiment.class)
+        mockedExperiment.getSampleId() >> "QABCD001AE"
 
         when:
         def result = measurement.getRawDataPerSample(mockedExperiment)

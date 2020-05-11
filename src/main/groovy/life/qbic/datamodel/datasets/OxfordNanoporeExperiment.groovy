@@ -139,9 +139,11 @@ final class OxfordNanoporeExperiment implements Experiment {
                 DataFile dataFile = method.invoke(null, name, path) as DataFile
                 return dataFile
             } catch (InvocationTargetException e) {
-                // Do nothing
+                // Do nothing as we need to try out all specialisations that extend the
+                // DataFile class
             }
         }
+        // If we cannot create a DataFile object at all, throw an exception
         throw new IllegalArgumentException("File $name with path $path is of unknown Oxford Nanopore file type.")
     }
 
