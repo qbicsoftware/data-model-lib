@@ -206,7 +206,7 @@ final class OxfordNanoporeExperiment implements Experiment {
                 parsedChildren.add(child)
             } catch (IllegalArgumentException e) {
                 // We do not capture the second parse call, as we want to fail the parsing at this point.
-                // This means that we ultimately found an child of unknown type, which should
+                // This means that we ultimately found a child of unknown type, which should
                 // break the parsing.
                 def child = parseFolder(unknownChild)
                 parsedChildren.add(child)
