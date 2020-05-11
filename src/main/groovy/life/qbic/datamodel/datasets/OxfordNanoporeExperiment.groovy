@@ -86,7 +86,7 @@ final class OxfordNanoporeExperiment implements Experiment {
             throw new IllegalArgumentException("No QBiC sample identifier found!")
         }
         if (ids.size() > 1) {
-            throw new IllegalArgumentException("Name contained more than valid sample id!")
+            throw new IllegalArgumentException("Name contained more than one valid sample id!")
         }
         return ids.get(0)
     }
