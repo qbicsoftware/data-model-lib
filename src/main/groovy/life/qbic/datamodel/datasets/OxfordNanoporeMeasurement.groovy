@@ -11,7 +11,11 @@ import life.qbic.datamodel.datasets.datastructure.folders.nanopore.*
  */
 final class OxfordNanoporeMeasurement {
 
-    private final Map<String, String> metadata
+    private static final enum METADATA_FIELD {
+        START_DATE, INSTRUMENT, FLOWCELL_ID, FLOWCELL_POSITION
+    }
+
+    private final Map<METADATA_FIELD, String> metadata
 
     private final Map<String, DataFolder> folders
 
@@ -39,10 +43,10 @@ final class OxfordNanoporeMeasurement {
     }
 
     private void readMetaData(Map<String, String> metadata) {
-        this.metadata["start_date"] = metadata["start_date"]
-        this.metadata["instrument"] = metadata["instrument"]
-        this.metadata["flowcell_id"] = metadata["flowcell_id"]
-        this.metadata["flowcell_position"] = metadata["flowcell_position"]
+        this.metadata[METADATA_FIELD.START_DATE] = metadata["start_date"]
+        this.metadata[METADATA_FIELD.INSTRUMENT] = metadata["instrument"]
+        this.metadata[METADATA_FIELD.FLOWCELL_ID] = metadata["flowcell_id"]
+        this.metadata[METADATA_FIELD.FLOWCELL_POSITION] = metadata["flowcell_position"]
     }
 
     private void createContent() {
@@ -89,6 +93,38 @@ final class OxfordNanoporeMeasurement {
         }
     }
 
+    /**
+     * Provides access to the experiment start date.
+     * @return
+     */
+    String getStartDate() {
+        return metadata.get(METADATA_FIELD.START_DATE)
+    }
+
+    /**
+     * Provides access to the instrument type.
+     * @return
+     */
+    String getInstrument() {
+        return metadata.get(METADATA_FIELD.INSTRUMENT)
+    }
+
+    /**
+     * Provides access to the flow cell id.
+     * @return
+     */
+    String getFlowcellId() {
+        return metadata.get(METADATA_FIELD.FLOWCELL_ID)
+    }
+
+    /**
+     * Provides access to the flow cell position.
+     * @return
+     */
+    String getFlowCellPosition() {
+        return metadata.get(METADATA_FIELD.FLOWCELL_POSITION)
+    }
+
     private Map<String, Map<String, DataFolder>> prepareRawDataFromPooledMeasurement() {
         final def result = new HashMap()
         final def pooledSampleIds = folders
@@ -97,10 +133,10 @@ final class OxfordNanoporeMeasurement {
                 .collect { (it as BarcodedFolder).getSampleId() }
         pooledSampleIds.each { sampleId ->
             final def map = [
-                    "fast5fail": (folders.get("fast5failed") as DataFolder).getTheChildren().find {(it as BarcodedFolder).getSampleId()},
-                    "fast5pass": (folders.get("fast5passed") as DataFolder).getTheChildren().find {(it as BarcodedFolder).getSampleId()},
-                    "fastqpass": (folders.get("fastqpass") as DataFolder).getTheChildren().find {(it as BarcodedFolder).getSampleId()},
-                    "fastqfail": (folders.get("fastqfail") as DataFolder).getTheChildren().find {(it as BarcodedFolder).getSampleId()}
+                    "fast5fail": (folders.get("fast5failed") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleId() },
+                    "fast5pass": (folders.get("fast5passed") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleId() },
+                    "fastqpass": (folders.get("fastqpass") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleId() },
+                    "fastqfail": (folders.get("fastqfail") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleId() }
             ]
             result[sampleId] = map
         }
