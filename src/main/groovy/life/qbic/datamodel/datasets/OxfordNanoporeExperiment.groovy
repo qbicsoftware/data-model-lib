@@ -115,9 +115,11 @@ final class OxfordNanoporeExperiment implements Experiment {
         final def children = []
         items.each { item ->
             try {
+                // Lets try to parse it as a subclass of a DataFile
                 def putativeFile = parseFile(item)
                 children.add(putativeFile)
             } catch (IllegalArgumentException e) {
+                // In this case, no DataFile could be created, try to convert to a DataFolder then
                 def putativeFolder = parseFolder(item)
                 children.add(putativeFolder)
             }
@@ -129,7 +131,7 @@ final class OxfordNanoporeExperiment implements Experiment {
      * Helper method that creates a DataFile instance from a map
      */
 
-    private static DataFile parseFile(Map fileTree) {
+    private static DataFile parseFile(Map fileTree) throws IllegalArgumentException {
         def name = fileTree.get("name")
         def path = fileTree.get("path")
         for (String nanoPoreFileType : nanoporeFileTypes) {
@@ -151,7 +153,7 @@ final class OxfordNanoporeExperiment implements Experiment {
      * Helper method that creates a DataFolder instance from a map
      */
 
-    private static DataFolder parseFolder(Map fileTree) {
+    private static DataFolder parseFolder(Map fileTree) throws IllegalArgumentException {
         def name = fileTree.get("name") as String
         def path = fileTree.get("path") as String
         def children = parseChildren(fileTree.get("children") as List)
