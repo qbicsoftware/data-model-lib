@@ -1,8 +1,12 @@
 package life.qbic.datamodel.datasets
 
+import groovyjarjarcommonscli.MissingArgumentException
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nanopore.*
+
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 /**
  * A dataset that represents a Oxford Nanopore Measurement.
@@ -10,6 +14,8 @@ import life.qbic.datamodel.datasets.datastructure.folders.nanopore.*
  * @author: Sven Fillinger
  */
 final class OxfordNanoporeMeasurement {
+
+    private static final String LIBRARY_PREP_KIT_SCHEMA = "SQK-.*(?=:)"
 
     private static final enum METADATA_FIELD {
         ASIC_TEMP,
@@ -63,8 +69,22 @@ final class OxfordNanoporeMeasurement {
         this.metadata[METADATA_FIELD.FLOWCELL_ID] = metadata["flowcell_id"]
         this.metadata[METADATA_FIELD.FLOWCELL_POSITION] = metadata["flowcell_position"]
         this.metadata[METADATA_FIELD.FLOWCELL_TYPE] = metadata["flowcell_type"]
+        this.metadata[METADATA_FIELD.LIBRARY_PREPARATION_KIT] = extractLibraryKit(metadata["protocol"] ?: "")
         this.metadata[METADATA_FIELD.MACHINE_HOST] = metadata["hostname"]
         this.metadata[METADATA_FIELD.START_DATE] = metadata["start_date"]
+    }
+
+    private static String extractLibraryKit(String text) {
+        Set<String> result = []
+        Pattern pattern = Pattern.compile(LIBRARY_PREP_KIT_SCHEMA, Pattern.CASE_INSENSITIVE)
+        Matcher m = pattern.matcher(text)
+        while (m.find()) {
+            result.add(m.group())
+        }
+        if (result.isEmpty()) {
+            throw new MissingArgumentException("Could not find information about the library preparation kit.")
+        }
+        return result[0]
     }
 
     private void createContent() {
@@ -149,6 +169,14 @@ final class OxfordNanoporeMeasurement {
      */
     String getFlowCellType() {
         return metadata.get(METADATA_FIELD.FLOWCELL_TYPE)
+    }
+
+    /**
+     * Provides access to the library kit used.
+     * @return
+     */
+    String getLibraryKit() {
+        return metadata.get(METADATA_FIELD.LIBRARY_PREPARATION_KIT)
     }
 
     /**

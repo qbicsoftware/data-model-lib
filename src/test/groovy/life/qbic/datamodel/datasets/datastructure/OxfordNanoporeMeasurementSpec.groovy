@@ -41,7 +41,8 @@ class OxfordNanoporeMeasurementSpec extends Specification {
                 "start_date": "20201105 11:15",
                 "flowcell_id": "QABCD001AB_E12A345a01",
                 "instrument": "PCT0094",
-                "flowcell_position": "2-A3-D3"
+                "flowcell_position": "2-A3-D3",
+                "protocol": "sequencing/sequencing_PRO002_DNA:FLO-PRO002:SQK-LSK109:True"
         ]
         def fast5File = Fast5File.create("test.fast5", "root/test.fast5")
         def fastQFile = FastQFile.create("test.fastq", "root/test.fastq")
@@ -70,6 +71,7 @@ class OxfordNanoporeMeasurementSpec extends Specification {
 
         when:
         def result = measurement.getRawDataPerSample(mockedExperiment)
+        def libraryKit = measurement.getLibraryKit()
 
         then:
         assert result.size() == 1
@@ -77,6 +79,7 @@ class OxfordNanoporeMeasurementSpec extends Specification {
         assert result.get("QABCD001AE").get("fast5pass") instanceof DataFolder
         assert result.get("QABCD001AE").get("fastqfail") instanceof DataFolder
         assert result.get("QABCD001AE").get("fastqpass") instanceof DataFolder
+        assert libraryKit == "SQK-LSK109"
     }
 
     def "create pooled sample measurement successfully"() {
