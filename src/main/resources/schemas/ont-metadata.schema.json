@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://qbic.life/v1/ont-metadata.schema.json",
+  "title": "Nanopore Instrument Metadata Output",
+  "description": "Describes in which form nanopore metadata is received from the lab.",
+  "type": "object",
+  "properties": {
+    "asic_temp": { "type": "string" },
+    "instrument": { "type": "string" },
+    "flowcell_id": { "type": "string" },
+    "flowcell_position": { "type": "string" },
+    "flowcell_type": { "type": "string" },
+    "protocol": {
+      "type": "string",
+      "pattern": "SQK-.*(?=:)"
+    },
+    "hostname": { "type": "string"},
+    "start_date": { "type": "string" }
+  },
+  "required": [
+    "asic_temp",
+    "instrument",
+    "flowcell_id",
+    "flowcell_position",
+    "flowcell_type",
+    "protocol",
+    "hostname",
+    "start_date"
+  ]
+}
