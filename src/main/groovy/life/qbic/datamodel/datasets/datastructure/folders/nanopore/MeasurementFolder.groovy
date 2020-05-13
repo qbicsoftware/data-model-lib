@@ -29,7 +29,7 @@ class MeasurementFolder extends DataFolder {
     /**
      * Creates a new instance of a MeasurementFolder object
      * @param relativePath The relative path of the folder
-     * @param children A list with child elements of the folder
+     * @param children A list with child elements of unknown type of the folder
      * @return A new instance of a MeasurementFolder object
      */
     static MeasurementFolder create(String name, String relativePath, List<?> children) {
