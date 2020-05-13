@@ -17,6 +17,7 @@ final class OxfordNanoporeMeasurement {
         FLOWCELL_ID,
         FLOWCELL_POSITION,
         FLOWCELL_TYPE,
+        LIBRARY_PREPARATION_KIT,
         MACHINE_HOST,
         START_DATE
     }

@@ -13,13 +13,13 @@ class FastQZippedFile extends DataFile {
 
     final private static String NAME_SCHEMA = /.*\.fastq.gz$/
 
-    protected FastQZippedFile(String name, String relativePath, String fileType) {
-        super(name, relativePath, fileType)
+    protected FastQZippedFile(String name, String relativePath) {
+        super(name, relativePath, FILE_TYPE)
         validateName()
     }
 
     static FastQZippedFile create(String name, String relativePath) {
-        return new FastQZippedFile(name, relativePath, FILE_TYPE)
+        return new FastQZippedFile(name, relativePath)
     }
 
     private void validateName() {

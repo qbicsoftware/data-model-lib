@@ -13,13 +13,13 @@ class FastQFile extends DataFile {
 
     final private static String NAME_SCHEMA = /.*\.fastq$/
 
-    protected FastQFile(String name, String relativePath, String fileType) {
-        super(name, relativePath, fileType)
+    protected FastQFile(String name, String relativePath) {
+        super(name, relativePath, FILE_TYPE)
         validateName()
     }
 
     static FastQFile create(String name, String relativePath) {
-        return new FastQFile(name, relativePath, FILE_TYPE)
+        return new FastQFile(name, relativePath)
     }
 
     private void validateName() {
