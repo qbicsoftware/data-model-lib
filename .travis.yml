@@ -12,6 +12,8 @@ jdk: openjdk8
 cache:
   directories:
   - "$HOME/.m2/repository"
+  - "$HOME/.cache/pip"
+  - "$HOME/miniconda3"
 
 # as agreed in our SOP
 branches:
@@ -21,11 +23,12 @@ branches:
   - /^[vV]?\d+\.\d+\.\d+$/ # matches e.g., v1.2.3, 1.2.3, V1.2.3
 
 # added to make logs look cleaner, crisper, certified fresh
-before_install: unset _JAVA_OPTIONS 
+before_install: unset _JAVA_OPTIONS
 
-# speed up builds by telling Travis that we don't need any special "installation"
-install: true
-
+# dependencies for report generation (use cache to speed up builds)
+install:
+  - $HOME/miniconda3/bin/conda --version || ./.install-reports-dependencies.sh
+  -
 # check if we need to add a license file for Vaadin charts
 before_script: if [ "$VAADIN_CHARTS_LICENSE_CODE" != "" ]; then
                   echo "$VAADIN_CHARTS_LICENSE_CODE" > ~/.vaadin.charts.developer.license;
@@ -37,7 +40,6 @@ script: mvn build-helper:parse-version versions:set -DnewVersion=\${parsedVersio
 # upload code coverage report, generate maven site (javadocs, documentation, static code analysis, etc.)
 after_success: 
 - bash <(curl -s https://codecov.io/bash)
-- mvn --quiet --activate-profiles !development-build,!release-build --settings .travis.settings.xml site
 
 # upload to maven
 deploy:
@@ -60,6 +62,12 @@ deploy:
   on:
     condition: '"$TRAVIS_EVENT_TYPE" = "push"'
     tags: true
+
+# activate our conda environment, generate maven site and upload reports to gh-pages branch
+after_deploy:
+  - echo ". $HOME/miniconda3/etc/profile.d/conda.sh" >> ~/.bashrc && source ~/.bashrc && conda activate qbic-docs-build
+  - mvn --quiet --activate-profiles !development-build,!release-build --settings .travis.settings.xml site
+  - ./.generate-reports.py $TRAVIS_BRANCH $TRAVIS_REPO_SLUG "[skip travis] Updated gh-pages" "This commit was performed from travis-ci.com using a personal access key" "Build ID $TRAVIS_BUILD_ID" "Job ID TRAVIS_JOB_ID" "Branch $TRAVIS_BRANCH" "Log of this build found at $TRAVIS_JOB_WEB_URL"
 
 # change according to your needs, but we recommend to deactivate email notifications
 # for now, we configured Travis to send a notification to the #travis-ci channel 
