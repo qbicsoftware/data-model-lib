@@ -257,7 +257,7 @@ public class SampleCodeFunctions {
    * Returns the 5 character project prefix used for samples in openBIS.
    * 
    * @param sample sample ID starting with a standard project prefix.
-   * @return Project prefix of the sample
+   * @return Project prefix of the sample id
    */
   public static String getProjectPrefix(String sample) {
     // boolean numeric = StringUtils.isNumeric("" + sample.charAt(4));
