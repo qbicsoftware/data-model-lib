@@ -23,6 +23,12 @@ class FastQFailFolder extends DataFolder {
         validateName()
     }
 
+    /**
+     * Creates a new instance of a FastQFailFolder object
+     * @param relativePath The relative path of the folder
+     * @param children A list with child elements of the folder
+     * @return A new instance of a FastQFailFolder object
+     */
     static FastQFailFolder create(String relativePath, List<?> children) {
         new FastQFailFolder(relativePath, children)
     }

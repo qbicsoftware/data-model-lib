@@ -20,6 +20,12 @@ class Fast5PassFolder extends DataFolder {
         validateName()
     }
 
+    /**
+     * Creates a new instance of a Fast5PassFolder object
+     * @param relativePath The relative path of the folder
+     * @param children A list with child elements of the folder
+     * @return A new instance of a Fast5PassFolder object
+     */
     static Fast5PassFolder create(String relativePath, List<?> children) {
         new Fast5PassFolder(relativePath, children)
     }

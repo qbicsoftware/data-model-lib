@@ -17,6 +17,12 @@ class FastQFolder extends BarcodedFolder {
         super(name, relativePath, children)
     }
 
+    /**
+     * Creates a new instance of a FastQFolder object
+     * @param relativePath The relative path of the folder
+     * @param children A list with child elements of the folder
+     * @return A new instance of a FastQFolder object
+     */
     static FastQFolder create(String name, String relativePath, List<FastQFile> children) {
         return new FastQFolder(name, relativePath, children)
     }

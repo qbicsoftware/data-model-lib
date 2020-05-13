@@ -23,6 +23,12 @@ class FastQPassFolder extends DataFolder {
         validateName()
     }
 
+    /**
+     * Creates a new instance of a FastQPassFolder object
+     * @param relativePath The relative path of the folder
+     * @param children A list with child elements of the folder
+     * @return A new instance of a FastQPassFolder object
+     */
     static FastQPassFolder create(String relativePath, List<?> children) {
         new FastQPassFolder(relativePath, children)
     }
