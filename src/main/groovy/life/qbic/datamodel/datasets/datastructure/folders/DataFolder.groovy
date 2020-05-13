@@ -17,8 +17,9 @@ class DataFolder {
         if (!(relativePath.contains(name))) {
             throw new IllegalArgumentException("Name must be contained in the relative path.")
         }
-        this.name = name
-        this.relativePath = relativePath
+        this.name = Objects.requireNonNull(name, "Name must not be null")
+        this.relativePath = Objects.requireNonNull(relativePath, "You shall not path! Path must not be null")
+        Objects.requireNonNull(childrenList, "Children list must not be null")
         this.children = new ArrayList<>()
         // Make a defensive copy of the mutable List object
         for (Object element : childrenList) {
@@ -52,6 +53,10 @@ class DataFolder {
      */
     List getTheChildren() {
         return this.children.collect{it}
+    }
+
+    List getChildren() {
+        throw new IllegalAccessException("Please use the method getTheChildren().")
     }
 
     @Override
