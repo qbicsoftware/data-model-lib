@@ -32,7 +32,7 @@ class MeasurementFolder extends DataFolder {
      * @param children A list with child elements of the folder
      * @return A new instance of a MeasurementFolder object
      */
-    static MeasurementFolder create(String name, String relativePath, List children) {
+    static MeasurementFolder create(String name, String relativePath, List<?> children) {
         new MeasurementFolder(name, relativePath, children)
     }
 
