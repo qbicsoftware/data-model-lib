@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SampleCodeFunctions.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Data Model Library</a> &gt; <a href="index.source.html" class="el_package">life.qbic.datamodel.identifiers</a> &gt; <span class="el_source">SampleCodeFunctions.java</span></div><h1>SampleCodeFunctions.java</h1><pre class="source lang-java linenums">package life.qbic.datamodel.identifiers;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import life.qbic.datamodel.experiments.ExperimentType;
+import life.qbic.datamodel.samples.SampleType;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+/**
+ * Helper functions used for sample creation
+ *
+ * @author Andreas Friedrich
+ */
+<span class="nc" id="L19">public class SampleCodeFunctions {</span>
+
+  public static final String QBIC_SAMPLE_ID_SCHEMA = &quot;Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}&quot;;
+
+<span class="fc" id="L23">  private static final Logger logger = LogManager.getLogger(SampleCodeFunctions.class);</span>
+
+<span class="fc" id="L25">  public static Map&lt;SampleType, ExperimentType&gt; sampleTypesToExpTypes =</span>
+<span class="fc" id="L26">      new HashMap&lt;SampleType, ExperimentType&gt;() {</span>
+        {
+<span class="fc" id="L28">          put(SampleType.Q_BIOLOGICAL_ENTITY, ExperimentType.Q_EXPERIMENTAL_DESIGN);</span>
+<span class="fc" id="L29">          put(SampleType.Q_BIOLOGICAL_SAMPLE, ExperimentType.Q_SAMPLE_EXTRACTION);</span>
+<span class="fc" id="L30">          put(SampleType.Q_TEST_SAMPLE, ExperimentType.Q_SAMPLE_PREPARATION);</span>
+<span class="fc" id="L31">          put(SampleType.Q_NGS_SINGLE_SAMPLE_RUN, ExperimentType.Q_NGS_SINGLE_SAMPLE_RUN);</span>
+<span class="fc" id="L32">          put(SampleType.Q_MS_RUN, ExperimentType.Q_MS_MEASUREMENT);</span>
+<span class="fc" id="L33">          put(SampleType.Q_MICROARRAY_RUN, ExperimentType.Q_MICROARRAY_MEASUREMENT);</span>
+<span class="fc" id="L34">          put(SampleType.Q_BMI_GENERIC_IMAGING_RUN, ExperimentType.Q_BMI_GENERIC_IMAGING);</span>
+<span class="fc" id="L35">          put(SampleType.Q_MHC_LIGAND_EXTRACT, ExperimentType.Q_MHC_LIGAND_EXTRACTION);</span>
+<span class="fc" id="L36">          put(SampleType.Q_ATTACHMENT_SAMPLE, ExperimentType.Q_PROJECT_DETAILS);</span>
+<span class="fc" id="L37">        }</span>
+      };
+
+  /**
+   * Checks if a String fits the QBiC barcode pattern and has a correct checksum
+   *
+   * @param code A String that may be a barcode
+   * @return true if String is a QBiC barcode with matching checksum, false if not
+   */
+  public static boolean isQbicBarcode(String code) {
+<span class="nc" id="L47">    Pattern codePattern =</span>
+<span class="nc" id="L48">        Pattern.compile(&quot;Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}&quot;, Pattern.CASE_INSENSITIVE);</span>
+<span class="nc" id="L49">    Matcher matcher = codePattern.matcher(code);</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">    if (matcher.matches()) {</span>
+<span class="nc" id="L51">      String base = code.substring(0, 9);</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">      return checksum(base) == code.charAt(9);</span>
+    }
+<span class="nc" id="L54">    return false;</span>
+  }
+
+  /**
+   * Checks if a String fits the QBiC entity code pattern
+   *
+   * @param code A String that may be a qbic entity code
+   * @return true if String is a QBiC entity code, false if not
+   */
+  public static boolean isQbicEntityCode(String code) {
+<span class="nc" id="L64">    Pattern entityPattern = Pattern.compile(QBIC_SAMPLE_ID_SCHEMA, Pattern.CASE_INSENSITIVE);</span>
+<span class="nc" id="L65">    Matcher matcher = entityPattern.matcher(code);</span>
+<span class="nc" id="L66">    return matcher.find();</span>
+  }
+
+  public static boolean isMeasurementOfBarcode(String code, String type) {
+    try {
+<span class="nc" id="L71">      String prefix = type.split(&quot;_&quot;)[1];</span>
+<span class="nc" id="L72">      code = code.replaceFirst(prefix, &quot;&quot;);</span>
+<span class="nc" id="L73">    } catch (ArrayIndexOutOfBoundsException e) {</span>
+<span class="nc" id="L74">      return false;</span>
+<span class="nc" id="L75">    }</span>
+<span class="nc" id="L76">    return isQbicBarcode(code);</span>
+  }
+
+  public static int compareSampleCodes(String c1, String c2) {
+<span class="nc bnc" id="L80" title="All 2 branches missed.">    if (!c1.startsWith(&quot;Q&quot;)</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">        || c1.contains(&quot;ENTITY&quot;)</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        || !c2.startsWith(&quot;Q&quot;)</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">        || c2.contains(&quot;ENTITY&quot;)) return c1.compareTo(c2);</span>
+    try {
+      // compares sample codes by projects, ending letters (999A --&gt; 001B) and numbers (001A --&gt;
+      // 002A)
+<span class="nc" id="L87">      int projCompare = c1.substring(0, 5).compareTo(c2.substring(0, 5));</span>
+<span class="nc" id="L88">      int numCompare = c1.substring(5, 8).compareTo(c2.substring(5, 8));</span>
+<span class="nc" id="L89">      int letterCompare = c1.substring(8, 9).compareTo(c2.substring(8, 9));</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">      if (projCompare != 0) return projCompare;</span>
+      else {
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        if (letterCompare != 0) return letterCompare;</span>
+<span class="nc" id="L93">        else return numCompare;</span>
+      }
+<span class="nc" id="L95">    } catch (Exception e) {</span>
+<span class="nc" id="L96">      logger.warn(</span>
+          &quot;Could not split code &quot;
+              + c1
+              + &quot; or &quot;
+              + c2
+              + &quot;. Falling back to primitive lexicographical comparison.&quot;);
+    }
+<span class="nc" id="L103">    return c1.compareTo(c2);</span>
+  }
+
+  /**
+   * Checks if a String can be parsed to an Integer
+   *
+   * @param s a String
+   * @return true, if the String can be parsed to an Integer successfully, false otherwise
+   */
+  public static boolean isInteger(String s) {
+    try {
+<span class="nc" id="L114">      Integer.parseInt(s);</span>
+<span class="nc" id="L115">    } catch (NumberFormatException e) {</span>
+<span class="nc" id="L116">      return false;</span>
+<span class="nc" id="L117">    }</span>
+<span class="nc" id="L118">    return true;</span>
+  }
+
+  /**
+   * Increments the value of an upper case char. When at &quot;Z&quot; restarts with &quot;A&quot;.
+   *
+   * @param c the char to be incremented
+   * @return the next letter in the alphabet relative to the input char
+   */
+  public static char incrementUppercase(char c) {
+<span class="nc bnc" id="L128" title="All 2 branches missed.">    if (c == 'X') return 'A';</span>
+    else {
+<span class="nc" id="L130">      int charValue = c;</span>
+<span class="nc" id="L131">      return (char) (charValue + 1);</span>
+    }
+  }
+
+  /**
+   * Increments to the next sample string in the order, meaning the project code stays the same and
+   * the 3 letter number is incremented, except if it's 999, then the following letter is
+   * incremented and the number starts with 001 again.
+   *
+   * @param code a 10 digit sample code
+   * @return a new sample code
+   */
+  public static String incrementSampleCode(String code) {
+<span class="nc" id="L144">    String old = code.substring(5, 8);</span>
+<span class="nc" id="L145">    String num = &quot;&quot;;</span>
+<span class="nc" id="L146">    int newNum = Integer.parseInt(old) + 1;</span>
+<span class="nc" id="L147">    char letter = code.charAt(8);</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">    if (newNum &gt; 999) {</span>
+<span class="nc" id="L149">      num = &quot;001&quot; + incrementUppercase(letter);</span>
+<span class="nc" id="L150">    } else num = createCountString(newNum, 3) + letter;</span>
+<span class="nc" id="L151">    String res = code.substring(0, 5) + num;</span>
+<span class="nc" id="L152">    return res + checksum(res);</span>
+  }
+
+  /**
+   * Creates a string with leading zeroes from a number
+   *
+   * @param id number
+   * @param length of the final string
+   * @return the completed String with leading zeroes
+   */
+  public static String createCountString(int id, int length) {
+<span class="nc" id="L163">    String res = Integer.toString(id);</span>
+<span class="nc bnc" id="L164" title="All 2 branches missed.">    while (res.length() &lt; length) {</span>
+<span class="nc" id="L165">      res = &quot;0&quot; + res;</span>
+    }
+<span class="nc" id="L167">    return res;</span>
+  }
+
+  /**
+   * Checks which of two Strings can be parsed to a larger Integer and returns it.
+   *
+   * @param a a String
+   * @param b another String
+   * @return the String that represents the larger number.
+   */
+  public static String max(String a, String b) {
+<span class="nc" id="L178">    int a1 = Integer.parseInt(a);</span>
+<span class="nc" id="L179">    int b1 = Integer.parseInt(b);</span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">    if (Math.max(a1, b1) == a1) return a;</span>
+<span class="nc" id="L181">    else return b;</span>
+  }
+
+  /**
+   * Maps an integer to a char representation. This can be used for computing the checksum.
+   *
+   * @param i number to be mapped
+   * @return char representing the input number
+   */
+  public static char mapToChar(int i) {
+<span class="nc" id="L191">    i += 48;</span>
+<span class="nc bnc" id="L192" title="All 2 branches missed.">    if (i &gt; 57) {</span>
+<span class="nc" id="L193">      i += 7;</span>
+    }
+<span class="nc" id="L195">    return (char) i;</span>
+  }
+
+  public static float getPercentageStep(int max) {
+<span class="nc" id="L199">    return new Float(1.0 / max);</span>
+  }
+
+  /**
+   * Computes a checksum digit for a given String. This checksum is weighted position-specific,
+   * meaning it will also most likely fail a check if there is a typo of the String resulting in a
+   * swapping of two numbers.
+   *
+   * @param s String for which a checksum should be computed.
+   * @return Character representing the checksum of the input String.
+   */
+  public static char checksum(String s) {
+<span class="nc" id="L211">    int i = 1;</span>
+<span class="nc" id="L212">    int sum = 0;</span>
+<span class="nc bnc" id="L213" title="All 2 branches missed.">    for (int idx = 0; idx &lt;= s.length() - 1; idx++) {</span>
+<span class="nc" id="L214">      sum += (((int) s.charAt(idx))) * i;</span>
+<span class="nc" id="L215">      i += 1;</span>
+    }
+<span class="nc" id="L217">    return mapToChar(sum % 34);</span>
+  }
+
+  /**
+   * Parses a whole String list to integers and returns them in another list.
+   *
+   * @param strings List of Strings
+   * @return list of integer representations of the input list
+   */
+  public static List&lt;Integer&gt; strArrToInt(List&lt;String&gt; strings) {
+<span class="nc" id="L227">    List&lt;Integer&gt; res = new ArrayList&lt;Integer&gt;();</span>
+<span class="nc bnc" id="L228" title="All 2 branches missed.">    for (String s : strings) {</span>
+<span class="nc" id="L229">      res.add(Integer.parseInt(s));</span>
+<span class="nc" id="L230">    }</span>
+<span class="nc" id="L231">    return res;</span>
+  }
+
+  /**
+   * Returns a String denoting the range of a list of barcodes as used in QBiC
+   *
+   * @param ids List of code strings
+   * @return String denoting a range of the barcodes
+   */
+  public static String getBarcodeRange(List&lt;String&gt; ids) {
+<span class="nc" id="L241">    String head = getProjectPrefix(ids.get(0));</span>
+<span class="nc" id="L242">    String min = ids.get(0).substring(5, 8);</span>
+<span class="nc" id="L243">    String max = min;</span>
+<span class="nc bnc" id="L244" title="All 2 branches missed.">    for (String id : ids) {</span>
+<span class="nc" id="L245">      String num = id.substring(5, 8);</span>
+<span class="nc bnc" id="L246" title="All 2 branches missed.">      if (num.compareTo(min) &lt; 0) min = num;</span>
+<span class="nc bnc" id="L247" title="All 2 branches missed.">      if (num.compareTo(max) &gt; 0) max = num;</span>
+<span class="nc" id="L248">    }</span>
+<span class="nc" id="L249">    return head + min + &quot;-&quot; + max;</span>
+  }
+
+  /**
+   * Returns the 5 character project prefix used for samples in openBIS.
+   *
+   * @param sample sample ID starting with a standard project prefix.
+   * @return Project prefix of the sample id
+   */
+  public static String getProjectPrefix(String sample) {
+    // boolean numeric = StringUtils.isNumeric(&quot;&quot; + sample.charAt(4));
+    // if (numeric)
+    // return sample.substring(0, 4);
+    // else
+<span class="nc" id="L263">    return sample.substring(0, 5);</span>
+  }
+
+  /**
+   * Finds all QBiC sample ids in a String object.
+   * @param text The text to search
+   * @return A list of found ids. Is empty if no id was found.
+   */
+  public static List&lt;String&gt; findAllQbicSampleIds(String text) {
+<span class="fc" id="L272">    List&lt;String&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L273">    Pattern pattern = Pattern.compile(QBIC_SAMPLE_ID_SCHEMA, Pattern.CASE_INSENSITIVE);</span>
+<span class="fc" id="L274">    Matcher m = pattern.matcher(text);</span>
+<span class="fc bfc" id="L275" title="All 2 branches covered.">    while (m.find()) {</span>
+<span class="fc" id="L276">      result.add(m.group());</span>
+    }
+<span class="fc" id="L278">    return result;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
