@@ -75,7 +75,7 @@ class OxfordNanoporeMeasurementSpec extends Specification {
 
         when:
         def result = measurement.getRawDataPerSample(mockedExperiment)
-        def libraryKit = measurement.getLibraryKit()
+        def libraryKit = measurement.getLibraryPreparationKit()
 
         then:
         assert result.size() == 1
