@@ -64,7 +64,7 @@ final class OxfordNanoporeMeasurement {
         try {
             MetaData.validateMetadata(metadata)
         } catch (ValidationException e) {
-            // get the causing exceptions
+            // Aggregate the causing exceptions
             def causes = e.getCausingExceptions().collect{ it.message  }.join("\n")
             throw new IllegalArgumentException("The Nanopore metadata could not be collected.\nReason:\n$causes",)
         }
@@ -271,6 +271,9 @@ final class OxfordNanoporeMeasurement {
         return this.relativePath
     }
 
+    /*
+    Inner class that contains the logic for the metadata validation
+     */
     private static class MetaData {
 
         private static final SCHEMA = "/schemas/ont-metadata.schema.json"

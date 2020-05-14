@@ -5,17 +5,17 @@
   "description": "Describes in which form nanopore metadata is received from the lab.",
   "type": "object",
   "properties": {
-    "asic_temp": { "type": "string" },
-    "instrument": { "type": "string" },
-    "flowcell_id": { "type": "string" },
-    "flowcell_position": { "type": "string" },
-    "flowcell_type": { "type": "string" },
+    "asic_temp": { "type": "string", "minLength": 1},
+    "instrument": { "type": "string", "minLength": 1 },
+    "flowcell_id": { "type": "string", "minLength": 1 },
+    "flowcell_position": { "type": "string", "minLength": 1 },
+    "flowcell_type": { "type": "string", "minLength": 1 },
     "protocol": {
       "type": "string",
       "pattern": "SQK-.*(?=:)"
     },
-    "hostname": { "type": "string"},
-    "start_date": { "type": "string" }
+    "hostname": { "type": "string", "minLength": 1},
+    "start_date": { "type": "string", "minLength": 1 }
   },
   "required": [
     "asic_temp",

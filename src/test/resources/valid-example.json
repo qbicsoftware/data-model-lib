@@ -8,7 +8,8 @@
                 "start_date": "20201105 11:15",
                 "flowcell_id": "PAE26306",
                 "instrument": "PCT0094",
-                "flowcell_position": "2-A3-D3"
+                "flowcell_position": "2-A3-D3",
+                "flowcell_type": ""
             },
             "path": "file:///Users/kocht/SoftwareDevelopment/libs/core-utils-lib/src/test/resources/dummyFileSystem/nanopore-instrument-output/validates/QABCD001AB_E12A345a01_PAE12345/20200122_1217_1-A1-B1-PAE12345_1234567a/",
             "children": [
