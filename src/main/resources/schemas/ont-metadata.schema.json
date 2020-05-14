@@ -9,19 +9,27 @@
       "type": "string",
       "minLength": 1
     },
-    "instrument": {
+    "device_type": {
       "type": "string",
       "minLength": 1
     },
-    "flowcell_id": {
+    "flow_cell_id": {
       "type": "string",
       "minLength": 1
     },
-    "flowcell_position": {
+    "flow_cell_position": {
       "type": "string",
       "minLength": 1
     },
-    "flowcell_type": {
+    "flow_cell_product_code": {
+      "type": "string",
+      "minLength": 1
+    },
+    "guppy_version":  {
+      "type": "string",
+      "minLength": 1
+    },
+    "hostname": {
       "type": "string",
       "minLength": 1
     },
@@ -29,23 +37,20 @@
       "type": "string",
       "pattern": "SQK-.*(?=:)"
     },
-    "hostname": {
-      "type": "string",
-      "minLength": 1
-    },
-    "start_date": {
+    "started": {
       "type": "string",
       "minLength": 1
     }
   },
   "required": [
     "asic_temp",
-    "instrument",
-    "flowcell_id",
-    "flowcell_position",
-    "flowcell_type",
-    "protocol",
+    "device_type",
+    "flow_cell_id",
+    "flow_cell_position",
+    "flow_cell_product_code",
+    "guppy_version",
     "hostname",
-    "start_date"
+    "protocol",
+    "started"
   ]
 }

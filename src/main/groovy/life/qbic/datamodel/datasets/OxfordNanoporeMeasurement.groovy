@@ -24,10 +24,11 @@ final class OxfordNanoporeMeasurement {
 
     private static final enum METADATA_FIELD {
         ASIC_TEMP,
-        INSTRUMENT,
+        DEVICE_TYPE,
         FLOWCELL_ID,
         FLOWCELL_POSITION,
         FLOWCELL_TYPE,
+        GUPPY_VERSION,
         LIBRARY_PREPARATION_KIT,
         MACHINE_HOST,
         START_DATE
@@ -81,13 +82,14 @@ final class OxfordNanoporeMeasurement {
 
     private void readMetaData(Map<String, String> metadata) {
         this.metadata[METADATA_FIELD.ASIC_TEMP] = metadata["asic_temp"]
-        this.metadata[METADATA_FIELD.INSTRUMENT] = metadata["instrument"]
-        this.metadata[METADATA_FIELD.FLOWCELL_ID] = metadata["flowcell_id"]
-        this.metadata[METADATA_FIELD.FLOWCELL_POSITION] = metadata["flowcell_position"]
-        this.metadata[METADATA_FIELD.FLOWCELL_TYPE] = metadata["flowcell_type"]
+        this.metadata[METADATA_FIELD.DEVICE_TYPE] = metadata["device_type"]
+        this.metadata[METADATA_FIELD.FLOWCELL_ID] = metadata["flow_cell_id"]
+        this.metadata[METADATA_FIELD.FLOWCELL_POSITION] = metadata["flow_cell_position"]
+        this.metadata[METADATA_FIELD.FLOWCELL_TYPE] = metadata["flow_cell_product_code"]
+        this.metadata[METADATA_FIELD.GUPPY_VERSION] = metadata["guppy_version"]
         this.metadata[METADATA_FIELD.LIBRARY_PREPARATION_KIT] = extractLibraryKit(metadata["protocol"] ?: "")
         this.metadata[METADATA_FIELD.MACHINE_HOST] = metadata["hostname"]
-        this.metadata[METADATA_FIELD.START_DATE] = metadata["start_date"]
+        this.metadata[METADATA_FIELD.START_DATE] = metadata["started"]
     }
 
     private static String extractLibraryKit(String text) {
@@ -282,7 +284,6 @@ final class OxfordNanoporeMeasurement {
             // Load schema
             final def metaDataJson = new JSONObject(metaData)
             final def schemaStream = OxfordNanoporeMeasurement.getResourceAsStream(SCHEMA)
-            println schemaStream
             final def rawSchema = new JSONObject(new JSONTokener(schemaStream))
             final def jsonSchema = SchemaLoader.load(rawSchema)
             // Validate against schema
