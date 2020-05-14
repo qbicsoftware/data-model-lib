@@ -150,19 +150,19 @@ final class OxfordNanoporeMeasurement {
     }
 
     /**
-     * Provides access to the experiment start date.
+     * Provides access to the asic temperature.
      * @return
      */
-    String getStartDate() {
-        return metadata.get(METADATA_FIELD.START_DATE)
+    String getAsicTemp() {
+        return metadata.get(METADATA_FIELD.ASIC_TEMP)
     }
 
     /**
-     * Provides access to the instrument type.
+     * Provides access to the device type.
      * @return
      */
-    String getInstrument() {
-        return metadata.get(METADATA_FIELD.INSTRUMENT)
+    String getDeviceType() {
+        return metadata.get(METADATA_FIELD.DEVICE_TYPE)
     }
 
     /**
@@ -190,6 +190,14 @@ final class OxfordNanoporeMeasurement {
     }
 
     /**
+     * Provides access to the Guppy version.
+     * @return
+     */
+    String getGuppyVersion() {
+        return metadata.get(METADATA_FIELD.GUPPY_VERSION)
+    }
+
+    /**
      * Provides access to the library kit used.
      * @return
      */
@@ -202,15 +210,15 @@ final class OxfordNanoporeMeasurement {
      * @return
      */
     String getMachineHost() {
-        return metadata.get(METADATA_FIELD.FLOWCELL_TYPE)
+        return metadata.get(METADATA_FIELD.MACHINE_HOST)
     }
 
     /**
-     * Provides access to the asic temperature.
+     * Provides access to the experiment start date.
      * @return
      */
-    String getAsicTemp() {
-        return metadata.get(METADATA_FIELD.ASIC_TEMP)
+    String getStartDate() {
+        return metadata.get(METADATA_FIELD.START_DATE)
     }
 
     private Map<String, Map<String, DataFolder>> prepareRawDataFromPooledMeasurement() {
