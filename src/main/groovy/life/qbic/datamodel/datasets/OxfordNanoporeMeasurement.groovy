@@ -4,9 +4,14 @@ import groovyjarjarcommonscli.MissingArgumentException
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nanopore.*
+import org.everit.json.schema.ValidationException
 
 import java.util.regex.Matcher
 import java.util.regex.Pattern
+
+import org.everit.json.schema.loader.SchemaLoader
+import org.json.JSONObject
+import org.json.JSONTokener
 
 /**
  * A dataset that represents a Oxford Nanopore Measurement.
@@ -45,6 +50,7 @@ final class OxfordNanoporeMeasurement {
 
         this.measurementFolder = MeasurementFolder.create(name, path, children)
 
+        validateMetaData(metadata)
         readMetaData(metadata)
         createContent()
         assessPooledStatus()
@@ -52,6 +58,16 @@ final class OxfordNanoporeMeasurement {
 
     static OxfordNanoporeMeasurement create(String name, String path, List children, Map metadata) {
         return new OxfordNanoporeMeasurement(name, path, children, metadata)
+    }
+
+    private static void validateMetaData(Map metadata) throws IllegalArgumentException {
+        try {
+            MetaData.validateMetadata(metadata)
+        } catch (ValidationException e) {
+            // get the causing exceptions
+            def causes = e.getCausingExceptions().collect{ it.message  }.join("\n")
+            throw new IllegalArgumentException("The Nanopore metadata could not be collected.\nReason:\n$causes",)
+        }
     }
 
     private void assessPooledStatus() {
@@ -253,6 +269,23 @@ final class OxfordNanoporeMeasurement {
      */
     String getRelativePath() {
         return this.relativePath
+    }
+
+    private static class MetaData {
+
+        private static final SCHEMA = "/schemas/ont-metadata.schema.json"
+
+        static validateMetadata(Map metaData) throws ValidationException {
+            // Load schema
+            final def metaDataJson = new JSONObject(metaData)
+            final def schemaStream = OxfordNanoporeMeasurement.getResourceAsStream(SCHEMA)
+            println schemaStream
+            final def rawSchema = new JSONObject(new JSONTokener(schemaStream))
+            final def jsonSchema = SchemaLoader.load(rawSchema)
+            // Validate against schema
+            jsonSchema.validate(metaDataJson)
+        }
+
     }
 
 
