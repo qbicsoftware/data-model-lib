@@ -201,7 +201,7 @@ final class OxfordNanoporeMeasurement {
      * Provides access to the library kit used.
      * @return
      */
-    String getLibraryKit() {
+    String getLibraryPreparationKit() {
         return metadata.get(METADATA_FIELD.LIBRARY_PREPARATION_KIT)
     }
 
