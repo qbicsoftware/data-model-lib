@@ -1,8 +1,17 @@
 package life.qbic.datamodel.datasets
 
+import groovyjarjarcommonscli.MissingArgumentException
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nanopore.*
+import org.everit.json.schema.ValidationException
+
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
+import org.everit.json.schema.loader.SchemaLoader
+import org.json.JSONObject
+import org.json.JSONTokener
 
 /**
  * A dataset that represents a Oxford Nanopore Measurement.
@@ -11,12 +20,15 @@ import life.qbic.datamodel.datasets.datastructure.folders.nanopore.*
  */
 final class OxfordNanoporeMeasurement {
 
+    private static final String LIBRARY_PREP_KIT_SCHEMA = "SQK-.*(?=:)"
+
     private static final enum METADATA_FIELD {
         ASIC_TEMP,
-        INSTRUMENT,
+        DEVICE_TYPE,
         FLOWCELL_ID,
         FLOWCELL_POSITION,
         FLOWCELL_TYPE,
+        GUPPY_VERSION,
         LIBRARY_PREPARATION_KIT,
         MACHINE_HOST,
         START_DATE
@@ -39,6 +51,7 @@ final class OxfordNanoporeMeasurement {
 
         this.measurementFolder = MeasurementFolder.create(name, path, children)
 
+        validateMetaData(metadata)
         readMetaData(metadata)
         createContent()
         assessPooledStatus()
@@ -46,6 +59,16 @@ final class OxfordNanoporeMeasurement {
 
     static OxfordNanoporeMeasurement create(String name, String path, List children, Map metadata) {
         return new OxfordNanoporeMeasurement(name, path, children, metadata)
+    }
+
+    private static void validateMetaData(Map metadata) throws IllegalArgumentException {
+        try {
+            MetaData.validateMetadata(metadata)
+        } catch (ValidationException e) {
+            // Aggregate the causing exceptions
+            def causes = e.getCausingExceptions().collect{ it.message  }.join("\n")
+            throw new IllegalArgumentException("The Nanopore metadata could not be collected.\nReason:\n$causes",)
+        }
     }
 
     private void assessPooledStatus() {
@@ -59,12 +82,27 @@ final class OxfordNanoporeMeasurement {
 
     private void readMetaData(Map<String, String> metadata) {
         this.metadata[METADATA_FIELD.ASIC_TEMP] = metadata["asic_temp"]
-        this.metadata[METADATA_FIELD.INSTRUMENT] = metadata["instrument"]
-        this.metadata[METADATA_FIELD.FLOWCELL_ID] = metadata["flowcell_id"]
-        this.metadata[METADATA_FIELD.FLOWCELL_POSITION] = metadata["flowcell_position"]
-        this.metadata[METADATA_FIELD.FLOWCELL_TYPE] = metadata["flowcell_type"]
+        this.metadata[METADATA_FIELD.DEVICE_TYPE] = metadata["device_type"]
+        this.metadata[METADATA_FIELD.FLOWCELL_ID] = metadata["flow_cell_id"]
+        this.metadata[METADATA_FIELD.FLOWCELL_POSITION] = metadata["flow_cell_position"]
+        this.metadata[METADATA_FIELD.FLOWCELL_TYPE] = metadata["flow_cell_product_code"]
+        this.metadata[METADATA_FIELD.GUPPY_VERSION] = metadata["guppy_version"]
+        this.metadata[METADATA_FIELD.LIBRARY_PREPARATION_KIT] = extractLibraryKit(metadata["protocol"] ?: "")
         this.metadata[METADATA_FIELD.MACHINE_HOST] = metadata["hostname"]
-        this.metadata[METADATA_FIELD.START_DATE] = metadata["start_date"]
+        this.metadata[METADATA_FIELD.START_DATE] = metadata["started"]
+    }
+
+    private static String extractLibraryKit(String text) {
+        Set<String> result = []
+        Pattern pattern = Pattern.compile(LIBRARY_PREP_KIT_SCHEMA, Pattern.CASE_INSENSITIVE)
+        Matcher m = pattern.matcher(text)
+        while (m.find()) {
+            result.add(m.group())
+        }
+        if (result.isEmpty()) {
+            throw new MissingArgumentException("Could not find information about the library preparation kit.")
+        }
+        return result[0]
     }
 
     private void createContent() {
@@ -112,19 +150,19 @@ final class OxfordNanoporeMeasurement {
     }
 
     /**
-     * Provides access to the experiment start date.
+     * Provides access to the asic temperature.
      * @return
      */
-    String getStartDate() {
-        return metadata.get(METADATA_FIELD.START_DATE)
+    String getAsicTemp() {
+        return metadata.get(METADATA_FIELD.ASIC_TEMP)
     }
 
     /**
-     * Provides access to the instrument type.
+     * Provides access to the device type.
      * @return
      */
-    String getInstrument() {
-        return metadata.get(METADATA_FIELD.INSTRUMENT)
+    String getDeviceType() {
+        return metadata.get(METADATA_FIELD.DEVICE_TYPE)
     }
 
     /**
@@ -152,19 +190,35 @@ final class OxfordNanoporeMeasurement {
     }
 
     /**
+     * Provides access to the Guppy version.
+     * @return
+     */
+    String getGuppyVersion() {
+        return metadata.get(METADATA_FIELD.GUPPY_VERSION)
+    }
+
+    /**
+     * Provides access to the library kit used.
+     * @return
+     */
+    String getLibraryPreparationKit() {
+        return metadata.get(METADATA_FIELD.LIBRARY_PREPARATION_KIT)
+    }
+
+    /**
      * Provides access to the machine host name.
      * @return
      */
     String getMachineHost() {
-        return metadata.get(METADATA_FIELD.FLOWCELL_TYPE)
+        return metadata.get(METADATA_FIELD.MACHINE_HOST)
     }
 
     /**
-     * Provides access to the asic temperature.
+     * Provides access to the experiment start date.
      * @return
      */
-    String getAsicTemp() {
-        return metadata.get(METADATA_FIELD.ASIC_TEMP)
+    String getStartDate() {
+        return metadata.get(METADATA_FIELD.START_DATE)
     }
 
     private Map<String, Map<String, DataFolder>> prepareRawDataFromPooledMeasurement() {
@@ -225,6 +279,25 @@ final class OxfordNanoporeMeasurement {
      */
     String getRelativePath() {
         return this.relativePath
+    }
+
+    /*
+    Inner class that contains the logic for the metadata validation
+     */
+    private static class MetaData {
+
+        private static final SCHEMA = "/schemas/ont-metadata.schema.json"
+
+        static validateMetadata(Map metaData) throws ValidationException {
+            // Load schema
+            final def metaDataJson = new JSONObject(metaData)
+            final def schemaStream = OxfordNanoporeMeasurement.getResourceAsStream(SCHEMA)
+            final def rawSchema = new JSONObject(new JSONTokener(schemaStream))
+            final def jsonSchema = SchemaLoader.load(rawSchema)
+            // Validate against schema
+            jsonSchema.validate(metaDataJson)
+        }
+
     }
 
 
