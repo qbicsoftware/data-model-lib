@@ -268,7 +268,7 @@ import org.apache.logging.log4j.Logger;
    * @param text The text to search
    * @return A list of found ids. Is empty if no id was found.
    */
-  public static List&lt;String&gt; findAllQbicSampleIds(String text) {
+  public static List&lt;String&gt; findAllQbicSampleCodes(String text) {
 <span class="fc" id="L272">    List&lt;String&gt; result = new ArrayList&lt;&gt;();</span>
 <span class="fc" id="L273">    Pattern pattern = Pattern.compile(QBIC_SAMPLE_ID_SCHEMA, Pattern.CASE_INSENSITIVE);</span>
 <span class="fc" id="L274">    Matcher m = pattern.matcher(text);</span>

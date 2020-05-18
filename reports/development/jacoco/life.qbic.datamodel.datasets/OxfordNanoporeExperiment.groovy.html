@@ -12,7 +12,7 @@ import java.lang.reflect.Method
  *
  * @author: Sven Fillinger
  */
-final class OxfordNanoporeExperiment implements Experiment {
+final class OxfordNanoporeExperiment implements ExperimentFolder {
 
     // Fully qualified domain name of the nanopore folder structure package
     private final static String FQDN_FOLDERS = &quot;life.qbic.datamodel.datasets.datastructure.folders.nanopore&quot;
@@ -72,7 +72,7 @@ final class OxfordNanoporeExperiment implements Experiment {
 <span class="nc" id="L72">    }</span>
 
     @Override
-    String getSampleId() {
+    String getSampleCode() {
 <span class="fc" id="L76">        return this.sampleId</span>
 <span class="nc" id="L77">    }</span>
 
@@ -81,7 +81,7 @@ final class OxfordNanoporeExperiment implements Experiment {
      */
     private static String parseQbicIdFromRootFolder(Map nanoPoreSequencerOutput) {
 <span class="fc" id="L83">        def name = Objects.requireNonNull(nanoPoreSequencerOutput.get(&quot;name&quot;), &quot;The root folder must contain a name property.&quot;)</span>
-<span class="fc" id="L84">        final def ids = SampleCodeFunctions.findAllQbicSampleIds(name as String)</span>
+<span class="fc" id="L84">        final def ids = SampleCodeFunctions.findAllQbicSampleCodes(name as String)</span>
 <span class="pc bpc" id="L85" title="1 of 2 branches missed.">        if (ids.isEmpty()) {</span>
 <span class="nc" id="L86">            throw new IllegalArgumentException(&quot;No QBiC sample identifier found!&quot;)</span>
         }

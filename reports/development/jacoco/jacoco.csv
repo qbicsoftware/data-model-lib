@@ -2,7 +2,7 @@ GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_
 Data Model Library,life.qbic.datamodel.datasets.datastructure.files,DataFile,76,117,14,8,14,15,9,9,2,5
 Data Model Library,life.qbic.datamodel.datasets,OxfordNanoporeMeasurement._getLogFiles_closure5,6,7,0,0,1,0,1,1,1,1
 Data Model Library,life.qbic.datamodel.datasets,OxfordNanoporeExperiment._parseChildren_closure3,58,39,0,0,4,2,2,2,2,2
-Data Model Library,life.qbic.datamodel.datasets,OxfordNanoporeMeasurement,236,788,10,16,27,58,18,16,9,12
+Data Model Library,life.qbic.datamodel.datasets,OxfordNanoporeMeasurement,254,832,10,16,29,60,19,16,10,12
 Data Model Library,life.qbic.datamodel.datasets,OxfordNanoporeExperiment._parseMeasurementItems_closure2,24,62,0,0,1,5,1,2,1,2
 Data Model Library,life.qbic.datamodel.datasets,OxfordNanoporeMeasurement._validateMetaData_closure1,10,7,0,0,1,0,1,1,1,1
 Data Model Library,life.qbic.datamodel.datasets,OxfordNanoporeMeasurement._prepareRawDataFromPooledMeasurement_closure4,10,173,0,0,1,6,1,2,1,2
@@ -15,7 +15,7 @@ Data Model Library,life.qbic.datamodel.datasets,OxfordNanoporeMeasurement._prepa
 Data Model Library,life.qbic.datamodel.datasets,OxfordNanoporeMeasurement._prepareRawDataFromPooledMeasurement_closure4._closure7,2,18,0,0,0,1,0,2,0,2
 Data Model Library,life.qbic.datamodel.datasets,OxfordNanoporeMeasurement._prepareRawDataFromPooledMeasurement_closure4._closure8,2,18,0,0,0,1,0,2,0,2
 Data Model Library,life.qbic.datamodel.datasets,OxfordNanoporeMeasurement._prepareRawDataFromPooledMeasurement_closure4._closure9,2,18,0,0,0,1,0,2,0,2
-Data Model Library,life.qbic.datamodel.datasets,OxfordNanoporeMeasurement.METADATA_FIELD,0,209,0,0,0,0,0,1,0,1
+Data Model Library,life.qbic.datamodel.datasets,OxfordNanoporeMeasurement.METADATA_FIELD,0,251,0,0,0,0,0,1,0,1
 Data Model Library,life.qbic.datamodel.attachments,AttachmentConfig,27,0,0,0,10,0,5,0,5,0
 Data Model Library,life.qbic.datamodel.attachments,AttachmentInformation,55,0,0,0,20,0,8,0,8,0
 Data Model Library,life.qbic.datamodel,RegExHelper,3,0,0,0,1,0,1,0,1,0
@@ -58,7 +58,7 @@ Data Model Library,life.qbic.datamodel.samples,OpenbisMHCExtractSample,48,0,0,0,
 Data Model Library,life.qbic.datamodel.samples,Location,818,0,58,0,76,0,54,0,25,0
 Data Model Library,life.qbic.datamodel.samples,SampleType,0,404,0,0,0,2,0,1,0,1
 Data Model Library,life.qbic.datamodel.samples,TSVSampleBean,253,0,10,0,66,0,32,0,27,0
-Data Model Library,life.qbic.datamodel.samples,AOpenbisSample,562,0,28,0,126,0,43,0,29,0
+Data Model Library,life.qbic.datamodel.samples,AOpenbisSample,563,0,28,0,126,0,43,0,29,0
 Data Model Library,life.qbic.datamodel.samples,OpenbisBiologicalEntity,35,0,0,0,8,0,2,0,2,0
 Data Model Library,life.qbic.datamodel.samples,OpenbisTestSample,39,0,0,0,9,0,3,0,3,0
 Data Model Library,life.qbic.datamodel.samples,OpenbisBiologicalSample,51,0,0,0,12,0,3,0,3,0
