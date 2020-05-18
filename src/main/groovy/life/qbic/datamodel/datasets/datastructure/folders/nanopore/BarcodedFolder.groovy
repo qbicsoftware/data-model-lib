@@ -22,7 +22,7 @@ class BarcodedFolder extends DataFolder {
     }
 
     private void validateName() {
-        final def ids = SampleCodeFunctions.findAllQbicSampleIds(this.name)
+        final def ids = SampleCodeFunctions.findAllQbicSampleCodes(this.name)
         if ( ids.isEmpty()) {
             throw new IllegalArgumentException("Name must match the QBiC sample id schema!")
         }
@@ -36,7 +36,7 @@ class BarcodedFolder extends DataFolder {
      * Returns the sample id of the barcoded folder
      * @return
      */
-    String getSampleId() {
+    String getSampleCode() {
         return this.sampleId
     }
 }

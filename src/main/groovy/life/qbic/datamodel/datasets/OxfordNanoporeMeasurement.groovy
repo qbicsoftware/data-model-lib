@@ -23,12 +23,14 @@ final class OxfordNanoporeMeasurement {
     private static final String LIBRARY_PREP_KIT_SCHEMA = "SQK-.*(?=:)"
 
     private static final enum METADATA_FIELD {
+        ADAPTER,
         ASIC_TEMP,
+        BASE_CALLER,
+        BASE_CALLER_VERSION,
         DEVICE_TYPE,
         FLOWCELL_ID,
         FLOWCELL_POSITION,
         FLOWCELL_TYPE,
-        GUPPY_VERSION,
         LIBRARY_PREPARATION_KIT,
         MACHINE_HOST,
         START_DATE
@@ -81,12 +83,14 @@ final class OxfordNanoporeMeasurement {
     }
 
     private void readMetaData(Map<String, String> metadata) {
+        this.metadata[METADATA_FIELD.ADAPTER] = metadata["adapter"]
         this.metadata[METADATA_FIELD.ASIC_TEMP] = metadata["asic_temp"]
+        this.metadata[METADATA_FIELD.BASE_CALLER] = metadata["base_caller"]
+        this.metadata[METADATA_FIELD.BASE_CALLER_VERSION] = metadata["base_caller_version"]
         this.metadata[METADATA_FIELD.DEVICE_TYPE] = metadata["device_type"]
         this.metadata[METADATA_FIELD.FLOWCELL_ID] = metadata["flow_cell_id"]
         this.metadata[METADATA_FIELD.FLOWCELL_POSITION] = metadata["flow_cell_position"]
         this.metadata[METADATA_FIELD.FLOWCELL_TYPE] = metadata["flow_cell_product_code"]
-        this.metadata[METADATA_FIELD.GUPPY_VERSION] = metadata["guppy_version"]
         this.metadata[METADATA_FIELD.LIBRARY_PREPARATION_KIT] = extractLibraryKit(metadata["protocol"] ?: "")
         this.metadata[METADATA_FIELD.MACHINE_HOST] = metadata["hostname"]
         this.metadata[METADATA_FIELD.START_DATE] = metadata["started"]
@@ -141,11 +145,11 @@ final class OxfordNanoporeMeasurement {
      *      ...
      * @return nested Map with sample ids and data folders
      */
-    Map<String, Map<String, DataFolder>> getRawDataPerSample(Experiment experiment) {
+    Map<String, Map<String, DataFolder>> getRawDataPerSample(ExperimentFolder experiment) {
         if (pooledSamplesMeasurement) {
             return prepareRawDataFromPooledMeasurement()
         } else {
-            return prepareRawData(experiment.sampleId)
+            return prepareRawData(experiment.sampleCode)
         }
     }
 
@@ -190,11 +194,19 @@ final class OxfordNanoporeMeasurement {
     }
 
     /**
-     * Provides access to the Guppy version.
+     * Provides access to the base caller.
      * @return
      */
-    String getGuppyVersion() {
-        return metadata.get(METADATA_FIELD.GUPPY_VERSION)
+    String getBaseCaller() {
+        return metadata.get(METADATA_FIELD.BASE_CALLER)
+    }
+
+    /**
+     * Provides access to the base caller version.
+     * @return
+     */
+    String getBaseCallerVersion() {
+        return metadata.get(METADATA_FIELD.BASE_CALLER_VERSION)
     }
 
     /**
@@ -226,13 +238,13 @@ final class OxfordNanoporeMeasurement {
         final def pooledSampleIds = folders
                 .get("fast5fail")
                 .getTheChildren()
-                .collect { (it as BarcodedFolder).getSampleId() }
+                .collect { (it as BarcodedFolder).getSampleCode() }
         pooledSampleIds.each { sampleId ->
             final def map = [
-                    "fast5fail": (folders.get("fast5fail") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleId() },
-                    "fast5pass": (folders.get("fast5pass") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleId() },
-                    "fastqpass": (folders.get("fastqpass") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleId() },
-                    "fastqfail": (folders.get("fastqfail") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleId() }
+                    "fast5fail": (folders.get("fast5fail") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() },
+                    "fast5pass": (folders.get("fast5pass") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() },
+                    "fastqpass": (folders.get("fastqpass") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() },
+                    "fastqfail": (folders.get("fastqfail") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() }
             ]
             result[sampleId] = map
         }

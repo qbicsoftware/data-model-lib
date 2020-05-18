@@ -268,7 +268,7 @@ public class SampleCodeFunctions {
    * @param text The text to search
    * @return A list of found ids. Is empty if no id was found.
    */
-  public static List<String> findAllQbicSampleIds(String text) {
+  public static List<String> findAllQbicSampleCodes(String text) {
     List<String> result = new ArrayList<>();
     Pattern pattern = Pattern.compile(QBIC_SAMPLE_ID_SCHEMA, Pattern.CASE_INSENSITIVE);
     Matcher m = pattern.matcher(text);

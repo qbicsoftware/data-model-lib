@@ -32,7 +32,7 @@ class OxfordNanoporeExperimentSpec extends Specification {
         final def experiment = OxfordNanoporeExperiment.create(example)
 
         then:
-        assert experiment.sampleId == "QABCD001AB"
+        assert experiment.sampleCode == "QABCD001AB"
         assert experiment.getMeasurements().size() == 1
     }
 }

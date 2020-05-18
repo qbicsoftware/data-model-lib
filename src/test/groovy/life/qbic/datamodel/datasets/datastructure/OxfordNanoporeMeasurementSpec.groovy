@@ -1,6 +1,6 @@
 package life.qbic.datamodel.datasets.datastructure
 
-import life.qbic.datamodel.datasets.Experiment
+import life.qbic.datamodel.datasets.ExperimentFolder
 import life.qbic.datamodel.datasets.OxfordNanoporeMeasurement
 import life.qbic.datamodel.datasets.datastructure.files.nanopore.Fast5File
 import life.qbic.datamodel.datasets.datastructure.files.nanopore.FastQFile
@@ -38,7 +38,10 @@ class OxfordNanoporeMeasurementSpec extends Specification {
 
     def setupSpec() {
         metaData = [
+                "adapter": "flongle",
                 "asic_temp": "32.631687",
+                "base_caller": "Guppy",
+                "base_caller_version": "3.2.8+bd67289",
                 "device_type" : "promethion",
                 "flow_cell_id": "PAE26306",
                 "flow_cell_product_code": "FLO-PRO002",
@@ -70,8 +73,8 @@ class OxfordNanoporeMeasurementSpec extends Specification {
                 metaData)
 
         and:
-        final def mockedExperiment = Mock(Experiment.class)
-        mockedExperiment.getSampleId() >> "QABCD001AE"
+        final def mockedExperiment = Mock(ExperimentFolder.class)
+        mockedExperiment.getSampleCode() >> "QABCD001AE"
 
         when:
         def result = measurement.getRawDataPerSample(mockedExperiment)
@@ -100,8 +103,8 @@ class OxfordNanoporeMeasurementSpec extends Specification {
                 metaData)
 
         and:
-        final def mockedExperiment = Mock(Experiment.class)
-        mockedExperiment.getSampleId() >> "QABCD001AE"
+        final def mockedExperiment = Mock(ExperimentFolder.class)
+        mockedExperiment.getSampleCode() >> "QABCD001AE"
 
         when:
         def result = measurement.getRawDataPerSample(mockedExperiment)
@@ -116,12 +119,14 @@ class OxfordNanoporeMeasurementSpec extends Specification {
         given:
         // Missing hostname
         def metaData = [
+                "adapter": "flongle",
                 "asic_temp": "32.631687",
+                "base_caller": "Guppy",
+                "base_caller_version": "3.2.8+bd67289",
                 "device_type" : "promethion",
                 "flow_cell_id": "PAE26306",
                 "flow_cell_product_code": "FLO-PRO002",
                 "flow_cell_position": "2-A3-D3",
-                "guppy_version":  "3.2.8+bd67289",
                 "protocol": "sequencing/sequencing_PRO002_DNA:FLO-PRO002:SQK-LSK109:True",
                 "started": "2020-02-11T15:52:10.465982+01:00"
         ]

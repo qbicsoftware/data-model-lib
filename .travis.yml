@@ -28,7 +28,6 @@ before_install: unset _JAVA_OPTIONS
 # dependencies for report generation (use cache to speed up builds)
 install:
   - $HOME/miniconda3/bin/conda --version || ./.install-reports-dependencies.sh
-  -
 # check if we need to add a license file for Vaadin charts
 before_script: if [ "$VAADIN_CHARTS_LICENSE_CODE" != "" ]; then
                   echo "$VAADIN_CHARTS_LICENSE_CODE" > ~/.vaadin.charts.developer.license;

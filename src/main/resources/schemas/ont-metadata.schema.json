@@ -5,6 +5,9 @@
   "description": "Describes in which form nanopore metadata is received from the lab.",
   "type": "object",
   "properties": {
+    "adapter": {
+      "type": "string"
+    },
     "asic_temp": {
       "type": "string",
       "minLength": 1
@@ -25,7 +28,7 @@
       "type": "string",
       "minLength": 1
     },
-    "guppy_version":  {
+    "base_caller":  {
       "type": "string",
       "minLength": 1
     },
@@ -43,12 +46,14 @@
     }
   },
   "required": [
+    "adapter",
     "asic_temp",
+    "base_caller",
+    "base_caller_version",
     "device_type",
     "flow_cell_id",
     "flow_cell_position",
     "flow_cell_product_code",
-    "guppy_version",
     "hostname",
     "protocol",
     "started"
