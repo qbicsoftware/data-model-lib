@@ -33,6 +33,10 @@
       "type": "string",
       "minLength": 1
     },
+    "base_caller_version":  {
+      "type": "string",
+      "minLength": 1
+    },
     "hostname": {
       "type": "string",
       "minLength": 1
