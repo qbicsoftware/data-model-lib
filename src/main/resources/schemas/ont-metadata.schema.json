@@ -47,7 +47,6 @@
     }
   },
   "required": [
-    "adapter",
     "asic_temp",
     "base_caller",
     "base_caller_version",
