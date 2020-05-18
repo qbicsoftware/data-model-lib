@@ -20,6 +20,7 @@ branches:
   only:
   - master
   - development
+  - release*
   - /^[vV]?\d+\.\d+\.\d+$/ # matches e.g., v1.2.3, 1.2.3, V1.2.3
 
 # added to make logs look cleaner, crisper, certified fresh
