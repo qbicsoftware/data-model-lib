@@ -6,7 +6,8 @@
   "type": "object",
   "properties": {
     "adapter": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "asic_temp": {
       "type": "string",
