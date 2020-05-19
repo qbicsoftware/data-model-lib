@@ -12,20 +12,23 @@ jdk: openjdk8
 cache:
   directories:
   - "$HOME/.m2/repository"
+  - "$HOME/.cache/pip"
+  - "$HOME/miniconda3"
 
 # as agreed in our SOP
 branches:
   only:
   - master
   - development
+  - /release.*/
   - /^[vV]?\d+\.\d+\.\d+$/ # matches e.g., v1.2.3, 1.2.3, V1.2.3
 
 # added to make logs look cleaner, crisper, certified fresh
-before_install: unset _JAVA_OPTIONS 
+before_install: unset _JAVA_OPTIONS
 
-# speed up builds by telling Travis that we don't need any special "installation"
-install: true
-
+# dependencies for report generation (use cache to speed up builds)
+install:
+  - $HOME/miniconda3/bin/conda --version || ./.install-reports-dependencies.sh
 # check if we need to add a license file for Vaadin charts
 before_script: if [ "$VAADIN_CHARTS_LICENSE_CODE" != "" ]; then
                   echo "$VAADIN_CHARTS_LICENSE_CODE" > ~/.vaadin.charts.developer.license;
@@ -33,11 +36,10 @@ before_script: if [ "$VAADIN_CHARTS_LICENSE_CODE" != "" ]; then
 
 # as agreed in our SOP, build everything (don't deploy, just try to 'mvn install' locally, which covers all phases)
 script: mvn build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.incrementalVersion}-SNAPSHOT versions:update-child-modules && mvn versions:commit &&
-        mvn --quiet --activate-profiles !development-build,!release-build --settings .travis.settings.xml clean cobertura:cobertura install
+        mvn --quiet --activate-profiles !development-build,!release-build --settings .travis.settings.xml clean install
 # upload code coverage report, generate maven site (javadocs, documentation, static code analysis, etc.)
 after_success: 
 - bash <(curl -s https://codecov.io/bash)
-- mvn --quiet --activate-profiles !development-build,!release-build --settings .travis.settings.xml site
 
 # upload to maven
 deploy:
@@ -61,6 +63,12 @@ deploy:
     condition: '"$TRAVIS_EVENT_TYPE" = "push"'
     tags: true
 
+# activate our conda environment, generate maven site and upload reports to gh-pages branch
+after_deploy:
+  - echo ". $HOME/miniconda3/etc/profile.d/conda.sh" >> ~/.bashrc && source ~/.bashrc && conda activate qbic-docs-build
+  - mvn --quiet --activate-profiles !development-build,!release-build --settings .travis.settings.xml site
+  - ./.generate-reports.py $TRAVIS_BRANCH $TRAVIS_REPO_SLUG "[skip travis] Updated gh-pages" "This commit was performed from travis-ci.com using a personal access key" "Build ID $TRAVIS_BUILD_ID" "Job ID TRAVIS_JOB_ID" "Branch $TRAVIS_BRANCH" "Log of this build found at $TRAVIS_JOB_WEB_URL"
+
 # change according to your needs, but we recommend to deactivate email notifications
 # for now, we configured Travis to send a notification to the #travis-ci channel 
 notifications:
@@ -73,8 +81,3 @@ notifications:
     # edit the following section if you want to get slack notifications
     rooms:
       - secure: "***"
-
-env:
-  global:
-  - secure: DyLu0Fv7hGC0igXj3gQP7ATYt9u7vAu0J2ZS+WeyvEihyPx57SUZiAuoasfDIROuEv0jSxay1x7qSje4sB8IZZOqzzojNw0KLm7Xz2CbHTi7NqUtdT0jifP4ELGdZC6ewnRP8oWnMmynNIqJTqjGUHWhQiUvXa0h5TqlQnIZWBEZjCNxCjxDGA8OG+XkSzPO7BTGwiIyTdpWm3gASMC+2e3BYmlqyIAS4AQWtyF2Cgg6HMCc1UMgnU6ZLPsup7SQodKsCFdwEkill4gUBcBf3vCDEslwKCpmHgzCj1CMxLpklik/PLVTcFY6krp9xiGNAwV6db+NZ4hmDzhx20GfO1lR2/RCTy5LNkb1D3NroQtVC0K9wKoEAoQhnCDTAtk++JHMQut/U5U1S7WoVUv00Z0DuHhgqt4SE+L7oGspZL9ZQJuo8UQjwjFPaTStE5FPvb/cZgS+diWRY8UVZcqQJSfgeDb4UKGf5ijZ997JWf2WgrOs7DcTYT8m/cUH6Tf3nI5vS0p4kBam4unaSlvKwDRiffn0/wkYdDYeFaLowaL7tvkp3ct6QcWDbv0fIfKnnv7OVycKmvD/iO4J6UHszfnrgpNoVUFFU3sxzHlrfxmFcC16hN2RYn/AcqoLwLecDnvgPBEjfa2lMGmfkPSR8/mw3+gEG4i5lYhLV1Fjn5c=
-  - secure: HA+eEFj35FKhmHSFQh9E974cK7AN92wWQxGqz0ju+adX5b5c/CPsc4Z4iPrj+G1nX/MReX69mJIewrc05YmQ54GsnIwTPS/X3zDMbLsRXUcL1ppZpm1b75E1MMems0xIrDvBNdZtapWVsIyn6aamr/cgOiYAMf3zPQUGFkNZkGJ8nw6keEXj35mwp0XvegEB8vRO6frLM7d155VRl+AQYGcQAWKEFRSqw0Jreh5u4ywVpzP2L+LDFU+NihOxPBOMYjRtWyEWKxnKshLzJ2SL0Ipr4EfO+YaIfpJZyrHKuxttP2UtUOiXBqh84mMiJ9LgdmFx8sS6RTUuNVgYW38AVwL+VkSZsYSpqhwHT0rES/IBeV4pLVRYF1L0HWQWUl1aG5G2zfLUrv/2HZq8+OdvxpTfeqH52lOGQ8vFmWT6wt7uMnontb+A7IE8ZISO7TpLuRDV2/jjnrczkb5ByZPtc4VrMZq8fMCh/Tt1/b84Iwb1cqbiRw5N3doPDJEx0Ia0ly6K8ghYIPAR5GyLXKlZLTS5YzEUFLgmFCOYiyJsEIM0zEEuzKhaocyrjRomKUvcOpXEUrdN3yfhsSY3PgteQzq47grbc7bSiCm7QvbtmQp4IWGpF2VEm1p4CHhyDLjVPG8DMEbQMwBIcoUZXcS7d3jo6/9TP30tJCNb1NRuGUQ=
