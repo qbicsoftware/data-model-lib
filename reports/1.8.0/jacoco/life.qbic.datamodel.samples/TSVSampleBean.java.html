@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TSVSampleBean.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Data Model Library</a> &gt; <a href="index.source.html" class="el_package">life.qbic.datamodel.samples</a> &gt; <span class="el_source">TSVSampleBean.java</span></div><h1>TSVSampleBean.java</h1><pre class="source lang-java linenums">package life.qbic.datamodel.samples;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class TSVSampleBean implements ISampleBean {
+
+  private String code;
+  private String experiment;
+  private String project;
+  private String space;
+  private SampleType sampleType;
+  private String secondaryName;
+  private List&lt;String&gt; parentIDs;
+  private Map&lt;String, Object&gt; metadata;
+
+  public TSVSampleBean(String code, String exp, String proj, String space, SampleType sType,
+<span class="nc" id="L20">      String secondaryName, List&lt;String&gt; parentIDs, Map&lt;String, Object&gt; metadata) {</span>
+<span class="nc" id="L21">    this.code = code;</span>
+<span class="nc" id="L22">    this.experiment = exp;</span>
+<span class="nc" id="L23">    this.project = proj;</span>
+<span class="nc" id="L24">    this.space = space;</span>
+<span class="nc" id="L25">    this.sampleType = sType;</span>
+<span class="nc" id="L26">    this.secondaryName = secondaryName;</span>
+<span class="nc" id="L27">    this.parentIDs = parentIDs;</span>
+<span class="nc" id="L28">    this.metadata = metadata;</span>
+<span class="nc" id="L29">  }</span>
+
+  public TSVSampleBean(String prelimCode, SampleType sampleType, String secondaryName,
+<span class="nc" id="L32">      Map&lt;String, Object&gt; metadata) {</span>
+<span class="nc" id="L33">    this.code = prelimCode;</span>
+<span class="nc" id="L34">    this.sampleType = sampleType;</span>
+<span class="nc" id="L35">    this.secondaryName = secondaryName;</span>
+<span class="nc" id="L36">    this.metadata = metadata;</span>
+<span class="nc" id="L37">    this.parentIDs = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L38">  }</span>
+
+  public String toString() {
+<span class="nc" id="L41">    return code + &quot;\t&quot; + experiment + &quot;\t&quot; + secondaryName + &quot;\t&quot; + sampleType + &quot;\t&quot;</span>
+<span class="nc" id="L42">        + getParentIDs() + &quot;\t&quot; + metadata;</span>
+  }
+
+  public boolean hasParents() {
+<span class="nc bnc" id="L46" title="All 2 branches missed.">    return !parentIDs.isEmpty();</span>
+  }
+
+  public List&lt;String&gt; getParentIDs() {
+<span class="nc" id="L50">    return parentIDs;</span>
+    // if (!hasParents())
+    // return new ArrayList&lt;String&gt;();
+    // else {
+    // if (parents.contains(&quot;,&quot;)) {
+    // ArrayList&lt;String&gt; res = new ArrayList&lt;String&gt;();
+    // for (String p : Arrays.asList(getParents().split(&quot;,&quot;))) {
+    // res.add(p.trim());
+    // }
+    // return res;
+    // } else
+    // return new ArrayList&lt;String&gt;(Arrays.asList(getParents()));
+    // }
+  }
+
+  @Override
+  public boolean equals(Object o) {
+<span class="nc bnc" id="L67" title="All 2 branches missed.">    if (o instanceof TSVSampleBean) {</span>
+<span class="nc" id="L68">      TSVSampleBean b = (TSVSampleBean) o;</span>
+<span class="nc" id="L69">      return code.equals(b.getCode());</span>
+    } else
+<span class="nc" id="L71">      return false;</span>
+  }
+
+  public String getCode() {
+<span class="nc" id="L75">    return code;</span>
+  }
+
+  public void setCode(String id) {
+<span class="nc" id="L79">    this.code = id;</span>
+<span class="nc" id="L80">  }</span>
+
+  public String getExperiment() {
+<span class="nc" id="L83">    return experiment;</span>
+  }
+
+  public void setExperiment(String experiment) {
+<span class="nc" id="L87">    this.experiment = experiment;</span>
+<span class="nc" id="L88">  }</span>
+
+  public String getProject() {
+<span class="nc" id="L91">    return project;</span>
+  }
+
+  public void setProject(String project) {
+<span class="nc" id="L95">    this.project = project;</span>
+<span class="nc" id="L96">  }</span>
+
+  public String getSpace() {
+<span class="nc" id="L99">    return space;</span>
+  }
+
+  public void setSpace(String space) {
+<span class="nc" id="L103">    this.space = space;</span>
+<span class="nc" id="L104">  }</span>
+
+  public SampleType getType() {
+<span class="nc" id="L107">    return sampleType;</span>
+  }
+
+  public void setSampleType(SampleType sampleType) {
+<span class="nc" id="L111">    this.sampleType = sampleType;</span>
+<span class="nc" id="L112">  }</span>
+
+  public String getSecondaryName() {
+<span class="nc" id="L115">    return secondaryName;</span>
+  }
+
+  public void setSecondaryName(String secName) {
+<span class="nc" id="L119">    this.secondaryName = secName;</span>
+<span class="nc" id="L120">  }</span>
+
+  public void setParents(List&lt;ISampleBean&gt; parents) {
+<span class="nc" id="L123">    parentIDs = new ArrayList&lt;String&gt;();</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">    for (ISampleBean p : parents)</span>
+<span class="nc" id="L125">      addParent(p);</span>
+<span class="nc" id="L126">  }</span>
+
+  public Map&lt;String, Object&gt; getMetadata() {
+<span class="nc" id="L129">    return metadata;</span>
+  }
+
+  public void setMetadata(HashMap&lt;String, Object&gt; metadata) {
+<span class="nc" id="L133">    this.metadata = metadata;</span>
+<span class="nc" id="L134">  }</span>
+
+  public void addParent(ISampleBean parent) {
+<span class="nc" id="L137">    addParentID(parent.getCode());</span>
+<span class="nc" id="L138">  }</span>
+
+  public void addParentID(String id) {
+<span class="nc bnc" id="L141" title="All 2 branches missed.">    if (!hasParents())</span>
+<span class="nc" id="L142">      parentIDs = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L143">    parentIDs.add(id);</span>
+<span class="nc" id="L144">  }</span>
+
+  @Override
+  public int hashCode() {
+<span class="nc" id="L148">    return code.hashCode();</span>
+  }
+
+  public void addProperty(String key, Object val) {
+<span class="nc" id="L152">    metadata.put(key, val);</span>
+<span class="nc" id="L153">  }</span>
+
+  @Override
+  public ISampleBean copy() {
+<span class="nc" id="L157">    TSVSampleBean res = new TSVSampleBean(code, experiment, project, space, sampleType,</span>
+<span class="nc" id="L158">        secondaryName, parentIDs, copyMetadata(metadata));</span>
+<span class="nc" id="L159">    return res;</span>
+  }
+
+  private Map&lt;String, Object&gt; copyMetadata(Map&lt;String, Object&gt; metadata) {
+<span class="nc" id="L163">    Map&lt;String, Object&gt; res = new HashMap&lt;String, Object&gt;();</span>
+<span class="nc bnc" id="L164" title="All 2 branches missed.">    for (String key : metadata.keySet())</span>
+<span class="nc" id="L165">      res.put(key, metadata.get(key));</span>
+<span class="nc" id="L166">    return res;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
