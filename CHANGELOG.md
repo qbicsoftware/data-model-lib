@@ -1,6 +1,6 @@
 # Release Changelog for the data model library
 
-## 1.7.0
+## 1.8.0
 
 * Provide new classes that describe incoming Oxford Nanopore instrument data structures
 * Provide new classes that describe a Oxford Nanopore Experiment(`OxfordNanoporeExperiment.class`) and its containing Oxford Nanopre Measurements (OxfordNanoporeMeasurement.class)
