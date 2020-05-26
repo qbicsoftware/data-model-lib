@@ -1,5 +1,9 @@
 # Release Changelog for the data model library
 
+## 1.8.2
+
+* Fix recursion error, when client code wants to access `OxfordNanoporeMeasurement:getRelativePath`
+
 ##  1.8.1
 
 * Provide JAR with all dependencies included for single deployment (i.e. ETL dropboxes, etc.)

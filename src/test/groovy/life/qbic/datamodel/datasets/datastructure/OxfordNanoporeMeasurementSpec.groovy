@@ -86,6 +86,7 @@ class OxfordNanoporeMeasurementSpec extends Specification {
         assert result.get("QABCD001AE").get("fast5pass") instanceof DataFolder
         assert result.get("QABCD001AE").get("fastqfail") instanceof DataFolder
         assert result.get("QABCD001AE").get("fastqpass") instanceof DataFolder
+        assert measurement.relativePath == "path/20200219_1107_1-E3-H3_PAE26974_454b8dc6"
         assert libraryKit == "SQK-LSK109"
     }
 

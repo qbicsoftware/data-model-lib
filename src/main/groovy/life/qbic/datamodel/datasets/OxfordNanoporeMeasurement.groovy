@@ -1,5 +1,6 @@
 package life.qbic.datamodel.datasets
 
+import groovy.transform.CompileStatic
 import groovyjarjarcommonscli.MissingArgumentException
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
@@ -290,7 +291,7 @@ final class OxfordNanoporeMeasurement {
      * @return String This returns the relative path within the Nanopore experiment
      */
     String getRelativePath() {
-        return this.relativePath
+        return this.measurementFolder.relativePath
     }
 
     /*
