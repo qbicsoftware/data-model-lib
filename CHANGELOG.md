@@ -1,5 +1,9 @@
 # Release Changelog for the data model library
 
+## 1.8.3
+
+* `OxfordNanoporeMeasurement:getLogFiles` now provides a list with all the log files
+
 ## 1.8.2
 
 * Fix recursion error, when client code wants to access `OxfordNanoporeMeasurement:getRelativePath`
