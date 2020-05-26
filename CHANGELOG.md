@@ -1,5 +1,9 @@
 # Release Changelog for the data model library
 
+##  1.8.1
+
+* Provide JAR with all dependencies included for single deployment (i.e. ETL dropboxes, etc.)
+
 ## 1.8.0
 
 * Provide new classes that describe incoming Oxford Nanopore instrument data structures
