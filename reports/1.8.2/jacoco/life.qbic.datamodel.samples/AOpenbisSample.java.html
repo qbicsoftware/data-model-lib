@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AOpenbisSample.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Data Model Library</a> &gt; <a href="index.source.html" class="el_package">life.qbic.datamodel.samples</a> &gt; <span class="el_source">AOpenbisSample.java</span></div><h1>AOpenbisSample.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * QBiC Project Wizard enables users to create hierarchical experiments including different study
+ * conditions using factorial design. Copyright (C) &quot;2016&quot; Andreas Friedrich
+ *
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * GNU General Public License as published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+ * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with this program. If
+ * not, see &lt;http://www.gnu.org/licenses/&gt;.
+ *******************************************************************************/
+package life.qbic.datamodel.samples;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import life.qbic.xml.properties.Property;
+
+/**
+ * Abstract class to represent different samples and their metadata
+ * 
+ * @author Andreas Friedrich
+ * 
+ */
+public abstract class AOpenbisSample {
+
+  private int tempID;
+  private List&lt;Integer&gt; tempParentIDs;
+  private String space;
+  private String sampleType;
+  private String code;
+  private String experiment;
+  private String Q_SECONDARY_NAME;
+  private List&lt;Property&gt; factors;
+  private String Q_ADDITIONAL_NOTES;
+  private String parent;
+  private String Q_EXTERNALDB_ID;
+  private List&lt;AOpenbisSample&gt; parents;
+
+  /**
+   * Constructor of an abstract openbis sample
+   * 
+   * @param code The sample code of the sample
+   * @param experiment The experiment the sample is attached to
+   * @param secondaryName A secondary name the sample might have
+   * @param additionalNotes Free text additional notes
+   * @param factors A list of conditions of this sample
+   * @param parent A parent sample code this sample is attached to
+   */
+  AOpenbisSample(String code, String space, String experiment, String secondaryName,
+      String additionalNotes, List&lt;Property&gt; factors, String parent, String externalID,
+<span class="nc" id="L58">      String sampleType) {</span>
+<span class="nc" id="L59">    this.code = code;</span>
+<span class="nc" id="L60">    this.space = space;</span>
+<span class="nc" id="L61">    this.experiment = experiment;</span>
+<span class="nc" id="L62">    this.sampleType = sampleType;</span>
+<span class="nc" id="L63">    this.Q_ADDITIONAL_NOTES = additionalNotes;</span>
+<span class="nc" id="L64">    this.Q_SECONDARY_NAME = secondaryName;</span>
+<span class="nc" id="L65">    this.factors = factors;</span>
+<span class="nc" id="L66">    this.parent = parent;</span>
+<span class="nc" id="L67">    this.Q_EXTERNALDB_ID = externalID;</span>
+<span class="nc" id="L68">  }</span>
+
+  // this is the new version for entities
+  AOpenbisSample(int tempID, String secondaryName, String additionalNotes, List&lt;Property&gt; factors,
+<span class="nc" id="L72">      String externalID, List&lt;Integer&gt; tempParentIDs, String sampleType) {</span>
+<span class="nc" id="L73">    this.tempID = tempID;</span>
+<span class="nc" id="L74">    this.sampleType = sampleType;</span>
+<span class="nc" id="L75">    this.Q_SECONDARY_NAME = secondaryName;</span>
+<span class="nc" id="L76">    this.Q_ADDITIONAL_NOTES = additionalNotes;</span>
+<span class="nc" id="L77">    this.Q_EXTERNALDB_ID = externalID;</span>
+<span class="nc" id="L78">    this.factors = factors;</span>
+<span class="nc" id="L79">    this.tempParentIDs = tempParentIDs;</span>
+<span class="nc" id="L80">  }</span>
+
+  // this is the new version for all child samples
+  AOpenbisSample(int tempID, List&lt;AOpenbisSample&gt; parents, String sampleType, String secondaryName,
+<span class="nc" id="L84">      String externalID, List&lt;Property&gt; newFactors, String additionalNotes) {</span>
+<span class="nc" id="L85">    this.parents = parents;</span>
+<span class="nc" id="L86">    this.tempID = tempID;</span>
+<span class="nc" id="L87">    this.sampleType = sampleType;</span>
+<span class="nc" id="L88">    this.Q_SECONDARY_NAME = secondaryName;</span>
+<span class="nc" id="L89">    this.Q_ADDITIONAL_NOTES = additionalNotes;</span>
+<span class="nc" id="L90">    this.Q_EXTERNALDB_ID = externalID;</span>
+<span class="nc" id="L91">    Map&lt;String, Property&gt; oldFactors = new HashMap&lt;String, Property&gt;();</span>
+<span class="nc" id="L92">    this.tempParentIDs = new ArrayList&lt;Integer&gt;();</span>
+<span class="nc" id="L93">    this.parent = &quot;&quot;;</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">    for (AOpenbisSample s : parents) {</span>
+<span class="nc" id="L95">      this.tempParentIDs.add(s.getTempID());</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">      if (s.getCode() != null)</span>
+<span class="nc" id="L97">        parent += s.getCode() + &quot; &quot;;</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">      for (Property f : s.getFactors()) {</span>
+<span class="nc" id="L99">        String lab = f.getLabel();</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        if (oldFactors.containsKey(lab)) {</span>
+<span class="nc" id="L101">          Property old = oldFactors.get(lab);</span>
+<span class="nc" id="L102">          String value = old.getValue() + old.getUnit();</span>
+<span class="nc" id="L103">          String newValue = f.getValue() + f.getUnit();</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">          if (!value.equals(newValue))</span>
+<span class="nc" id="L105">            oldFactors.put(lab, new Property(lab, &quot;mixed&quot;, old.getType()));</span>
+<span class="nc" id="L106">        } else</span>
+<span class="nc" id="L107">          oldFactors.put(lab, f);</span>
+<span class="nc" id="L108">      }</span>
+<span class="nc" id="L109">    }</span>
+<span class="nc" id="L110">    this.parent = parent.trim();</span>
+<span class="nc" id="L111">    this.factors = new ArrayList&lt;Property&gt;();</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">    if (parents.size() &gt; 0) {</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">      for (String lab : parents.get(0).getFactorLabels())</span>
+<span class="nc" id="L114">        this.factors.add(oldFactors.get(lab));</span>
+    }
+<span class="nc" id="L116">    this.factors.addAll(newFactors);</span>
+<span class="nc" id="L117">  }</span>
+
+  public List&lt;AOpenbisSample&gt; getParents() {
+<span class="nc" id="L120">    return parents;</span>
+  }
+
+  public void setSampleType(String sampleType) {
+<span class="nc" id="L124">    this.sampleType = sampleType;</span>
+<span class="nc" id="L125">  }</span>
+
+  public void setCode(String code) {
+<span class="nc" id="L128">    this.code = code;</span>
+<span class="nc" id="L129">  }</span>
+
+  public void setExperiment(String experiment) {
+<span class="nc" id="L132">    this.experiment = experiment;</span>
+<span class="nc" id="L133">  }</span>
+
+  public void setQ_SECONDARY_NAME(String q_SECONDARY_NAME) {
+<span class="nc" id="L136">    Q_SECONDARY_NAME = q_SECONDARY_NAME;</span>
+<span class="nc" id="L137">  }</span>
+
+  public void setFactors(List&lt;Property&gt; factors) {
+<span class="nc" id="L140">    this.factors = factors;</span>
+<span class="nc" id="L141">  }</span>
+
+  public void setQ_ADDITIONAL_NOTES(String q_ADDITIONAL_NOTES) {
+<span class="nc" id="L144">    Q_ADDITIONAL_NOTES = q_ADDITIONAL_NOTES;</span>
+<span class="nc" id="L145">  }</span>
+
+  public void setParent(String parent) {
+<span class="nc" id="L148">    this.parent = parent;</span>
+<span class="nc" id="L149">  }</span>
+
+  public void setSpace(String space) {
+<span class="nc" id="L152">    this.space = space;</span>
+<span class="nc" id="L153">  }</span>
+
+  public String getSpace() {
+<span class="nc" id="L156">    return space;</span>
+  }
+
+  /**
+   * Returns a map of all metadata fields and values of this sample
+   * 
+   * @return
+   */
+  public Map&lt;String, String&gt; getValueMap() {
+<span class="nc" id="L165">    Map&lt;String, String&gt; res = new HashMap&lt;String, String&gt;();</span>
+<span class="nc" id="L166">    res.put(&quot;EXPERIMENT&quot;, experiment);</span>
+<span class="nc" id="L167">    res.put(&quot;SPACE&quot;, space);</span>
+<span class="nc" id="L168">    res.put(&quot;SAMPLE TYPE&quot;, sampleType);</span>
+<span class="nc" id="L169">    res.put(&quot;code&quot;, code);</span>
+<span class="nc" id="L170">    res.put(&quot;Q_ADDITIONAL_INFO&quot;, Q_ADDITIONAL_NOTES);</span>
+<span class="nc" id="L171">    res.put(&quot;Q_SECONDARY_NAME&quot;, Q_SECONDARY_NAME);</span>
+<span class="nc" id="L172">    res.put(&quot;Q_EXTERNALDB_ID&quot;, Q_EXTERNALDB_ID);</span>
+<span class="nc" id="L173">    res.put(&quot;PARENT&quot;, parent);</span>
+<span class="nc" id="L174">    fillInFactors(res);</span>
+<span class="nc" id="L175">    return res;</span>
+  }
+
+  /**
+   * Parses XML properties to the right format
+   * 
+   * @param map
+   */
+  private void fillInFactors(Map&lt;String, String&gt; map) {
+<span class="nc" id="L184">    String res = &quot;&quot;;</span>
+<span class="nc bnc" id="L185" title="All 2 branches missed.">    for (Property f : factors) {</span>
+<span class="nc" id="L186">      res += f.getLabel() + &quot;: &quot; + f.getValue(); // TODO null should be empty list</span>
+<span class="nc bnc" id="L187" title="All 2 branches missed.">      if (f.hasUnit())</span>
+<span class="nc" id="L188">        res += &quot;:&quot; + f.getUnit();</span>
+<span class="nc" id="L189">      res += &quot;; &quot;;</span>
+<span class="nc" id="L190">    }</span>
+<span class="nc" id="L191">    res = res.substring(0, Math.max(res.length() - 2, 0));</span>
+<span class="nc" id="L192">    map.put(&quot;XML_FACTORS&quot;, res);</span>
+<span class="nc" id="L193">  }</span>
+
+  public List&lt;String&gt; getFactorStrings() {
+<span class="nc" id="L196">    List&lt;String&gt; res = new ArrayList&lt;String&gt;();</span>
+<span class="nc bnc" id="L197" title="All 2 branches missed.">    for (Property f : factors) {</span>
+<span class="nc" id="L198">      String cur = f.getLabel() + &quot;: &quot; + f.getValue(); // TODO null should be empty list</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">      if (f.hasUnit())</span>
+<span class="nc" id="L200">        cur += &quot; &quot; + f.getUnit();</span>
+<span class="nc" id="L201">      res.add(cur);</span>
+<span class="nc" id="L202">    }</span>
+<span class="nc" id="L203">    return res;</span>
+  }
+
+  public List&lt;String&gt; getFactorStringsWithoutLabel() {
+<span class="nc" id="L207">    List&lt;String&gt; res = new ArrayList&lt;String&gt;();</span>
+<span class="nc bnc" id="L208" title="All 2 branches missed.">    for (Property f : factors) {</span>
+<span class="nc" id="L209">      String cur = f.getValue(); // TODO null should be empty list</span>
+<span class="nc bnc" id="L210" title="All 2 branches missed.">      if (f.hasUnit())</span>
+<span class="nc" id="L211">        cur += &quot; &quot; + f.getUnit();</span>
+<span class="nc" id="L212">      res.add(cur);</span>
+<span class="nc" id="L213">    }</span>
+<span class="nc" id="L214">    return res;</span>
+  }
+
+  public List&lt;String&gt; getFactorLabels() {
+<span class="nc" id="L218">    List&lt;String&gt; res = new ArrayList&lt;String&gt;();</span>
+<span class="nc bnc" id="L219" title="All 2 branches missed.">    for (Property f : factors) {</span>
+<span class="nc" id="L220">      res.add(f.getLabel());</span>
+<span class="nc" id="L221">    }</span>
+<span class="nc" id="L222">    return res;</span>
+  }
+
+  public String getCode() {
+<span class="nc" id="L226">    return code;</span>
+  }
+
+  public String getQ_SECONDARY_NAME() {
+<span class="nc" id="L230">    return Q_SECONDARY_NAME;</span>
+  }
+
+  public List&lt;Property&gt; getFactors() {
+<span class="nc" id="L234">    return factors;</span>
+  }
+
+  public String getQ_EXTERNALDB_ID() {
+<span class="nc" id="L238">    return Q_EXTERNALDB_ID;</span>
+  }
+
+  public void setQ_EXTERNALDB_ID(String extID) {
+<span class="nc" id="L242">    this.Q_EXTERNALDB_ID = extID;</span>
+<span class="nc" id="L243">  }</span>
+
+  public String getQ_ADDITIONAL_NOTES() {
+<span class="nc" id="L246">    return Q_ADDITIONAL_NOTES;</span>
+  }
+
+  public String getParent() {
+<span class="nc" id="L250">    return parent;</span>
+  }
+
+  public String toString() {
+<span class="nc" id="L254">    return &quot;&lt;&quot; + sampleType + &quot; &quot; + code + &quot; &quot; + Q_SECONDARY_NAME + &quot;&gt;&quot;;</span>
+  }
+
+  public Integer getTempID() {
+<span class="nc" id="L258">    return tempID;</span>
+  }
+
+  public List&lt;Integer&gt; getTempParentIDs() {
+<span class="nc" id="L262">    return tempParentIDs;</span>
+  }
+
+  public void addFactor(Property factor) {
+<span class="nc" id="L266">    this.factors.add(factor);</span>
+<span class="nc" id="L267">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
