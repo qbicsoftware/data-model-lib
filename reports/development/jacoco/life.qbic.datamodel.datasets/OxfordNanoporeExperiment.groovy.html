@@ -49,7 +49,7 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
     private OxfordNanoporeExperiment(String sampleId, List&lt;OxfordNanoporeMeasurement&gt; measurements) {
 <span class="fc" id="L50">        this.measurements = Objects.requireNonNull(measurements, &quot;measurements must not be null&quot;)</span>
 <span class="fc" id="L51">        this.sampleId = Objects.requireNonNull(sampleId, &quot;sampleId must not be null&quot;)</span>
-<span class="fc" id="L52">    }</span>
+    }
 
     /**
      * Static factory method that creates a new instance from a Oxford Nanopore sequencer output.
@@ -60,21 +60,21 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
     static OxfordNanoporeExperiment create(Map nanoPoreSequencerOutput) {
 <span class="fc" id="L61">        final String sampleId = parseQbicIdFromRootFolder(nanoPoreSequencerOutput)</span>
 <span class="fc" id="L62">        final List&lt;OxfordNanoporeMeasurement&gt; measurements = parseMeasurements(nanoPoreSequencerOutput)</span>
-<span class="fc" id="L63">        return new OxfordNanoporeExperiment(sampleId, measurements)</span>
-<span class="nc" id="L64">    }</span>
+<span class="pc" id="L63">        return new OxfordNanoporeExperiment(sampleId, measurements)</span>
+    }
 
     /**
      * Provides a list of measurements contained within the experiment folder.
      * @return
      */
     List&lt;OxfordNanoporeMeasurement&gt; getMeasurements() {
-<span class="fc" id="L71">        return this.measurements</span>
-<span class="nc" id="L72">    }</span>
+<span class="pc" id="L71">        return this.measurements</span>
+    }
 
     @Override
     String getSampleCode() {
-<span class="fc" id="L76">        return this.sampleId</span>
-<span class="nc" id="L77">    }</span>
+<span class="pc" id="L76">        return this.sampleId</span>
+    }
 
     /**
      * Helper method that parses the QBiC identifier from the root folder name
@@ -88,8 +88,8 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
 <span class="pc bpc" id="L88" title="1 of 2 branches missed.">        if (ids.size() &gt; 1) {</span>
 <span class="nc" id="L89">            throw new IllegalArgumentException(&quot;Name contained more than one valid sample id!&quot;)</span>
         }
-<span class="fc" id="L91">        return ids.get(0)</span>
-<span class="nc" id="L92">    }</span>
+<span class="pc" id="L91">        return ids.get(0)</span>
+    }
 
     /**
      * Helper method that creates the measurements from the sequencer output
@@ -98,14 +98,14 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
 <span class="fc" id="L98">        final def measurements = []</span>
 <span class="fc" id="L99">        Objects.requireNonNull(nanoPoreSequencerOutput.get(&quot;children&quot;), &quot;The root folder must contain at least one measurement folder.&quot;)</span>
 <span class="fc" id="L100">        nanoPoreSequencerOutput.get(&quot;children&quot;).each { Map measurementItem -&gt;</span>
-<span class="pc" id="L101">            def name = measurementItem.get(&quot;name&quot;) as String</span>
+<span class="fc" id="L101">            def name = measurementItem.get(&quot;name&quot;) as String</span>
 <span class="fc" id="L102">            def relativePath = measurementItem.get(&quot;path&quot;) as String</span>
 <span class="fc" id="L103">            def children = parseMeasurementItems(measurementItem.get(&quot;children&quot;) as List)</span>
 <span class="fc" id="L104">            def metadata = measurementItem.get(&quot;metadata&quot;) as Map</span>
-<span class="fc" id="L105">            measurements.add(new OxfordNanoporeMeasurement(name, relativePath, children, metadata))</span>
+<span class="pc" id="L105">            measurements.add(new OxfordNanoporeMeasurement(name, relativePath, children, metadata))</span>
         }
-<span class="fc" id="L107">        return measurements</span>
-<span class="nc" id="L108">    }</span>
+<span class="pc" id="L107">        return measurements</span>
+    }
 
     /*
      * Helper method that creates a list of mixed DataFolders and DataFiles instances
@@ -117,15 +117,15 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
             try {
                 // Lets try to parse it as a subclass of a DataFile
 <span class="fc" id="L119">                def putativeFile = parseFile(item)</span>
-<span class="fc" id="L120">                children.add(putativeFile)</span>
-<span class="pc" id="L121">            } catch (IllegalArgumentException e) {</span>
+<span class="pc" id="L120">                children.add(putativeFile)</span>
+            } catch (IllegalArgumentException e) {
                 // In this case, no DataFile could be created, try to convert to a DataFolder then
 <span class="fc" id="L123">                def putativeFolder = parseFolder(item)</span>
-<span class="fc" id="L124">                children.add(putativeFolder)</span>
-<span class="nc" id="L125">            }</span>
+<span class="pc" id="L124">                children.add(putativeFolder)</span>
+            }
         }
-<span class="fc" id="L127">        return children</span>
-<span class="nc" id="L128">    }</span>
+<span class="pc" id="L127">        return children</span>
+    }
 
     /*
      * Helper method that creates a DataFile instance from a map
@@ -139,15 +139,15 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
 <span class="fc" id="L139">            Method method = c.getDeclaredMethod(&quot;create&quot;, String.class, String.class)</span>
             try {
 <span class="fc" id="L141">                DataFile dataFile = method.invoke(null, name, path) as DataFile</span>
-<span class="fc" id="L142">                return dataFile</span>
-<span class="pc" id="L143">            } catch (InvocationTargetException e) {</span>
+<span class="pc" id="L142">                return dataFile</span>
+            } catch (InvocationTargetException e) {
                 // Do nothing as we need to try out all specialisations that extend the
                 // DataFile class
-<span class="pc" id="L146">            }</span>
-<span class="fc" id="L147">        }</span>
+            }
+        }
         // If we cannot create a DataFile object at all, throw an exception
-<span class="fc" id="L149">        throw new IllegalArgumentException(&quot;File $name with path $path is of unknown Oxford Nanopore file type.&quot;)</span>
-<span class="nc" id="L150">    }</span>
+<span class="pc" id="L149">        throw new IllegalArgumentException(&quot;File $name with path $path is of unknown Oxford Nanopore file type.&quot;)</span>
+    }
 
     /*
      * Helper method that creates a DataFolder instance from a map
@@ -164,9 +164,9 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
 <span class="fc bfc" id="L164" title="All 2 branches covered.">            if (folder.isPresent()) {</span>
 <span class="fc" id="L165">                return folder.get()</span>
             }
-<span class="fc" id="L167">        }</span>
+        }
 <span class="nc" id="L168">        throw new IllegalArgumentException(&quot;Folder $name with path $path is of unknown Oxford Nanopore folder type.&quot;)</span>
-<span class="nc" id="L169">    }</span>
+    }
 
     /*
      * Helper method that tries to create a DataFolder instance
@@ -185,19 +185,19 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
             // Try typed folder
 <span class="fc" id="L186">            def dataFolder = method.invoke(null, relativePath, children) as DataFolder</span>
 <span class="fc" id="L187">            folder = Optional.of(dataFolder)</span>
-<span class="fc" id="L188">        } catch (InvocationTargetException e) {</span>
+        } catch (InvocationTargetException e) {
             // Do nothing
 <span class="pc bpc" id="L190" title="2 of 4 branches missed.">        } catch (IllegalArgumentException e) {</span>
             try {
                 // Try named folder
 <span class="nc" id="L193">                def dataFolder = method.invoke(null, name, relativePath, children) as DataFolder</span>
-<span class="nc" id="L194">                folder = Optional.of(dataFolder)</span>
-<span class="pc" id="L195">            } catch (InvocationTargetException e2) {</span>
+<span class="pc" id="L194">                folder = Optional.of(dataFolder)</span>
+            } catch (InvocationTargetException e2) {
                 // Do nothing
-<span class="pc" id="L197">            }</span>
-<span class="pc" id="L198">        }</span>
-<span class="fc" id="L199">        return folder</span>
-<span class="nc" id="L200">    }</span>
+            }
+        }
+<span class="pc" id="L199">        return folder</span>
+    }
 
     /*
      * Helper method that parses the children of a folder.
@@ -208,17 +208,17 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
 <span class="fc" id="L208">        children.each { Map unknownChild -&gt;</span>
             try {
 <span class="fc" id="L210">                def child = parseFile(unknownChild)</span>
-<span class="fc" id="L211">                parsedChildren.add(child)</span>
-<span class="nc" id="L212">            } catch (IllegalArgumentException e) {</span>
+<span class="pc" id="L211">                parsedChildren.add(child)</span>
+            } catch (IllegalArgumentException e) {
                 // We do not capture the second parse call, as we want to fail the parsing at this point.
                 // This means that we ultimately found a child of unknown type, which should
                 // break the parsing.
 <span class="nc" id="L216">                def child = parseFolder(unknownChild)</span>
 <span class="nc" id="L217">                parsedChildren.add(child)</span>
-<span class="nc" id="L218">            }</span>
+            }
         }
-<span class="fc" id="L220">        return parsedChildren</span>
-<span class="nc" id="L221">    }</span>
+<span class="pc" id="L220">        return parsedChildren</span>
+    }
 
     /*
     Determines the correct static create method for a data folder.
@@ -229,11 +229,11 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
         try {
             // named folder (i.e. Fast5Folder)
 <span class="fc" id="L231">            method = c.getDeclaredMethod(&quot;create&quot;, String.class, String.class, List.class)</span>
-<span class="fc" id="L232">        } catch (NoSuchMethodException e) {</span>
+        } catch (NoSuchMethodException e) {
             // typed folder (i.e. FastQPassFolder)
-<span class="fc" id="L234">            method = c.getDeclaredMethod(&quot;create&quot;, String.class, List.class)</span>
-<span class="pc" id="L235">        }</span>
-<span class="fc" id="L236">        return method</span>
-<span class="nc" id="L237">    }</span>
+<span class="pc" id="L234">            method = c.getDeclaredMethod(&quot;create&quot;, String.class, List.class)</span>
+        }
+<span class="pc" id="L236">        return method</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

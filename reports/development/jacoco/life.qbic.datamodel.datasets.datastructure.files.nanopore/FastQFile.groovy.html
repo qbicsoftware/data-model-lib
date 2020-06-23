@@ -16,16 +16,16 @@ class FastQFile extends DataFile {
     protected FastQFile(String name, String relativePath) {
 <span class="fc" id="L17">        super(name, relativePath, FILE_TYPE)</span>
 <span class="pc bpc" id="L18" title="1 of 2 branches missed.">        validateName()</span>
-<span class="fc" id="L19">    }</span>
+    }
 
     static FastQFile create(String name, String relativePath) {
-<span class="fc" id="L22">        return new FastQFile(name, relativePath)</span>
-<span class="nc" id="L23">    }</span>
+<span class="pc" id="L22">        return new FastQFile(name, relativePath)</span>
+    }
 
     private void validateName() {
 <span class="pc bpc" id="L26" title="2 of 4 branches missed.">        if (!(this.name =~ NAME_SCHEMA)) {</span>
-<span class="nc" id="L27">            throw new IllegalArgumentException(&quot;Name must match the Nanopore summary schema!&quot;)</span>
+<span class="pc" id="L27">            throw new IllegalArgumentException(&quot;Name must match the Nanopore summary schema!&quot;)</span>
         }
-<span class="fc" id="L29">    }</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

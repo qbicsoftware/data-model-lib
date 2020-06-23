@@ -11,7 +11,7 @@ class DataFolder {
 
     private final List children
 
-<span class="nc" id="L14">    protected DataFolder() {}</span>
+    protected DataFolder() {}
 
     protected DataFolder(String name, String relativePath, List childrenList) {
 <span class="fc bfc" id="L17" title="All 4 branches covered.">        if (!(relativePath.contains(name))) {</span>
@@ -24,12 +24,12 @@ class DataFolder {
         // Make a defensive copy of the mutable List object
 <span class="fc bfc" id="L25" title="All 2 branches covered.">        for (Object element : childrenList) {</span>
             try {
-<span class="nc" id="L27">                children.add(element.clone())</span>
-<span class="pc" id="L28">            } catch (CloneNotSupportedException) {</span>
-<span class="fc" id="L29">                children.add(element)</span>
-<span class="pc" id="L30">            }</span>
-<span class="fc" id="L31">        }</span>
-<span class="fc" id="L32">    }</span>
+<span class="pc" id="L27">                children.add(element.clone())</span>
+            } catch (CloneNotSupportedException) {
+<span class="pc" id="L29">                children.add(element)</span>
+            }
+        }
+    }
 
     /**
      * Returns the relative path of the folder
@@ -37,15 +37,15 @@ class DataFolder {
      */
     String getRelativePath() {
 <span class="nc" id="L39">        return relativePath</span>
-<span class="nc" id="L40">    }</span>
+    }
 
     /**
      * Returns the name of the folder
      * @return
      */
     String getName() {
-<span class="fc" id="L47">        return name</span>
-<span class="nc" id="L48">    }</span>
+<span class="pc" id="L47">        return name</span>
+    }
 
     /**
      * Returns the children of the folder.
@@ -53,11 +53,11 @@ class DataFolder {
      */
     List getTheChildren() {
 <span class="pc" id="L55">        return this.children.collect{it}</span>
-<span class="nc" id="L56">    }</span>
+    }
 
     List getChildren() {
 <span class="nc" id="L59">        throw new IllegalAccessException(&quot;Please use the method getTheChildren().&quot;)</span>
-<span class="nc" id="L60">    }</span>
+    }
 
     @Override
     int hashCode() {
@@ -66,8 +66,8 @@ class DataFolder {
 <span class="fc" id="L66">        children.each {</span>
 <span class="pc" id="L67">            result = 31 * result + it.hashCode()</span>
         }
-<span class="fc" id="L69">        return result</span>
-<span class="nc" id="L70">    }</span>
+<span class="pc" id="L69">        return result</span>
+    }
 
     @Override
     boolean equals(Object o) {
@@ -81,7 +81,7 @@ class DataFolder {
 <span class="nc bnc" id="L81" title="All 10 branches missed.">        return folder.name == name &amp;&amp;</span>
 <span class="nc bnc" id="L82" title="All 8 branches missed.">                folder.relativePath == relativePath &amp;&amp;</span>
 <span class="nc bnc" id="L83" title="All 4 branches missed.">                folder.children == children</span>
-<span class="nc" id="L84">    }</span>
+    }
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

@@ -14,12 +14,12 @@ class BarcodedFolder extends DataFolder {
 
     private String sampleId
 
-<span class="nc" id="L17">    protected BarcodedFolder() {}</span>
+    protected BarcodedFolder() {}
 
     protected BarcodedFolder(String name, String relativePath, List children) {
 <span class="fc" id="L20">        super(name, relativePath, children)</span>
 <span class="pc bpc" id="L21" title="1 of 2 branches missed.">        validateName()</span>
-<span class="fc" id="L22">    }</span>
+    }
 
     private void validateName() {
 <span class="fc" id="L25">        final def ids = SampleCodeFunctions.findAllQbicSampleCodes(this.name)</span>
@@ -30,14 +30,14 @@ class BarcodedFolder extends DataFolder {
 <span class="nc" id="L30">            throw new IllegalArgumentException(&quot;Name contained more than valid sample id!&quot;)</span>
         }
 <span class="fc" id="L32">        sampleId = ids.get(0)</span>
-<span class="fc" id="L33">    }</span>
+    }
 
     /**
      * Returns the sample id of the barcoded folder
      * @return
      */
     String getSampleCode() {
-<span class="fc" id="L40">        return this.sampleId</span>
-<span class="nc" id="L41">    }</span>
+<span class="pc" id="L40">        return this.sampleId</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

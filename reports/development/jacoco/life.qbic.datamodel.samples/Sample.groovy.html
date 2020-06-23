@@ -16,16 +16,16 @@ public class Sample  {
   @JsonProperty(&quot;code&quot;)
   public String getCode() {
 <span class="nc" id="L18">    return code;</span>
-<span class="nc" id="L19">  }</span>
+  }
 
   public void setCode(String code) {
 <span class="nc" id="L22">    this.code = code;</span>
-<span class="nc" id="L23">  }</span>
+  }
 
   public Sample code(String code) {
 <span class="nc" id="L26">    this.code = code;</span>
 <span class="nc" id="L27">    return this;</span>
-<span class="nc" id="L28">  }</span>
+  }
 
   /**
    * Get currentLocation
@@ -34,16 +34,16 @@ public class Sample  {
   @JsonProperty(&quot;current_location&quot;)
   public Location getCurrentLocation() {
 <span class="nc" id="L36">    return currentLocation;</span>
-<span class="nc" id="L37">  }</span>
+  }
 
   public void setCurrentLocation(Location currentLocation) {
 <span class="nc" id="L40">    this.currentLocation = currentLocation;</span>
-<span class="nc" id="L41">  }</span>
+  }
 
   public Sample currentLocation(Location currentLocation) {
 <span class="nc" id="L44">    this.currentLocation = currentLocation;</span>
 <span class="nc" id="L45">    return this;</span>
-<span class="nc" id="L46">  }</span>
+  }
 
   /**
    * Get pastLocations
@@ -52,16 +52,16 @@ public class Sample  {
   @JsonProperty(&quot;past_locations&quot;)
   public List&lt;Location&gt; getpastLocations() {
 <span class="nc" id="L54">    return pastLocations;</span>
-<span class="nc" id="L55">  }</span>
+  }
 
   public void setPastLocations(List&lt;Location&gt; pastLocations) {
 <span class="nc" id="L58">    this.pastLocations = pastLocations;</span>
-<span class="nc" id="L59">  }</span>
+  }
 
   public Sample pastLocations(List&lt;Location&gt; pastLocations) {
 <span class="nc" id="L62">    this.pastLocations = pastLocations;</span>
 <span class="nc" id="L63">    return this;</span>
-<span class="nc" id="L64">  }</span>
+  }
 
   @Override
   public String toString() {
@@ -72,7 +72,7 @@ public class Sample  {
 <span class="nc" id="L72">    sb.append(&quot;    past locations: &quot;).append(toIndentedString(pastLocations)).append(&quot;\n&quot;);</span>
 <span class="nc" id="L73">    sb.append(&quot;}&quot;);</span>
 <span class="nc" id="L74">    return sb.toString();</span>
-<span class="nc" id="L75">  }</span>
+  }
 
   /**
    * Convert the given object to string with each line indented by 4 spaces
@@ -83,7 +83,7 @@ public class Sample  {
 <span class="nc" id="L83">      return &quot;null&quot;;</span>
     }
 <span class="nc" id="L85">    return o.toString().replace(&quot;\n&quot;, &quot;\n    &quot;);</span>
-<span class="nc" id="L86">  }</span>
+  }
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
