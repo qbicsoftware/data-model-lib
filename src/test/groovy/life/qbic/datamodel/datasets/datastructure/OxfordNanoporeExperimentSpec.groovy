@@ -14,7 +14,7 @@ class OxfordNanoporeExperimentSpec extends Specification {
 
     /**
      * Map that stores the Oxford Nanopore folder structure
-     * according to the schema
+     * according to the schema_
      */
     @Shared
     Map minimalWorkingSimpleDataStructure
