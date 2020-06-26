@@ -111,11 +111,26 @@
         }
       ]
     },
+    "unassigned_folder": {
+      "description": "folder containing unassigned read file(s)",
+      "allOf": [
+        {
+          "$ref": "#/definitions/folder"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "unclassified"
+            }
+          }
+        }  
+      ]
+    },
     "fast5_unassigned_folder": {
       "description": "folder containing fast5 data from a pooling experiment, that could not be assigned to one of the known samples",
       "allOf": [
         {
-          "$ref": "#/definitions/folder"
+          "$ref": "#/definitions/unassigned_folder"
         },
         {
           "properties": {
@@ -133,7 +148,7 @@
       "description": "folder containing fastq and/or fastq.gz data from a pooling experiment, that could not be assigned to one of the known samples",
       "allOf": [
         {
-          "$ref": "#/definitions/folder"
+          "$ref": "#/definitions/unassigned_folder"
         },
         {
           "properties": {
