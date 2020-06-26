@@ -13,21 +13,21 @@ class ReportPDFLog extends DataFile {
 
     final private static String NAME_SCHEMA = $/report_.*/$
 
-    protected ReportPDFLog() {}
+<span class="nc" id="L16">    protected ReportPDFLog() {}</span>
 
     protected ReportPDFLog(String name, String relativePath) {
 <span class="fc" id="L19">        super(name, relativePath, FILE_TYPE)</span>
 <span class="pc bpc" id="L20" title="1 of 2 branches missed.">        validateName()</span>
-    }
+<span class="fc" id="L21">    }</span>
 
     static ReportPDFLog create(String name, String relativePath) {
-<span class="pc" id="L24">        return new ReportPDFLog(name, relativePath)</span>
-    }
+<span class="fc" id="L24">        return new ReportPDFLog(name, relativePath)</span>
+<span class="nc" id="L25">    }</span>
 
     private void validateName() {
 <span class="fc bfc" id="L28" title="All 4 branches covered.">        if (!(this.name =~ NAME_SCHEMA)) {</span>
 <span class="fc" id="L29">            throw new IllegalArgumentException(&quot;Name must match the Nanopore report name schema!&quot;)</span>
         }
-    }
+<span class="fc" id="L31">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

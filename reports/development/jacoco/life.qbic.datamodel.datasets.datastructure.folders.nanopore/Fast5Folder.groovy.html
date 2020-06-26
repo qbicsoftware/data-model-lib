@@ -11,11 +11,11 @@ import life.qbic.datamodel.datasets.datastructure.files.nanopore.Fast5File
  */
 class Fast5Folder extends BarcodedFolder {
 
-    protected Fast5Folder() {}
+<span class="nc" id="L14">    protected Fast5Folder() {}</span>
 
     protected Fast5Folder(String name, String relativePath, List&lt;Fast5File&gt; children) {
 <span class="fc" id="L17">        super(name, relativePath, children)</span>
-    }
+<span class="fc" id="L18">    }</span>
 
     /**
      * Creates a new instance of a Fast5Folder object
@@ -24,7 +24,7 @@ class Fast5Folder extends BarcodedFolder {
      * @return A new instance of a Fast5Folder object
      */
     static Fast5Folder create(String name, String relativePath, List&lt;Fast5File&gt; children) {
-<span class="pc" id="L27">        return new Fast5Folder(name, relativePath, children)</span>
-    }
+<span class="fc" id="L27">        return new Fast5Folder(name, relativePath, children)</span>
+<span class="nc" id="L28">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

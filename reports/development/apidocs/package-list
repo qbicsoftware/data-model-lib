@@ -8,6 +8,7 @@ life.qbic.datamodel.datasets.datastructure.folders
 life.qbic.datamodel.datasets.datastructure.folders.nanopore
 life.qbic.datamodel.experiments
 life.qbic.datamodel.identifiers
+life.qbic.datamodel.instruments
 life.qbic.datamodel.ms
 life.qbic.datamodel.people
 life.qbic.datamodel.persons

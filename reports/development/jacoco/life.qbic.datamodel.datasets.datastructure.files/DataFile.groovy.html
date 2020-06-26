@@ -29,7 +29,7 @@ class DataFile {
      */
     final private String fileType
 
-    protected DataFile() {}
+<span class="nc" id="L32">    protected DataFile() {}</span>
 
     protected DataFile(String name, String relativePath, String fileType) {
 <span class="fc bfc" id="L35" title="All 4 branches covered.">        if (!(relativePath.contains(name))) {</span>
@@ -41,19 +41,19 @@ class DataFile {
 <span class="fc" id="L41">        this.name = Objects.requireNonNull(name, &quot;name must not be null&quot;)</span>
 <span class="fc" id="L42">        this.relativePath = Objects.requireNonNull(relativePath, &quot;relativePath must not be null&quot;)</span>
 <span class="fc" id="L43">        this.fileType = Objects.requireNonNull(fileType, &quot;fileType must not be null&quot;)</span>
-    }
+<span class="fc" id="L44">    }</span>
 
     final String getRelativePath() {
-<span class="pc" id="L47">        return relativePath</span>
-    }
+<span class="fc" id="L47">        return relativePath</span>
+<span class="nc" id="L48">    }</span>
 
     final String getName() {
-<span class="pc" id="L51">        return name</span>
-    }
+<span class="fc" id="L51">        return name</span>
+<span class="nc" id="L52">    }</span>
 
     final String getFileType() {
-<span class="pc" id="L55">        return fileType</span>
-    }
+<span class="fc" id="L55">        return fileType</span>
+<span class="nc" id="L56">    }</span>
 
     @Override
     boolean equals(Object o) {
@@ -67,14 +67,14 @@ class DataFile {
 <span class="nc bnc" id="L67" title="All 2 branches missed.">        return datafile.name == name \</span>
 <span class="nc bnc" id="L68" title="All 4 branches missed.">                 &amp;&amp; datafile.getRelativePath() == relativePath \</span>
 <span class="nc bnc" id="L69" title="All 2 branches missed.">                 &amp;&amp; datafile.fileType</span>
-    }
+<span class="nc" id="L70">    }</span>
 
     @Override
     int hashCode() {
 <span class="fc" id="L74">        int result = name.hashCode()</span>
 <span class="fc" id="L75">        result = 31 * result + relativePath.hashCode()</span>
 <span class="fc" id="L76">        result = 31 * result + fileType.hashCode()</span>
-<span class="pc" id="L77">        return result</span>
-    }
+<span class="fc" id="L77">        return result</span>
+<span class="nc" id="L78">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

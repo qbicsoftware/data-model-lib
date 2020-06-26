@@ -11,16 +11,16 @@ class Trace {
 
     Trace() {
 <span class="nc" id="L13">        traceInformation = [:].asImmutable()</span>
-    }
+<span class="nc" id="L14">    }</span>
 
     Trace(Map trace) {
 <span class="nc" id="L17">        traceInformation = trace.asImmutable()</span>
-    }
+<span class="nc" id="L18">    }</span>
 
     @Override
     Object getProperty(String s) {
 <span class="nc" id="L22">        return traceInformation.get(s)</span>
-    }
+<span class="nc" id="L23">    }</span>
 
     @Override
     boolean equals(Object o) {
@@ -34,8 +34,8 @@ class Trace {
 <span class="nc bnc" id="L34" title="All 8 branches missed.">            if( ! otherProperty || ( otherProperty != thisProperty ) ) {</span>
 <span class="nc" id="L35">                return false</span>
             }
-        }
+<span class="nc" id="L37">        }</span>
 <span class="nc" id="L38">        return true</span>
-    }
+<span class="nc" id="L39">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

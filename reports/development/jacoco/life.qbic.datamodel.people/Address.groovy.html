@@ -16,16 +16,16 @@ class Address  {
   @JsonProperty(&quot;affiliation&quot;)
   public String getAffiliation() {
 <span class="nc" id="L18">    return affiliation;</span>
-  }
+<span class="nc" id="L19">  }</span>
 
   public void setAffiliation(String affiliation) {
 <span class="nc" id="L22">    this.affiliation = affiliation;</span>
-  }
+<span class="nc" id="L23">  }</span>
 
   public Address affiliation(String affiliation) {
 <span class="nc" id="L26">    this.affiliation = affiliation;</span>
 <span class="nc" id="L27">    return this;</span>
-  }
+<span class="nc" id="L28">  }</span>
 
   /**
    * Get street
@@ -34,16 +34,16 @@ class Address  {
   @JsonProperty(&quot;street&quot;)
   public String getStreet() {
 <span class="nc" id="L36">    return street;</span>
-  }
+<span class="nc" id="L37">  }</span>
 
   public void setStreet(String street) {
 <span class="nc" id="L40">    this.street = street;</span>
-  }
+<span class="nc" id="L41">  }</span>
 
   public Address street(String street) {
 <span class="nc" id="L44">    this.street = street;</span>
 <span class="nc" id="L45">    return this;</span>
-  }
+<span class="nc" id="L46">  }</span>
   //
   // /**
   //   * Get number
@@ -70,16 +70,16 @@ class Address  {
   @JsonProperty(&quot;zip_code&quot;)
   public Integer getZipCode() {
 <span class="nc" id="L72">    return zipCode;</span>
-  }
+<span class="nc" id="L73">  }</span>
 
   public void setZipCode(Integer zipCode) {
 <span class="nc" id="L76">    this.zipCode = zipCode;</span>
-  }
+<span class="nc" id="L77">  }</span>
 
   public Address zipCode(Integer zipCode) {
 <span class="nc" id="L80">    this.zipCode = zipCode;</span>
 <span class="nc" id="L81">    return this;</span>
-  }
+<span class="nc" id="L82">  }</span>
 
   /**
    * Get country
@@ -88,22 +88,22 @@ class Address  {
   @JsonProperty(&quot;country&quot;)
   public String getCountry() {
 <span class="nc" id="L90">    return country;</span>
-  }
+<span class="nc" id="L91">  }</span>
 
   public void setCountry(String country) {
 <span class="nc" id="L94">    this.country = country;</span>
-  }
+<span class="nc" id="L95">  }</span>
 
   public Address country(String country) {
 <span class="nc" id="L98">    this.country = country;</span>
 <span class="nc" id="L99">    return this;</span>
-  }
+<span class="nc" id="L100">  }</span>
 
   @Override
   public boolean equals(Object a) {
 <span class="nc" id="L104">    Address ad = (Address) a</span>
 <span class="nc bnc" id="L105" title="All 30 branches missed.">    return ad.affiliation.equals(this.affiliation) &amp;&amp; ad.country.equals(this.country) &amp;&amp; ad.street.equals(this.street) &amp;&amp; ad.zipCode == this.zipCode</span>
-  }
+<span class="nc" id="L106">  }</span>
 
   @Override
   public String toString() {
@@ -117,7 +117,7 @@ class Address  {
 <span class="nc" id="L117">    sb.append(&quot;    country: &quot;).append(toIndentedString(country)).append(&quot;\n&quot;);</span>
 <span class="nc" id="L118">    sb.append(&quot;}&quot;);</span>
 <span class="nc" id="L119">    return sb.toString();</span>
-  }
+<span class="nc" id="L120">  }</span>
 
   /**
    * Convert the given object to string with each line indented by 4 spaces
@@ -128,7 +128,7 @@ class Address  {
 <span class="nc" id="L128">      return &quot;null&quot;;</span>
     }
 <span class="nc" id="L130">    return o.toString().replace(&quot;\n&quot;, &quot;\n    &quot;);</span>
-  }
+<span class="nc" id="L131">  }</span>
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

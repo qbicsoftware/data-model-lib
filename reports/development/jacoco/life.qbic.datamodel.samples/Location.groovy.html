@@ -23,16 +23,16 @@ class Location  {
   @JsonProperty(&quot;name&quot;)
   public String getName() {
 <span class="nc" id="L25">    return name;</span>
-  }
+<span class="nc" id="L26">  }</span>
 
   public void setName(String name) {
 <span class="nc" id="L29">    this.name = name;</span>
-  }
+<span class="nc" id="L30">  }</span>
 
   public Location name(String name) {
 <span class="nc" id="L33">    this.name = name;</span>
 <span class="nc" id="L34">    return this;</span>
-  }
+<span class="nc" id="L35">  }</span>
 
   /**
    * Get responsiblePerson
@@ -41,16 +41,16 @@ class Location  {
   @JsonProperty(&quot;responsible_person&quot;)
   public String getResponsiblePerson() {
 <span class="nc" id="L43">    return responsiblePerson;</span>
-  }
+<span class="nc" id="L44">  }</span>
 
   public void setResponsiblePerson(String responsiblePerson) {
 <span class="nc" id="L47">    this.responsiblePerson = responsiblePerson;</span>
-  }
+<span class="nc" id="L48">  }</span>
 
   public Location responsiblePerson(String responsiblePerson) {
 <span class="nc" id="L51">    this.responsiblePerson = responsiblePerson;</span>
 <span class="nc" id="L52">    return this;</span>
-  }
+<span class="nc" id="L53">  }</span>
 
   /**
    * Get responsibleEmail
@@ -59,16 +59,16 @@ class Location  {
   @JsonProperty(&quot;responsible_person_email&quot;)
   public String getResponsibleEmail() {
 <span class="nc" id="L61">    return responsibleEmail;</span>
-  }
+<span class="nc" id="L62">  }</span>
 
   public void setResponsibleEmail(String responsibleEmail) {
 <span class="nc" id="L65">    this.responsibleEmail = responsibleEmail;</span>
-  }
+<span class="nc" id="L66">  }</span>
 
   public Location responsibleEmail(String responsibleEmail) {
 <span class="nc" id="L69">    this.responsibleEmail = responsibleEmail;</span>
 <span class="nc" id="L70">    return this;</span>
-  }
+<span class="nc" id="L71">  }</span>
 
   /**
    * Get address
@@ -77,16 +77,16 @@ class Location  {
   @JsonProperty(&quot;address&quot;)
   public Address getAddress() {
 <span class="nc" id="L79">    return address;</span>
-  }
+<span class="nc" id="L80">  }</span>
 
   public void setAddress(Address address) {
 <span class="nc" id="L83">    this.address = address;</span>
-  }
+<span class="nc" id="L84">  }</span>
 
   public Location address(Address address) {
 <span class="nc" id="L87">    this.address = address;</span>
 <span class="nc" id="L88">    return this;</span>
-  }
+<span class="nc" id="L89">  }</span>
 
   /**
    * Get sample status
@@ -95,16 +95,16 @@ class Location  {
   @JsonProperty(&quot;sample_status&quot;)
   public Status getStatus() {
 <span class="nc" id="L97">    return status;</span>
-  }
+<span class="nc" id="L98">  }</span>
 
   public void setStatus(Status status) {
 <span class="nc" id="L101">    this.status = status;</span>
-  }
+<span class="nc" id="L102">  }</span>
 
   public Location status(Status status) {
 <span class="nc" id="L105">    this.status = status;</span>
 <span class="nc" id="L106">    return this;</span>
-  }
+<span class="nc" id="L107">  }</span>
 
   /**
    * Get arrival_date
@@ -113,16 +113,16 @@ class Location  {
   @JsonProperty(&quot;arrival_date&quot;)
   public String getArrivalDate() {
 <span class="nc" id="L115">    return parseDate(arrivalDate);</span>
-  }
+<span class="nc" id="L116">  }</span>
 
   public void setArrivalDate(Date arrivalDate) {
 <span class="nc" id="L119">    this.arrivalDate = arrivalDate;</span>
-  }
+<span class="nc" id="L120">  }</span>
 
   public Location arrivalDate(Date arrivalDate) {
 <span class="nc" id="L123">    this.arrivalDate = arrivalDate;</span>
 <span class="nc" id="L124">    return this;</span>
-  }
+<span class="nc" id="L125">  }</span>
 
   /**
    * Get forward_date
@@ -132,16 +132,16 @@ class Location  {
   public String getForwardDate() {
 <span class="nc" id="L133">    String res = parseDate(forwardDate)</span>
 <span class="nc" id="L134">    return res</span>
-  }
+<span class="nc" id="L135">  }</span>
 
   public void setforwardDate(Date forwardDate) {
 <span class="nc" id="L138">    this.forwardDate = forwardDate;</span>
-  }
+<span class="nc" id="L139">  }</span>
 
   public Location forwardDate(Date forwardDate) {
 <span class="nc" id="L142">    this.forwardDate = forwardDate;</span>
 <span class="nc" id="L143">    return this;</span>
-  }
+<span class="nc" id="L144">  }</span>
 
   @Override
   public String toString() {
@@ -157,12 +157,12 @@ class Location  {
 <span class="nc" id="L157">    sb.append(&quot;    forward date: &quot;).append(toIndentedString(forwardDate)).append(&quot;\n&quot;);</span>
 <span class="nc" id="L158">    sb.append(&quot;}&quot;);</span>
 <span class="nc" id="L159">    return sb.toString();</span>
-  }
+<span class="nc" id="L160">  }</span>
 
   public boolean equals(Object o) {
 <span class="nc" id="L163">    Location a = (Location) o</span>
 <span class="nc bnc" id="L164" title="All 54 branches missed.">    return a.status.equals(this.status) &amp;&amp; a.address.equals(this.address) &amp;&amp; a.getArrivalDate().equals(this.getArrivalDate()) &amp;&amp; a.getForwardDate().equals(this.getForwardDate()) &amp;&amp; a.name.equals(this.name) &amp;&amp; a.responsibleEmail.equals(this.responsibleEmail) &amp;&amp; a.responsiblePerson.equals(this.responsiblePerson)</span>
-  }
+<span class="nc" id="L165">  }</span>
 
   public String parseDate(Date date) {
 <span class="nc bnc" id="L168" title="All 2 branches missed.">    if(date==null)</span>
@@ -171,7 +171,7 @@ class Location  {
 <span class="nc" id="L171">    DateFormat df = new SimpleDateFormat(&quot;yyyy-MM-dd'T'HH:mm'Z'&quot;);</span>
 <span class="nc" id="L172">    df.setTimeZone(tz);</span>
 <span class="nc" id="L173">    return df.format(date);</span>
-  }
+<span class="nc" id="L174">  }</span>
 
   /**
    * Convert the given object to string with each line indented by 4 spaces
@@ -182,7 +182,7 @@ class Location  {
 <span class="nc" id="L182">      return null</span>
     }
 <span class="nc" id="L184">    return o.toString().replace(&quot;\n&quot;, &quot;\n    &quot;);</span>
-  }
+<span class="nc" id="L185">  }</span>
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

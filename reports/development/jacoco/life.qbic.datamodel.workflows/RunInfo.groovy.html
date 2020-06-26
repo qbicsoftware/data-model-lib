@@ -37,7 +37,7 @@ class RunInfo {
 <span class="nc" id="L37">        status = &quot;&quot;</span>
 <span class="nc" id="L38">        id = &quot;&quot;</span>
 <span class="nc" id="L39">        time = new Date()</span>
-    }
+<span class="nc" id="L40">    }</span>
 
     RunInfo(Map weblogRunInformation) {
 <span class="nc bnc" id="L43" title="All 2 branches missed.">        event = convertEventStringToEventType(weblogRunInformation.get('event') as String)</span>
@@ -45,21 +45,21 @@ class RunInfo {
 <span class="nc bnc" id="L45" title="All 2 branches missed.">        status = weblogRunInformation.get('runStatus') ?: &quot;&quot;</span>
 <span class="nc bnc" id="L46" title="All 2 branches missed.">        id = weblogRunInformation.get('runId') ?: &quot;&quot;</span>
 <span class="nc bnc" id="L47" title="All 2 branches missed.">        time = convertStringToDate(weblogRunInformation.get('utcTime') as String)</span>
-    }
+<span class="nc" id="L48">    }</span>
 
     private static Date convertStringToDate(String s) {
 <span class="nc" id="L51">        Date date = new SimpleDateFormat(Constants.ISO_8601_DATETIME_FORMAT).parse(s)</span>
 <span class="nc" id="L52">        return date</span>
-    }
+<span class="nc" id="L53">    }</span>
 
     private static NextflowEventType convertEventStringToEventType(String event) {
         try {
 <span class="nc" id="L57">            def eventType = event.toUpperCase() as NextflowEventType</span>
 <span class="nc" id="L58">            return eventType</span>
-        } catch (IllegalArgumentException e) {
+<span class="nc" id="L59">        } catch (IllegalArgumentException e) {</span>
 <span class="nc" id="L60">            return NextflowEventType.UNKNOWN</span>
-        }
-    }
+<span class="nc" id="L61">        }</span>
+<span class="nc" id="L62">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

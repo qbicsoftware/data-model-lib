@@ -16,12 +16,12 @@ class FastQPassFolder extends DataFolder {
 
     final private static String NAME_SCHEMA = /fastq_pass/
 
-    protected FastQPassFolder() {}
+<span class="nc" id="L19">    protected FastQPassFolder() {}</span>
 
     protected FastQPassFolder(String relativePath, List&lt;?&gt; children) {
 <span class="fc" id="L22">        super(NAME, relativePath, children)</span>
 <span class="pc bpc" id="L23" title="1 of 2 branches missed.">        validateName()</span>
-    }
+<span class="fc" id="L24">    }</span>
 
     /**
      * Creates a new instance of a FastQPassFolder object
@@ -30,14 +30,14 @@ class FastQPassFolder extends DataFolder {
      * @return A new instance of a FastQPassFolder object
      */
     static FastQPassFolder create(String relativePath, List&lt;?&gt; children) {
-<span class="pc" id="L33">        new FastQPassFolder(relativePath, children)</span>
-    }
+<span class="fc" id="L33">        new FastQPassFolder(relativePath, children)</span>
+<span class="nc" id="L34">    }</span>
 
     private void validateName() {
 <span class="pc bpc" id="L37" title="2 of 4 branches missed.">        if (!(this.name =~ NAME_SCHEMA)) {</span>
-<span class="pc" id="L38">            throw new IllegalArgumentException(&quot;Name must match the Nanopore FastQPass directory schema!&quot;)</span>
+<span class="nc" id="L38">            throw new IllegalArgumentException(&quot;Name must match the Nanopore FastQPass directory schema!&quot;)</span>
         }
-    }
+<span class="fc" id="L40">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

@@ -12,6 +12,7 @@ life.qbic.datamodel.sorters
 life.qbic.datamodel.services
 life.qbic.datamodel.workflows
 life.qbic.datamodel.people
+life.qbic.datamodel.instruments
 life.qbic.datamodel.datasets
 life.qbic.datamodel.datasets.datastructure.files
 life.qbic.datamodel.datasets.datastructure.files.nanopore
