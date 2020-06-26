@@ -52,6 +52,11 @@
 			<name>GitHub Packages</name>
 			<url>https://maven.pkg.github.com/qbicsoftware/data-model-lib</url>
 		</repository>
+		<snapshotRepository>
+			<id>github</id>
+			<name>GitHub Packages</name>
+			<url>https://maven.pkg.github.com/qbicsoftware/data-model-lib</url>
+		</snapshotRepository>
 	</distributionManagement>
 
 	<dependencies>
