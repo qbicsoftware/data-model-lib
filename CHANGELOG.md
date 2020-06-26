@@ -1,5 +1,9 @@
 # Release Changelog for the data model library
 
+## 1.9.0
+
+* New class `OxfordNanoporeInstrumentOutput` that provides access to the instrument output JSON schema
+
 ## 1.8.3
 
 * `OxfordNanoporeMeasurement:getLogFiles` now provides a list with all the log files
