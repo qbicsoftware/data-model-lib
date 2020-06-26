@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "http://qbic.life/v1/ont-metadata.schema.json",
   "title": "Nanopore Instrument Metadata Output",
-  "description": "Describes in which form nanopore metadata is received from the lab.",
+  "description": "Describes in which form Nanopore metadata is received from the lab.",
   "type": "object",
   "properties": {
     "adapter": {

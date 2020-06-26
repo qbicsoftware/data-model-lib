@@ -40,14 +40,14 @@ final class OxfordNanoporeMeasurement {
 
     private final Map<String, DataFolder> folders
 
-    private final List<DataFile> logFiles
+    private final List<DataFile> logFilesCollection
 
     private final MeasurementFolder measurementFolder
 
     private boolean pooledSamplesMeasurement
 
     protected OxfordNanoporeMeasurement(String name, String path, List children, Map metadata) {
-        this.logFiles = new ArrayList<>()
+        this.logFilesCollection = new ArrayList<>()
         this.folders = new HashMap<>()
         this.metadata = new HashMap()
 
@@ -57,6 +57,10 @@ final class OxfordNanoporeMeasurement {
         readMetaData(metadata)
         createContent()
         assessPooledStatus()
+    }
+
+    private List<DataFile> getLogFileCollection() {
+        return logFilesCollection
     }
 
     static OxfordNanoporeMeasurement create(String name, String path, List children, Map metadata) {
@@ -125,7 +129,8 @@ final class OxfordNanoporeMeasurement {
                     folders["fastqfail"] = element as FastQFailFolder
                     break
                 case DataFile:
-                    logFiles.add(element as DataFile)
+                    logFilesCollection.add(element as DataFile)
+                    break
             }
         }
     }
@@ -269,7 +274,7 @@ final class OxfordNanoporeMeasurement {
      * @return List A list of log files from the experiment
      */
     List<DataFile> getLogFiles() {
-        return logFiles.collect { it }
+        return logFilesCollection.collect()
     }
 
     /**
@@ -290,7 +295,7 @@ final class OxfordNanoporeMeasurement {
      * @return String This returns the relative path within the Nanopore experiment
      */
     String getRelativePath() {
-        return this.relativePath
+        return this.measurementFolder.relativePath
     }
 
     /*
