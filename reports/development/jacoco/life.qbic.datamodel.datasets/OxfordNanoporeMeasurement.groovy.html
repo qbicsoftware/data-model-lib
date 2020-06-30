@@ -246,10 +246,10 @@ final class OxfordNanoporeMeasurement {
 <span class="pc" id="L246">                .collect { (it as BarcodedFolder).getSampleCode() }</span>
 <span class="fc" id="L247">        pooledSampleIds.each { sampleId -&gt;</span>
 <span class="fc" id="L248">            final def map = [</span>
-<span class="pc" id="L249">                    &quot;fast5fail&quot;: (folders.get(&quot;fast5fail&quot;) as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() },</span>
-<span class="pc" id="L250">                    &quot;fast5pass&quot;: (folders.get(&quot;fast5pass&quot;) as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() },</span>
-<span class="pc" id="L251">                    &quot;fastqpass&quot;: (folders.get(&quot;fastqpass&quot;) as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() },</span>
-<span class="pc" id="L252">                    &quot;fastqfail&quot;: (folders.get(&quot;fastqfail&quot;) as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() }</span>
+<span class="pc" id="L249">                    &quot;fast5fail&quot;: (folders.get(&quot;fast5fail&quot;) as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },</span>
+<span class="pc" id="L250">                    &quot;fast5pass&quot;: (folders.get(&quot;fast5pass&quot;) as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },</span>
+<span class="pc" id="L251">                    &quot;fastqpass&quot;: (folders.get(&quot;fastqpass&quot;) as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },</span>
+<span class="pc" id="L252">                    &quot;fastqfail&quot;: (folders.get(&quot;fastqfail&quot;) as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId }</span>
 <span class="nc" id="L253">            ]</span>
 <span class="fc" id="L254">            result[sampleId] = map</span>
         }

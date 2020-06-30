@@ -190,8 +190,8 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
 <span class="pc bpc" id="L190" title="2 of 4 branches missed.">        } catch (IllegalArgumentException e) {</span>
             try {
                 // Try named folder
-<span class="nc" id="L193">                def dataFolder = method.invoke(null, name, relativePath, children) as DataFolder</span>
-<span class="nc" id="L194">                folder = Optional.of(dataFolder)</span>
+<span class="pc" id="L193">                def dataFolder = method.invoke(null, name, relativePath, children) as DataFolder</span>
+<span class="pc" id="L194">                folder = Optional.of(dataFolder)</span>
 <span class="pc" id="L195">            } catch (InvocationTargetException e2) {</span>
                 // Do nothing
 <span class="pc" id="L197">            }</span>
@@ -209,12 +209,12 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
             try {
 <span class="fc" id="L210">                def child = parseFile(unknownChild)</span>
 <span class="fc" id="L211">                parsedChildren.add(child)</span>
-<span class="nc" id="L212">            } catch (IllegalArgumentException e) {</span>
+<span class="pc" id="L212">            } catch (IllegalArgumentException e) {</span>
                 // We do not capture the second parse call, as we want to fail the parsing at this point.
                 // This means that we ultimately found a child of unknown type, which should
                 // break the parsing.
-<span class="nc" id="L216">                def child = parseFolder(unknownChild)</span>
-<span class="nc" id="L217">                parsedChildren.add(child)</span>
+<span class="fc" id="L216">                def child = parseFolder(unknownChild)</span>
+<span class="fc" id="L217">                parsedChildren.add(child)</span>
 <span class="nc" id="L218">            }</span>
         }
 <span class="fc" id="L220">        return parsedChildren</span>

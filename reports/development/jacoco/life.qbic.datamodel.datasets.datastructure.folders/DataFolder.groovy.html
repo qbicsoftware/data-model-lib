@@ -71,16 +71,16 @@ class DataFolder {
 
     @Override
     boolean equals(Object o) {
-<span class="nc bnc" id="L74" title="All 2 branches missed.">        if (o == this) {</span>
+<span class="pc bpc" id="L74" title="1 of 2 branches missed.">        if (o.is(this)) {</span>
 <span class="nc" id="L75">            return true</span>
         }
-<span class="nc bnc" id="L77" title="All 4 branches missed.">        if (!(o instanceof DataFolder)) {</span>
+<span class="pc bpc" id="L77" title="2 of 4 branches missed.">        if (!(o instanceof DataFolder)) {</span>
 <span class="nc" id="L78">            return false</span>
         }
-<span class="nc" id="L80">        DataFolder folder = (DataFolder) o</span>
-<span class="nc bnc" id="L81" title="All 10 branches missed.">        return folder.name == name &amp;&amp;</span>
-<span class="nc bnc" id="L82" title="All 8 branches missed.">                folder.relativePath == relativePath &amp;&amp;</span>
-<span class="nc bnc" id="L83" title="All 4 branches missed.">                folder.children == children</span>
+<span class="fc" id="L80">        DataFolder folder = (DataFolder) o</span>
+<span class="pc bpc" id="L81" title="6 of 10 branches missed.">        return folder.name == name &amp;&amp;</span>
+<span class="pc bpc" id="L82" title="7 of 8 branches missed.">                folder.relativePath == relativePath &amp;&amp;</span>
+<span class="pc bnc" id="L83" title="All 4 branches missed.">                folder.children == children</span>
 <span class="nc" id="L84">    }</span>
 
 }
