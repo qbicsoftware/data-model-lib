@@ -114,6 +114,10 @@ class OxfordNanoporeMeasurementSpec extends Specification {
         assert result.size() == 2
         assert result.get("QTEST001AE").get("fast5fail") instanceof DataFolder
         assert result.get("QD00M001AE").get("fast5fail") instanceof DataFolder
+        assert result.get("QTEST001AE").get("fast5fail") == result.get("QTEST001AE").get("fast5fail")
+        assert result.get("QD00M001AE").get("fast5fail") != result.get("QTEST001AE").get("fast5fail")
+        assert result.get("QTEST001AE").get("fast5pass") == result.get("QTEST001AE").get("fast5pass")
+        assert result.get("QD00M001AE").get("fast5pass") != result.get("QTEST001AE").get("fast5pass")
     }
 
     def "incomplete metadata should throw an IllegalArgumentException"() {

@@ -71,7 +71,7 @@ class DataFolder {
 
     @Override
     boolean equals(Object o) {
-        if (o == this) {
+        if (o.is(this)) {
             return true
         }
         if (!(o instanceof DataFolder)) {
