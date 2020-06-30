@@ -46,7 +46,7 @@
 			<url>https://jitpack.io</url>
 		</repository>
 	</repositories>
-	<distributionManagement>
+	<!--distributionManagement>
 		<repository>
 			<id>github</id>
 			<name>GitHub Packages</name>
@@ -57,7 +57,7 @@
 			<name>GitHub Packages</name>
 			<url>https://maven.pkg.github.com/qbicsoftware/data-model-lib</url>
 		</snapshotRepository>
-	</distributionManagement>
+	</distributionManagement-->
 
 	<dependencies>
 		<dependency>
