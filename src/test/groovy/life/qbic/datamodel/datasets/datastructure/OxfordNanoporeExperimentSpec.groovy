@@ -47,7 +47,22 @@ class OxfordNanoporeExperimentSpec extends Specification {
         then:
         assert experiment.sampleCode == "QABCD001AB"
         assert measurements.size() == 1
+    }
+
+    def "Create a simple pooled Oxford Nanopore experiment successfully"() {
+        given:
+        final def example = minimalWorkingPooledDataStructure
+
+        when:
+        final def experiment = OxfordNanoporeExperiment.create(example)
+        final def measurements = experiment.getMeasurements()
+
+        then:
+        assert experiment.sampleCode == "QABCD001AB"
+        assert measurements.size() == 1
         assert measurements.get(0).logFiles.size() == 8
+        // two samples in measurement
+        assert measurements.get(0).getRawDataPerSample(experiment).keySet().size() == 2
 
     }
 

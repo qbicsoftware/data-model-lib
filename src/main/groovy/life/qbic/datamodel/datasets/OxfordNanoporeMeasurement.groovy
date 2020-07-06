@@ -278,10 +278,10 @@ final class OxfordNanoporeMeasurement {
                 .collect { (it as BarcodedFolder).getSampleCode() }
         pooledSampleIds.each { sampleId ->
             final def map = [
-                    "fast5fail": (folders.get("fast5fail") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() },
-                    "fast5pass": (folders.get("fast5pass") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() },
-                    "fastqpass": (folders.get("fastqpass") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() },
-                    "fastqfail": (folders.get("fastqfail") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() }
+                    "fast5fail": (folders.get("fast5fail") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },
+                    "fast5pass": (folders.get("fast5pass") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },
+                    "fastqpass": (folders.get("fastqpass") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },
+                    "fastqfail": (folders.get("fastqfail") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId }
             ]
             result[sampleId] = map
         }

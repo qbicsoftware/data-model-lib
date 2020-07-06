@@ -3,6 +3,8 @@
 ## 1.9.0
 
 * New class `OxfordNanoporeInstrumentOutput` that provides access to the instrument output JSON schema
+* Bugfix for object comparison infinity crisis
+* Bugfix for wrong data assignment on pooled sample data
 
 ## 1.8.3
 
