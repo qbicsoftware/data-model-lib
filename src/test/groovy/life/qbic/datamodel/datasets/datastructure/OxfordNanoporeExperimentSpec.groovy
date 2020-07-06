@@ -58,7 +58,10 @@ class OxfordNanoporeExperimentSpec extends Specification {
         when:
         final def experiment = OxfordNanoporeExperiment.create(example)
         final def measurements = experiment.getMeasurements()
-        // TODO define API first
-        //final def unclassifiedFolder = measurements.get(0).get
+        final def unclassifiedFolder = measurements.get(0).getUnclassifiedDataPerSample(experiment)
+
+        then:
+        assert unclassifiedFolder.get(0).fast5.getTheChildren().size() == 2
+
     }
 }

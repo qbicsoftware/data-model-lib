@@ -137,19 +137,19 @@ final class OxfordNanoporeMeasurement {
 
     /**
      * This method aggregates all fast5 files and fastq files of an Oxford Nanopore
-     * measurement by sample id. The DataFolder objects will not contain unclassified
+     * measurement by sample code. The DataFolder objects will not contain unclassified
      * read information.
      *
      * The resulting data-structure follows this map schema:
      *
-     * "QBiC sample id":
+     * "QBiC sample code":
      *      "fast5fail": DataFolder
      *      "fast5pass": DataFolder
      *      "fastqfail": DataFolder
      *      "fastqpass": DataFolder
-     * "Other sample id":   // In case of pooled samples
+     * "Other sample code":   // In case of pooled samples
      *      ...
-     * @return nested Map with sample ids and data folders
+     * @return nested Map with sample codes and data folders
      */
     Map<String, Map<String, DataFolder>> getRawDataPerSample(ExperimentFolder experiment) {
         if (pooledSamplesMeasurement) {
@@ -165,14 +165,14 @@ final class OxfordNanoporeMeasurement {
      *
      * The resulting data-structure follows this map schema:
      *
-     * "QBiC sample id":
+     * "QBiC sample code":
      *      "fast5fail": DataFolder
      *      "fast5pass": DataFolder
      *      "fastqfail": DataFolder
      *      "fastqpass": DataFolder
-     * "Other sample id":   // In case of pooled samples
+     * "Other sample code":   // In case of pooled samples
      *      ...
-     * @return nested Map with sample ids and data folders
+     * @return nested Map with sample codes and data folders
      */
     Map<String, Map<String, DataFolder>> getUnclassifiedDataPerSample(ExperimentFolder experiment) {
         if (pooledSamplesMeasurement) {
@@ -262,15 +262,13 @@ final class OxfordNanoporeMeasurement {
         return metadata.get(METADATA_FIELD.START_DATE)
     }
 
-    private Map<String, Map<String, DataFolder>> prepareUnclassifiedData(String sampleId) {
+    private Map<String, Map<String, DataFolder>> prepareUnclassifiedData(String sampleCode) {
         return new HashMap<>()
     }
 
     private Map<String, Map<String, DataFolder>> prepareUnclassifiedDataFromPooledMeasurement() {
         return new HashMap<String, Map<String, DataFolder>>()
     }
-
-
 
     private Map<String, Map<String, DataFolder>> prepareRawDataFromPooledMeasurement() {
         final def result = new HashMap()
