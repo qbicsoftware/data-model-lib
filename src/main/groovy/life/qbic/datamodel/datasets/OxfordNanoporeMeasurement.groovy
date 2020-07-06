@@ -137,7 +137,8 @@ final class OxfordNanoporeMeasurement {
 
     /**
      * This method aggregates all fast5 files and fastq files of an Oxford Nanopore
-     * measurement by sample id.
+     * measurement by sample id. The DataFolder objects will not contain unclassified
+     * read information.
      *
      * The resulting data-structure follows this map schema:
      *
@@ -155,6 +156,29 @@ final class OxfordNanoporeMeasurement {
             return prepareRawDataFromPooledMeasurement()
         } else {
             return prepareRawData(experiment.sampleCode)
+        }
+    }
+
+    /**
+     * This method aggregates only *unclassified* fast5 files and fastq files of an Oxford Nanopore
+     * measurement by sample id.
+     *
+     * The resulting data-structure follows this map schema:
+     *
+     * "QBiC sample id":
+     *      "fast5fail": DataFolder
+     *      "fast5pass": DataFolder
+     *      "fastqfail": DataFolder
+     *      "fastqpass": DataFolder
+     * "Other sample id":   // In case of pooled samples
+     *      ...
+     * @return nested Map with sample ids and data folders
+     */
+    Map<String, Map<String, DataFolder>> getUnclassifiedDataPerSample(ExperimentFolder experiment) {
+        if (pooledSamplesMeasurement) {
+            return prepareUnclassifiedDataFromPooledMeasurement()
+        } else {
+            return prepareUnclassifiedData(experiment.sampleCode)
         }
     }
 
@@ -237,6 +261,16 @@ final class OxfordNanoporeMeasurement {
     String getStartDate() {
         return metadata.get(METADATA_FIELD.START_DATE)
     }
+
+    private Map<String, Map<String, DataFolder>> prepareUnclassifiedData(String sampleId) {
+        return new HashMap<>()
+    }
+
+    private Map<String, Map<String, DataFolder>> prepareUnclassifiedDataFromPooledMeasurement() {
+        return new HashMap<String, Map<String, DataFolder>>()
+    }
+
+
 
     private Map<String, Map<String, DataFolder>> prepareRawDataFromPooledMeasurement() {
         final def result = new HashMap()
