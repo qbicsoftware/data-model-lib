@@ -3,7 +3,7 @@ package life.qbic.datamodel.datasets.datastructure.folders.nanopore
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 
 /**
- * A special case of a DataFolder, its name contains always fast5_pass.
+ * A special case of a DataFolder, its name is always fast5_pass.
  *
  * Its children field contains either a list of type List<Fast5Files> or List<Fast5Folder>
  *
