@@ -12,25 +12,25 @@ import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
  */
 class FastQFailFolder extends DataFolder {
 
-    final private static String NAME = "fastq_fail"
-
     final private static String NAME_SCHEMA = /fastq_fail/
 
     protected FastQFailFolder() {}
 
-    protected FastQFailFolder(String relativePath, List<?> children) {
-        super(NAME, relativePath, children)
+    protected FastQFailFolder(String name, String relativePath, List<?> children) {
+        super(name, relativePath, children)
         validateName()
     }
 
     /**
-     * Creates a new instance of a FastQFailFolder object
+     * Creates a new instance of a FastQFailFolder object.
+     *
+     * @param name The folder name
      * @param relativePath The relative path of the folder
      * @param children A list with child elements of the folder
      * @return A new instance of a FastQFailFolder object
      */
-    static FastQFailFolder create(String relativePath, List<?> children) {
-        new FastQFailFolder(relativePath, children)
+    static FastQFailFolder create(String name, String relativePath, List<?> children) {
+        new FastQFailFolder(name, relativePath, children)
     }
 
     private void validateName() {

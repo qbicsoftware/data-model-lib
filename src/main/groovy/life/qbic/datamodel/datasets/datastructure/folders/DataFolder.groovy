@@ -51,12 +51,8 @@ class DataFolder {
      * Returns the children of the folder.
      * @return
      */
-    List getTheChildren() {
-        return this.children.collect{it}
-    }
-
     List getChildren() {
-        throw new IllegalAccessException("Please use the method getTheChildren().")
+        return this.children.collect{it}
     }
 
     @Override

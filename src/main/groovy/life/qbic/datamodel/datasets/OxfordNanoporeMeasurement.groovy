@@ -78,11 +78,11 @@ final class OxfordNanoporeMeasurement {
     }
 
     private void assessPooledStatus() {
-        this.pooledSamplesMeasurement = folders["fast5pass"] ? folders["fast5pass"].getTheChildren().get(0) instanceof Fast5Folder : false
+        this.pooledSamplesMeasurement = folders["fast5pass"] ? folders["fast5pass"].getChildren().get(0) instanceof Fast5Folder : false
         // There can be still pooled samples in the failed folder, worst case is all
         // samples failed, so we need to check there to
         if (! pooledSamplesMeasurement) {
-            this.pooledSamplesMeasurement = folders["fast5fail"] ? folders["fast5fail"].getTheChildren().get(0) instanceof Fast5Folder : false
+            this.pooledSamplesMeasurement = folders["fast5fail"] ? folders["fast5fail"].getChildren().get(0) instanceof Fast5Folder : false
         }
     }
 
@@ -114,7 +114,7 @@ final class OxfordNanoporeMeasurement {
     }
 
     private void createContent() {
-        measurementFolder.getTheChildren().each { element ->
+        measurementFolder.getChildren().each { element ->
             switch (element) {
                 case Fast5PassFolder:
                     folders["fast5pass"] = element as Fast5PassFolder
@@ -137,18 +137,19 @@ final class OxfordNanoporeMeasurement {
 
     /**
      * This method aggregates all fast5 files and fastq files of an Oxford Nanopore
-     * measurement by sample id.
+     * measurement by sample code. The DataFolder objects will not contain unclassified
+     * read information.
      *
      * The resulting data-structure follows this map schema:
      *
-     * "QBiC sample id":
+     * "QBiC sample code":
      *      "fast5fail": DataFolder
      *      "fast5pass": DataFolder
      *      "fastqfail": DataFolder
      *      "fastqpass": DataFolder
-     * "Other sample id":   // In case of pooled samples
+     * "Other sample code":   // In case of pooled samples
      *      ...
-     * @return nested Map with sample ids and data folders
+     * @return nested Map with sample codes and data folders
      */
     Map<String, Map<String, DataFolder>> getRawDataPerSample(ExperimentFolder experiment) {
         if (pooledSamplesMeasurement) {
@@ -156,6 +157,23 @@ final class OxfordNanoporeMeasurement {
         } else {
             return prepareRawData(experiment.sampleCode)
         }
+    }
+
+    /**
+     * This method aggregates only *unclassified* fast5 files and fastq files of an Oxford Nanopore
+     * measurement.
+     *
+     * The resulting data-structure follows this map schema:
+     *
+     *   "fast5fail": DataFolder
+     *   "fast5pass": DataFolder
+     *   "fastqfail": DataFolder
+     *   "fastqpass": DataFolder
+     *
+     * @return Map with sample codes and data folders
+     */
+    Map<String, DataFolder> getUnclassifiedData() {
+        return prepareUnclassifiedData()
     }
 
     /**
@@ -238,18 +256,28 @@ final class OxfordNanoporeMeasurement {
         return metadata.get(METADATA_FIELD.START_DATE)
     }
 
+    private Map<String, DataFolder> prepareUnclassifiedData() {
+        final def folders = [
+                "fast5fail": (folders.get("fast5fail") as DataFolder).getChildren().find { it instanceof UnclassifiedFast5Folder } as DataFolder,
+                "fast5pass": (folders.get("fast5pass") as DataFolder).getChildren().find { it instanceof UnclassifiedFast5Folder } as DataFolder,
+                "fastqpass": (folders.get("fastqpass") as DataFolder).getChildren().find { it instanceof UnclassifiedFastQFolder } as DataFolder,
+                "fastqfail": (folders.get("fastqfail") as DataFolder).getChildren().find { it instanceof UnclassifiedFastQFolder } as DataFolder,
+        ]
+        return folders
+    }
+
     private Map<String, Map<String, DataFolder>> prepareRawDataFromPooledMeasurement() {
         final def result = new HashMap()
-        final def pooledSampleIds = folders
+        final def pooledSampleCodes = folders
                 .get("fast5fail")
-                .getTheChildren()
+                .getChildren()
                 .collect { (it as BarcodedFolder).getSampleCode() }
-        pooledSampleIds.each { sampleId ->
+        pooledSampleCodes.each { sampleId ->
             final def map = [
-                    "fast5fail": (folders.get("fast5fail") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },
-                    "fast5pass": (folders.get("fast5pass") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },
-                    "fastqpass": (folders.get("fastqpass") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },
-                    "fastqfail": (folders.get("fastqfail") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId }
+                    "fast5fail": (folders.get("fast5fail") as DataFolder).getChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },
+                    "fast5pass": (folders.get("fast5pass") as DataFolder).getChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },
+                    "fastqpass": (folders.get("fastqpass") as DataFolder).getChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },
+                    "fastqfail": (folders.get("fastqfail") as DataFolder).getChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId }
             ]
             result[sampleId] = map
         }

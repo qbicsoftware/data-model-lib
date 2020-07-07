@@ -43,7 +43,9 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
             FQDN_FOLDERS + ".Fast5PassFolder",
             FQDN_FOLDERS + ".Fast5FailFolder",
             FQDN_FOLDERS + ".FastQPassFolder",
-            FQDN_FOLDERS + ".FastQFailFolder"
+            FQDN_FOLDERS + ".FastQFailFolder",
+            FQDN_FOLDERS + ".UnclassifiedFast5Folder",
+            FQDN_FOLDERS + ".UnclassifiedFastQFolder"
     ]
 
     private OxfordNanoporeExperiment(String sampleId, List<OxfordNanoporeMeasurement> measurements) {
@@ -165,6 +167,8 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
                 return folder.get()
             }
         }
+        // If we reach this point, no DataFolder could be created based on the known folder types
+        // in life.qbic.datamodel.datasets.datastructure.folders.nanopore.*
         throw new IllegalArgumentException("Folder $name with path $path is of unknown Oxford Nanopore folder type.")
     }
 
