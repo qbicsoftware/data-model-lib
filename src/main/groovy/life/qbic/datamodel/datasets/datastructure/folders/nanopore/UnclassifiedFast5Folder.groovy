@@ -1,6 +1,8 @@
 package life.qbic.datamodel.datasets.datastructure.folders.nanopore
 
 import life.qbic.datamodel.datasets.datastructure.files.nanopore.Fast5File
+import life.qbic.datamodel.datasets.datastructure.files.nanopore.FastQFile
+import life.qbic.datamodel.datasets.datastructure.files.nanopore.FastQZippedFile
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 /**
  * A data folder, which name contains `unclassified` read information and contains only fast5 files.
@@ -34,7 +36,20 @@ class UnclassifiedFast5Folder extends DataFolder {
      * @return A new instance of a UnclassifiedFastQFolder object
      */
     static UnclassifiedFast5Folder create(String name, String relativePath, List<Fast5File> children) {
+        if (children) {
+            validateChildren(children)
+        }
         new UnclassifiedFast5Folder(name, relativePath, children)
+    }
+
+    private static void validateChildren(List children) {
+        children.each { validateChild(it) }
+    }
+
+    private static void validateChild(Object child) {
+        if (!((child instanceof FastQFile) || (child instanceof FastQZippedFile))) {
+            throw new IllegalArgumentException("Children must  match the Nanopore UnclassifiedFastQFolder directory schema!")
+        }
     }
 
     private void validateName() {
