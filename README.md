@@ -35,6 +35,8 @@ A Nanopore NGS measurement output is delivered to us as a nested folder structur
 
 ### Example
 
+For complete examples, see the [JSON example files[(./src/test/resources) provided for the unit tests.
+
 In order to create an instance of ype `OxfordNanoporeExperiment`, you need to provide a map that provides content following the [Nanopore Instrument Output Schema JSON](./src/main/resources/schemas/nanopore-instrument-output.schema.json).  
 Every measurement folder also needs to be enriched with metadata, which itself is specified with another [JSON schema](./src/main/resources/schemas/ont-metadata.schema.json).
 
