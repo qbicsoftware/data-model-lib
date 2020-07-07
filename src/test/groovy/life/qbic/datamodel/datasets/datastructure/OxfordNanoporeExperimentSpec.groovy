@@ -88,10 +88,10 @@ class OxfordNanoporeExperimentSpec extends Specification {
 
         then:
         assert measurements.size() == 1
-        assert fast5PassUnclassifiedFolder.getTheChildren().size() == 1
-        assert fast5FailUnclassifiedFolder.getTheChildren().size() == 1
-        assert fastQPassUnclassifiedFolder.getTheChildren().size() == 1
-        assert fastQFailUnclassifiedFolder.getTheChildren().size() == 1
+        assert fast5PassUnclassifiedFolder.getChildren().size() == 1
+        assert fast5FailUnclassifiedFolder.getChildren().size() == 1
+        assert fastQPassUnclassifiedFolder.getChildren().size() == 1
+        assert fastQFailUnclassifiedFolder.getChildren().size() == 1
 
     }
 }

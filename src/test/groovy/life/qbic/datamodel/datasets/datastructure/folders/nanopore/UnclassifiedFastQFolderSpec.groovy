@@ -23,7 +23,7 @@ class UnclassifiedFastQFolderSpec extends Specification {
         final def dataFolder = UnclassifiedFastQFolder.create(name, relativePath, children)
 
         then:
-        assert dataFolder.getTheChildren().get(0) instanceof DataFile
+        assert dataFolder.getChildren().get(0) instanceof DataFile
 
     }
 

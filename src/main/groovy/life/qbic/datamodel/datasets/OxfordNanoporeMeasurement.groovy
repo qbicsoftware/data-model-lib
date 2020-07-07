@@ -78,11 +78,11 @@ final class OxfordNanoporeMeasurement {
     }
 
     private void assessPooledStatus() {
-        this.pooledSamplesMeasurement = folders["fast5pass"] ? folders["fast5pass"].getTheChildren().get(0) instanceof Fast5Folder : false
+        this.pooledSamplesMeasurement = folders["fast5pass"] ? folders["fast5pass"].getChildren().get(0) instanceof Fast5Folder : false
         // There can be still pooled samples in the failed folder, worst case is all
         // samples failed, so we need to check there to
         if (! pooledSamplesMeasurement) {
-            this.pooledSamplesMeasurement = folders["fast5fail"] ? folders["fast5fail"].getTheChildren().get(0) instanceof Fast5Folder : false
+            this.pooledSamplesMeasurement = folders["fast5fail"] ? folders["fast5fail"].getChildren().get(0) instanceof Fast5Folder : false
         }
     }
 
@@ -114,7 +114,7 @@ final class OxfordNanoporeMeasurement {
     }
 
     private void createContent() {
-        measurementFolder.getTheChildren().each { element ->
+        measurementFolder.getChildren().each { element ->
             switch (element) {
                 case Fast5PassFolder:
                     folders["fast5pass"] = element as Fast5PassFolder
@@ -260,10 +260,10 @@ final class OxfordNanoporeMeasurement {
     private Map<String, Map<String, DataFolder>> prepareUnclassifiedData(String sampleCode) {
         final def result = new HashMap()
         final def folders = [
-                "fast5fail": (folders.get("fast5fail") as DataFolder).getTheChildren().find { it instanceof UnclassifiedFast5Folder } as DataFolder,
-                "fast5pass": (folders.get("fast5pass") as DataFolder).getTheChildren().find { it instanceof UnclassifiedFast5Folder } as DataFolder,
-                "fastqpass": (folders.get("fastqpass") as DataFolder).getTheChildren().find { it instanceof UnclassifiedFastQFolder } as DataFolder,
-                "fastqfail": (folders.get("fastqfail") as DataFolder).getTheChildren().find { it instanceof UnclassifiedFastQFolder } as DataFolder,
+                "fast5fail": (folders.get("fast5fail") as DataFolder).getChildren().find { it instanceof UnclassifiedFast5Folder } as DataFolder,
+                "fast5pass": (folders.get("fast5pass") as DataFolder).getChildren().find { it instanceof UnclassifiedFast5Folder } as DataFolder,
+                "fastqpass": (folders.get("fastqpass") as DataFolder).getChildren().find { it instanceof UnclassifiedFastQFolder } as DataFolder,
+                "fastqfail": (folders.get("fastqfail") as DataFolder).getChildren().find { it instanceof UnclassifiedFastQFolder } as DataFolder,
         ]
         result.put(sampleCode, folders)
         return result
@@ -273,14 +273,14 @@ final class OxfordNanoporeMeasurement {
         final def result = new HashMap()
         final def pooledSampleIds = folders
                 .get("fast5fail")
-                .getTheChildren()
+                .getChildren()
                 .collect { (it as BarcodedFolder).getSampleCode() }
         pooledSampleIds.each { sampleId ->
             final def map = [
-                    "fast5fail": (folders.get("fast5fail") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },
-                    "fast5pass": (folders.get("fast5pass") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },
-                    "fastqpass": (folders.get("fastqpass") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },
-                    "fastqfail": (folders.get("fastqfail") as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId }
+                    "fast5fail": (folders.get("fast5fail") as DataFolder).getChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },
+                    "fast5pass": (folders.get("fast5pass") as DataFolder).getChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },
+                    "fastqpass": (folders.get("fastqpass") as DataFolder).getChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },
+                    "fastqfail": (folders.get("fastqfail") as DataFolder).getChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId }
             ]
             result[sampleId] = map
         }
