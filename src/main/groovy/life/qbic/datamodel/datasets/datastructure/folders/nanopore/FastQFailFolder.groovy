@@ -5,7 +5,7 @@ import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 /**
  * A special case of a DataFolder.
  *
- * Its name contains always 'fastq_fail'.
+ * Its name is always 'fastq_fail'.
  * Its children list is of type List<FastQFolder> or of List<FastQFile>
  *
  * @author: Sven Fillinger
