@@ -161,7 +161,7 @@ final class OxfordNanoporeMeasurement {
 
     /**
      * This method aggregates only *unclassified* fast5 files and fastq files of an Oxford Nanopore
-     * measurement by sample id.
+     * measurement by sample code.
      *
      * The resulting data-structure follows this map schema:
      *
