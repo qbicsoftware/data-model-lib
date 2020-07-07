@@ -23,7 +23,7 @@ class UnclassifiedFast5FolderSpec extends Specification {
         final def dataFolder = MeasurementFolder.create(name, relativePath, children)
 
         then:
-        assert dataFolder.getTheChildren().get(0) instanceof DataFile
+        assert dataFolder.getChildren().get(0) instanceof DataFile
 
     }
 
