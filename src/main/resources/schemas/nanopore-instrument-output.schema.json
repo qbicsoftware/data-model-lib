@@ -91,7 +91,7 @@
         {
           "properties": {
             "file_type": {
-              "pattern": ".*fast5$"
+              "pattern": "fast5"
             }
           }
         }
@@ -119,7 +119,7 @@
         {
           "properties": {
             "file_type": {
-              "pattern": ".*fastq$"
+              "pattern": "fastq"
             }
           }
         }
