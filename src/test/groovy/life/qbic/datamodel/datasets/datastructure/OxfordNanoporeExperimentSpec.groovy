@@ -34,7 +34,7 @@ class OxfordNanoporeExperimentSpec extends Specification {
         InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream("valid-example.json")
         minimalWorkingSimpleDataStructure = (Map) new JsonSlurper().parse(stream)
         // read in unclassified example
-        stream = Thread.currentThread().getContextClassLoader().getResourceAsStream("valid-unclassified-example.json")
+        stream = Thread.currentThread().getContextClassLoader().getResourceAsStream("valid-example-unclassified.json")
         unclassifiedWorkingDataStructure = (Map) new JsonSlurper().parse(stream)
         // read in pooled example
         stream = Thread.currentThread().getContextClassLoader().getResourceAsStream("valid-example-pooled.json")
