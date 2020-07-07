@@ -10,20 +10,35 @@ Created by Andreas Friedrich, Luis de la Garza, Sven Fillinger.
 
 With Maven you can include the library as dependency with:
 
-```
+```XML
 <dependency>
   <groupId>life.qbic</groupId>
   <artifactId>data-model-lib</artifactId>
-  <version>1.8.2</version>
+  <version>1.9.0</version>
 </dependency>
 ```
 or Groovy Grape:
 
 ```
 @Grapes(
-  @Grab(group='life.qbic', module='data-model-lib', version='1.8.2')
+  @Grab(group='life.qbic', module='data-model-lib', version='1.9.0')
 )
 ```
+
+Make sure, that you have defined the Github package Maven repository, in order for Maven to resolve the dependency properly:
+
+```XML
+<repositories>
+  <repository>
+    <id>github</id>
+    <name>GitHub OWNER Apache Maven Packages</name>
+    <url>https://maven.pkg.github.com/qbicsoftware/data-model-lib</url>
+    <releases><enabled>true</enabled></releases>
+    <snapshots><enabled>true</enabled></snapshots>
+  </repository>
+</repositories>
+```
+
 
 ## Models
 
