@@ -5,7 +5,7 @@ import life.qbic.datamodel.datasets.datastructure.files.nanopore.FastQFile
 import spock.lang.Specification
 
 /**
- * <add class description here>
+ * Tests for the UnclassifiedFast5Folder Object
  *
  * @author: Sven Fillinger
  */
@@ -23,7 +23,7 @@ class UnclassifiedFast5FolderSpec extends Specification {
         final def dataFolder = MeasurementFolder.create(name, relativePath, children)
 
         then:
-        assert dataFolder.getTheChildren().get(0) instanceof DataFile
+        assert dataFolder.getChildren().get(0) instanceof DataFile
 
     }
 
