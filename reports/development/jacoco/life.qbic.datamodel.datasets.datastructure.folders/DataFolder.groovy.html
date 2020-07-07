@@ -51,37 +51,33 @@ class DataFolder {
      * Returns the children of the folder.
      * @return
      */
-    List getTheChildren() {
+    List getChildren() {
 <span class="pc" id="L55">        return this.children.collect{it}</span>
 <span class="nc" id="L56">    }</span>
 
-    List getChildren() {
-<span class="nc" id="L59">        throw new IllegalAccessException(&quot;Please use the method getTheChildren().&quot;)</span>
-<span class="nc" id="L60">    }</span>
-
     @Override
     int hashCode() {
-<span class="fc" id="L64">        int result = name.hashCode()</span>
-<span class="fc" id="L65">        result = 31 * result + relativePath.hashCode()</span>
-<span class="fc" id="L66">        children.each {</span>
-<span class="pc" id="L67">            result = 31 * result + it.hashCode()</span>
+<span class="fc" id="L60">        int result = name.hashCode()</span>
+<span class="fc" id="L61">        result = 31 * result + relativePath.hashCode()</span>
+<span class="fc" id="L62">        children.each {</span>
+<span class="pc" id="L63">            result = 31 * result + it.hashCode()</span>
         }
-<span class="fc" id="L69">        return result</span>
-<span class="nc" id="L70">    }</span>
+<span class="fc" id="L65">        return result</span>
+<span class="nc" id="L66">    }</span>
 
     @Override
     boolean equals(Object o) {
-<span class="pc bpc" id="L74" title="1 of 2 branches missed.">        if (o.is(this)) {</span>
-<span class="nc" id="L75">            return true</span>
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">        if (o.is(this)) {</span>
+<span class="nc" id="L71">            return true</span>
         }
-<span class="pc bpc" id="L77" title="2 of 4 branches missed.">        if (!(o instanceof DataFolder)) {</span>
-<span class="nc" id="L78">            return false</span>
+<span class="pc bpc" id="L73" title="2 of 4 branches missed.">        if (!(o instanceof DataFolder)) {</span>
+<span class="nc" id="L74">            return false</span>
         }
-<span class="fc" id="L80">        DataFolder folder = (DataFolder) o</span>
-<span class="pc bpc" id="L81" title="6 of 10 branches missed.">        return folder.name == name &amp;&amp;</span>
-<span class="pc bpc" id="L82" title="7 of 8 branches missed.">                folder.relativePath == relativePath &amp;&amp;</span>
-<span class="pc bnc" id="L83" title="All 4 branches missed.">                folder.children == children</span>
-<span class="nc" id="L84">    }</span>
+<span class="fc" id="L76">        DataFolder folder = (DataFolder) o</span>
+<span class="pc bpc" id="L77" title="6 of 10 branches missed.">        return folder.name == name &amp;&amp;</span>
+<span class="pc bpc" id="L78" title="7 of 8 branches missed.">                folder.relativePath == relativePath &amp;&amp;</span>
+<span class="pc bnc" id="L79" title="All 4 branches missed.">                folder.children == children</span>
+<span class="nc" id="L80">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

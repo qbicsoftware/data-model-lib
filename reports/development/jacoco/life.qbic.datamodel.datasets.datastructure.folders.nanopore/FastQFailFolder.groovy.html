@@ -12,30 +12,30 @@ import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
  */
 class FastQFailFolder extends DataFolder {
 
-    final private static String NAME = &quot;fastq_fail&quot;
-
     final private static String NAME_SCHEMA = /fastq_fail/
 
-<span class="nc" id="L19">    protected FastQFailFolder() {}</span>
+<span class="nc" id="L17">    protected FastQFailFolder() {}</span>
 
-    protected FastQFailFolder(String relativePath, List&lt;?&gt; children) {
-<span class="fc" id="L22">        super(NAME, relativePath, children)</span>
-<span class="pc bpc" id="L23" title="1 of 2 branches missed.">        validateName()</span>
-<span class="fc" id="L24">    }</span>
+    protected FastQFailFolder(String name, String relativePath, List&lt;?&gt; children) {
+<span class="fc" id="L20">        super(name, relativePath, children)</span>
+<span class="pc bpc" id="L21" title="1 of 2 branches missed.">        validateName()</span>
+<span class="fc" id="L22">    }</span>
 
     /**
-     * Creates a new instance of a FastQFailFolder object
+     * Creates a new instance of a FastQFailFolder object.
+     *
+     * @param name The folder name
      * @param relativePath The relative path of the folder
      * @param children A list with child elements of the folder
      * @return A new instance of a FastQFailFolder object
      */
-    static FastQFailFolder create(String relativePath, List&lt;?&gt; children) {
-<span class="fc" id="L33">        new FastQFailFolder(relativePath, children)</span>
+    static FastQFailFolder create(String name, String relativePath, List&lt;?&gt; children) {
+<span class="fc" id="L33">        new FastQFailFolder(name, relativePath, children)</span>
 <span class="nc" id="L34">    }</span>
 
     private void validateName() {
-<span class="pc bpc" id="L37" title="2 of 4 branches missed.">        if (!(this.name =~ NAME_SCHEMA)) {</span>
-<span class="nc" id="L38">            throw new IllegalArgumentException(&quot;Name must match the Nanopore FastQFail directory schema!&quot;)</span>
+<span class="fc bfc" id="L37" title="All 4 branches covered.">        if (!(this.name =~ NAME_SCHEMA)) {</span>
+<span class="fc" id="L38">            throw new IllegalArgumentException(&quot;Name must match the Nanopore FastQFail directory schema!&quot;)</span>
         }
 <span class="fc" id="L40">    }</span>
 

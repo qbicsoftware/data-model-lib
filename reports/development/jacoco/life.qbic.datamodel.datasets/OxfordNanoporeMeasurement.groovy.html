@@ -78,11 +78,11 @@ final class OxfordNanoporeMeasurement {
 <span class="fc" id="L78">    }</span>
 
     private void assessPooledStatus() {
-<span class="pc bpc" id="L81" title="1 of 2 branches missed.">        this.pooledSamplesMeasurement = folders[&quot;fast5pass&quot;] ? folders[&quot;fast5pass&quot;].getTheChildren().get(0) instanceof Fast5Folder : false</span>
+<span class="pc bpc" id="L81" title="1 of 2 branches missed.">        this.pooledSamplesMeasurement = folders[&quot;fast5pass&quot;] ? folders[&quot;fast5pass&quot;].getChildren().get(0) instanceof Fast5Folder : false</span>
         // There can be still pooled samples in the failed folder, worst case is all
         // samples failed, so we need to check there to
 <span class="fc bfc" id="L84" title="All 4 branches covered.">        if (! pooledSamplesMeasurement) {</span>
-<span class="pc bpc" id="L85" title="1 of 2 branches missed.">            this.pooledSamplesMeasurement = folders[&quot;fast5fail&quot;] ? folders[&quot;fast5fail&quot;].getTheChildren().get(0) instanceof Fast5Folder : false</span>
+<span class="pc bpc" id="L85" title="1 of 2 branches missed.">            this.pooledSamplesMeasurement = folders[&quot;fast5fail&quot;] ? folders[&quot;fast5fail&quot;].getChildren().get(0) instanceof Fast5Folder : false</span>
         }
 <span class="fc" id="L87">    }</span>
 
@@ -114,7 +114,7 @@ final class OxfordNanoporeMeasurement {
 <span class="nc" id="L114">    }</span>
 
     private void createContent() {
-<span class="fc" id="L117">        measurementFolder.getTheChildren().each { element -&gt;</span>
+<span class="fc" id="L117">        measurementFolder.getChildren().each { element -&gt;</span>
 <span class="fc" id="L118">            switch (element) {</span>
 <span class="fc bfc" id="L119" title="All 2 branches covered.">                case Fast5PassFolder:</span>
 <span class="fc" id="L120">                    folders[&quot;fast5pass&quot;] = element as Fast5PassFolder</span>
@@ -137,136 +137,164 @@ final class OxfordNanoporeMeasurement {
 
     /**
      * This method aggregates all fast5 files and fastq files of an Oxford Nanopore
-     * measurement by sample id.
+     * measurement by sample code. The DataFolder objects will not contain unclassified
+     * read information.
      *
      * The resulting data-structure follows this map schema:
      *
-     * &quot;QBiC sample id&quot;:
+     * &quot;QBiC sample code&quot;:
      *      &quot;fast5fail&quot;: DataFolder
      *      &quot;fast5pass&quot;: DataFolder
      *      &quot;fastqfail&quot;: DataFolder
      *      &quot;fastqpass&quot;: DataFolder
-     * &quot;Other sample id&quot;:   // In case of pooled samples
+     * &quot;Other sample code&quot;:   // In case of pooled samples
      *      ...
-     * @return nested Map with sample ids and data folders
+     * @return nested Map with sample codes and data folders
      */
-<span class="pc bpc" id="L153" title="2 of 4 branches missed.">    Map&lt;String, Map&lt;String, DataFolder&gt;&gt; getRawDataPerSample(ExperimentFolder experiment) {</span>
-<span class="pc bpc" id="L154" title="2 of 4 branches missed.">        if (pooledSamplesMeasurement) {</span>
-<span class="pc" id="L155">            return prepareRawDataFromPooledMeasurement()</span>
-<span class="nc" id="L156">        } else {</span>
-<span class="pc" id="L157">            return prepareRawData(experiment.sampleCode)</span>
+<span class="pc bpc" id="L154" title="2 of 4 branches missed.">    Map&lt;String, Map&lt;String, DataFolder&gt;&gt; getRawDataPerSample(ExperimentFolder experiment) {</span>
+<span class="pc bpc" id="L155" title="2 of 4 branches missed.">        if (pooledSamplesMeasurement) {</span>
+<span class="pc" id="L156">            return prepareRawDataFromPooledMeasurement()</span>
+<span class="nc" id="L157">        } else {</span>
+<span class="pc" id="L158">            return prepareRawData(experiment.sampleCode)</span>
         }
-<span class="nc" id="L159">    }</span>
+<span class="nc" id="L160">    }</span>
+
+    /**
+     * This method aggregates only *unclassified* fast5 files and fastq files of an Oxford Nanopore
+     * measurement.
+     *
+     * The resulting data-structure follows this map schema:
+     *
+     *   &quot;fast5fail&quot;: DataFolder
+     *   &quot;fast5pass&quot;: DataFolder
+     *   &quot;fastqfail&quot;: DataFolder
+     *   &quot;fastqpass&quot;: DataFolder
+     *
+     * @return Map with sample codes and data folders
+     */
+<span class="pc bpc" id="L175" title="2 of 4 branches missed.">    Map&lt;String, DataFolder&gt; getUnclassifiedData() {</span>
+<span class="pc" id="L176">        return prepareUnclassifiedData()</span>
+<span class="nc" id="L177">    }</span>
 
     /**
      * Provides access to the asic temperature.
      * @return
      */
     String getAsicTemp() {
-<span class="nc" id="L166">        return metadata.get(METADATA_FIELD.ASIC_TEMP)</span>
-<span class="nc" id="L167">    }</span>
+<span class="nc" id="L184">        return metadata.get(METADATA_FIELD.ASIC_TEMP)</span>
+<span class="nc" id="L185">    }</span>
 
     /**
      * Provides access to the device type.
      * @return
      */
     String getDeviceType() {
-<span class="nc" id="L174">        return metadata.get(METADATA_FIELD.DEVICE_TYPE)</span>
-<span class="nc" id="L175">    }</span>
+<span class="nc" id="L192">        return metadata.get(METADATA_FIELD.DEVICE_TYPE)</span>
+<span class="nc" id="L193">    }</span>
 
     /**
      * Provides access to the flow cell id.
      * @return
      */
     String getFlowcellId() {
-<span class="nc" id="L182">        return metadata.get(METADATA_FIELD.FLOWCELL_ID)</span>
-<span class="nc" id="L183">    }</span>
+<span class="nc" id="L200">        return metadata.get(METADATA_FIELD.FLOWCELL_ID)</span>
+<span class="nc" id="L201">    }</span>
 
     /**
      * Provides access to the flow cell position.
      * @return
      */
     String getFlowCellPosition() {
-<span class="nc" id="L190">        return metadata.get(METADATA_FIELD.FLOWCELL_POSITION)</span>
-<span class="nc" id="L191">    }</span>
+<span class="nc" id="L208">        return metadata.get(METADATA_FIELD.FLOWCELL_POSITION)</span>
+<span class="nc" id="L209">    }</span>
 
     /**
      * Provides access to the flow cell type.
      * @return
      */
     String getFlowCellType() {
-<span class="nc" id="L198">        return metadata.get(METADATA_FIELD.FLOWCELL_TYPE)</span>
-<span class="nc" id="L199">    }</span>
+<span class="nc" id="L216">        return metadata.get(METADATA_FIELD.FLOWCELL_TYPE)</span>
+<span class="nc" id="L217">    }</span>
 
     /**
      * Provides access to the base caller.
      * @return
      */
     String getBaseCaller() {
-<span class="nc" id="L206">        return metadata.get(METADATA_FIELD.BASE_CALLER)</span>
-<span class="nc" id="L207">    }</span>
+<span class="nc" id="L224">        return metadata.get(METADATA_FIELD.BASE_CALLER)</span>
+<span class="nc" id="L225">    }</span>
 
     /**
      * Provides access to the base caller version.
      * @return
      */
     String getBaseCallerVersion() {
-<span class="nc" id="L214">        return metadata.get(METADATA_FIELD.BASE_CALLER_VERSION)</span>
-<span class="nc" id="L215">    }</span>
+<span class="nc" id="L232">        return metadata.get(METADATA_FIELD.BASE_CALLER_VERSION)</span>
+<span class="nc" id="L233">    }</span>
 
     /**
      * Provides access to the library kit used.
      * @return
      */
     String getLibraryPreparationKit() {
-<span class="fc" id="L222">        return metadata.get(METADATA_FIELD.LIBRARY_PREPARATION_KIT)</span>
-<span class="nc" id="L223">    }</span>
+<span class="fc" id="L240">        return metadata.get(METADATA_FIELD.LIBRARY_PREPARATION_KIT)</span>
+<span class="nc" id="L241">    }</span>
 
     /**
      * Provides access to the machine host name.
      * @return
      */
     String getMachineHost() {
-<span class="nc" id="L230">        return metadata.get(METADATA_FIELD.MACHINE_HOST)</span>
-<span class="nc" id="L231">    }</span>
+<span class="nc" id="L248">        return metadata.get(METADATA_FIELD.MACHINE_HOST)</span>
+<span class="nc" id="L249">    }</span>
 
     /**
      * Provides access to the experiment start date.
      * @return
      */
     String getStartDate() {
-<span class="nc" id="L238">        return metadata.get(METADATA_FIELD.START_DATE)</span>
-<span class="nc" id="L239">    }</span>
-
-    private Map&lt;String, Map&lt;String, DataFolder&gt;&gt; prepareRawDataFromPooledMeasurement() {
-<span class="fc" id="L242">        final def result = new HashMap()</span>
-<span class="fc" id="L243">        final def pooledSampleIds = folders</span>
-                .get(&quot;fast5fail&quot;)
-                .getTheChildren()
-<span class="pc" id="L246">                .collect { (it as BarcodedFolder).getSampleCode() }</span>
-<span class="fc" id="L247">        pooledSampleIds.each { sampleId -&gt;</span>
-<span class="fc" id="L248">            final def map = [</span>
-<span class="pc" id="L249">                    &quot;fast5fail&quot;: (folders.get(&quot;fast5fail&quot;) as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },</span>
-<span class="pc" id="L250">                    &quot;fast5pass&quot;: (folders.get(&quot;fast5pass&quot;) as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },</span>
-<span class="pc" id="L251">                    &quot;fastqpass&quot;: (folders.get(&quot;fastqpass&quot;) as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },</span>
-<span class="pc" id="L252">                    &quot;fastqfail&quot;: (folders.get(&quot;fastqfail&quot;) as DataFolder).getTheChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId }</span>
-<span class="nc" id="L253">            ]</span>
-<span class="fc" id="L254">            result[sampleId] = map</span>
-        }
-<span class="fc" id="L256">        return result</span>
+<span class="nc" id="L256">        return metadata.get(METADATA_FIELD.START_DATE)</span>
 <span class="nc" id="L257">    }</span>
 
-    private Map&lt;String, Map&lt;String, DataFolder&gt;&gt; prepareRawData(String sampleId) {
-<span class="fc" id="L260">        final def result = new HashMap()</span>
-<span class="fc" id="L261">        final def folders = [</span>
-<span class="fc" id="L262">                &quot;fast5fail&quot;: (folders.get(&quot;fast5fail&quot;) as DataFolder),</span>
-<span class="fc" id="L263">                &quot;fast5pass&quot;: (folders.get(&quot;fast5pass&quot;) as DataFolder),</span>
-<span class="fc" id="L264">                &quot;fastqpass&quot;: (folders.get(&quot;fastqpass&quot;) as DataFolder),</span>
-<span class="fc" id="L265">                &quot;fastqfail&quot;: (folders.get(&quot;fastqfail&quot;) as DataFolder)</span>
+    private Map&lt;String, DataFolder&gt; prepareUnclassifiedData() {
+<span class="fc" id="L260">        final def folders = [</span>
+<span class="pc" id="L261">                &quot;fast5fail&quot;: (folders.get(&quot;fast5fail&quot;) as DataFolder).getChildren().find { it instanceof UnclassifiedFast5Folder } as DataFolder,</span>
+<span class="pc" id="L262">                &quot;fast5pass&quot;: (folders.get(&quot;fast5pass&quot;) as DataFolder).getChildren().find { it instanceof UnclassifiedFast5Folder } as DataFolder,</span>
+<span class="pc" id="L263">                &quot;fastqpass&quot;: (folders.get(&quot;fastqpass&quot;) as DataFolder).getChildren().find { it instanceof UnclassifiedFastQFolder } as DataFolder,</span>
+<span class="pc" id="L264">                &quot;fastqfail&quot;: (folders.get(&quot;fastqfail&quot;) as DataFolder).getChildren().find { it instanceof UnclassifiedFastQFolder } as DataFolder,</span>
         ]
-<span class="fc" id="L267">        result.put(sampleId, folders)</span>
-<span class="fc" id="L268">        return result</span>
-<span class="nc" id="L269">    }</span>
+<span class="fc" id="L266">        return folders</span>
+<span class="nc" id="L267">    }</span>
+
+    private Map&lt;String, Map&lt;String, DataFolder&gt;&gt; prepareRawDataFromPooledMeasurement() {
+<span class="fc" id="L270">        final def result = new HashMap()</span>
+<span class="fc" id="L271">        final def pooledSampleCodes = folders</span>
+                .get(&quot;fast5fail&quot;)
+                .getChildren()
+<span class="pc" id="L274">                .collect { (it as BarcodedFolder).getSampleCode() }</span>
+<span class="fc" id="L275">        pooledSampleCodes.each { sampleId -&gt;</span>
+<span class="fc" id="L276">            final def map = [</span>
+<span class="pc" id="L277">                    &quot;fast5fail&quot;: (folders.get(&quot;fast5fail&quot;) as DataFolder).getChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },</span>
+<span class="pc" id="L278">                    &quot;fast5pass&quot;: (folders.get(&quot;fast5pass&quot;) as DataFolder).getChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },</span>
+<span class="pc" id="L279">                    &quot;fastqpass&quot;: (folders.get(&quot;fastqpass&quot;) as DataFolder).getChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId },</span>
+<span class="pc" id="L280">                    &quot;fastqfail&quot;: (folders.get(&quot;fastqfail&quot;) as DataFolder).getChildren().find { (it as BarcodedFolder).getSampleCode() == sampleId }</span>
+<span class="nc" id="L281">            ]</span>
+<span class="fc" id="L282">            result[sampleId] = map</span>
+        }
+<span class="fc" id="L284">        return result</span>
+<span class="nc" id="L285">    }</span>
+
+    private Map&lt;String, Map&lt;String, DataFolder&gt;&gt; prepareRawData(String sampleId) {
+<span class="fc" id="L288">        final def result = new HashMap()</span>
+<span class="fc" id="L289">        final def folders = [</span>
+<span class="fc" id="L290">                &quot;fast5fail&quot;: (folders.get(&quot;fast5fail&quot;) as DataFolder),</span>
+<span class="fc" id="L291">                &quot;fast5pass&quot;: (folders.get(&quot;fast5pass&quot;) as DataFolder),</span>
+<span class="fc" id="L292">                &quot;fastqpass&quot;: (folders.get(&quot;fastqpass&quot;) as DataFolder),</span>
+<span class="fc" id="L293">                &quot;fastqfail&quot;: (folders.get(&quot;fastqfail&quot;) as DataFolder)</span>
+        ]
+<span class="fc" id="L295">        result.put(sampleId, folders)</span>
+<span class="fc" id="L296">        return result</span>
+<span class="nc" id="L297">    }</span>
 
     /**
      * This method returns a list of all log files from the Oxford Nanopore measurement.
@@ -274,8 +302,8 @@ final class OxfordNanoporeMeasurement {
      * @return List A list of log files from the experiment
      */
     List&lt;DataFile&gt; getLogFiles() {
-<span class="fc" id="L277">        return logFilesCollection.collect()</span>
-<span class="nc" id="L278">    }</span>
+<span class="fc" id="L305">        return logFilesCollection.collect()</span>
+<span class="nc" id="L306">    }</span>
 
     /**
      * This method is used to return the relative path of a Oxford Nanopore measurement.
@@ -295,8 +323,8 @@ final class OxfordNanoporeMeasurement {
      * @return String This returns the relative path within the Nanopore experiment
      */
     String getRelativePath() {
-<span class="fc" id="L298">        return this.measurementFolder.relativePath</span>
-<span class="nc" id="L299">    }</span>
+<span class="fc" id="L326">        return this.measurementFolder.relativePath</span>
+<span class="nc" id="L327">    }</span>
 
     /*
     Inner class that contains the logic for the metadata validation
@@ -307,13 +335,13 @@ final class OxfordNanoporeMeasurement {
 
         static validateMetadata(Map metaData) throws ValidationException {
             // Load schema
-<span class="fc" id="L310">            final def metaDataJson = new JSONObject(metaData)</span>
-<span class="fc" id="L311">            final def schemaStream = OxfordNanoporeMeasurement.getResourceAsStream(SCHEMA)</span>
-<span class="fc" id="L312">            final def rawSchema = new JSONObject(new JSONTokener(schemaStream))</span>
-<span class="fc" id="L313">            final def jsonSchema = SchemaLoader.load(rawSchema)</span>
+<span class="fc" id="L338">            final def metaDataJson = new JSONObject(metaData)</span>
+<span class="fc" id="L339">            final def schemaStream = OxfordNanoporeMeasurement.getResourceAsStream(SCHEMA)</span>
+<span class="fc" id="L340">            final def rawSchema = new JSONObject(new JSONTokener(schemaStream))</span>
+<span class="fc" id="L341">            final def jsonSchema = SchemaLoader.load(rawSchema)</span>
             // Validate against schema
-<span class="fc" id="L315">            jsonSchema.validate(metaDataJson)</span>
-<span class="nc" id="L316">        }</span>
+<span class="fc" id="L343">            jsonSchema.validate(metaDataJson)</span>
+<span class="nc" id="L344">        }</span>
 
     }
 
