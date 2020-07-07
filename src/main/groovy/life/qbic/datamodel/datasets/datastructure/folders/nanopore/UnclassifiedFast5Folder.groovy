@@ -47,7 +47,7 @@ class UnclassifiedFast5Folder extends DataFolder {
     }
 
     private static void validateChild(Object child) {
-        if (!((child instanceof FastQFile) || (child instanceof FastQZippedFile))) {
+        if (!(child instanceof Fast5File)) {
             throw new IllegalArgumentException("Children must  match the Nanopore UnclassifiedFastQFolder directory schema!")
         }
     }
