@@ -11,28 +11,34 @@ import spock.lang.Specification
  * @author: Sven Fillinger
  */
 class OxfordNanoporeExperimentSpec extends Specification {
-
     /**
      * Map that stores the Oxford Nanopore folder structure
      * according to the schema
      */
     @Shared
     Map minimalWorkingSimpleDataStructure
-
     /**
      * Map that that stores the Oxford Nanopore folder structure
      * according to the schema containing unclassified read information
      */
     @Shared
     Map unclassifiedWorkingDataStructure
+    /**
+     * Map that that stores the Oxford Nanopore folder structure
+     * according to the schema containing pooled samples read information
+     */
+    @Shared
+    Map minimalWorkingPooledDataStructure
 
     def setupSpec() {
         InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream("valid-example.json")
         minimalWorkingSimpleDataStructure = (Map) new JsonSlurper().parse(stream)
-        stream.close()
         // read in unclassified example
         stream = Thread.currentThread().getContextClassLoader().getResourceAsStream("valid-unclassified-example.json")
         unclassifiedWorkingDataStructure = (Map) new JsonSlurper().parse(stream)
+        // read in pooled example
+        stream = Thread.currentThread().getContextClassLoader().getResourceAsStream("valid-example-pooled.json")
+        minimalWorkingPooledDataStructure = (Map) new JsonSlurper().parse(stream)
         stream.close()
     }
 
@@ -56,13 +62,14 @@ class OxfordNanoporeExperimentSpec extends Specification {
         when:
         final def experiment = OxfordNanoporeExperiment.create(example)
         final def measurements = experiment.getMeasurements()
+        final def rawData = measurements[0].getRawDataPerSample(experiment)
 
         then:
         assert experiment.sampleCode == "QABCD001AB"
         assert measurements.size() == 1
         assert measurements.get(0).logFiles.size() == 8
         // two samples in measurement
-        assert measurements.get(0).getRawDataPerSample(experiment).keySet().size() == 2
+        assert rawData.size() == 2
 
     }
 
@@ -73,10 +80,18 @@ class OxfordNanoporeExperimentSpec extends Specification {
         when:
         final def experiment = OxfordNanoporeExperiment.create(example)
         final def measurements = experiment.getMeasurements()
-        final def unclassifiedFolder = measurements.get(0).getUnclassifiedDataPerSample(experiment)
+        final def unclassifiedFolder = measurements[0].getUnclassifiedDataPerSample(experiment)
+        final def fast5PassUnclassifiedFolder =  unclassifiedFolder.get(experiment.sampleCode).fast5pass
+        final def fast5FailUnclassifiedFolder =  unclassifiedFolder.get(experiment.sampleCode).fast5fail
+        final def fastQPassUnclassifiedFolder =  unclassifiedFolder.get(experiment.sampleCode).fastqpass
+        final def fastQFailUnclassifiedFolder =  unclassifiedFolder.get(experiment.sampleCode).fastqfail
 
         then:
-        assert unclassifiedFolder.get(0).fast5.getTheChildren().size() == 2
+        assert measurements.size() == 1
+        assert fast5PassUnclassifiedFolder.getTheChildren().size() == 1
+        assert fast5FailUnclassifiedFolder.getTheChildren().size() == 1
+        assert fastQPassUnclassifiedFolder.getTheChildren().size() == 1
+        assert fastQFailUnclassifiedFolder.getTheChildren().size() == 1
 
     }
 }

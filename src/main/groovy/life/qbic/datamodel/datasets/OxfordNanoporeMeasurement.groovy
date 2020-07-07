@@ -170,16 +170,11 @@ final class OxfordNanoporeMeasurement {
      *      "fast5pass": DataFolder
      *      "fastqfail": DataFolder
      *      "fastqpass": DataFolder
-     * "Other sample code":   // In case of pooled samples
-     *      ...
+     *
      * @return nested Map with sample codes and data folders
      */
     Map<String, Map<String, DataFolder>> getUnclassifiedDataPerSample(ExperimentFolder experiment) {
-        if (pooledSamplesMeasurement) {
-            return prepareUnclassifiedDataFromPooledMeasurement()
-        } else {
-            return prepareUnclassifiedData(experiment.sampleCode)
-        }
+        return prepareUnclassifiedData(experiment.sampleCode)
     }
 
     /**
@@ -263,11 +258,15 @@ final class OxfordNanoporeMeasurement {
     }
 
     private Map<String, Map<String, DataFolder>> prepareUnclassifiedData(String sampleCode) {
-        return new HashMap<>()
-    }
-
-    private Map<String, Map<String, DataFolder>> prepareUnclassifiedDataFromPooledMeasurement() {
-        return new HashMap<String, Map<String, DataFolder>>()
+        final def result = new HashMap()
+        final def folders = [
+                "fast5fail": (folders.get("fast5fail") as DataFolder).getTheChildren().find { it instanceof UnclassifiedFast5Folder } as DataFolder,
+                "fast5pass": (folders.get("fast5pass") as DataFolder).getTheChildren().find { it instanceof UnclassifiedFast5Folder } as DataFolder,
+                "fastqpass": (folders.get("fastqpass") as DataFolder).getTheChildren().find { it instanceof UnclassifiedFastQFolder } as DataFolder,
+                "fastqfail": (folders.get("fastqfail") as DataFolder).getTheChildren().find { it instanceof UnclassifiedFastQFolder } as DataFolder,
+        ]
+        result.put(sampleCode, folders)
+        return result
     }
 
     private Map<String, Map<String, DataFolder>> prepareRawDataFromPooledMeasurement() {

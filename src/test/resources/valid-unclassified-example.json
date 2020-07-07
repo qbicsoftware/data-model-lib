@@ -39,6 +39,17 @@
           "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fastq_pass",
           "children": [
             {
+              "name": "fastq_unclassified",
+              "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fastq_pass/fastq_unclassified",
+              "children": [
+                {
+                  "name": "unclassified.fastq",
+                  "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fastq_pass/fastq_unclassified/unclassified.fastq",
+                  "file_type": "fastq"
+                }
+              ]
+            },
+            {
               "name": "myfile3.fastq.gz",
               "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fastq_pass/myfile3.fastq.gz",
               "file_type": "fastq.gz"
@@ -69,6 +80,17 @@
           "name": "fastq_fail",
           "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fastq_fail/",
           "children": [
+            {
+              "name": "fastq_unclassified",
+              "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fastq_fail/fastq_unclassified",
+              "children": [
+                {
+                  "name": "unclassified.fastq",
+                  "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fastq_fail/fastq_unclassified/unclassified.fastq",
+                  "file_type": "fastq"
+                }
+              ]
+            },
             {
               "name": "myfile3.fastq.gz",
               "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fastq_fail/myfile3.fastq.gz",
@@ -126,6 +148,17 @@
           "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fast5_fail/",
           "children": [
             {
+              "name": "fast5_unclassified",
+              "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fast5_fail/fast5_unclassified",
+              "children": [
+                {
+                  "name": "unclassified.fast5",
+                  "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fast5_fail/fast5_unclassified/unclassified.fast5",
+                  "file_type": "fast5"
+                }
+              ]
+            },
+            {
               "name": "myfile2.fast5",
               "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fast5_fail/myfile2.fast5",
               "file_type": "fast5"
@@ -156,6 +189,17 @@
           "name": "fast5_pass",
           "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fast5_pass/",
           "children": [
+            {
+              "name": "fast5_unclassified",
+              "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fast5_pass/fast5_unclassified",
+              "children": [
+                {
+                  "name": "unclassified.fast5",
+                  "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fast5_pass/fast5_unclassified/unclassified.fast5",
+                  "file_type": "fast5"
+                }
+              ]
+            },
             {
               "name": "myfile2.fast5",
               "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fast5_pass/myfile2.fast5",
