@@ -5,7 +5,7 @@ import life.qbic.datamodel.datasets.datastructure.files.nanopore.FastQFile
 import spock.lang.Specification
 
 /**
- * <add class description here>
+ * Tests for the UnclassifiedFastQFolder Object
  *
  * @author: Sven Fillinger
  */
