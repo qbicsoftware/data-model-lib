@@ -161,20 +161,19 @@ final class OxfordNanoporeMeasurement {
 
     /**
      * This method aggregates only *unclassified* fast5 files and fastq files of an Oxford Nanopore
-     * measurement by sample code.
+     * measurement.
      *
      * The resulting data-structure follows this map schema:
      *
-     * "QBiC sample code":
-     *      "fast5fail": DataFolder
-     *      "fast5pass": DataFolder
-     *      "fastqfail": DataFolder
-     *      "fastqpass": DataFolder
+     *   "fast5fail": DataFolder
+     *   "fast5pass": DataFolder
+     *   "fastqfail": DataFolder
+     *   "fastqpass": DataFolder
      *
-     * @return nested Map with sample codes and data folders
+     * @return Map with sample codes and data folders
      */
-    Map<String, Map<String, DataFolder>> getUnclassifiedDataPerSample(ExperimentFolder experiment) {
-        return prepareUnclassifiedData(experiment.sampleCode)
+    Map<String, DataFolder> getUnclassifiedData() {
+        return prepareUnclassifiedData()
     }
 
     /**
@@ -257,16 +256,14 @@ final class OxfordNanoporeMeasurement {
         return metadata.get(METADATA_FIELD.START_DATE)
     }
 
-    private Map<String, Map<String, DataFolder>> prepareUnclassifiedData(String sampleCode) {
-        final def result = new HashMap()
+    private Map<String, DataFolder> prepareUnclassifiedData() {
         final def folders = [
                 "fast5fail": (folders.get("fast5fail") as DataFolder).getChildren().find { it instanceof UnclassifiedFast5Folder } as DataFolder,
                 "fast5pass": (folders.get("fast5pass") as DataFolder).getChildren().find { it instanceof UnclassifiedFast5Folder } as DataFolder,
                 "fastqpass": (folders.get("fastqpass") as DataFolder).getChildren().find { it instanceof UnclassifiedFastQFolder } as DataFolder,
                 "fastqfail": (folders.get("fastqfail") as DataFolder).getChildren().find { it instanceof UnclassifiedFastQFolder } as DataFolder,
         ]
-        result.put(sampleCode, folders)
-        return result
+        return folders
     }
 
     private Map<String, Map<String, DataFolder>> prepareRawDataFromPooledMeasurement() {

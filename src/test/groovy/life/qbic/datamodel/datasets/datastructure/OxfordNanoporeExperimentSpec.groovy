@@ -80,11 +80,11 @@ class OxfordNanoporeExperimentSpec extends Specification {
         when:
         final def experiment = OxfordNanoporeExperiment.create(example)
         final def measurements = experiment.getMeasurements()
-        final def unclassifiedFolder = measurements[0].getUnclassifiedDataPerSample(experiment)
-        final def fast5PassUnclassifiedFolder =  unclassifiedFolder.get(experiment.sampleCode).fast5pass
-        final def fast5FailUnclassifiedFolder =  unclassifiedFolder.get(experiment.sampleCode).fast5fail
-        final def fastQPassUnclassifiedFolder =  unclassifiedFolder.get(experiment.sampleCode).fastqpass
-        final def fastQFailUnclassifiedFolder =  unclassifiedFolder.get(experiment.sampleCode).fastqfail
+        final def unclassifiedFolder = measurements[0].getUnclassifiedData()
+        final def fast5PassUnclassifiedFolder =  unclassifiedFolder.fast5pass
+        final def fast5FailUnclassifiedFolder =  unclassifiedFolder.fast5fail
+        final def fastQPassUnclassifiedFolder =  unclassifiedFolder.fastqpass
+        final def fastQFailUnclassifiedFolder =  unclassifiedFolder.fastqfail
 
         then:
         assert measurements.size() == 1
