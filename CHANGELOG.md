@@ -3,6 +3,9 @@
 ## 1.9.0
 
 * New class `OxfordNanoporeInstrumentOutput` that provides access to the instrument output JSON schema
+* Support for unclassified reads
+  * Two new folder classes `UnclassifiedFast5Folder` and `UnclassifiedFastQFolder`
+  * New API method `getUnclassifiedData()` for the `OxfordNanoporeMeasurement` class
 * Bugfix for object comparison infinity crisis
 * Bugfix for wrong data assignment on pooled sample data
 
