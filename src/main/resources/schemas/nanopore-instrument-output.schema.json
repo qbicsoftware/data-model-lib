@@ -97,7 +97,7 @@
         }
       ]
     },
-    "fastq_file": {
+    "fastqgz_file": {
       "allOf": [
         {
           "$ref": "#/definitions/file"
@@ -106,6 +106,78 @@
           "properties": {
             "file_type": {
               "pattern": "fastq.gz"
+            }
+          }
+        }
+      ]
+    },
+    "fastq_file": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/file"
+        },
+        {
+          "properties": {
+            "file_type": {
+              "pattern": "fastq"
+            }
+          }
+        }
+      ]
+    },
+    "unclassified_folder": {
+      "description": "folder containing unassigned read file(s)",
+      "allOf": [
+        {
+          "$ref": "#/definitions/folder"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "unclassified"
+            }
+          }
+        }  
+      ]
+    },
+    "fast5_unclassified_folder": {
+      "description": "folder containing fast5 data from a pooling experiment, that could not be assigned to one of the known samples",
+      "allOf": [
+        {
+          "$ref": "#/definitions/unclassified_folder"
+        },
+        {
+          "properties": {
+            "children": {
+              "items": {
+                "$ref": "#/definitions/fast5_file"
+              },
+              "minItems": 0
+            }
+          }
+        }
+      ]
+    },
+    "fastq_unclassified_folder": {
+      "description": "folder containing fastq and/or fastq.gz data from a pooling experiment, that could not be assigned to one of the known samples",
+      "allOf": [
+        {
+          "$ref": "#/definitions/unclassified_folder"
+        },
+        {
+          "properties": {
+            "children": {
+              "items": {
+                "anyOf": [
+                  {
+                    "$ref": "#/definitions/fastqgz_file"
+                  },
+                  {
+                    "$ref": "#/definitions/fastq_file"
+                  }
+                ]
+              },
+              "minItems": 0
             }
           }
         }
@@ -146,6 +218,9 @@
                     "$ref": "#/definitions/fast5_subfolder"
                   },
                   {
+                    "$ref": "#/definitions/fast5_unclassified_folder"
+                  },
+                  {
                     "$ref": "#/definitions/fast5_file"
                   }
                 ]
@@ -171,6 +246,9 @@
                 "anyOf": [
                   {
                     "$ref": "#/definitions/fast5_subfolder"
+                  },
+                  {
+                    "$ref": "#/definitions/fast5_unclassified_folder"
                   },
                   {
                     "$ref": "#/definitions/fast5_file"
@@ -200,7 +278,10 @@
                     "$ref": "#/definitions/fastq_subfolder"
                   },
                   {
-                    "$ref": "#/definitions/fastq_file"
+                    "$ref": "#/definitions/fastq_unclassified_folder"
+                  },
+                  {
+                    "$ref": "#/definitions/fastqgz_file"
                   }
                 ]
               },
@@ -227,7 +308,10 @@
                     "$ref": "#/definitions/fastq_subfolder"
                   },
                   {
-                    "$ref": "#/definitions/fastq_file"
+                    "$ref": "#/definitions/fastq_unclassified_folder"
+                  },
+                  {
+                    "$ref": "#/definitions/fastqgz_file"
                   }
                 ]
               },
@@ -247,7 +331,7 @@
           "properties": {
             "children": {
               "items": {
-                "$ref": "#/definitions/fastq_file"
+                "$ref": "#/definitions/fastqgz_file"
               },
               "minItems": 1
             }

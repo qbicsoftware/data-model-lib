@@ -53,10 +53,10 @@ class OxfordNanoporeMeasurementSpec extends Specification {
         ]
         def fast5File = Fast5File.create("test.fast5", "root/test.fast5")
         def fastQFile = FastQFile.create("test.fastq", "root/test.fastq")
-        fast5FailedFolder = Fast5FailFolder.create("root/fast5_fail", [fast5File])
-        fast5PassedFolder = Fast5PassFolder.create("root/fast5_pass", [fast5File])
-        fastQFailedFolder = FastQFailFolder.create("root/fastq_fail", [fastQFile])
-        fastQPassedFolder = FastQPassFolder.create("root/fastq_pass", [fastQFile])
+        fast5FailedFolder = Fast5FailFolder.create("fast5_fail","root/fast5_fail", [fast5File])
+        fast5PassedFolder = Fast5PassFolder.create("fast5_pass","root/fast5_pass", [fast5File])
+        fastQFailedFolder = FastQFailFolder.create("fastq_fail", "root/fastq_fail", [fastQFile])
+        fastQPassedFolder = FastQPassFolder.create("fastq_pass","root/fastq_pass", [fastQFile])
         // Content for the pooled samples
         fast5PooledFolder = Fast5Folder.create("QTEST001AE_test", "root/QTEST001AE_test", [fast5File])
         fastQPooledFolder = FastQFolder.create("QTEST001AE_test", "root/QTEST001AE_test", [fastQFile])
@@ -92,10 +92,10 @@ class OxfordNanoporeMeasurementSpec extends Specification {
 
     def "create pooled sample measurement successfully"() {
         given:
-        final def pooledFast5PassFolder = Fast5PassFolder.create("root/fast5_pass", [fast5PooledFolder, otherfast5PooledFolder])
-        final def pooledFast5FailedFolder = Fast5FailFolder.create("root/fast5_fail", [fast5PooledFolder, otherfast5PooledFolder])
-        final def pooledFastQPassFolder = FastQPassFolder.create("root/fastq_pass", [fastQPooledFolder, otherfastQPooledFolder])
-        final def pooledFastQFailedFolder = FastQFailFolder.create("root/fastq_fail", [fastQPooledFolder, otherfastQPooledFolder])
+        final def pooledFast5PassFolder = Fast5PassFolder.create("fast5_pass", "root/fast5_pass", [fast5PooledFolder, otherfast5PooledFolder])
+        final def pooledFast5FailedFolder = Fast5FailFolder.create("fast5_fail","root/fast5_fail", [fast5PooledFolder, otherfast5PooledFolder])
+        final def pooledFastQPassFolder = FastQPassFolder.create("fastq_pass", "root/fastq_pass", [fastQPooledFolder, otherfastQPooledFolder])
+        final def pooledFastQFailedFolder = FastQFailFolder.create("fastq_fail", "root/fastq_fail", [fastQPooledFolder, otherfastQPooledFolder])
 
         final def measurement = OxfordNanoporeMeasurement.create(
                 "20200219_1107_1-E3-H3_PAE26974_454b8dc6",
@@ -114,6 +114,10 @@ class OxfordNanoporeMeasurementSpec extends Specification {
         assert result.size() == 2
         assert result.get("QTEST001AE").get("fast5fail") instanceof DataFolder
         assert result.get("QD00M001AE").get("fast5fail") instanceof DataFolder
+        assert result.get("QTEST001AE").get("fast5fail") == result.get("QTEST001AE").get("fast5fail")
+        assert result.get("QD00M001AE").get("fast5fail") != result.get("QTEST001AE").get("fast5fail")
+        assert result.get("QTEST001AE").get("fast5pass") == result.get("QTEST001AE").get("fast5pass")
+        assert result.get("QD00M001AE").get("fast5pass") != result.get("QTEST001AE").get("fast5pass")
     }
 
     def "incomplete metadata should throw an IllegalArgumentException"() {

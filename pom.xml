@@ -8,7 +8,7 @@
 		<version>2.2.0</version>
 	</parent>
 	<artifactId>data-model-lib</artifactId>
-	<version>1.8.3</version>
+	<version>1.9.0</version>
 	<packaging>jar</packaging>
 	<name>Data Model Library</name>
 	<url>http://github.com/qbicsoftware/data-model-lib</url>
@@ -46,6 +46,38 @@
 			<url>https://jitpack.io</url>
 		</repository>
 	</repositories>
+	<profiles>
+		<profile>
+			<id>github</id>
+			<repositories>
+				<repository>
+					<id>central</id>
+					<url>https://repo1.maven.org/maven2</url>
+					<releases><enabled>true</enabled></releases>
+					<snapshots><enabled>true</enabled></snapshots>
+				</repository>
+				<repository>
+					<id>github</id>
+					<name>GitHub OWNER Apache Maven Packages</name>
+					<url>https://maven.pkg.github.com/qbicsoftware/data-model-lib</url>
+					<releases><enabled>true</enabled></releases>
+					<snapshots><enabled>true</enabled></snapshots>
+				</repository>
+			</repositories>
+			<distributionManagement>
+				<repository>
+					<id>github</id>
+					<name>GitHub Packages</name>
+					<url>https://maven.pkg.github.com/qbicsoftware/data-model-lib</url>
+				</repository>
+				<snapshotRepository>
+					<id>github</id>
+					<name>GitHub Packages</name>
+					<url>https://maven.pkg.github.com/qbicsoftware/data-model-lib</url>
+				</snapshotRepository>
+			</distributionManagement>
+		</profile>
+	</profiles>
 
 	<dependencies>
 		<dependency>
@@ -82,10 +114,6 @@
 			<groupId>life.qbic</groupId>
 			<artifactId>xml-manager-lib</artifactId>
 			<version>1.5.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>

@@ -12,25 +12,25 @@ import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
  */
 class FastQPassFolder extends DataFolder {
 
-    final private static String NAME = "fastq_pass"
-
     final private static String NAME_SCHEMA = /fastq_pass/
 
     protected FastQPassFolder() {}
 
-    protected FastQPassFolder(String relativePath, List<?> children) {
-        super(NAME, relativePath, children)
+    protected FastQPassFolder(String name, String relativePath, List<?> children) {
+        super(name, relativePath, children)
         validateName()
     }
 
     /**
-     * Creates a new instance of a FastQPassFolder object
+     * Creates a new instance of a FastQPassFolder object.
+     *
+     * @param name The folder name
      * @param relativePath The relative path of the folder
      * @param children A list with child elements of the folder
      * @return A new instance of a FastQPassFolder object
      */
-    static FastQPassFolder create(String relativePath, List<?> children) {
-        new FastQPassFolder(relativePath, children)
+    static FastQPassFolder create(String name, String relativePath, List<?> children) {
+        new FastQPassFolder(name, relativePath, children)
     }
 
     private void validateName() {
