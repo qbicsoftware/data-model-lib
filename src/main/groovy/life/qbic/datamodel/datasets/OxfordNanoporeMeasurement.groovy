@@ -271,6 +271,7 @@ final class OxfordNanoporeMeasurement {
         final def pooledSampleCodes = folders
                 .get("fast5fail")
                 .getChildren()
+                .find { it instanceof BarcodedFolder }
                 .collect { (it as BarcodedFolder).getSampleCode() }
         pooledSampleCodes.each { sampleId ->
             final def map = [
