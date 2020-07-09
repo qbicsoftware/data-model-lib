@@ -34,6 +34,10 @@ class OxfordNanoporeMeasurementSpec extends Specification {
     @Shared
     FastQFolder otherfastQPooledFolder
     @Shared
+    UnclassifiedFast5Folder unclassifiedFast5Folder
+    @Shared
+    UnclassifiedFastQFolder unclassifiedFastQFolder
+    @Shared
     Map metaData
 
     def setupSpec() {
@@ -62,6 +66,9 @@ class OxfordNanoporeMeasurementSpec extends Specification {
         fastQPooledFolder = FastQFolder.create("QTEST001AE_test", "root/QTEST001AE_test", [fastQFile])
         otherfast5PooledFolder = Fast5Folder.create("QD00M001AE_test", "root/QD00M001AE_test", [fast5File])
         otherfastQPooledFolder = FastQFolder.create("QD00M001AE_test", "root/QD00M001AE_test", [fastQFile])
+        // Content for the pooled samples including unclassified folders
+        unclassifiedFast5Folder = UnclassifiedFast5Folder.create("unclassified", "fast5_fail/unclassified", [fast5File])
+        unclassifiedFastQFolder = UnclassifiedFastQFolder.create("unclassified", "fastq_pass/unclassified", [fastQFile])
     }
 
     def "create simple measurement successfully"() {
@@ -119,7 +126,45 @@ class OxfordNanoporeMeasurementSpec extends Specification {
         assert result.get("QTEST001AE").get("fast5pass") == result.get("QTEST001AE").get("fast5pass")
         assert result.get("QD00M001AE").get("fast5pass") != result.get("QTEST001AE").get("fast5pass")
     }
+    
+    def "create pooled sample measurement with unclassified folders successfully"() {
+        given:
+        final def pooledFast5PassFolder = Fast5PassFolder.create("fast5_pass", "root/fast5_pass", [fast5PooledFolder, otherfast5PooledFolder, unclassifiedFast5Folder])
+        final def pooledFast5FailedFolder = Fast5FailFolder.create("fast5_fail","root/fast5_fail", [fast5PooledFolder, otherfast5PooledFolder, unclassifiedFast5Folder])
+        final def pooledFastQPassFolder = FastQPassFolder.create("fastq_pass", "root/fastq_pass", [fastQPooledFolder, otherfastQPooledFolder, unclassifiedFastQFolder])
+        final def pooledFastQFailedFolder = FastQFailFolder.create("fastq_fail", "root/fastq_fail", [fastQPooledFolder, otherfastQPooledFolder, unclassifiedFastQFolder])
 
+        final def measurement = OxfordNanoporeMeasurement.create(
+                "20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+                "path/20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+                [pooledFast5PassFolder, pooledFast5FailedFolder, pooledFastQPassFolder, pooledFastQFailedFolder],
+                metaData)
+
+        and:
+        final def mockedExperiment = Mock(ExperimentFolder.class)
+        mockedExperiment.getSampleCode() >> "QABCD001AE"
+
+        when:
+        def result = measurement.getRawDataPerSample(mockedExperiment)
+        def unclassified = measurement.getUnclassifiedData()
+
+        then:
+        assert result.size() == 2
+        assert result.get("QTEST001AE").get("fast5fail") instanceof DataFolder
+        assert result.get("QD00M001AE").get("fast5fail") instanceof DataFolder
+        assert result.get("QTEST001AE").get("fast5fail") == result.get("QTEST001AE").get("fast5fail")
+        assert result.get("QD00M001AE").get("fast5fail") != result.get("QTEST001AE").get("fast5fail")
+        assert result.get("QTEST001AE").get("fast5pass") == result.get("QTEST001AE").get("fast5pass")
+        assert result.get("QD00M001AE").get("fast5pass") != result.get("QTEST001AE").get("fast5pass")
+        
+        assert unclassified.size() == 4
+        assert unclassified.get("fast5fail") instanceof DataFolder
+        assert unclassified.get("fast5pass") instanceof DataFolder
+        assert unclassified.get("fastqpass") instanceof DataFolder
+        assert unclassified.get("fastqfail") instanceof DataFolder
+        assert unclassified.get("fast5fail").getChildren().size() == 1
+    }
+    
     def "incomplete metadata should throw an IllegalArgumentException"() {
         given:
         // Missing hostname
