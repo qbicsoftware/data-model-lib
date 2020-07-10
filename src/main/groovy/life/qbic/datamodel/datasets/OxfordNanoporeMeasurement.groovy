@@ -269,8 +269,9 @@ final class OxfordNanoporeMeasurement {
     private Map<String, Map<String, DataFolder>> prepareRawDataFromPooledMeasurement() {
         final def result = new HashMap()
         final def pooledSampleCodes = folders
-                .get("fast5fail")
+                .get("fast5pass")
                 .getChildren()
+                .findAll { it instanceof BarcodedFolder }
                 .collect { (it as BarcodedFolder).getSampleCode() }
         pooledSampleCodes.each { sampleId ->
             final def map = [
