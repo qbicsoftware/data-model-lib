@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SampleCodeComparator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Data Model Library</a> &gt; <a href="index.source.html" class="el_package">life.qbic.datamodel.sorters</a> &gt; <span class="el_source">SampleCodeComparator.java</span></div><h1>SampleCodeComparator.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * QBiC Project Wizard enables users to create hierarchical experiments including different study
+ * conditions using factorial design. Copyright (C) &quot;2016&quot; Andreas Friedrich
+ *
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * GNU General Public License as published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+ * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with this program. If
+ * not, see &lt;http://www.gnu.org/licenses/&gt;.
+ *******************************************************************************/
+package life.qbic.datamodel.sorters;
+
+import java.util.Comparator;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import life.qbic.datamodel.identifiers.SampleCodeFunctions;
+import life.qbic.datamodel.printing.IBarcodeBean;
+
+/**
+ * Compares IBarcodeBeans by sample ID
+ * 
+ * @author Andreas Friedrich
+ *
+ */
+public class SampleCodeComparator implements Comparator&lt;IBarcodeBean&gt; {
+  
+<span class="nc" id="L34">  private static final Logger logger = LogManager.getLogger(SampleCodeComparator.class);</span>
+
+<span class="nc" id="L36">  private static final SampleCodeComparator instance = new SampleCodeComparator();</span>
+
+  public static SampleCodeComparator getInstance() {
+<span class="nc" id="L39">    return instance;</span>
+  }
+
+  private SampleCodeComparator() {}
+
+  @Override
+  public int compare(IBarcodeBean o1, IBarcodeBean o2) {
+<span class="nc" id="L46">    String c1 = o1.getCode();</span>
+<span class="nc" id="L47">    String c2 = o2.getCode();</span>
+<span class="nc bnc" id="L48" title="All 6 branches missed.">    if (!c1.startsWith(&quot;Q&quot;) || c1.contains(&quot;ENTITY&quot;) || !c2.startsWith(&quot;Q&quot;)</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        || c2.contains(&quot;ENTITY&quot;))</span>
+<span class="nc" id="L50">      return o1.getCode().compareTo(o2.getCode());</span>
+    try {
+      // compares sample codes by projects, ending letters (999A --&gt; 001B) and numbers (001A --&gt;
+      // 002A)
+<span class="nc" id="L54">      int projCompare = c1.substring(0, 5).compareTo(c2.substring(0, 5));</span>
+<span class="nc" id="L55">      int numCompare = c1.substring(5, 8).compareTo(c2.substring(5, 8));</span>
+<span class="nc" id="L56">      int letterCompare = c1.substring(8, 9).compareTo(c2.substring(8, 9));</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">      if (projCompare != 0)</span>
+<span class="nc" id="L58">        return projCompare;</span>
+      else {
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        if (letterCompare != 0)</span>
+<span class="nc" id="L61">          return letterCompare;</span>
+        else
+<span class="nc" id="L63">          return numCompare;</span>
+      }
+<span class="nc" id="L65">    } catch (Exception e) {</span>
+<span class="nc" id="L66">      logger.warn(&quot;Could not split code &quot; + c1 + &quot; or &quot; + c2</span>
+          + &quot;. Falling back to primitive lexicographical comparison.&quot;);
+    }
+<span class="nc" id="L69">    return o1.getCode().compareTo(o2.getCode());</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
