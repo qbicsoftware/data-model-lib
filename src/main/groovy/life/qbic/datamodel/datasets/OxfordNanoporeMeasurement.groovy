@@ -177,6 +177,16 @@ final class OxfordNanoporeMeasurement {
     }
 
     /**
+     * Provides access to the adapter type used in the measurement.
+     *
+     * Is empty when no adapter was used.
+     * @return
+     */
+    String getAdapter() {
+        return metadata.get(METADATA_FIELD.ADAPTER) ?: ""
+    }
+
+    /**
      * Provides access to the asic temperature.
      * @return
      */

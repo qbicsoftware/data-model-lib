@@ -86,6 +86,7 @@ class OxfordNanoporeMeasurementSpec extends Specification {
         when:
         def result = measurement.getRawDataPerSample(mockedExperiment)
         def libraryKit = measurement.getLibraryPreparationKit()
+        def adapter = measurement.getAdapter()
 
         then:
         assert result.size() == 1
@@ -95,6 +96,7 @@ class OxfordNanoporeMeasurementSpec extends Specification {
         assert result.get("QABCD001AE").get("fastqpass") instanceof DataFolder
         assert measurement.relativePath == "path/20200219_1107_1-E3-H3_PAE26974_454b8dc6"
         assert libraryKit == "SQK-LSK109"
+        assert adapter.equals("flongle")
     }
 
     def "create pooled sample measurement successfully"() {
@@ -190,6 +192,34 @@ class OxfordNanoporeMeasurementSpec extends Specification {
 
         then:
         thrown(IllegalArgumentException)
+
+    }
+
+    def "missing adapter metadata shall return an empty String and not be null"() {
+        given:
+        def metaData = [
+            "asic_temp": "32.631687",
+            "base_caller": "Guppy",
+            "base_caller_version": "3.2.8+bd67289",
+            "device_type" : "promethion",
+            "flow_cell_id": "PAE26306",
+            "flow_cell_product_code": "FLO-PRO002",
+            "flow_cell_position": "2-A3-D3",
+            "hostname": "PCT0094",
+            "protocol": "sequencing/sequencing_PRO002_DNA:FLO-PRO002:SQK-LSK109:True",
+            "started": "2020-02-11T15:52:10.465982+01:00"
+        ]
+
+        when:
+        final def measurement = OxfordNanoporeMeasurement.create(
+            "20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+            "path/20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+            [fast5FailedFolder, fast5PassedFolder, fastQFailedFolder, fastQPassedFolder],
+            metaData)
+        final def adapter = measurement.getAdapter()
+
+        then:
+        assert adapter.isEmpty()
 
     }
 
