@@ -1,5 +1,9 @@
 # Release Changelog for the data model library
 
+## 1.9.1
+
+* Fix for `getRawDataPerSample()`, which failed in the presence of unclassified folders.
+
 ## 1.9.0
 
 * New class `OxfordNanoporeInstrumentOutput` that provides access to the instrument output JSON schema
