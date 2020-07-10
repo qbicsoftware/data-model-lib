@@ -1,5 +1,9 @@
 # Release Changelog for the data model library
 
+## 1.9.2
+
+* Adds missing getter method for the measurement adapter
+
 ## 1.9.1
 
 * Fix for `getRawDataPerSample()`, which failed in the presence of unclassified folders.
