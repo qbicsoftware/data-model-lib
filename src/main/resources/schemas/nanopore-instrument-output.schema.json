@@ -24,7 +24,7 @@
           "minLength": 1
         },
         "children": {
-          "description": "Describes files and/or sub-folders if existant",
+          "description": "Describes files and/or sub-folders if existent",
           "type": "array",
           "items": {
             "oneOf": [
