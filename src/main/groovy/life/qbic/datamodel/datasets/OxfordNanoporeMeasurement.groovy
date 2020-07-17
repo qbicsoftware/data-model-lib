@@ -91,7 +91,7 @@ final class OxfordNanoporeMeasurement {
         if (!folder) {
             return false
         } else if (folder.getChildren()) {
-            return folder.getChildren().get(0) instanceof Fast5Folder
+            return folder.getChildren().any { it instanceof Fast5Folder }
         }
         return false
     }
