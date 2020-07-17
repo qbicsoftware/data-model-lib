@@ -183,6 +183,38 @@ class OxfordNanoporeMeasurementSpec extends Specification {
 
     }
 
+    def "If either fastq pass or fail folder is empty, no IllegalStateException shall be thrown"() {
+        given:
+        def emptyFastQFailedFolder = FastQFailFolder.create("fastq_fail","root/fastq_fail", [])
+
+        when:
+        OxfordNanoporeMeasurement.create(
+            "20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+            "path/20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+            [fast5PassedFolder, fast5FailedFolder, emptyFastQFailedFolder, fastQPassedFolder],
+            metaData)
+
+        then:
+        noExceptionThrown()
+    }
+
+    def "If either fast5 pass or fail folder is empty, no IllegalStateException shall be thrown"() {
+        given:
+        def emptyFast5FailedFolder = Fast5FailFolder.create("fast5_fail","root/fast5_fail", [])
+
+        when:
+        OxfordNanoporeMeasurement.create(
+            "20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+            "path/20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+            [fast5PassedFolder, emptyFast5FailedFolder, fastQPassedFolder, fastQFailedFolder],
+            metaData)
+
+        then:
+        noExceptionThrown()
+    }
+
+
+
 
 
 }

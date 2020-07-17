@@ -79,14 +79,21 @@ final class OxfordNanoporeMeasurement {
     }
 
     private void assessPooledStatus() {
-        this.pooledSamplesMeasurement = folders["fast5pass"]?.getChildren() ?
-            folders["fast5pass"].getChildren().get(0) instanceof Fast5Folder : false
+        this.pooledSamplesMeasurement = containsAtLeastOneBarcodedFolder(folders["fast5pass"])
         // There can be still pooled samples in the failed folder, worst case is all
         // samples failed, so we need to check there to
         if (! pooledSamplesMeasurement) {
-            this.pooledSamplesMeasurement = folders["fast5fail"]?.getChildren() ? folders["fast5fail"]
-                .getChildren().get(0) instanceof Fast5Folder : false
+            this.pooledSamplesMeasurement = containsAtLeastOneBarcodedFolder(folders["fast5fail"])
         }
+    }
+
+    private static boolean containsAtLeastOneBarcodedFolder(DataFolder folder) {
+        if (!folder) {
+            return false
+        } else if (folder.getChildren()) {
+            return folder.getChildren().get(0) instanceof Fast5Folder
+        }
+        return false
     }
 
     private void readMetaData(Map<String, String> metadata) {
