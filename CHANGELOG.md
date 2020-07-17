@@ -1,5 +1,9 @@
 # Release Changelog for the data model library
 
+## 1.9.3
+
+* Fix #31
+
 ## 1.9.2
 
 * Adds missing getter method for the measurement adapter

@@ -57,6 +57,7 @@ final class OxfordNanoporeMeasurement {
         readMetaData(metadata)
         createContent()
         assessPooledStatus()
+        assessState()
     }
 
     private List<DataFile> getLogFileCollection() {
@@ -78,12 +79,21 @@ final class OxfordNanoporeMeasurement {
     }
 
     private void assessPooledStatus() {
-        this.pooledSamplesMeasurement = folders["fast5pass"] ? folders["fast5pass"].getChildren().get(0) instanceof Fast5Folder : false
+        this.pooledSamplesMeasurement = containsAtLeastOneBarcodedFolder(folders["fast5pass"])
         // There can be still pooled samples in the failed folder, worst case is all
         // samples failed, so we need to check there to
         if (! pooledSamplesMeasurement) {
-            this.pooledSamplesMeasurement = folders["fast5fail"] ? folders["fast5fail"].getChildren().get(0) instanceof Fast5Folder : false
+            this.pooledSamplesMeasurement = containsAtLeastOneBarcodedFolder(folders["fast5fail"])
         }
+    }
+
+    private static boolean containsAtLeastOneBarcodedFolder(DataFolder folder) {
+        if (!folder) {
+            return false
+        } else if (folder.getChildren()) {
+            return folder.getChildren().get(0) instanceof Fast5Folder
+        }
+        return false
     }
 
     private void readMetaData(Map<String, String> metadata) {
@@ -132,6 +142,27 @@ final class OxfordNanoporeMeasurement {
                     logFilesCollection.add(element as DataFile)
                     break
             }
+        }
+    }
+
+    private void assessState() throws IllegalStateException {
+        // Condition one: Don't allow Fast5 pass and fail folder are empty
+        assessFast5Content()
+        // Condition two: Don't allow Fastq pass and fail folder are empty
+        assessFastQContent()
+    }
+
+    private void assessFast5Content() throws IllegalStateException {
+        if (folders["fast5pass"].getChildren().isEmpty() && folders["fast5fail"].getChildren()
+            .isEmpty()) {
+            throw new IllegalStateException("The fast5 pass folder and fail folder are empty.")
+        }
+    }
+
+    private void assessFastQContent() throws IllegalStateException {
+        if (folders["fastqpass"].getChildren().isEmpty() && folders["fastqfail"].getChildren()
+            .isEmpty()) {
+            throw new IllegalStateException("The fastq pass folder and fail folder are empty.")
         }
     }
 

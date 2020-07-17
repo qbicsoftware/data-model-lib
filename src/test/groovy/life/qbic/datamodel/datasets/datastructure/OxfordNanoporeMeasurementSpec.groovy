@@ -195,6 +195,70 @@ class OxfordNanoporeMeasurementSpec extends Specification {
 
     }
 
+    def "If both fast5 pass and fail folder are empty, an IllegalStateException shall be thrown"() {
+        given:
+        def emptyfast5FailedFolder = Fast5FailFolder.create("fast5_fail","root/fast5_fail", [])
+        def emptyfast5PassedFolder = Fast5PassFolder.create("fast5_pass","root/fast5_pass", [])
+
+        when:
+        OxfordNanoporeMeasurement.create(
+            "20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+            "path/20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+            [emptyfast5PassedFolder, emptyfast5FailedFolder, fastQPassedFolder, fastQFailedFolder],
+            metaData)
+
+        then:
+        thrown(IllegalStateException)
+
+    }
+
+    def "If both fastq pass and fail folder are empty, an IllegalStateException shall be thrown"() {
+        given:
+        def emptyFastQFailedFolder = FastQFailFolder.create("fastq_fail","root/fastq_fail", [])
+        def emptyFastQPassedFolder = FastQPassFolder.create("fastq_pass","root/fastq_pass", [])
+
+        when:
+        OxfordNanoporeMeasurement.create(
+            "20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+            "path/20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+            [fast5PassedFolder, fast5FailedFolder, emptyFastQFailedFolder, emptyFastQPassedFolder],
+            metaData)
+
+        then:
+        thrown(IllegalStateException)
+
+    }
+
+    def "If either fastq pass or fail folder is empty, no IllegalStateException shall be thrown"() {
+        given:
+        def emptyFastQFailedFolder = FastQFailFolder.create("fastq_fail","root/fastq_fail", [])
+
+        when:
+        OxfordNanoporeMeasurement.create(
+            "20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+            "path/20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+            [fast5PassedFolder, fast5FailedFolder, emptyFastQFailedFolder, fastQPassedFolder],
+            metaData)
+
+        then:
+        noExceptionThrown()
+    }
+
+    def "If either fast5 pass or fail folder is empty, no IllegalStateException shall be thrown"() {
+        given:
+        def emptyFast5FailedFolder = Fast5FailFolder.create("fast5_fail","root/fast5_fail", [])
+
+        when:
+        OxfordNanoporeMeasurement.create(
+            "20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+            "path/20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+            [fast5PassedFolder, emptyFast5FailedFolder, fastQPassedFolder, fastQFailedFolder],
+            metaData)
+
+        then:
+        noExceptionThrown()
+    }
+
     def "missing adapter metadata shall return an empty String and not be null"() {
         given:
         def metaData = [
