@@ -2,7 +2,7 @@
 
 ## 1.9.4
 
-* Fix implementation of `containsAtLeastOneBarcodedFolder`
+* Fix implementation of `containsAtLeastOneBarcodedFolder`, such that the method checks all child elements to contain at least one barcoded folder in order to flag the measurement as pooled measurement.
 
 ## 1.9.3
 
