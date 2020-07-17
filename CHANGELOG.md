@@ -1,5 +1,9 @@
 # Release Changelog for the data model library
 
+## 1.9.4
+
+* Fix implementation of `containsAtLeastOneBarcodedFolder`
+
 ## 1.9.3
 
 * Fix #31
