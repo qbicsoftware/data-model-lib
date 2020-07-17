@@ -208,6 +208,16 @@ final class OxfordNanoporeMeasurement {
     }
 
     /**
+     * Provides access to the adapter type used in the measurement.
+     *
+     * Is empty when no adapter was used.
+     * @return
+     */
+    String getAdapter() {
+        return metadata.get(METADATA_FIELD.ADAPTER) ?: ""
+    }
+
+    /**
      * Provides access to the asic temperature.
      * @return
      */
@@ -300,8 +310,9 @@ final class OxfordNanoporeMeasurement {
     private Map<String, Map<String, DataFolder>> prepareRawDataFromPooledMeasurement() {
         final def result = new HashMap()
         final def pooledSampleCodes = folders
-                .get("fast5fail")
+                .get("fast5pass")
                 .getChildren()
+                .findAll { it instanceof BarcodedFolder }
                 .collect { (it as BarcodedFolder).getSampleCode() }
         pooledSampleCodes.each { sampleId ->
             final def map = [
