@@ -20,4 +20,5 @@ class CostEstimate {
     ProjectInfo projectInfo
     List<CostItem> items
     double totalPrice
+    final String IDENTIFIER
 }
