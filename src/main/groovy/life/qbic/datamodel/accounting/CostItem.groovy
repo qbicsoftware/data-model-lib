@@ -12,7 +12,6 @@ package life.qbic.datamodel.accounting
 class CostItem {
 
     double quantity
-    final String IDENTIFIER
     final double UNIT_PRICE
     final String UNIT_NAME
     final String NAME
