@@ -48,11 +48,20 @@ A Nanopore NGS measurement output is delivered to us as a nested folder structur
 
 ![Nanopore Data Structure Model](./doc/figures/Nanopore_Data_Structure_Model.png)
 
+## OpenBIS Data Overview 
+
+The Nanopore data structure is saved in an openBIS 18.06.2 database. 
+An overview of the openBIS data model and the location and entity relationship of the Nanopore data stucture within it can be seen in this diagram: 
+
+
+
+![Nanopore Data Structure Model](./doc/figures/OpenBIS_ER_diagram.png)
+
 ### Example
 
 For complete examples, see the [JSON example files](./src/test/resources) provided for the unit tests.
 
-In order to create an instance of ype `OxfordNanoporeExperiment`, you need to provide a map that provides content following the [Nanopore Instrument Output Schema JSON](./src/main/resources/schemas/nanopore-instrument-output.schema.json).  
+In order to create an instance of type `OxfordNanoporeExperiment`, you need to provide a map that provides content following the [Nanopore Instrument Output Schema JSON](./src/main/resources/schemas/nanopore-instrument-output.schema.json).  
 Every measurement folder also needs to be enriched with metadata, which itself is specified with another [JSON schema](./src/main/resources/schemas/ont-metadata.schema.json).
 
 The final map contains an additional `metadata` property for each measurement, that for example can look like this:
