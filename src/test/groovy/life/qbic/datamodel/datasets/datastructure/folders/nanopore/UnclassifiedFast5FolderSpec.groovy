@@ -2,15 +2,14 @@ package life.qbic.datamodel.datasets.datastructure.folders.nanopore
 
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
 import life.qbic.datamodel.datasets.datastructure.files.nanopore.FastQFile
-import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 import spock.lang.Specification
 
 /**
- * <add class description here>
+ * Tests for the UnclassifiedFast5Folder Object
  *
  * @author: Sven Fillinger
  */
-class MeasurementFolderSpec extends Specification {
+class UnclassifiedFast5FolderSpec extends Specification {
 
     def "create measurement folder"() {
         given:

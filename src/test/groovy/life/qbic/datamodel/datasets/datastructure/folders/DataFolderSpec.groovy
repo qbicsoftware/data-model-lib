@@ -23,7 +23,7 @@ class DataFolderSpec extends Specification {
         final def dataFolder = new DataFolder(name, relativePath, children)
 
         then:
-        assert dataFolder.getTheChildren().get(0) instanceof DataFile
+        assert dataFolder.getChildren().get(0) instanceof DataFile
     }
 
     def "ensure children list is immutable"() {
@@ -36,10 +36,10 @@ class DataFolderSpec extends Specification {
 
         when:
         final def dataFolder = new DataFolder(name, relativePath, children)
-        dataFolder.getTheChildren().clear()
+        dataFolder.getChildren().clear()
 
         then:
-        assert dataFolder.getTheChildren().size() == 1
+        assert dataFolder.getChildren().size() == 1
     }
 
     def "ensure hashCode() and equals() work as intendend on DataFolders with the same content"() {
