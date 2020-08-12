@@ -19,16 +19,16 @@ public class Contact  {
   @JsonProperty(&quot;full_name&quot;)
   public String getFullName() {
 <span class="nc" id="L21">    return fullName;</span>
-<span class="nc" id="L22">  }</span>
+  }
 
   public void setFullName(String fullName) {
 <span class="nc" id="L25">    this.fullName = fullName;</span>
-<span class="nc" id="L26">  }</span>
+  }
 
   public Contact fullName(String fullName) {
 <span class="nc" id="L29">    this.fullName = fullName;</span>
 <span class="nc" id="L30">    return this;</span>
-<span class="nc" id="L31">  }</span>
+  }
 
  /**
    * Get address
@@ -37,16 +37,16 @@ public class Contact  {
   @JsonProperty(&quot;address&quot;)
   public Address getAddress() {
 <span class="nc" id="L39">    return address;</span>
-<span class="nc" id="L40">  }</span>
+  }
 
   public void setAddress(Address address) {
 <span class="nc" id="L43">    this.address = address;</span>
-<span class="nc" id="L44">  }</span>
+  }
 
   public Contact address(Address address) {
 <span class="nc" id="L47">    this.address = address;</span>
 <span class="nc" id="L48">    return this;</span>
-<span class="nc" id="L49">  }</span>
+  }
 
  /**
    * Get email
@@ -55,16 +55,16 @@ public class Contact  {
   @JsonProperty(&quot;email&quot;)
   public String getEmail() {
 <span class="nc" id="L57">    return email;</span>
-<span class="nc" id="L58">  }</span>
+  }
 
   public void setEmail(String email) {
 <span class="nc" id="L61">    this.email = email;</span>
-<span class="nc" id="L62">  }</span>
+  }
 
   public Contact email(String email) {
 <span class="nc" id="L65">    this.email = email;</span>
 <span class="nc" id="L66">    return this;</span>
-<span class="nc" id="L67">  }</span>
+  }
 
   @Override
   public String toString() {
@@ -75,7 +75,7 @@ public class Contact  {
 <span class="nc" id="L75">    sb.append(&quot;    email: &quot;).append(toIndentedString(email)).append(&quot;\n&quot;);</span>
 <span class="nc" id="L76">    sb.append(&quot;}&quot;);</span>
 <span class="nc" id="L77">    return sb.toString();</span>
-<span class="nc" id="L78">  }</span>
+  }
 
   /**
    * Convert the given object to string with each line indented by 4 spaces
@@ -86,7 +86,7 @@ public class Contact  {
 <span class="nc" id="L86">      return &quot;null&quot;;</span>
     }
 <span class="nc" id="L88">    return o.toString().replace(&quot;\n&quot;, &quot;\n    &quot;);</span>
-<span class="nc" id="L89">  }</span>
+  }
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

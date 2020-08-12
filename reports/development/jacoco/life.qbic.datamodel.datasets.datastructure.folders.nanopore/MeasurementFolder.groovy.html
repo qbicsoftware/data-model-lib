@@ -19,12 +19,12 @@ class MeasurementFolder extends DataFolder {
      */
     final private static String NAME_SCHEMA = $/\d{4}(0?[1-9]|1[012])(0?[1-9]|[12][0-9]|3[01])_([01][0-9]|2[0-3])([0-5][0-9]).*/$
 
-<span class="nc" id="L22">    protected MeasurementFolder() {}</span>
+    protected MeasurementFolder() {}
 
     protected MeasurementFolder(String name, String relativePath, List children) {
 <span class="fc" id="L25">        super(name, relativePath, children)</span>
 <span class="pc bpc" id="L26" title="1 of 2 branches missed.">        validateName()</span>
-<span class="fc" id="L27">    }</span>
+    }
 
     /**
      * Creates a new instance of a MeasurementFolder object
@@ -33,13 +33,13 @@ class MeasurementFolder extends DataFolder {
      * @return A new instance of a MeasurementFolder object
      */
     static MeasurementFolder create(String name, String relativePath, List&lt;?&gt; children) {
-<span class="fc" id="L36">        new MeasurementFolder(name, relativePath, children)</span>
-<span class="nc" id="L37">    }</span>
+<span class="pc" id="L36">        new MeasurementFolder(name, relativePath, children)</span>
+    }
 
     private void validateName() {
 <span class="fc bfc" id="L40" title="All 4 branches covered.">        if (!(this.name =~ NAME_SCHEMA)) {</span>
 <span class="fc" id="L41">            throw new IllegalArgumentException(&quot;Name must match the Nanopore Measurement schema!&quot;)</span>
         }
-<span class="fc" id="L43">    }</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

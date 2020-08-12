@@ -22,12 +22,12 @@ class UnclassifiedFastQFolder extends DataFolder {
 
     final private static String NAME_SCHEMA = /unclassified/
 
-<span class="nc" id="L25">    protected UnclassifiedFastQFolder() {}</span>
+    protected UnclassifiedFastQFolder() {}
 
     protected UnclassifiedFastQFolder(String name, String relativePath, List children) {
 <span class="fc" id="L28">        super(name, relativePath, children)</span>
 <span class="pc bpc" id="L29" title="1 of 2 branches missed.">        validateName()</span>
-<span class="fc" id="L30">    }</span>
+    }
     /**
      * Creates a new instance of a UnclassifiedFastQFolder object
      * @param relativePath The relative path of the folder
@@ -38,26 +38,26 @@ class UnclassifiedFastQFolder extends DataFolder {
 <span class="pc bpc" id="L38" title="1 of 2 branches missed.">        if (children) {</span>
 <span class="fc" id="L39">            validateChildren(children)</span>
         }
-<span class="fc" id="L41">        new UnclassifiedFastQFolder(name, relativePath, children)</span>
-<span class="nc" id="L42">    }</span>
+<span class="pc" id="L41">        new UnclassifiedFastQFolder(name, relativePath, children)</span>
+    }
 
     private static void validateChildren(List children) {
 <span class="pc" id="L45">        children.each { validateChild(it) }</span>
-<span class="fc" id="L46">    }</span>
+    }
 
     private static void validateChild(Object child) {
 <span class="pc bpc" id="L49" title="5 of 8 branches missed.">        if (!((child instanceof FastQFile) || (child instanceof FastQZippedFile))) {</span>
-<span class="nc" id="L50">            throw new IllegalArgumentException(&quot;Children must  match the Nanopore UnclassifiedFastQFolder directory schema!&quot;)</span>
+<span class="pc" id="L50">            throw new IllegalArgumentException(&quot;Children must  match the Nanopore UnclassifiedFastQFolder directory schema!&quot;)</span>
         }
-<span class="fc" id="L52">    }</span>
+    }
 
     private void validateName() {
 <span class="pc bpc" id="L55" title="2 of 4 branches missed.">        if (!(this.relativePath =~ /fastq/)) {</span>
 <span class="nc" id="L56">            throw new IllegalArgumentException(&quot;Unclassified FastQ folder must have a parent with name \'fastq\'.&quot;)</span>
         }
 <span class="pc bpc" id="L58" title="2 of 4 branches missed.">        if (!(this.name =~ NAME_SCHEMA)) {</span>
-<span class="nc" id="L59">            throw new IllegalArgumentException(&quot;Name must match the Nanopore UnclassifiedFastQFolder directory schema!&quot;)</span>
+<span class="pc" id="L59">            throw new IllegalArgumentException(&quot;Name must match the Nanopore UnclassifiedFastQFolder directory schema!&quot;)</span>
         }
-<span class="fc" id="L61">    }</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
