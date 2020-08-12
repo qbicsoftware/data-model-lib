@@ -1,12 +1,13 @@
 package life.qbic.datamodel.dtos.imaging.properties
 
 /**
- * <class short description - 1 Line!>
+ * <class short description - One Line!>
  *
  * <More detailed description - When to use, what it solves, etc.>
  *
- * @author Sven Fillinger
- * @since <versiontag>
+ * @since: <versiontag>
+ * @author: Jennifer Bödker
+ *
  */
-enum Detector {
+class Frequence {
 }
