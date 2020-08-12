@@ -19,17 +19,25 @@ class ElectronMicroscopyParameters {
     /**
      * Voltage used to accelerate electrons.
      * Applied between cathode and electrode in the acceleration tube
+     *
+     * It is usually in the range of 500 to 30.000 volts
      */
     private final Voltage acceleratingVoltage
 
     /**
      * Shift of focus of the objective lens.
      * It is used to observe 'Fresnel fringes', for taking lattice image or structure images.
+     *
+     * Defocused images occur when the light rays from a point source are not focused on a single point.
+     * TODO whats the unit? wavelengths?
      */
     private final Float targetDefocus
 
     /**
      * The accumulated amount of electrons transmitting the materials
+     *
+     * Measured in electrons per unit area
+     * TODO check if this is correct
      */
     private final Float cumulativeElectronDose
 }
