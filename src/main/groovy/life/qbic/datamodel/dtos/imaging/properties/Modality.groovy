@@ -20,6 +20,9 @@ enum Modality {
   SPT_PALM("Photo-activated localization microscopy"),
   SEM("Scanning electron microscopy")
 
+  /**
+   * Contains the String representation of a modality item.
+   */
   private String value
 
   private Modality(String value) {
