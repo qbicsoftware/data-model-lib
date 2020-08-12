@@ -1,12 +1,23 @@
 package life.qbic.datamodel.dtos.imaging.properties
 
 /**
- * <class short description - 1 Line!>
+ * DTO class for detectors in the imaging context.
  *
- * <More detailed description - When to use, what it solves, etc.>
+ * A detector is used to capture the particle information
+ * in the context of imaging analysis.
+ *
+ * Examples are Charged Coupled Device (CCD), Photomultiplier Tube (PMT)
+ * or Backscatter Electron Detector (BSD)
  *
  * @author Sven Fillinger
- * @since <versiontag>
+ * @since 1.10.0
  */
 class Detector {
+
+  /**
+   * Defines the detector type that has been used to
+   * capture particle information.
+   */
+  private final String type
+
 }
