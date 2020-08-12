@@ -14,6 +14,18 @@ package life.qbic.datamodel.dtos.imaging.parameters
  */
 class AcquisitionParameters {
 
+  /**
+   * Binning describes the factor by which a pixel
+   * condensed.
+   *
+   * A binning of 1 means that all 8 pixels surrounding a pixel
+   * will be merged into one super pixel.
+   *
+   * Binning is used to increase contrast with the downside
+   * of losing spacial frequency information (resolution).
+   *
+   * Binning is always a positive Integer value.
+   */
   private final Integer binning
 
 }
