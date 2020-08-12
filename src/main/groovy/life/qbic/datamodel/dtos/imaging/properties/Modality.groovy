@@ -28,7 +28,7 @@ enum Modality {
 
   /**
    * The string representation of the modality item.
-   * @return
+   * @return The value of the modality item, which is its declarative String representation.
    */
   String getValue() {
     return this.value
@@ -39,6 +39,7 @@ enum Modality {
    * representation of a modality item. This is equivalent
    * to the <code>getValue()</code> return value.
    *
+   * @see #getValue()
    * @return The String representation of the modality item
    */
   @Override
