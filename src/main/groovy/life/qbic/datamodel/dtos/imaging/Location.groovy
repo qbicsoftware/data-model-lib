@@ -1,12 +1,27 @@
 package life.qbic.datamodel.dtos.imaging
 
+import life.qbic.datamodel.people.Address
+
 /**
- * <class short description - 1 Line!>
+ * DTO that describes the location of an instrument.
  *
- * <More detailed description - When to use, what it solves, etc.>
+ * This class shall be used whenever location information
  *
  * @author Sven Fillinger
- * @since <versiontag>
+ * @since 1.10.0
  */
 class Location {
+
+  /**
+   * An identifier for a room an instrument is located at.
+   */
+  private final String roomId
+
+  /**
+   * An address that describes the location of an instrument.
+   *
+   * @see: #life.qbic.datamodel.people.Address
+   */
+  private final Address address
+
 }
