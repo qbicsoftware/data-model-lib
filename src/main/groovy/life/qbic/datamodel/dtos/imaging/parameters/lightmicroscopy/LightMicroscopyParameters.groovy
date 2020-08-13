@@ -59,7 +59,7 @@ class LightMicroscopyParameters extends AcquisitionParameters{
      *
      * In the range of femtoseconds to picoseconds
      */
-    private final Time cameraAcquisitionTime
+    private final Float cameraAcquisitionTime
 
     /**
      * TODO is this correct?
