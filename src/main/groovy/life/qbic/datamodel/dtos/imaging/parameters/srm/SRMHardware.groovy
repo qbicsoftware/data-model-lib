@@ -19,7 +19,7 @@ import life.qbic.datamodel.dtos.imaging.properties.WaveLength
  * @author Sven Fillinger
  * @since <versiontag>
  */
-class SRMHardwareProperties extends ImagingHardware{
+class SRMHardware extends ImagingHardware{
 
     /**
      * Piezo is greek and means 'to squeeze or press'
