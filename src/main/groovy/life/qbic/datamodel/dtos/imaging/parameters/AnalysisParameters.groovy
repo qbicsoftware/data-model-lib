@@ -6,7 +6,7 @@ package life.qbic.datamodel.dtos.imaging.parameters
  * <More detailed description - When to use, what it solves, etc.>
  *
  * @author Sven Fillinger
- * @since <versiontag>
+ * @since 1.10.0
  */
-class AnalysisParameters {
+abstract class AnalysisParameters {
 }
