@@ -8,5 +8,5 @@ package life.qbic.datamodel.dtos.imaging.properties
  * @author Sven Fillinger
  * @since <versiontag>
  */
-class Hardware {
+class Objective {
 }
