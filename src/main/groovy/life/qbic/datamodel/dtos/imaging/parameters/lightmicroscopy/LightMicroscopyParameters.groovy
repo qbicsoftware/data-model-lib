@@ -40,7 +40,9 @@ class LightMicroscopyParameters extends AcquisitionParameters{
      * Total Internal Reflection Fluorescence (TIRF)
      * Amount of power of the laser beam of the TIRF lens
      *
-     * Power is measured in milliwats (mW)
+     * {@link Power} is measured in milliwats (mW)
+     *
+     * @see Power
      */
     private final Power laserPowerTIRFLens
 
@@ -48,7 +50,9 @@ class LightMicroscopyParameters extends AcquisitionParameters{
      * Amount of power of the laser beam split by the beam splitter.
      * A beam splitter is an optical device that splits the beam of light
      *
-     * Power is measured in milliwats (mW)
+     * {@link Power} is measured in milliwats (mW)
+     *
+     * @see Power
      */
     private final Power laserPowerBeamSplitter
 
