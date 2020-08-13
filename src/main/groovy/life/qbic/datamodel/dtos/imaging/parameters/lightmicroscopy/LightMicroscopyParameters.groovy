@@ -4,8 +4,6 @@ import life.qbic.datamodel.dtos.imaging.parameters.AcquisitionParameters
 import life.qbic.datamodel.dtos.imaging.properties.Area
 import life.qbic.datamodel.dtos.imaging.properties.Position
 import life.qbic.datamodel.dtos.imaging.properties.Power
-import life.qbic.datamodel.dtos.imaging.properties.Resolution
-import life.qbic.datamodel.dtos.imaging.properties.Time
 import life.qbic.datamodel.dtos.imaging.properties.Unit
 import life.qbic.datamodel.dtos.imaging.properties.WaveLength
 
@@ -97,7 +95,7 @@ class LightMicroscopyParameters extends AcquisitionParameters{
      *
      * In the range of femtoseconds to picoseconds
      */
-    private final Time scanAcquisitionRate
+    private final Float scanAcquisitionRate
 
     /**
      * The size of the scanned area
