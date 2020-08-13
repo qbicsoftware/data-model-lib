@@ -19,7 +19,7 @@ import life.qbic.datamodel.dtos.imaging.properties.WaveLength
  * properties.
  *
  * @author Sven Fillinger
- * @since <versiontag>
+ * @since 1.10
  */
 class LightMicroscopyParameters extends AcquisitionParameters{
 
@@ -65,7 +65,7 @@ class LightMicroscopyParameters extends AcquisitionParameters{
      * TODO is this correct?
      * Position of the light beam on the scanning area
      *
-     * Described by coordinates in pixels e.g position (1,3)
+     * Described by coordinates in pixels e.g position (x,y,z)
      */
     private final Position<Unit> position
 
@@ -82,7 +82,7 @@ class LightMicroscopyParameters extends AcquisitionParameters{
      * TODO is this correctly described? Whats the difference to position?
      * Position of the laser spot on the scanning area
      *
-     * Described by coordinates in pixels e.g position (1,3)
+     * Described by coordinates in pixels e.g position (x,y,z)
      */
     private final Position<Unit> tcspcPosition
 
@@ -101,7 +101,7 @@ class LightMicroscopyParameters extends AcquisitionParameters{
 
     /**
      * The size of the scanned area
-     * e.g. 2D area in pixels
+     * e.g. 3D area in pixels (x,y,z)
      */
     private final Area scanSize
 }
