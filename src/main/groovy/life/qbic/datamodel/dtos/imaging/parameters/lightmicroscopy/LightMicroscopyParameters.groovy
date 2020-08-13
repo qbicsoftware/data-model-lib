@@ -101,7 +101,9 @@ class LightMicroscopyParameters extends AcquisitionParameters{
 
     /**
      * The size of the scanned area
-     * e.g. 3D area in pixels (x,y,z)
+     * e.g. area in pixels (x,y)
+     *
+     * @see Area
      */
     private final Area scanSize
 }
