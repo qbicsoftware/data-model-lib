@@ -25,8 +25,9 @@ class ImagingHardware {
 
   /**
    * Returns the objective described in the hardware
-   * @see: #Objective
+   *
    * @return The objective type
+   * @see Objective
    */
   Objective getObjective() {
     return objective // TODO: implement deep copy
@@ -34,8 +35,9 @@ class ImagingHardware {
 
   /**
    * Returns the detector described in the hardware
-   * @see: #Detector
+   *
    * @return The detector type
+   * @see Detector
    */
   Detector getDetector() {
     return detector // TODO: return deep copy
