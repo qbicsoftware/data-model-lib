@@ -17,7 +17,7 @@ import life.qbic.datamodel.dtos.imaging.properties.WaveLength
  * properties.
  *
  * @author Sven Fillinger
- * @since <versiontag>
+ * @since 1.10.0
  */
 class SRMHardware extends ImagingHardware{
 
