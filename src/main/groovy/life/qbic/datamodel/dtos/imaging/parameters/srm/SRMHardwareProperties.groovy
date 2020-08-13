@@ -3,6 +3,7 @@ package life.qbic.datamodel.dtos.imaging.parameters.srm
 import life.qbic.datamodel.dtos.imaging.properties.Filter
 import life.qbic.datamodel.dtos.imaging.properties.Frequence
 import life.qbic.datamodel.dtos.imaging.properties.IlluminationMode
+import life.qbic.datamodel.dtos.imaging.properties.ImagingHardware
 import life.qbic.datamodel.dtos.imaging.properties.Size
 import life.qbic.datamodel.dtos.imaging.properties.WaveLength
 
@@ -18,7 +19,7 @@ import life.qbic.datamodel.dtos.imaging.properties.WaveLength
  * @author Sven Fillinger
  * @since <versiontag>
  */
-class SRMHardwareProperties {
+class SRMHardwareProperties extends ImagingHardware{
 
     /**
      * Piezo is greek and means 'to squeeze or press'
