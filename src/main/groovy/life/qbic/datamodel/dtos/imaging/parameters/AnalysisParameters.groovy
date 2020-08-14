@@ -1,9 +1,9 @@
 package life.qbic.datamodel.dtos.imaging.parameters
 
 /**
- * <class short description - 1 Line!>
+ * DTO that describes the analysis parameter of an image
  *
- * <More detailed description - When to use, what it solves, etc.>
+ * This class should be used to describe analysis parameters of an image
  *
  * @author Sven Fillinger
  * @since 1.10.0

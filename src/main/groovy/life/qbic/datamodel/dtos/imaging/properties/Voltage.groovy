@@ -1,13 +1,18 @@
 package life.qbic.datamodel.dtos.imaging.properties
 
 /**
- * <class short description - One Line!>
+ * A DTO to describe the voltage in context of imaging
  *
- * <More detailed description - When to use, what it solves, etc.>
+ * This class should be used whenever the voltage of a powersource needs to be described
  *
- * @since: <versiontag>
+ * @since: 1.10.0
  * @author: Jennifer Bödker
  *
  */
 class Voltage {
+
+    /**
+     * Describes the voltage in kV
+     */
+    private final int voltage
 }

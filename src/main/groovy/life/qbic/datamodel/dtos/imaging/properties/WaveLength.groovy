@@ -1,12 +1,17 @@
 package life.qbic.datamodel.dtos.imaging.properties
 
 /**
- * <class short description - 1 Line!>
+ * A DTO to describe the wave length of light in the imaging context
  *
- * <More detailed description - When to use, what it solves, etc.>
+ * Whenever the wave length of light in the imaging context needs to be described, this class should be used
  *
  * @author Sven Fillinger
- * @since <versiontag>
+ * @since 1.10.0
  */
 class WaveLength {
+
+    /**
+     * Describes the wave length of a light source
+     */
+    private final int waveLength
 }

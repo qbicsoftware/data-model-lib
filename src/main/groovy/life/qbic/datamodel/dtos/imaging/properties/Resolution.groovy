@@ -1,12 +1,17 @@
 package life.qbic.datamodel.dtos.imaging.properties
 
 /**
- * <class short description - 1 Line!>
+ * A DTO to describe the resolution of images
  *
- * <More detailed description - When to use, what it solves, etc.>
+ * This class should be used when the resolution in the context of imaging needs to be described
  *
  * @author Sven Fillinger
- * @since <versiontag>
+ * @since 1.10.0
  */
 class Resolution {
+
+    /**
+     * Describes the image resolution in µm/px
+     */
+    private final Float imageResolution
 }

@@ -1,12 +1,17 @@
 package life.qbic.datamodel.dtos.imaging.properties
 
 /**
- * <class short description - 1 Line!>
+ * A DTO to describe microscope objectives
  *
- * <More detailed description - When to use, what it solves, etc.>
+ * This class should be used whenever objects of microscopes need to be described
  *
- * @author Sven Fillinger
- * @since <versiontag>
+ * @author Jennifer Bödker
+ * @since 1.10.0
  */
 class Objective {
+
+    /**
+     * Name of the used objective
+     */
+    private final String name
 }
