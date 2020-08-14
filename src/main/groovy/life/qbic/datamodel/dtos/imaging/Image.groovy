@@ -54,7 +54,7 @@ final class Image {
   private final Modality modality
 
   /**
-   * Information about tHe image size.
+   * Information about the image size.
    *
    * @see ImageSize
    */
