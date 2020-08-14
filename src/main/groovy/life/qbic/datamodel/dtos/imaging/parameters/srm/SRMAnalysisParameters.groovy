@@ -27,10 +27,9 @@ class SRMAnalysisParameters extends AnalysisParameters {
 
     /**
      * Describes an estimate of the background color based on surrounding pixel's color.
-     * The variable stores the name of the color
+     * The variable stores the name of the method to obtain the background estimation
      *
      * e.g. "Difference of Gaussians"
-     * todo rather use something more specific like rgb color like an array?
      */
     private final String backgroundEstimation
 
@@ -58,7 +57,6 @@ class SRMAnalysisParameters extends AnalysisParameters {
      *
      * An image that comprises an ROI of 2x5 pixels has a ROI size of 10 pixels
      *
-     * todo is it 2d or 3d, assume 2d since we name it region of interest and not VOI (volume of interest)
      */
     private final Float roiSize
 
@@ -66,7 +64,7 @@ class SRMAnalysisParameters extends AnalysisParameters {
      * Describes the size of the image pixels.
      *
      * The {@link PixelSize} is characterized by 5 elements:
-     * (time, channel, x, y, z)
+     * (time, channel, x, y, z) in nm
      *
      * @see PixelSize
      */
@@ -102,28 +100,34 @@ class SRMAnalysisParameters extends AnalysisParameters {
      * the spatial resolution in the final reconstructed image will be poor
      *
      * Either drift correction is present or not
-     *
      */
     private final Boolean driftCorrection
 
     /**
-     * todo describe this parameter, find a suitable data type
-     * Measured in pixels, e.g 1.5 pixels
+     * Describes the maximal distance that a molecule can "jump" within two frames in order to be traced
+     * In context of SMT - Single Molecule Tracking
+     *
+     * Measured in pixels
+     * e.g 1.5 pixels
      */
     private final Float maxJumpDistance
 
     /**
      * States if the blinking fluorophores wre detected. Some fluorophores can phoswitch from a brigth to a dark state.
      * SRM are capable of detecting such blinking objects.
+     * In context of  SMT - Single Molecule Tracking
      *
-     * This variable describes the number of blinks in frame
+     * This variable describes the number of frames which are allowed between to signals in order to be traced (called a blink)
      * e.g. 2 frames
      */
     private final int blinking
 
     /**
-     * todo is this really the track length of the microscope table?
-     * Measured in frames, e.g. 5 frames
+     * Describes on how many frames a molecules was detected/tracked
+     * In context of SMT - Single Molecule Tracking
+     *
+     * Measured in frames,
+     * e.g. a molecules was tracked in 5 frames
      */
     private final int trackLength
 }

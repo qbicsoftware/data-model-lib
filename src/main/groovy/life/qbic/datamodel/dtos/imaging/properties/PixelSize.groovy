@@ -11,22 +11,25 @@ package life.qbic.datamodel.dtos.imaging.properties
 class PixelSize {
 
     /**
-     * Describes the time point of when the image was taken
+     * Describes the time point within a time series, it correlates with the frames of an image
+     * One frame is one image taken at time point x
+     *
+     * e.g time point 0.2 seconds
      */
-    private final Date time
+    private final Float timePoint
 
     /**
      * Size on the x-axis in nm
      */
-    private final int x
+    private final Float x
 
     /**
      * Size on the y-axis in nm
      */
-    private final int y
+    private final Float y
 
     /**
      * Size on the z-axis in nm
      */
-    private final int z
+    private final Float z
 }

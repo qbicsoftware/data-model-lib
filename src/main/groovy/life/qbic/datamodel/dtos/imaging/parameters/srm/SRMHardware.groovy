@@ -1,11 +1,10 @@
 package life.qbic.datamodel.dtos.imaging.parameters.srm
 
 import life.qbic.datamodel.dtos.imaging.properties.Filter
-import life.qbic.datamodel.dtos.imaging.properties.Frequence
+
 import life.qbic.datamodel.dtos.imaging.properties.IlluminationMode
 import life.qbic.datamodel.dtos.imaging.properties.ImagingHardware
 import life.qbic.datamodel.dtos.imaging.properties.Size
-import life.qbic.datamodel.dtos.imaging.properties.WaveLength
 
 /**
  * Describes the properties of the super resolution microscope (SRM) hardware
@@ -46,13 +45,13 @@ class SRMHardware extends ImagingHardware{
      * Defines the wavelength of laser lines in Cw todo is this right defined?
      * e.g 405 nm
      */
-    private final WaveLength laserLinesCw
+    private final int laserLinesCw
 
     /**
      * Describes the wavelength of pulsed laser lines
      * e.g. 488 nm
      */
-    private final WaveLength laserLinesPulsed
+    private final int laserLinesPulsed
 
     /**
      * Describes the filter that has been applied to the laser lines.
@@ -68,9 +67,8 @@ class SRMHardware extends ImagingHardware{
      * Describes the repetition rate of the laser based on its frequency
      *
      * Laser frequency is measured in mega hertz (MHz), e.g 20 MHz
-     * todo should frequence be frequency?
      */
-    private final Frequence laserRepetitionRate
+    private final Integer laserRepetitionRate
 
     /**
      * Polarization optics change the state of polarization of incident radiation

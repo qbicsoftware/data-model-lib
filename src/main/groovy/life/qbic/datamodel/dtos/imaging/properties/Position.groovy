@@ -9,22 +9,31 @@ package life.qbic.datamodel.dtos.imaging.properties
  * @author: Jennifer Bödker
  *
  */
-class Position<T> {
-
-    /**
-     * Describes the unit of the position
-     */
-    private final T unit
+class Position {
 
     /**
      * Describes the position on the x-axis
      * This could be e.g 20 µm (depending on the defined unit)
+     *
+     * Always a positive number
      */
-    private final int x
+    private final Float x
 
     /**
      * Describes the position on the y-axis
      * This could be e.g 60 µm (depending on the defined unit)
+     *
+     * Always a positive number
      */
-    private final int y
+    private final Float y
+
+    /**
+     * Describes the position on the z-axis
+     * This could be e.g 60 µm (depending on the defined unit)
+     *
+     * As default this value can be put to 0 if its not required
+     *
+     * Always a positive number
+     */
+    private final Float z
 }

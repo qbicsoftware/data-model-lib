@@ -11,28 +11,31 @@ package life.qbic.datamodel.dtos.imaging.properties
 class ImageSize {
 
     /**
-     * Describes the time point of when the image was taken
+     * Describes the time point within a time series, it correlates with the frames of an image
+     * One frame is one image taken at time point x
+     *
+     * e.g time point 10
      */
-    private final Date time
+    private final Integer timePoint
 
     /**
      * Channel from which the image was obtained
      */
-    private final int channel
+    private final Integer channel
 
     /**
      * Size on the x-axis in px
      */
-    private final int x
+    private final Integer x
 
     /**
      * Size on the y-axis in px
      */
-    private final int y
+    private final Integer y
 
     /**
      * Size on the z-axis in px
      */
-    private final int z
+    private final Integer z
 
 }
