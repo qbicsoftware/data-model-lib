@@ -117,12 +117,4 @@ class SRMAnalysisParameters {
      * todo is this really the track length of the microscope table?
      */
     private final int trackLength
-
-
-
-
-
-
-
-
 }
