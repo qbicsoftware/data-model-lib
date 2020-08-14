@@ -121,7 +121,7 @@ final class Image {
 
   /**
    * Returns image resolution information.
-   * @return THe image resolution.
+   * @return The image resolution.
    */
   Resolution getResolution(){
     return this.resolution // TODO return deep copy
