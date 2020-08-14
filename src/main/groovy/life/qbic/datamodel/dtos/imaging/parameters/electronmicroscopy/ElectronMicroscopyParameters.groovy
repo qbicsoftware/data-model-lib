@@ -1,5 +1,6 @@
 package life.qbic.datamodel.dtos.imaging.parameters.electronmicroscopy
 
+import life.qbic.datamodel.dtos.imaging.parameters.AcquisitionParameters
 import life.qbic.datamodel.dtos.imaging.properties.Voltage
 
 /**
@@ -12,9 +13,9 @@ import life.qbic.datamodel.dtos.imaging.properties.Voltage
  * properties.
  *
  * @author Sven Fillinger
- * @since 1.0
+ * @since 1.10.0
  */
-class ElectronMicroscopyParameters {
+class ElectronMicroscopyParameters extends AcquisitionParameters{
 
     /**
      * Voltage used to accelerate electrons.

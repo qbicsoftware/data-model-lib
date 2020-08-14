@@ -12,6 +12,7 @@ package life.qbic.datamodel.dtos.imaging.properties
  * @author Sven Fillinger
  * @since 1.10.0
  */
+
 class Detector {
 
   /**
