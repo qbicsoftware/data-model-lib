@@ -15,7 +15,7 @@ import life.qbic.datamodel.dtos.imaging.properties.PixelSize
  * @author: Jennifer Bödker
  *
  */
-class SRMAnalysisParameters {
+class SRMAnalysisParameters extends AnalysisParameters {
 
     /**
      * Describes the dimensionality used to analyse an image
