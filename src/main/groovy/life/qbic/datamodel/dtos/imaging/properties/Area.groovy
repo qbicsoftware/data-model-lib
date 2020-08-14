@@ -12,15 +12,9 @@ package life.qbic.datamodel.dtos.imaging.properties
 class Area {
 
     /**
-     * Describes the type of area which can be 2D or 3D
+     * The area is constructed as follows:
+     * (x/y,y/z)
+     * It is stored in µm
      */
-    private final String areaType
-
-    /**
-     * Describes the area of an image in pixels.
-     * This can be a 2D or 3D area
-     *
-     * e.g x*y or x*y*z
-     */
-    private final int area
+    private final List<Integer> area
 }

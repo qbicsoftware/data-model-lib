@@ -25,14 +25,17 @@ class LightMicroscopyParameters extends AcquisitionParameters{
      * It is light that excites fluorochromes. Its the light that gets absorbed by the specimen
      * A sufficient intensity needs to match the excitation range of the fluorochrome in order to get a signal.
      *
-     * Measured as light in wavelength per channel
+     * Measured as light in wavelength per channel, it is stored as a list of {@link WaveLength}
+     * e.g (488, 561)
      */
     private final List<WaveLength> excitationPerChannel
 
     /**
      * Wavelength of emission light per channel. Its the light that passes the specimen and is not absorbed.
      *
-     * Measured as light in wavelength per channel
+     * Measured as light in {@link WaveLength} per channel
+     *
+     * The emission is stored as a range of wave lengths and is therefor a string
      */
     private final List<WaveLength> emissionPerChannel
 
@@ -59,7 +62,7 @@ class LightMicroscopyParameters extends AcquisitionParameters{
     /**
      * Time required to generate an image with the camera
      *
-     * In the range of femtoseconds to picoseconds
+     * Described in ms (e.g 100 ms)
      */
     private final Float cameraAcquisitionTime
 
@@ -67,7 +70,7 @@ class LightMicroscopyParameters extends AcquisitionParameters{
      * TODO is this correct?
      * Position of the light beam on the scanning area
      *
-     * Described by coordinates in pixels e.g position (x,y,z)
+     * Described by coordinates in pixels or µm e.g position (x,y)
      */
     private final Position<Unit> position
 
@@ -76,15 +79,15 @@ class LightMicroscopyParameters extends AcquisitionParameters{
      * Time-Correlated Single Photon Counting (TCSPC)
      * A resolution is defined by the shortest distance between two points on a specimen that can still be distinguished
      *
-     * Distance in µm?
+     * Describes the timing resolution of TCSPC in ps e.g. 32 ps
      */
-    private final Object tcspcResolution
+    private final int tcspcResolution
 
     /**
      * TODO is this correctly described? Whats the difference to position?
      * Position of the laser spot on the scanning area
      *
-     * Described by coordinates in pixels e.g position (x,y,z)
+     * Described by coordinates in pixels or µm e.g position (x,y)
      */
     private final Position<Unit> tcspcPosition
 
@@ -92,14 +95,15 @@ class LightMicroscopyParameters extends AcquisitionParameters{
      * TODO the type of this parameter was not defined yet
      * Describes the scan mode of the used for the TCSPC microscopy
      */
-    private final Object tscpcScanMode
+    private final String tscpcScanMode
 
     /**
      * Describes the time for the acquisition of the scan head
+     * The rate is defined as time/px and has the unit ms
      *
-     * In the range of femtoseconds to picoseconds
+     * e.g. 5ms
      */
-    private final Float scanAcquisitionRate
+    private final int scanAcquisitionRate
 
     /**
      * The size of the scanned area

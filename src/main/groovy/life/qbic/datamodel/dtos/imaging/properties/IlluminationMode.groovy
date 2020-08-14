@@ -11,10 +11,9 @@ package life.qbic.datamodel.dtos.imaging.properties
  */
 enum IlluminationMode {
 
-    TRANSMITTED("Transmitted illumination"),
-    BRIGHTFIELD("Brightfield illumination"),
-    DARKFIELD("Darkfield illumination"),
-    INCIDENT("Incident illumination")
+    CONFOCAL("Confocal"),
+    WIDEFIELD("Wiedefield"),
+    TIRFVAEM("TIRF/VAEM"),
 
     /**
      * Contains the String representation of a illumination mode item.

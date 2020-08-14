@@ -10,6 +10,13 @@ package life.qbic.datamodel.dtos.imaging.properties
  *
  */
 enum Filter {
+    EMISSION510LP("510 LP"),
+    EMISSION550BP("550/30 BP"),
+    BEAMLP("594 BS LP"),
+    BEAMSP("596 BS SP"),
+    BEAMPOLARIZING("Polarizing beam cube"),
+    EMISSION580LP("580 LP"),
+    EMISSION600BP("600/35 BP")
     /**
      * Contains the String representation of a filter item.
      */

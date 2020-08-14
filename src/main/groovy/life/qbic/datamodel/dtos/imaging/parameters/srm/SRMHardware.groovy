@@ -27,26 +27,30 @@ class SRMHardware extends ImagingHardware{
      *
      * The table controller allows to control the squeezing and position of the probe plate
      *
-     * The name of the table controller is defined with this parameter //todo should this be controlled vocabulary?
+     * The name of the table controller is defined with this parameter,
+     * e.g. E-710.3CD digital piezo controller
      */
     private final String piezoTableController
 
     /**
      * Scanner to detect fast, high precision motion in one or more axes
      *
-     * The name of the scanner is defined with this parameter //todo should this be controlled vocabulary?
+     * The name of the scanner is defined with this parameter,
+     * e.g. P-527.3CD multi axis piezo scanner
      */
     private final String piezoScanner
 
     /**
      * Cw stands for cool white and describes the brightness of the light / laser beam
      *
-     * Defines the wavelength of laser lines in Cw
+     * Defines the wavelength of laser lines in Cw todo is this right defined?
+     * e.g 405 nm
      */
     private final WaveLength laserLinesCw
 
     /**
      * Describes the wavelength of pulsed laser lines
+     * e.g. 488 nm
      */
     private final WaveLength laserLinesPulsed
 
@@ -55,14 +59,15 @@ class SRMHardware extends ImagingHardware{
      * Optical filters filter for specific wavelengths in order to block unwanted light
      * at wavelengths away from the actual laser line.
      *
-     * Different filter are described by {@link Filter}
+     * e.g 488 nm BP/LL, BP (Sem rock)
+     *
      */
-    private final Filter laserLineFilter
+    private final Float laserLineFilter
 
     /**
      * Describes the repetition rate of the laser based on its frequency
      *
-     * Laser frequency is measured in hertz (Hz)
+     * Laser frequency is measured in mega hertz (MHz), e.g 20 MHz
      * todo should frequence be frequency?
      */
     private final Frequence laserRepetitionRate
@@ -71,6 +76,9 @@ class SRMHardware extends ImagingHardware{
      * Polarization optics change the state of polarization of incident radiation
      *
      * This variable describes the name of the polarization optics hardware //todo controlled vocabulary?
+     * e.g Glen Thompson linear polarizer,
+     *     Lambda/2 wave plate,
+     *     Lambda/4 wave plate
      */
     private final String polarizationOptics
 
@@ -78,6 +86,7 @@ class SRMHardware extends ImagingHardware{
      * The beam splitter splits the beam, it comes in different forms like cubes, plates, hexagons,..
      *
      * This variable describes the name of the beam splitter hardware  //todo controlled vocabulary?
+     * e.g TIRF Quad Line zt405/488/561/640rpc 514 BS LP
      */
     private final String excitationBeamSplitter
 
@@ -92,7 +101,7 @@ class SRMHardware extends ImagingHardware{
     /**
      * This variable describes the size of the pinhole, which helps to focus the light and eliminate stray light
      *
-     * The size of the pinhole is measured in µm
+     * The {@link Size} of the pinhole is measured in µm
      */
     private final Size pinholeSize
 

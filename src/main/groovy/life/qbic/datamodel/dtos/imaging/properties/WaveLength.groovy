@@ -11,7 +11,16 @@ package life.qbic.datamodel.dtos.imaging.properties
 class WaveLength {
 
     /**
-     * Describes the wave length of a light source
+     * Describes the wave length of a excitation light source in nm
+     * e.g 488 nm
      */
-    private final int waveLength
+    private final int excitationWaveLength
+
+    /**
+     * Describes the wave length of a emission light source in nm
+     * Emissions is described in a range of wavelength
+     * e.g "495-530" nm
+     * todo do we really want to store this as a string?
+     */
+    private final String emissionWaveLength
 }

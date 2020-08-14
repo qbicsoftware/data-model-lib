@@ -18,10 +18,10 @@ import life.qbic.datamodel.dtos.imaging.properties.Voltage
 class ElectronMicroscopyParameters extends AcquisitionParameters{
 
     /**
-     * Voltage used to accelerate electrons.
+     * Voltage is used to accelerate electrons.
      * Applied between cathode and electrode in the acceleration tube
      *
-     * It is usually in the range of 500 to 30.000 volts
+     * @see Voltage
      */
     private final Voltage acceleratingVoltage
 
@@ -30,6 +30,8 @@ class ElectronMicroscopyParameters extends AcquisitionParameters{
      * It is used to observe 'Fresnel fringes', for taking lattice image or structure images.
      *
      * Defocused images occur when the light rays from a point source are not focused on a single point.
+     *
+     * This could be for example -4 nm
      * TODO whats the unit? wavelengths?
      */
     private final Float targetDefocus
@@ -37,7 +39,7 @@ class ElectronMicroscopyParameters extends AcquisitionParameters{
     /**
      * The accumulated amount of electrons transmitting the materials
      *
-     * Measured in electrons per unit area
+     * Measured in electrons per unit area e.g 100 electrons/Angstrom^2
      * TODO check if this is correct
      */
     private final Float cumulativeElectronDose

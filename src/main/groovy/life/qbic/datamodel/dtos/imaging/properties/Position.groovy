@@ -12,10 +12,19 @@ package life.qbic.datamodel.dtos.imaging.properties
 class Position<T> {
 
     /**
-     * An array of size three describes the three dimensional position of an object on an image
-     *
-     * T describes e.g the unit used to measure the position
-     * This could be metrical values or pixels
+     * Describes the unit of the position
      */
-    private final T[] position
+    private final T unit
+
+    /**
+     * Describes the position on the x-axis
+     * This could be e.g 20 µm (depending on the defined unit)
+     */
+    private final int x
+
+    /**
+     * Describes the position on the y-axis
+     * This could be e.g 60 µm (depending on the defined unit)
+     */
+    private final int y
 }

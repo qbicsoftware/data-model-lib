@@ -9,16 +9,39 @@ package life.qbic.datamodel.dtos.imaging.properties
  * @author: Jennifer Bödker
  *
  */
-class Size {
+enum Size {
+
+    thirty("30 µm"),
+    DETECTOR("detector area (100µm)"),
+    NON("no pinhole"),
 
     /**
-     * Describes the size of an object.
+     * Contains the String representation of a illumination mode item.
      */
-    private final Float size
+    private String value
+
+    private Size(String value) {
+        this.value = value
+    }
 
     /**
-     * Describes the unit of the defined size
-     * e.g µm
+     * The string representation of the illumination mode item.
+     * @return The value of the illumination mode item, which is its declarative String representation.
      */
-    private final String unit
+    String getValue() {
+        return this.value
+    }
+
+    /**
+     * The <code>toString()</code> method is overridden to return the String
+     * representation of a illumination mode item. This is equivalent
+     * to the <code>getValue()</code> return value.
+     *
+     * @see #getValue()
+     * @return The String representation of the illumination mode item
+     */
+    @Override
+    String toString() {
+        return this.getValue()
+    }
 }

@@ -12,7 +12,7 @@ package life.qbic.datamodel.dtos.imaging.properties
 class Frequence {
 
     /**
-     * Describes the frequency of e.g a laser pulse which is measured in Hz
+     * Describes the frequency of e.g a laser pulse which is measured in MHz
      */
     private final int frequency
 }
