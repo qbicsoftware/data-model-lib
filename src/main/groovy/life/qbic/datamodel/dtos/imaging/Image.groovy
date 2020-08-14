@@ -25,19 +25,23 @@ final class Image {
   private final Date acquisitionDate
 
   /**
-   * Detailed description of the image acquisition parameters.
+   * Detailed description of image acquisition parameters.
    *
    * @see AcquisitionParameters
    */
   private final AcquisitionParameters acquisitionParameters
 
   /**
+   * Detailed description of image analysis parameters
    *
+   * @see AnalysisParameters
    */
   private final AnalysisParameters analysisParameters
 
   /**
    * A detailed instrument description that was used to create the image.
+   *
+   * @see Instrument
    */
   private final Instrument instrument
 
