@@ -8,10 +8,10 @@ import life.qbic.datamodel.dtos.imaging.properties.PixelSize
 import life.qbic.datamodel.dtos.imaging.properties.Resolution
 
 /**
- * This DTO class describes an image resulted from imaging analysis
+ * This DTO class describes an image resulted from imaging experiments
  *
  * An image class shall be used to describe properties of an image
- * in the context of imaging analysis such as microscopy or tomography.
+ * in the context of imaging experiments such as microscopy or tomography.
  *
  * @author Sven Fillinger
  * @since 1.10.0
@@ -58,7 +58,7 @@ final class Image {
   private final Modality modality
 
   /**
-   * Information about tHe image size.
+   * Information about the image size.
    *
    * @see ImageSize
    */
