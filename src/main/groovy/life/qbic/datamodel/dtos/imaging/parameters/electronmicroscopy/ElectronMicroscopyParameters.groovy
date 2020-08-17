@@ -22,7 +22,7 @@ class ElectronMicroscopyParameters extends AcquisitionParameters{
      *
      * e.g 120 kV
      */
-    private final int acceleratingVoltage
+    private final Integer acceleratingVoltage
 
     /**
      * Shift of focus of the objective lens.

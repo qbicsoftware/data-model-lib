@@ -17,7 +17,7 @@ import life.qbic.datamodel.dtos.imaging.properties.Unit
  * properties.
  *
  * @author Sven Fillinger
- * @since 1.10
+ * @since 1.10.0
  */
 class LightMicroscopyParameters extends AcquisitionParameters{
 
@@ -80,7 +80,7 @@ class LightMicroscopyParameters extends AcquisitionParameters{
      *
      * Describes the timing resolution of TCSPC in ps e.g. 32 ps
      */
-    private final int tcspcTimingResolution
+    private final Integer tcspcTimingResolution
 
     /**
      * Position for the TCSPC.
@@ -104,7 +104,7 @@ class LightMicroscopyParameters extends AcquisitionParameters{
      *
      * e.g. 5ms
      */
-    private final int scanAcquisitionRate
+    private final Integer scanAcquisitionRate
 
     /**
      * The size of the scanned area

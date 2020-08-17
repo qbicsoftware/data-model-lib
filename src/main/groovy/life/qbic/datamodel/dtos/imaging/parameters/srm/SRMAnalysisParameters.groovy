@@ -78,6 +78,13 @@ class SRMAnalysisParameters extends AnalysisParameters {
     private final Float conversion
 
     /**
+     * Offset applied in the analysis
+     * This is e.g. 100 ADU
+     * todo needs to be specified
+     */
+    private final Integer offset
+
+    /**
      * PSF stands for point spread function and describes the three-dimensional diffraction pattern of light emitted from
      * an infinitely small point source.
      *
@@ -120,7 +127,7 @@ class SRMAnalysisParameters extends AnalysisParameters {
      * This variable describes the number of frames which are allowed between to signals in order to be traced (called a blink)
      * e.g. 2 frames
      */
-    private final int blinking
+    private final Integer blinking
 
     /**
      * Describes on how many frames a molecules was detected/tracked
@@ -129,5 +136,5 @@ class SRMAnalysisParameters extends AnalysisParameters {
      * Measured in frames,
      * e.g. a molecules was tracked in 5 frames
      */
-    private final int trackLength
+    private final Integer trackLength
 }

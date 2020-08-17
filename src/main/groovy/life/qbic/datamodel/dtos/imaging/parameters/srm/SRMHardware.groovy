@@ -45,13 +45,13 @@ class SRMHardware extends ImagingHardware{
      * Defines the wavelength of laser lines in Cw todo is this right defined?
      * e.g 405 nm
      */
-    private final int laserLinesCw
+    private final Integer laserLinesCw
 
     /**
      * Describes the wavelength of pulsed laser lines
      * e.g. 488 nm
      */
-    private final int laserLinesPulsed
+    private final Integer laserLinesPulsed
 
     /**
      * Describes the filter that has been applied to the laser lines.
