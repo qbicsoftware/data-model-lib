@@ -1,7 +1,6 @@
 package life.qbic.datamodel.dtos.imaging.parameters.electronmicroscopy
 
 import life.qbic.datamodel.dtos.imaging.parameters.AcquisitionParameters
-import life.qbic.datamodel.dtos.imaging.properties.Voltage
 
 /**
  * Describes the properties of electron microscopy
@@ -18,27 +17,28 @@ import life.qbic.datamodel.dtos.imaging.properties.Voltage
 class ElectronMicroscopyParameters extends AcquisitionParameters{
 
     /**
-     * Voltage used to accelerate electrons.
+     * Voltage is used to accelerate electrons.
      * Applied between cathode and electrode in the acceleration tube
      *
-     * It is usually in the range of 500 to 30.000 volts
+     * e.g 120 kV
      */
-    private final Voltage acceleratingVoltage
+    private final Integer acceleratingVoltage
 
     /**
      * Shift of focus of the objective lens.
      * It is used to observe 'Fresnel fringes', for taking lattice image or structure images.
      *
-     * Defocused images occur when the light rays from a point source are not focused on a single point.
-     * TODO whats the unit? wavelengths?
+     * The defocus value is a parameter of the contrast transfer function in electron microscopy.
+     *
+     * This could be for example -4 nm.
+     * Usually this value is negative.
      */
     private final Float targetDefocus
 
     /**
-     * The accumulated amount of electrons transmitting the materials
+     * The accumulated amount of electrons that are applied to an area of the sample
      *
-     * Measured in electrons per unit area
-     * TODO check if this is correct
+     * Measured in electrons per unit area e.g 100 electrons/Angstrom^2
      */
     private final Float cumulativeElectronDose
 }

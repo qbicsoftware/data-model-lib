@@ -15,7 +15,7 @@ package life.qbic.datamodel.dtos.imaging.parameters
 class AcquisitionParameters {
 
   /**
-   * Binning describes the factor by which a pixel
+   * Binning describes the factor by which a pixel is
    * condensed.
    *
    * A binning of 1 means that all 8 pixels surrounding a pixel

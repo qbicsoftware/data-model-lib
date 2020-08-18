@@ -1,7 +1,7 @@
 package life.qbic.datamodel.dtos.imaging.properties
 
 /**
- * DTO that describes the area of an image
+ * DTO that describes the area of an image. An area is described by two values, a starting point and an end point e.g (40,40)
  *
  * This class should be used to describe area information for imaging data
  *
@@ -12,15 +12,18 @@ package life.qbic.datamodel.dtos.imaging.properties
 class Area {
 
     /**
-     * Describes the type of area which can be 2D or 3D
+     * Describes the value in µm of the first dimension of the area, e.g. 40 µm
      */
-    private final String areaType
+    private final Integer firstDimensionValue
 
     /**
-     * Describes the area of an image in pixels.
-     * This can be a 2D or 3D area
-     *
-     * e.g x*y or x*y*z
+     * Describes the value in µm of the second dimension of the area, e.g. 40 µm
      */
-    private final int area
+    private final Integer secondDimensionValue
+
+    /**
+     * Describes the image plane of the area
+     * @see ImagePlane
+     */
+    private final ImagePlane plane
 }

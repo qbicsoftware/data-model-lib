@@ -1,11 +1,10 @@
 package life.qbic.datamodel.dtos.imaging.parameters.srm
 
 import life.qbic.datamodel.dtos.imaging.properties.Filter
-import life.qbic.datamodel.dtos.imaging.properties.Frequence
+
 import life.qbic.datamodel.dtos.imaging.properties.IlluminationMode
 import life.qbic.datamodel.dtos.imaging.properties.ImagingHardware
 import life.qbic.datamodel.dtos.imaging.properties.Size
-import life.qbic.datamodel.dtos.imaging.properties.WaveLength
 
 /**
  * Describes the properties of the super resolution microscope (SRM) hardware
@@ -25,59 +24,66 @@ class SRMHardware extends ImagingHardware{
      * Piezo is greek and means 'to squeeze or press'
      * Its the stage which 'holds' the specimen
      *
-     * The table controller allows to control the squeezing and position of the probe plate
+     * The table controller enables the control of the squeezing and position of the probe plate
      *
-     * The name of the table controller is defined with this parameter //todo should this be controlled vocabulary?
+     * The name of the table controller is defined with this parameter,
+     * e.g. E-710.3CD digital piezo controller
      */
     private final String piezoTableController
 
     /**
      * Scanner to detect fast, high precision motion in one or more axes
      *
-     * The name of the scanner is defined with this parameter //todo should this be controlled vocabulary?
+     * The name of the scanner is defined with this parameter,
+     * e.g. P-527.3CD multi axis piezo scanner
      */
     private final String piezoScanner
 
     /**
      * Cw stands for cool white and describes the brightness of the light / laser beam
      *
-     * Defines the wavelength of laser lines in Cw
+     * Defines the wavelength of laser lines in a continuous wave laser
+     * e.g 405 nm
      */
-    private final WaveLength laserLinesCw
+    private final Integer laserLinesCw
 
     /**
      * Describes the wavelength of pulsed laser lines
+     * e.g. 488 nm
      */
-    private final WaveLength laserLinesPulsed
+    private final Integer laserLinesPulsed
 
     /**
      * Describes the filter that has been applied to the laser lines.
-     * Optical filters filter for specific wavelengths in order to block unwanted light
-     * at wavelengths away from the actual laser line.
+     * Optical filter such as e.g. Bandpass filters(BP) are employed to center the wavelength of a light source
      *
-     * Different filter are described by {@link Filter}
+     * e.g 488 nm BP/LL, BP (Sem rock)
+     *
      */
-    private final Filter laserLineFilter
+    private final Float laserLineFilter
 
     /**
-     * Describes the repetition rate of the laser based on its frequency
+     * Describes the number of pulses per second(frequency) of a laser employed in pulse mode.
      *
-     * Laser frequency is measured in hertz (Hz)
-     * todo should frequence be frequency?
+     * Pulse frequency is measured in mega hertz (MHz), e.g 20 MHz
      */
-    private final Frequence laserRepetitionRate
+    private final Integer laserRepetitionRate
 
     /**
      * Polarization optics change the state of polarization of incident radiation
      *
-     * This variable describes the name of the polarization optics hardware //todo controlled vocabulary?
+     * Describes the name of the polarization optics hardware
+     * e.g Glen Thompson linear polarizer,
+     *     Lambda/2 wave plate,
+     *     Lambda/4 wave plate
      */
     private final String polarizationOptics
 
     /**
-     * The beam splitter splits the beam, it comes in different forms like cubes, plates, hexagons,..
+     * A beam splitter is an optical device that splits a beam of light in two. 
      *
-     * This variable describes the name of the beam splitter hardware  //todo controlled vocabulary?
+     * Describes the name of the beam splitter hardware 
+     * e.g TIRF Quad Line zt405/488/561/640rpc 514 BS LP
      */
     private final String excitationBeamSplitter
 
@@ -92,7 +98,7 @@ class SRMHardware extends ImagingHardware{
     /**
      * This variable describes the size of the pinhole, which helps to focus the light and eliminate stray light
      *
-     * The size of the pinhole is measured in µm
+     * The {@link Size} of the pinhole is measured in µm
      */
     private final Size pinholeSize
 

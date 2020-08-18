@@ -1,5 +1,7 @@
 package life.qbic.datamodel.dtos.imaging.parameters.srm
 
+import life.qbic.datamodel.dtos.imaging.parameters.AnalysisParameters
+import life.qbic.datamodel.dtos.imaging.properties.Dimensionality
 import life.qbic.datamodel.dtos.imaging.properties.PixelSize
 
 /**
@@ -18,15 +20,16 @@ import life.qbic.datamodel.dtos.imaging.properties.PixelSize
 class SRMAnalysisParameters extends AnalysisParameters {
 
     /**
-     * Describes the dimensionality used to analyse an image
-     * This could be e.g 3 for a three-dimensional image
+     * Describes the dimensionality of an image
+     * @see Dimensionality
      */
-    private final int dimensionality
+    private final Dimensionality dimensionality
 
     /**
      * Describes an estimate of the background color based on surrounding pixel's color.
-     * The variable stores the name of the color
-     * todo rather use something more specific like rgb color like an array?
+     * The variable stores the name of the method to obtain the background estimation
+     *
+     * e.g. "Difference of Gaussians"
      */
     private final String backgroundEstimation
 
@@ -35,31 +38,33 @@ class SRMAnalysisParameters extends AnalysisParameters {
      *
      * The convolution kernell is a window (usually rectangular).
      * Its size is described by a positive integer such as y x y
+     *
+     * A sample value would be 1.3 px
      */
-    private final int filterSize
+    private final Float filterSize
 
     /**
      * It describes the limiting spatial frequency of the microscope
      * Based on this value the smallest object resolvable by the microscope can be determined
      *
-     * It is given in cycles/millimeter
+     * It is given in photons, e.g. 1.5 photons
      */
-    private final int cutOff
+    private final Float cutOff
 
     /**
      * ROI stands for region of interest.
      * This region is defined by a number of pixels. All pixels contained within the area of interest describe it.
      *
-     * An image that comprises an ROI of 2x5 pixels has a ROI size of 10
-     * todo is it 2d or 3d, assume 2d since we name it region of interest and not VOI (volume of interest)
+     * An image that comprises an ROI of 2x5 pixels has a ROI size of 10 pixels
+     *
      */
-    private final int roiSize
+    private final Float roiSize
 
     /**
      * Describes the size of the image pixels.
      *
      * The {@link PixelSize} is characterized by 5 elements:
-     * (time, channel, x, y, z)
+     * (time, channel, x, y, z) in nm
      *
      * @see PixelSize
      */
@@ -67,54 +72,69 @@ class SRMAnalysisParameters extends AnalysisParameters {
 
     /**
      * The conversion factor applied for the analysis
+     * e.g 0.43 e-/ADU
      * todo maybe rename it to conversionFactor? what conversion is meant specifically?
      */
-    private final int conversion
+    private final Float conversion
+
+    /**
+     * Offset applied in the analysis
+     * This is e.g. 100 ADU
+     * The collected signal from the light source can be shifted via an offset amount through pre-amplification
+     */
+    private final Integer offset
 
     /**
      * PSF stands for point spread function and describes the three-dimensional diffraction pattern of light emitted from
      * an infinitely small point source.
      *
      * An experimental PSF is acquired from measurements on a particular imaging setup and is used to calibrate the microscope
+     * This setting is optional
      *
-     * Todo is it deterimined by an infinit small point object (its size)?
      */
-    private final float experimentalPSF
+    private final Boolean experimentalPSF
 
     /**
      * sCMOS stands for scientific Complementary metal–oxide–semiconductor, its an image sensor which offers rapid frame
      * rates, a wide dynamic range, high quantum efficiency, high resolution and a large field of view simultaneously in one image
      *
-     * Describes the name of the used sensor
-     * todo or should this be Volt to determine how much volt are transferred by the cmos?
+     * Describes if a sCMOS is used or not
      */
-    private final String sCMOS
+    private final Boolean sCMOS
 
     /**
      * During sample collection, in the process of analysing the sample, it can drift. Without correcting this drift
      * the spatial resolution in the final reconstructed image will be poor
      *
-     * todo is this a number describing the distance or is it measured in pixel?
+     * Either drift correction is present or not
      */
-    private final double driftCorrection
+    private final Boolean driftCorrection
 
     /**
-     * todo describe this parameter, find a suitable data type
+     * Describes the maximal distance that a molecule can "jump" within two frames in order to be traced
+     * In context of SMT - Single Molecule Tracking
+     *
+     * Measured in pixels
+     * e.g 1.5 pixels
      */
-    private final int maxJumpDistance
+    private final Float maxJumpDistance
 
     /**
-     * States if the blinking fluorophores wre detected. Some fluorophores can phoswitch from a brigth to a dark state.
+     * Blinking occurs when some fluorophores switch from a bright to a dark state due to photo-induced switching.
      * SRM are capable of detecting such blinking objects.
+     * In context of  SMT - Single Molecule Tracking
      *
-     * This variable describes if blinking was detected
+     * This variable describes the number of frames which are allowed between to signals in order to be traced (called a blink)
+     * e.g. 2 frames
      */
-    private final boolean blinking
+    private final Integer blinking
 
     /**
-     * Describes the length of the track of the microscope
+     * Describes the number of frames in which a molecules could be detected/tracked
+     * In context of SMT - Single Molecule Tracking
      *
-     * todo is this really the track length of the microscope table?
+     * Measured in frames,
+     * e.g. a molecules was tracked in 5 frames
      */
-    private final int trackLength
+    private final Integer trackLength
 }

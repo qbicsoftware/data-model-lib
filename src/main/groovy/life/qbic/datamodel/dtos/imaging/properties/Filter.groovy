@@ -1,15 +1,26 @@
 package life.qbic.datamodel.dtos.imaging.properties
 
 /**
- * A DTO to describe filters in the imaging context
+ * Enumeration of different image filters.
  *
- * This class should be used in case any filter is used to obtain an image
+ * This enum class should be used, whenever a imaging filters needs
+ * to be described.
+ *
+ * Every filter needs to have a meaningful and descriptive label.
+ * Abbreviations are discouraged.
  *
  * @since: 1.10.0
  * @author: Jennifer Bödker
  *
  */
 enum Filter {
+    EMISSION510LP("510 LP"),
+    EMISSION550BP("550/30 BP"),
+    BEAMLP("594 BS LP"),
+    BEAMSP("596 BS SP"),
+    BEAMPOLARIZING("Polarizing beam cube"),
+    EMISSION580LP("580 LP"),
+    EMISSION600BP("600/35 BP")
     /**
      * Contains the String representation of a filter item.
      */

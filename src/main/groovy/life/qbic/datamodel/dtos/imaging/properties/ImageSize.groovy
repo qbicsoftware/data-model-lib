@@ -1,12 +1,41 @@
 package life.qbic.datamodel.dtos.imaging.properties
 
 /**
- * <class short description - 1 Line!>
+ * A DTO to describe the size of images obtained from imaging experiments
  *
- * <More detailed description - When to use, what it solves, etc.>
+ * This class should be used whenever the size of an image in context of imaging projects needs to be described
  *
- * @author Sven Fillinger
- * @since <versiontag>
+ * @author Jennifer Bödker
+ * @since 1.10.0
  */
 class ImageSize {
+
+    /**
+     * Describes the time point within a time series, it correlates with the frames of an image
+     * One frame is one image taken at time point x
+     *
+     * e.g time point 10
+     */
+    private final Integer timePoint
+
+    /**
+     * Channel from which the image was obtained
+     */
+    private final Integer channel
+
+    /**
+     * Size on the x-axis in px
+     */
+    private final Integer x
+
+    /**
+     * Size on the y-axis in px
+     */
+    private final Integer y
+
+    /**
+     * Size on the z-axis in px
+     */
+    private final Integer z
+
 }

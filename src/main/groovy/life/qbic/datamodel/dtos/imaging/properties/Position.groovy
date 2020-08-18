@@ -9,13 +9,31 @@ package life.qbic.datamodel.dtos.imaging.properties
  * @author: Jennifer Bödker
  *
  */
-class Position<T> {
+class Position {
 
     /**
-     * An array of size three describes the three dimensional position of an object on an image
+     * Describes the position on the x-axis
+     * This could be e.g 20 µm (depending on the defined unit)
      *
-     * T describes e.g the unit used to measure the position
-     * This could be metrical values or pixels
+     * Always a positive number
      */
-    private final T[] position
+    private final Float x
+
+    /**
+     * Describes the position on the y-axis
+     * This could be e.g 60 µm (depending on the defined unit)
+     *
+     * Always a positive number
+     */
+    private final Float y
+
+    /**
+     * Describes the position on the z-axis
+     * This could be e.g 60 µm (depending on the defined unit)
+     *
+     * As default this value can be put to 0 if its not required
+     *
+     * Always a positive number
+     */
+    private final Float z
 }

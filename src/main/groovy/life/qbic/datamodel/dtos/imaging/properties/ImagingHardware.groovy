@@ -16,7 +16,7 @@ class ImagingHardware {
   /**
    * The objective used in the instrument
    */
-  private final Objective objective
+  private final String objective
 
   /**
    * The detector used in the instrument
@@ -27,10 +27,9 @@ class ImagingHardware {
    * Returns the objective described in the hardware
    *
    * @return The objective type
-   * @see Objective
    */
-  Objective getObjective() {
-    return objective // TODO: implement deep copy
+  String getObjective() {
+    return objective
   }
 
   /**

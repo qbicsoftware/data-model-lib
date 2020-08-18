@@ -5,10 +5,9 @@ import life.qbic.datamodel.dtos.imaging.parameters.AnalysisParameters
 import life.qbic.datamodel.dtos.imaging.properties.ImageSize
 import life.qbic.datamodel.dtos.imaging.properties.Modality
 import life.qbic.datamodel.dtos.imaging.properties.PixelSize
-import life.qbic.datamodel.dtos.imaging.properties.Resolution
 
 /**
- * This DTO class describes an image resulted from imaging experiments
+ * This DTO class describes the image resulting from imaging experiments
  *
  * An image class shall be used to describe properties of an image
  * in the context of imaging experiments such as microscopy or tomography.
@@ -74,16 +73,16 @@ final class Image {
 
   /**
    * Describes the resolution of the image.
+   * e.g. 5 nm
    *
-   * @see Resolution
    */
-  private final Resolution resolution
+  private final Float resolution
 
   /**
    * Returns detailed image acquisition parameters.
    * @return Image acquisition parameters.
    */
-  AcquisitionParameters getAcquisionParameters() {
+  AcquisitionParameters getAcquisitionParameters() {
     return this.acquisitionParameters // TODO return deep copy
   }
 
@@ -123,7 +122,7 @@ final class Image {
    * Returns image resolution information.
    * @return The image resolution.
    */
-  Resolution getResolution(){
+  Float getResolution(){
     return this.resolution // TODO return deep copy
   }
 }
