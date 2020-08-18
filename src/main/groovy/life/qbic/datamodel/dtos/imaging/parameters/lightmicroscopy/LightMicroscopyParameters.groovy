@@ -54,7 +54,7 @@ class LightMicroscopyParameters extends AcquisitionParameters{
      * Amount of power of the laser beam split at the beam splitter.
      * A beam splitter is an optical device that splits the beam of light
      *
-     * It is measured in milliwats (mW)
+     * It is measured in milliwatts (mW)
      *
      */
     private final Float laserPowerBeamSplitter
