@@ -63,7 +63,7 @@ class SRMHardware extends ImagingHardware{
     private final Float laserLineFilter
 
     /**
-     * Describes the repetition rate of the laser based on its frequency
+     * Describes the number of pulses per second(frequency) of a laser employed in pulse mode.
      *
      * Laser frequency is measured in mega hertz (MHz), e.g 20 MHz
      */
