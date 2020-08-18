@@ -80,7 +80,7 @@ class SRMHardware extends ImagingHardware{
     private final String polarizationOptics
 
     /**
-     * The beam splitter splits the beam, it comes in different forms like cubes, plates, hexagons,..
+     * A beam splitter is an optical device that splits a beam of light in two. 
      *
      * This variable describes the name of the beam splitter hardware  //todo controlled vocabulary?
      * e.g TIRF Quad Line zt405/488/561/640rpc 514 BS LP
