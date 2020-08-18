@@ -82,7 +82,7 @@ class SRMHardware extends ImagingHardware{
     /**
      * A beam splitter is an optical device that splits a beam of light in two. 
      *
-     * This variable describes the name of the beam splitter hardware  //todo controlled vocabulary?
+     * Describes the name of the beam splitter hardware 
      * e.g TIRF Quad Line zt405/488/561/640rpc 514 BS LP
      */
     private final String excitationBeamSplitter
