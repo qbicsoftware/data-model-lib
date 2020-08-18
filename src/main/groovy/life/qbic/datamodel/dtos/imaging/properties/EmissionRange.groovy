@@ -5,7 +5,7 @@ package life.qbic.datamodel.dtos.imaging.properties
  *
  * <More detailed description - When to use, what it solves, etc.>
  *
- * @since: <versiontag>
+ * @since: 1.10.0
  * @author: Jennifer Bödker
  *
  */
