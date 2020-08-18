@@ -130,7 +130,7 @@ class SRMAnalysisParameters extends AnalysisParameters {
     private final Integer blinking
 
     /**
-     * Describes on how many frames a molecules was detected/tracked
+     * Describes the number of frames in which a molecules could be detected/tracked
      * In context of SMT - Single Molecule Tracking
      *
      * Measured in frames,
