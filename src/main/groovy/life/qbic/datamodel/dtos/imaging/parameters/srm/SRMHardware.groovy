@@ -56,7 +56,6 @@ class SRMHardware extends ImagingHardware{
     /**
      * Describes the filter that has been applied to the laser lines.
      * Optical filter such as e.g. Bandpass filters(BP) are employed to center the wavelength of a light source
-     * at wavelengths away from the actual laser line.
      *
      * e.g 488 nm BP/LL, BP (Sem rock)
      *
