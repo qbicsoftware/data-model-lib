@@ -65,7 +65,7 @@ class SRMHardware extends ImagingHardware{
     /**
      * Describes the number of pulses per second(frequency) of a laser employed in pulse mode.
      *
-     * Laser frequency is measured in mega hertz (MHz), e.g 20 MHz
+     * Pulse frequency is measured in mega hertz (MHz), e.g 20 MHz
      */
     private final Integer laserRepetitionRate
 
