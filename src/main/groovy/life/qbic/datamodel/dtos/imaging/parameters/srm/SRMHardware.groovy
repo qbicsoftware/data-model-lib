@@ -42,7 +42,7 @@ class SRMHardware extends ImagingHardware{
     /**
      * Cw stands for cool white and describes the brightness of the light / laser beam
      *
-     * Defines the wavelength of laser lines in Cw todo is this right defined?
+     * Defines the wavelength of laser lines in a continuous wave laser
      * e.g 405 nm
      */
     private final Integer laserLinesCw
