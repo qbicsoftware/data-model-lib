@@ -17,7 +17,7 @@ class Area {
     private final Integer firstDimensionValue //µm
 
     /**
-     * Value of the second dimension of the area e.g. 40
+     * Describes the value in µm of the first dimension of the area
      */
     private final Integer secondDimensionValue
 
