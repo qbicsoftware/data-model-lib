@@ -89,7 +89,7 @@ class SRMAnalysisParameters extends AnalysisParameters {
      * an infinitely small point source.
      *
      * An experimental PSF is acquired from measurements on a particular imaging setup and is used to calibrate the microscope
-     * It is either present or not
+     * This setting is optional
      *
      */
     private final Boolean experimentalPSF
