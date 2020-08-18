@@ -72,7 +72,7 @@ class SRMHardware extends ImagingHardware{
     /**
      * Polarization optics change the state of polarization of incident radiation
      *
-     * This variable describes the name of the polarization optics hardware //todo controlled vocabulary?
+     * Describes the name of the polarization optics hardware
      * e.g Glen Thompson linear polarizer,
      *     Lambda/2 wave plate,
      *     Lambda/4 wave plate
