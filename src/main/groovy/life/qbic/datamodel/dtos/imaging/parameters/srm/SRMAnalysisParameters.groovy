@@ -80,7 +80,7 @@ class SRMAnalysisParameters extends AnalysisParameters {
     /**
      * Offset applied in the analysis
      * This is e.g. 100 ADU
-     * todo needs to be specified
+     * The collected signal from the light source can be shifted via an offset amount through pre-amplification
      */
     private final Integer offset
 
