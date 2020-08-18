@@ -120,7 +120,7 @@ class SRMAnalysisParameters extends AnalysisParameters {
     private final Float maxJumpDistance
 
     /**
-     * States if the blinking fluorophores wre detected. Some fluorophores can phoswitch from a brigth to a dark state.
+     * Blinking occurs when some fluorophores switch from a bright to a dark state due to photo-induced switching.
      * SRM are capable of detecting such blinking objects.
      * In context of  SMT - Single Molecule Tracking
      *
