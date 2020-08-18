@@ -23,7 +23,7 @@ enum Dimensionality {
     }
 
     /**
-     * The string representation of the dimensionality item.
+     * The String representation of the dimensionality item.
      * @return The value of the dimensionality item, which is its declarative String representation.
      */
     String getValue() {
