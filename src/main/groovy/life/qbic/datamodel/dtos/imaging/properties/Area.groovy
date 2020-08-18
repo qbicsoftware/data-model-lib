@@ -12,12 +12,12 @@ package life.qbic.datamodel.dtos.imaging.properties
 class Area {
 
     /**
-     * Value of the first dimension of the area e.g. 40
+     * Describes the value in µm of the first dimension of the area, e.g. 40 µm
      */
-    private final Integer firstDimensionValue //µm
+    private final Integer firstDimensionValue
 
     /**
-     * Describes the value in µm of the first dimension of the area
+     * Describes the value in µm of the second dimension of the area, e.g. 40 µm
      */
     private final Integer secondDimensionValue
 
