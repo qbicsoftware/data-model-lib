@@ -24,7 +24,7 @@ class SRMHardware extends ImagingHardware{
      * Piezo is greek and means 'to squeeze or press'
      * Its the stage which 'holds' the specimen
      *
-     * The table controller allows to control the squeezing and position of the probe plate
+     * The table controller enables the control of the squeezing and position of the probe plate
      *
      * The name of the table controller is defined with this parameter,
      * e.g. E-710.3CD digital piezo controller
