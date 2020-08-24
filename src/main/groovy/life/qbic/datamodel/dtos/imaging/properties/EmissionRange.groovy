@@ -21,7 +21,7 @@ class EmissionRange {
      * Its the biggest wavelength within the emission range
      * e.g 530 nm
      */
-    private final int endWaveLength
+    private final int endWavelength
 
     /**
      * Class storing the emissions from a light source as a range of wave lengths
