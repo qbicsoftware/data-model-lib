@@ -22,4 +22,14 @@ class EmissionRange {
      * e.g 530 nm
      */
     private final int endWaveLength
+
+    /**
+     * Class storing the emissions from a light source as a range of wave lengths
+     * @param startWaveLength {@link EmissionRange#startWaveLength}
+     * @param endWaveLength {@link EmissionRange#endWaveLength}
+     */
+    EmissionRange(int startWaveLength, int endWaveLength) {
+        this.startWaveLength = startWaveLength
+        this.endWaveLength = endWaveLength
+    }
 }
