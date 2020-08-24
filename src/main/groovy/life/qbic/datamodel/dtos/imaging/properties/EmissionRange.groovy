@@ -25,11 +25,11 @@ class EmissionRange {
 
     /**
      * Class storing the emissions from a light source as a range of wave lengths
-     * @param startWaveLength {@link EmissionRange#startWaveLength}
-     * @param endWaveLength {@link EmissionRange#endWaveLength}
+     * @param startWavelength {@link EmissionRange#startWavelength}
+     * @param endWavelength {@link EmissionRange#endWavelength}
      */
-    EmissionRange(int startWaveLength, int endWaveLength) {
-        this.startWaveLength = startWaveLength
-        this.endWaveLength = endWaveLength
+    EmissionRange(int startWavelength, int endWavelength) {
+        this.startWavelength = startWavelength
+        this.endWavelength = endWavelength
     }
 }
