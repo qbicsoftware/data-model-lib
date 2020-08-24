@@ -42,21 +42,17 @@ class ElectronMicroscopyParameters extends AcquisitionParameters{
      */
     private final Float cumulativeElectronDose
 
-    ElectronMicroscopyParameters(Integer acceleratingVoltage, Float targetDefocus, Float cumulativeElectronDose) {
+    /**
+     * Creates a description of the properties of electron microscopy
+     * @param binning {@link ElectronMicroscopyParameters#binning}
+     * @param acceleratingVoltage {@link ElectronMicroscopyParameters#acceleratingVoltage}
+     * @param targetDefocus {@link ElectronMicroscopyParameters#targetDefocus}
+     * @param cumulativeElectronDose {@link ElectronMicroscopyParameters#cumulativeElectronDose}
+     */
+    ElectronMicroscopyParameters(Integer binning, Integer acceleratingVoltage, Float targetDefocus, Float cumulativeElectronDose) {
+        super(binning)
         this.acceleratingVoltage = acceleratingVoltage
         this.targetDefocus = targetDefocus
         this.cumulativeElectronDose = cumulativeElectronDose
-    }
-
-    Integer getAcceleratingVoltage() {
-        return acceleratingVoltage
-    }
-
-    Float getTargetDefocus() {
-        return targetDefocus
-    }
-
-    Float getCumulativeElectronDose() {
-        return cumulativeElectronDose
     }
 }
