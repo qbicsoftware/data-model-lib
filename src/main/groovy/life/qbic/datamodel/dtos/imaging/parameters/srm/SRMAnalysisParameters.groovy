@@ -138,6 +138,23 @@ class SRMAnalysisParameters extends AnalysisParameters {
      */
     private final Integer trackLength
 
+    /**
+     * Returns a super resolution microscopy parameter.
+     * @param dimensionality {@link SRMAnalysisParameters#dimensionality}
+     * @param backgroundEstimation {@link SRMAnalysisParameters#backgroundEstimation}
+     * @param filterSize {@link SRMAnalysisParameters#filterSize}
+     * @param cutOff {@link SRMAnalysisParameters#cutOff}
+     * @param roiSize {@link SRMAnalysisParameters#roiSize}
+     * @param pixelSize {@link SRMAnalysisParameters#pixelSize}
+     * @param conversion {@link SRMAnalysisParameters#conversion}
+     * @param offset {@link SRMAnalysisParameters#offset}
+     * @param experimentalPSF {@link SRMAnalysisParameters#experimentalPSF}
+     * @param sCMOS {@link SRMAnalysisParameters#sCMOS}
+     * @param driftCorrection {@link SRMAnalysisParameters#driftCorrection}
+     * @param maxJumpDistance {@link SRMAnalysisParameters#maxJumpDistance}
+     * @param blinking {@link SRMAnalysisParameters#blinking}
+     * @param trackLength {@link SRMAnalysisParameters#trackLength}
+     */
     SRMAnalysisParameters(Dimensionality dimensionality, String backgroundEstimation, Float filterSize, Float cutOff, Float roiSize, PixelSize pixelSize, Float conversion, Integer offset, Boolean experimentalPSF, Boolean sCMOS, Boolean driftCorrection, Float maxJumpDistance, Integer blinking, Integer trackLength) {
         this.dimensionality = dimensionality
         this.backgroundEstimation = backgroundEstimation
@@ -153,61 +170,5 @@ class SRMAnalysisParameters extends AnalysisParameters {
         this.maxJumpDistance = maxJumpDistance
         this.blinking = blinking
         this.trackLength = trackLength
-    }
-
-    Dimensionality getDimensionality() {
-        return dimensionality
-    }
-
-    String getBackgroundEstimation() {
-        return backgroundEstimation
-    }
-
-    Float getFilterSize() {
-        return filterSize
-    }
-
-    Float getCutOff() {
-        return cutOff
-    }
-
-    Float getRoiSize() {
-        return roiSize
-    }
-
-    PixelSize getPixelSize() {
-        return pixelSize
-    }
-
-    Float getConversion() {
-        return conversion
-    }
-
-    Integer getOffset() {
-        return offset
-    }
-
-    Boolean getExperimentalPSF() {
-        return experimentalPSF
-    }
-
-    Boolean getsCMOS() {
-        return sCMOS
-    }
-
-    Boolean getDriftCorrection() {
-        return driftCorrection
-    }
-
-    Float getMaxJumpDistance() {
-        return maxJumpDistance
-    }
-
-    Integer getBlinking() {
-        return blinking
-    }
-
-    Integer getTrackLength() {
-        return trackLength
     }
 }
