@@ -24,4 +24,13 @@ class Location {
    */
   private final Address address
 
+  /**
+   * DTO that describes the location of an instrument.
+   * @param roomId {@link Location#roomId}
+   * @param address {@link Location#address}
+   */
+  Location(String roomId, Address address) {
+    this.roomId = roomId
+    this.address = address
+  }
 }
