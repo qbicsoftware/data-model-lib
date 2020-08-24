@@ -18,6 +18,10 @@ enum Dimensionality {
      */
     private String value
 
+    /**
+     * A DTO to describe the dimensionality of an image
+     * @param value {@link Dimensionality#value}
+     */
     Dimensionality(String value){
         this.value = value
     }
