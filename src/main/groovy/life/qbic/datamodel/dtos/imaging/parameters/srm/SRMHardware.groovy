@@ -121,4 +121,71 @@ class SRMHardware extends ImagingHardware{
      */
     private final List<Filter> emissionFilterChannels
 
+    SRMHardware(String piezoTableController, String piezoScanner, Integer laserLinesCw, Integer laserLinesPulsed, Float laserLineFilter, Integer laserRepetitionRate, String polarizationOptics, String excitationBeamSplitter, IlluminationMode illuminationMode, Size pinholeSize, Filter emissionFilter, Filter beamSplitter, List<Filter> emissionFilterChannels) {
+        this.piezoTableController = piezoTableController
+        this.piezoScanner = piezoScanner
+        this.laserLinesCw = laserLinesCw
+        this.laserLinesPulsed = laserLinesPulsed
+        this.laserLineFilter = laserLineFilter
+        this.laserRepetitionRate = laserRepetitionRate
+        this.polarizationOptics = polarizationOptics
+        this.excitationBeamSplitter = excitationBeamSplitter
+        this.illuminationMode = illuminationMode
+        this.pinholeSize = pinholeSize
+        this.emissionFilter = emissionFilter
+        this.beamSplitter = beamSplitter
+        this.emissionFilterChannels = emissionFilterChannels
+    }
+
+    String getPiezoTableController() {
+        return piezoTableController
+    }
+
+    String getPiezoScanner() {
+        return piezoScanner
+    }
+
+    Integer getLaserLinesCw() {
+        return laserLinesCw
+    }
+
+    Integer getLaserLinesPulsed() {
+        return laserLinesPulsed
+    }
+
+    Float getLaserLineFilter() {
+        return laserLineFilter
+    }
+
+    Integer getLaserRepetitionRate() {
+        return laserRepetitionRate
+    }
+
+    String getPolarizationOptics() {
+        return polarizationOptics
+    }
+
+    String getExcitationBeamSplitter() {
+        return excitationBeamSplitter
+    }
+
+    IlluminationMode getIlluminationMode() {
+        return illuminationMode
+    }
+
+    Size getPinholeSize() {
+        return pinholeSize
+    }
+
+    Filter getEmissionFilter() {
+        return emissionFilter
+    }
+
+    Filter getBeamSplitter() {
+        return beamSplitter
+    }
+
+    List<Filter> getEmissionFilterChannels() {
+        return emissionFilterChannels
+    }
 }

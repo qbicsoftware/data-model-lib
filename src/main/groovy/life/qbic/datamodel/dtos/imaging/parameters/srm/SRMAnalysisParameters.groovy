@@ -137,4 +137,77 @@ class SRMAnalysisParameters extends AnalysisParameters {
      * e.g. a molecules was tracked in 5 frames
      */
     private final Integer trackLength
+
+    SRMAnalysisParameters(Dimensionality dimensionality, String backgroundEstimation, Float filterSize, Float cutOff, Float roiSize, PixelSize pixelSize, Float conversion, Integer offset, Boolean experimentalPSF, Boolean sCMOS, Boolean driftCorrection, Float maxJumpDistance, Integer blinking, Integer trackLength) {
+        this.dimensionality = dimensionality
+        this.backgroundEstimation = backgroundEstimation
+        this.filterSize = filterSize
+        this.cutOff = cutOff
+        this.roiSize = roiSize
+        this.pixelSize = pixelSize
+        this.conversion = conversion
+        this.offset = offset
+        this.experimentalPSF = experimentalPSF
+        this.sCMOS = sCMOS
+        this.driftCorrection = driftCorrection
+        this.maxJumpDistance = maxJumpDistance
+        this.blinking = blinking
+        this.trackLength = trackLength
+    }
+
+    Dimensionality getDimensionality() {
+        return dimensionality
+    }
+
+    String getBackgroundEstimation() {
+        return backgroundEstimation
+    }
+
+    Float getFilterSize() {
+        return filterSize
+    }
+
+    Float getCutOff() {
+        return cutOff
+    }
+
+    Float getRoiSize() {
+        return roiSize
+    }
+
+    PixelSize getPixelSize() {
+        return pixelSize
+    }
+
+    Float getConversion() {
+        return conversion
+    }
+
+    Integer getOffset() {
+        return offset
+    }
+
+    Boolean getExperimentalPSF() {
+        return experimentalPSF
+    }
+
+    Boolean getsCMOS() {
+        return sCMOS
+    }
+
+    Boolean getDriftCorrection() {
+        return driftCorrection
+    }
+
+    Float getMaxJumpDistance() {
+        return maxJumpDistance
+    }
+
+    Integer getBlinking() {
+        return blinking
+    }
+
+    Integer getTrackLength() {
+        return trackLength
+    }
 }
