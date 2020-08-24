@@ -32,4 +32,18 @@ class PixelSize {
      * Size on the z-axis in nm
      */
     private final Float z
+
+    /**
+     * A DTO describing pixel size in images
+     * @param timePoint {@link PixelSize#timePoint}
+     * @param x {@link PixelSize#x}
+     * @param y {@link PixelSize#y}
+     * @param z {@link PixelSize#z}
+     */
+    PixelSize(Float timePoint, Float x, Float y, Float z) {
+        this.timePoint = timePoint
+        this.x = x
+        this.y = y
+        this.z = z
+    }
 }
