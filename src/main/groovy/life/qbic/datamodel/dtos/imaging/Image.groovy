@@ -79,6 +79,29 @@ final class Image {
   private final Float resolution
 
   /**
+   * This DTO class describes the image resulting from imaging experiments
+   * @param acquisitionDate {@link Image#acquisitionDate}
+   * @param acquisitionParameters {@link Image#acquisitionParameters}
+   * @param analysisParameters {@link Image#analysisParameters}
+   * @param instrument {@link Image#instrument}
+   * @param imageId {@link Image#imageId}
+   * @param modality {@link Image#modality}
+   * @param imageSize {@link Image#imageSize}
+   * @param pixelSize {@link Image#pixelSize}
+   * @param resolution {@link Image#resolution}
+   */
+  Image(Date acquisitionDate, AcquisitionParameters acquisitionParameters, AnalysisParameters analysisParameters, Instrument instrument, Integer imageId, Modality modality, ImageSize imageSize, PixelSize pixelSize, Float resolution) {
+    this.acquisitionDate = acquisitionDate
+    this.acquisitionParameters = acquisitionParameters
+    this.analysisParameters = analysisParameters
+    this.instrument = instrument
+    this.imageId = imageId
+    this.modality = modality
+    this.imageSize = imageSize
+    this.pixelSize = pixelSize
+    this.resolution = resolution
+  }
+/**
    * Returns detailed image acquisition parameters.
    * @return Image acquisition parameters.
    */
