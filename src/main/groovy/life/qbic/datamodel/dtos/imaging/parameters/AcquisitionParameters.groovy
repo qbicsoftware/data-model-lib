@@ -28,4 +28,11 @@ class AcquisitionParameters {
    */
   private final Integer binning
 
+  AcquisitionParameters(Integer binning) {
+    this.binning = binning
+  }
+
+  Integer getBinning() {
+    return binning
+  }
 }
