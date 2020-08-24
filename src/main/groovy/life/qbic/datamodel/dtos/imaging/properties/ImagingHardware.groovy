@@ -39,7 +39,7 @@ class ImagingHardware {
    * @see Detector
    */
   Detector getDetector() {
-    return detector // TODO: return deep copy
+    return detector
   }
 
 }
