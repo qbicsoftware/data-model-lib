@@ -14,6 +14,7 @@ enum IlluminationMode {
     CONFOCAL("Confocal"),
     WIDEFIELD("Wiedefield"),
     TIRFVAEM("TIRF/VAEM"),
+    UNKNOWN("unknown")
 
     /**
      * Contains the String representation of a illumination mode item.

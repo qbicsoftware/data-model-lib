@@ -14,6 +14,7 @@ enum Size {
     thirty("30 µm"),
     DETECTOR("detector area (100µm)"),
     NON("no pinhole"),
+    UNKNOWN("unknown")
 
     /**
      * Contains the String representation of a illumination mode item.

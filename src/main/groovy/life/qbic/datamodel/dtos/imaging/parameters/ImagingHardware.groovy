@@ -1,4 +1,6 @@
-package life.qbic.datamodel.dtos.imaging.properties
+package life.qbic.datamodel.dtos.imaging.parameters
+
+import life.qbic.datamodel.dtos.imaging.properties.Detector
 
 /**
  * Describes hardware properties for an instrument in the imaging context
@@ -11,7 +13,7 @@ package life.qbic.datamodel.dtos.imaging.properties
  * @author Sven Fillinger
  * @since 1.10.0
  */
-class ImagingHardware {
+abstract class ImagingHardware {
 
   /**
    * The objective used in the instrument
@@ -23,16 +25,28 @@ class ImagingHardware {
    */
   private final Detector detector
 
-  /**
-   * Describes hardware properties for an instrument in the imaging context
-   * @param objective {@link ImagingHardware#objective}
-   * @param detector {@link ImagingHardware#detector}
-   */
-  ImagingHardware(String objective, Detector detector) {
-    this.objective = objective
-    this.detector = detector
+  abstract static class Builder<T extends Builder<T>> {
+
+    String objective
+
+    Detector detector
+
+    Builder(String objective, Detector detector) {
+      this.objective = objective
+      this.detector = detector
+    }
+
+    abstract ImagingHardware build()
+
+    protected abstract T self()
   }
-/**
+
+  ImagingHardware(Builder<?> builder) {
+    this.detector = builder.detector
+    this.objective = builder.objective
+  }
+
+  /**
    * Returns the objective described in the hardware
    *
    * @return The objective type

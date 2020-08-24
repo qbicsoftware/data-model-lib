@@ -1,6 +1,6 @@
 package life.qbic.datamodel.dtos.imaging
 
-import life.qbic.datamodel.dtos.imaging.properties.ImagingHardware
+import life.qbic.datamodel.dtos.imaging.parameters.ImagingHardware
 
 /**
  * DTO that describes an instrument in the imaging context

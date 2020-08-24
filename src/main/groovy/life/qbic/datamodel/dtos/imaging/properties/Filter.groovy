@@ -20,7 +20,8 @@ enum Filter {
     BEAMSP("596 BS SP"),
     BEAMPOLARIZING("Polarizing beam cube"),
     EMISSION580LP("580 LP"),
-    EMISSION600BP("600/35 BP")
+    EMISSION600BP("600/35 BP"),
+    UNKNOWN("unknown")
     /**
      * Contains the String representation of a filter item.
      */
