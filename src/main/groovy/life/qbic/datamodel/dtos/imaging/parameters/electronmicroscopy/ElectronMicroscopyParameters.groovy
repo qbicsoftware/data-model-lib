@@ -41,4 +41,22 @@ class ElectronMicroscopyParameters extends AcquisitionParameters{
      * Measured in electrons per unit area e.g 100 electrons/Angstrom^2
      */
     private final Float cumulativeElectronDose
+
+    ElectronMicroscopyParameters(Integer acceleratingVoltage, Float targetDefocus, Float cumulativeElectronDose) {
+        this.acceleratingVoltage = acceleratingVoltage
+        this.targetDefocus = targetDefocus
+        this.cumulativeElectronDose = cumulativeElectronDose
+    }
+
+    Integer getAcceleratingVoltage() {
+        return acceleratingVoltage
+    }
+
+    Float getTargetDefocus() {
+        return targetDefocus
+    }
+
+    Float getCumulativeElectronDose() {
+        return cumulativeElectronDose
+    }
 }
