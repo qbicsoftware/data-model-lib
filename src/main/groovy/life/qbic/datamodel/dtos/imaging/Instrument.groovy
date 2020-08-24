@@ -52,6 +52,23 @@ class Instrument {
   private final ImagingHardware hardware
 
   /**
+   * DTO that describes an instrument in the imaging context
+   * @param manufacturer {@link Instrument#manufacturer}
+   * @param model {@link Instrument#model}
+   * @param serialNumber {@link Instrument#serialNumber}
+   * @param location {@link Instrument#location}
+   * @param type {@link Instrument#type}
+   * @param hardware {@link Instrument#hardware}
+   */
+  Instrument(String manufacturer, String model, String serialNumber, Location location, String type, ImagingHardware hardware) {
+    this.manufacturer = manufacturer
+    this.model = model
+    this.serialNumber = serialNumber
+    this.location = location
+    this.type = type
+    this.hardware = hardware
+  }
+/**
    * Returns a deep copy of the imaging hardware.
    *
    * @see: #ImagingHardware

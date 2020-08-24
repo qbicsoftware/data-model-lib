@@ -121,4 +121,35 @@ class SRMHardware extends ImagingHardware{
      */
     private final List<Filter> emissionFilterChannels
 
+    /**
+     * Creates a description of the properties of the super resolution microscope (SRM) hardware
+     * @param piezoTableController {@link SRMHardware#piezoTableController}
+     * @param piezoScanner {@link SRMHardware#piezoScanner}
+     * @param laserLinesCw {@link SRMHardware#laserLinesCw}
+     * @param laserLinesPulsed {@link SRMHardware#laserLinesPulsed}
+     * @param laserLineFilter {@link SRMHardware#laserLineFilter}
+     * @param laserRepetitionRate {@link SRMHardware#laserRepetitionRate}
+     * @param polarizationOptics {@link SRMHardware#polarizationOptics}
+     * @param excitationBeamSplitter {@link SRMHardware#excitationBeamSplitter}
+     * @param illuminationMode {@link SRMHardware#illuminationMode}
+     * @param pinholeSize {@link SRMHardware#pinholeSize}
+     * @param emissionFilter {@link SRMHardware#emissionFilter}
+     * @param beamSplitter {@link SRMHardware#beamSplitter}
+     * @param emissionFilterChannels {@link SRMHardware#emissionFilterChannels}
+     */
+    SRMHardware(String piezoTableController, String piezoScanner, Integer laserLinesCw, Integer laserLinesPulsed, Float laserLineFilter, Integer laserRepetitionRate, String polarizationOptics, String excitationBeamSplitter, IlluminationMode illuminationMode, Size pinholeSize, Filter emissionFilter, Filter beamSplitter, List<Filter> emissionFilterChannels) {
+        this.piezoTableController = piezoTableController
+        this.piezoScanner = piezoScanner
+        this.laserLinesCw = laserLinesCw
+        this.laserLinesPulsed = laserLinesPulsed
+        this.laserLineFilter = laserLineFilter
+        this.laserRepetitionRate = laserRepetitionRate
+        this.polarizationOptics = polarizationOptics
+        this.excitationBeamSplitter = excitationBeamSplitter
+        this.illuminationMode = illuminationMode
+        this.pinholeSize = pinholeSize
+        this.emissionFilter = emissionFilter
+        this.beamSplitter = beamSplitter
+        this.emissionFilterChannels = emissionFilterChannels
+    }
 }

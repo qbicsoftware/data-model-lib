@@ -28,13 +28,10 @@ class Area {
     private final ImagePlane plane
 
     /**
-     * Constructor for an Area DTO instance.
-     *
-     * @param firstDimensionValue
-     * @param secondDimensionValue
-     * @param plane
-     *
-     * @see ImagePlane
+     * DTO that describes the area of an image.
+     * @param firstDimensionValue {@link Area#firstDimensionValue}
+     * @param secondDimensionValue {@link Area#secondDimensionValue}
+     * @param plane {@link Area#plane}
      */
     Area(Integer firstDimensionValue, Integer secondDimensionValue, ImagePlane plane) {
         this.firstDimensionValue = firstDimensionValue

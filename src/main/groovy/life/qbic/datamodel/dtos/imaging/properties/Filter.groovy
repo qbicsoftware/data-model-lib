@@ -26,6 +26,10 @@ enum Filter {
      */
     private String value
 
+    /**
+     * Enumeration of different image filters.
+     * @param value {@link Filter#value}
+     */
     private Filter(String value) {
         this.value = value
     }

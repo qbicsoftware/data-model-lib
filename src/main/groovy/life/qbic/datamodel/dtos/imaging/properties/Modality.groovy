@@ -25,6 +25,10 @@ enum Modality {
    */
   private String value
 
+  /**
+   * Enumeration of different microscopy and spectroscopy modalities.
+   * @param value {@link Modality#value}
+   */
   private Modality(String value) {
     this.value = value
   }

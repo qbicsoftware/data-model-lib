@@ -41,4 +41,18 @@ class ElectronMicroscopyParameters extends AcquisitionParameters{
      * Measured in electrons per unit area e.g 100 electrons/Angstrom^2
      */
     private final Float cumulativeElectronDose
+
+    /**
+     * Creates a description of the properties of electron microscopy
+     * @param binning {@link ElectronMicroscopyParameters#binning}
+     * @param acceleratingVoltage {@link ElectronMicroscopyParameters#acceleratingVoltage}
+     * @param targetDefocus {@link ElectronMicroscopyParameters#targetDefocus}
+     * @param cumulativeElectronDose {@link ElectronMicroscopyParameters#cumulativeElectronDose}
+     */
+    ElectronMicroscopyParameters(Integer binning, Integer acceleratingVoltage, Float targetDefocus, Float cumulativeElectronDose) {
+        super(binning)
+        this.acceleratingVoltage = acceleratingVoltage
+        this.targetDefocus = targetDefocus
+        this.cumulativeElectronDose = cumulativeElectronDose
+    }
 }

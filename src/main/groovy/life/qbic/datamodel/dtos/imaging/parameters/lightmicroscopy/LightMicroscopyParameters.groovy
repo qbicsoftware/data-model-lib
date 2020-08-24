@@ -113,4 +113,34 @@ class LightMicroscopyParameters extends AcquisitionParameters{
      * @see Area
      */
     private final Area scanSize
+
+    /**
+     * Creates a description of light microscope parameters during image analysis.
+     * @param binning {@link LightMicroscopyParameters#binning}
+     * @param excitationPerChannel {@link LightMicroscopyParameters#excitationPerChannel}
+     * @param emissionPerChannel {@link LightMicroscopyParameters#emissionPerChannel}
+     * @param laserPowerTIRFLens {@link LightMicroscopyParameters#laserPowerTIRFLens}
+     * @param laserPowerBeamSplitter {@link LightMicroscopyParameters#laserPowerBeamSplitter}
+     * @param cameraAcquisitionTime {@link LightMicroscopyParameters#cameraAcquisitionTime}
+     * @param position {@link LightMicroscopyParameters#position}
+     * @param tcspcTimingResolution {@link LightMicroscopyParameters#tcspcTimingResolution}
+     * @param tcspcPosition {@link LightMicroscopyParameters#tcspcPosition}
+     * @param tscpcScanMode {@link LightMicroscopyParameters#tscpcScanMode}
+     * @param scanAcquisitionRate {@link LightMicroscopyParameters#scanAcquisitionRate}
+     * @param scanSize {@link LightMicroscopyParameters#scanSize}
+     */
+    LightMicroscopyParameters(Integer binning, List<Integer> excitationPerChannel, List<EmissionRange> emissionPerChannel, Float laserPowerTIRFLens, Float laserPowerBeamSplitter, Float cameraAcquisitionTime, Position position, Integer tcspcTimingResolution, Position tcspcPosition, ScanMode tscpcScanMode, Integer scanAcquisitionRate, Area scanSize) {
+        super(binning)
+        this.excitationPerChannel = excitationPerChannel
+        this.emissionPerChannel = emissionPerChannel
+        this.laserPowerTIRFLens = laserPowerTIRFLens
+        this.laserPowerBeamSplitter = laserPowerBeamSplitter
+        this.cameraAcquisitionTime = cameraAcquisitionTime
+        this.position = position
+        this.tcspcTimingResolution = tcspcTimingResolution
+        this.tcspcPosition = tcspcPosition
+        this.tscpcScanMode = tscpcScanMode
+        this.scanAcquisitionRate = scanAcquisitionRate
+        this.scanSize = scanSize
+    }
 }

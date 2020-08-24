@@ -28,4 +28,11 @@ class AcquisitionParameters {
    */
   private final Integer binning
 
+  /**
+   * Creates a description of acquisition parameters during image analysis.
+   * @param binning {@link AcquisitionParameters#binning}
+   */
+  AcquisitionParameters(Integer binning) {
+    this.binning = binning
+  }
 }

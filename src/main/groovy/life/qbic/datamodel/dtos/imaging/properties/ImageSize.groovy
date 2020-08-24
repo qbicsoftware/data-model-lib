@@ -38,4 +38,19 @@ class ImageSize {
      */
     private final Integer z
 
+    /**
+     *
+     * @param timePoint {@see ImageSize#timePoint}
+     * @param channel {@see ImageSize#channel}
+     * @param x {@see ImageSize#x}
+     * @param y {@see ImageSize#y}
+     * @param z {@see ImageSize#z}
+     */
+    ImageSize(Integer timePoint, Integer channel, Integer x, Integer y, Integer z) {
+        this.timePoint = timePoint
+        this.channel = channel
+        this.x = x
+        this.y = y
+        this.z = z
+    }
 }

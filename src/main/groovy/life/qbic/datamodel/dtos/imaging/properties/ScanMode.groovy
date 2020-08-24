@@ -24,6 +24,10 @@ enum ScanMode {
      */
     private String value
 
+    /**
+     * Enumeration of different microscopy scan modes.
+     * @param value {@link ScanMode#value}
+     */
     private ScanMode(String value) {
         this.value = value
     }

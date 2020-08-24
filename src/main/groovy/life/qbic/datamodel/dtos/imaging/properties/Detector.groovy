@@ -21,4 +21,11 @@ class Detector {
    */
   private final String type
 
+  /**
+   * DTO class for detectors in the imaging context.
+   * @param type {@link Detector#type}
+   */
+  Detector(String type) {
+    this.type = type
+  }
 }

@@ -137,4 +137,38 @@ class SRMAnalysisParameters extends AnalysisParameters {
      * e.g. a molecules was tracked in 5 frames
      */
     private final Integer trackLength
+
+    /**
+     * Returns a super resolution microscopy parameter.
+     * @param dimensionality {@link SRMAnalysisParameters#dimensionality}
+     * @param backgroundEstimation {@link SRMAnalysisParameters#backgroundEstimation}
+     * @param filterSize {@link SRMAnalysisParameters#filterSize}
+     * @param cutOff {@link SRMAnalysisParameters#cutOff}
+     * @param roiSize {@link SRMAnalysisParameters#roiSize}
+     * @param pixelSize {@link SRMAnalysisParameters#pixelSize}
+     * @param conversion {@link SRMAnalysisParameters#conversion}
+     * @param offset {@link SRMAnalysisParameters#offset}
+     * @param experimentalPSF {@link SRMAnalysisParameters#experimentalPSF}
+     * @param sCMOS {@link SRMAnalysisParameters#sCMOS}
+     * @param driftCorrection {@link SRMAnalysisParameters#driftCorrection}
+     * @param maxJumpDistance {@link SRMAnalysisParameters#maxJumpDistance}
+     * @param blinking {@link SRMAnalysisParameters#blinking}
+     * @param trackLength {@link SRMAnalysisParameters#trackLength}
+     */
+    SRMAnalysisParameters(Dimensionality dimensionality, String backgroundEstimation, Float filterSize, Float cutOff, Float roiSize, PixelSize pixelSize, Float conversion, Integer offset, Boolean experimentalPSF, Boolean sCMOS, Boolean driftCorrection, Float maxJumpDistance, Integer blinking, Integer trackLength) {
+        this.dimensionality = dimensionality
+        this.backgroundEstimation = backgroundEstimation
+        this.filterSize = filterSize
+        this.cutOff = cutOff
+        this.roiSize = roiSize
+        this.pixelSize = pixelSize
+        this.conversion = conversion
+        this.offset = offset
+        this.experimentalPSF = experimentalPSF
+        this.sCMOS = sCMOS
+        this.driftCorrection = driftCorrection
+        this.maxJumpDistance = maxJumpDistance
+        this.blinking = blinking
+        this.trackLength = trackLength
+    }
 }
