@@ -114,7 +114,23 @@ class LightMicroscopyParameters extends AcquisitionParameters{
      */
     private final Area scanSize
 
-    LightMicroscopyParameters(List<Integer> excitationPerChannel, List<EmissionRange> emissionPerChannel, Float laserPowerTIRFLens, Float laserPowerBeamSplitter, Float cameraAcquisitionTime, Position position, Integer tcspcTimingResolution, Position tcspcPosition, ScanMode tscpcScanMode, Integer scanAcquisitionRate, Area scanSize) {
+    /**
+     * Creates a description of light microscope parameters during image analysis.
+     * @param binning {@link LightMicroscopyParameters#binning}
+     * @param excitationPerChannel {@link LightMicroscopyParameters#excitationPerChannel}
+     * @param emissionPerChannel {@link LightMicroscopyParameters#emissionPerChannel}
+     * @param laserPowerTIRFLens {@link LightMicroscopyParameters#laserPowerTIRFLens}
+     * @param laserPowerBeamSplitter {@link LightMicroscopyParameters#laserPowerBeamSplitter}
+     * @param cameraAcquisitionTime {@link LightMicroscopyParameters#cameraAcquisitionTime}
+     * @param position {@link LightMicroscopyParameters#position}
+     * @param tcspcTimingResolution {@link LightMicroscopyParameters#tcspcTimingResolution}
+     * @param tcspcPosition {@link LightMicroscopyParameters#tcspcPosition}
+     * @param tscpcScanMode {@link LightMicroscopyParameters#tscpcScanMode}
+     * @param scanAcquisitionRate {@link LightMicroscopyParameters#scanAcquisitionRate}
+     * @param scanSize {@link LightMicroscopyParameters#scanSize}
+     */
+    LightMicroscopyParameters(Integer binning, List<Integer> excitationPerChannel, List<EmissionRange> emissionPerChannel, Float laserPowerTIRFLens, Float laserPowerBeamSplitter, Float cameraAcquisitionTime, Position position, Integer tcspcTimingResolution, Position tcspcPosition, ScanMode tscpcScanMode, Integer scanAcquisitionRate, Area scanSize) {
+        super(binning)
         this.excitationPerChannel = excitationPerChannel
         this.emissionPerChannel = emissionPerChannel
         this.laserPowerTIRFLens = laserPowerTIRFLens
@@ -126,49 +142,5 @@ class LightMicroscopyParameters extends AcquisitionParameters{
         this.tscpcScanMode = tscpcScanMode
         this.scanAcquisitionRate = scanAcquisitionRate
         this.scanSize = scanSize
-    }
-
-    List<Integer> getExcitationPerChannel() {
-        return excitationPerChannel
-    }
-
-    List<EmissionRange> getEmissionPerChannel() {
-        return emissionPerChannel
-    }
-
-    Float getLaserPowerTIRFLens() {
-        return laserPowerTIRFLens
-    }
-
-    Float getLaserPowerBeamSplitter() {
-        return laserPowerBeamSplitter
-    }
-
-    Float getCameraAcquisitionTime() {
-        return cameraAcquisitionTime
-    }
-
-    Position getPosition() {
-        return position
-    }
-
-    Integer getTcspcTimingResolution() {
-        return tcspcTimingResolution
-    }
-
-    Position getTcspcPosition() {
-        return tcspcPosition
-    }
-
-    ScanMode getTscpcScanMode() {
-        return tscpcScanMode
-    }
-
-    Integer getScanAcquisitionRate() {
-        return scanAcquisitionRate
-    }
-
-    Area getScanSize() {
-        return scanSize
     }
 }
