@@ -121,6 +121,22 @@ class SRMHardware extends ImagingHardware{
      */
     private final List<Filter> emissionFilterChannels
 
+    /**
+     * Creates a description of the properties of the super resolution microscope (SRM) hardware
+     * @param piezoTableController {@link SRMHardware#piezoTableController}
+     * @param piezoScanner {@link SRMHardware#piezoScanner}
+     * @param laserLinesCw {@link SRMHardware#laserLinesCw}
+     * @param laserLinesPulsed {@link SRMHardware#laserLinesPulsed}
+     * @param laserLineFilter {@link SRMHardware#laserLineFilter}
+     * @param laserRepetitionRate {@link SRMHardware#laserRepetitionRate}
+     * @param polarizationOptics {@link SRMHardware#polarizationOptics}
+     * @param excitationBeamSplitter {@link SRMHardware#excitationBeamSplitter}
+     * @param illuminationMode {@link SRMHardware#illuminationMode}
+     * @param pinholeSize {@link SRMHardware#pinholeSize}
+     * @param emissionFilter {@link SRMHardware#emissionFilter}
+     * @param beamSplitter {@link SRMHardware#beamSplitter}
+     * @param emissionFilterChannels {@link SRMHardware#emissionFilterChannels}
+     */
     SRMHardware(String piezoTableController, String piezoScanner, Integer laserLinesCw, Integer laserLinesPulsed, Float laserLineFilter, Integer laserRepetitionRate, String polarizationOptics, String excitationBeamSplitter, IlluminationMode illuminationMode, Size pinholeSize, Filter emissionFilter, Filter beamSplitter, List<Filter> emissionFilterChannels) {
         this.piezoTableController = piezoTableController
         this.piezoScanner = piezoScanner
@@ -135,57 +151,5 @@ class SRMHardware extends ImagingHardware{
         this.emissionFilter = emissionFilter
         this.beamSplitter = beamSplitter
         this.emissionFilterChannels = emissionFilterChannels
-    }
-
-    String getPiezoTableController() {
-        return piezoTableController
-    }
-
-    String getPiezoScanner() {
-        return piezoScanner
-    }
-
-    Integer getLaserLinesCw() {
-        return laserLinesCw
-    }
-
-    Integer getLaserLinesPulsed() {
-        return laserLinesPulsed
-    }
-
-    Float getLaserLineFilter() {
-        return laserLineFilter
-    }
-
-    Integer getLaserRepetitionRate() {
-        return laserRepetitionRate
-    }
-
-    String getPolarizationOptics() {
-        return polarizationOptics
-    }
-
-    String getExcitationBeamSplitter() {
-        return excitationBeamSplitter
-    }
-
-    IlluminationMode getIlluminationMode() {
-        return illuminationMode
-    }
-
-    Size getPinholeSize() {
-        return pinholeSize
-    }
-
-    Filter getEmissionFilter() {
-        return emissionFilter
-    }
-
-    Filter getBeamSplitter() {
-        return beamSplitter
-    }
-
-    List<Filter> getEmissionFilterChannels() {
-        return emissionFilterChannels
     }
 }
