@@ -15,7 +15,7 @@ class EmissionRange {
      * Its the smallest wavelength within the emission range
      * e.g 495 nm
      */
-    private final int startWaveLength
+    private final int startWavelength
 
     /**
      * Its the biggest wavelength within the emission range
