@@ -24,6 +24,15 @@ class ImagingHardware {
   private final Detector detector
 
   /**
+   * Describes hardware properties for an instrument in the imaging context
+   * @param objective {@link ImagingHardware#objective}
+   * @param detector {@link ImagingHardware#detector}
+   */
+  ImagingHardware(String objective, Detector detector) {
+    this.objective = objective
+    this.detector = detector
+  }
+/**
    * Returns the objective described in the hardware
    *
    * @return The objective type
