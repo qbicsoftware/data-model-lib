@@ -20,6 +20,10 @@ enum IlluminationMode {
      */
     private String value
 
+    /**
+     * A DTO to describe the illumination mode in context of imaging
+     * @param value {@link IlluminationMode#value}
+     */
     private IlluminationMode(String value) {
         this.value = value
     }

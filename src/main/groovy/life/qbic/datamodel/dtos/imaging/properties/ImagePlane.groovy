@@ -22,6 +22,10 @@ enum ImagePlane {
      */
     private String value
 
+    /**
+     * Enumeration of different image planes.
+     * @param value {@link ImagePlane#value}
+     */
     private ImagePlane(String value) {
         this.value = value
     }
