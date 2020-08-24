@@ -36,4 +36,16 @@ class Position {
      * Always a positive number
      */
     private final Float z
+
+    /**
+     * DTO that describes a position on an image
+     * @param x {@link Position#x}
+     * @param y {@link Position#y}
+     * @param z {@link Position#z}
+     */
+    Position(Float x, Float y, Float z) {
+        this.x = x
+        this.y = y
+        this.z = z
+    }
 }
