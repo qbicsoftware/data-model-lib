@@ -20,6 +20,10 @@ enum Size {
      */
     private String value
 
+    /**
+     * DTO to describe the size of an object in context of imaging
+     * @param value {@link Size#value}
+     */
     private Size(String value) {
         this.value = value
     }
