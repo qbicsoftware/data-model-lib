@@ -83,7 +83,7 @@ final class Image {
    * @return Image acquisition parameters.
    */
   AcquisitionParameters getAcquisitionParameters() {
-    return this.acquisitionParameters // TODO return deep copy
+    return this.acquisitionParameters
   }
 
   /**
@@ -91,7 +91,7 @@ final class Image {
    * @return Image analysis parameters.
    */
   AnalysisParameters getAnalysisParameters() {
-    return this.analysisParameters // TODO return deep copy
+    return this.analysisParameters
   }
 
   /**
@@ -99,7 +99,7 @@ final class Image {
    * @return Image instrument information.
    */
   Instrument getInstrument(){
-    return this.instrument // TODO return deep copy
+    return this.instrument
   }
 
   /**
@@ -107,7 +107,7 @@ final class Image {
    * @return The actual image size.
    */
   ImageSize getImageSize(){
-    return this.imageSize // TODO return deep copy
+    return this.imageSize
   }
 
   /**
@@ -115,7 +115,7 @@ final class Image {
    * @return The actual pixel size.
    */
   PixelSize getPixelSize(){
-    return this.pixelSize // TODO return deep copy
+    return this.pixelSize
   }
 
   /**
@@ -123,6 +123,6 @@ final class Image {
    * @return The image resolution.
    */
   Float getResolution(){
-    return this.resolution // TODO return deep copy
+    return this.resolution
   }
 }

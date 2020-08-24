@@ -58,7 +58,7 @@ class Instrument {
    * @return The imaging hardware setup.
    */
   ImagingHardware getHardware() {
-    return this.hardware // TODO implement deep copy
+    return this.hardware
   }
 
   /**
@@ -68,7 +68,7 @@ class Instrument {
    * @return The instrument location.
    */
   Location getLocation() {
-    return this.location // TODO implement deep copy
+    return this.location
   }
 
 }
