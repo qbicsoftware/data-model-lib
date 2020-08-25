@@ -1,5 +1,9 @@
 # Release Changelog for the data model library
 
+## 1.10.0 25-08-2020
+
+* Provide DTO classes for imaging metadata
+
 ## 1.9.4
 
 * Fix implementation of `containsAtLeastOneBarcodedFolder`, such that the method checks all child elements to contain at least one barcoded folder in order to flag the measurement as pooled measurement.
