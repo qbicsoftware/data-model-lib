@@ -1,5 +1,9 @@
 # Data Model Library
-[![Build Status](https://travis-ci.org/qbicsoftware/data-model-lib.svg?branch=development)](https://travis-ci.com/qbicsoftware/data-model-lib)[![Code Coverage]( https://codecov.io/gh/qbicsoftware/data-model-lib/branch/development/graph/badge.svg)](https://codecov.io/gh/qbicsoftware/data-model-lib)
+[![Build Status](https://travis-ci.org/qbicsoftware/data-model-lib.svg?branch=master)](https://travis-ci.com/qbicsoftware/data-model-lib)
+[![Code Coverage]( https://codecov.io/gh/qbicsoftware/data-model-lib/branch/master/graph/badge.svg)](https://codecov.io/gh/qbicsoftware/data-model-lib)
+[![Latest Release ](https://img.shields.io/github/v/release/qbicsoftware/data-model-lib.svg)](https://github.com/qbicsoftware/data-model-lib/releases)
+![Java Language](https://img.shields.io/badge/language-java-blue.svg)
+![Groovy Language](https://img.shields.io/badge/language-groovy-blue.svg)
 
 Data Model Library - A collection of QBiC data models.
 
@@ -58,6 +62,8 @@ An overview of the openBIS data model and the location and entity relationship o
 ![Nanopore Data Structure Model](./doc/figures/OpenBIS_ER_diagram.png)
 
 ### Example
+
+For usage examples, see the [usage example documentation](./doc/examples.md).
 
 For complete examples, see the [JSON example files](./src/test/resources) provided for the unit tests.
 

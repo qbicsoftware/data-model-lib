@@ -57,6 +57,7 @@ final class OxfordNanoporeMeasurement {
         readMetaData(metadata)
         createContent()
         assessPooledStatus()
+        assessState()
     }
 
     private List<DataFile> getLogFileCollection() {
@@ -78,12 +79,21 @@ final class OxfordNanoporeMeasurement {
     }
 
     private void assessPooledStatus() {
-        this.pooledSamplesMeasurement = folders["fast5pass"] ? folders["fast5pass"].getChildren().get(0) instanceof Fast5Folder : false
+        this.pooledSamplesMeasurement = containsAtLeastOneBarcodedFolder(folders["fast5pass"])
         // There can be still pooled samples in the failed folder, worst case is all
         // samples failed, so we need to check there to
         if (! pooledSamplesMeasurement) {
-            this.pooledSamplesMeasurement = folders["fast5fail"] ? folders["fast5fail"].getChildren().get(0) instanceof Fast5Folder : false
+            this.pooledSamplesMeasurement = containsAtLeastOneBarcodedFolder(folders["fast5fail"])
         }
+    }
+
+    private static boolean containsAtLeastOneBarcodedFolder(DataFolder folder) {
+        if (!folder) {
+            return false
+        } else if (folder.getChildren()) {
+            return folder.getChildren().any { it instanceof Fast5Folder }
+        }
+        return false
     }
 
     private void readMetaData(Map<String, String> metadata) {
@@ -135,6 +145,27 @@ final class OxfordNanoporeMeasurement {
         }
     }
 
+    private void assessState() throws IllegalStateException {
+        // Condition one: Don't allow Fast5 pass and fail folder are empty
+        assessFast5Content()
+        // Condition two: Don't allow Fastq pass and fail folder are empty
+        assessFastQContent()
+    }
+
+    private void assessFast5Content() throws IllegalStateException {
+        if (folders["fast5pass"].getChildren().isEmpty() && folders["fast5fail"].getChildren()
+            .isEmpty()) {
+            throw new IllegalStateException("The fast5 pass folder and fail folder are empty.")
+        }
+    }
+
+    private void assessFastQContent() throws IllegalStateException {
+        if (folders["fastqpass"].getChildren().isEmpty() && folders["fastqfail"].getChildren()
+            .isEmpty()) {
+            throw new IllegalStateException("The fastq pass folder and fail folder are empty.")
+        }
+    }
+
     /**
      * This method aggregates all fast5 files and fastq files of an Oxford Nanopore
      * measurement by sample code. The DataFolder objects will not contain unclassified
@@ -174,6 +205,16 @@ final class OxfordNanoporeMeasurement {
      */
     Map<String, DataFolder> getUnclassifiedData() {
         return prepareUnclassifiedData()
+    }
+
+    /**
+     * Provides access to the adapter type used in the measurement.
+     *
+     * Is empty when no adapter was used.
+     * @return
+     */
+    String getAdapter() {
+        return metadata.get(METADATA_FIELD.ADAPTER) ?: ""
     }
 
     /**
@@ -269,8 +310,9 @@ final class OxfordNanoporeMeasurement {
     private Map<String, Map<String, DataFolder>> prepareRawDataFromPooledMeasurement() {
         final def result = new HashMap()
         final def pooledSampleCodes = folders
-                .get("fast5fail")
+                .get("fast5pass")
                 .getChildren()
+                .findAll { it instanceof BarcodedFolder }
                 .collect { (it as BarcodedFolder).getSampleCode() }
         pooledSampleCodes.each { sampleId ->
             final def map = [
