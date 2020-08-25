@@ -103,4 +103,20 @@ def outputMap = [:]
 def onExperiment = OxfordNanoporeExperiment.create(outputMap)
 ```
 
+## DTOs - Data Transfer Objects
+
+DTOs are objects that we pass around crossing architectural boundaries.
+They don't contain any business logic, they are just representing data.
+
+This DTO collection contains classes, that represent real world
+life-science domain data assets.
+
+### Imaging context - Omero and more
+
+The following figure describes the entity relation of the imaging DTOs.
+
+Please have a look at the detailed JavaDoc class description of the
+DTOs.
+
+![Imaging Data Structure Model](./doc/figures/Imaging_Data_Structure.png)
 
