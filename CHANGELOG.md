@@ -1,5 +1,9 @@
 # Release Changelog for the data model library
 
+## 1.10.0 25-08-2020
+
+* Provide DTO classes for imaging metadata
+
 ## 1.9.0
 
 * New class `OxfordNanoporeInstrumentOutput` that provides access to the instrument output JSON schema
