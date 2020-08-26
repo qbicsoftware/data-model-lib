@@ -47,7 +47,7 @@ class Instrument {
    * A more detailed description of the
    * hardware setup.
    *
-   * @see: #ImagingHardware
+   * @see: ImagingHardware
    */
   private final ImagingHardware hardware
 
@@ -71,7 +71,7 @@ class Instrument {
 /**
    * Returns a deep copy of the imaging hardware.
    *
-   * @see: #ImagingHardware
+   * @see: ImagingHardware
    * @return The imaging hardware setup.
    */
   ImagingHardware getHardware() {
@@ -81,7 +81,7 @@ class Instrument {
   /**
    * Returns a deep copy of the instrument's location.
    *
-   * @see: #Location
+   * @see: Location
    * @return The instrument location.
    */
   Location getLocation() {
