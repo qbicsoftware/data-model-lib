@@ -33,7 +33,7 @@ class Instrument {
   /**
    * The location of the instrument.
    *
-   * @see: #Location
+   * @see: Location
    */
   private final Location location
 
