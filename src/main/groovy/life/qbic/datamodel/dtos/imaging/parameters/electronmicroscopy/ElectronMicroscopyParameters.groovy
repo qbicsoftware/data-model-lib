@@ -22,7 +22,7 @@ class ElectronMicroscopyParameters extends AcquisitionParameters{
      *
      * e.g 120 kV
      */
-    private final Integer acceleratingVoltage
+    final Integer acceleratingVoltage
 
     /**
      * Shift of focus of the objective lens.
@@ -33,14 +33,14 @@ class ElectronMicroscopyParameters extends AcquisitionParameters{
      * This could be for example -4 nm.
      * Usually this value is negative.
      */
-    private final Float targetDefocus
+    final Float targetDefocus
 
     /**
      * The accumulated amount of electrons that are applied to an area of the sample
      *
      * Measured in electrons per unit area e.g 100 electrons/Angstrom^2
      */
-    private final Float cumulativeElectronDose
+    final Float cumulativeElectronDose
 
     /**
      * Creates a description of the properties of electron microscopy
