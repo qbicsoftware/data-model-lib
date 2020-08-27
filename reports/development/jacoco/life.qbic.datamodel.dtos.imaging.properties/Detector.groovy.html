@@ -19,7 +19,7 @@ class Detector {
    * Defines the detector type that has been used to
    * capture particle information.
    */
-  private final String type
+  final String type
 
   /**
    * DTO class for detectors in the imaging context.

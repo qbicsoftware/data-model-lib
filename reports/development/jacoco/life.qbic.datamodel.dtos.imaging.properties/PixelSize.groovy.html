@@ -16,22 +16,22 @@ class PixelSize {
      *
      * e.g time point 0.2 seconds
      */
-    private final Float timePoint
+    final Float timePoint
 
     /**
      * Size on the x-axis in nm
      */
-    private final Float x
+    final Float x
 
     /**
      * Size on the y-axis in nm
      */
-    private final Float y
+    final Float y
 
     /**
      * Size on the z-axis in nm
      */
-    private final Float z
+    final Float z
 
     /**
      * A DTO describing pixel size in images

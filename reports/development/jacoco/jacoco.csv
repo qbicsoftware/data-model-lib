@@ -101,8 +101,8 @@ Data Model Library,life.qbic.datamodel.sorters,SampleExtIDComparator,25,0,4,0,9,
 Data Model Library,life.qbic.datamodel.sorters,ComparatorsTester,148,0,18,0,24,0,10,0,1,0
 Data Model Library,life.qbic.datamodel.sorters,ImportantStringComparator,13,0,0,0,3,0,3,0,3,0
 Data Model Library,life.qbic.datamodel.sorters,TopInfoComparator,13,0,0,0,3,0,3,0,3,0
-Data Model Library,life.qbic.datamodel.dtos.imaging,Image,156,0,0,0,15,0,7,0,7,0
-Data Model Library,life.qbic.datamodel.dtos.imaging,Instrument,90,0,0,0,8,0,3,0,3,0
+Data Model Library,life.qbic.datamodel.dtos.imaging,Image,114,0,0,0,9,0,1,0,1,0
+Data Model Library,life.qbic.datamodel.dtos.imaging,Instrument,76,0,0,0,6,0,1,0,1,0
 Data Model Library,life.qbic.datamodel.dtos.imaging,Location,35,0,0,0,2,0,1,0,1,0
 Data Model Library,life.qbic.datamodel.dtos.imaging.properties,Area,0,48,0,0,0,3,0,1,0,1
 Data Model Library,life.qbic.datamodel.dtos.imaging.properties,Detector,0,24,0,0,0,1,0,1,0,1

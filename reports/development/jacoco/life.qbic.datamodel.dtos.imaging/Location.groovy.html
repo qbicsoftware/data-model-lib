@@ -15,14 +15,14 @@ class Location {
   /**
    * An identifier for a room an instrument is located at.
    */
-  private final String roomId
+  final String roomId
 
   /**
    * An address that describes the location of an instrument.
    *
    * @see: #life.qbic.datamodel.people.Address
    */
-  private final Address address
+  final Address address
 
   /**
    * DTO that describes the location of an instrument.

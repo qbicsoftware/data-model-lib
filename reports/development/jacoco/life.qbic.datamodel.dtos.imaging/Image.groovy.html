@@ -21,47 +21,47 @@ final class Image {
    *
    * @see Date
    */
-  private final Date acquisitionDate
+  final Date acquisitionDate
 
   /**
    * Detailed description of image acquisition parameters.
    *
    * @see AcquisitionParameters
    */
-  private final AcquisitionParameters acquisitionParameters
+  final AcquisitionParameters acquisitionParameters
 
   /**
    * Detailed description of image analysis parameters
    *
    * @see AnalysisParameters
    */
-  private final AnalysisParameters analysisParameters
+  final AnalysisParameters analysisParameters
 
   /**
    * A detailed instrument description that was used to create the image.
    *
    * @see Instrument
    */
-  private final Instrument instrument
+  final Instrument instrument
 
   /**
    * The image identifier in OMERO.
    */
-  private final Integer imageId
+  final Integer imageId
 
   /**
    * The image modality.
    *
    * @see Modality
    */
-  private final Modality modality
+  final Modality modality
 
   /**
    * Information about the image size.
    *
    * @see ImageSize
    */
-  private final ImageSize imageSize
+  final ImageSize imageSize
 
   /**
    * Information about the time and spacial distribution of
@@ -69,14 +69,14 @@ final class Image {
    *
    * @see PixelSize
    */
-  private final PixelSize pixelSize
+  final PixelSize pixelSize
 
   /**
    * Describes the resolution of the image.
    * e.g. 5 nm
    *
    */
-  private final Float resolution
+  final Float resolution
 
   /**
    * This DTO class describes the image resulting from imaging experiments
@@ -100,53 +100,6 @@ final class Image {
 <span class="nc" id="L100">    this.imageSize = imageSize</span>
 <span class="nc" id="L101">    this.pixelSize = pixelSize</span>
 <span class="nc" id="L102">    this.resolution = resolution</span>
-  }
-/**
-   * Returns detailed image acquisition parameters.
-   * @return Image acquisition parameters.
-   */
-  AcquisitionParameters getAcquisitionParameters() {
-<span class="nc" id="L109">    return this.acquisitionParameters</span>
-  }
-
-  /**
-   * Returns detailed image analysis parameters.
-   * @return Image analysis parameters.
-   */
-  AnalysisParameters getAnalysisParameters() {
-<span class="nc" id="L117">    return this.analysisParameters</span>
-  }
-
-  /**
-   * Returns detailed instrument information.
-   * @return Image instrument information.
-   */
-  Instrument getInstrument(){
-<span class="nc" id="L125">    return this.instrument</span>
-  }
-
-  /**
-   * Returns the image size of an image.
-   * @return The actual image size.
-   */
-  ImageSize getImageSize(){
-<span class="nc" id="L133">    return this.imageSize</span>
-  }
-
-  /**
-   * Returns the pixel size.
-   * @return The actual pixel size.
-   */
-  PixelSize getPixelSize(){
-<span class="nc" id="L141">    return this.pixelSize</span>
-  }
-
-  /**
-   * Returns image resolution information.
-   * @return The image resolution.
-   */
-  Float getResolution(){
-<span class="nc" id="L149">    return this.resolution</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

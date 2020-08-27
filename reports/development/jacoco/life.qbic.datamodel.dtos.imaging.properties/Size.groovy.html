@@ -11,7 +11,7 @@
  */
 enum Size {
 
-    thirty(&quot;30 µm&quot;),
+    THIRTY(&quot;30 µm&quot;),
     DETECTOR(&quot;detector area (100µm)&quot;),
     NON(&quot;no pinhole&quot;),
     UNKNOWN(&quot;unknown&quot;)
@@ -19,7 +19,7 @@ enum Size {
     /**
      * Contains the String representation of a illumination mode item.
      */
-    private String value
+    private final String value
 
     /**
      * DTO to describe the size of an object in context of imaging

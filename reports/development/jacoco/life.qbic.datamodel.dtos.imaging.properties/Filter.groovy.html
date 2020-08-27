@@ -25,7 +25,7 @@ enum Filter {
     /**
      * Contains the String representation of a filter item.
      */
-    private String value
+    private final String value
 
     /**
      * Enumeration of different image filters.

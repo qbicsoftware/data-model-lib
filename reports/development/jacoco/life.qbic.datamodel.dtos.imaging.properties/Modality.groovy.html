@@ -23,7 +23,7 @@ enum Modality {
   /**
    * Contains the String representation of a modality item.
    */
-  private String value
+  private final String value
 
   /**
    * Enumeration of different microscopy and spectroscopy modalities.
