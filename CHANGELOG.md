@@ -1,4 +1,6 @@
 # Release Changelog for the data model library
+## 1.11.0
+* Fix #51
 
 ## 1.10.0 25-08-2020
 
