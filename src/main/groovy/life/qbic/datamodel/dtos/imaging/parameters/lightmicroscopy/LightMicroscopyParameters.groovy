@@ -5,7 +5,6 @@ import life.qbic.datamodel.dtos.imaging.properties.Area
 import life.qbic.datamodel.dtos.imaging.properties.EmissionRange
 import life.qbic.datamodel.dtos.imaging.properties.Position
 import life.qbic.datamodel.dtos.imaging.properties.ScanMode
-import life.qbic.datamodel.dtos.imaging.properties.Unit
 
 /**
  * Description of light microscope parameters during image analysis.
@@ -40,7 +39,7 @@ class LightMicroscopyParameters extends AcquisitionParameters{
      *
      * @see EmissionRange
      */
-    private final List<EmissionRange> emissionPerChannel
+    final List<EmissionRange> emissionPerChannel
 
     /**
      * Total Internal Reflection Fluorescence (TIRF)
@@ -48,7 +47,7 @@ class LightMicroscopyParameters extends AcquisitionParameters{
      *
      * It is measured in milliwats (mW)
      */
-    private final Float laserPowerTIRFLens
+    final Float laserPowerTIRFLens
 
     /**
      * Amount of power of the laser beam split at the beam splitter.
@@ -57,21 +56,21 @@ class LightMicroscopyParameters extends AcquisitionParameters{
      * It is measured in milliwatts (mW)
      *
      */
-    private final Float laserPowerBeamSplitter
+    final Float laserPowerBeamSplitter
 
     /**
      * Time required to generate an image with the camera
      *
      * Described in ms (e.g 100 ms)
      */
-    private final Float cameraAcquisitionTime
+    final Float cameraAcquisitionTime
 
     /**
      * Position of the light beam on the scanning area
      *
      * Described by coordinates in pixels e.g position (x,y,z)
      */
-    private final Position position
+    final Position position
 
     /**
      * Time-Correlated Single Photon Counting (TCSPC)
@@ -80,7 +79,7 @@ class LightMicroscopyParameters extends AcquisitionParameters{
      *
      * Describes the timing resolution of TCSPC in ps e.g. 32 ps
      */
-    private final Integer tcspcTimingResolution
+    final Integer tcspcTimingResolution
 
     /**
      * Position for the TCSPC.
@@ -89,14 +88,14 @@ class LightMicroscopyParameters extends AcquisitionParameters{
      *
      * e.g position (x,y,z)
      */
-    private final Position tcspcPosition
+    final Position tcspcPosition
 
     /**
      * Describes the scan mode of the used for the TCSPC microscopy.
      *
      * @see ScanMode
      */
-    private final ScanMode tscpcScanMode
+    final ScanMode tscpcScanMode
 
     /**
      * Describes the time for the acquisition of an image area in pixels.
@@ -104,7 +103,7 @@ class LightMicroscopyParameters extends AcquisitionParameters{
      *
      * e.g. 5ms
      */
-    private final Integer scanAcquisitionRate
+    final Integer scanAcquisitionRate
 
     /**
      * The size of the scanned area
@@ -112,7 +111,7 @@ class LightMicroscopyParameters extends AcquisitionParameters{
      *
      * @see Area
      */
-    private final Area scanSize
+    final Area scanSize
 
     /**
      * Creates a description of light microscope parameters during image analysis.

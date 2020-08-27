@@ -20,7 +20,7 @@ enum ImagePlane {
     /**
      * Contains the String representation of a image plane item.
      */
-    private String value
+    private final String value
 
     /**
      * Enumeration of different image planes.

@@ -21,47 +21,47 @@ final class Image {
    *
    * @see Date
    */
-  private final Date acquisitionDate
+  final Date acquisitionDate
 
   /**
    * Detailed description of image acquisition parameters.
    *
    * @see AcquisitionParameters
    */
-  private final AcquisitionParameters acquisitionParameters
+  final AcquisitionParameters acquisitionParameters
 
   /**
    * Detailed description of image analysis parameters
    *
    * @see AnalysisParameters
    */
-  private final AnalysisParameters analysisParameters
+  final AnalysisParameters analysisParameters
 
   /**
    * A detailed instrument description that was used to create the image.
    *
    * @see Instrument
    */
-  private final Instrument instrument
+  final Instrument instrument
 
   /**
    * The image identifier in OMERO.
    */
-  private final Integer imageId
+  final Integer imageId
 
   /**
    * The image modality.
    *
    * @see Modality
    */
-  private final Modality modality
+  final Modality modality
 
   /**
    * Information about the image size.
    *
    * @see ImageSize
    */
-  private final ImageSize imageSize
+  final ImageSize imageSize
 
   /**
    * Information about the time and spacial distribution of
@@ -69,14 +69,14 @@ final class Image {
    *
    * @see PixelSize
    */
-  private final PixelSize pixelSize
+  final PixelSize pixelSize
 
   /**
    * Describes the resolution of the image.
    * e.g. 5 nm
    *
    */
-  private final Float resolution
+  final Float resolution
 
   /**
    * This DTO class describes the image resulting from imaging experiments
@@ -100,52 +100,5 @@ final class Image {
     this.imageSize = imageSize
     this.pixelSize = pixelSize
     this.resolution = resolution
-  }
-/**
-   * Returns detailed image acquisition parameters.
-   * @return Image acquisition parameters.
-   */
-  AcquisitionParameters getAcquisitionParameters() {
-    return this.acquisitionParameters
-  }
-
-  /**
-   * Returns detailed image analysis parameters.
-   * @return Image analysis parameters.
-   */
-  AnalysisParameters getAnalysisParameters() {
-    return this.analysisParameters
-  }
-
-  /**
-   * Returns detailed instrument information.
-   * @return Image instrument information.
-   */
-  Instrument getInstrument(){
-    return this.instrument
-  }
-
-  /**
-   * Returns the image size of an image.
-   * @return The actual image size.
-   */
-  ImageSize getImageSize(){
-    return this.imageSize
-  }
-
-  /**
-   * Returns the pixel size.
-   * @return The actual pixel size.
-   */
-  PixelSize getPixelSize(){
-    return this.pixelSize
-  }
-
-  /**
-   * Returns image resolution information.
-   * @return The image resolution.
-   */
-  Float getResolution(){
-    return this.resolution
   }
 }

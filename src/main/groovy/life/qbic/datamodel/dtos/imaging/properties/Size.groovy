@@ -11,7 +11,7 @@ package life.qbic.datamodel.dtos.imaging.properties
  */
 enum Size {
 
-    thirty("30 µm"),
+    THIRTY("30 µm"),
     DETECTOR("detector area (100µm)"),
     NON("no pinhole"),
     UNKNOWN("unknown")
@@ -19,7 +19,7 @@ enum Size {
     /**
      * Contains the String representation of a illumination mode item.
      */
-    private String value
+    private final String value
 
     /**
      * DTO to describe the size of an object in context of imaging
