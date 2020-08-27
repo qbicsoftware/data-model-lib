@@ -19,7 +19,7 @@ enum IlluminationMode {
     /**
      * Contains the String representation of a illumination mode item.
      */
-    private String value
+    private final String value
 
     /**
      * A DTO to describe the illumination mode in context of imaging
