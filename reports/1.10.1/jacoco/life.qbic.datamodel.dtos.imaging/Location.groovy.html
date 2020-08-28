@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Location.groovy</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Data Model Library</a> &gt; <a href="index.source.html" class="el_package">life.qbic.datamodel.dtos.imaging</a> &gt; <span class="el_source">Location.groovy</span></div><h1>Location.groovy</h1><pre class="source lang-java linenums">package life.qbic.datamodel.dtos.imaging
+
+import life.qbic.datamodel.people.Address
+
+/**
+ * DTO that describes the location of an instrument.
+ *
+ * This class shall be used whenever location information
+ *
+ * @author Sven Fillinger
+ * @since 1.10.0
+ */
+class Location {
+
+  /**
+   * An identifier for a room an instrument is located at.
+   */
+  final String roomId
+
+  /**
+   * An address that describes the location of an instrument.
+   *
+   * @see: #life.qbic.datamodel.people.Address
+   */
+  final Address address
+
+  /**
+   * DTO that describes the location of an instrument.
+   * @param roomId {@link Location#roomId}
+   * @param address {@link Location#address}
+   */
+  Location(String roomId, Address address) {
+<span class="nc" id="L33">    this.roomId = roomId</span>
+<span class="nc" id="L34">    this.address = address</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
