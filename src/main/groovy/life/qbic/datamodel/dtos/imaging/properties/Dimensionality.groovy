@@ -16,7 +16,7 @@ enum Dimensionality {
     /**
      * Contains the String representation of a dimensionality item.
      */
-    private String value
+    private final String value
 
     /**
      * A DTO to describe the dimensionality of an image

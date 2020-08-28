@@ -18,38 +18,38 @@ class Instrument {
    * The manufacturer of the instrument.
    * Examples are 'Leica', 'Zeiss' and many more.
    */
-  private final String manufacturer
+  final String manufacturer
 
   /**
    * The model type of the instrument.
    */
-  private final String model
+  final String model
 
   /**
    * The serial number of the instrument.
    */
-  private final String serialNumber
+  final String serialNumber
 
   /**
    * The location of the instrument.
    *
-   * @see: #Location
+   * @see: Location
    */
-  private final Location location
+  final Location location
 
   /**
    * The type of the instrument.
    * Example: 'Confocal Microscope'.
    */
-  private final String type
+  final String type
 
   /**
    * A more detailed description of the
    * hardware setup.
    *
-   * @see: #ImagingHardware
+   * @see: ImagingHardware
    */
-  private final ImagingHardware hardware
+  final ImagingHardware hardware
 
   /**
    * DTO that describes an instrument in the imaging context
@@ -67,25 +67,6 @@ class Instrument {
     this.location = location
     this.type = type
     this.hardware = hardware
-  }
-/**
-   * Returns a deep copy of the imaging hardware.
-   *
-   * @see: #ImagingHardware
-   * @return The imaging hardware setup.
-   */
-  ImagingHardware getHardware() {
-    return this.hardware
-  }
-
-  /**
-   * Returns a deep copy of the instrument's location.
-   *
-   * @see: #Location
-   * @return The instrument location.
-   */
-  Location getLocation() {
-    return this.location
   }
 
 }
