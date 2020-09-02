@@ -57,7 +57,7 @@ Data Model Library,life.qbic.datamodel.datasets,OxfordNanoporeMeasurement._prepa
 Data Model Library,life.qbic.datamodel.datasets,OxfordNanoporeMeasurement._prepareUnclassifiedData_closure5,2,13,0,0,0,1,0,2,0,2
 Data Model Library,life.qbic.datamodel.datasets,OxfordNanoporeMeasurement._prepareUnclassifiedData_closure7,2,13,0,0,0,1,0,2,0,2
 Data Model Library,life.qbic.datamodel.datasets,OxfordNanoporeExperiment._parseChildren_closure3,35,62,0,0,0,4,2,2,2,2
-Data Model Library,life.qbic.datamodel.datasets,OxfordNanoporeMeasurement,301,1144,17,35,12,74,26,30,10,20
+Data Model Library,life.qbic.datamodel.datasets,OxfordNanoporeMeasurement,302,1178,18,36,12,75,27,31,10,21
 Data Model Library,life.qbic.datamodel.datasets,OxfordNanoporeExperiment._parseMeasurementItems_closure2,24,62,0,0,0,4,1,2,1,2
 Data Model Library,life.qbic.datamodel.datasets,OxfordNanoporeMeasurement._validateMetaData_closure1,10,7,0,0,1,0,1,1,1,1
 Data Model Library,life.qbic.datamodel.datasets,OxfordNanoporeMeasurement._prepareRawDataFromPooledMeasurement_closure8,2,13,0,0,0,1,0,2,0,2
