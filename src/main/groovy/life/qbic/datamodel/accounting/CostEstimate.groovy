@@ -15,10 +15,13 @@ import life.qbic.datamodel.projects.ProjectInfo
  *
  * * */
 class CostEstimate {
-    Date modificationDate
-    Person customer
-    ProjectInfo projectInfo
-    List<CostItem> items
-    double totalPrice
-    final String IDENTIFIER
+
+    final Date date
+    final Person customer
+    final String projectTitle
+    final String projectDescription
+    final List<CostItem> items
+    final double totalPrice
+    final String identifier
+
 }

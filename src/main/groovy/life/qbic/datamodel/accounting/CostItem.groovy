@@ -8,10 +8,12 @@ package life.qbic.datamodel.accounting
  * @since: 1.9.0
  * @author: Tobias Koch
  *
- * * */
+ */
 class CostItem {
 
-    double quantity
+    final double quantity
+    final Package packageType
+    final Currency currency
     final double UNIT_PRICE
     final String UNIT_NAME
     final String NAME
@@ -32,12 +34,9 @@ class CostItem {
         this.DESCRIPTION = DESCRIPTION
     }
 
-    double getQuantity() {
-        return quantity
+    public double computeTotalCosts(){
+
     }
 
-    void setQuantity(double quantity) {
-        this.quantity = quantity
-    }
 }
 

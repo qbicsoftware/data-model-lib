@@ -13,17 +13,22 @@ import life.qbic.datamodel.projects.ProjectInfo
  *
  * * */
 class Offer {
-    Date modificationDate
-    Date expirationDate
-    Person customer
-    Person projectManager
-    ProjectInfo projectInfo
-    List<CostItem> items
-    double totalPrice
+    //final Date modificationDate
+    //final Date expirationDate
+    final Person customer
+    final Person projectManager
+    final String projectTitle
+    final String projectDescription
+    final List<CostItem> items
+    final double totalPrice
     final String IDENTIFIER
 
-    Offer(String IDENTIFIER) {
-        this.IDENTIFIER = IDENTIFIER
+    public void addItem(CostItem item){
+
+    }
+
+    public void removeItem(CostItem item){
+
     }
 }
 
