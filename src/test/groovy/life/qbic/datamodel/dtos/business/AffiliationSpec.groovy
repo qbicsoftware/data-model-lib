@@ -17,7 +17,7 @@ class AffiliationSpec extends Specification{
             "Auf der Morgenstelle 10",
             "72076",
             "Tübingen").
-            country("Germany").build()
+           .build()
 
     then:
     assert testAffiliation.getOrganisation().equals("Universität Tübingen")
