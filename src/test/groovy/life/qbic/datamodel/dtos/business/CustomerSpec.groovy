@@ -10,7 +10,7 @@ import spock.lang.Specification
  */
 class CustomerSpec extends Specification{
 
-  def "wrong email shall raisa a validation exception"() {
+  def "wrong email shall raise a validation exception"() {
     when:
     def customer = new Customer(null,"","","test",[])
 
