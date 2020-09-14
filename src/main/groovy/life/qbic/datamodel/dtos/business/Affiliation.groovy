@@ -1,7 +1,5 @@
 package life.qbic.datamodel.dtos.business
 
-import groovy.transform.builder.Builder
-
 /**
  * This class serves as a simple DTO for customer affiliations
  *
@@ -10,18 +8,45 @@ import groovy.transform.builder.Builder
  */
 final class Affiliation {
 
+  /**
+   * The organisation label of an affiliation.
+   *
+   * For example "University of Tübingen"
+   */
   final String organisation
 
+  /**
+   * An optional address addition.
+   *
+   * Like "Quantitative Biology Center"
+   */
   final String addressAddition
 
+  /**
+   * The affiliation street
+   */
   final String street
 
+  /**
+   * The affiliation postal code
+   */
   final String postalCode
 
+  /**
+   * The affiliation city
+   */
   final String city
 
+  /**
+   * The affiliation country. Defaults to "Germany" if not set otherwise in the builder.
+   */
   final String country
 
+  /**
+   * An affiliation category @link{AffiliationCategory}.
+   *
+   * Defaults to 'external non-academic'.
+   */
   final AffiliationCategory category
 
   static class Builder {
@@ -46,7 +71,7 @@ final class Affiliation {
       this.postalCode = postalCode
       this.city = city
       this.addressAddition = ""
-      this.country = ""
+      this.country = "Germany"
       this.category = AffiliationCategory.EXTERNAL
     }
 
