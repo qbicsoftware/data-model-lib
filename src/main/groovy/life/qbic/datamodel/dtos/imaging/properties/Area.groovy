@@ -14,18 +14,18 @@ class Area {
     /**
      * Describes the value in µm of the first dimension of the area, e.g. 40 µm
      */
-    private final Integer firstDimensionValue
+    final Integer firstDimensionValue
 
     /**
      * Describes the value in µm of the second dimension of the area, e.g. 40 µm
      */
-    private final Integer secondDimensionValue
+    final Integer secondDimensionValue
 
     /**
      * Describes the image plane of the area
      * @see ImagePlane
      */
-    private final ImagePlane plane
+    final ImagePlane plane
 
     /**
      * DTO that describes the area of an image.

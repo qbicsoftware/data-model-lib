@@ -9,5 +9,5 @@ package life.qbic.datamodel.dtos.imaging.parameters
  * @since 1.10.0
  */
 abstract class AnalysisParameters {
-    //todo do we want to keep this class?
+    //TODO implement. This is a preparation for upcoming changes.
 }

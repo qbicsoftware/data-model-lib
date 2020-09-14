@@ -12,12 +12,14 @@ import java.util.regex.Pattern
 import org.everit.json.schema.loader.SchemaLoader
 import org.json.JSONObject
 import org.json.JSONTokener
+import groovy.util.logging.Log4j2
 
 /**
  * A dataset that represents a Oxford Nanopore Measurement.
  *
  * @author: Sven Fillinger
  */
+@Log4j2
 final class OxfordNanoporeMeasurement {
 
     private static final String LIBRARY_PREP_KIT_SCHEMA = "SQK-.*(?=:)"
@@ -73,7 +75,7 @@ final class OxfordNanoporeMeasurement {
             MetaData.validateMetadata(metadata)
         } catch (ValidationException e) {
             // Aggregate the causing exceptions
-            def causes = e.getCausingExceptions().collect{ it.message  }.join("\n")
+            def causes = e.getAllMessages().collect{ message }.join("\n")
             throw new IllegalArgumentException("The Nanopore metadata could not be collected.\nReason:\n$causes",)
         }
     }

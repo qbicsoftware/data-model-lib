@@ -26,7 +26,7 @@ class AcquisitionParameters {
    *
    * Binning is always a positive Integer value.
    */
-  private final Integer binning
+  final Integer binning
 
   /**
    * Creates a description of acquisition parameters during image analysis.

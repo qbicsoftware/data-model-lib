@@ -16,27 +16,27 @@ class ImageSize {
      *
      * e.g time point 10
      */
-    private final Integer timePoint
+    final Integer timePoint
 
     /**
      * Channel from which the image was obtained
      */
-    private final Integer channel
+    final Integer channel
 
     /**
      * Size on the x-axis in px
      */
-    private final Integer x
+    final Integer x
 
     /**
      * Size on the y-axis in px
      */
-    private final Integer y
+    final Integer y
 
     /**
      * Size on the z-axis in px
      */
-    private final Integer z
+    final Integer z
 
     /**
      *

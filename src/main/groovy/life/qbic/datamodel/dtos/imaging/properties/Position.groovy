@@ -17,7 +17,7 @@ class Position {
      *
      * Always a positive number
      */
-    private final Float x
+    final Float x
 
     /**
      * Describes the position on the y-axis
@@ -25,7 +25,7 @@ class Position {
      *
      * Always a positive number
      */
-    private final Float y
+    final Float y
 
     /**
      * Describes the position on the z-axis
@@ -35,7 +35,7 @@ class Position {
      *
      * Always a positive number
      */
-    private final Float z
+    final Float z
 
     /**
      * DTO that describes a position on an image
