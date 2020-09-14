@@ -16,7 +16,7 @@ class AffiliationSpec extends Specification{
         new Affiliation.Builder("Universität Tübingen",
             "Auf der Morgenstelle 10",
             "72076",
-            "Tübingen").
+            "Tübingen")
            .build()
 
     then:
