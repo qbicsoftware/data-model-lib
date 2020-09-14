@@ -75,7 +75,7 @@ final class OxfordNanoporeMeasurement {
             MetaData.validateMetadata(metadata)
         } catch (ValidationException e) {
             // Aggregate the causing exceptions
-            def causes = e.getAllMessages().collect{ message }.join("\n")
+            def causes = e.getAllMessages().join("\n")
             throw new IllegalArgumentException("The Nanopore metadata could not be collected.\nReason:\n$causes",)
         }
     }
