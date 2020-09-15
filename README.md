@@ -1,5 +1,9 @@
 # Data Model Library
-[![Build Status](https://travis-ci.org/qbicsoftware/data-model-lib.svg?branch=development)](https://travis-ci.com/qbicsoftware/data-model-lib)[![Code Coverage]( https://codecov.io/gh/qbicsoftware/data-model-lib/branch/development/graph/badge.svg)](https://codecov.io/gh/qbicsoftware/data-model-lib)
+[![Build Status](https://travis-ci.org/qbicsoftware/data-model-lib.svg?branch=master)](https://travis-ci.com/qbicsoftware/data-model-lib)
+[![Code Coverage]( https://codecov.io/gh/qbicsoftware/data-model-lib/branch/master/graph/badge.svg)](https://codecov.io/gh/qbicsoftware/data-model-lib)
+[![Latest Release ](https://img.shields.io/github/v/release/qbicsoftware/data-model-lib.svg)](https://github.com/qbicsoftware/data-model-lib/releases)
+![Java Language](https://img.shields.io/badge/language-java-blue.svg)
+![Groovy Language](https://img.shields.io/badge/language-groovy-blue.svg)
 
 Data Model Library - A collection of QBiC data models.
 
@@ -14,7 +18,7 @@ With Maven you can include the library as dependency with:
 <dependency>
   <groupId>life.qbic</groupId>
   <artifactId>data-model-lib</artifactId>
-  <version>1.9.0</version>
+  <version>1.10.0</version>
 </dependency>
 ```
 or Groovy Grape:
@@ -48,11 +52,22 @@ A Nanopore NGS measurement output is delivered to us as a nested folder structur
 
 ![Nanopore Data Structure Model](./doc/figures/Nanopore_Data_Structure_Model.png)
 
+## OpenBIS Data Overview 
+
+The Nanopore data structure is saved in an openBIS 18.06.2 database. 
+An overview of the openBIS data model and the location and entity relationship of the Nanopore data stucture within it can be seen in this diagram: 
+
+
+
+![Nanopore Data Structure Model](./doc/figures/OpenBIS_ER_diagram.png)
+
 ### Example
+
+For usage examples, see the [usage example documentation](./doc/examples.md).
 
 For complete examples, see the [JSON example files](./src/test/resources) provided for the unit tests.
 
-In order to create an instance of ype `OxfordNanoporeExperiment`, you need to provide a map that provides content following the [Nanopore Instrument Output Schema JSON](./src/main/resources/schemas/nanopore-instrument-output.schema.json).  
+In order to create an instance of type `OxfordNanoporeExperiment`, you need to provide a map that provides content following the [Nanopore Instrument Output Schema JSON](./src/main/resources/schemas/nanopore-instrument-output.schema.json).  
 Every measurement folder also needs to be enriched with metadata, which itself is specified with another [JSON schema](./src/main/resources/schemas/ont-metadata.schema.json).
 
 The final map contains an additional `metadata` property for each measurement, that for example can look like this:
@@ -94,4 +109,20 @@ def outputMap = [:]
 def onExperiment = OxfordNanoporeExperiment.create(outputMap)
 ```
 
+## DTOs - Data Transfer Objects
+
+DTOs are objects that we pass around crossing architectural boundaries.
+They don't contain any business logic, they are just representing data.
+
+This DTO collection contains classes, that represent real world
+life-science domain data assets.
+
+### Imaging context - Omero and more
+
+The following figure describes the entity relation of the imaging DTOs.
+
+Please have a look at the detailed JavaDoc class description of the
+DTOs.
+
+![Imaging Data Structure Model](./doc/figures/Imaging_Data_Structure.png)
 

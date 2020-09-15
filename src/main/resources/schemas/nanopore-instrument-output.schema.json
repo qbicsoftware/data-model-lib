@@ -24,7 +24,7 @@
           "minLength": 1
         },
         "children": {
-          "description": "Describes one or more files and/or sub-folders",
+          "description": "Describes files and/or sub-folders if existent",
           "type": "array",
           "items": {
             "oneOf": [
@@ -35,8 +35,7 @@
                 "$ref": "#/definitions/file"
               }
             ]
-          },
-          "minItems": 1
+          }
         }
       }
     },
@@ -105,7 +104,7 @@
         {
           "properties": {
             "file_type": {
-              "pattern": ".*fastq.gz$"
+              "pattern": "fastq.gz"
             }
           }
         }
@@ -224,8 +223,7 @@
                     "$ref": "#/definitions/fast5_file"
                   }
                 ]
-              },
-              "minItems": 1
+              }
             }
           }
         }
@@ -254,8 +252,7 @@
                     "$ref": "#/definitions/fast5_file"
                   }
                 ]
-              },
-              "minItems": 1
+              }
             }
           }
         }
@@ -284,8 +281,7 @@
                     "$ref": "#/definitions/fastqgz_file"
                   }
                 ]
-              },
-              "minItems": 1
+              }
             }
           }
         }
@@ -314,8 +310,7 @@
                     "$ref": "#/definitions/fastqgz_file"
                   }
                 ]
-              },
-              "minItems": 1
+              }
             }
           }
         }

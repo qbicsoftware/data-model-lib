@@ -1,8 +1,33 @@
 # Release Changelog for the data model library
+## 1.10.1
+* Fix field accessibility for imaging metadata DTOs #51
+
+## 1.10.0 25-08-2020
+
+* Provide DTO classes for imaging metadata
+
+## 1.9.4
+
+* Fix implementation of `containsAtLeastOneBarcodedFolder`, such that the method checks all child elements to contain at least one barcoded folder in order to flag the measurement as pooled measurement.
+
+## 1.9.3
+
+* Fix #31
+
+## 1.9.2
+
+* Adds missing getter method for the measurement adapter
+
+## 1.9.1
+
+* Fix for `getRawDataPerSample()`, which failed in the presence of unclassified folders.
 
 ## 1.9.0
 
 * New class `OxfordNanoporeInstrumentOutput` that provides access to the instrument output JSON schema
+* Support for unclassified reads
+  * Two new folder classes `UnclassifiedFast5Folder` and `UnclassifiedFastQFolder`
+  * New API method `getUnclassifiedData()` for the `OxfordNanoporeMeasurement` class
 * Bugfix for object comparison infinity crisis
 * Bugfix for wrong data assignment on pooled sample data
 
