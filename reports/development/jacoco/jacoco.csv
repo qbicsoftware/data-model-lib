@@ -28,7 +28,7 @@ Data Model Library,life.qbic.datamodel.samples,SampleSummary,408,0,50,0,98,0,52,
 Data Model Library,life.qbic.datamodel.samples,OpenbisMHCExtractSample,48,0,0,0,11,0,3,0,3,0
 Data Model Library,life.qbic.datamodel.samples,Location,832,0,58,0,51,0,55,0,26,0
 Data Model Library,life.qbic.datamodel.samples,SampleType,0,404,0,0,0,2,0,1,0,1
-Data Model Library,life.qbic.datamodel.samples,TSVSampleBean,253,0,10,0,66,0,32,0,27,0
+Data Model Library,life.qbic.datamodel.samples,TSVSampleBean,392,0,34,0,95,0,47,0,30,0
 Data Model Library,life.qbic.datamodel.samples,AOpenbisSample,562,0,28,0,126,0,43,0,29,0
 Data Model Library,life.qbic.datamodel.samples,OpenbisBiologicalEntity,35,0,0,0,8,0,2,0,2,0
 Data Model Library,life.qbic.datamodel.samples,OpenbisTestSample,39,0,0,0,9,0,3,0,3,0

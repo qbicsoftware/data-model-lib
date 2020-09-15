@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class TSVSampleBean implements ISampleBean {
+
+<span class="nc" id="L12">  private static final Logger logger = LogManager.getLogger(TSVSampleBean.class);</span>
 
   private String code;
   private String experiment;
@@ -17,37 +21,37 @@ public class TSVSampleBean implements ISampleBean {
   private Map&lt;String, Object&gt; metadata;
 
   public TSVSampleBean(String code, String exp, String proj, String space, SampleType sType,
-<span class="nc" id="L20">      String secondaryName, List&lt;String&gt; parentIDs, Map&lt;String, Object&gt; metadata) {</span>
-<span class="nc" id="L21">    this.code = code;</span>
-<span class="nc" id="L22">    this.experiment = exp;</span>
-<span class="nc" id="L23">    this.project = proj;</span>
-<span class="nc" id="L24">    this.space = space;</span>
-<span class="nc" id="L25">    this.sampleType = sType;</span>
-<span class="nc" id="L26">    this.secondaryName = secondaryName;</span>
-<span class="nc" id="L27">    this.parentIDs = parentIDs;</span>
-<span class="nc" id="L28">    this.metadata = metadata;</span>
-<span class="nc" id="L29">  }</span>
+<span class="nc" id="L24">      String secondaryName, List&lt;String&gt; parentIDs, Map&lt;String, Object&gt; metadata) {</span>
+<span class="nc" id="L25">    this.code = code;</span>
+<span class="nc" id="L26">    this.experiment = exp;</span>
+<span class="nc" id="L27">    this.project = proj;</span>
+<span class="nc" id="L28">    this.space = space;</span>
+<span class="nc" id="L29">    this.sampleType = sType;</span>
+<span class="nc" id="L30">    this.secondaryName = secondaryName;</span>
+<span class="nc" id="L31">    this.parentIDs = parentIDs;</span>
+<span class="nc" id="L32">    this.metadata = metadata;</span>
+<span class="nc" id="L33">  }</span>
 
   public TSVSampleBean(String prelimCode, SampleType sampleType, String secondaryName,
-<span class="nc" id="L32">      Map&lt;String, Object&gt; metadata) {</span>
-<span class="nc" id="L33">    this.code = prelimCode;</span>
-<span class="nc" id="L34">    this.sampleType = sampleType;</span>
-<span class="nc" id="L35">    this.secondaryName = secondaryName;</span>
-<span class="nc" id="L36">    this.metadata = metadata;</span>
-<span class="nc" id="L37">    this.parentIDs = new ArrayList&lt;String&gt;();</span>
-<span class="nc" id="L38">  }</span>
+<span class="nc" id="L36">      Map&lt;String, Object&gt; metadata) {</span>
+<span class="nc" id="L37">    this.code = prelimCode;</span>
+<span class="nc" id="L38">    this.sampleType = sampleType;</span>
+<span class="nc" id="L39">    this.secondaryName = secondaryName;</span>
+<span class="nc" id="L40">    this.metadata = metadata;</span>
+<span class="nc" id="L41">    this.parentIDs = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L42">  }</span>
 
   public String toString() {
-<span class="nc" id="L41">    return code + &quot;\t&quot; + experiment + &quot;\t&quot; + secondaryName + &quot;\t&quot; + sampleType + &quot;\t&quot;</span>
-<span class="nc" id="L42">        + getParentIDs() + &quot;\t&quot; + metadata;</span>
+<span class="nc" id="L45">    return code + &quot;\t&quot; + experiment + &quot;\t&quot; + secondaryName + &quot;\t&quot; + sampleType + &quot;\t&quot;</span>
+<span class="nc" id="L46">        + getParentIDs() + &quot;\t&quot; + metadata;</span>
   }
 
   public boolean hasParents() {
-<span class="nc bnc" id="L46" title="All 2 branches missed.">    return !parentIDs.isEmpty();</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">    return !parentIDs.isEmpty();</span>
   }
 
   public List&lt;String&gt; getParentIDs() {
-<span class="nc" id="L50">    return parentIDs;</span>
+<span class="nc" id="L54">    return parentIDs;</span>
     // if (!hasParents())
     // return new ArrayList&lt;String&gt;();
     // else {
@@ -64,106 +68,154 @@ public class TSVSampleBean implements ISampleBean {
 
   @Override
   public boolean equals(Object o) {
-<span class="nc bnc" id="L67" title="All 2 branches missed.">    if (o instanceof TSVSampleBean) {</span>
-<span class="nc" id="L68">      TSVSampleBean b = (TSVSampleBean) o;</span>
-<span class="nc" id="L69">      return code.equals(b.getCode());</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">    if (o instanceof TSVSampleBean) {</span>
+<span class="nc" id="L72">      TSVSampleBean b = (TSVSampleBean) o;</span>
+<span class="nc" id="L73">      return code.equals(b.getCode());</span>
     } else
-<span class="nc" id="L71">      return false;</span>
+<span class="nc" id="L75">      return false;</span>
   }
 
   public String getCode() {
-<span class="nc" id="L75">    return code;</span>
+<span class="nc" id="L79">    return code;</span>
   }
 
   public void setCode(String id) {
-<span class="nc" id="L79">    this.code = id;</span>
-<span class="nc" id="L80">  }</span>
+<span class="nc" id="L83">    this.code = id;</span>
+<span class="nc" id="L84">  }</span>
 
   public String getExperiment() {
-<span class="nc" id="L83">    return experiment;</span>
+<span class="nc" id="L87">    return experiment;</span>
   }
 
   public void setExperiment(String experiment) {
-<span class="nc" id="L87">    this.experiment = experiment;</span>
-<span class="nc" id="L88">  }</span>
+<span class="nc" id="L91">    this.experiment = experiment;</span>
+<span class="nc" id="L92">  }</span>
 
   public String getProject() {
-<span class="nc" id="L91">    return project;</span>
+<span class="nc" id="L95">    return project;</span>
   }
 
   public void setProject(String project) {
-<span class="nc" id="L95">    this.project = project;</span>
-<span class="nc" id="L96">  }</span>
+<span class="nc" id="L99">    this.project = project;</span>
+<span class="nc" id="L100">  }</span>
 
   public String getSpace() {
-<span class="nc" id="L99">    return space;</span>
+<span class="nc" id="L103">    return space;</span>
   }
 
   public void setSpace(String space) {
-<span class="nc" id="L103">    this.space = space;</span>
-<span class="nc" id="L104">  }</span>
+<span class="nc" id="L107">    this.space = space;</span>
+<span class="nc" id="L108">  }</span>
 
   public SampleType getType() {
-<span class="nc" id="L107">    return sampleType;</span>
+<span class="nc" id="L111">    return sampleType;</span>
   }
 
   public void setSampleType(SampleType sampleType) {
-<span class="nc" id="L111">    this.sampleType = sampleType;</span>
-<span class="nc" id="L112">  }</span>
+<span class="nc" id="L115">    this.sampleType = sampleType;</span>
+<span class="nc" id="L116">  }</span>
 
   public String getSecondaryName() {
-<span class="nc" id="L115">    return secondaryName;</span>
+<span class="nc" id="L119">    return secondaryName;</span>
   }
 
   public void setSecondaryName(String secName) {
-<span class="nc" id="L119">    this.secondaryName = secName;</span>
-<span class="nc" id="L120">  }</span>
+<span class="nc" id="L123">    this.secondaryName = secName;</span>
+<span class="nc" id="L124">  }</span>
 
   public void setParents(List&lt;ISampleBean&gt; parents) {
-<span class="nc" id="L123">    parentIDs = new ArrayList&lt;String&gt;();</span>
-<span class="nc bnc" id="L124" title="All 2 branches missed.">    for (ISampleBean p : parents)</span>
-<span class="nc" id="L125">      addParent(p);</span>
-<span class="nc" id="L126">  }</span>
+<span class="nc" id="L127">    parentIDs = new ArrayList&lt;String&gt;();</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">    for (ISampleBean p : parents)</span>
+<span class="nc" id="L129">      addParent(p);</span>
+<span class="nc" id="L130">  }</span>
 
   public Map&lt;String, Object&gt; getMetadata() {
-<span class="nc" id="L129">    return metadata;</span>
+<span class="nc" id="L133">    return metadata;</span>
   }
 
   public void setMetadata(HashMap&lt;String, Object&gt; metadata) {
-<span class="nc" id="L133">    this.metadata = metadata;</span>
-<span class="nc" id="L134">  }</span>
-
-  public void addParent(ISampleBean parent) {
-<span class="nc" id="L137">    addParentID(parent.getCode());</span>
+<span class="nc" id="L137">    this.metadata = metadata;</span>
 <span class="nc" id="L138">  }</span>
 
+  public void addParent(ISampleBean parent) {
+<span class="nc" id="L141">    addParentID(parent.getCode());</span>
+<span class="nc" id="L142">  }</span>
+
   public void addParentID(String id) {
-<span class="nc bnc" id="L141" title="All 2 branches missed.">    if (!hasParents())</span>
-<span class="nc" id="L142">      parentIDs = new ArrayList&lt;String&gt;();</span>
-<span class="nc" id="L143">    parentIDs.add(id);</span>
-<span class="nc" id="L144">  }</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">    if (!hasParents())</span>
+<span class="nc" id="L146">      parentIDs = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L147">    parentIDs.add(id);</span>
+<span class="nc" id="L148">  }</span>
 
   @Override
   public int hashCode() {
-<span class="nc" id="L148">    return code.hashCode();</span>
+<span class="nc" id="L152">    return code.hashCode();</span>
   }
 
   public void addProperty(String key, Object val) {
-<span class="nc" id="L152">    metadata.put(key, val);</span>
-<span class="nc" id="L153">  }</span>
+<span class="nc" id="L156">    metadata.put(key, val);</span>
+<span class="nc" id="L157">  }</span>
 
   @Override
   public ISampleBean copy() {
-<span class="nc" id="L157">    TSVSampleBean res = new TSVSampleBean(code, experiment, project, space, sampleType,</span>
-<span class="nc" id="L158">        secondaryName, parentIDs, copyMetadata(metadata));</span>
-<span class="nc" id="L159">    return res;</span>
+<span class="nc" id="L161">    TSVSampleBean res = new TSVSampleBean(code, experiment, project, space, sampleType,</span>
+<span class="nc" id="L162">        secondaryName, parentIDs, copyMetadata(metadata));</span>
+<span class="nc" id="L163">    return res;</span>
   }
 
   private Map&lt;String, Object&gt; copyMetadata(Map&lt;String, Object&gt; metadata) {
-<span class="nc" id="L163">    Map&lt;String, Object&gt; res = new HashMap&lt;String, Object&gt;();</span>
-<span class="nc bnc" id="L164" title="All 2 branches missed.">    for (String key : metadata.keySet())</span>
-<span class="nc" id="L165">      res.put(key, metadata.get(key));</span>
-<span class="nc" id="L166">    return res;</span>
+<span class="nc" id="L167">    Map&lt;String, Object&gt; res = new HashMap&lt;String, Object&gt;();</span>
+<span class="nc bnc" id="L168" title="All 2 branches missed.">    for (String key : metadata.keySet())</span>
+<span class="nc" id="L169">      res.put(key, metadata.get(key));</span>
+<span class="nc" id="L170">    return res;</span>
   }
+
+  @Override
+  public List&lt;String&gt; getUnknownMetadataValuesForVocabulary(String propertyName,
+      List&lt;String&gt; vocabulary) {
+<span class="nc" id="L176">    List&lt;String&gt; res = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">    if (metadata.containsKey(propertyName)) {</span>
+<span class="nc" id="L178">      Object prop = metadata.get(propertyName);</span>
+<span class="nc bnc" id="L179" title="All 2 branches missed.">      if (prop instanceof List&lt;?&gt;) {</span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">        for (String p : (List&lt;String&gt;) prop) {</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">          if (!vocabulary.contains(p)) {</span>
+<span class="nc" id="L182">            res.add(p);</span>
+          }
+<span class="nc" id="L184">        }</span>
+      }
+<span class="nc bnc" id="L186" title="All 2 branches missed.">      if (prop instanceof String) {</span>
+<span class="nc bnc" id="L187" title="All 2 branches missed.">        if (!vocabulary.contains(prop)) {</span>
+<span class="nc" id="L188">          res.add((String) prop);</span>
+        }
+      }
+<span class="nc" id="L191">    } else {</span>
+<span class="nc" id="L192">      logger.info(&quot;Property type &quot; + propertyName + &quot; was not found for sample &quot; + code</span>
+          + &quot; when trying to compare properties to vocabularies. Returning empty list.&quot;);
+    }
+<span class="nc" id="L195">    return res;</span>
+  }
+
+  @Override
+  public void replaceMetadataValues(String propertyName, Map&lt;String, String&gt; oldToNewMetadata) {
+<span class="nc bnc" id="L200" title="All 2 branches missed.">    if (metadata.containsKey(propertyName)) {</span>
+<span class="nc" id="L201">      Object prop = metadata.get(propertyName);</span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">      if (prop instanceof List&lt;?&gt;) {</span>
+<span class="nc" id="L203">        List&lt;String&gt; res = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L204" title="All 2 branches missed.">        for (String p : (List&lt;String&gt;) prop) {</span>
+<span class="nc bnc" id="L205" title="All 2 branches missed.">          if (oldToNewMetadata.containsKey(p)) {</span>
+<span class="nc" id="L206">            res.add(oldToNewMetadata.get(p));</span>
+          } else {
+<span class="nc" id="L208">            res.add(p);</span>
+          }
+<span class="nc" id="L210">        }</span>
+<span class="nc" id="L211">        metadata.put(propertyName, res);</span>
+      }
+<span class="nc bnc" id="L213" title="All 2 branches missed.">      if (prop instanceof String) {</span>
+<span class="nc bnc" id="L214" title="All 2 branches missed.">        if (oldToNewMetadata.containsKey(prop)) {</span>
+<span class="nc" id="L215">          metadata.put(propertyName, oldToNewMetadata.get(prop));</span>
+        }
+      }
+    }
+<span class="nc" id="L219">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
