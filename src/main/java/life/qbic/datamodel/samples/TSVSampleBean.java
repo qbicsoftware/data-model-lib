@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class TSVSampleBean implements ISampleBean {
+
+  private static final Logger logger = LogManager.getLogger(TSVSampleBean.class);
 
   private String code;
   private String experiment;
@@ -164,5 +168,53 @@ public class TSVSampleBean implements ISampleBean {
     for (String key : metadata.keySet())
       res.put(key, metadata.get(key));
     return res;
+  }
+
+  @Override
+  public List<String> getUnknownMetadataValuesForVocabulary(String propertyName,
+      List<String> vocabulary) {
+    List<String> res = new ArrayList<>();
+    if (metadata.containsKey(propertyName)) {
+      Object prop = metadata.get(propertyName);
+      if (prop instanceof List<?>) {
+        for (String p : (List<String>) prop) {
+          if (!vocabulary.contains(p)) {
+            res.add(p);
+          }
+        }
+      }
+      if (prop instanceof String) {
+        if (!vocabulary.contains(prop)) {
+          res.add((String) prop);
+        }
+      }
+    } else {
+      logger.info("Property type " + propertyName + " was not found for sample " + code
+          + " when trying to compare properties to vocabularies. Returning empty list.");
+    }
+    return res;
+  }
+
+  @Override
+  public void replaceMetadataValues(String propertyName, Map<String, String> oldToNewMetadata) {
+    if (metadata.containsKey(propertyName)) {
+      Object prop = metadata.get(propertyName);
+      if (prop instanceof List<?>) {
+        List<String> res = new ArrayList<>();
+        for (String p : (List<String>) prop) {
+          if (oldToNewMetadata.containsKey(p)) {
+            res.add(oldToNewMetadata.get(p));
+          } else {
+            res.add(p);
+          }
+        }
+        metadata.put(propertyName, res);
+      }
+      if (prop instanceof String) {
+        if (oldToNewMetadata.containsKey(prop)) {
+          metadata.put(propertyName, oldToNewMetadata.get(prop));
+        }
+      }
+    }
   }
 }
