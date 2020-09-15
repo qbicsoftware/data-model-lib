@@ -1,5 +1,6 @@
 life.qbic
 life.qbic.datamodel
+life.qbic.datamodel.accounting
 life.qbic.datamodel.attachments
 life.qbic.datamodel.datasets
 life.qbic.datamodel.datasets.datastructure.files
