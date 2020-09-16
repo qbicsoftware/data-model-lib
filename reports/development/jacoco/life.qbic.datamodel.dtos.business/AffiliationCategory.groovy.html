@@ -13,7 +13,8 @@ enum AffiliationCategory {
 
   INTERNAL(&quot;internal&quot;),
   EXTERNAL_ACADEMIC(&quot;external academic&quot;),
-  EXTERNAL(&quot;external non-academic&quot;)
+  EXTERNAL(&quot;external&quot;),
+  UNKNOWN(&quot;unknown&quot;)
 
   /**
    * Holds the value of the enum
@@ -25,7 +26,7 @@ enum AffiliationCategory {
    * @param value
    */
   private AffiliationCategory(String value) {
-<span class="fc" id="L28">    this.value = value</span>
+<span class="fc" id="L29">    this.value = value</span>
   }
 
   /**
@@ -33,7 +34,7 @@ enum AffiliationCategory {
    * @return
    */
   String getValue() {
-<span class="nc" id="L36">    return this.value</span>
+<span class="nc" id="L37">    return this.value</span>
   }
 
   /**
@@ -41,8 +42,8 @@ enum AffiliationCategory {
    * @return
    */
   @Override
-<span class="nc bnc" id="L44" title="All 4 branches missed.">  String toString() {</span>
-<span class="nc" id="L45">    return this.getValue()</span>
+<span class="nc bnc" id="L45" title="All 4 branches missed.">  String toString() {</span>
+<span class="nc" id="L46">    return this.getValue()</span>
   }
 
 }

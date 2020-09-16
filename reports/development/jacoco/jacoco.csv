@@ -23,7 +23,7 @@ Data Model Library,life.qbic.datamodel.datasets.datastructure.folders.nanopore,U
 Data Model Library,life.qbic.datamodel.dtos.business,Affiliation.Builder,52,102,0,0,6,8,3,2,3,2
 Data Model Library,life.qbic.datamodel.dtos.business,Affiliation,0,114,0,0,0,7,0,1,0,1
 Data Model Library,life.qbic.datamodel.dtos.business,Customer,118,13,2,0,8,0,2,1,1,1
-Data Model Library,life.qbic.datamodel.dtos.business,AffiliationCategory,30,112,4,0,3,1,4,2,2,2
+Data Model Library,life.qbic.datamodel.dtos.business,AffiliationCategory,30,134,4,0,3,1,4,2,2,2
 Data Model Library,life.qbic.datamodel.samples,SampleSummary,408,0,50,0,98,0,52,0,27,0
 Data Model Library,life.qbic.datamodel.samples,OpenbisMHCExtractSample,48,0,0,0,11,0,3,0,3,0
 Data Model Library,life.qbic.datamodel.samples,Location,832,0,58,0,51,0,55,0,26,0
