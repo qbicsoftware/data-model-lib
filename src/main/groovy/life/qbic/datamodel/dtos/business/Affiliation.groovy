@@ -75,6 +75,11 @@ final class Affiliation {
       this.category = AffiliationCategory.EXTERNAL
     }
 
+    /**
+     * Sets an address addition
+     * @param addressAddition
+     * @return #Affiliation.Builder
+     */
     Builder addressAddition(String addressAddition) {
       this.addressAddition = addressAddition
       return this
