@@ -1,4 +1,9 @@
 # Release Changelog for the data model library
+
+## new developed features/fixes since last release 
+
+* Add DTOs for the offer management business process
+
 ## 1.10.1
 * Fix field accessibility for imaging metadata DTOs #51
 
