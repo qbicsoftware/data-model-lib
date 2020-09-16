@@ -13,7 +13,8 @@ enum AffiliationCategory {
 
   INTERNAL("internal"),
   EXTERNAL_ACADEMIC("external academic"),
-  EXTERNAL("external non-academic")
+  EXTERNAL("external non-academic"),
+  UNKNOWN("unknown")
 
   /**
    * Holds the value of the enum
