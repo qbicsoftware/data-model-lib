@@ -75,35 +75,40 @@ final class Affiliation {
 <span class="fc" id="L75">      this.category = AffiliationCategory.EXTERNAL</span>
     }
 
+    /**
+     * Sets an address addition
+     * @param addressAddition
+     * @return #Affiliation.Builder
+     */
     Builder addressAddition(String addressAddition) {
-<span class="nc" id="L79">      this.addressAddition = addressAddition</span>
-<span class="nc" id="L80">      return this</span>
-    }
-
-    Builder country(String country) {
-<span class="nc" id="L84">      this.country = country</span>
+<span class="nc" id="L84">      this.addressAddition = addressAddition</span>
 <span class="nc" id="L85">      return this</span>
     }
 
-    Builder category(AffiliationCategory category) {
-<span class="nc" id="L89">      this.category = category</span>
+    Builder country(String country) {
+<span class="nc" id="L89">      this.country = country</span>
 <span class="nc" id="L90">      return this</span>
     }
 
+    Builder category(AffiliationCategory category) {
+<span class="nc" id="L94">      this.category = category</span>
+<span class="nc" id="L95">      return this</span>
+    }
+
     Affiliation build() {
-<span class="pc" id="L94">      return new Affiliation(this)</span>
+<span class="pc" id="L99">      return new Affiliation(this)</span>
     }
 
   }
 
   private Affiliation(Builder builder) {
-<span class="fc" id="L100">    this.addressAddition = builder.addressAddition</span>
-<span class="fc" id="L101">    this.organisation = builder.organisation</span>
-<span class="fc" id="L102">    this.street = builder.street</span>
-<span class="fc" id="L103">    this.country = builder.country</span>
-<span class="fc" id="L104">    this.postalCode = builder.postalCode</span>
-<span class="fc" id="L105">    this.category = builder.category</span>
-<span class="fc" id="L106">    this.city = builder.city</span>
+<span class="fc" id="L105">    this.addressAddition = builder.addressAddition</span>
+<span class="fc" id="L106">    this.organisation = builder.organisation</span>
+<span class="fc" id="L107">    this.street = builder.street</span>
+<span class="fc" id="L108">    this.country = builder.country</span>
+<span class="fc" id="L109">    this.postalCode = builder.postalCode</span>
+<span class="fc" id="L110">    this.category = builder.category</span>
+<span class="fc" id="L111">    this.city = builder.city</span>
   }
 
 
