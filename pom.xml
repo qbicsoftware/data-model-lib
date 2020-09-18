@@ -6,7 +6,7 @@
   <parent>
     <groupId>life.qbic</groupId>
     <artifactId>parent-pom</artifactId>
-    <version>2.3.0</version>
+    <version>2.4.0-SNAPSHOT</version>
   </parent>
   <artifactId>data-model-lib</artifactId>
   <version>1.11.0-SNAPSHOT</version>
@@ -27,7 +27,7 @@
       </snapshots>
       <id>nexus-snapshots</id>
       <name>QBiC Snapshots</name>
-      <url>https://qbic-repo.am10.uni-tuebingen.de/repository/maven-snapshots</url>
+      <url>http://qbic-repo.qbic.uni-tuebingen.de:8081/repository/maven-snapshots</url>
     </repository>
     <repository>
       <releases>
@@ -40,7 +40,7 @@
       </snapshots>
       <id>nexus-releases</id>
       <name>QBiC Releases</name>
-      <url>https://qbic-repo.am10.uni-tuebingen.de/repository/maven-releases</url>
+      <url>http://qbic-repo.qbic.uni-tuebingen.de:8081/repository/maven-releases</url>
     </repository>
     <repository>
       <id>jitpack.io</id>
