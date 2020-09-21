@@ -61,4 +61,16 @@ final class Customer {
     }
   }
 
+  /**
+   * Returns a String representation of a customer:
+   *
+   * <first-name> <last-name> - <email>
+   *
+   * @return
+   */
+  @Override
+  String toString(){
+    return "${firstName} ${lastName} - ${eMailAddress}"
+  }
+
 }
