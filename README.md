@@ -10,7 +10,7 @@ Data Model Library - A collection of QBiC data models.
 ## Author
 Created by Andreas Friedrich, Luis de la Garza, Sven Fillinger.
 
-## How to Install?
+## How to Install
 
 With Maven you can include the library as dependency with:
 
