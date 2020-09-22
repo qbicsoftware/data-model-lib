@@ -10,12 +10,36 @@ import spock.lang.Specification
  */
 class CustomerSpec extends Specification{
 
-  def "wrong email shall raise a validation exception"() {
+  def "missing first name shall raise a NullPointerException"() {
     when:
-    def customer = new Customer(null,"","","test",[])
+    def customer = new Customer(null, "", AcademicTitle.NONE, "a.b@c.de", [])
 
     then:
     thrown(NullPointerException)
+  }
+
+  def "missing last name shall raise a NullPointerException"() {
+    when:
+    def customer = new Customer("", null, AcademicTitle.NONE, "a.b@c.de", [])
+
+    then:
+    thrown(NullPointerException)
+  }
+
+  def "missing email name shall raise a NullPointerException"() {
+    when:
+    def customer = new Customer("", "", AcademicTitle.NONE, null, [])
+
+    then:
+    thrown(NullPointerException)
+  }
+
+  def "missing affiliation list shall cause the customer to contain an empty list"() {
+    when:
+    def customer = new Customer("", "", AcademicTitle.NONE, "a.b@c.de", null)
+    then:
+    customer.affiliations != null
+    customer.affiliations.isEmpty()
   }
 
 }
