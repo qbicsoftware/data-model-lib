@@ -1,11 +1,4 @@
 package life.qbic.datamodel.dtos.business
-
-import org.apache.tools.ant.taskdefs.condition.Not
-
-import javax.validation.constraints.Email
-import javax.validation.constraints.NotEmpty
-import javax.validation.constraints.NotNull
-
 /**
  * This class serves as a simple DTO for customer data
  *
@@ -30,7 +23,7 @@ final class Customer {
   /**
    * The customer's title
    */
-  final String title
+  final AcademicTitle title
 
   /**
    * The customer's email address
@@ -44,7 +37,7 @@ final class Customer {
 
   Customer(String firstName,
            String lastName,
-           String title,
+           AcademicTitle title,
            String eMailAddress,
            List<Affiliation> affiliations) {
     this.firstName = Objects.requireNonNull(firstName)
