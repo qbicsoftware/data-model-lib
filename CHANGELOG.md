@@ -1,4 +1,6 @@
 # Release Changelog for the data model library
+## 1.10.1
+* Fix field accessibility for imaging metadata DTOs #51
 
 ## new developed features/fixes since last release 
 

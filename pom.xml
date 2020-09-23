@@ -9,7 +9,7 @@
     <version>3.0.0</version>
   </parent>
   <artifactId>data-model-lib</artifactId>
-  <version>1.11.0-SNAPSHOT</version>
+  <version>1.11.0</version>
   <packaging>jar</packaging>
   <name>Data Model Library</name>
   <url>http://github.com/qbicsoftware/data-model-lib</url>
