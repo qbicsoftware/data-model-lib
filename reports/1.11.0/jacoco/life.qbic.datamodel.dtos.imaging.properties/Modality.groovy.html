@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Modality.groovy</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Data Model Library</a> &gt; <a href="index.source.html" class="el_package">life.qbic.datamodel.dtos.imaging.properties</a> &gt; <span class="el_source">Modality.groovy</span></div><h1>Modality.groovy</h1><pre class="source lang-java linenums">package life.qbic.datamodel.dtos.imaging.properties
+
+/**
+ * Enumeration of different microscopy and spectroscopy modalities.
+ *
+ * This enum class should be used, whenever a imaging modality needs
+ * to be described.
+ *
+ * Every modality needs to have a meaningful and descriptive label.
+ * Abbreviations are discouraged.
+ */
+enum Modality {
+
+  ANISOTROPY(&quot;Anisotropic microscopy&quot;),
+  CLSM(&quot;Confocal laser scanning microscopy&quot;),
+  DSTOR(&quot;Direct stochastic optical reconstruction microscopy&quot;),
+  FLCS(&quot;Fluorescence lifetime correlation spectroscopy&quot;),
+  FLIM(&quot;Fluorescence lifetime imaging microscopy&quot;),
+  SPECTROSCOPY(&quot;Spectroscopy&quot;),
+  SPT_PALM(&quot;Photo-activated localization microscopy&quot;),
+  SEM(&quot;Scanning electron microscopy&quot;)
+
+  /**
+   * Contains the String representation of a modality item.
+   */
+  private final String value
+
+  /**
+   * Enumeration of different microscopy and spectroscopy modalities.
+   * @param value {@link Modality#value}
+   */
+  private Modality(String value) {
+<span class="nc" id="L33">    this.value = value</span>
+  }
+
+  /**
+   * The string representation of the modality item.
+   * @return The value of the modality item, which is its declarative String representation.
+   */
+  String getValue() {
+<span class="nc" id="L41">    return this.value</span>
+  }
+
+  /**
+   * The &lt;code&gt;toString()&lt;/code&gt; method is overridden to return the String
+   * representation of a modality item. This is equivalent
+   * to the &lt;code&gt;getValue()&lt;/code&gt; return value.
+   *
+   * @see #getValue()
+   * @return The String representation of the modality item
+   */
+  @Override
+<span class="nc bnc" id="L53" title="All 4 branches missed.">  String toString() {</span>
+<span class="nc" id="L54">    return this.getValue()</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

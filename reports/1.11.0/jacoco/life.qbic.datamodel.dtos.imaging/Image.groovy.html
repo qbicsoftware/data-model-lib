@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Image.groovy</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Data Model Library</a> &gt; <a href="index.source.html" class="el_package">life.qbic.datamodel.dtos.imaging</a> &gt; <span class="el_source">Image.groovy</span></div><h1>Image.groovy</h1><pre class="source lang-java linenums">package life.qbic.datamodel.dtos.imaging
+
+import life.qbic.datamodel.dtos.imaging.parameters.AcquisitionParameters
+import life.qbic.datamodel.dtos.imaging.parameters.AnalysisParameters
+import life.qbic.datamodel.dtos.imaging.properties.ImageSize
+import life.qbic.datamodel.dtos.imaging.properties.Modality
+import life.qbic.datamodel.dtos.imaging.properties.PixelSize
+
+/**
+ * This DTO class describes the image resulting from imaging experiments
+ *
+ * An image class shall be used to describe properties of an image
+ * in the context of imaging experiments such as microscopy or tomography.
+ *
+ * @author Sven Fillinger
+ * @since 1.10.0
+ */
+final class Image {
+  /**
+   * The image acquisition date.
+   *
+   * @see Date
+   */
+  final Date acquisitionDate
+
+  /**
+   * Detailed description of image acquisition parameters.
+   *
+   * @see AcquisitionParameters
+   */
+  final AcquisitionParameters acquisitionParameters
+
+  /**
+   * Detailed description of image analysis parameters
+   *
+   * @see AnalysisParameters
+   */
+  final AnalysisParameters analysisParameters
+
+  /**
+   * A detailed instrument description that was used to create the image.
+   *
+   * @see Instrument
+   */
+  final Instrument instrument
+
+  /**
+   * The image identifier in OMERO.
+   */
+  final Integer imageId
+
+  /**
+   * The image modality.
+   *
+   * @see Modality
+   */
+  final Modality modality
+
+  /**
+   * Information about the image size.
+   *
+   * @see ImageSize
+   */
+  final ImageSize imageSize
+
+  /**
+   * Information about the time and spacial distribution of
+   * a pixel.
+   *
+   * @see PixelSize
+   */
+  final PixelSize pixelSize
+
+  /**
+   * Describes the resolution of the image.
+   * e.g. 5 nm
+   *
+   */
+  final Float resolution
+
+  /**
+   * This DTO class describes the image resulting from imaging experiments
+   * @param acquisitionDate {@link Image#acquisitionDate}
+   * @param acquisitionParameters {@link Image#acquisitionParameters}
+   * @param analysisParameters {@link Image#analysisParameters}
+   * @param instrument {@link Image#instrument}
+   * @param imageId {@link Image#imageId}
+   * @param modality {@link Image#modality}
+   * @param imageSize {@link Image#imageSize}
+   * @param pixelSize {@link Image#pixelSize}
+   * @param resolution {@link Image#resolution}
+   */
+  Image(Date acquisitionDate, AcquisitionParameters acquisitionParameters, AnalysisParameters analysisParameters, Instrument instrument, Integer imageId, Modality modality, ImageSize imageSize, PixelSize pixelSize, Float resolution) {
+<span class="nc" id="L94">    this.acquisitionDate = acquisitionDate</span>
+<span class="nc" id="L95">    this.acquisitionParameters = acquisitionParameters</span>
+<span class="nc" id="L96">    this.analysisParameters = analysisParameters</span>
+<span class="nc" id="L97">    this.instrument = instrument</span>
+<span class="nc" id="L98">    this.imageId = imageId</span>
+<span class="nc" id="L99">    this.modality = modality</span>
+<span class="nc" id="L100">    this.imageSize = imageSize</span>
+<span class="nc" id="L101">    this.pixelSize = pixelSize</span>
+<span class="nc" id="L102">    this.resolution = resolution</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

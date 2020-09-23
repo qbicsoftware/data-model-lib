@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExperimentModel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Data Model Library</a> &gt; <a href="index.source.html" class="el_package">life.qbic.datamodel.experiments</a> &gt; <span class="el_source">ExperimentModel.java</span></div><h1>ExperimentModel.java</h1><pre class="source lang-java linenums">package life.qbic.datamodel.experiments;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import life.qbic.datamodel.samples.AOpenbisSample;
+
+public class ExperimentModel {
+
+  private int tmpID;
+  private String identifier;
+  private List&lt;AOpenbisSample&gt; samples;
+  private Map&lt;String, Object&gt; properties;
+
+<span class="nc" id="L17">  public ExperimentModel(String identifier, List&lt;AOpenbisSample&gt; samples) {</span>
+<span class="nc" id="L18">    this.identifier = identifier;</span>
+<span class="nc" id="L19">    this.samples = samples;</span>
+<span class="nc" id="L20">    this.properties = new HashMap&lt;String, Object&gt;();</span>
+<span class="nc" id="L21">  }</span>
+
+<span class="nc" id="L23">  public ExperimentModel(String expID) {</span>
+<span class="nc" id="L24">    this.identifier = expID;</span>
+<span class="nc" id="L25">    this.samples = new ArrayList&lt;AOpenbisSample&gt;();</span>
+<span class="nc" id="L26">    this.properties = new HashMap&lt;String, Object&gt;();</span>
+<span class="nc" id="L27">  }</span>
+
+<span class="nc" id="L29">  public ExperimentModel(int tmpID, List&lt;AOpenbisSample&gt; samples) {</span>
+<span class="nc" id="L30">    this.tmpID = tmpID;</span>
+<span class="nc" id="L31">    this.samples = samples;</span>
+<span class="nc" id="L32">    this.properties = new HashMap&lt;String, Object&gt;();</span>
+<span class="nc" id="L33">  }</span>
+
+<span class="nc" id="L35">  public ExperimentModel(int tmpID) {</span>
+<span class="nc" id="L36">    this.tmpID = tmpID;</span>
+<span class="nc" id="L37">    this.samples = new ArrayList&lt;AOpenbisSample&gt;();</span>
+<span class="nc" id="L38">    this.properties = new HashMap&lt;String, Object&gt;();</span>
+<span class="nc" id="L39">  }</span>
+
+<span class="nc" id="L41">  public ExperimentModel(ExperimentModel m) {</span>
+<span class="nc" id="L42">    this.tmpID = m.tmpID;</span>
+<span class="nc" id="L43">    this.identifier = m.identifier;</span>
+<span class="nc" id="L44">    this.samples = new ArrayList&lt;AOpenbisSample&gt;(m.getSamples());</span>
+<span class="nc" id="L45">    this.properties = new HashMap&lt;String, Object&gt;(m.properties);</span>
+<span class="nc" id="L46">  }</span>
+
+  public Map&lt;String, Object&gt; getProperties() {
+<span class="nc" id="L49">    return properties;</span>
+  }
+
+  public String getID() {
+<span class="nc" id="L53">    return identifier;</span>
+  }
+
+  public void setID(String id) {
+<span class="nc" id="L57">    this.identifier = id;</span>
+<span class="nc" id="L58">  }</span>
+
+  public int getTmpID() {
+<span class="nc" id="L61">    return tmpID;</span>
+  }
+
+  public List&lt;AOpenbisSample&gt; getSamples() {
+<span class="nc" id="L65">    return samples;</span>
+  }
+
+  public void addSample(AOpenbisSample s) {
+<span class="nc" id="L69">    this.samples.add(s);</span>
+<span class="nc" id="L70">  }</span>
+
+  public void addProperty(String key, Object val) {
+<span class="nc" id="L73">    this.properties.put(key, val);</span>
+<span class="nc" id="L74">  }</span>
+
+  public void setProperties(Map&lt;String, Object&gt; props) {
+<span class="nc" id="L77">    this.properties = props;</span>
+<span class="nc" id="L78">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
