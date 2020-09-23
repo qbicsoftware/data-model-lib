@@ -3,11 +3,10 @@ package life.qbic.datamodel.dtos.business
 import spock.lang.Specification
 
 /**
- * <short description>
+ * Tests for the AcademicTitleFactory
  *
- * <detailed description>
- *
- * @since: <versiontag>
+ * @since: 1.12.0
+ * @see AcademicTitleFactory
  */
 class AcademicTitleFactorySpec extends Specification {
     def "GetForString works for correct strings"() {
