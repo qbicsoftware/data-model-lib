@@ -20,8 +20,10 @@ Data Model Library,life.qbic.datamodel.datasets.datastructure.folders.nanopore,U
 Data Model Library,life.qbic.datamodel.datasets.datastructure.folders.nanopore,FastQFolder,7,22,0,0,0,2,1,2,1,2
 Data Model Library,life.qbic.datamodel.datasets.datastructure.folders.nanopore,BarcodedFolder,22,76,2,4,1,8,3,4,1,3
 Data Model Library,life.qbic.datamodel.datasets.datastructure.folders.nanopore,UnclassifiedFast5Folder,34,96,6,10,1,11,7,7,1,5
-Data Model Library,life.qbic.datamodel.dtos.business,AcademicTitle,30,112,4,0,3,1,4,2,2,2
+Data Model Library,life.qbic.datamodel.dtos.business,AcademicTitle,25,117,4,0,2,2,3,3,1,3
+Data Model Library,life.qbic.datamodel.dtos.business,AcademicTitleFactory._getForString_closure1,12,34,0,0,0,1,1,2,1,2
 Data Model Library,life.qbic.datamodel.dtos.business,Affiliation.Builder,52,102,0,0,6,8,3,2,3,2
+Data Model Library,life.qbic.datamodel.dtos.business,AcademicTitleFactory,2,90,0,4,0,5,0,4,0,2
 Data Model Library,life.qbic.datamodel.dtos.business,Affiliation,0,114,0,0,0,7,0,1,0,1
 Data Model Library,life.qbic.datamodel.dtos.business,Customer,62,116,1,1,1,8,2,2,1,2
 Data Model Library,life.qbic.datamodel.dtos.business,AffiliationCategory,30,134,4,0,3,1,4,2,2,2
@@ -113,6 +115,7 @@ Data Model Library,life.qbic.datamodel.sorters,TopInfoComparator,13,0,0,0,3,0,3,
 Data Model Library,life.qbic.datamodel.dtos.imaging,Image,114,0,0,0,9,0,1,0,1,0
 Data Model Library,life.qbic.datamodel.dtos.imaging,Instrument,76,0,0,0,6,0,1,0,1,0
 Data Model Library,life.qbic.datamodel.dtos.imaging,Location,35,0,0,0,2,0,1,0,1,0
+Data Model Library,life.qbic.datamodel.dtos,EnumFactory,0,14,0,0,0,0,0,1,0,1
 Data Model Library,life.qbic.datamodel.dtos.imaging.properties,Area,0,48,0,0,0,3,0,1,0,1
 Data Model Library,life.qbic.datamodel.dtos.imaging.properties,Detector,0,24,0,0,0,1,0,1,0,1
 Data Model Library,life.qbic.datamodel.dtos.imaging.properties,Unit,14,0,0,0,0,0,1,0,1,0

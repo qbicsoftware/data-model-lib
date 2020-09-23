@@ -11,6 +11,7 @@ life.qbic.datamodel.experiments
 life.qbic.datamodel.sorters
 life.qbic.datamodel.services
 life.qbic.datamodel.workflows
+life.qbic.datamodel.dtos
 life.qbic.datamodel.dtos.imaging
 life.qbic.datamodel.dtos.imaging.properties
 life.qbic.datamodel.dtos.imaging.parameters.electronmicroscopy

@@ -7,6 +7,7 @@ life.qbic.datamodel.datasets.datastructure.files
 life.qbic.datamodel.datasets.datastructure.files.nanopore
 life.qbic.datamodel.datasets.datastructure.folders
 life.qbic.datamodel.datasets.datastructure.folders.nanopore
+life.qbic.datamodel.dtos
 life.qbic.datamodel.dtos.business
 life.qbic.datamodel.dtos.imaging
 life.qbic.datamodel.dtos.imaging.parameters
