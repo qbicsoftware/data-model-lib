@@ -36,18 +36,18 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.8 #install the python needed
-      - name: Load conda env
-        shell: bash -l {0}
-        run: |
-          conda activate qbic-docs-build
-          mvn --activate-profiles !development-build,!release-build --settings .github.settings.xml site
-      - name: Cache local Maven repository
+      - name: Load local Maven repository cache
         uses: actions/cache@v2
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
+      - name: Load conda env
+        shell: bash -l {0}
+        run: |
+          conda activate qbic-docs-build
+          mvn --activate-profiles !development-build,!release-build --settings .github.settings.xml site
       - name: Generate reports
         run: python $GITHUB_WORKSPACE/.generate-reports.py
         env:
