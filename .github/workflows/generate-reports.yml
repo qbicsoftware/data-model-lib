@@ -26,9 +26,9 @@ jobs:
           settings-path: ${{ github.workspace }} # location for the settings.xml file
       - name: Install Miniconda
         uses: conda-incubator/setup-miniconda@v1
-          with:
-            auto-update-conda: true
-            python-version: 3.8
+        with:
+          auto-update-conda: true
+          python-version: 3.8
       - name: Install dependencies
         shell: bash -l {0}
         run: conda create --quiet --yes --channel conda-forge --name qbic-docs-build python=3 pygithub
