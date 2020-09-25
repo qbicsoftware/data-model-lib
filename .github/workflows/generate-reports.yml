@@ -32,8 +32,6 @@ jobs:
       - name: Install dependencies
         shell: bash -l {0}
         run: conda create --quiet --yes --channel conda-forge --name qbic-docs-build python=3 pygithub
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml
       - name: Setup python
         uses: actions/setup-python@v2
         with:
@@ -42,8 +40,8 @@ jobs:
         shell: bash -l {0}
         run: |
           conda activate qbic-docs-build
-          mvn --quiet --activate-profiles !development-build,!release-build --settings .github.settings.xml site
+          mvn --activate-profiles !development-build,!release-build --settings .github.settings.xml site
       - name: Generate reports
-        run: python $GITHUB_WORKSPACE/generate-reports.py
+        run: python $GITHUB_WORKSPACE/.generate-reports.py
         env:
           REPORTS_GITHUB_ACCESS_TOKEN: ${{ github.token }}
