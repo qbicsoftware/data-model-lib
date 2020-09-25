@@ -39,10 +39,10 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
-      - name: Load conda env
+      - name: Maven generate reports
         shell: bash -l {0}
         run: mvn --activate-profiles !development-build,!release-build --settings .github.settings.xml site
-      - name: Generate reports
+      - name: Publish reports
         shell: bash -l {0}
         run: |
           conda activate qbic-docs-build
