@@ -32,10 +32,6 @@ jobs:
       - name: Install dependencies
         shell: bash -l {0}
         run: conda create --quiet --yes --channel conda-forge --name qbic-docs-build python=3 pygithub
-      - name: Setup python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.8 #install the python needed
       - name: Load local Maven repository cache
         uses: actions/cache@v2
         with:
