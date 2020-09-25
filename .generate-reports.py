@@ -88,7 +88,7 @@ def main():
   try:
     validateArguments(args)
   except Exception as e:
-    print('Error: {}'.format(str(e)), file=sys.stderr)
+    print('Error: {}'.format(str(e)))
     exit(1)
 
   # since this will run on Travis, we cannot assume that we can change the current local repo without breaking anything
