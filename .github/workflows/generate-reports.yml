@@ -39,8 +39,9 @@ jobs:
         with:
           python-version: 3.8 #install the python needed
       - name: Load conda env
+        shell: bash -l {0}
         run: |
-          echo ". $HOME/miniconda3/etc/profile.d/conda.sh" >> ~/.bashrc && source ~/.bashrc && conda activate qbic-docs-build
+          conda activate qbic-docs-build
           mvn --quiet --activate-profiles !development-build,!release-build --settings .github.settings.xml site
       - name: Generate reports
         run: python $GITHUB_WORKSPACE/generate-reports.py
