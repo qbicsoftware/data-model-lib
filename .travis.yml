@@ -37,7 +37,7 @@ before_script: if [ "$VAADIN_CHARTS_LICENSE_CODE" != "" ]; then
 
 # as agreed in our SOP, build everything (don't deploy, just try to 'mvn install' locally, which covers all phases)
 script: mvn build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.incrementalVersion}-SNAPSHOT versions:update-child-modules && mvn versions:commit &&
-        mvn --quiet --activate-profiles !development-build,!release-build --settings .travis.settings.xml clean install
+        mvn --quiet --activate-profiles !development-build,!release-build --settings .github.settings.xml clean install
 # upload code coverage report, generate maven site (javadocs, documentation, static code analysis, etc.)
 after_success: 
 - bash <(curl -s https://codecov.io/bash)
@@ -49,7 +49,7 @@ deploy:
   # artifact will be installed in our testing instance if it is a .war file
 - skip_cleanup: true
   provider: script
-  script: mvn --quiet --activate-profiles development-build,!release-build --settings .travis.settings.xml deploy
+  script: mvn --quiet --activate-profiles development-build,!release-build --settings .github.settings.xml deploy
   on:
     branch: development
     condition: '"$TRAVIS_EVENT_TYPE" = "push"'
@@ -59,7 +59,7 @@ deploy:
 - skip_cleanup: true
   provider: script
   script: mvn build-helper:parse-version versions:set -DnewVersion=$TRAVIS_TAG -DprocessAllModules && mvn versions:commit &&
-          mvn --quiet --activate-profiles !development-build,release-build --settings .travis.settings.xml deploy
+          mvn --quiet --activate-profiles !development-build,release-build --settings .github.settings.xml deploy
   on:
     condition: '"$TRAVIS_EVENT_TYPE" = "push"'
     tags: true
@@ -67,7 +67,7 @@ deploy:
 # activate our conda environment, generate maven site and upload reports to gh-pages branch
 after_deploy:
   - echo ". $HOME/miniconda3/etc/profile.d/conda.sh" >> ~/.bashrc && source ~/.bashrc && conda activate qbic-docs-build
-  - mvn --quiet --activate-profiles !development-build,!release-build --settings .travis.settings.xml site
+  - mvn --quiet --activate-profiles !development-build,!release-build --settings .github.settings.xml site
   - ./.generate-reports.py $TRAVIS_BRANCH $TRAVIS_REPO_SLUG "[skip travis] Updated gh-pages" "This commit was performed from travis-ci.com using a personal access key" "Build ID $TRAVIS_BUILD_ID" "Job ID TRAVIS_JOB_ID" "Branch $TRAVIS_BRANCH" "Log of this build found at $TRAVIS_JOB_WEB_URL"
 
 # change according to your needs, but we recommend to deactivate email notifications

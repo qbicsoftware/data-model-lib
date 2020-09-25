@@ -29,7 +29,7 @@ jobs:
       run: mvn -B package --file pom.xml
 
     - name: Publish to GitHub Packages Apache Maven
-      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
+      run: mvn --quiet --activate-profiles development-build,!release-build --settings $GITHUB_WORKSPACE/.github.settings.xml deploy
       env:
         MAVEN_REPO_USERNAME: ${{ secrets.NEXUS_USERNAME }}
         MAVEN_REPO_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
