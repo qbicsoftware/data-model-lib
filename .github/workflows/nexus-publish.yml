@@ -28,7 +28,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-    - name: Publish to GitHub Packages Apache Maven
+    - name: Publish to QBiC Nexus Repository
       run: mvn --quiet --activate-profiles development-build,!release-build --settings $GITHUB_WORKSPACE/.github.settings.xml deploy
       env:
         MAVEN_REPO_USERNAME: ${{ secrets.NEXUS_USERNAME }}
