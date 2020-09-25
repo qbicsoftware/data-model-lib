@@ -25,9 +25,7 @@ jobs:
           server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
           settings-path: ${{ github.workspace }} # location for the settings.xml file
       - name: Install dependencies
-        with:
-          settings-path: ${{ github.workspace }}
-        run: ./install-reports-dependencies.sh
+        run: .$GITHUB_WORKSPACE/install-reports-dependencies.sh
       - name: Build with Maven
         run: mvn -B package --file pom.xml
       - name: setup python
@@ -39,6 +37,6 @@ jobs:
           echo ". $HOME/miniconda3/etc/profile.d/conda.sh" >> ~/.bashrc && source ~/.bashrc && conda activate qbic-docs-build
           mvn --quiet --activate-profiles !development-build,!release-build --settings .github.settings.xml site
       - name: Generate reports
-        run: python generate-reports.py
+        run: python $GITHUB_WORKSPACE/generate-reports.py
         env:
           REPORTS_GITHUB_ACCESS_TOKEN: ${{ github.token }}
