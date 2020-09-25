@@ -47,6 +47,6 @@ jobs:
         run: |
           conda activate qbic-docs-build
           python --version
-          python $GITHUB_WORKSPACE/.generate-reports.py $GITHUB_REF $GITHUB_REPOSITORY "[Github Action] Updated gh-pages"
+          python $GITHUB_WORKSPACE/.generate-reports.py ${GITHUB_REF##*/} $GITHUB_REPOSITORY "[Github Action] Updated gh-pages"
         env:
           REPORTS_GITHUB_ACCESS_TOKEN: ${{ github.token }}
