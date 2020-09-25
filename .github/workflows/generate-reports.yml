@@ -24,11 +24,17 @@ jobs:
           java-version: 1.8
           server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
           settings-path: ${{ github.workspace }} # location for the settings.xml file
+      - name: Install Miniconda
+        uses: conda-incubator/setup-miniconda@v1
+          with:
+            auto-update-conda: true
+            python-version: 3.8
       - name: Install dependencies
-        run: bash $GITHUB_WORKSPACE/.install-reports-dependencies.sh
+        shell: bash -l {0}
+        run: conda create --quiet --yes --channel conda-forge --name qbic-docs-build python=3 pygithub
       - name: Build with Maven
         run: mvn -B package --file pom.xml
-      - name: setup python
+      - name: Setup python
         uses: actions/setup-python@v2
         with:
           python-version: 3.8 #install the python needed
