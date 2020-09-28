@@ -51,6 +51,7 @@ jobs:
         run: |
           python --version
           python $GITHUB_WORKSPACE/.generate-reports.py ${GITHUB_REF##*/} $GITHUB_REPOSITORY "[Github Action] Updated gh-pages"
-          ls -la /tmp
+          ls -la /tmp/tmp*
+          id
         env:
           REPORTS_GITHUB_ACCESS_TOKEN: ${{ github.token }}
