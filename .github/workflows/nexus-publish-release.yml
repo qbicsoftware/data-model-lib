@@ -5,9 +5,8 @@
 name: Nexus Package
 
 on:
-  push:
-    branches:
-      - development
+  release:
+    types: [created]
 
 jobs:
   build:
@@ -35,7 +34,7 @@ jobs:
       run: mvn -B package --file pom.xml
 
     - name: Publish artefact to QBiC Nexus Repository
-      run: mvn --quiet --activate-profiles development-build,!release-build --settings $GITHUB_WORKSPACE/.github.settings.xml deploy
+      run: mvn --quiet --activate-profiles !development-build,release-build --settings $GITHUB_WORKSPACE/.github.settings.xml deploy
       env:
         MAVEN_REPO_USERNAME: ${{ secrets.NEXUS_USERNAME }}
         MAVEN_REPO_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
