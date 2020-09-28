@@ -263,12 +263,13 @@ def force_delete(file):
 # stderr/stdout are hidden to avoid leaking credentials into log files in Travis, so it might be a pain in the butt to debug, sorry, but safety first!
 # if exit_if_fail is set to True, this method will print minimal stacktrace information and exit if a failure is encountered, otherwise, an exception
 # will be thrown (this is useful if an error will be handled by the invoking method)
-def execute(command, error_message='Error encountered while executing command',
-    exit_if_fail=True):
+def execute(command, error_message='Error encountered while executing '
+                                   'command', exit_if_fail=True):
     # do not print the command, stderr or stdout! this might expose usernames/passwords/tokens!
     try:
         result = subprocess.run(command, stderr=subprocess.STDOUT,
                                 stdout=subprocess.PIPE)
+        print(result.stdout)
     except:
         print(result.stdout)
         if exit_if_fail:
