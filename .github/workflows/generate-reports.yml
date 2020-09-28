@@ -46,12 +46,14 @@ jobs:
       - name: Maven generate reports
         shell: bash -l {0}
         run: mvn --activate-profiles !development-build,!release-build --settings .github.settings.xml site
+      - name: Set up git
+        run: |
+            git config user.email "support@qbic.zendesk.com"
+            git config user.name "JohnnyQ5"
       - name: Publish reports
         shell: bash -l {0}
         run: |
           python --version
           python .generate-reports.py ${GITHUB_REF##*/} $GITHUB_REPOSITORY "[Github Action] Updated gh-pages"
-          ls -la /tmp/tmp*
-          id
         env:
           REPORTS_GITHUB_ACCESS_TOKEN: ${{ secrets.JOHNNY_Q5_REPORTS_TOKEN }}
