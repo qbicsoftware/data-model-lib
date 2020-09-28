@@ -54,4 +54,4 @@ jobs:
           ls -la /tmp/tmp*
           id
         env:
-          REPORTS_GITHUB_ACCESS_TOKEN: ${{ github.token }}
+          REPORTS_GITHUB_ACCESS_TOKEN: ${{ secrets.JOHNNY_Q5_REPORTS_TOKEN }}
