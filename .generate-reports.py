@@ -237,8 +237,10 @@ def force_delete(file):
 def execute(command, error_message='Error encountered while executing command', exit_if_fail=True):
   # do not print the command, stderr or stdout! this might expose usernames/passwords/tokens!
   try:
-    subprocess.run(command, check=True, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
+    result = subprocess.run(command, check=True, stderr=subprocess.STDOUT,
+                   stdout=subprocess.PIPE)
   except:
+    print(result.stdout)
     if exit_if_fail:
       stack = traceback.extract_stack()
       try:
