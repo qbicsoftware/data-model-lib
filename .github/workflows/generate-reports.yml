@@ -48,8 +48,8 @@ jobs:
         run: mvn --activate-profiles !development-build,!release-build --settings .github.settings.xml site
       - name: Set up git
         run: |
-            git config user.email "support@qbic.zendesk.com"
-            git config user.name "JohnnyQ5"
+            git config --global user.email "support@qbic.zendesk.com"
+            git config --global user.name "JohnnyQ5"
       - name: Publish reports
         shell: bash -l {0}
         run: |
