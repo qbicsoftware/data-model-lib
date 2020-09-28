@@ -1,1 +1,1 @@
-/usr/lib/jvm/java-8-openjdk-amd64/jre/../bin/javadoc @options @packages
+/opt/hostedtoolcache/jdk/8.0.265/x64/jre/../bin/javadoc @options @packages
