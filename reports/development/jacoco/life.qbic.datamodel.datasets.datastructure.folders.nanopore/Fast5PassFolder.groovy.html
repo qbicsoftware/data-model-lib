@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Fast5PassFolder.groovy</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Data Model Library</a> &gt; <a href="index.source.html" class="el_package">life.qbic.datamodel.datasets.datastructure.folders.nanopore</a> &gt; <span class="el_source">Fast5PassFolder.groovy</span></div><h1>Fast5PassFolder.groovy</h1><pre class="source lang-java linenums">package life.qbic.datamodel.datasets.datastructure.folders.nanopore
+
+import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
+
+/**
+ * A special case of a DataFolder, its name is always fast5_pass.
+ *
+ * Its children field contains either a list of type List&lt;Fast5Files&gt; or List&lt;Fast5Folder&gt;
+ *
+ * @author: Sven Fillinger
+ */
+class Fast5PassFolder extends DataFolder {
+
+    final private static String NAME_SCHEMA = /fast5_pass/
+
+    protected Fast5PassFolder() {}
+
+    protected Fast5PassFolder(String name, String relativePath, List&lt;?&gt; children) {
+<span class="fc" id="L19">        super(name, relativePath, children)</span>
+<span class="pc bpc" id="L20" title="1 of 2 branches missed.">        validateName()</span>
+    }
+
+    /**
+     * Creates a new instance of a Fast5PassFolder object
+     *
+     * @param name The folder name
+     * @param relativePath The relative path of the folder
+     * @param children A list with child elements of the folder
+     * @return A new instance of a Fast5PassFolder object
+     */
+    static Fast5PassFolder create(String name, String relativePath, List&lt;?&gt; children) {
+<span class="pc" id="L32">        new Fast5PassFolder(name, relativePath, children)</span>
+    }
+
+    private void validateName() {
+<span class="fc bfc" id="L36" title="All 4 branches covered.">        if (!(this.name =~ NAME_SCHEMA)) {</span>
+<span class="fc" id="L37">            throw new IllegalArgumentException(&quot;Name must match the Nanopore Fast5Pass directory schema!&quot;)</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
