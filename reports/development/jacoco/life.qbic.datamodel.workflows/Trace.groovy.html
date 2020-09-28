@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Trace.groovy</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Data Model Library</a> &gt; <a href="index.source.html" class="el_package">life.qbic.datamodel.workflows</a> &gt; <span class="el_source">Trace.groovy</span></div><h1>Trace.groovy</h1><pre class="source lang-java linenums">package life.qbic.datamodel.workflows
+
+import com.fasterxml.jackson.annotation.JsonProperty
+import io.swagger.v3.oas.annotations.media.Schema
+
+@Schema(name=&quot;Trace&quot;)
+class Trace {
+
+    @JsonProperty(&quot;properties&quot;)
+    private final Map traceInformation
+
+    Trace() {
+<span class="nc" id="L13">        traceInformation = [:].asImmutable()</span>
+    }
+
+    Trace(Map trace) {
+<span class="nc" id="L17">        traceInformation = trace.asImmutable()</span>
+    }
+
+    @Override
+    Object getProperty(String s) {
+<span class="nc" id="L22">        return traceInformation.get(s)</span>
+    }
+
+    @Override
+    boolean equals(Object o) {
+<span class="nc bnc" id="L27" title="All 4 branches missed.">        if( !o instanceof Trace ) {</span>
+<span class="nc" id="L28">            return false</span>
+        }
+<span class="nc" id="L30">        def trace = o as Trace</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        for( String key in this.traceInformation.keySet() ) {</span>
+<span class="nc" id="L32">            def thisProperty = this.getProperty(key)</span>
+<span class="nc" id="L33">            def otherProperty = trace.getProperty(key)</span>
+<span class="nc bnc" id="L34" title="All 8 branches missed.">            if( ! otherProperty || ( otherProperty != thisProperty ) ) {</span>
+<span class="nc" id="L35">                return false</span>
+            }
+        }
+<span class="nc" id="L38">        return true</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
