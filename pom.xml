@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>life.qbic</groupId>
@@ -168,59 +165,4 @@
       </plugin>
     </plugins>
   </build>
-=======
-<project
-	xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>life.qbic</groupId>
-		<artifactId>parent-pom</artifactId>
-		<version>3.1.0</version>
-	</parent>
-	<artifactId>Data_models</artifactId>
-	<version>1.0.0-SNAPSHOT</version> <!-- <<QUBE_FORCE_BUMP>> -->
-	<name>Data models</name>
-	<url>http://github.com/qbicsoftware/Data_models</url>
-	<description>Data models. A collection of QBiC's central data models and DTOs. </description>
-	<packaging>jar</packaging>
-	<!-- we only need to tell maven where to find our parent pom and other QBiC dependencies -->
-	<repositories>
-		<repository>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-				<checksumPolicy>fail</checksumPolicy>
-			</snapshots>
-			<id>nexus-snapshots</id>
-			<name>QBiC Snapshots</name>
-			<url>http://qbic-repo.qbic.uni-tuebingen.de:8081/repository/maven-snapshots</url>
-		</repository>
-		<repository>
-			<releases>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-				<checksumPolicy>fail</checksumPolicy>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<id>nexus-releases</id>
-			<name>QBiC Releases</name>
-			<url>http://qbic-repo.qbic.uni-tuebingen.de:8081/repository/maven-releases</url>
-		</repository>
-	</repositories>
-
-	<dependencies>
-        <dependency>
-            <groupId>org.spockframework</groupId>
-            <artifactId>spock-core</artifactId>
-            <scope>test</scope>
-        </dependency>
-	</dependencies>
->>>>>>> TEMPLATE
 </project>
