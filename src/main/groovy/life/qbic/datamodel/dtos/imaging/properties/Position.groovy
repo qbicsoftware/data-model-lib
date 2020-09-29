@@ -1,5 +1,7 @@
 package life.qbic.datamodel.dtos.imaging.properties
 
+import groovy.transform.EqualsAndHashCode
+
 /**
  * DTO that describes a position on an image
  *
@@ -9,6 +11,7 @@ package life.qbic.datamodel.dtos.imaging.properties
  * @author: Jennifer Bödker
  *
  */
+@EqualsAndHashCode
 class Position {
 
     /**
@@ -47,26 +50,5 @@ class Position {
         this.x = x
         this.y = y
         this.z = z
-    }
-
-    boolean equals(o) {
-        if (this.is(o)) return true
-        if (getClass() != o.class) return false
-
-        Position position = (Position) o
-
-        if (x != position.x) return false
-        if (y != position.y) return false
-        if (z != position.z) return false
-
-        return true
-    }
-
-    int hashCode() {
-        int result
-        result = (x != null ? x.hashCode() : 0)
-        result = 31 * result + (y != null ? y.hashCode() : 0)
-        result = 31 * result + (z != null ? z.hashCode() : 0)
-        return result
     }
 }

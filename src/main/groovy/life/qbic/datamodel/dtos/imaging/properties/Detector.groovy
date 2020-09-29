@@ -1,5 +1,7 @@
 package life.qbic.datamodel.dtos.imaging.properties
 
+import groovy.transform.EqualsAndHashCode
+
 /**
  * DTO class for detectors in the imaging context.
  *
@@ -12,7 +14,7 @@ package life.qbic.datamodel.dtos.imaging.properties
  * @author Sven Fillinger
  * @since 1.10.0
  */
-
+@EqualsAndHashCode
 class Detector {
 
   /**
@@ -27,20 +29,5 @@ class Detector {
    */
   Detector(String type) {
     this.type = type
-  }
-
-  boolean equals(o) {
-    if (this.is(o)) return true
-    if (getClass() != o.class) return false
-
-    Detector detector = (Detector) o
-
-    if (type != detector.type) return false
-
-    return true
-  }
-
-  int hashCode() {
-    return (type != null ? type.hashCode() : 0)
   }
 }

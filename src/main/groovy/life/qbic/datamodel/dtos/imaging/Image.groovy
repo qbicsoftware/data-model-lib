@@ -1,5 +1,6 @@
 package life.qbic.datamodel.dtos.imaging
 
+import groovy.transform.EqualsAndHashCode
 import life.qbic.datamodel.dtos.imaging.parameters.AcquisitionParameters
 import life.qbic.datamodel.dtos.imaging.parameters.AnalysisParameters
 import life.qbic.datamodel.dtos.imaging.properties.ImageSize
@@ -15,6 +16,7 @@ import life.qbic.datamodel.dtos.imaging.properties.PixelSize
  * @author Sven Fillinger
  * @since 1.10.0
  */
+@EqualsAndHashCode
 final class Image {
   /**
    * The image acquisition date.
@@ -100,38 +102,5 @@ final class Image {
     this.imageSize = imageSize
     this.pixelSize = pixelSize
     this.resolution = resolution
-  }
-
-  boolean equals(o) {
-    if (this.is(o)) return true
-    if (getClass() != o.class) return false
-
-    Image image = (Image) o
-
-    if (acquisitionDate != image.acquisitionDate) return false
-    if (acquisitionParameters != image.acquisitionParameters) return false
-    if (analysisParameters != image.analysisParameters) return false
-    if (imageId != image.imageId) return false
-    if (imageSize != image.imageSize) return false
-    if (instrument != image.instrument) return false
-    if (modality != image.modality) return false
-    if (pixelSize != image.pixelSize) return false
-    if (resolution != image.resolution) return false
-
-    return true
-  }
-
-  int hashCode() {
-    int result
-    result = (acquisitionDate != null ? acquisitionDate.hashCode() : 0)
-    result = 31 * result + (acquisitionParameters != null ? acquisitionParameters.hashCode() : 0)
-    result = 31 * result + (analysisParameters != null ? analysisParameters.hashCode() : 0)
-    result = 31 * result + (instrument != null ? instrument.hashCode() : 0)
-    result = 31 * result + (imageId != null ? imageId.hashCode() : 0)
-    result = 31 * result + (modality != null ? modality.hashCode() : 0)
-    result = 31 * result + (imageSize != null ? imageSize.hashCode() : 0)
-    result = 31 * result + (pixelSize != null ? pixelSize.hashCode() : 0)
-    result = 31 * result + (resolution != null ? resolution.hashCode() : 0)
-    return result
   }
 }

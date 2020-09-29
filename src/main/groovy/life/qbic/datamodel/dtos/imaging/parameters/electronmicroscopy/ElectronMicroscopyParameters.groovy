@@ -1,5 +1,6 @@
 package life.qbic.datamodel.dtos.imaging.parameters.electronmicroscopy
 
+import groovy.transform.EqualsAndHashCode
 import life.qbic.datamodel.dtos.imaging.parameters.AcquisitionParameters
 
 /**
@@ -14,6 +15,7 @@ import life.qbic.datamodel.dtos.imaging.parameters.AcquisitionParameters
  * @author Sven Fillinger
  * @since 1.10.0
  */
+@EqualsAndHashCode
 class ElectronMicroscopyParameters extends AcquisitionParameters{
 
     /**
@@ -54,26 +56,5 @@ class ElectronMicroscopyParameters extends AcquisitionParameters{
         this.acceleratingVoltage = acceleratingVoltage
         this.targetDefocus = targetDefocus
         this.cumulativeElectronDose = cumulativeElectronDose
-    }
-
-    boolean equals(o) {
-        if (this.is(o)) return true
-        if (getClass() != o.class) return false
-
-        ElectronMicroscopyParameters that = (ElectronMicroscopyParameters) o
-
-        if (acceleratingVoltage != that.acceleratingVoltage) return false
-        if (cumulativeElectronDose != that.cumulativeElectronDose) return false
-        if (targetDefocus != that.targetDefocus) return false
-
-        return true
-    }
-
-    int hashCode() {
-        int result
-        result = (acceleratingVoltage != null ? acceleratingVoltage.hashCode() : 0)
-        result = 31 * result + (targetDefocus != null ? targetDefocus.hashCode() : 0)
-        result = 31 * result + (cumulativeElectronDose != null ? cumulativeElectronDose.hashCode() : 0)
-        return result
     }
 }

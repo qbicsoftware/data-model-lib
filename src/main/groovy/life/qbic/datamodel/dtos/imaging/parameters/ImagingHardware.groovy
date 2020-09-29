@@ -1,5 +1,6 @@
 package life.qbic.datamodel.dtos.imaging.parameters
 
+import groovy.transform.EqualsAndHashCode
 import life.qbic.datamodel.dtos.imaging.properties.Detector
 
 /**
@@ -13,6 +14,7 @@ import life.qbic.datamodel.dtos.imaging.properties.Detector
  * @author Sven Fillinger
  * @since 1.10.0
  */
+@EqualsAndHashCode
 abstract class ImagingHardware {
 
   /**
@@ -63,24 +65,5 @@ abstract class ImagingHardware {
    */
   Detector getDetector() {
     return detector
-  }
-
-  boolean equals(o) {
-    if (this.is(o)) return true
-    if (getClass() != o.class) return false
-
-    ImagingHardware hardware = (ImagingHardware) o
-
-    if (detector != hardware.detector) return false
-    if (objective != hardware.objective) return false
-
-    return true
-  }
-
-  int hashCode() {
-    int result
-    result = (objective != null ? objective.hashCode() : 0)
-    result = 31 * result + (detector != null ? detector.hashCode() : 0)
-    return result
   }
 }
