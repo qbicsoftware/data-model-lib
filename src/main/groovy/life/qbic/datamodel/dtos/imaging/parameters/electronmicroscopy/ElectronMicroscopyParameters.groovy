@@ -55,4 +55,25 @@ class ElectronMicroscopyParameters extends AcquisitionParameters{
         this.targetDefocus = targetDefocus
         this.cumulativeElectronDose = cumulativeElectronDose
     }
+
+    boolean equals(o) {
+        if (this.is(o)) return true
+        if (getClass() != o.class) return false
+
+        ElectronMicroscopyParameters that = (ElectronMicroscopyParameters) o
+
+        if (acceleratingVoltage != that.acceleratingVoltage) return false
+        if (cumulativeElectronDose != that.cumulativeElectronDose) return false
+        if (targetDefocus != that.targetDefocus) return false
+
+        return true
+    }
+
+    int hashCode() {
+        int result
+        result = (acceleratingVoltage != null ? acceleratingVoltage.hashCode() : 0)
+        result = 31 * result + (targetDefocus != null ? targetDefocus.hashCode() : 0)
+        result = 31 * result + (cumulativeElectronDose != null ? cumulativeElectronDose.hashCode() : 0)
+        return result
+    }
 }

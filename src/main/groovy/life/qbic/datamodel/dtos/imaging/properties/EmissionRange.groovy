@@ -32,4 +32,23 @@ class EmissionRange {
         this.startWavelength = startWavelength
         this.endWavelength = endWavelength
     }
+
+    boolean equals(o) {
+        if (this.is(o)) return true
+        if (getClass() != o.class) return false
+
+        EmissionRange that = (EmissionRange) o
+
+        if (endWavelength != that.endWavelength) return false
+        if (startWavelength != that.startWavelength) return false
+
+        return true
+    }
+
+    int hashCode() {
+        int result
+        result = startWavelength
+        result = 31 * result + endWavelength
+        return result
+    }
 }

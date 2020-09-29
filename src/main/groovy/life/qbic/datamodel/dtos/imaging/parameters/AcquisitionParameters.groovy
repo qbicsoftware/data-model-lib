@@ -35,4 +35,19 @@ class AcquisitionParameters {
   AcquisitionParameters(Integer binning) {
     this.binning = binning
   }
+
+  boolean equals(o) {
+    if (this.is(o)) return true
+    if (getClass() != o.class) return false
+
+    AcquisitionParameters that = (AcquisitionParameters) o
+
+    if (binning != that.binning) return false
+
+    return true
+  }
+
+  int hashCode() {
+    return (binning != null ? binning.hashCode() : 0)
+  }
 }

@@ -38,4 +38,25 @@ class Area {
         this.secondDimensionValue = secondDimensionValue
         this.plane = plane
     }
+
+    boolean equals(o) {
+        if (this.is(o)) return true
+        if (getClass() != o.class) return false
+
+        Area area = (Area) o
+
+        if (firstDimensionValue != area.firstDimensionValue) return false
+        if (plane != area.plane) return false
+        if (secondDimensionValue != area.secondDimensionValue) return false
+
+        return true
+    }
+
+    int hashCode() {
+        int result
+        result = (firstDimensionValue != null ? firstDimensionValue.hashCode() : 0)
+        result = 31 * result + (secondDimensionValue != null ? secondDimensionValue.hashCode() : 0)
+        result = 31 * result + (plane != null ? plane.hashCode() : 0)
+        return result
+    }
 }

@@ -69,4 +69,30 @@ class Instrument {
     this.hardware = hardware
   }
 
+  boolean equals(o) {
+    if (this.is(o)) return true
+    if (getClass() != o.class) return false
+
+    Instrument that = (Instrument) o
+
+    if (hardware != that.hardware) return false
+    if (location != that.location) return false
+    if (manufacturer != that.manufacturer) return false
+    if (model != that.model) return false
+    if (serialNumber != that.serialNumber) return false
+    if (type != that.type) return false
+
+    return true
+  }
+
+  int hashCode() {
+    int result
+    result = (manufacturer != null ? manufacturer.hashCode() : 0)
+    result = 31 * result + (model != null ? model.hashCode() : 0)
+    result = 31 * result + (serialNumber != null ? serialNumber.hashCode() : 0)
+    result = 31 * result + (location != null ? location.hashCode() : 0)
+    result = 31 * result + (type != null ? type.hashCode() : 0)
+    result = 31 * result + (hardware != null ? hardware.hashCode() : 0)
+    return result
+  }
 }

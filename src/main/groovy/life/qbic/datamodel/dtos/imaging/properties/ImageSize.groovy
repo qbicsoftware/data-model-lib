@@ -53,4 +53,29 @@ class ImageSize {
         this.y = y
         this.z = z
     }
+
+    boolean equals(o) {
+        if (this.is(o)) return true
+        if (getClass() != o.class) return false
+
+        ImageSize imageSize = (ImageSize) o
+
+        if (channel != imageSize.channel) return false
+        if (timePoint != imageSize.timePoint) return false
+        if (x != imageSize.x) return false
+        if (y != imageSize.y) return false
+        if (z != imageSize.z) return false
+
+        return true
+    }
+
+    int hashCode() {
+        int result
+        result = (timePoint != null ? timePoint.hashCode() : 0)
+        result = 31 * result + (channel != null ? channel.hashCode() : 0)
+        result = 31 * result + (x != null ? x.hashCode() : 0)
+        result = 31 * result + (y != null ? y.hashCode() : 0)
+        result = 31 * result + (z != null ? z.hashCode() : 0)
+        return result
+    }
 }

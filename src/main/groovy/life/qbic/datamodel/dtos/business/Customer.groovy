@@ -54,7 +54,32 @@ final class Customer {
     }
   }
 
-  /**
+  boolean equals(o) {
+    if (this.is(o)) return true
+    if (getClass() != o.class) return false
+
+    Customer customer = (Customer) o
+
+    if (affiliations != customer.affiliations) return false
+    if (eMailAddress != customer.eMailAddress) return false
+    if (firstName != customer.firstName) return false
+    if (lastName != customer.lastName) return false
+    if (title != customer.title) return false
+
+    return true
+  }
+
+  int hashCode() {
+    int result
+    result = (firstName != null ? firstName.hashCode() : 0)
+    result = 31 * result + (lastName != null ? lastName.hashCode() : 0)
+    result = 31 * result + (title != null ? title.hashCode() : 0)
+    result = 31 * result + (eMailAddress != null ? eMailAddress.hashCode() : 0)
+    result = 31 * result + (affiliations != null ? affiliations.hashCode() : 0)
+    return result
+  }
+
+/**
    * Returns a String representation of a customer:
    *
    * <first-name> <last-name> - <email>

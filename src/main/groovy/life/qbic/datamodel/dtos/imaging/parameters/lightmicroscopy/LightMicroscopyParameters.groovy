@@ -142,4 +142,41 @@ class LightMicroscopyParameters extends AcquisitionParameters{
         this.scanAcquisitionRate = scanAcquisitionRate
         this.scanSize = scanSize
     }
+
+    boolean equals(o) {
+        if (this.is(o)) return true
+        if (getClass() != o.class) return false
+
+        LightMicroscopyParameters that = (LightMicroscopyParameters) o
+
+        if (cameraAcquisitionTime != that.cameraAcquisitionTime) return false
+        if (emissionPerChannel != that.emissionPerChannel) return false
+        if (excitationPerChannel != that.excitationPerChannel) return false
+        if (laserPowerBeamSplitter != that.laserPowerBeamSplitter) return false
+        if (laserPowerTIRFLens != that.laserPowerTIRFLens) return false
+        if (position != that.position) return false
+        if (scanAcquisitionRate != that.scanAcquisitionRate) return false
+        if (scanSize != that.scanSize) return false
+        if (tcspcPosition != that.tcspcPosition) return false
+        if (tcspcTimingResolution != that.tcspcTimingResolution) return false
+        if (tscpcScanMode != that.tscpcScanMode) return false
+
+        return true
+    }
+
+    int hashCode() {
+        int result
+        result = (excitationPerChannel != null ? excitationPerChannel.hashCode() : 0)
+        result = 31 * result + (emissionPerChannel != null ? emissionPerChannel.hashCode() : 0)
+        result = 31 * result + (laserPowerTIRFLens != null ? laserPowerTIRFLens.hashCode() : 0)
+        result = 31 * result + (laserPowerBeamSplitter != null ? laserPowerBeamSplitter.hashCode() : 0)
+        result = 31 * result + (cameraAcquisitionTime != null ? cameraAcquisitionTime.hashCode() : 0)
+        result = 31 * result + (position != null ? position.hashCode() : 0)
+        result = 31 * result + (tcspcTimingResolution != null ? tcspcTimingResolution.hashCode() : 0)
+        result = 31 * result + (tcspcPosition != null ? tcspcPosition.hashCode() : 0)
+        result = 31 * result + (tscpcScanMode != null ? tscpcScanMode.hashCode() : 0)
+        result = 31 * result + (scanAcquisitionRate != null ? scanAcquisitionRate.hashCode() : 0)
+        result = 31 * result + (scanSize != null ? scanSize.hashCode() : 0)
+        return result
+    }
 }

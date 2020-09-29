@@ -46,4 +46,27 @@ class PixelSize {
         this.y = y
         this.z = z
     }
+
+    boolean equals(o) {
+        if (this.is(o)) return true
+        if (getClass() != o.class) return false
+
+        PixelSize pixelSize = (PixelSize) o
+
+        if (timePoint != pixelSize.timePoint) return false
+        if (x != pixelSize.x) return false
+        if (y != pixelSize.y) return false
+        if (z != pixelSize.z) return false
+
+        return true
+    }
+
+    int hashCode() {
+        int result
+        result = (timePoint != null ? timePoint.hashCode() : 0)
+        result = 31 * result + (x != null ? x.hashCode() : 0)
+        result = 31 * result + (y != null ? y.hashCode() : 0)
+        result = 31 * result + (z != null ? z.hashCode() : 0)
+        return result
+    }
 }

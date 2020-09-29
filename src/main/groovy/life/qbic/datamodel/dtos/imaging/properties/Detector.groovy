@@ -28,4 +28,19 @@ class Detector {
   Detector(String type) {
     this.type = type
   }
+
+  boolean equals(o) {
+    if (this.is(o)) return true
+    if (getClass() != o.class) return false
+
+    Detector detector = (Detector) o
+
+    if (type != detector.type) return false
+
+    return true
+  }
+
+  int hashCode() {
+    return (type != null ? type.hashCode() : 0)
+  }
 }

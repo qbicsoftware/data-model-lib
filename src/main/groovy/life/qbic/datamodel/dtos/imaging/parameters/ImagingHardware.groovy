@@ -65,4 +65,22 @@ abstract class ImagingHardware {
     return detector
   }
 
+  boolean equals(o) {
+    if (this.is(o)) return true
+    if (getClass() != o.class) return false
+
+    ImagingHardware hardware = (ImagingHardware) o
+
+    if (detector != hardware.detector) return false
+    if (objective != hardware.objective) return false
+
+    return true
+  }
+
+  int hashCode() {
+    int result
+    result = (objective != null ? objective.hashCode() : 0)
+    result = 31 * result + (detector != null ? detector.hashCode() : 0)
+    return result
+  }
 }
