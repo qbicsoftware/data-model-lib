@@ -21,10 +21,10 @@ jobs:
 
         - uses: oleksiyrudenko/gha-git-credentials@v1
           with:
-               name: 'sven1103'
-               email: 'sven.fillinger@qbic.uni-tuebingen.de'
-               actor: 'sven1103'
-               token: '${{ secrets.QUBE_SYNC_TOKEN}}'
+               name: 'JohnnyQ5'
+               email: 'support@qbic.zendesk.com'
+               actor: 'JohnnyQ5'
+               token: '${{ secrets.JOHNNY_Q5_REPORTS_TOKEN}}'
 
         - name: Sync project
-          run: qube sync . ${{ secrets.QUBE_SYNC_TOKEN  }} sven1103
+          run: qube sync . ${{ secrets.JOHNNY_Q5_REPORTS_TOKEN  }} JohnnyQ5
