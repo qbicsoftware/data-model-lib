@@ -1,8 +1,7 @@
-# This workflow will build a package using Maven and then publish it to
-#  qbic-repo.qbic.uni-tuebingen.de packages when a release is created
-# For more information see: https://github.com/actions/setup-java#apache-maven-with-a-settings-path
+# This workflow will generate surefire reports and API documentation with Maven and publish
+# them on the 'gh-pages' branch of the target Github repository.
 
-name: Generate reports
+name: Generate reports and API documentation
 
 on:
   release:
@@ -26,7 +25,7 @@ jobs:
         with:
           java-version: 1.8
           server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-          settings-path: ${{ github.workspace }} # location for the settings.xml file
+          settings-path: ${{ github.workspace }}
 
       - name: Setup Python 3.7
         uses: actions/setup-python@v2
@@ -47,7 +46,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
       - name: Maven generate reports
-        shell: bash -l {0}
         run: mvn --activate-profiles !development-build,!release-build --settings .github.settings.xml site
 
       - name: Set up git
@@ -56,9 +54,7 @@ jobs:
             git config --global user.name "JohnnyQ5"
 
       - name: Publish reports
-        shell: bash -l {0}
         run: |
-          python --version
           python .generate-reports.py ${GITHUB_REF##*/} $GITHUB_REPOSITORY "[Github Action] Updated gh-pages"
         env:
           REPORTS_GITHUB_ACCESS_TOKEN: ${{ secrets.JOHNNY_Q5_REPORTS_TOKEN }}
