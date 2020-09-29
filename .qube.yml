@@ -1,0 +1,19 @@
+full_name: Sven Fillinger
+email: sven.fillinger@qbic.uni-tuebingen.de
+project_name: Data models
+project_short_description: "Data models. A collection of QBiC's central data models\
+  \ and DTOs. "
+version: 1.0.0-SNAPSHOT
+domain: lib
+language: java
+project_slug: Data_models
+project_slug_no_hyphen: Data_models
+template_version: '1.0.0 # <<QUBE_NO_BUMP>>'
+template_handle: lib-java
+github_username: sven1103
+creator_github_username: sven1103
+is_github_repo: false
+is_repo_private: false
+is_github_orga: false
+copyright_holder: QBiC
+license: MIT
