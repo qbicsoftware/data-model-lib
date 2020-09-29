@@ -1,5 +1,6 @@
 package life.qbic.datamodel.dtos.imaging.parameters.srm
 
+import groovy.transform.EqualsAndHashCode
 import life.qbic.datamodel.dtos.imaging.properties.Detector
 import life.qbic.datamodel.dtos.imaging.properties.Filter
 
@@ -19,6 +20,7 @@ import life.qbic.datamodel.dtos.imaging.properties.Size
  * @author Sven Fillinger
  * @since 1.10.0
  */
+@EqualsAndHashCode
 class SRMHardware extends ImagingHardware {
 
     /**
@@ -307,46 +309,5 @@ class SRMHardware extends ImagingHardware {
         emissionFilter = builder.emissionFilter
         beamSplitter = builder.beamSplitter
         emissionFilterChannels = builder.emissionFilterChannels
-    }
-
-    boolean equals(o) {
-        if (this.is(o)) return true
-        if (getClass() != o.class) return false
-
-        SRMHardware that = (SRMHardware) o
-
-        if (beamSplitter != that.beamSplitter) return false
-        if (emissionFilter != that.emissionFilter) return false
-        if (emissionFilterChannels != that.emissionFilterChannels) return false
-        if (excitationBeamSplitter != that.excitationBeamSplitter) return false
-        if (illuminationMode != that.illuminationMode) return false
-        if (laserLineFilter != that.laserLineFilter) return false
-        if (laserLinesCw != that.laserLinesCw) return false
-        if (laserLinesPulsed != that.laserLinesPulsed) return false
-        if (laserRepetitionRate != that.laserRepetitionRate) return false
-        if (piezoScanner != that.piezoScanner) return false
-        if (piezoTableController != that.piezoTableController) return false
-        if (pinholeSize != that.pinholeSize) return false
-        if (polarizationOptics != that.polarizationOptics) return false
-
-        return true
-    }
-
-    int hashCode() {
-        int result
-        result = (piezoTableController != null ? piezoTableController.hashCode() : 0)
-        result = 31 * result + (piezoScanner != null ? piezoScanner.hashCode() : 0)
-        result = 31 * result + (laserLinesCw != null ? laserLinesCw.hashCode() : 0)
-        result = 31 * result + (laserLinesPulsed != null ? laserLinesPulsed.hashCode() : 0)
-        result = 31 * result + (laserLineFilter != null ? laserLineFilter.hashCode() : 0)
-        result = 31 * result + (laserRepetitionRate != null ? laserRepetitionRate.hashCode() : 0)
-        result = 31 * result + (polarizationOptics != null ? polarizationOptics.hashCode() : 0)
-        result = 31 * result + (excitationBeamSplitter != null ? excitationBeamSplitter.hashCode() : 0)
-        result = 31 * result + (illuminationMode != null ? illuminationMode.hashCode() : 0)
-        result = 31 * result + (pinholeSize != null ? pinholeSize.hashCode() : 0)
-        result = 31 * result + (emissionFilter != null ? emissionFilter.hashCode() : 0)
-        result = 31 * result + (beamSplitter != null ? beamSplitter.hashCode() : 0)
-        result = 31 * result + (emissionFilterChannels != null ? emissionFilterChannels.hashCode() : 0)
-        return result
     }
 }

@@ -1,5 +1,6 @@
 package life.qbic.datamodel.dtos.imaging.parameters.srm
 
+import groovy.transform.EqualsAndHashCode
 import life.qbic.datamodel.dtos.imaging.parameters.AnalysisParameters
 import life.qbic.datamodel.dtos.imaging.properties.Dimensionality
 import life.qbic.datamodel.dtos.imaging.properties.PixelSize
@@ -17,6 +18,7 @@ import life.qbic.datamodel.dtos.imaging.properties.PixelSize
  * @author: Jennifer Bödker
  *
  */
+@EqualsAndHashCode
 class SRMAnalysisParameters extends AnalysisParameters {
 
     /**
@@ -170,48 +172,5 @@ class SRMAnalysisParameters extends AnalysisParameters {
         this.maxJumpDistance = maxJumpDistance
         this.blinking = blinking
         this.trackLength = trackLength
-    }
-
-    boolean equals(o) {
-        if (this.is(o)) return true
-        if (getClass() != o.class) return false
-
-        SRMAnalysisParameters that = (SRMAnalysisParameters) o
-
-        if (backgroundEstimation != that.backgroundEstimation) return false
-        if (blinking != that.blinking) return false
-        if (conversion != that.conversion) return false
-        if (cutOff != that.cutOff) return false
-        if (dimensionality != that.dimensionality) return false
-        if (driftCorrection != that.driftCorrection) return false
-        if (experimentalPSF != that.experimentalPSF) return false
-        if (filterSize != that.filterSize) return false
-        if (maxJumpDistance != that.maxJumpDistance) return false
-        if (offset != that.offset) return false
-        if (pixelSize != that.pixelSize) return false
-        if (roiSize != that.roiSize) return false
-        if (sCMOS != that.sCMOS) return false
-        if (trackLength != that.trackLength) return false
-
-        return true
-    }
-
-    int hashCode() {
-        int result
-        result = (dimensionality != null ? dimensionality.hashCode() : 0)
-        result = 31 * result + (backgroundEstimation != null ? backgroundEstimation.hashCode() : 0)
-        result = 31 * result + (filterSize != null ? filterSize.hashCode() : 0)
-        result = 31 * result + (cutOff != null ? cutOff.hashCode() : 0)
-        result = 31 * result + (roiSize != null ? roiSize.hashCode() : 0)
-        result = 31 * result + (pixelSize != null ? pixelSize.hashCode() : 0)
-        result = 31 * result + (conversion != null ? conversion.hashCode() : 0)
-        result = 31 * result + (offset != null ? offset.hashCode() : 0)
-        result = 31 * result + (experimentalPSF != null ? experimentalPSF.hashCode() : 0)
-        result = 31 * result + (sCMOS != null ? sCMOS.hashCode() : 0)
-        result = 31 * result + (driftCorrection != null ? driftCorrection.hashCode() : 0)
-        result = 31 * result + (maxJumpDistance != null ? maxJumpDistance.hashCode() : 0)
-        result = 31 * result + (blinking != null ? blinking.hashCode() : 0)
-        result = 31 * result + (trackLength != null ? trackLength.hashCode() : 0)
-        return result
     }
 }
