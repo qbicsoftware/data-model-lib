@@ -1,5 +1,6 @@
 package life.qbic.datamodel.dtos.imaging.parameters.electronmicroscopy
 
+import groovy.transform.EqualsAndHashCode
 import life.qbic.datamodel.dtos.imaging.parameters.AcquisitionParameters
 
 /**
@@ -14,6 +15,7 @@ import life.qbic.datamodel.dtos.imaging.parameters.AcquisitionParameters
  * @author Sven Fillinger
  * @since 1.10.0
  */
+@EqualsAndHashCode
 class ElectronMicroscopyParameters extends AcquisitionParameters{
 
     /**

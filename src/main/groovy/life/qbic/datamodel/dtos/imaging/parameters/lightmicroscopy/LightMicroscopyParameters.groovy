@@ -1,5 +1,6 @@
 package life.qbic.datamodel.dtos.imaging.parameters.lightmicroscopy
 
+import groovy.transform.EqualsAndHashCode
 import life.qbic.datamodel.dtos.imaging.parameters.AcquisitionParameters
 import life.qbic.datamodel.dtos.imaging.properties.Area
 import life.qbic.datamodel.dtos.imaging.properties.EmissionRange
@@ -18,6 +19,7 @@ import life.qbic.datamodel.dtos.imaging.properties.ScanMode
  * @author Sven Fillinger
  * @since 1.10.0
  */
+@EqualsAndHashCode
 class LightMicroscopyParameters extends AcquisitionParameters{
 
     /**

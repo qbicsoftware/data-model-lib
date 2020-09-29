@@ -1,4 +1,7 @@
 package life.qbic.datamodel.dtos.business
+
+import groovy.transform.EqualsAndHashCode
+
 /**
  * This class serves as a simple DTO for customer data
  *
@@ -8,6 +11,7 @@ package life.qbic.datamodel.dtos.business
  * @author Sven Fillinger
  * @since 1.11.0
  */
+@EqualsAndHashCode
 final class Customer {
 
   /**
@@ -54,7 +58,7 @@ final class Customer {
     }
   }
 
-  /**
+/**
    * Returns a String representation of a customer:
    *
    * <first-name> <last-name> - <email>

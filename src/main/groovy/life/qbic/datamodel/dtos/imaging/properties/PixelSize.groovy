@@ -1,5 +1,7 @@
 package life.qbic.datamodel.dtos.imaging.properties
 
+import groovy.transform.EqualsAndHashCode
+
 /**
  * A DTO describing pixel size in images
  *
@@ -8,6 +10,7 @@ package life.qbic.datamodel.dtos.imaging.properties
  * @author Jennifer Bödker
  * @since 1.10.0
  */
+@EqualsAndHashCode
 class PixelSize {
 
     /**

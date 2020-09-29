@@ -1,5 +1,7 @@
 package life.qbic.datamodel.dtos.imaging.parameters
 
+import groovy.transform.EqualsAndHashCode
+
 /**
  * Description of acquisition parameters during image analysis.
  *
@@ -12,6 +14,7 @@ package life.qbic.datamodel.dtos.imaging.parameters
  * @author Sven Fillinger
  * @since 1.10.0
  */
+@EqualsAndHashCode
 class AcquisitionParameters {
 
   /**
