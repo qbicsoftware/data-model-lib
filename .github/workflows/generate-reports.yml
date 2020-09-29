@@ -1,0 +1,61 @@
+# This workflow will generate surefire reports and API documentation with Maven and publish
+# them on the 'gh-pages' branch of the target Github repository.
+
+name: Generate reports and API documentation
+
+on:
+  release:
+    types: [created]
+  push:
+    branches:
+      - development
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install git
+        run: sudo apt-get install git
+
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+          settings-path: ${{ github.workspace }}
+
+      - name: Setup Python 3.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+          architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pygithub
+
+      - name: Load local Maven repository cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+              ${{ runner.os }}-maven-
+
+      - name: Maven generate reports
+        run: mvn --activate-profiles !development-build,!release-build --settings .github.settings.xml site
+
+      - name: Set up git
+        run: |
+            git config --global user.email "support@qbic.zendesk.com"
+            git config --global user.name "JohnnyQ5"
+
+      - name: Publish reports
+        run: |
+          python .generate-reports.py ${GITHUB_REF##*/} $GITHUB_REPOSITORY "[Github Action] Updated gh-pages"
+        env:
+          REPORTS_GITHUB_ACCESS_TOKEN: ${{ secrets.JOHNNY_Q5_REPORTS_TOKEN }}
