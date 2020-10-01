@@ -6,8 +6,8 @@ project_short_description: "Data models. A collection of QBiC's central data mod
 version: 1.0.0-SNAPSHOT
 domain: lib
 language: java
-project_slug: Data_models
-project_slug_no_hyphen: Data_models
+project_slug: data-model-lib
+project_slug_no_hyphen: data_model_lib
 template_version: '1.0.0 # <<QUBE_NO_BUMP>>'
 template_handle: lib-java
 github_username: sven1103
