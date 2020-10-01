@@ -28,4 +28,4 @@ jobs:
                token: '${{ secrets.JOHNNY_Q5_REPORTS_TOKEN}}'
 
         - name: Sync project
-          run: qube sync . ${{ secrets.JOHNNY_Q5_REPORTS_TOKEN  }} JohnnyQ5
+          run: qube --verbose sync . ${{ secrets.JOHNNY_Q5_REPORTS_TOKEN  }} JohnnyQ5
