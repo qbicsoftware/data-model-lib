@@ -10,6 +10,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 **Added**
 
 * Add `hashValue` and `equals` to `package life.qbic.datamodel.dtos` classes
+* Add `EnumFactory`
+* Add `EnumFactory` implementation for `AffiliationCategory`, `AcademicTitle`
 
 **Fixed**
 
