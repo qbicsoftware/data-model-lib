@@ -12,8 +12,9 @@ template_version: '1.0.0 # <<QUBE_NO_BUMP>>'
 template_handle: lib-java
 github_username: qbicsoftware
 creator_github_username: sven1103
-is_github_repo: false
-is_repo_private: false
-is_github_orga: false
+is_github_repo: True
+is_repo_private: False
+is_github_orga: True
+github_orga: qbicsoftware
 copyright_holder: QBiC
 license: MIT
