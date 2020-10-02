@@ -8,7 +8,7 @@ domain: lib
 language: java
 project_slug: data-model-lib
 project_slug_no_hyphen: data_model_lib
-template_version: '1.0.2 # <<QUBE_NO_BUMP>>'
+template_version: '1.0.3 # <<QUBE_NO_BUMP>>'
 template_handle: lib-java
 github_username: qbicsoftware
 creator_github_username: sven1103
