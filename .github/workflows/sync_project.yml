@@ -1,0 +1,30 @@
+name: Sync qube project
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Setup Python
+          uses: actions/setup-python@v1
+          with:
+            python-version: 3.8
+
+        - name: Install qube
+          run: pip install qube
+
+        - uses: actions/checkout@v2
+          with:
+              fetch-depth: 0
+          name: Check out source-code repository
+
+        - uses: oleksiyrudenko/gha-git-credentials@v1
+          with:
+              name: 'JohnnyQ5'
+              email: 'support@qbic.zendesk.com'
+              actor: 'JohnnyQ5'
+              token: '${{ secrets.JOHNNY_Q5_REPORTS_TOKEN}}'
+
+        - name: Sync project
+          run: qube sync . ${{ secrets.JOHNNY_Q5_REPORTS_TOKEN  }} JohnnyQ5

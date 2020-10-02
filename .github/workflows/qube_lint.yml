@@ -1,4 +1,4 @@
-name: QUBE lint
+name: qube lint
 
 on: [push]
 
@@ -19,10 +19,10 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
 
-      - name: Install QUBE
+      - name: Install qube
         run: |
           pip install qube
 
-      - name: Run QUBE lint
+      - name: Run qube lint
         run: |
           qube lint .

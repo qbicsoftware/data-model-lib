@@ -8,12 +8,13 @@ domain: lib
 language: java
 project_slug: data-model-lib
 project_slug_no_hyphen: data_model_lib
-template_version: '1.0.0 # <<QUBE_NO_BUMP>>'
+template_version: '1.0.2 # <<QUBE_NO_BUMP>>'
 template_handle: lib-java
 github_username: qbicsoftware
 creator_github_username: sven1103
-is_github_repo: false
+is_github_repo: true
 is_repo_private: false
-is_github_orga: false
+is_github_orga: true
+github_orga: qbicsoftware
 copyright_holder: QBiC
 license: MIT
