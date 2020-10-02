@@ -1,6 +1,6 @@
 full_name: Sven Fillinger
 email: sven.fillinger@qbic.uni-tuebingen.de
-project_name: data model lib
+project_name: data-model-lib
 project_short_description: "Data models. A collection of QBiC's central data models\
   \ and DTOs. "
 version: 1.0.0-SNAPSHOT
