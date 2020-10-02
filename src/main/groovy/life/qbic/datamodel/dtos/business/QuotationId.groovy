@@ -9,9 +9,21 @@ package life.qbic.datamodel.dtos.business
  *
  */
 class QuotationId extends TomatoId{
+    /**
+     * A quotation is identified by the type Q
+     */
     private final String type = "Q"
+    /**
+     * Conserved part of a project
+     */
     private String projectConserved
+    /**
+     * Random part of the identifier
+     */
     private String random
+    /**
+     * Version of the identifier
+     */
     private int version
 
 
@@ -22,7 +34,6 @@ class QuotationId extends TomatoId{
         this.random = randomPart
         this.version = version
     }
-
 
     @Override
     String getType() {

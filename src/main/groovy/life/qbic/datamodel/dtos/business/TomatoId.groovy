@@ -10,9 +10,21 @@ package life.qbic.datamodel.dtos.business
  *
  */
 abstract class TomatoId {
+    /**
+     * The type of the identifier is defined by the implementing identifier
+     */
     private final String type
+    /**
+     * Conserved part of a project which is the name of the customer
+     */
     private String projectConserved
+    /**
+     * Random part of the identifier which should follow the Regex [a-x0-9]{4}
+     */
     private String random
+    /**
+     * Version of the identifier which is a number between 0 and 9
+     */
     private int version
 
     /**

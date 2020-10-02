@@ -10,9 +10,21 @@ package life.qbic.datamodel.dtos.business
  *
  */
 class CostEstimateId extends TomatoId{
+    /**
+     * A cost estimate is identified by the type CE
+     */
     private final String type = "CE"
+    /**
+     * Conserved part of a project
+     */
     private String projectConserved
+    /**
+     * Random part of the identifier
+     */
     private String random
+    /**
+     * Version of the identifier
+     */
     private int version
 
 
