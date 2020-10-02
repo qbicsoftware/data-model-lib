@@ -1,10 +1,6 @@
 package life.qbic.datamodel.dtos.business
 
-import org.apache.tools.ant.taskdefs.condition.Not
-
-import javax.validation.constraints.Email
-import javax.validation.constraints.NotEmpty
-import javax.validation.constraints.NotNull
+import groovy.transform.EqualsAndHashCode
 
 /**
  * This class serves as a simple DTO for customer data
@@ -15,6 +11,7 @@ import javax.validation.constraints.NotNull
  * @author Sven Fillinger
  * @since 1.11.0
  */
+@EqualsAndHashCode
 final class Customer {
 
   /**
@@ -30,7 +27,7 @@ final class Customer {
   /**
    * The customer's title
    */
-  final String title
+  final AcademicTitle title
 
   /**
    * The customer's email address
@@ -44,7 +41,7 @@ final class Customer {
 
   Customer(String firstName,
            String lastName,
-           String title,
+           AcademicTitle title,
            String eMailAddress,
            List<Affiliation> affiliations) {
     this.firstName = Objects.requireNonNull(firstName)
@@ -59,6 +56,18 @@ final class Customer {
     for (Affiliation affiliation : affiliations) {
       this.affiliations.add(affiliation)
     }
+  }
+
+/**
+   * Returns a String representation of a customer:
+   *
+   * <first-name> <last-name> - <email>
+   *
+   * @return
+   */
+  @Override
+  String toString(){
+    return "${firstName} ${lastName} - ${eMailAddress}"
   }
 
 }

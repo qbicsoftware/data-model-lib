@@ -1,5 +1,7 @@
 package life.qbic.datamodel.dtos.imaging.properties
 
+import groovy.transform.EqualsAndHashCode
+
 /**
  * A DTO to describe the size of images obtained from imaging experiments
  *
@@ -8,6 +10,7 @@ package life.qbic.datamodel.dtos.imaging.properties
  * @author Jennifer Bödker
  * @since 1.10.0
  */
+@EqualsAndHashCode
 class ImageSize {
 
     /**

@@ -1,5 +1,6 @@
 package life.qbic.datamodel.dtos.imaging
 
+import groovy.transform.EqualsAndHashCode
 import life.qbic.datamodel.people.Address
 
 /**
@@ -10,6 +11,7 @@ import life.qbic.datamodel.people.Address
  * @author Sven Fillinger
  * @since 1.10.0
  */
+@EqualsAndHashCode
 class Location {
 
   /**

@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>life.qbic</groupId>
     <artifactId>parent-pom</artifactId>
-    <version>2.3.0</version>
+    <version>3.0.0</version>
   </parent>
   <artifactId>data-model-lib</artifactId>
-  <version>1.11.0-SNAPSHOT</version>
+  <version>1.12.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>Data Model Library</name>
   <url>http://github.com/qbicsoftware/data-model-lib</url>
@@ -27,7 +25,7 @@
       </snapshots>
       <id>nexus-snapshots</id>
       <name>QBiC Snapshots</name>
-      <url>https://qbic-repo.am10.uni-tuebingen.de/repository/maven-snapshots</url>
+      <url>http://qbic-repo.qbic.uni-tuebingen.de:8081/repository/maven-snapshots</url>
     </repository>
     <repository>
       <releases>
@@ -40,7 +38,7 @@
       </snapshots>
       <id>nexus-releases</id>
       <name>QBiC Releases</name>
-      <url>https://qbic-repo.am10.uni-tuebingen.de/repository/maven-releases</url>
+      <url>http://qbic-repo.qbic.uni-tuebingen.de:8081/repository/maven-releases</url>
     </repository>
     <repository>
       <id>jitpack.io</id>
@@ -122,7 +120,7 @@
     <dependency>
       <groupId>life.qbic</groupId>
       <artifactId>xml-manager-lib</artifactId>
-      <version>1.5.0</version>
+      <version>1.6.0</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>

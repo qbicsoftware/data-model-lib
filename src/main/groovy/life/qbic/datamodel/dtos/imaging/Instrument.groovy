@@ -1,5 +1,6 @@
 package life.qbic.datamodel.dtos.imaging
 
+import groovy.transform.EqualsAndHashCode
 import life.qbic.datamodel.dtos.imaging.parameters.ImagingHardware
 
 /**
@@ -12,6 +13,7 @@ import life.qbic.datamodel.dtos.imaging.parameters.ImagingHardware
  * @author Sven Fillinger
  * @since 1.10.0
  */
+@EqualsAndHashCode
 class Instrument {
 
   /**
@@ -68,5 +70,4 @@ class Instrument {
     this.type = type
     this.hardware = hardware
   }
-
 }

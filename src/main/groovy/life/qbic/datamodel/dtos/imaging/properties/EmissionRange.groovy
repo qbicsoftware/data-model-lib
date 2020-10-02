@@ -1,5 +1,7 @@
 package life.qbic.datamodel.dtos.imaging.properties
 
+import groovy.transform.EqualsAndHashCode
+
 /**
  * Class storing the emissions from a light source as a range of wave lengths
  *
@@ -9,6 +11,7 @@ package life.qbic.datamodel.dtos.imaging.properties
  * @author: Jennifer Bödker
  *
  */
+@EqualsAndHashCode
 class EmissionRange {
 
     /**

@@ -1,11 +1,14 @@
 package life.qbic.datamodel.dtos.business
 
+import groovy.transform.EqualsAndHashCode
+
 /**
  * This class serves as a simple DTO for customer affiliations
  *
  * @author Sven Fillinger
  * @since 1.11.0
  */
+@EqualsAndHashCode
 final class Affiliation {
 
   /**
@@ -42,7 +45,7 @@ final class Affiliation {
    */
   final String country
 
-  /**
+/**
    * An affiliation category @link{AffiliationCategory}.
    *
    * Defaults to 'external non-academic'.
