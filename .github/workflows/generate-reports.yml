@@ -44,8 +44,7 @@ jobs:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
-              ${{ runner.os }}-maven-
-
+            ${{ runner.os }}-maven-
       - name: Maven generate reports
         run: mvn --activate-profiles !development-build,!release-build --settings .github.settings.xml site
 
