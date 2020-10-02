@@ -2,6 +2,6 @@
 Usage
 =====
 
-To use Data_models in a project::
+To use data-model-lib in a project::
 
-    import Data_models
+    import data-model-lib

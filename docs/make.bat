@@ -9,7 +9,7 @@ if "%SPHINXBUILD%" == "" (
 )
 set SOURCEDIR=.
 set BUILDDIR=_build
-set SPHINXPROJ=Data_models
+set SPHINXPROJ=data-model-lib
 
 if "%1" == "" goto help
 
