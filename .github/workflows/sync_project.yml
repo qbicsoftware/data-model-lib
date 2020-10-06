@@ -12,7 +12,7 @@ jobs:
             python-version: 3.8
 
         - name: Install qube
-          run: pip install --no-cache-dir qube
+          run: pip install qube
 
         - uses: actions/checkout@v2
           with:
@@ -22,10 +22,10 @@ jobs:
 
         - uses: oleksiyrudenko/gha-git-credentials@v1
           with:
-               name: 'JohnnyQ5'
-               email: 'support@qbic.zendesk.com'
-               actor: 'JohnnyQ5'
-               token: '${{ secrets.JOHNNY_Q5_REPORTS_TOKEN}}'
+              name: 'JohnnyQ5'
+              email: 'support@qbic.zendesk.com'
+              actor: 'JohnnyQ5'
+              token: '${{ secrets.JOHNNY_Q5_REPORTS_TOKEN}}'
 
         - name: Sync project
-          run: qube --verbose sync . ${{ secrets.JOHNNY_Q5_REPORTS_TOKEN  }} JohnnyQ5
+          run: qube sync . ${{ secrets.JOHNNY_Q5_REPORTS_TOKEN  }} JohnnyQ5

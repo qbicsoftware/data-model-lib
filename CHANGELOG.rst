@@ -12,6 +12,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 * Add `hashValue` and `equals` to `package life.qbic.datamodel.dtos` classes
 * Add `EnumFactory`
 * Add `EnumFactory` implementation for `AffiliationCategory`, `AcademicTitle`
+* Support for QUBE template sync
 
 **Fixed**
 
@@ -19,7 +20,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Deprecated**
 
-1.0.0-SNAPSHOT (2020-09-29)
+
+1.0.0-SNAPSHOT (2020-10-02)
 ----------------------------------------------
 
 **Added**
