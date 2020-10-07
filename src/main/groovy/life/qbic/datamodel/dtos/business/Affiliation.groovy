@@ -114,5 +114,9 @@ final class Affiliation {
     this.city = builder.city
   }
 
+  @Override
+  String toString() {
+    return "${organisation} ${addressAddition}"
+  }
 
 }
