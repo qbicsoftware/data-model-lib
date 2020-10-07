@@ -119,6 +119,4 @@ final class Affiliation {
     return "${organisation} ${addressAddition}"
   }
 
-
-
 }
