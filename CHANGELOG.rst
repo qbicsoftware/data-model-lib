@@ -5,6 +5,7 @@ Changelog
 This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 1.12.0-SNAPSHOT (2020-09-29)
+----------------------------
 
 **Added**
 
@@ -12,6 +13,18 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 * Add `EnumFactory`
 * Add `EnumFactory` implementation for `AffiliationCategory`, `AcademicTitle`
 * Support for QUBE template sync
+
+**Fixed**
+
+**Dependencies**
+
+**Deprecated**
+
+
+1.12.0-SNAPSHOT (2020-10-07)
+----------------------------
+
+**Added**
 
 **Fixed**
 
