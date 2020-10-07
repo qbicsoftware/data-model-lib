@@ -56,6 +56,11 @@
 			<name>QBiC Releases</name>
 			<url>http://qbic-repo.qbic.uni-tuebingen.de:8081/repository/maven-releases</url>
 		</repository>
+    <!-- To find the latest everit json schema validator, which is not hosted on Maven central...  -->
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
 	</repositories>
   <dependencies>
     <dependency>
