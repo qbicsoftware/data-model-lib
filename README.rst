@@ -26,7 +26,7 @@ data-model-lib
     :alt: Dependabot Enabled
 
 
-data-model-lib. A qube based .
+Data models. A collection of QBiC's central data models and DTOs. 
 
 * Free software: MIT license
 * Documentation: https://data-model-lib.readthedocs.io.

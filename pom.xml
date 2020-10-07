@@ -13,7 +13,7 @@
 	<version>1.0.0-SNAPSHOT</version> <!-- <<QUBE_FORCE_BUMP>> -->
 	<name>data-model-lib</name>
 	<url>http://github.com/qbicsoftware/data-model-lib</url>
-	<description>data-model-lib. A qube based .</description>
+	<description>Data models. A collection of QBiC's central data models and DTOs. </description>
 	<packaging>jar</packaging>
 	<!-- we only need to tell maven where to find our parent pom and other QBiC dependencies -->
 	<repositories>
