@@ -143,6 +143,7 @@ Data Model Library,life.qbic.datamodel.datasets.datastructure.folders,DataFolder
 Data Model Library,life.qbic.datamodel.datasets.datastructure.folders,DataFolder._hashCode_closure2,13,46,0,0,0,1,1,2,1,2
 Data Model Library,life.qbic.datamodel.datasets.datastructure.folders,DataFolder._getChildren_closure1,2,11,0,0,0,1,0,2,0,2
 Data Model Library,life.qbic.datamodel.dtos.imaging.parameters.lightmicroscopy,LightMicroscopyParameters,128,0,0,0,12,0,1,0,1,0
+Data Model Library,life.qbic.example,Example,14,0,0,0,0,0,1,0,1,0
 Data Model Library,life.qbic.datamodel.services,ServiceUser,14,0,0,0,0,0,1,0,1,0
 Data Model Library,life.qbic.datamodel.printing,NewModelBarcodeBean,82,0,2,0,20,0,12,0,11,0
 Data Model Library,life.qbic.datamodel.printing,Printer.PrinterType,74,0,6,0,13,0,7,0,4,0
