@@ -1,6 +1,8 @@
 name: Sync qube project
 
-on: [push]
+on:
+  schedule:
+    - cron: '0 1 * * *'
 
 jobs:
   build:
@@ -17,7 +19,6 @@ jobs:
         - uses: actions/checkout@v2
           with:
               fetch-depth: 0
-              token: '${{ secrets.JOHNNY_Q5_REPORTS_TOKEN  }}'
           name: Check out source-code repository
 
         - uses: oleksiyrudenko/gha-git-credentials@v1

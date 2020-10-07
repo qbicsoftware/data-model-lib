@@ -1,3 +1,4 @@
+qube_version: '2.5.0 # <<QUBE_NO_BUMP>>'
 full_name: Sven Fillinger
 email: sven.fillinger@qbic.uni-tuebingen.de
 project_name: data-model-lib
@@ -8,7 +9,7 @@ domain: lib
 language: java
 project_slug: data-model-lib
 project_slug_no_hyphen: data_model_lib
-template_version: '1.0.3 # <<QUBE_NO_BUMP>>'
+template_version: '1.0.4 # <<QUBE_NO_BUMP>>'
 template_handle: lib-java
 github_username: qbicsoftware
 creator_github_username: sven1103
