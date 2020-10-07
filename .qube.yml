@@ -1,0 +1,19 @@
+qube_version: '2.5.0 # <<QUBE_NO_BUMP>>'
+full_name: Sven Fillinger
+email: sven.fillinger@qbic.uni-tuebingen.de
+project_name: data-model-lib
+project_short_description: data-model-lib. A qube based .
+version: 1.0.0-SNAPSHOT
+domain: lib
+language: java
+project_slug: data-model-lib
+project_slug_no_hyphen: data_model_lib
+template_version: '1.0.4 # <<QUBE_NO_BUMP>>'
+template_handle: lib-java
+github_username: sven1103
+creator_github_username: sven1103
+is_github_repo: false
+is_repo_private: false
+is_github_orga: false
+copyright_holder: QBiC
+license: MIT
