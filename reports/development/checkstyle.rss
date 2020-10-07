@@ -19,9 +19,9 @@ under the License.
 -->
 <rss version="0.91">
   <channel>
-    <title>Data Model Library - Checkstyle report</title>
+    <title>data-model-lib - Checkstyle report</title>
     <link>http://github.com/qbicsoftware/data-model-lib</link>
-    <description>Data Model Library - Checkstyle report</description>
+    <description>data-model-lib - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2020</copyright>
     <item>
