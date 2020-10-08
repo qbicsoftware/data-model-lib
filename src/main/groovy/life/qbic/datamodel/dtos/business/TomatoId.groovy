@@ -36,10 +36,10 @@ abstract class TomatoId {
      * @param version describes the version of the identifier
      */
     TomatoId(String type, String projectConservedPart, String randomPart, int version){
-        this.type = type
-        this.projectConserved = projectConservedPart
-        this.random = randomPart
-        this.version = version
+        this.type = Objects.requireNonNull(type, "type must not be null")
+        this.projectConserved = Objects.requireNonNull(projectConservedPart, "projectConservedPart must not be null")
+        this.random = Objects.requireNonNull(randomPart, "randomPart must not be null")
+        this.version = Objects.requireNonNull(version, "version must not be null")
     }
 
     /**
