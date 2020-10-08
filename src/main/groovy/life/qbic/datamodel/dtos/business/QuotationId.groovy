@@ -13,26 +13,10 @@ class QuotationId extends TomatoId{
      * A quotation is identified by the type Q
      */
     private static final String type = "Q"
-    /**
-     * Conserved part of a project
-     */
-    private String projectConserved
-    /**
-     * Random part of the identifier
-     */
-    private String random
-    /**
-     * Version of the identifier
-     */
-    private int version
 
 
     QuotationId(String projectConservedPart, String randomPart, int version) {
         super(type,projectConservedPart,randomPart,version)
-
-        this.projectConserved = projectConservedPart
-        this.random = randomPart
-        this.version = version
     }
 
     @Override
@@ -40,18 +24,4 @@ class QuotationId extends TomatoId{
         return type
     }
 
-    @Override
-    String getProjectConservedPart() {
-        return projectConserved
-    }
-
-    @Override
-    String getRandomPart() {
-        return random
-    }
-
-    @Override
-    int getVersion() {
-        return version
-    }
 }

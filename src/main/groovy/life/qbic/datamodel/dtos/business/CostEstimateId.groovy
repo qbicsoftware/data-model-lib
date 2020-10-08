@@ -14,26 +14,10 @@ class CostEstimateId extends TomatoId{
      * A cost estimate is identified by the type CE
      */
     private static final String type = "CE"
-    /**
-     * Conserved part of a project
-     */
-    private String projectConserved
-    /**
-     * Random part of the identifier
-     */
-    private String random
-    /**
-     * Version of the identifier
-     */
-    private int version
 
 
     CostEstimateId(String projectConservedPart, String randomPart, int version) {
         super(type,projectConservedPart,randomPart,version)
-
-        this.projectConserved = projectConservedPart
-        this.random = randomPart
-        this.version = version
     }
 
 
@@ -42,18 +26,4 @@ class CostEstimateId extends TomatoId{
         return type
     }
 
-    @Override
-    String getProjectConservedPart() {
-        return projectConserved
-    }
-
-    @Override
-    String getRandomPart() {
-        return randomPart
-    }
-
-    @Override
-    int getVersion() {
-        return version
-    }
 }

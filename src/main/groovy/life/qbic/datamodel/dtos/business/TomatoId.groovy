@@ -64,18 +64,24 @@ abstract class TomatoId {
      *
      * @return
      */
-    abstract String getProjectConservedPart()
+    String getProjectConservedPart() {
+        return projectConserved
+    }
 
     /**
      * Returns the random part of the identifier
      *
      * @return
      */
-    abstract String getRandomPart()
+    String getRandomPart() {
+        return randomPart
+    }
 
     /**
      * Returns the version of the identifier
      * @return
      */
-    abstract int getVersion()
+    int getVersion() {
+        return version
+    }
 }

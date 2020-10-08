@@ -1,5 +1,7 @@
 package life.qbic.datamodel.accounting
 
+import life.qbic.datamodel.dtos.business.CostEstimateId
+import life.qbic.datamodel.dtos.business.QuotationId
 import life.qbic.datamodel.persons.Person
 
 /**
@@ -11,7 +13,7 @@ import life.qbic.datamodel.persons.Person
  * @author: Tobias Koch
  *
  */
-class Offer {
+class Quotation {
 
     /**
      * Date on which the offer was lastly modified
@@ -56,7 +58,19 @@ class Offer {
     /**
      * The identifier for the offer which makes it distinguishable from other offers
      */
-    final String IDENTIFIER
+    final QuotationId identifier
+
+    Quotation(Date modificationDate, Date expirationDate, Person customer, Person projectManager, String projectTitle, String projectDescription, List<ProductItem> items, double totalPrice, QuotationId identifier) {
+        this.modificationDate = modificationDate
+        this.expirationDate = expirationDate
+        this.customer = customer
+        this.projectManager = projectManager
+        this.projectTitle = projectTitle
+        this.projectDescription = projectDescription
+        this.items = items
+        this.totalPrice = totalPrice
+        this.identifier = identifier
+    }
 
     /**
      * Adds a new item to the items list of the offer
