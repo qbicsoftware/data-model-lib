@@ -49,15 +49,9 @@ abstract class TomatoId {
      * @return a String containing the type, project conserved part, random part and the version
      */
     String getIdentifier(){
-        return getType() + "_" + getProjectConservedPart() + "_" + getRandomPart() + "_" + "v" + getVersion()
+        return type + "_" + projectConserved + "_" + randomPart + "_" + "v" + version
     }
 
-    /**
-     * Returns the type of the identifier
-     *
-     * @return
-     */
-    abstract String getType()
 
     /**
      * Returns the project conserved part of the identifier

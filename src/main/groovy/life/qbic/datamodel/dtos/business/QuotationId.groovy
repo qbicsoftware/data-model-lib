@@ -19,9 +19,4 @@ class QuotationId extends TomatoId{
         super(type,projectConservedPart,randomPart,version)
     }
 
-    @Override
-    String getType() {
-        return type
-    }
-
 }
