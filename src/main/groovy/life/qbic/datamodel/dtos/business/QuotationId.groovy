@@ -3,12 +3,12 @@ package life.qbic.datamodel.dtos.business
 /**
  * A DTO describing the quotation identifier
  *
- * A quotation identifier helps to distinguish between offers. It is a {@link TomatoId}
+ * A quotation identifier helps to distinguish between offers. It is a {@link OfferManagerId}
  *
  * @since: 1.12.0
  *
  */
-class QuotationId extends TomatoId{
+class QuotationId extends OfferManagerId{
     /**
      * A quotation is identified by the type Q
      */

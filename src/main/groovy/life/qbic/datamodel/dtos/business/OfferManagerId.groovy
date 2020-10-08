@@ -9,7 +9,7 @@ package life.qbic.datamodel.dtos.business
  * @since: 1.12.0
  *
  */
-abstract class TomatoId {
+abstract class OfferManagerId {
     /**
      * The type of the identifier is defined by the implementing identifier
      */
@@ -35,7 +35,7 @@ abstract class TomatoId {
      * @param randomPart describes the random part of the identifier
      * @param version describes the version of the identifier
      */
-    TomatoId(String type, String projectConservedPart, String randomPart, int version){
+    OfferManagerId(String type, String projectConservedPart, String randomPart, int version){
         this.type = type
         this.projectConserved = projectConservedPart
         this.random = randomPart
