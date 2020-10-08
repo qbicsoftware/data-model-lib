@@ -12,7 +12,7 @@ class QuotationId extends TomatoId{
     /**
      * A quotation is identified by the type Q
      */
-    private final String type = "Q"
+    private static final String type = "Q"
     /**
      * Conserved part of a project
      */

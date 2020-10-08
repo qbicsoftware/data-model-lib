@@ -13,7 +13,7 @@ class CostEstimateId extends TomatoId{
     /**
      * A cost estimate is identified by the type CE
      */
-    private final String type = "CE"
+    private static final String type = "CE"
     /**
      * Conserved part of a project
      */
