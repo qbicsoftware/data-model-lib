@@ -6,7 +6,7 @@ package life.qbic.datamodel.dtos.business
  * A cost estimate is a {@link TomatoId} and describes how the identifier of a cost estimate looks like. It helps to
  * differentiate between cost estimates
  *
- * @since: 1.11.0
+ * @since: 1.12.0
  *
  */
 class CostEstimateId extends TomatoId{

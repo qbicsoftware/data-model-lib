@@ -6,7 +6,7 @@ package life.qbic.datamodel.dtos.business
  * The TomatoId should be used as a general class describing identifiers like the {@link QuotationId} and the {@link CostEstimateId}.
  * It consists of a random part, a project conserved part and a version. Furthermore, the type is also part of the identifier.
  *
- * @since: 1.11.0
+ * @since: 1.12.0
  *
  */
 abstract class TomatoId {
