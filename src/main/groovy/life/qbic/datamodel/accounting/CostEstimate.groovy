@@ -1,5 +1,7 @@
 package life.qbic.datamodel.accounting
 
+import life.qbic.datamodel.dtos.business.CostEstimateId
+import life.qbic.datamodel.dtos.business.QuotationId
 import life.qbic.datamodel.persons.Person
 
 /**
@@ -48,9 +50,9 @@ class CostEstimate {
     /**
      * An identifier which makes the CostEstimate distinguishable from other CostEstimates
      */
-    final String identifier
+    final CostEstimateId identifier
 
-    CostEstimate(Date creationDate, Person customer, String projectTitle, String projectDescription, List<ProductItem> items, double totalPrice, String identifier) {
+    CostEstimate(Date creationDate, Person customer, String projectTitle, String projectDescription, List<ProductItem> items, double totalPrice, CostEstimateId identifier) {
         this.creationDate = creationDate
         this.customer = customer
         this.projectTitle = projectTitle
