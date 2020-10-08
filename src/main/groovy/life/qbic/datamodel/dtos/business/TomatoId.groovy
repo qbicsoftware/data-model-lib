@@ -52,7 +52,6 @@ abstract class TomatoId {
         return type + "_" + projectConserved + "_" + randomPart + "_" + "v" + version
     }
 
-
     /**
      * Returns the project conserved part of the identifier
      *
