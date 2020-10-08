@@ -77,4 +77,11 @@ abstract class TomatoId {
     int getVersion() {
         return version
     }
+    /**
+     * Returns the type of the identifier
+     * @return
+     */
+    int getType() {
+        return type
+    }
 }
