@@ -57,7 +57,9 @@ abstract class TomatoId {
      *
      * @return
      */
-    abstract String getType()
+   String getType() {
+       return type
+   }
 
     /**
      * Returns the project conserved part of the identifier
