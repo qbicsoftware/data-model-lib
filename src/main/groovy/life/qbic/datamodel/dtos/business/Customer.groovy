@@ -15,7 +15,7 @@ import life.qbic.datamodel.dtos.general.Person
 @EqualsAndHashCode
 final class Customer extends Person{
 
-  private String type = "customer"
+  private static final String TYPE = "customer"
 
   Customer(String firstName,
            String lastName,
