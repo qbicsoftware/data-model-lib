@@ -86,12 +86,7 @@ class Quotation {
      * @param item which should be removed from the current list of items
      */
     void removeItem(ProductItem item){
-        items.each {
-            if(it.getNAME() == item.getNAME() && it.getProduct() == item.getProduct()){
-                items.remove(it)
-            }
-        }
+        items.remove(item)
     }
 }
-
 
