@@ -1,5 +1,7 @@
 package life.qbic.datamodel.accounting
 
+import groovy.transform.EqualsAndHashCode
+
 /**
  * An item with associated costs and quantity
  *
@@ -9,6 +11,7 @@ package life.qbic.datamodel.accounting
  * @author: Tobias Koch
  *
  */
+@EqualsAndHashCode
 class ProductItem {
 
     /**
@@ -51,6 +54,5 @@ class ProductItem {
     double computeTotalCosts(){
         return product.unitPrice * quantity
     }
-
 }
 
