@@ -45,11 +45,11 @@ class ProductItem {
     }
 
     /**
-     * Sums up the cost of the item based on its quantity and the price and unit defined in the product
+     * Calculates the cost of the item based on its quantity and the price and unit defined in the product
      * @return
      */
     double computeTotalCosts(){
-        //todo implement me
+        return product.unitPrice * quantity
     }
 
 }

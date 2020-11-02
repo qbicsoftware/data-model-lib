@@ -1,8 +1,7 @@
 package life.qbic.datamodel.accounting
 
-import life.qbic.datamodel.dtos.business.CostEstimateId
 import life.qbic.datamodel.dtos.business.QuotationId
-import life.qbic.datamodel.persons.Person
+import life.qbic.datamodel.dtos.general.Person
 
 /**
  * An offer for a project
@@ -78,7 +77,7 @@ class Quotation {
      * @param item which should be added to current list of items
      */
     public void addItem(ProductItem item){
-        //todo implement me
+        items.add(item)
     }
 
     /**
@@ -87,7 +86,11 @@ class Quotation {
      * @param item which should be removed from the current list of items
      */
     void removeItem(ProductItem item){
-        //todo implement me
+        items.each {
+            if(it.getNAME() == item.getNAME() && it.getProduct() == item.getProduct()){
+                items.remove(it)
+            }
+        }
     }
 }
 
