@@ -17,22 +17,27 @@ import life.qbic.datamodel.dtos.business.Affiliation
 final class Person {
 
   /**
-   * The customer's first name
+   * The type of person e.g. customer, project manager
+   */
+  final String personType
+
+  /**
+   * The person's first name
    */
   final String firstName
 
   /**
-   * The customer's last name
+   * The person's last name
    */
   final String lastName
 
   /**
-   * The customer's title
+   * The person's title
    */
   final AcademicTitle title
 
   /**
-   * The customer's email address
+   * The person's email address
    */
   final String eMailAddress
 
@@ -41,11 +46,13 @@ final class Person {
    */
   final List<Affiliation> affiliations
 
-  Person(String firstName,
-           String lastName,
-           AcademicTitle title,
-           String eMailAddress,
-           List<Affiliation> affiliations) {
+  Person(String personType,
+         String firstName,
+         String lastName,
+         AcademicTitle title,
+         String eMailAddress,
+         List<Affiliation> affiliations) {
+    this.personType = Objects.requireNonNull(personType)
     this.firstName = Objects.requireNonNull(firstName)
     this.lastName = Objects.requireNonNull(lastName)
     this.title = Objects.requireNonNull(title)
