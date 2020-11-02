@@ -14,7 +14,7 @@ import life.qbic.datamodel.dtos.business.Affiliation
  * @since 1.11.0
  */
 @EqualsAndHashCode
-final class Person {
+abstract class Person {
 
   /**
    * The type of person e.g. customer, project manager
