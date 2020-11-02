@@ -22,7 +22,7 @@ final class Customer extends Person{
            AcademicTitle title,
            String eMailAddress,
            List<Affiliation> affiliations) {
-    super(type,firstName,lastName,title,eMailAddress,affiliations)
+    super(TYPE,firstName,lastName,title,eMailAddress,affiliations)
   }
 
 }
