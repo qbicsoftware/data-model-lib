@@ -1,8 +1,7 @@
 package life.qbic.datamodel.accounting
 
 import life.qbic.datamodel.dtos.business.CostEstimateId
-import life.qbic.datamodel.dtos.business.QuotationId
-import life.qbic.datamodel.persons.Person
+import life.qbic.datamodel.dtos.general.Person
 
 /**
  * A cost estimate for a project
@@ -60,5 +59,23 @@ class CostEstimate {
         this.items = items
         this.totalPrice = totalPrice
         this.identifier = identifier
+    }
+
+    /**
+     * Adds a new item to the items list of the offer
+     *
+     * @param item which should be added to current list of items
+     */
+    public void addItem(ProductItem item){
+        items.add(item)
+    }
+
+    /**
+     * Removes an item from the list of items of the offer
+     *
+     * @param item which should be removed from the current list of items
+     */
+    void removeItem(ProductItem item){
+         items.remove(item)
     }
 }
