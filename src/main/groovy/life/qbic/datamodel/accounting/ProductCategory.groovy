@@ -12,10 +12,10 @@ package life.qbic.datamodel.accounting
 enum ProductCategory {
 
     SEQUENCING("Sequencing"),
-    PROJECTMANAGEMENT("Project Management"),
-    PRIMARYBIOINFO("Primary Bioinformatics"),
-    SECONDARYBIOINFO("Secondary Bioinformatics"),
-    DATASTORAGE("Data Storage")
+    PROJECT_MANAGEMENT("Project Management"),
+    PRIMARY_BIOINFO("Primary Bioinformatics"),
+    SECONDARY_BIOINFO("Secondary Bioinformatics"),
+    DATA_STORAGE("Data Storage")
 
     /**
      * Value describing the enum type with a string

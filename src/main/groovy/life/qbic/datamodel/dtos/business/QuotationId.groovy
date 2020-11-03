@@ -12,11 +12,11 @@ class QuotationId extends TomatoId{
     /**
      * A quotation is identified by the type Q
      */
-    private static final String type = "Q"
+    private static final String TYPE = "Q"
 
 
     QuotationId(String projectConservedPart, String randomPart, int version) {
-        super(type,projectConservedPart,randomPart,version)
+        super(TYPE,projectConservedPart,randomPart,version)
     }
 
 }

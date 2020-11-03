@@ -13,11 +13,11 @@ class CostEstimateId extends TomatoId{
     /**
      * A cost estimate is identified by the type CE
      */
-    private static final String type = "CE"
+    private static final String TYPE = "CE"
 
 
     CostEstimateId(String projectConservedPart, String randomPart, int version) {
-        super(type,projectConservedPart,randomPart,version)
+        super(TYPE,projectConservedPart,randomPart,version)
     }
 
 }
