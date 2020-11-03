@@ -144,20 +144,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.persons.Person.java">life/qbic/datamodel/persons/Person.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  35
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.experiments.OpenbisExperiment.java">life/qbic/datamodel/experiments/OpenbisExperiment.java</a>
                 </td>
                 <td>
@@ -172,13 +158,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.samples.ISampleBean.java">life/qbic/datamodel/samples/ISampleBean.java</a>
+                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.persons.Person.java">life/qbic/datamodel/persons/Person.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  3
+                  35
                 </td>
                 <td>
                   0
@@ -193,6 +179,20 @@ under the License.
                 </td>
                 <td>
                   1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.samples.ISampleBean.java">life/qbic/datamodel/samples/ISampleBean.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
                 </td>
                 <td>
                   0
@@ -298,13 +298,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.persons.CollaboratorWithResponsibility.java">life/qbic/datamodel/persons/CollaboratorWithResponsibility.java</a>
+                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.experiments.ExperimentType.java">life/qbic/datamodel/experiments/ExperimentType.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  2
+                  3
                 </td>
                 <td>
                   0
@@ -326,13 +326,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.experiments.ExperimentType.java">life/qbic/datamodel/experiments/ExperimentType.java</a>
+                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.persons.CollaboratorWithResponsibility.java">life/qbic/datamodel/persons/CollaboratorWithResponsibility.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  3
+                  2
                 </td>
                 <td>
                   0
@@ -424,13 +424,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.samples.AOpenbisSample.java">life/qbic/datamodel/samples/AOpenbisSample.java</a>
+                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.sorters.ImportantStringComparator.java">life/qbic/datamodel/sorters/ImportantStringComparator.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  42
+                  22
                 </td>
                 <td>
                   0
@@ -452,13 +452,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.sorters.ImportantStringComparator.java">life/qbic/datamodel/sorters/ImportantStringComparator.java</a>
+                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.samples.AOpenbisSample.java">life/qbic/datamodel/samples/AOpenbisSample.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  22
+                  42
                 </td>
                 <td>
                   0
@@ -480,20 +480,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.printing.NewModelBarcodeBean.java">life/qbic/datamodel/printing/NewModelBarcodeBean.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  19
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.experiments.AExperiment.java">life/qbic/datamodel/experiments/AExperiment.java</a>
                 </td>
                 <td>
@@ -508,27 +494,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.identifiers.TooManySamplesException.java">life/qbic/datamodel/identifiers/TooManySamplesException.java</a>
+                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.printing.NewModelBarcodeBean.java">life/qbic/datamodel/printing/NewModelBarcodeBean.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.experiments.TestExperiment.java">life/qbic/datamodel/experiments/TestExperiment.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
+                  19
                 </td>
                 <td>
                   0
@@ -550,13 +522,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.samples.OpenbisTestSample.java">life/qbic/datamodel/samples/OpenbisTestSample.java</a>
+                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.experiments.TestExperiment.java">life/qbic/datamodel/experiments/TestExperiment.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  9
+                  2
                 </td>
                 <td>
                   0
@@ -564,7 +536,21 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.printing.Printer.java">life/qbic/datamodel/printing/Printer.java</a>
+                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.identifiers.TooManySamplesException.java">life/qbic/datamodel/identifiers/TooManySamplesException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.samples.OpenbisTestSample.java">life/qbic/datamodel/samples/OpenbisTestSample.java</a>
                 </td>
                 <td>
                   0
@@ -585,6 +571,20 @@ under the License.
                 </td>
                 <td>
                   18
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.printing.Printer.java">life/qbic/datamodel/printing/Printer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  9
                 </td>
                 <td>
                   0
@@ -690,20 +690,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.projects.ProjectInfo.java">life/qbic/datamodel/projects/ProjectInfo.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.persons.PersonType.java">life/qbic/datamodel/persons/PersonType.java</a>
                 </td>
                 <td>
@@ -711,6 +697,20 @@ under the License.
                 </td>
                 <td>
                   0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://github.com/qbicsoftware/data-model-lib/checkstyle.html#life.qbic.datamodel.projects.ProjectInfo.java">life/qbic/datamodel/projects/ProjectInfo.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
                 </td>
                 <td>
                   0
