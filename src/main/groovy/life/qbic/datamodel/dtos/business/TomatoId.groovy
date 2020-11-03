@@ -81,7 +81,7 @@ abstract class TomatoId {
      * Returns the type of the identifier
      * @return
      */
-    int getType() {
+    String getType() {
         return type
     }
 }
