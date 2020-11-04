@@ -1,4 +1,4 @@
-qube_version: '2.5.1 # <<QUBE_NO_BUMP>>'
+qube_version: '2.6.0 # <<QUBE_NO_BUMP>>'
 full_name: Sven Fillinger
 email: sven.fillinger@qbic.uni-tuebingen.de
 project_name: data-model-lib
