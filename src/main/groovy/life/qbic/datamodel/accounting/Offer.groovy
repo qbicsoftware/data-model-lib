@@ -71,6 +71,24 @@ class Offer {
         this.identifier = identifier
     }
 
+    Offer(Date modificationDate, Date expirationDate, Person customer, Person projectManager, String projectTitle, String projectDescription, List<ProductItem> items){
+        this.modificationDate = modificationDate
+        this.expirationDate = expirationDate
+        this.customer = customer
+        this.projectManager = projectManager
+        this.projectTitle = projectTitle
+        this.projectDescription = projectDescription
+        this.items = items
+
+    }
+    Offer(Person customer, Person projectManager, String projectTitle, String projectDescription, List<ProductItem> items){
+        this.customer = customer
+        this.projectManager = projectManager
+        this.projectTitle = projectTitle
+        this.projectDescription = projectDescription
+        this.items = items
+    }
+
     /**
      * Adds a new item to the items list of the offer
      *
