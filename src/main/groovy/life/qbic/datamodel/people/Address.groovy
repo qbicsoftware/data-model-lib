@@ -4,25 +4,25 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 class Address  {
 
-  private String affiliation
-  private String street
-  private Integer zipCode
-  private String country
+  private String affiliation = ""
+  private String street = ""
+  private Integer zipCode = 0
+  private String country = ""
 
   /**
    * Get affiliation
    * @return affiliation
    **/
   @JsonProperty("affiliation")
-  public String getAffiliation() {
+  String getAffiliation() {
     return affiliation;
   }
 
-  public void setAffiliation(String affiliation) {
+  void setAffiliation(String affiliation) {
     this.affiliation = affiliation;
   }
 
-  public Address affiliation(String affiliation) {
+  Address affiliation(String affiliation) {
     this.affiliation = affiliation;
     return this;
   }
@@ -32,51 +32,33 @@ class Address  {
    * @return street
    **/
   @JsonProperty("street")
-  public String getStreet() {
+  String getStreet() {
     return street;
   }
 
-  public void setStreet(String street) {
+  void setStreet(String street) {
     this.street = street;
   }
 
-  public Address street(String street) {
+  Address street(String street) {
     this.street = street;
     return this;
   }
-  //
-  // /**
-  //   * Get number
-  //   * @return number
-  //  **/
-  //  @JsonProperty("number")
-  //  public Integer getNumber() {
-  //    return number;
-  //  }
-  //
-  //  public void setNumber(Integer number) {
-  //    this.number = number;
-  //  }
-  //
-  //  public Address number(Integer number) {
-  //    this.number = number;
-  //    return this;
-  //  }
 
   /**
    * Get zipCode
    * @return zipCode
    **/
   @JsonProperty("zip_code")
-  public Integer getZipCode() {
+  Integer getZipCode() {
     return zipCode;
   }
 
-  public void setZipCode(Integer zipCode) {
+  void setZipCode(Integer zipCode) {
     this.zipCode = zipCode;
   }
 
-  public Address zipCode(Integer zipCode) {
+  Address zipCode(Integer zipCode) {
     this.zipCode = zipCode;
     return this;
   }
@@ -86,33 +68,31 @@ class Address  {
    * @return country
    **/
   @JsonProperty("country")
-  public String getCountry() {
+  String getCountry() {
     return country;
   }
 
-  public void setCountry(String country) {
+  void setCountry(String country) {
     this.country = country;
   }
 
-  public Address country(String country) {
+  Address country(String country) {
     this.country = country;
     return this;
   }
 
   @Override
-  public boolean equals(Object a) {
+  boolean equals(Object a) {
     Address ad = (Address) a
     return ad.affiliation.equals(this.affiliation) && ad.country.equals(this.country) && ad.street.equals(this.street) && ad.zipCode == this.zipCode
   }
 
   @Override
-  public String toString() {
+  String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Address {\n");
-
     sb.append("    affiliation: ").append(toIndentedString(affiliation)).append("\n");
     sb.append("    street: ").append(toIndentedString(street)).append("\n");
-//    sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    zipCode: ").append(toIndentedString(zipCode)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("}");
