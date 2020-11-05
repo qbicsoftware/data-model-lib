@@ -4,37 +4,43 @@ import life.qbic.datamodel.accounting.Offer
 import life.qbic.datamodel.dtos.general.Person
 import spock.lang.Specification
 
-class OfferSpec extends Specification{
+class OfferSpec extends Specification {
 
-    AcademicTitleFactory academicTitleFactory = new AcademicTitleFactory()
-    Person person = new Person("", "", "", academicTitleFactory.getForString("None"), "", []) {}
-    Date date = new Date(1000, 10, 10)
 
-    def "Check offer generation without providing modificationDate, expirationDate, totalPrice and identifier"() {
-        when:
-        def offerMinimal = new Offer(person, person, "", "", [])
+    def "Fluent API shall create an Offer object"() {
 
-        then:
-        offerMinimal.totalPrice == 0
-        offerMinimal.expirationDate == null
-        offerMinimal.modificationDate == null
-    }
-
-    def "Check offer generation without providing a totalPrice and identifier"() {
-        when:
-        def offerReduced = new Offer(date, date, person, person, "", "", [])
-        then:
-        offerReduced.totalPrice == 0
-        offerReduced.identifier == null
-    }
-
-    def "Check offer generation with all properties provided "() {
-        when:
+        given:
+        Date date = new Date(1000, 10, 10)
+        AcademicTitleFactory academicTitleFactory = new AcademicTitleFactory()
+        Customer customer = new Customer("", "", academicTitleFactory.getForString("None"), "", [])
+        Person projectManager = new Person("Project Manager", "Malory", "Archer", academicTitleFactory.getForString("None"), "", []) {
+        }
+        Double price = 1000
         OfferId offerId = new OfferId("ab", "cd", 1)
-        def offerFull = new Offer(date, date, person, person, "", "", [], 1, offerId)
+
+        when:
+        Offer testOffer =
+                new Offer.Builder(date,
+                        date,
+                        customer,
+                        projectManager,
+                        "Cartoon Series",
+                        "Archer",
+                        [],
+                        price,
+                        offerId)
+                        .build()
+
         then:
-        offerFull.totalPrice == 1
-        offerFull.identifier != null
+        assert testOffer.getModificationDate().equals(date)
+        assert testOffer.getExpirationDate().equals(date)
+        assert testOffer.getCustomer().equals(customer)
+        assert testOffer.getProjectManager().equals(projectManager)
+        assert testOffer.getProjectDescription().equals("Cartoon Series")
+        assert testOffer.getProjectTitle().equals("Archer")
+        assert testOffer.getItems().equals([])
+        assert testOffer.getTotalPrice().equals(price)
+        assert testOffer.getIdentifier().equals(offerId)
     }
 
 }
