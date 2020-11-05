@@ -1,6 +1,6 @@
 package life.qbic.datamodel.dtos.business
 
-import life.qbic.datamodel.accounting.Offer
+
 import life.qbic.datamodel.dtos.general.Person
 import spock.lang.Specification
 
