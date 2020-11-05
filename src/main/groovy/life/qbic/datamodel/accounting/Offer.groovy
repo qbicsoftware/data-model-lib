@@ -134,10 +134,4 @@ class Offer {
         items.remove(item)
     }
 
-    //ToDo I don't think this method is needed.
-    @Override
-    String toString() {
-        return "${modificationDate.toString()} ${expirationDate.toString()}${customer.toString()} ${projectManager.toString()} ${projectDescription} ${projectTitle} ${items.toString()} ${totalPrice.toString()} ${identifier.toString()}"
-    }
 }
-
