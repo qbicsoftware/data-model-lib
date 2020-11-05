@@ -12,6 +12,7 @@ import life.qbic.datamodel.dtos.general.Person
  * @author: Tobias Koch
  *
  */
+@Deprecated
 class Offer {
 
     /**
@@ -89,4 +90,3 @@ class Offer {
         items.remove(item)
     }
 }
-
