@@ -100,7 +100,7 @@ class Offer {
      * Returns an unmodifiable list from the given items
      * @return
      */
-    getItems() {
+    List<ProductItem> getItems() {
         return Collections.unmodifiableList(items)
     }
 }

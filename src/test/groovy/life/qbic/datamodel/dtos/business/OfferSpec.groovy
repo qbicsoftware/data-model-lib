@@ -1,6 +1,7 @@
 package life.qbic.datamodel.dtos.business
 
-
+import life.qbic.datamodel.accounting.Product
+import life.qbic.datamodel.accounting.ProductItem
 import life.qbic.datamodel.dtos.general.Person
 import spock.lang.Specification
 
@@ -32,15 +33,15 @@ class OfferSpec extends Specification {
                         .build()
 
         then:
-        assert testOffer.getModificationDate().equals(date)
-        assert testOffer.getExpirationDate().equals(date)
-        assert testOffer.getCustomer().equals(customer)
-        assert testOffer.getProjectManager().equals(projectManager)
-        assert testOffer.getProjectDescription().equals("Cartoon Series")
-        assert testOffer.getProjectTitle().equals("Archer")
-        assert testOffer.getItems().equals([])
-        assert testOffer.getTotalPrice().equals(price)
-        assert testOffer.getIdentifier().equals(offerId)
+        testOffer.getModificationDate() == date
+        testOffer.getExpirationDate() == date
+        testOffer.getCustomer() == customer
+        testOffer.getProjectManager() == projectManager
+        testOffer.getProjectDescription() == "Cartoon Series"
+        testOffer.getProjectTitle() == "Archer"
+        testOffer.getItems() == []
+        testOffer.getTotalPrice() == price
+        testOffer.getIdentifier() == offerId
     }
 
 }
