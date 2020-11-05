@@ -5,11 +5,9 @@ import life.qbic.datamodel.accounting.ProductItem
 import life.qbic.datamodel.dtos.general.Person
 
 /**
- * An offer for a project
+ * An offer DTO for a project
  *
- * An offer describes a legally binding service proposal with associated costs.
- *
- * @since: 1.9.0*
+ * @since: 1.12.0
  *
  */
 @EqualsAndHashCode
@@ -19,42 +17,34 @@ class Offer {
      * Date on which the offer was lastly modified
      */
     final Date modificationDate
-
     /**
      * The date on which the offer expires
      */
     final Date expirationDate
-
     /**
      * The customer for which this offer was created
      */
     final Customer customer
-
     /**
      * The QBiC project manager who was assigned to the project
      */
     final Person projectManager
-
     /**
      * The title of the project
      */
     final String projectTitle
-
     /**
      * A short description of the project
      */
     final String projectDescription
-
     /**
      * A list of items for which the customer will be charged
      */
     final List<ProductItem> items
-
     /**
      * The total price of the offer (the price of all items)
      */
     final double totalPrice
-
     /**
      * The identifier for the offer which makes it distinguishable from other offers
      */
@@ -63,21 +53,13 @@ class Offer {
     static class Builder {
 
         Date modificationDate
-
         Date expirationDate
-
         Customer customer
-
         Person projectManager
-
         String projectTitle
-
         String projectDescription
-
         List<ProductItem> items
-
         double totalPrice
-
         OfferId identifier
 
         Builder(Date modificationDate, Date expirationDate, Customer customer, Person projectManager, String projectDescription, String projectTitle, List<ProductItem> items, double totalPrice, OfferId identifier) {
@@ -87,7 +69,7 @@ class Offer {
             this.projectManager = projectManager
             this.projectDescription = projectDescription
             this.projectTitle = projectTitle
-            this.items = items
+            this.items = new ArrayList<ProductItem>(Collections.unmodifiableList(items))
             this.totalPrice = totalPrice
             this.identifier = identifier
         }
@@ -112,6 +94,14 @@ class Offer {
         this.items = builder.items
         this.totalPrice = builder.totalPrice
         this.identifier = builder.identifier
+    }
+
+    /**
+     * Returns an unmodifiable list from the given items
+     * @return
+     */
+    getItems() {
+        return Collections.unmodifiableList(items)
     }
 }
 
