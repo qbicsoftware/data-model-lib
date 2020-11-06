@@ -3,6 +3,7 @@ package life.qbic.datamodel.accounting
 import life.qbic.datamodel.dtos.business.Affiliation
 import life.qbic.datamodel.dtos.business.CostEstimateId
 import life.qbic.datamodel.dtos.business.Customer
+import life.qbic.datamodel.dtos.general.Person
 
 /**
  * A cost estimate for a project
@@ -20,7 +21,7 @@ class CostEstimate {
     /**
      * The date on which the cost estimate was created
      */
-    final Date creationDate
+    final Date modificationDate
 
     /**
      * The date on which the cost estimate expires
@@ -35,7 +36,7 @@ class CostEstimate {
     /**
      * The QBiC project manager who was assigned to the project
      */
-    final ProjectManager projectManager
+    final Person projectManager
 
     /**
      * The title of the project
@@ -67,16 +68,53 @@ class CostEstimate {
      */
     final Affiliation selectedCustomerAffiliation
 
-    CostEstimate(Date creationDate, Customer customer, ProjectManager projectManager, String projectTitle, String projectDescription, List<ProductItem> items, double totalPrice, CostEstimateId identifier, Affiliation selectedCustomerAffiliation) {
-        this.creationDate = creationDate
-        this.customer = customer
-        this.projectManager = projectManager
-        this.projectTitle = projectTitle
-        this.projectDescription = projectDescription
-        this.items = items
-        this.totalPrice = totalPrice
-        this.identifier = identifier
-        this.selectedCustomerAffiliation = selectedCustomerAffiliation
+    static class Builder {
+
+        Date modificationDate
+        Date expirationDate
+        Customer customer
+        Person projectManager
+        String projectTitle
+        String projectDescription
+        List<ProductItem> items
+        double totalPrice
+        CostEstimateId identifier
+        Affiliation selectedCustomerAffiliation
+
+        Builder(Date modificationDate, Date expirationDate, Customer customer, Person projectManager, String projectDescription, String projectTitle, List<ProductItem> items, double totalPrice, CostEstimateId identifier, Affiliation selectedCustomerAffiliation) {
+            this.modificationDate = modificationDate
+            this.expirationDate = expirationDate
+            this.customer = customer
+            this.projectManager = projectManager
+            this.projectDescription = projectDescription
+            this.projectTitle = projectTitle
+            this.items = new ArrayList<ProductItem>(Collections.unmodifiableList(items))
+            this.totalPrice = totalPrice
+            this.identifier = identifier
+            this.selectedCustomerAffiliation = selectedCustomerAffiliation
+        }
+        //ToDo Determine if any properties should be able to be modified later or can't be set to Null
+        Builder identifier(CostEstimateId identifier) {
+            this.identifier = identifier
+            return this
+        }
+
+        CostEstimate build() {
+            return new CostEstimate(this)
+        }
+    }
+
+    private CostEstimate(Builder builder) {
+        this.modificationDate = builder.modificationDate
+        this.expirationDate = builder.expirationDate
+        this.customer = builder.customer
+        this.projectManager = builder.projectManager
+        this.projectDescription = builder.projectDescription
+        this.projectTitle = builder.projectTitle
+        this.items = builder.items
+        this.totalPrice = builder.totalPrice
+        this.identifier = builder.identifier
+        this.selectedCustomerAffiliation = builder.selectedCustomerAffiliation
     }
 
     /**

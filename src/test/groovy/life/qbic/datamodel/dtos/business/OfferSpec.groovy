@@ -1,12 +1,15 @@
 package life.qbic.datamodel.dtos.business
 
-import life.qbic.datamodel.accounting.Product
-import life.qbic.datamodel.accounting.ProductItem
 import life.qbic.datamodel.dtos.general.Person
 import spock.lang.Specification
 
-class OfferSpec extends Specification {
+/**
+ * Simple test class to assert the correct behaviour of the Offer Builder.
+ *
+ * @since 1.12.0
+ */
 
+class OfferSpec extends Specification {
 
     def "Fluent API shall create an Offer object"() {
 
