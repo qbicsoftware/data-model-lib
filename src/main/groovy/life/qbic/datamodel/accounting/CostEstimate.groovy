@@ -1,7 +1,8 @@
 package life.qbic.datamodel.accounting
 
+import life.qbic.datamodel.dtos.business.Affiliation
 import life.qbic.datamodel.dtos.business.CostEstimateId
-import life.qbic.datamodel.dtos.general.Person
+import life.qbic.datamodel.dtos.business.Customer
 
 /**
  * A cost estimate for a project
@@ -22,9 +23,19 @@ class CostEstimate {
     final Date creationDate
 
     /**
+     * The date on which the cost estimate expires
+     */
+    final Date expirationDate
+
+    /**
      * The customer for which the estimate is created
      */
-    final Person customer
+    final Customer customer
+
+    /**
+     * The QBiC project manager who was assigned to the project
+     */
+    final ProjectManager projectManager
 
     /**
      * The title of the project
@@ -51,14 +62,21 @@ class CostEstimate {
      */
     final CostEstimateId identifier
 
-    CostEstimate(Date creationDate, Person customer, String projectTitle, String projectDescription, List<ProductItem> items, double totalPrice, CostEstimateId identifier) {
+    /**
+     * An identifier which makes the CostEstimate distinguishable from other CostEstimates
+     */
+    final Affiliation selectedCustomerAffiliation
+
+    CostEstimate(Date creationDate, Customer customer, ProjectManager projectManager, String projectTitle, String projectDescription, List<ProductItem> items, double totalPrice, CostEstimateId identifier, Affiliation selectedCustomerAffiliation) {
         this.creationDate = creationDate
         this.customer = customer
+        this.projectManager = projectManager
         this.projectTitle = projectTitle
         this.projectDescription = projectDescription
         this.items = items
         this.totalPrice = totalPrice
         this.identifier = identifier
+        this.selectedCustomerAffiliation = selectedCustomerAffiliation
     }
 
     /**
