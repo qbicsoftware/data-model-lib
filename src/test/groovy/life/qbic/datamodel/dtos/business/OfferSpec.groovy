@@ -18,6 +18,11 @@ class OfferSpec extends Specification {
         }
         Double price = 1000
         OfferId offerId = new OfferId("ab", "cd", 1)
+        Affiliation selectedAffiliation = new Affiliation.Builder("Universität Tübingen",
+                                        "Auf der Morgenstelle 10",
+                                        "72076",
+                                        "Tübingen")
+                                        .build()
 
         when:
         Offer testOffer =
@@ -29,7 +34,8 @@ class OfferSpec extends Specification {
                         "Archer",
                         [],
                         price,
-                        offerId)
+                        offerId,
+                        selectedAffiliation)
                         .build()
 
         then:
@@ -42,6 +48,7 @@ class OfferSpec extends Specification {
         testOffer.getItems() == []
         testOffer.getTotalPrice() == price
         testOffer.getIdentifier() == offerId
+        testOffer.getSelectedCustomerAffiliation() == selectedAffiliation
     }
 
 }
