@@ -3,7 +3,7 @@ package life.qbic.datamodel.accounting
 import life.qbic.datamodel.dtos.business.Affiliation
 import life.qbic.datamodel.dtos.business.CostEstimateId
 import life.qbic.datamodel.dtos.business.Customer
-import life.qbic.datamodel.dtos.general.Person
+import life.qbic.datamodel.dtos.business.ProjectManager
 
 /**
  * A cost estimate for a project
@@ -36,7 +36,7 @@ class CostEstimate {
     /**
      * The QBiC project manager who was assigned to the project
      */
-    final Person projectManager
+    final ProjectManager projectManager
 
     /**
      * The title of the project
@@ -73,7 +73,7 @@ class CostEstimate {
         Date modificationDate
         Date expirationDate
         Customer customer
-        Person projectManager
+        ProjectManager projectManager
         String projectTitle
         String projectDescription
         List<ProductItem> items
@@ -81,7 +81,7 @@ class CostEstimate {
         CostEstimateId identifier
         Affiliation selectedCustomerAffiliation
 
-        Builder(Date modificationDate, Date expirationDate, Customer customer, Person projectManager, String projectDescription, String projectTitle, List<ProductItem> items, double totalPrice, CostEstimateId identifier, Affiliation selectedCustomerAffiliation) {
+        Builder(Date modificationDate, Date expirationDate, Customer customer, ProjectManager projectManager, String projectDescription, String projectTitle, List<ProductItem> items, double totalPrice, CostEstimateId identifier, Affiliation selectedCustomerAffiliation) {
             this.modificationDate = modificationDate
             this.expirationDate = expirationDate
             this.customer = customer

@@ -1,7 +1,6 @@
 package life.qbic.datamodel.dtos.business
 
 import life.qbic.datamodel.accounting.CostEstimate
-import life.qbic.datamodel.dtos.general.Person
 import spock.lang.Specification
 
 /**
@@ -18,7 +17,7 @@ class CostEstimateSpec extends Specification{
             Date date = new Date(1000, 10, 10)
             AcademicTitleFactory academicTitleFactory = new AcademicTitleFactory()
             Customer customer = new Customer("", "", academicTitleFactory.getForString("None"), "", [])
-            Person projectManager = new Person("Project Manager", "Malory", "Archer", academicTitleFactory.getForString("None"), "", []) {
+            ProjectManager projectManager = new ProjectManager("Malory", "Archer", academicTitleFactory.getForString("None"), "", []) {
             }
             Double price = 1000
             CostEstimateId costEstimateId= new CostEstimateId("ab", "cd", 1)

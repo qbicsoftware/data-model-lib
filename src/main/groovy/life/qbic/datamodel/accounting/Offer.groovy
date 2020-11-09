@@ -1,7 +1,8 @@
 package life.qbic.datamodel.accounting
 
+import life.qbic.datamodel.dtos.business.Customer
 import life.qbic.datamodel.dtos.business.OfferId
-import life.qbic.datamodel.dtos.general.Person
+import life.qbic.datamodel.dtos.business.ProjectManager
 
 /**
  * An offer for a project
@@ -28,12 +29,12 @@ class Offer {
     /**
      * The customer for which this offer was created
      */
-    final Person customer
+    final Customer customer
 
     /**
      * The QBiC project manager who was assigned to the project
      */
-    final Person projectManager
+    final ProjectManager projectManager
 
     /**
      * The title of the project
@@ -60,7 +61,7 @@ class Offer {
      */
     final OfferId identifier
 
-    Offer(Date modificationDate, Date expirationDate, Person customer, Person projectManager, String projectTitle, String projectDescription, List<ProductItem> items, double totalPrice, OfferId identifier) {
+    Offer(Date modificationDate, Date expirationDate, Customer customer, ProjectManager projectManager, String projectTitle, String projectDescription, List<ProductItem> items, double totalPrice, OfferId identifier) {
         this.modificationDate = modificationDate
         this.expirationDate = expirationDate
         this.customer = customer
