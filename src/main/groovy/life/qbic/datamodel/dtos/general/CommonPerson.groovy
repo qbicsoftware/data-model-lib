@@ -27,7 +27,7 @@ class CommonPerson extends Person {
     }
   }
 
-  CommonPerson(Builder builder) {
+  CommonPerson(Builder<?> builder) {
     super(builder)
   }
 }
