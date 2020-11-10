@@ -15,14 +15,12 @@ import life.qbic.datamodel.dtos.general.Person
 @EqualsAndHashCode
 final class Customer extends Person{
 
-  private static final String TYPE = "customer"
-
   Customer(String firstName,
            String lastName,
            AcademicTitle title,
            String eMailAddress,
            List<Affiliation> affiliations) {
-    super(TYPE,firstName,lastName,title,eMailAddress,affiliations)
+    super(firstName,lastName,title,eMailAddress,affiliations)
   }
 
 }
