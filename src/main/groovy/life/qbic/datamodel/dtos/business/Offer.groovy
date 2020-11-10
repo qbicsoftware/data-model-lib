@@ -49,6 +49,10 @@ class Offer {
      * The identifier for the offer which makes it distinguishable from other offers
      */
     final OfferId identifier
+    /**
+     * The affiliation of the customer selected for this offer
+     */
+    final Affiliation selectedCustomerAffiliation
 
     static class Builder {
 
@@ -61,8 +65,9 @@ class Offer {
         List<ProductItem> items
         double totalPrice
         OfferId identifier
+        Affiliation selectedCustomerAffiliation
 
-        Builder(Date modificationDate, Date expirationDate, Customer customer, Person projectManager, String projectDescription, String projectTitle, List<ProductItem> items, double totalPrice, OfferId identifier) {
+        Builder(Date modificationDate, Date expirationDate, Customer customer, Person projectManager, String projectDescription, String projectTitle, List<ProductItem> items, double totalPrice, OfferId identifier, Affiliation selectedCustomerAffiliation) {
             this.modificationDate = modificationDate
             this.expirationDate = expirationDate
             this.customer = customer
@@ -72,6 +77,7 @@ class Offer {
             this.items = new ArrayList<ProductItem>(Collections.unmodifiableList(items))
             this.totalPrice = totalPrice
             this.identifier = identifier
+            this.selectedCustomerAffiliation = selectedCustomerAffiliation
         }
         //ToDo Determine if any properties should be able to be modified later or can't be set to Null
         Builder identifier(OfferId identifier) {
@@ -94,6 +100,7 @@ class Offer {
         this.items = builder.items
         this.totalPrice = builder.totalPrice
         this.identifier = builder.identifier
+        this.selectedCustomerAffiliation = builder.selectedCustomerAffiliation
     }
 
     /**

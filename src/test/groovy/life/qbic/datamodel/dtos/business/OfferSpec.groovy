@@ -1,12 +1,15 @@
 package life.qbic.datamodel.dtos.business
 
-import life.qbic.datamodel.accounting.Product
-import life.qbic.datamodel.accounting.ProductItem
-import life.qbic.datamodel.dtos.general.Person
+
 import spock.lang.Specification
 
-class OfferSpec extends Specification {
+/**
+ * Simple test class to assert the correct behaviour of the Offer Builder.
+ *
+ * @since 1.12.0
+ */
 
+class OfferSpec extends Specification {
 
     def "Fluent API shall create an Offer object"() {
 
@@ -14,10 +17,14 @@ class OfferSpec extends Specification {
         Date date = new Date(1000, 10, 10)
         AcademicTitleFactory academicTitleFactory = new AcademicTitleFactory()
         Customer customer = new Customer("", "", academicTitleFactory.getForString("None"), "", [])
-        Person projectManager = new Person("Project Manager", "Malory", "Archer", academicTitleFactory.getForString("None"), "", []) {
-        }
+        ProjectManager projectManager = new ProjectManager("Malory", "Archer", academicTitleFactory.getForString("None"), "", [])
         Double price = 1000
         OfferId offerId = new OfferId("ab", "cd", 1)
+        Affiliation selectedAffiliation = new Affiliation.Builder("Universität Tübingen",
+                                        "Auf der Morgenstelle 10",
+                                        "72076",
+                                        "Tübingen")
+                                        .build()
 
         when:
         Offer testOffer =
@@ -29,7 +36,8 @@ class OfferSpec extends Specification {
                         "Archer",
                         [],
                         price,
-                        offerId)
+                        offerId,
+                        selectedAffiliation)
                         .build()
 
         then:
@@ -42,6 +50,7 @@ class OfferSpec extends Specification {
         testOffer.getItems() == []
         testOffer.getTotalPrice() == price
         testOffer.getIdentifier() == offerId
+        testOffer.getSelectedCustomerAffiliation() == selectedAffiliation
     }
 
 }
