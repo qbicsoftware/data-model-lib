@@ -79,12 +79,22 @@ abstract class Person {
       return self()
     }
 
+    abstract Person build()
+
     /**
      * Needs to be overridden my sub classes.
      * @return
      */
     protected abstract T self()
 
+  }
+
+  Person(Builder<?> builder) {
+    firstName = builder.firstName
+    lastName = builder.lastName
+    eMailAddress = builder.eMailAddress
+    title = builder.title
+    affiliations = builder.affiliations
   }
 
   /**
@@ -120,7 +130,7 @@ abstract class Person {
     }
   }
 
-/**
+  /**
    * Returns a String representation of a customer:
    *
    * <first-name> <last-name> - <email>
