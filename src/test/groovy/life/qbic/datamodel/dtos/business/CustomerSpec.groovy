@@ -5,7 +5,6 @@ import spock.lang.Specification
 /**
  * Simple tests for the customer dto class
  *
- * @author Sven Fillinger
  * @since 1.11.0
  */
 class CustomerSpec extends Specification{
