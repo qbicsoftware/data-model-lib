@@ -3,20 +3,33 @@ package life.qbic.datamodel.dtos.business
 import life.qbic.datamodel.dtos.general.Person
 
 /**
- * This class serves as a simple DTO representing a ProjectManager
+ * A project manager specialisation.
  *
- * A projectManager is a person which is responsible for managing
- * projects in a business relationship
+ * This class shall be used, when data for a project manager is to be referenced within an
+ * application.
  *
  * @since 1.12.0
  */
 class ProjectManager extends Person {
 
-    ProjectManager(String firstName,
-             String lastName,
-             AcademicTitle title,
-             String eMailAddress,
-             List<Affiliation> affiliations) {
-        super(firstName,lastName,title,eMailAddress,affiliations)
+  static class Builder extends Person.Builder<Builder> {
+
+    Builder(String firstName, String lastName, String emailAddress) {
+      super(firstName, lastName, emailAddress)
     }
+
+    @Override
+    ProjectManager build() {
+      return new ProjectManager(this)
+    }
+
+    @Override
+    protected Builder self() {
+      return this
+    }
+  }
+
+  ProjectManager(Builder builder) {
+    super(builder)
+  }
 }
