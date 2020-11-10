@@ -12,24 +12,24 @@ import life.qbic.datamodel.dtos.general.Person
  */
 class ProjectManager extends Person {
 
-  static class Builder extends Person.Builder {
+  static class Builder extends Person.Builder<Builder> {
 
     Builder(String firstName, String lastName, String emailAddress) {
       super(firstName, lastName, emailAddress)
     }
 
     @Override
-    Person build() {
+    ProjectManager build() {
       return new ProjectManager(this)
     }
 
     @Override
-    protected Person.Builder self() {
+    protected Builder self() {
       return this
     }
   }
 
-  ProjectManager(Builder<?> builder) {
+  ProjectManager(Builder builder) {
     super(builder)
   }
 }

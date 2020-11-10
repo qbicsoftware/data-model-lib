@@ -12,7 +12,7 @@ class CustomerSpec extends Specification{
 
   def "missing first name shall raise a NullPointerException"() {
     when:
-    def customer = new Customer(null, "", AcademicTitle.NONE, "a.b@c.de", [])
+    new Customer.Builder(null, "", "a.b@c.de").build()
 
     then:
     thrown(NullPointerException)
@@ -20,7 +20,7 @@ class CustomerSpec extends Specification{
 
   def "missing last name shall raise a NullPointerException"() {
     when:
-    def customer = new Customer("", null, AcademicTitle.NONE, "a.b@c.de", [])
+    new Customer.Builder("Max", null, "a.b@c.de").build()
 
     then:
     thrown(NullPointerException)
@@ -28,7 +28,7 @@ class CustomerSpec extends Specification{
 
   def "missing email name shall raise a NullPointerException"() {
     when:
-    def customer = new Customer("", "", AcademicTitle.NONE, null, [])
+    new Customer.Builder("Max", "Mustermann", null).build()
 
     then:
     thrown(NullPointerException)
@@ -36,10 +36,10 @@ class CustomerSpec extends Specification{
 
   def "missing affiliation list shall cause the customer to contain an empty list"() {
     when:
-    def customer = new Customer("", "", AcademicTitle.NONE, "a.b@c.de", null)
+    def customer = new Customer.Builder("Max", "Mustermann", "max@example.com").build()
+
     then:
-    customer.affiliations != null
-    customer.affiliations.isEmpty()
+    assert customer.affiliations.isEmpty()
   }
 
 }

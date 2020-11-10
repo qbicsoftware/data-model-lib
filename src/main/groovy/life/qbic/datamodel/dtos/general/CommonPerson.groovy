@@ -1,12 +1,11 @@
 package life.qbic.datamodel.dtos.general
 
 /**
- * A person without
+ * A person without a specific context.
  *
- * <More detailed description - When to use, what it solves, etc.>
+ * Can be used, if the context or role is not relevant.
  *
- * @author Sven Fillinger
- * @since <versiontag>
+ * @since 1.12.0
  */
 class CommonPerson extends Person {
 
@@ -17,7 +16,7 @@ class CommonPerson extends Person {
     }
 
     @Override
-    Person build() {
+    CommonPerson build() {
       return new CommonPerson(this)
     }
 
@@ -27,7 +26,7 @@ class CommonPerson extends Person {
     }
   }
 
-  CommonPerson(Builder<?> builder) {
+  CommonPerson(Builder builder) {
     super(builder)
   }
 }
