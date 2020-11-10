@@ -36,10 +36,10 @@ class CustomerSpec extends Specification{
 
   def "missing affiliation list shall cause the customer to contain an empty list"() {
     when:
-    def projectManager = new ProjectManager("", "", AcademicTitle.NONE, "a.b@c.de", null)
+    def customer = new Customer( "", "", AcademicTitle.NONE, "a.b@c.de", null)
     then:
-    projectManager.affiliations != null
-    projectManager.affiliations.isEmpty()
+    customer.affiliations != null
+    customer.affiliations.isEmpty()
   }
 
 }
