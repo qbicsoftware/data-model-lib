@@ -17,11 +17,6 @@ import life.qbic.datamodel.dtos.business.Affiliation
 abstract class Person {
 
   /**
-   * The type of person e.g. customer, project manager
-   */
-  final String personType
-
-  /**
    * The person's first name
    */
   final String firstName
@@ -46,13 +41,11 @@ abstract class Person {
    */
   final List<Affiliation> affiliations
 
-  Person(String personType,
-         String firstName,
+  Person(String firstName,
          String lastName,
          AcademicTitle title,
          String eMailAddress,
          List<Affiliation> affiliations) {
-    this.personType = Objects.requireNonNull(personType)
     this.firstName = Objects.requireNonNull(firstName)
     this.lastName = Objects.requireNonNull(lastName)
     this.title = Objects.requireNonNull(title)
