@@ -47,12 +47,5 @@ class ProductItem {
         this.product = product
     }
 
-    /**
-     * Calculates the cost of the item based on its quantity and the price and unit defined in the product
-     * @return
-     */
-    double computeTotalCosts(){
-        return product.unitPrice * quantity
-    }
 }
 

@@ -37,7 +37,6 @@ class CustomerSpec extends Specification{
   def "missing affiliation list shall cause the customer to contain an empty list"() {
     when:
     def customer = new Customer.Builder("Max", "Mustermann", "max@example.com").build()
-
     then:
     assert customer.affiliations.isEmpty()
   }
