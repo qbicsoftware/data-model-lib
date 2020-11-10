@@ -3,11 +3,12 @@ package life.qbic.datamodel.dtos.business
 import life.qbic.datamodel.dtos.general.Person
 
 /**
- * <class short description - 1 Line!>
+ * A project manager specialisation.
  *
- * <More detailed description - When to use, what it solves, etc.>
+ * This class shall be used, when data for a project manager is to be referenced within an
+ * application.
  *
- * @since <versiontag>
+ * @since 1.12.0
  */
 class ProjectManager extends Person {
 
@@ -27,7 +28,6 @@ class ProjectManager extends Person {
       return this
     }
   }
-
 
   ProjectManager(Builder<?> builder) {
     super(builder)

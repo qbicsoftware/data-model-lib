@@ -1,7 +1,7 @@
 package life.qbic.datamodel.dtos.general
 
 /**
- * <class short description - 1 Line!>
+ * A person without
  *
  * <More detailed description - When to use, what it solves, etc.>
  *
