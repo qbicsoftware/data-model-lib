@@ -98,39 +98,6 @@ abstract class Person {
   }
 
   /**
-   * Constructor for a person.
-   *
-   * @deprecated: Please use the {$link Person.Builder} instead.
-   *
-   * @param personType
-   * @param firstName
-   * @param lastName
-   * @param title
-   * @param eMailAddress
-   * @param affiliations
-   */
-  Person(String personType,
-         String firstName,
-         String lastName,
-         AcademicTitle title,
-         String eMailAddress,
-         List<Affiliation> affiliations) {
-    this.personType = null
-    this.firstName = Objects.requireNonNull(firstName)
-    this.lastName = Objects.requireNonNull(lastName)
-    this.title = Objects.requireNonNull(title)
-    this.eMailAddress = Objects.requireNonNull(eMailAddress)
-    this.affiliations = new ArrayList<>()
-    copyAffiliations(affiliations)
-  }
-
-  private copyAffiliations(List<Affiliation> affiliations) {
-    for (Affiliation affiliation : affiliations) {
-      this.affiliations.add(affiliation)
-    }
-  }
-
-  /**
    * Returns a String representation of a customer:
    *
    * <first-name> <last-name> - <email>
