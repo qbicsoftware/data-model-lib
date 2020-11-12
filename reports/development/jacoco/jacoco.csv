@@ -75,8 +75,10 @@ data-model-lib,life.qbic.datamodel.dtos.business.services,Product,81,0,0,0,4,0,1
 data-model-lib,life.qbic.datamodel.dtos.business.services,PartialProduct,9,0,0,0,1,0,1,0,1,0
 data-model-lib,life.qbic.datamodel.dtos.business.services,ProductUnit,98,0,4,0,4,0,6,0,4,0
 data-model-lib,life.qbic.datamodel.dtos.business.services,SecondaryAnalysis,9,0,0,0,1,0,1,0,1,0
+data-model-lib,life.qbic.datamodel.dtos.general,Address,62,72,0,0,1,4,1,1,1,1
 data-model-lib,life.qbic.datamodel.dtos.general,Person,45,87,0,0,1,5,1,1,1,1
 data-model-lib,life.qbic.datamodel.dtos.general,CommonPerson.Builder,28,0,0,0,3,0,3,0,3,0
+data-model-lib,life.qbic.datamodel.dtos.general,Address.Builder,2,68,0,0,0,5,0,2,0,2
 data-model-lib,life.qbic.datamodel.dtos.general,CommonPerson,6,0,0,0,1,0,1,0,1,0
 data-model-lib,life.qbic.datamodel.dtos.general,Person.Builder,100,93,12,0,6,5,9,1,3,1
 data-model-lib,life.qbic.datamodel.projects,ProjectInfo,152,0,0,0,42,0,17,0,17,0
@@ -127,7 +129,7 @@ data-model-lib,life.qbic.datamodel.ms,MSRunCollection,94,0,22,0,27,0,14,0,3,0
 data-model-lib,life.qbic.datamodel.ms,MSProperties,213,0,46,0,55,0,31,0,8,0
 data-model-lib,life.qbic.datamodel.people,Contact,285,0,2,0,22,0,13,0,12,0
 data-model-lib,life.qbic.datamodel.people,Person,65,0,0,0,6,0,4,0,4,0
-data-model-lib,life.qbic.datamodel.people,Address,461,0,32,0,29,0,32,0,16,0
+data-model-lib,life.qbic.datamodel.people,Address,374,120,32,0,21,8,23,9,7,9
 data-model-lib,life.qbic.datamodel.sorters,SampleCodeComparator,101,0,12,0,19,0,9,0,3,0
 data-model-lib,life.qbic.datamodel.sorters,SampleSecondaryNameComparator,17,0,0,0,5,0,3,0,3,0
 data-model-lib,life.qbic.datamodel.sorters,Helpers,157,0,46,0,33,0,25,0,2,0
