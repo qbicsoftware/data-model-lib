@@ -14,16 +14,19 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 * Add `EnumFactory`
 * Add `EnumFactory` implementation for `AffiliationCategory`, `AcademicTitle`
 * Support for QUBE template sync
-* Introduce abstract Builder pattern for a new Person DTO
-* Introduce CommonPerson, Customer and ProjectManager DTOs as extension of Person DTO
-* Introduce new Address DTO
-* Update CostEstimate so it matches the properties of the Offer DTO
-* ProductItem no longer provides the computeTotalCost method
-* Deprecate Offer and introduce new Offer DTO
-* Deprecate PersonType property of new Person DTO
-* Deprecate old Person implementation
-* Deprecate old Address implementation
-* Move CostEstimate class to Builder pattern so it matches the Offer class and add description to OfferClass test
+* Introduce life/qbic/datamodel/dtos/general/Person.groovy DTO based on an abstract builder pattern
+* Introduce life/qbic/datamodel/dtos/general/CommonPerson.groovy DTO as extension of Person DTO
+* Introduce life/qbic/datamodel/dtos/business/Customer.groovy DTO as extension of Person DTO
+* Introduce life/qbic/datamodel/dtos/business/ProjectManager.groovy DTO as extension of Person DTO
+* Introduce life/qbic/datamodel/dtos/general/Address.groovy DTO
+* Update life/qbic/datamodel/accounting/CostEstimate.groovy so it matches the properties of the Offer DTO
+* life/qbic/datamodel/accounting/ProductItem.groovy no longer provides the computeTotalCost method
+* Deprecate life/qbic/datamodel/accounting/Offer.groovy
+* Introduce life/qbic/datamodel/dtos/business/Offer.groovy DTO
+* Deprecate "PersonType" property of life/qbic/datamodel/dtos/general/Person.groovy
+* Deprecate life/qbic/datamodel/people/Person.groovy
+* Deprecate life/qbic/datamodel/people/Address.groovy
+* Refactor life/qbic/datamodel/accounting/CostEstimate.groovy into Builder pattern
 * Add diagram and description of DTO structure related to Offer management to README
 **Fixed**
 * Add default values to previous Address Implementation to avoid NullExceptions
