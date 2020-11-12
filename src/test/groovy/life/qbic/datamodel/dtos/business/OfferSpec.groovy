@@ -16,8 +16,9 @@ class OfferSpec extends Specification {
         given:
         Date date = new Date(1000, 10, 10)
         AcademicTitleFactory academicTitleFactory = new AcademicTitleFactory()
-        Customer customer = new Customer("", "", academicTitleFactory.getForString("None"), "", [])
-        ProjectManager projectManager = new ProjectManager("Malory", "Archer", academicTitleFactory.getForString("None"), "", [])
+        Customer customer = new Customer.Builder("Max", "Mustermann", "").build()
+        ProjectManager projectManager = new ProjectManager.Builder("Max", "Mustermann", "").build()
+
         Double price = 1000
         OfferId offerId = new OfferId("ab", "cd", 1)
         Affiliation selectedAffiliation = new Affiliation.Builder("Universität Tübingen",

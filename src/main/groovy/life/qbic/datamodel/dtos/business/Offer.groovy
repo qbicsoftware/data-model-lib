@@ -59,7 +59,7 @@ class Offer {
         Date modificationDate
         Date expirationDate
         Customer customer
-        Person projectManager
+        ProjectManager projectManager
         String projectTitle
         String projectDescription
         List<ProductItem> items
@@ -67,7 +67,7 @@ class Offer {
         OfferId identifier
         Affiliation selectedCustomerAffiliation
 
-        Builder(Date modificationDate, Date expirationDate, Customer customer, Person projectManager, String projectDescription, String projectTitle, List<ProductItem> items, double totalPrice, OfferId identifier, Affiliation selectedCustomerAffiliation) {
+        Builder(Date modificationDate, Date expirationDate, Customer customer, ProjectManager projectManager, String projectDescription, String projectTitle, List<ProductItem> items, double totalPrice, OfferId identifier, Affiliation selectedCustomerAffiliation) {
             this.modificationDate = modificationDate
             this.expirationDate = expirationDate
             this.customer = customer
