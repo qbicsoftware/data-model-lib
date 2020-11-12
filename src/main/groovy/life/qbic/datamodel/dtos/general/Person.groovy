@@ -5,16 +5,20 @@ import life.qbic.datamodel.dtos.business.AcademicTitle
 import life.qbic.datamodel.dtos.business.Affiliation
 
 /**
- * This class serves as a simple DTO for customer data
- *
- * A customer is a person to which QBiC has established
- * any kind of business relationship.
+ * This class serves as simple DTO for common person data.
  *
  * @author Sven Fillinger
  * @since 1.11.0
  */
 @EqualsAndHashCode
 abstract class Person {
+
+  /**
+   * Person type.
+   *
+   * @deprecated: Please subclass the Person class instead of using this property.
+   */
+  final String personType
 
   /**
    * The person's first name
@@ -41,26 +45,59 @@ abstract class Person {
    */
   final List<Affiliation> affiliations
 
-  Person(String firstName,
-         String lastName,
-         AcademicTitle title,
-         String eMailAddress,
-         List<Affiliation> affiliations) {
-    this.firstName = Objects.requireNonNull(firstName)
-    this.lastName = Objects.requireNonNull(lastName)
-    this.title = Objects.requireNonNull(title)
-    this.eMailAddress = Objects.requireNonNull(eMailAddress)
-    this.affiliations = new ArrayList<>()
-    copyAffiliations(affiliations)
-  }
+  abstract static class Builder<T extends Builder<T>> {
+    String firstName
 
-  private copyAffiliations(List<Affiliation> affiliations) {
-    for (Affiliation affiliation : affiliations) {
-      this.affiliations.add(affiliation)
+    String lastName
+
+    AcademicTitle title
+
+    String eMailAddress
+
+    List<Affiliation> affiliations
+
+    Builder(String firstName, String lastName, String emailAddress) {
+      this.firstName = Objects.requireNonNull(firstName, "First name must not be null")
+      this.lastName = Objects.requireNonNull(lastName, "Last name must not be null")
+      this.eMailAddress = Objects.requireNonNull(emailAddress, "Email must not be null")
+      this.title = AcademicTitle.NONE
+      this.affiliations = new ArrayList<>()
     }
+
+    T title(AcademicTitle title) {
+      this.title = title
+      return self()
+    }
+
+    T affiliation(Affiliation affiliation) {
+      this.affiliations.add(affiliation)
+      return self()
+    }
+
+    T affiliations(List<Affiliation> affiliations) {
+      this.affiliations.addAll(affiliations)
+      return self()
+    }
+
+    abstract Person build()
+
+    /**
+     * Needs to be overridden my sub classes.
+     * @return
+     */
+    protected abstract T self()
+
   }
 
-/**
+  Person(Builder<?> builder) {
+    firstName = builder.firstName
+    lastName = builder.lastName
+    eMailAddress = builder.eMailAddress
+    title = builder.title
+    affiliations = builder.affiliations
+  }
+
+  /**
    * Returns a String representation of a customer:
    *
    * <first-name> <last-name> - <email>
