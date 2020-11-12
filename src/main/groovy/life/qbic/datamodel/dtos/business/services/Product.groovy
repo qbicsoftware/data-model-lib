@@ -1,20 +1,33 @@
 package life.qbic.datamodel.dtos.business.services
 
 /**
- * <class short description - 1 Line!>
+ * Holds information about a simple QBiC service product.
  *
- * <More detailed description - When to use, what it solves, etc.>
+ * This class is abstract and needs to be subclassed in order
+ * to create in instance of it.
  *
  * @since 1.12.0
  */
-class Product {
+abstract class Product {
 
+  /**
+   * Some text describing what the the product providing.
+   */
   private final String description
 
+  /**
+   * A descriptive product name.
+   */
   private final String productName
 
+  /**
+   * The unit price in €/unit.
+   */
   private final double unitPrice
 
+  /**
+   * The unit of the product.
+   */
   private final ProductUnit unit
 
   /**
