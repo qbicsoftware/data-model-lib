@@ -20,6 +20,7 @@ life.qbic.datamodel.accounting
 life.qbic.datamodel.people
 life.qbic.datamodel.services
 life.qbic.datamodel.dtos.business
+life.qbic.datamodel.dtos.business.services
 life.qbic.datamodel.dtos.imaging
 life.qbic.datamodel.dtos.imaging.parameters
 life.qbic.datamodel.dtos.imaging.parameters.lightmicroscopy

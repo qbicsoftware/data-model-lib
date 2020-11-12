@@ -64,6 +64,15 @@ data-model-lib,life.qbic.datamodel.persons,CollaboratorWithResponsibility,40,0,0
 data-model-lib,life.qbic.datamodel.persons,PersonType,34,0,0,0,2,0,1,0,1,0
 data-model-lib,life.qbic.datamodel.persons,RoleAt,68,0,18,0,24,0,13,0,4,0
 data-model-lib,life.qbic.datamodel.persons,PersonAffiliationConnectionInfo,21,0,0,0,8,0,4,0,4,0
+data-model-lib,life.qbic.datamodel.dtos.business.services,DataStorage,9,0,0,0,1,0,1,0,1,0
+data-model-lib,life.qbic.datamodel.dtos.business.services,PrimaryAnalysis,9,0,0,0,1,0,1,0,1,0
+data-model-lib,life.qbic.datamodel.dtos.business.services,ProjectManagement,9,0,0,0,1,0,1,0,1,0
+data-model-lib,life.qbic.datamodel.dtos.business.services,AtomicProduct,9,0,0,0,1,0,1,0,1,0
+data-model-lib,life.qbic.datamodel.dtos.business.services,Sequencing,9,0,0,0,1,0,1,0,1,0
+data-model-lib,life.qbic.datamodel.dtos.business.services,Product,81,0,0,0,4,0,1,0,1,0
+data-model-lib,life.qbic.datamodel.dtos.business.services,PartialProduct,9,0,0,0,1,0,1,0,1,0
+data-model-lib,life.qbic.datamodel.dtos.business.services,ProductUnit,98,0,4,0,4,0,6,0,4,0
+data-model-lib,life.qbic.datamodel.dtos.business.services,SecondaryAnalysis,9,0,0,0,1,0,1,0,1,0
 data-model-lib,life.qbic.datamodel.dtos.general,Person,62,116,1,1,1,8,2,2,1,2
 data-model-lib,life.qbic.datamodel.projects,ProjectInfo,152,0,0,0,42,0,17,0,17,0
 data-model-lib,life.qbic.datamodel.experiments,EntityExperiment,6,0,0,0,2,0,1,0,1,0
