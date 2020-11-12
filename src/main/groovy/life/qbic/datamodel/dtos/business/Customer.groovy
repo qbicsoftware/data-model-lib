@@ -15,12 +15,24 @@ import life.qbic.datamodel.dtos.general.Person
 @EqualsAndHashCode
 final class Customer extends Person{
 
-  Customer(String firstName,
-           String lastName,
-           AcademicTitle title,
-           String eMailAddress,
-           List<Affiliation> affiliations) {
-    super(firstName,lastName,title,eMailAddress,affiliations)
+  static class Builder extends Person.Builder<Builder> {
+
+    Builder(String firstName, String lastName, String emailAddress) {
+      super(firstName, lastName, emailAddress)
+    }
+
+    @Override
+    Customer build() {
+      return new Customer(this)
+    }
+
+    @Override
+    protected Builder self() {
+      return this
+    }
   }
 
+  Customer(Builder builder) {
+    super(builder)
+  }
 }
