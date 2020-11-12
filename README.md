@@ -126,3 +126,11 @@ DTOs.
 
 ![Imaging Data Structure Model](./doc/figures/Imaging_Data_Structure.png)
 
+### Business context - Offer Management and more
+
+The following figure describes the entity relation of the DTOs related to Offer Management.
+ 
+Detailed Information can be found in the GroovyDoc class description of the
+DTOs.
+
+![OfferData_Structure Model](./doc/figures/Offer_Data_Structure.png)
