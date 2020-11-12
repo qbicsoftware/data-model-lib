@@ -23,8 +23,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 * Deprecate PersonType property of new Person DTO
 * Deprecate old Person implementation
 * Deprecate old Address implementation
-* Move CostEstimate Class to Builder Pattern so it matches the Offer Class and add description to OfferClass Test
-
+* Move CostEstimate class to Builder pattern so it matches the Offer class and add description to OfferClass test
+* Add diagram and description of DTO structure related to Offer management to README
 **Fixed**
 * Add default values to previous Address Implementation to avoid NullExceptions
 
