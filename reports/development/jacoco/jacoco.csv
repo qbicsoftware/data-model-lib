@@ -73,7 +73,7 @@ data-model-lib,life.qbic.datamodel.dtos.business.services,AtomicProduct,9,0,0,0,
 data-model-lib,life.qbic.datamodel.dtos.business.services,Sequencing,9,0,0,0,1,0,1,0,1,0
 data-model-lib,life.qbic.datamodel.dtos.business.services,Product,81,0,0,0,4,0,1,0,1,0
 data-model-lib,life.qbic.datamodel.dtos.business.services,PartialProduct,9,0,0,0,1,0,1,0,1,0
-data-model-lib,life.qbic.datamodel.dtos.business.services,ProductUnit,98,0,4,0,4,0,6,0,4,0
+data-model-lib,life.qbic.datamodel.dtos.business.services,ProductUnit,142,0,4,0,4,0,6,0,4,0
 data-model-lib,life.qbic.datamodel.dtos.business.services,SecondaryAnalysis,9,0,0,0,1,0,1,0,1,0
 data-model-lib,life.qbic.datamodel.dtos.general,Address,62,72,0,0,1,4,1,1,1,1
 data-model-lib,life.qbic.datamodel.dtos.general,Person,45,87,0,0,1,5,1,1,1,1
