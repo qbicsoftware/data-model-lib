@@ -55,33 +55,51 @@ class Offer {
     final Affiliation selectedCustomerAffiliation
 
     static class Builder {
-
+        //required Parameters
         Date modificationDate
         Date expirationDate
         Customer customer
         ProjectManager projectManager
         String projectTitle
+
+        //optional Parameters
         String projectDescription
         List<ProductItem> items
         double totalPrice
         OfferId identifier
         Affiliation selectedCustomerAffiliation
 
-        Builder(Date modificationDate, Date expirationDate, Customer customer, ProjectManager projectManager, String projectDescription, String projectTitle, List<ProductItem> items, double totalPrice, OfferId identifier, Affiliation selectedCustomerAffiliation) {
-            this.modificationDate = modificationDate
-            this.expirationDate = expirationDate
-            this.customer = customer
-            this.projectManager = projectManager
-            this.projectDescription = projectDescription
-            this.projectTitle = projectTitle
-            this.items = new ArrayList<ProductItem>(Collections.unmodifiableList(items))
-            this.totalPrice = totalPrice
-            this.identifier = identifier
-            this.selectedCustomerAffiliation = selectedCustomerAffiliation
+        Builder(Date modificationDate, Date expirationDate, Customer customer, ProjectManager projectManager, String projectTitle) {
+            this.modificationDate = Objects.requireNonNull(modificationDate, "Modification Date must not be null")
+            this.expirationDate = Objects.requireNonNull(expirationDate, "Expiration Date must not be null")
+            this.customer = Objects.requireNonNull(customer, "Customer must not be null")
+            this.projectManager = Objects.requireNonNull(projectManager, "Project Manager must not be null")
+            this.projectTitle = Objects.requireNonNull(projectTitle, "Project Title must not be null" )
+            this.projectDescription = ""
+            this.items = []
+            this.totalPrice = -1
+            this.identifier = null
+            this.selectedCustomerAffiliation = null
         }
-        //ToDo Determine if any properties should be able to be modified later or can't be set to Null
+
+        Builder projectDescription(String projectDescription) {
+            this.projectDescription = projectDescription
+            return this
+        }
+        Builder items(List<ProductItem> items) {
+            this.items = items
+            return this
+        }
+        Builder totalPrice(Double totalPrice) {
+            this.totalPrice = totalPrice
+            return this
+        }
         Builder identifier(OfferId identifier) {
             this.identifier = identifier
+            return this
+        }
+        Builder selectedCustomerAffiliation(Affiliation selectedCustomerAffiliation) {
+            this.selectedCustomerAffiliation = selectedCustomerAffiliation
             return this
         }
 
