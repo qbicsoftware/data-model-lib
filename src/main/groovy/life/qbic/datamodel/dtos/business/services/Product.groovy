@@ -13,22 +13,22 @@ abstract class Product {
   /**
    * Some text describing what the the product providing.
    */
-  private final String description
+  final String description
 
   /**
    * A descriptive product name.
    */
-  private final String productName
+  final String productName
 
   /**
    * The unit price in €/unit.
    */
-  private final double unitPrice
+  final double unitPrice
 
   /**
    * The unit of the product.
    */
-  private final ProductUnit unit
+  final ProductUnit unit
 
   /**
    * Basic product constructor.
