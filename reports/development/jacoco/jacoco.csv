@@ -69,9 +69,11 @@ data-model-lib,life.qbic.datamodel.persons,PersonAffiliationConnectionInfo,21,0,
 data-model-lib,life.qbic.datamodel.dtos.business.services,DataStorage,9,0,0,0,1,0,1,0,1,0
 data-model-lib,life.qbic.datamodel.dtos.business.services,PrimaryAnalysis,9,0,0,0,1,0,1,0,1,0
 data-model-lib,life.qbic.datamodel.dtos.business.services,ProjectManagement,9,0,0,0,1,0,1,0,1,0
+data-model-lib,life.qbic.datamodel.dtos.business.services,ProductUnitFactory,92,0,4,0,5,0,4,0,2,0
 data-model-lib,life.qbic.datamodel.dtos.business.services,AtomicProduct,9,0,0,0,1,0,1,0,1,0
 data-model-lib,life.qbic.datamodel.dtos.business.services,Sequencing,9,0,0,0,1,0,1,0,1,0
 data-model-lib,life.qbic.datamodel.dtos.business.services,Product,81,0,0,0,4,0,1,0,1,0
+data-model-lib,life.qbic.datamodel.dtos.business.services,ProductUnitFactory._getForString_closure1,46,0,0,0,1,0,3,0,3,0
 data-model-lib,life.qbic.datamodel.dtos.business.services,PartialProduct,9,0,0,0,1,0,1,0,1,0
 data-model-lib,life.qbic.datamodel.dtos.business.services,ProductUnit,142,0,4,0,4,0,6,0,4,0
 data-model-lib,life.qbic.datamodel.dtos.business.services,SecondaryAnalysis,9,0,0,0,1,0,1,0,1,0
