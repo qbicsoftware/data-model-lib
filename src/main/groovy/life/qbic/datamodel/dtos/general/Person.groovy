@@ -38,7 +38,7 @@ abstract class Person {
   /**
    * The person's email address
    */
-  final String eMailAddress
+  final String emailAddress
 
   /**
    * Associated affiliations
@@ -52,14 +52,14 @@ abstract class Person {
 
     AcademicTitle title
 
-    String eMailAddress
+    String emailAddress
 
     List<Affiliation> affiliations
 
     Builder(String firstName, String lastName, String emailAddress) {
       this.firstName = Objects.requireNonNull(firstName, "First name must not be null")
       this.lastName = Objects.requireNonNull(lastName, "Last name must not be null")
-      this.eMailAddress = Objects.requireNonNull(emailAddress, "Email must not be null")
+      this.emailAddress = Objects.requireNonNull(emailAddress, "Email must not be null")
       this.title = AcademicTitle.NONE
       this.affiliations = new ArrayList<>()
     }
@@ -92,7 +92,7 @@ abstract class Person {
   Person(Builder<?> builder) {
     firstName = builder.firstName
     lastName = builder.lastName
-    eMailAddress = builder.eMailAddress
+    emailAddress = builder.emailAddress
     title = builder.title
     affiliations = builder.affiliations
   }
@@ -106,7 +106,7 @@ abstract class Person {
    */
   @Override
   String toString(){
-    return "${firstName} ${lastName} - ${eMailAddress}"
+    return "${firstName} ${lastName} - ${emailAddress}"
   }
 
 }
