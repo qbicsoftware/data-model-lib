@@ -19,13 +19,6 @@ class AffiliationCategorySpec extends Specification{
         affiliationCategory.toString() == "internal"
     }
 
-    def "Trying to create an Enum with a non-specified Category throws MissingPropertyException"() {
-        when:
-        AffiliationCategory affiliationCategory = AffiliationCategory.UNKNOWN
-
-        then:
-        thrown(MissingPropertyException)
-    }
 
 
 
