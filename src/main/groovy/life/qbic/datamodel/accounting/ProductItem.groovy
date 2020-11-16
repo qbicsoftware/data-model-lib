@@ -25,26 +25,8 @@ class ProductItem {
      */
     final Product product
 
-    /**
-     * The name of the item
-     */
-    final String NAME
-
-    /**
-     * A short description of what the item comprises
-     */
-    final String DESCRIPTION
-
-    ProductItem(String NAME, String DESCRIPTION, Product product) {
-        this.NAME = NAME
-        this.DESCRIPTION = DESCRIPTION
-        this.product = product
-    }
-
-    ProductItem(double quantity, String NAME, String DESCRIPTION, Product product) {
+    ProductItem(double quantity, Product product) {
         this.quantity = quantity
-        this.NAME = NAME
-        this.DESCRIPTION = DESCRIPTION
         this.product = product
     }
 
