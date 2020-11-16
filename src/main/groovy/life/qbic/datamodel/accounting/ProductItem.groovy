@@ -1,6 +1,7 @@
 package life.qbic.datamodel.accounting
 
 import groovy.transform.EqualsAndHashCode
+import life.qbic.datamodel.dtos.business.services.Product
 
 /**
  * An item with associated costs and quantity
