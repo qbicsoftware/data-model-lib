@@ -1,7 +1,5 @@
 package life.qbic.datamodel.dtos.business
 
-import life.qbic.datamodel.dtos.business.services.AtomicProduct
-import life.qbic.datamodel.dtos.business.services.DataStorage
 import life.qbic.datamodel.dtos.business.services.Product
 import life.qbic.datamodel.accounting.ProductItem
 import life.qbic.datamodel.dtos.business.services.ProductUnit
