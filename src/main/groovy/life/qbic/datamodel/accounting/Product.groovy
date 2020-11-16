@@ -10,6 +10,7 @@ package life.qbic.datamodel.accounting
  * @author: Jennifer Bödker
  *
  */
+@Deprecated
 class Product {
 
     /**
