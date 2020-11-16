@@ -29,6 +29,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 * Refactor life/qbic/datamodel/accounting/CostEstimate.groovy into Builder pattern
 * Add diagram and description of DTO structure related to Offer management to README
 * Add enum factory for product units
+* Remove "Unknown" member from Affiliation Category Enum
 **Fixed**
 * Add default values to previous Address Implementation to avoid NullExceptions
 
