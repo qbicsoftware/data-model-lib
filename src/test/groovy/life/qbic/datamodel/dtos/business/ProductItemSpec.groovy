@@ -1,8 +1,9 @@
 package life.qbic.datamodel.dtos.business
 
-import life.qbic.datamodel.accounting.Product
-import life.qbic.datamodel.accounting.ProductCategory
+import life.qbic.datamodel.dtos.business.services.Product
 import life.qbic.datamodel.accounting.ProductItem
+import life.qbic.datamodel.dtos.business.services.ProductUnit
+import life.qbic.datamodel.dtos.business.services.Sequencing
 import spock.lang.Specification
 
 /**
@@ -12,28 +13,17 @@ import spock.lang.Specification
  */
 class ProductItemSpec extends Specification{
 
-    Product product = new Product(ProductCategory.PRIMARY_BIOINFO, null, "", "", 0, "", false)
+
 
     def "ProductItem shall store and provide the given properties: name, description and product"() {
         when:
-        def productItem = new ProductItem("Pandoras Box", "Don't open it!", product)
+        Product product = new Sequencing("RNA Sequencing","This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE)
+        def productItem = new ProductItem(3.0 , product)
 
         then:
-        productItem.NAME == "Pandoras Box"
-        productItem.DESCRIPTION == "Don't open it!"
         productItem.product == product
     }
 
-    def "ProductItem shall store and provide the given properties: quantity, name, description and product"() {
-        when:
-        def productItem = new ProductItem(1, "Pandoras Box", "Don't open it!", product)
-
-        then:
-        productItem.quantity == 1
-        productItem.NAME == "Pandoras Box"
-        productItem.DESCRIPTION == "Don't open it!"
-        productItem.product == product
-    }
 
 
 }
