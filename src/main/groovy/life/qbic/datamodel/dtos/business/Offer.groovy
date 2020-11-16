@@ -7,8 +7,7 @@ import life.qbic.datamodel.dtos.general.Person
 /**
  * An offer DTO for a project
  *
- * @since: 1.12.0
- *
+ * @since: 1.12.0*
  */
 @EqualsAndHashCode
 class Offer {
@@ -55,49 +54,55 @@ class Offer {
     final Affiliation selectedCustomerAffiliation
 
     static class Builder {
-        //required Parameters
+
         Date modificationDate
         Date expirationDate
         Customer customer
         ProjectManager projectManager
         String projectTitle
-
-        //optional Parameters
         String projectDescription
         List<ProductItem> items
         double totalPrice
         OfferId identifier
         Affiliation selectedCustomerAffiliation
 
-        Builder(Date modificationDate, Date expirationDate, Customer customer, ProjectManager projectManager, String projectTitle) {
+        Builder(Date modificationDate, ProjectManager projectManager, OfferId identifier) {
             this.modificationDate = Objects.requireNonNull(modificationDate, "Modification Date must not be null")
-            this.expirationDate = Objects.requireNonNull(expirationDate, "Expiration Date must not be null")
-            this.customer = Objects.requireNonNull(customer, "Customer must not be null")
             this.projectManager = Objects.requireNonNull(projectManager, "Project Manager must not be null")
-            this.projectTitle = Objects.requireNonNull(projectTitle, "Project Title must not be null" )
-            this.projectDescription = ""
+            this.identifier = Objects.requireNonNull(identifier, "Offer identifier must not be null")
             this.items = []
-            this.totalPrice = -1
-            this.identifier = null
-            this.selectedCustomerAffiliation = null
+        }
+
+        Builder expirationDate(Date expirationDate) {
+            this.expirationDate = expirationDate
+            return this
+        }
+
+        Builder projectTitle(String projectTitle) {
+            this.projectTitle = projectTitle
+            return this
+        }
+
+        Builder customer(Customer customer) {
+            this.customer = customer
+            return this
         }
 
         Builder projectDescription(String projectDescription) {
             this.projectDescription = projectDescription
             return this
         }
+
         Builder items(List<ProductItem> items) {
             this.items = items
             return this
         }
+
         Builder totalPrice(Double totalPrice) {
             this.totalPrice = totalPrice
             return this
         }
-        Builder identifier(OfferId identifier) {
-            this.identifier = identifier
-            return this
-        }
+
         Builder selectedCustomerAffiliation(Affiliation selectedCustomerAffiliation) {
             this.selectedCustomerAffiliation = selectedCustomerAffiliation
             return this

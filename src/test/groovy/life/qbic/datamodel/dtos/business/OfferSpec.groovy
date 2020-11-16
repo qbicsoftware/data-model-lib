@@ -23,14 +23,14 @@ class OfferSpec extends Specification {
         Double price = 1000
         OfferId offerId = new OfferId("ab", "cd", 1)
         Affiliation selectedAffiliation = new Affiliation.Builder("Universität Tübingen",
-                                        "Auf der Morgenstelle 10",
-                                        "72076",
-                                        "Tübingen")
-                                        .build()
+                "Auf der Morgenstelle 10",
+                "72076",
+                "Tübingen")
+                .build()
 
         when:
         Offer testOffer =
-                new Offer.Builder(date, date, customer, projectManager, "Archer").projectDescription("Cartoon Series").items([]).totalPrice(price).identifier(offerId).selectedCustomerAffiliation(selectedAffiliation).build()
+                new Offer.Builder(date, projectManager, offerId).expirationDate(date).customer(customer).projectTitle("Archer").projectDescription("Cartoon Series").items([]).totalPrice(price).selectedCustomerAffiliation(selectedAffiliation).build()
 
         then:
         testOffer.getModificationDate() == date
@@ -45,22 +45,24 @@ class OfferSpec extends Specification {
         testOffer.getSelectedCustomerAffiliation() == selectedAffiliation
     }
 
-    def "Missing optional Field definitions shall have default values in an Offer object"() {
+    def "Missing optional Field definitions shall haven null values in an Offer object"() {
+
+        given:
+        OfferId offerId = new OfferId("ab", "cd", 1)
 
         when:
         Offer testOffer =
-                new Offer.Builder(date, date, customer, projectManager, "Gummy Bears").build()
-
+                new Offer.Builder(date, projectManager, offerId).build()
         then:
         testOffer.getModificationDate() == date
-        testOffer.getExpirationDate() == date
-        testOffer.getCustomer() == customer
+        testOffer.getExpirationDate() == null
+        testOffer.getCustomer() == null
         testOffer.getProjectManager() == projectManager
-        testOffer.getProjectTitle() == "Gummy Bears"
-        testOffer.getProjectDescription() == ""
+        testOffer.getProjectTitle() == null
+        testOffer.getProjectDescription() == null
         testOffer.getItems() == []
-        testOffer.getTotalPrice() == -1
-        testOffer.getIdentifier() == null
+        testOffer.getTotalPrice() == 0
+        testOffer.getIdentifier() == offerId
         testOffer.getSelectedCustomerAffiliation() == null
     }
 
