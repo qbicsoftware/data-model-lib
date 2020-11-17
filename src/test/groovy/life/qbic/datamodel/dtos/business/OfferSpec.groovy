@@ -30,7 +30,9 @@ class OfferSpec extends Specification {
 
         when:
         Offer testOffer =
-                new Offer.Builder(date, projectManager, offerId).expirationDate(date).customer(customer).projectTitle("Archer").projectDescription("Cartoon Series").items([]).totalPrice(price).selectedCustomerAffiliation(selectedAffiliation).build()
+                new Offer.Builder(date).expirationDate(date).customer(customer).projectManager(projectManager)
+                        .projectTitle("Archer").projectDescription("Cartoon Series")
+                        .items([]).totalPrice(price).identifier(offerId).selectedCustomerAffiliation(selectedAffiliation).build()
 
         then:
         testOffer.getModificationDate() == date
@@ -52,17 +54,17 @@ class OfferSpec extends Specification {
 
         when:
         Offer testOffer =
-                new Offer.Builder(date, projectManager, offerId).build()
+                new Offer.Builder(date).build()
         then:
         testOffer.getModificationDate() == date
         testOffer.getExpirationDate() == null
         testOffer.getCustomer() == null
-        testOffer.getProjectManager() == projectManager
+        testOffer.getProjectManager() == null
         testOffer.getProjectTitle() == null
         testOffer.getProjectDescription() == null
         testOffer.getItems() == []
         testOffer.getTotalPrice() == 0
-        testOffer.getIdentifier() == offerId
+        testOffer.getIdentifier() == null
         testOffer.getSelectedCustomerAffiliation() == null
     }
 
