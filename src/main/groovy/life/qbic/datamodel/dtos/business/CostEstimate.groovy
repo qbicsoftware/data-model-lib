@@ -1,72 +1,59 @@
-package life.qbic.datamodel.accounting
+package life.qbic.datamodel.dtos.business
 
-import life.qbic.datamodel.dtos.business.Affiliation
-import life.qbic.datamodel.dtos.business.CostEstimateId
-import life.qbic.datamodel.dtos.business.Customer
-import life.qbic.datamodel.dtos.business.ProductItem
-import life.qbic.datamodel.dtos.business.ProjectManager
+import groovy.transform.EqualsAndHashCode
+import life.qbic.datamodel.dtos.general.Person
 
 /**
- * A cost estimate for a project
+ * A cost estimate Dto for a project
  *
  * During project planning a cost estimate is often required to list expected costs.
  * This estimate is not intended to be legally binding. It provides an overview over the project
  * scope and the costs associated with it.
  *
- * @since: 1.9.0
- * @author: Tobias Koch
+ * @since: 1.12.0
  *
  */
-@Deprecated
+@EqualsAndHashCode
 class CostEstimate {
 
     /**
-     * The date on which the cost estimate was created
+     * Date on which the offer was lastly modified
      */
     final Date modificationDate
-
     /**
-     * The date on which the cost estimate expires
+     * The date on which the offer expires
      */
     final Date expirationDate
-
     /**
-     * The customer for which the estimate is created
+     * The customer for which this offer was created
      */
     final Customer customer
-
     /**
      * The QBiC project manager who was assigned to the project
      */
-    final ProjectManager projectManager
-
+    final Person projectManager
     /**
      * The title of the project
      */
     final String projectTitle
-
     /**
      * A short description of the project
      */
     final String projectDescription
-
     /**
-     * A list of items which for which the customer will be charged
+     * A list of items for which the customer will be charged
      */
     final List<ProductItem> items
-
     /**
-     * The total price of the cost estimate (including the price for all items)
+     * The total price of the offer (the price of all items)
      */
     final double totalPrice
-
     /**
-     * An identifier which makes the CostEstimate distinguishable from other CostEstimates
+     * The identifier for the offer which makes it distinguishable from other offers
      */
     final CostEstimateId identifier
-
     /**
-     * An identifier which makes the CostEstimate distinguishable from other CostEstimates
+     * The affiliation of the customer selected for this offer
      */
     final Affiliation selectedCustomerAffiliation
 
@@ -120,20 +107,11 @@ class CostEstimate {
     }
 
     /**
-     * Adds a new item to the items list of the offer
-     *
-     * @param item which should be added to current list of items
+     * Returns an unmodifiable list from the given items
+     * @return
      */
-    public void addItem(ProductItem item){
-        items.add(item)
-    }
-
-    /**
-     * Removes an item from the list of items of the offer
-     *
-     * @param item which should be removed from the current list of items
-     */
-    void removeItem(ProductItem item){
-         items.remove(item)
+    List<ProductItem> getItems() {
+        return Collections.unmodifiableList(items)
     }
 }
+

@@ -1,4 +1,4 @@
-package life.qbic.datamodel.accounting
+package life.qbic.datamodel.dtos.business
 
 /**
  * Lists all packages that bundle the offer items
@@ -6,8 +6,6 @@ package life.qbic.datamodel.accounting
  * A package can be of different types, they can be differentiated by the items that they contain
  *
  * @since: 1.0
- * @author: Jennifer Bödker
- *
  */
 enum ProductCategory {
 
@@ -22,7 +20,7 @@ enum ProductCategory {
      */
     private String value
 
-    ProductCategory(String value){
+    ProductCategory(String value) {
         this.value = value
     }
 

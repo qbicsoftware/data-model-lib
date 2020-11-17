@@ -1,14 +1,12 @@
 package life.qbic.datamodel.dtos.business
 
 import groovy.transform.EqualsAndHashCode
-import life.qbic.datamodel.accounting.ProductItem
 import life.qbic.datamodel.dtos.general.Person
 
 /**
  * An offer DTO for a project
  *
- * @since: 1.12.0
- *
+ * @since: 1.12.0*
  */
 @EqualsAndHashCode
 class Offer {
