@@ -18,7 +18,7 @@ class ProductItem {
     /**
      * Describes the amount of a given item
      */
-    final double quantity
+    double quantity
 
     /**
      * Describes the which product type of the current item
