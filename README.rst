@@ -11,11 +11,7 @@ data-model-lib
 
 .. image:: https://github.com/qbicsoftware/data-model-lib/workflows/QUBE%20lint/badge.svg
     :target: https://github.com/qbicsoftware/data-model-lib/workflows/QUBE%20lint/badge.svg
-    :alt: QUBE Lint Status
-
-.. image:: https://img.shields.io/travis/qbicsoftware/data-model-lib.svg
-    :target: https://travis-ci.org/qbicsoftware/data-model-lib
-    :alt: Travis CI Status
+    :alt: qube Lint Status
 
 .. image:: https://readthedocs.org/projects/data-model-lib/badge/?version=latest
     :target: https://data-model-lib.readthedocs.io/en/latest/?badge=latest
@@ -28,7 +24,7 @@ data-model-lib
 
 Data models. A collection of QBiC's central data models and DTOs. 
 
-* Free software: MIT license
+* Free software: MIT
 * Documentation: https://data-model-lib.readthedocs.io.
 
 Features
@@ -39,6 +35,6 @@ Features
 Credits
 -------
 
-This project was created with QUBE_.
+This project was created with qube_.
 
-.. _QUBE: https://github.com/qbicsoftware/qube
+.. _qube: https://github.com/qbicsoftware/qube
