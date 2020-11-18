@@ -1,7 +1,6 @@
 package life.qbic.datamodel.dtos.business
 
 import life.qbic.datamodel.accounting.ProductItem
-import life.qbic.datamodel.dtos.general.Person
 
 /**
  * A cost estimate for a project
@@ -30,7 +29,7 @@ class CostEstimate {
     /**
      * The QBiC project manager who was assigned to the project
      */
-    final Person projectManager
+    final ProjectManager projectManager
     /**
      * The title of the project
      */
@@ -69,38 +68,22 @@ class CostEstimate {
         CostEstimateId identifier
         Affiliation selectedCustomerAffiliation
 
-        Builder(Date modificationDate) {
-            this.modificationDate = Objects.requireNonNull(modificationDate, "Modification Date must not be null")
+        Builder(Customer customer, ProjectManager projectManager, String projectTitle, String projectDescription, List<ProductItem> items, Affiliation selectedCustomerAffiliation) {
+            this.customer = Objects.requireNonNull(customer, "Customer must not be null")
+            this.projectManager = Objects.requireNonNull(projectManager, "Project Manager must not be null")
+            this.projectTitle = Objects.requireNonNull(projectTitle, "Project Title must not be null")
+            this.projectDescription = Objects.requireNonNull(projectDescription, "Project Description must not be null")
             this.items = []
+            this.selectedCustomerAffiliation = Objects.requireNonNull(selectedCustomerAffiliation, "Customer Affiliation must not be null")
+        }
+
+        Builder modificationDate(Date modificationDate) {
+            this.modificationDate = modificationDate
+            return this
         }
 
         Builder expirationDate(Date expirationDate) {
             this.expirationDate = expirationDate
-            return this
-        }
-
-        Builder projectTitle(String projectTitle) {
-            this.projectTitle = projectTitle
-            return this
-        }
-
-        Builder customer(Customer customer) {
-            this.customer = customer
-            return this
-        }
-
-        Builder projectManager(ProjectManager projectManager) {
-            this.projectManager = projectManager
-            return this
-        }
-
-        Builder projectDescription(String projectDescription) {
-            this.projectDescription = projectDescription
-            return this
-        }
-
-        Builder items(List<ProductItem> items) {
-            this.items = items
             return this
         }
 
