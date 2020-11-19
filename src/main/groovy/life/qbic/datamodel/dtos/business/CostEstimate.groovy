@@ -1,28 +1,29 @@
 package life.qbic.datamodel.dtos.business
 
-import groovy.transform.EqualsAndHashCode
 import life.qbic.datamodel.accounting.ProductItem
 
 /**
- * An offer DTO for a project
+ * A cost estimate for a project
  *
- * An offer describes a legally binding service proposal with associated costs.
+ * During project planning a cost estimate is often required to list expected costs.
+ * This estimate is not intended to be legally binding. It provides an overview over the project
+ * scope and the costs associated with it.
  *
  * @since: 1.12.0
+ *
  */
-@EqualsAndHashCode
-class Offer {
+class CostEstimate {
 
     /**
-     * Date on which the offer was lastly modified
+     * Date on which the Cost Estimate was lastly modified
      */
     final Date modificationDate
     /**
-     * The date on which the offer expires
+     * The date on which the Cost Estimate expires
      */
     final Date expirationDate
     /**
-     * The customer for which this offer was created
+     * The customer for which this Cost Estimate was created
      */
     final Customer customer
     /**
@@ -42,15 +43,15 @@ class Offer {
      */
     final List<ProductItem> items
     /**
-     * The total price of the offer (the price of all items)
+     * The total price of the Cost Estimate (the price of all items)
      */
     final double totalPrice
     /**
-     * The identifier for the offer which makes it distinguishable from other offers
+     * The identifier for the Cost Estimate which makes it distinguishable from other Cost Estimate
      */
-    final OfferId identifier
+    final CostEstimateId identifier
     /**
-     * The affiliation of the customer selected for this offer
+     * The affiliation of the customer selected for this Cost Estimate
      */
     final Affiliation selectedCustomerAffiliation
 
@@ -64,7 +65,7 @@ class Offer {
         String projectDescription
         List<ProductItem> items
         double totalPrice
-        OfferId identifier
+        CostEstimateId identifier
         Affiliation selectedCustomerAffiliation
 
         Builder(Customer customer, ProjectManager projectManager, String projectTitle, String projectDescription, List<ProductItem> items, Affiliation selectedCustomerAffiliation) {
@@ -91,17 +92,22 @@ class Offer {
             return this
         }
 
-        Builder identifier(OfferId identifier) {
+        Builder identifier(CostEstimateId identifier) {
             this.identifier = identifier
             return this
         }
 
-        Offer build() {
-            return new Offer(this)
+        Builder selectedCustomerAffiliation(Affiliation selectedCustomerAffiliation) {
+            this.selectedCustomerAffiliation = selectedCustomerAffiliation
+            return this
+        }
+
+        CostEstimate build() {
+            return new CostEstimate(this)
         }
     }
 
-    private Offer(Builder builder) {
+    private CostEstimate(Builder builder) {
         this.modificationDate = builder.modificationDate
         this.expirationDate = builder.expirationDate
         this.customer = builder.customer
@@ -122,4 +128,3 @@ class Offer {
         return Collections.unmodifiableList(items)
     }
 }
-

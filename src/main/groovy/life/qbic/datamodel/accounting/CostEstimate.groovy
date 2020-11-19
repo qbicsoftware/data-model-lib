@@ -16,6 +16,7 @@ import life.qbic.datamodel.dtos.business.ProjectManager
  * @author: Tobias Koch
  *
  */
+@Deprecated
 class CostEstimate {
 
     /**

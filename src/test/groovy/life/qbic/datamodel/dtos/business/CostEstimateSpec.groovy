@@ -1,6 +1,5 @@
 package life.qbic.datamodel.dtos.business
 
-import life.qbic.datamodel.accounting.CostEstimate
 import spock.lang.Specification
 
 /**
@@ -9,48 +8,61 @@ import spock.lang.Specification
  * @since 1.12.0
  */
 
-class CostEstimateSpec extends Specification{
+class CostEstimateSpec extends Specification {
 
-        def "Fluent API shall create a CustomerEstimate object"() {
+    Date date = new Date(1000, 10, 10)
+    Customer customer = new Customer.Builder("Max", "Mustermann", "").build()
+    ProjectManager projectManager = new ProjectManager.Builder("Max", "Mustermann", "").build()
+    Affiliation selectedAffiliation = new Affiliation.Builder("Universität Tübingen",
+            "Auf der Morgenstelle 10",
+            "72076",
+            "Tübingen")
+            .build()
 
-            given:
-            Date date = new Date(1000, 10, 10)
-            AcademicTitleFactory academicTitleFactory = new AcademicTitleFactory()
-            Customer customer = new Customer.Builder("Max", "Mustermann", "max@example.com").build()
-            ProjectManager projectManager = new ProjectManager.Builder("Max", "Mustermann",
-                "max@example.com").build()
-            Double price = 1000
-            CostEstimateId costEstimateId= new CostEstimateId("ab", "cd", 1)
-            Affiliation selectedAffiliation = new Affiliation.Builder("Universität Tübingen",
-                    "Auf der Morgenstelle 10",
-                    "72076",
-                    "Tübingen")
-                    .build()
+    def "Fluent API shall create a CustomerEstimate object"() {
 
-            when:
-            CostEstimate costEstimate =
-                    new CostEstimate.Builder(date,
-                            date,
-                            customer,
-                            projectManager,
-                            "Cartoon Series",
-                            "Archer",
-                            [],
-                            price,
-                            costEstimateId,
-                            selectedAffiliation)
-                            .build()
+        given:
+        Double price = 1000
+        CostEstimateId costEstimateId = new CostEstimateId("ab", "cd", 1)
 
-            then:
-            costEstimate.getModificationDate() == date
-            costEstimate.getExpirationDate() == date
-            costEstimate.getCustomer() == customer
-            costEstimate.getProjectManager() == projectManager
-            costEstimate.getProjectDescription() == "Cartoon Series"
-            costEstimate.getProjectTitle() == "Archer"
-            costEstimate.getItems() == []
-            costEstimate.getTotalPrice() == price
-            costEstimate.getIdentifier() == costEstimateId
-            costEstimate.getSelectedCustomerAffiliation() == selectedAffiliation
-        }
+        when:
+        CostEstimate costEstimate =
+                new CostEstimate.Builder(customer, projectManager, "Archer", "Cartoon Series", [], selectedAffiliation)
+                        .modificationDate(date).expirationDate(date).totalPrice(price).identifier(costEstimateId)
+                        .build()
+
+        then:
+        costEstimate.getModificationDate() == date
+        costEstimate.getExpirationDate() == date
+        costEstimate.getCustomer() == customer
+        costEstimate.getProjectManager() == projectManager
+        costEstimate.getProjectDescription() == "Cartoon Series"
+        costEstimate.getProjectTitle() == "Archer"
+        costEstimate.getItems() == []
+        costEstimate.getTotalPrice() == price
+        costEstimate.getIdentifier() == costEstimateId
+        costEstimate.getSelectedCustomerAffiliation() == selectedAffiliation
+    }
+
+    def "Missing optional Field definitions shall haven null values in a CostEstimate object"() {
+
+        given:
+        CostEstimateId costEstimateId = new CostEstimateId("ab", "cd", 1)
+
+        when:
+        Offer testOffer =
+                new Offer.Builder(customer, projectManager, "Archer", "Cartoon Series", [], selectedAffiliation).build()
+
+        then:
+        testOffer.getModificationDate() == null
+        testOffer.getExpirationDate() == null
+        testOffer.getCustomer() == customer
+        testOffer.getProjectManager() == projectManager
+        testOffer.getProjectTitle() == "Archer"
+        testOffer.getProjectDescription() == "Cartoon Series"
+        testOffer.getItems() == []
+        testOffer.getTotalPrice() == 0
+        testOffer.getIdentifier() == null
+        testOffer.getSelectedCustomerAffiliation() == selectedAffiliation
+    }
 }
