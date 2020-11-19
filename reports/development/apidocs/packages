@@ -69,6 +69,8 @@ life.qbic.datamodel.dtos.business
 life.qbic.datamodel.dtos.business
 life.qbic.datamodel.dtos.business
 life.qbic.datamodel.dtos.business
+life.qbic.datamodel.dtos.business
+life.qbic.datamodel.dtos.business
 life.qbic.datamodel.dtos
 life.qbic.datamodel.dtos.general
 life.qbic.datamodel.dtos.general
@@ -99,8 +101,6 @@ life.qbic.datamodel.dtos.imaging.properties
 life.qbic.datamodel.dtos.imaging.properties
 life.qbic.datamodel.services
 life.qbic.datamodel
-life.qbic.datamodel.accounting
-life.qbic.datamodel.accounting
 life.qbic.datamodel.accounting
 life.qbic.datamodel.accounting
 life.qbic.datamodel.accounting
