@@ -1,5 +1,7 @@
 package life.qbic.datamodel.dtos.business
 
+import groovy.transform.EqualsAndHashCode
+
 
 /**
  * A cost estimate for a project
@@ -10,6 +12,7 @@ package life.qbic.datamodel.dtos.business
  *
  * @since: 1.12.0
  */
+@EqualsAndHashCode
 class CostEstimate {
 
     /**
