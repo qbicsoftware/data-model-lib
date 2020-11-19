@@ -1,10 +1,11 @@
 package life.qbic.datamodel.dtos.business
 
 import groovy.transform.EqualsAndHashCode
-import life.qbic.datamodel.dtos.general.Person
 
 /**
  * An offer DTO for a project
+ *
+ * An offer describes a legally binding service proposal with associated costs.
  *
  * @since: 1.12.0
  */
@@ -26,7 +27,7 @@ class Offer {
     /**
      * The QBiC project manager who was assigned to the project
      */
-    final Person projectManager
+    final ProjectManager projectManager
     /**
      * The title of the project
      */
@@ -65,19 +66,30 @@ class Offer {
         OfferId identifier
         Affiliation selectedCustomerAffiliation
 
-        Builder(Date modificationDate, Date expirationDate, Customer customer, ProjectManager projectManager, String projectDescription, String projectTitle, List<ProductItem> items, double totalPrice, OfferId identifier, Affiliation selectedCustomerAffiliation) {
-            this.modificationDate = modificationDate
-            this.expirationDate = expirationDate
-            this.customer = customer
-            this.projectManager = projectManager
-            this.projectDescription = projectDescription
-            this.projectTitle = projectTitle
-            this.items = new ArrayList<ProductItem>(Collections.unmodifiableList(items))
-            this.totalPrice = totalPrice
-            this.identifier = identifier
-            this.selectedCustomerAffiliation = selectedCustomerAffiliation
+        Builder(Customer customer, ProjectManager projectManager, String projectTitle, String projectDescription, List<ProductItem> items, Affiliation selectedCustomerAffiliation) {
+            this.customer = Objects.requireNonNull(customer, "Customer must not be null")
+            this.projectManager = Objects.requireNonNull(projectManager, "Project Manager must not be null")
+            this.projectTitle = Objects.requireNonNull(projectTitle, "Project Title must not be null")
+            this.projectDescription = Objects.requireNonNull(projectDescription, "Project Description must not be null")
+            this.items = []
+            this.selectedCustomerAffiliation = Objects.requireNonNull(selectedCustomerAffiliation, "Customer Affiliation must not be null")
         }
-        //ToDo Determine if any properties should be able to be modified later or can't be set to Null
+
+        Builder modificationDate(Date modificationDate) {
+            this.modificationDate = modificationDate
+            return this
+        }
+
+        Builder expirationDate(Date expirationDate) {
+            this.expirationDate = expirationDate
+            return this
+        }
+
+        Builder totalPrice(Double totalPrice) {
+            this.totalPrice = totalPrice
+            return this
+        }
+
         Builder identifier(OfferId identifier) {
             this.identifier = identifier
             return this

@@ -40,4 +40,14 @@ class CustomerSpec extends Specification{
     assert customer.affiliations.isEmpty()
   }
 
+  def "different customers result in different objects"() {
+    when: "two different customers are created"
+    Customer customer1 = new Customer.Builder("Andrew", "Customer", "a.c@d.ef").build()
+    Customer customer2 = new Customer.Builder("Betty", "Customer", "b.c@d.ef").build()
+
+    then: "the customers and their hash code are not equal"
+    customer1.hashCode() != customer2.hashCode()
+    customer1 != customer2
+  }
+
 }

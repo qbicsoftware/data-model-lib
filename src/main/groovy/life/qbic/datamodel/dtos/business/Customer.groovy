@@ -12,7 +12,7 @@ import life.qbic.datamodel.dtos.general.Person
  * @author Sven Fillinger
  * @since 1.11.0
  */
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
 final class Customer extends Person{
 
   static class Builder extends Person.Builder<Builder> {
