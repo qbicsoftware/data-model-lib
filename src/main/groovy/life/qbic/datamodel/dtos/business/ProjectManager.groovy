@@ -1,5 +1,6 @@
 package life.qbic.datamodel.dtos.business
 
+import groovy.transform.EqualsAndHashCode
 import life.qbic.datamodel.dtos.general.Person
 
 /**
@@ -10,6 +11,7 @@ import life.qbic.datamodel.dtos.general.Person
  *
  * @since 1.12.0
  */
+@EqualsAndHashCode(callSuper = true)
 class ProjectManager extends Person {
 
   static class Builder extends Person.Builder<Builder> {
