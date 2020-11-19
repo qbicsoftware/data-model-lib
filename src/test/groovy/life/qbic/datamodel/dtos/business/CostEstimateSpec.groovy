@@ -47,19 +47,19 @@ class CostEstimateSpec extends Specification {
     def "Missing optional Field definitions shall haven null values in a CostEstimate object"() {
 
         when:
-        Offer testOffer =
-                new Offer.Builder(customer, projectManager, "Archer", "Cartoon Series", [], selectedAffiliation).build()
+        CostEstimate testEstimate =
+                new CostEstimate.Builder(customer, projectManager, "Archer", "Cartoon Series", [], selectedAffiliation).build()
 
         then:
-        testOffer.getModificationDate() == null
-        testOffer.getExpirationDate() == null
-        testOffer.getCustomer() == customer
-        testOffer.getProjectManager() == projectManager
-        testOffer.getProjectTitle() == "Archer"
-        testOffer.getProjectDescription() == "Cartoon Series"
-        testOffer.getItems() == []
-        testOffer.getTotalPrice() == 0
-        testOffer.getIdentifier() == null
-        testOffer.getSelectedCustomerAffiliation() == selectedAffiliation
+        testEstimate.getModificationDate() == null
+        testEstimate.getExpirationDate() == null
+        testEstimate.getCustomer() == customer
+        testEstimate.getProjectManager() == projectManager
+        testEstimate.getProjectTitle() == "Archer"
+        testEstimate.getProjectDescription() == "Cartoon Series"
+        testEstimate.getItems() == []
+        testEstimate.getTotalPrice() == 0
+        testEstimate.getIdentifier() == null
+        testEstimate.getSelectedCustomerAffiliation() == selectedAffiliation
     }
 }
