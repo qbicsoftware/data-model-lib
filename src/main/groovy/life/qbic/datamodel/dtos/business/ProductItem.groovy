@@ -1,4 +1,4 @@
-package life.qbic.datamodel.accounting
+package life.qbic.datamodel.dtos.business
 
 import groovy.transform.EqualsAndHashCode
 import life.qbic.datamodel.dtos.business.services.Product
@@ -9,8 +9,6 @@ import life.qbic.datamodel.dtos.business.services.Product
  * Product items describe services and their price. They are the building blocks of invoices and offers.
  * The unit price is always provided in euros.
  * @since: 1.9.0
- * @author: Tobias Koch
- *
  */
 @EqualsAndHashCode
 class ProductItem {

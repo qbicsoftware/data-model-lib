@@ -3,6 +3,7 @@ package life.qbic.datamodel.accounting
 import life.qbic.datamodel.dtos.business.Affiliation
 import life.qbic.datamodel.dtos.business.CostEstimateId
 import life.qbic.datamodel.dtos.business.Customer
+import life.qbic.datamodel.dtos.business.ProductItem
 import life.qbic.datamodel.dtos.business.ProjectManager
 
 /**

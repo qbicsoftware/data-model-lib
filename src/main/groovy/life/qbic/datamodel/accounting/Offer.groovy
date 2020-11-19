@@ -2,6 +2,7 @@ package life.qbic.datamodel.accounting
 
 import life.qbic.datamodel.dtos.business.Customer
 import life.qbic.datamodel.dtos.business.OfferId
+import life.qbic.datamodel.dtos.business.ProductItem
 import life.qbic.datamodel.dtos.business.ProjectManager
 
 /**

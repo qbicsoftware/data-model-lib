@@ -1,7 +1,6 @@
 package life.qbic.datamodel.dtos.business
 
 import groovy.transform.EqualsAndHashCode
-import life.qbic.datamodel.accounting.ProductItem
 
 /**
  * An offer DTO for a project

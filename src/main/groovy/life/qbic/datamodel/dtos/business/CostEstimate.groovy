@@ -1,6 +1,7 @@
 package life.qbic.datamodel.dtos.business
 
-import life.qbic.datamodel.accounting.ProductItem
+import groovy.transform.EqualsAndHashCode
+
 
 /**
  * A cost estimate for a project
@@ -10,8 +11,8 @@ import life.qbic.datamodel.accounting.ProductItem
  * scope and the costs associated with it.
  *
  * @since: 1.12.0
- *
  */
+@EqualsAndHashCode
 class CostEstimate {
 
     /**
@@ -94,11 +95,6 @@ class CostEstimate {
 
         Builder identifier(CostEstimateId identifier) {
             this.identifier = identifier
-            return this
-        }
-
-        Builder selectedCustomerAffiliation(Affiliation selectedCustomerAffiliation) {
-            this.selectedCustomerAffiliation = selectedCustomerAffiliation
             return this
         }
 
