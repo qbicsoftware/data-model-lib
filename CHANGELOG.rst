@@ -21,11 +21,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 * Introduce life/qbic/datamodel/dtos/general/Address.groovy DTO
 * Update life/qbic/datamodel/accounting/CostEstimate.groovy so it matches the properties of the Offer DTO
 * life/qbic/datamodel/accounting/ProductItem.groovy no longer provides the computeTotalCost method
-* Deprecate life/qbic/datamodel/accounting/Offer.groovy
 * Introduce life/qbic/datamodel/dtos/business/Offer.groovy DTO
-* Deprecate "PersonType" property of life/qbic/datamodel/dtos/general/Person.groovy
-* Deprecate life/qbic/datamodel/people/Person.groovy
-* Deprecate life/qbic/datamodel/people/Address.groovy
 * Refactor life/qbic/datamodel/accounting/CostEstimate.groovy into Builder pattern
 * Add diagram and description of DTO structure related to Offer management to README
 * Add enum factory for product units
@@ -36,3 +32,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 **Dependencies**
 
 **Deprecated**
+* Deprecate life/qbic/datamodel/people/Person.groovy
+* Deprecate life/qbic/datamodel/people/Address.groovy
+* Deprecate "PersonType" property of life/qbic/datamodel/dtos/general/Person.groovy
+* Deprecate life/qbic/datamodel/accounting/Offer.groovy
