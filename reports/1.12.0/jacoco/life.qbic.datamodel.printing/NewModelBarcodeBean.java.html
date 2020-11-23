@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NewModelBarcodeBean.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">data-model-lib</a> &gt; <a href="index.source.html" class="el_package">life.qbic.datamodel.printing</a> &gt; <span class="el_source">NewModelBarcodeBean.java</span></div><h1>NewModelBarcodeBean.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * QBiC Project Wizard enables users to create hierarchical experiments including different study conditions using factorial design.
+ * Copyright (C) &quot;2016&quot;  Andreas Friedrich
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+ *******************************************************************************/
+package life.qbic.datamodel.printing;
+
+import java.util.List;
+
+/**
+ * Bean item representing identifier, secondary name, a list of parent samples and sample type of samples to visualize in a table etc.
+ * @author Andreas Friedrich
+ *
+ */
+public class NewModelBarcodeBean implements IBarcodeBean {
+
+  private String code;
+  private String codedString;
+  private String info1;
+  private String info2;
+  private List&lt;String&gt; parents;
+  private String type;
+  private String secondaryName;
+  private String extID;
+
+<span class="nc" id="L38">  public NewModelBarcodeBean(String code, String codedString, String info1, String info2, String type, List&lt;String&gt; parents, String secondaryName, String extID) {</span>
+<span class="nc" id="L39">    this.secondaryName = secondaryName;</span>
+<span class="nc" id="L40">    this.code = code;</span>
+<span class="nc" id="L41">    this.codedString = codedString;</span>
+<span class="nc" id="L42">    this.info1 = info1;</span>
+<span class="nc" id="L43">    this.info2 = info2;</span>
+<span class="nc" id="L44">    this.type = type;</span>
+<span class="nc" id="L45">    this.parents = parents;</span>
+<span class="nc" id="L46">    this.extID = extID;</span>
+<span class="nc" id="L47">  }</span>
+  
+  @Override
+  public String toString() {
+<span class="nc" id="L51">    return code+&quot; &quot;+info1+&quot; &quot;+info2+&quot; &quot;+parents;</span>
+  }
+
+  public String getCode() {
+<span class="nc" id="L55">    return code;</span>
+  }
+
+  @Override
+  public String getType() {
+<span class="nc" id="L60">    return type;</span>
+  }
+
+  @Override
+  public List&lt;String&gt; fetchParentIDs() {
+<span class="nc" id="L65">    return parents;</span>
+  }
+
+  @Override
+  public boolean hasParents() {
+<span class="nc bnc" id="L70" title="All 2 branches missed.">    return parents.size() &gt; 0;</span>
+  }
+
+  @Override
+  public String firstInfo() {
+<span class="nc" id="L75">    return info1;</span>
+  }
+
+  @Override
+  public String altInfo() {
+<span class="nc" id="L80">    return info2;</span>
+  }
+
+  @Override
+  public String getCodedString() {
+<span class="nc" id="L85">    return codedString;</span>
+  }
+
+  @Override
+  public String getSecondaryName() {
+<span class="nc" id="L90">    return secondaryName;</span>
+  }
+
+  @Override
+  public String getExtID() {
+<span class="nc" id="L95">    return extID;</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

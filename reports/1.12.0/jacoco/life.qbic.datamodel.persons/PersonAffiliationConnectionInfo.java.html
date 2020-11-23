@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PersonAffiliationConnectionInfo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">data-model-lib</a> &gt; <a href="index.source.html" class="el_package">life.qbic.datamodel.persons</a> &gt; <span class="el_source">PersonAffiliationConnectionInfo.java</span></div><h1>PersonAffiliationConnectionInfo.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * QBiC User DB Tools enables users to add people and affiliations to our mysql user database.
+ * Copyright (C) 2016  Andreas Friedrich
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+ *******************************************************************************/
+package life.qbic.datamodel.persons;
+
+public class PersonAffiliationConnectionInfo {
+  
+  private int person_id;
+  private int affiliation_id;
+  private String role;
+  
+  public PersonAffiliationConnectionInfo(int person_id, int affiliation_id, String role) {
+<span class="nc" id="L27">    super();</span>
+<span class="nc" id="L28">    this.person_id = person_id;</span>
+<span class="nc" id="L29">    this.affiliation_id = affiliation_id;</span>
+<span class="nc" id="L30">    this.role = role;</span>
+<span class="nc" id="L31">  }</span>
+  
+  public int getPerson_id() {
+<span class="nc" id="L34">    return person_id;</span>
+  }
+  public int getAffiliation_id() {
+<span class="nc" id="L37">    return affiliation_id;</span>
+  }
+  public String getRole() {
+<span class="nc" id="L40">    return role;</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

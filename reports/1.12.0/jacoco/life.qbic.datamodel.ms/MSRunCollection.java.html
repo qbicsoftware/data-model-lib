@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MSRunCollection.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">data-model-lib</a> &gt; <a href="index.source.html" class="el_package">life.qbic.datamodel.ms</a> &gt; <span class="el_source">MSRunCollection.java</span></div><h1>MSRunCollection.java</h1><pre class="source lang-java linenums">package life.qbic.datamodel.ms;
+
+public class MSRunCollection {
+
+  private LigandPrepRun ligandPrep;
+  private String runDate;
+  
+<span class="nc" id="L8">  public MSRunCollection(LigandPrepRun ligandPrep, String runDate) {</span>
+<span class="nc" id="L9">    this.ligandPrep = ligandPrep;</span>
+<span class="nc" id="L10">    this.runDate = runDate;</span>
+<span class="nc" id="L11">  }</span>
+
+  @Override
+  public int hashCode() {
+<span class="nc" id="L15">    final int prime = 31;</span>
+<span class="nc" id="L16">    int result = 1;</span>
+<span class="nc bnc" id="L17" title="All 2 branches missed.">    result = prime * result + ((ligandPrep == null) ? 0 : ligandPrep.hashCode());</span>
+<span class="nc bnc" id="L18" title="All 2 branches missed.">    result = prime * result + ((runDate == null) ? 0 : runDate.hashCode());</span>
+<span class="nc" id="L19">    return result;</span>
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+<span class="nc bnc" id="L24" title="All 2 branches missed.">    if (this == obj)</span>
+<span class="nc" id="L25">      return true;</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">    if (obj == null)</span>
+<span class="nc" id="L27">      return false;</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">    if (getClass() != obj.getClass())</span>
+<span class="nc" id="L29">      return false;</span>
+<span class="nc" id="L30">    MSRunCollection other = (MSRunCollection) obj;</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">    if (ligandPrep == null) {</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">      if (other.ligandPrep != null)</span>
+<span class="nc" id="L33">        return false;</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">    } else if (!ligandPrep.equals(other.ligandPrep))</span>
+<span class="nc" id="L35">      return false;</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">    if (runDate == null) {</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">      if (other.runDate != null)</span>
+<span class="nc" id="L38">        return false;</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">    } else if (!runDate.equals(other.runDate))</span>
+<span class="nc" id="L40">      return false;</span>
+<span class="nc" id="L41">    return true;</span>
+  }
+  
+  
+  
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

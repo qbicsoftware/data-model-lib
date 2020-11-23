@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LigandPrepRun.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">data-model-lib</a> &gt; <a href="index.source.html" class="el_package">life.qbic.datamodel.ms</a> &gt; <span class="el_source">LigandPrepRun.java</span></div><h1>LigandPrepRun.java</h1><pre class="source lang-java linenums">package life.qbic.datamodel.ms;
+
+public class LigandPrepRun {
+
+  private String sourceID;
+  private String tissue;
+  private String prepDate;
+  private String sampleAmount;
+
+<span class="nc" id="L10">  public LigandPrepRun(String sourceID, String tissue, String prepDate, String sampleAmount) {</span>
+<span class="nc" id="L11">    this.sourceID = sourceID;</span>
+<span class="nc" id="L12">    this.tissue = tissue;</span>
+<span class="nc" id="L13">    this.prepDate = prepDate;</span>
+<span class="nc" id="L14">    this.sampleAmount = sampleAmount;</span>
+<span class="nc" id="L15">  }</span>
+
+  @Override
+  public String toString() {
+<span class="nc" id="L19">    return sourceID + &quot; (&quot; + tissue + &quot; &quot; + sampleAmount + &quot;) on &quot; + prepDate;</span>
+  }
+
+  @Override
+  public int hashCode() {
+<span class="nc" id="L24">    final int prime = 31;</span>
+<span class="nc" id="L25">    int result = 1;</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">    result = prime * result + ((prepDate == null) ? 0 : prepDate.hashCode());</span>
+<span class="nc bnc" id="L27" title="All 2 branches missed.">    result = prime * result + ((sampleAmount == null) ? 0 : sampleAmount.hashCode());</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">    result = prime * result + ((sourceID == null) ? 0 : sourceID.hashCode());</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">    result = prime * result + ((tissue == null) ? 0 : tissue.hashCode());</span>
+<span class="nc" id="L30">    return result;</span>
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+<span class="nc bnc" id="L35" title="All 2 branches missed.">    if (this == obj)</span>
+<span class="nc" id="L36">      return true;</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">    if (obj == null)</span>
+<span class="nc" id="L38">      return false;</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">    if (getClass() != obj.getClass())</span>
+<span class="nc" id="L40">      return false;</span>
+<span class="nc" id="L41">    LigandPrepRun other = (LigandPrepRun) obj;</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">    if (prepDate == null) {</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">      if (other.prepDate != null)</span>
+<span class="nc" id="L44">        return false;</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">    } else if (!prepDate.equals(other.prepDate))</span>
+<span class="nc" id="L46">      return false;</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">    if (sampleAmount == null) {</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">      if (other.sampleAmount != null)</span>
+<span class="nc" id="L49">        return false;</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">    } else if (!sampleAmount.equals(other.sampleAmount))</span>
+<span class="nc" id="L51">      return false;</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">    if (sourceID == null) {</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">      if (other.sourceID != null)</span>
+<span class="nc" id="L54">        return false;</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">    } else if (!sourceID.equals(other.sourceID))</span>
+<span class="nc" id="L56">      return false;</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">    if (tissue == null) {</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">      if (other.tissue != null)</span>
+<span class="nc" id="L59">        return false;</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">    } else if (!tissue.equals(other.tissue))</span>
+<span class="nc" id="L61">      return false;</span>
+<span class="nc" id="L62">    return true;</span>
+  }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
