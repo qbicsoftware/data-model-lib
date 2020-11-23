@@ -1,5 +1,6 @@
 package life.qbic.datamodel.dtos.imaging.parameters.srm
 
+import groovy.transform.EqualsAndHashCode
 import life.qbic.datamodel.dtos.imaging.parameters.AnalysisParameters
 import life.qbic.datamodel.dtos.imaging.properties.Dimensionality
 import life.qbic.datamodel.dtos.imaging.properties.PixelSize
@@ -17,6 +18,7 @@ import life.qbic.datamodel.dtos.imaging.properties.PixelSize
  * @author: Jennifer Bödker
  *
  */
+@EqualsAndHashCode
 class SRMAnalysisParameters extends AnalysisParameters {
 
     /**

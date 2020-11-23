@@ -1,4 +1,8 @@
 package life.qbic.datamodel.dtos.business
+
+import groovy.transform.EqualsAndHashCode
+import life.qbic.datamodel.dtos.general.Person
+
 /**
  * This class serves as a simple DTO for customer data
  *
@@ -8,62 +12,27 @@ package life.qbic.datamodel.dtos.business
  * @author Sven Fillinger
  * @since 1.11.0
  */
-final class Customer {
+@EqualsAndHashCode(callSuper = true)
+final class Customer extends Person{
 
-  /**
-   * The customer's first name
-   */
-  final String firstName
+  static class Builder extends Person.Builder<Builder> {
 
-  /**
-   * The customer's last name
-   */
-  final String lastName
+    Builder(String firstName, String lastName, String emailAddress) {
+      super(firstName, lastName, emailAddress)
+    }
 
-  /**
-   * The customer's title
-   */
-  final AcademicTitle title
+    @Override
+    Customer build() {
+      return new Customer(this)
+    }
 
-  /**
-   * The customer's email address
-   */
-  final String eMailAddress
-
-  /**
-   * Associated affiliations
-   */
-  final List<Affiliation> affiliations
-
-  Customer(String firstName,
-           String lastName,
-           AcademicTitle title,
-           String eMailAddress,
-           List<Affiliation> affiliations) {
-    this.firstName = Objects.requireNonNull(firstName)
-    this.lastName = Objects.requireNonNull(lastName)
-    this.title = Objects.requireNonNull(title)
-    this.eMailAddress = Objects.requireNonNull(eMailAddress)
-    this.affiliations = new ArrayList<>()
-    copyAffiliations(affiliations)
-  }
-
-  private copyAffiliations(List<Affiliation> affiliations) {
-    for (Affiliation affiliation : affiliations) {
-      this.affiliations.add(affiliation)
+    @Override
+    protected Builder self() {
+      return this
     }
   }
 
-  /**
-   * Returns a String representation of a customer:
-   *
-   * <first-name> <last-name> - <email>
-   *
-   * @return
-   */
-  @Override
-  String toString(){
-    return "${firstName} ${lastName} - ${eMailAddress}"
+  Customer(Builder builder) {
+    super(builder)
   }
-
 }

@@ -1,5 +1,6 @@
 package life.qbic.datamodel.dtos.imaging.parameters.srm
 
+import groovy.transform.EqualsAndHashCode
 import life.qbic.datamodel.dtos.imaging.properties.Detector
 import life.qbic.datamodel.dtos.imaging.properties.Filter
 
@@ -19,6 +20,7 @@ import life.qbic.datamodel.dtos.imaging.properties.Size
  * @author Sven Fillinger
  * @since 1.10.0
  */
+@EqualsAndHashCode
 class SRMHardware extends ImagingHardware {
 
     /**

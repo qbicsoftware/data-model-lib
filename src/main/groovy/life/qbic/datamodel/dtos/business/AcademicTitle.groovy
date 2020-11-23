@@ -15,7 +15,7 @@ enum AcademicTitle {
     NONE("None")
 
     /**
-    Holds the String value of the enum
+     Holds the String value of the enum
      */
     private final String value
 

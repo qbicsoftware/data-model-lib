@@ -5,7 +5,8 @@
 
 # VS Code
 .vscode
- 
+
+
 # Intellij
 .idea/
 *.iml
@@ -16,7 +17,7 @@
  
 # Maven
 target/
-.flattened-pom.xml
+**/.flattened-pom.xml
 
 # Some of our applications generate logs, which should be ignored by git
 logs/
@@ -26,3 +27,6 @@ logs/
 
 # compiled Vaadin widgetsets
 src/main/webapp/VAADIN/widgetsets
+
+# From docs
+**/__pycache__

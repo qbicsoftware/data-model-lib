@@ -18,14 +18,14 @@ With Maven you can include the library as dependency with:
 <dependency>
   <groupId>life.qbic</groupId>
   <artifactId>data-model-lib</artifactId>
-  <version>1.10.0</version>
+  <version>1.12.0</version>
 </dependency>
 ```
 or Groovy Grape:
 
 ```
 @Grapes(
-  @Grab(group='life.qbic', module='data-model-lib', version='1.9.0')
+  @Grab(group='life.qbic', module='data-model-lib', version='1.12.0')
 )
 ```
 
@@ -126,3 +126,11 @@ DTOs.
 
 ![Imaging Data Structure Model](./doc/figures/Imaging_Data_Structure.png)
 
+### Business context - Offer Management and more
+
+The following figure describes the entity relation of the DTOs related to Offer Management.
+ 
+Detailed Information can be found in the GroovyDoc class description of the
+DTOs.
+
+![OfferData_Structure Model](./doc/figures/Offer_Data_Structure.png)

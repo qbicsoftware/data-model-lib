@@ -1,6 +1,10 @@
 package life.qbic.datamodel.accounting
 
-import life.qbic.datamodel.persons.Person
+import life.qbic.datamodel.dtos.business.Affiliation
+import life.qbic.datamodel.dtos.business.CostEstimateId
+import life.qbic.datamodel.dtos.business.Customer
+import life.qbic.datamodel.dtos.business.ProductItem
+import life.qbic.datamodel.dtos.business.ProjectManager
 
 /**
  * A cost estimate for a project
@@ -13,17 +17,28 @@ import life.qbic.datamodel.persons.Person
  * @author: Tobias Koch
  *
  */
+@Deprecated
 class CostEstimate {
 
     /**
      * The date on which the cost estimate was created
      */
-    final Date creationDate
+    final Date modificationDate
+
+    /**
+     * The date on which the cost estimate expires
+     */
+    final Date expirationDate
 
     /**
      * The customer for which the estimate is created
      */
-    final Person customer
+    final Customer customer
+
+    /**
+     * The QBiC project manager who was assigned to the project
+     */
+    final ProjectManager projectManager
 
     /**
      * The title of the project
@@ -48,15 +63,77 @@ class CostEstimate {
     /**
      * An identifier which makes the CostEstimate distinguishable from other CostEstimates
      */
-    final String identifier
+    final CostEstimateId identifier
 
-    CostEstimate(Date creationDate, Person customer, String projectTitle, String projectDescription, List<ProductItem> items, double totalPrice, String identifier) {
-        this.creationDate = creationDate
-        this.customer = customer
-        this.projectTitle = projectTitle
-        this.projectDescription = projectDescription
-        this.items = items
-        this.totalPrice = totalPrice
-        this.identifier = identifier
+    /**
+     * An identifier which makes the CostEstimate distinguishable from other CostEstimates
+     */
+    final Affiliation selectedCustomerAffiliation
+
+    static class Builder {
+
+        Date modificationDate
+        Date expirationDate
+        Customer customer
+        ProjectManager projectManager
+        String projectTitle
+        String projectDescription
+        List<ProductItem> items
+        double totalPrice
+        CostEstimateId identifier
+        Affiliation selectedCustomerAffiliation
+
+        Builder(Date modificationDate, Date expirationDate, Customer customer, ProjectManager projectManager, String projectDescription, String projectTitle, List<ProductItem> items, double totalPrice, CostEstimateId identifier, Affiliation selectedCustomerAffiliation) {
+            this.modificationDate = modificationDate
+            this.expirationDate = expirationDate
+            this.customer = customer
+            this.projectManager = projectManager
+            this.projectDescription = projectDescription
+            this.projectTitle = projectTitle
+            this.items = new ArrayList<ProductItem>(Collections.unmodifiableList(items))
+            this.totalPrice = totalPrice
+            this.identifier = identifier
+            this.selectedCustomerAffiliation = selectedCustomerAffiliation
+        }
+        //ToDo Determine if any properties should be able to be modified later or can't be set to Null
+        Builder identifier(CostEstimateId identifier) {
+            this.identifier = identifier
+            return this
+        }
+
+        CostEstimate build() {
+            return new CostEstimate(this)
+        }
+    }
+
+    private CostEstimate(Builder builder) {
+        this.modificationDate = builder.modificationDate
+        this.expirationDate = builder.expirationDate
+        this.customer = builder.customer
+        this.projectManager = builder.projectManager
+        this.projectDescription = builder.projectDescription
+        this.projectTitle = builder.projectTitle
+        this.items = builder.items
+        this.totalPrice = builder.totalPrice
+        this.identifier = builder.identifier
+        this.selectedCustomerAffiliation = builder.selectedCustomerAffiliation
+    }
+
+    /**
+     * Adds a new item to the items list of the offer
+     *
+     * @param item which should be added to current list of items
+     */
+    public void addItem(ProductItem item){
+        items.add(item)
+    }
+
+    /**
+     * Removes an item from the list of items of the offer
+     *
+     * @param item which should be removed from the current list of items
+     */
+    void removeItem(ProductItem item){
+         items.remove(item)
     }
 }

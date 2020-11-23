@@ -1,5 +1,6 @@
 package life.qbic.datamodel.dtos.imaging
 
+import groovy.transform.EqualsAndHashCode
 import life.qbic.datamodel.dtos.imaging.parameters.AcquisitionParameters
 import life.qbic.datamodel.dtos.imaging.parameters.AnalysisParameters
 import life.qbic.datamodel.dtos.imaging.properties.ImageSize
@@ -15,6 +16,7 @@ import life.qbic.datamodel.dtos.imaging.properties.PixelSize
  * @author Sven Fillinger
  * @since 1.10.0
  */
+@EqualsAndHashCode
 final class Image {
   /**
    * The image acquisition date.

@@ -1,15 +1,18 @@
 package life.qbic.datamodel.accounting
 
+import life.qbic.datamodel.dtos.business.ProductCategory
+
 /**
- * Describes an entity which packages all {@link ProductItem}s of the same type
+ * Describes an entity which packages all {@link life.qbic.datamodel.dtos.business.ProductItem}s of the same type
  *
- * A product is of a defined by a {@link ProductCategory} and other traits that define how to handle items assigned to
+ * A product is of a defined by a {@link life.qbic.datamodel.dtos.business.ProductCategory} and other traits that define how to handle items assigned to
  * that product.
  *
  * @since: 1.0
  * @author: Jennifer Bödker
  *
  */
+@Deprecated
 class Product {
 
     /**

@@ -1,6 +1,9 @@
 package life.qbic.datamodel.accounting
 
-import life.qbic.datamodel.persons.Person
+import life.qbic.datamodel.dtos.business.Customer
+import life.qbic.datamodel.dtos.business.OfferId
+import life.qbic.datamodel.dtos.business.ProductItem
+import life.qbic.datamodel.dtos.business.ProjectManager
 
 /**
  * An offer for a project
@@ -11,6 +14,7 @@ import life.qbic.datamodel.persons.Person
  * @author: Tobias Koch
  *
  */
+@Deprecated
 class Offer {
 
     /**
@@ -26,12 +30,12 @@ class Offer {
     /**
      * The customer for which this offer was created
      */
-    final Person customer
+    final Customer customer
 
     /**
      * The QBiC project manager who was assigned to the project
      */
-    final Person projectManager
+    final ProjectManager projectManager
 
     /**
      * The title of the project
@@ -56,7 +60,19 @@ class Offer {
     /**
      * The identifier for the offer which makes it distinguishable from other offers
      */
-    final String IDENTIFIER
+    final OfferId identifier
+
+    Offer(Date modificationDate, Date expirationDate, Customer customer, ProjectManager projectManager, String projectTitle, String projectDescription, List<ProductItem> items, double totalPrice, OfferId identifier) {
+        this.modificationDate = modificationDate
+        this.expirationDate = expirationDate
+        this.customer = customer
+        this.projectManager = projectManager
+        this.projectTitle = projectTitle
+        this.projectDescription = projectDescription
+        this.items = items
+        this.totalPrice = totalPrice
+        this.identifier = identifier
+    }
 
     /**
      * Adds a new item to the items list of the offer
@@ -64,7 +80,7 @@ class Offer {
      * @param item which should be added to current list of items
      */
     public void addItem(ProductItem item){
-        //todo implement me
+        items.add(item)
     }
 
     /**
@@ -73,8 +89,6 @@ class Offer {
      * @param item which should be removed from the current list of items
      */
     void removeItem(ProductItem item){
-        //todo implement me
+        items.remove(item)
     }
 }
-
-

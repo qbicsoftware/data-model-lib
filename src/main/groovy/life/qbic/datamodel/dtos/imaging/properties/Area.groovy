@@ -1,5 +1,7 @@
 package life.qbic.datamodel.dtos.imaging.properties
 
+import groovy.transform.EqualsAndHashCode
+
 /**
  * DTO that describes the area of an image. An area is described by two values, a starting point and an end point e.g (40,40)
  *
@@ -9,6 +11,7 @@ package life.qbic.datamodel.dtos.imaging.properties
  * @author: Jennifer Bödker
  *
  */
+@EqualsAndHashCode
 class Area {
 
     /**
