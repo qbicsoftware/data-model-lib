@@ -10,7 +10,7 @@
 		<version>3.1.3</version>
 	</parent>
 	<artifactId>data-model-lib</artifactId>
-	<version>1.12.0</version> <!-- <<QUBE_FORCE_BUMP>> -->
+	<version>1.13.0-SNAPSHOT</version> <!-- <<QUBE_FORCE_BUMP>> -->
 	<name>data-model-lib</name>
 	<url>http://github.com/qbicsoftware/data-model-lib</url>
 	<description>Data models. A collection of QBiC's central data models and DTOs. </description>
