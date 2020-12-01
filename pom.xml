@@ -67,7 +67,7 @@
       <groupId>io.swagger.core.v3</groupId>
       <artifactId>swagger-annotations</artifactId>
       <version>2.0.8</version>
-      <scope>compile</scope>
+      <scope>${osgi.scope}</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -84,36 +84,43 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
+      <scope>${osgi.scope}</scope>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-api</artifactId>
+      <scope>${osgi.scope}</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
+      <scope>${osgi.scope}</scope>
     </dependency>
     <dependency>
       <groupId>life.qbic</groupId>
       <artifactId>xml-manager-lib</artifactId>
       <version>1.6.0</version>
+      <scope>${osgi.scope}</scope>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-annotations</artifactId>
       <version>2.9.9</version>
+      <scope>${osgi.scope}</scope>
     </dependency>
     <dependency>
       <groupId>javax.validation</groupId>
       <artifactId>validation-api</artifactId>
       <version>2.0.1.Final</version>
+      <scope>${osgi.scope}</scope>
     </dependency>
     <!-- Provides methods for validation of a JSON object against a schema -->
     <dependency>
       <groupId>com.github.everit-org.json-schema</groupId>
       <artifactId>org.everit.json.schema</artifactId>
       <version>1.12.1</version>
+      <scope>${osgi.scope}</scope>
     </dependency>
   </dependencies>
   <build>
@@ -142,4 +149,47 @@
       </plugin>
     </plugins>
   </build>
+  <profiles>
+    <profile>
+      <id>no-liferay</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <osgi.scope>compile</osgi.scope>
+      </properties>
+    </profile>
+    <profile>
+      <id>liferay</id>
+      <properties>
+        <osgi.scope>provided</osgi.scope>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.2.0</version>
+            <configuration>
+              <archive>
+                <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+              </archive>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>biz.aQute.bnd</groupId>
+            <artifactId>bnd-maven-plugin</artifactId>
+            <version>5.1.2</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>bnd-process</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
