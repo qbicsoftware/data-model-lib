@@ -23,12 +23,12 @@ jobs:
               token: '${{ secrets.JOHNNY_Q5_REPORTS_TOKEN  }}'
           name: Check out source-code repository
 
-        - uses: oleksiyrudenko/gha-git-credentials@v2
+        - uses: oleksiyrudenko/gha-git-credentials@v2-latest
           with:
               name: 'JohnnyQ5'
               email: 'support@qbic.zendesk.com'
               actor: 'JohnnyQ5'
-              token: '{% raw %}${{ secrets.JOHNNY_Q5_REPORTS_TOKEN}}{% endraw %}'
+              token: '${{ secrets.JOHNNY_Q5_REPORTS_TOKEN}}'
 
         - name: Sync project
           run: qube sync . {% raw %}${{ secrets.JOHNNY_Q5_REPORTS_TOKEN  }}{% endraw %} JohnnyQ5
