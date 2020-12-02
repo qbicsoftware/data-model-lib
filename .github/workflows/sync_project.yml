@@ -22,7 +22,7 @@ jobs:
               fetch-depth: 0
           name: Check out source-code repository
 
-        - uses: oleksiyrudenko/gha-git-credentials@v1
+        - uses: oleksiyrudenko/gha-git-credentials@v2
           with:
               name: 'JohnnyQ5'
               email: 'support@qbic.zendesk.com'
