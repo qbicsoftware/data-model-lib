@@ -1,0 +1,8 @@
+Bundle-Name: ${project.name}
+Bundle-Version: ${project.version}
+Bundle-SymbolicName: ${project.groupId}.${project.artifactId}
+Bundle-DocURL: ${project.url}
+
+Bundle-Activator: life.qbic.example.Activator
+
+Export-Package: life.qbic.example
