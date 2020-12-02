@@ -1,6 +1,9 @@
 name: Sync qube project
 
-on: [push]
+on:
+  schedule:
+    - cron: '0 1 * * *'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -17,15 +20,14 @@ jobs:
         - uses: actions/checkout@v2
           with:
               fetch-depth: 0
-              token: '${{ secrets.JOHNNY_Q5_REPORTS_TOKEN  }}'
           name: Check out source-code repository
 
-        - uses: oleksiyrudenko/gha-git-credentials@v2
+        - uses: oleksiyrudenko/gha-git-credentials@v1
           with:
               name: 'JohnnyQ5'
               email: 'support@qbic.zendesk.com'
               actor: 'JohnnyQ5'
-              token: '${{ secrets.JOHNNY_Q5_REPORTS_TOKEN}}'
+              token: '{% raw %}${{ secrets.JOHNNY_Q5_REPORTS_TOKEN}}{% endraw %}'
 
         - name: Sync project
-          run: qube sync . ${{ secrets.JOHNNY_Q5_REPORTS_TOKEN  }} JohnnyQ5
+          run: qube sync . {% raw %}${{ secrets.JOHNNY_Q5_REPORTS_TOKEN  }}{% endraw %} JohnnyQ5
