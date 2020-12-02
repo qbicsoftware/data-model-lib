@@ -16,6 +16,7 @@
 
 # Maven
 target/
+**/.flattened-pom.xml
 
 # Some of our applications generate logs, which should be ignored by git
 logs/
@@ -24,7 +25,7 @@ logs/
 **/.factorypath
 
 # compiled Vaadin widgetsets
-**/src/main/webapp/VAADIN/widgetsets
+**/VAADIN/widgetsets
 
 # From docs
 **/__pycache__

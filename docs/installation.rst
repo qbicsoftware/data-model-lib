@@ -8,13 +8,13 @@ Installation
 Stable release
 --------------
 
-To install Data_models, run this command in your terminal:
+To install data-model-lib, run this command in your terminal:
 
 .. code-block:: console
 
     $ mvn install
 
-This is the preferred method to install Data_models, as it will always install the most recent stable release.
+This is the preferred method to install data-model-lib, as it will always install the most recent stable release.
 
 If you don't have `maven`_ installed you can get it from `here`_
 
@@ -24,19 +24,19 @@ If you don't have `maven`_ installed you can get it from `here`_
 From sources
 ------------
 
-The sources for Data_models can be downloaded from the `Github repo`_.
+The sources for data-model-lib can be downloaded from the `Github repo`_.
 
 You can either clone the public repository:
 
 .. code-block:: console
 
-    $ git clone git://github.com/qbicsoftware/Data_models
+    $ git clone git://github.com/qbicsoftware/data-model-lib
 
 Or download the `tarball`_:
 
 .. code-block:: console
 
-    $ curl -OJL https://github.com/qbicsoftware/Data_models/tarball/master
+    $ curl -OJL https://github.com/qbicsoftware/data-model-lib/tarball/master
 
 Once you have a copy of the source, you can install it with:
 
@@ -45,5 +45,5 @@ Once you have a copy of the source, you can install it with:
     $ mvn install
 
 
-.. _Github repo: https://github.com/qbicsoftware/Data_models
-.. _tarball: https://github.com/qbicsoftware/Data_models/tarball/master
+.. _Github repo: https://github.com/qbicsoftware/data-model-lib
+.. _tarball: https://github.com/qbicsoftware/data-model-lib/tarball/master

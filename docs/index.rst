@@ -1,5 +1,5 @@
-Welcome to Data_models's documentation!
-========================================
+Welcome to data-model-lib's documentation!
+===========================================
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
