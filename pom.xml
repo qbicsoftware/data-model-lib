@@ -4,17 +4,23 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>life.qbic</groupId>
-		<artifactId>parent-pom</artifactId>
-		<version>3.1.3</version>
-	</parent>
+
+    <groupId>life.qbic</groupId>
 	<artifactId>data-model-lib</artifactId>
 	<version>1.12.0</version> <!-- <<QUBE_FORCE_BUMP>> -->
 	<name>data-model-lib</name>
 	<url>http://github.com/qbicsoftware/data-model-lib</url>
 	<description>Data models. A collection of QBiC's central data models and DTOs. </description>
 	<packaging>jar</packaging>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
 	<!-- we only need to tell maven where to find our parent pom and other QBiC dependencies -->
 	<repositories>
 		<repository>
@@ -41,7 +47,7 @@
 			</snapshots>
 			<id>nexus-snapshots</id>
 			<name>QBiC Snapshots</name>
-			<url>http://qbic-repo.qbic.uni-tuebingen.de:8081/repository/maven-snapshots</url>
+			<url>https://qbic-repo.qbic.uni-tuebingen.de/repository/maven-snapshots</url>
 		</repository>
 		<repository>
 			<releases>
@@ -54,15 +60,108 @@
 			</snapshots>
 			<id>nexus-releases</id>
 			<name>QBiC Releases</name>
-			<url>http://qbic-repo.qbic.uni-tuebingen.de:8081/repository/maven-releases</url>
+			<url>https://qbic-repo.qbic.uni-tuebingen.de/repository/maven-releases</url>
 		</repository>
 	</repositories>
 
-	<dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-bom</artifactId>
+                <version>3.0.6</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi.core</artifactId>
+            <version>7.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.spockframework</groupId>
             <artifactId>spock-core</artifactId>
+            <version>1.3-groovy-2.5</version>
             <scope>test</scope>
         </dependency>
-	</dependencies>
+    </dependencies>
+
+     <distributionManagement>
+      <repository>
+        <uniqueVersion>true</uniqueVersion>
+        <id>nexus-releases</id>
+        <name>QBiC Releases</name>
+        <url>https://qbic-repo.qbic.uni-tuebingen.de/repository/maven-releases</url>
+      </repository>
+      <snapshotRepository>
+        <uniqueVersion>false</uniqueVersion>
+        <id>nexus-snapshots</id>
+        <name>QBiC Snapshots</name>
+        <url>https://qbic-repo.qbic.uni-tuebingen.de/repository/maven-snapshots</url>
+      </snapshotRepository>
+    </distributionManagement>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifestFile>
+                            ${project.build.outputDirectory}/META-INF/MANIFEST.MF
+                        </manifestFile>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <version>1.11.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>execute</goal>
+                            <goal>addSources</goal>
+                            <goal>addTestSources</goal>
+                            <goal>generateStubs</goal>
+                            <goal>compile</goal>
+                            <goal>generateTestStubs</goal>
+                            <goal>compileTests</goal>
+                            <goal>removeStubs</goal>
+                            <goal>removeTestStubs</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>biz.aQute.bnd</groupId>
+                <artifactId>bnd-maven-plugin</artifactId>
+                <version>5.1.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>bnd-process</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
