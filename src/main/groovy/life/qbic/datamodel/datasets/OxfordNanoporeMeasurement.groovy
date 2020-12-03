@@ -1,6 +1,5 @@
 package life.qbic.datamodel.datasets
 
-import groovyjarjarcommonscli.MissingArgumentException
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nanopore.*
@@ -120,7 +119,7 @@ final class OxfordNanoporeMeasurement {
             result.add(m.group())
         }
         if (result.isEmpty()) {
-            throw new MissingArgumentException("Could not find information about the library preparation kit.")
+            throw new MissingPropertyException("Could not find information about the library preparation kit.")
         }
         return result[0]
     }
