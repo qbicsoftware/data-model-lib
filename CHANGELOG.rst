@@ -9,10 +9,15 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 ----------------------------
 
 **Added**
+Introduce Profiles to pom to differentiate between OSGI and non-OSGI packaging
+Add bnd.bnd file to enable OSGI bundling
 
 **Fixed**
 
 **Dependencies**
+
+Add bnd-maven-plugin 5.1.2 to support OSGI packaging
+Add maven-jar-plugin 3.2.0 to support OSGI packaging
 
 **Deprecated**
 
