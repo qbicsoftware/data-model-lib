@@ -86,7 +86,7 @@
             <groupId>org.osgi</groupId>
             <artifactId>osgi.core</artifactId>
             <version>7.0.0</version>
-            <scope>provided</scope>
+            <scope>${osgi.scope}</scope>
         </dependency>
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
@@ -98,23 +98,27 @@
             <groupId>com.github.everit-org.json-schema</groupId>
             <artifactId>org.everit.json.schema</artifactId>
             <version>1.12.1</version>
+          <scope>${osgi.scope}</scope>
         </dependency>
       <dependency>
         <groupId>life.qbic</groupId>
         <artifactId>xml-manager-lib</artifactId>
         <version>1.6.0</version>
+        <scope>${osgi.scope}</scope>
       </dependency>
       <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-annotations</artifactId>
         <version>2.12.0</version>
+        <scope>${osgi.scope}</scope>
       </dependency>
       <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
       <dependency>
         <groupId>javax.validation</groupId>
         <artifactId>validation-api</artifactId>
         <version>2.0.1.Final</version>
+        <scope>${osgi.scope}</scope>
       </dependency>
       <!-- Spock testing framework -->
       <dependency>
@@ -140,25 +144,12 @@
         <url>https://qbic-repo.qbic.uni-tuebingen.de/repository/maven-snapshots</url>
       </snapshotRepository>
     </distributionManagement>
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.2.0</version>
-                <configuration>
-                    <archive>
-                        <manifestFile>
-                            ${project.build.outputDirectory}/META-INF/MANIFEST.MF
-                        </manifestFile>
-                    </archive>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.gmavenplus</groupId>
@@ -180,18 +171,49 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>biz.aQute.bnd</groupId>
-                <artifactId>bnd-maven-plugin</artifactId>
-                <version>5.1.2</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>bnd-process</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
+  <profiles>
+    <profile>
+      <id>no-liferay</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <osgi.scope>compile</osgi.scope>
+      </properties>
+    </profile>
+    <profile>
+      <id>liferay</id>
+      <properties>
+        <osgi.scope>provided</osgi.scope>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.2.0</version>
+            <configuration>
+              <archive>
+                <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+              </archive>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>biz.aQute.bnd</groupId>
+            <artifactId>bnd-maven-plugin</artifactId>
+            <version>5.1.2</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>bnd-process</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
