@@ -9,8 +9,9 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 ----------------------------
 
 **Added**
-Introduce Profiles to pom to differentiate between OSGI and non-OSGI packaging
-Add bnd.bnd file to enable OSGI bundling
+* Introduce profiles to pom to differentiate between OSGI and non-OSGI packaging
+
+* Add bnd.bnd file to enable OSGI bundling
 
 **Fixed**
 
