@@ -1,8 +1,8 @@
 Bundle-Name: ${project.name}
 Bundle-Version: ${project.version}
 Bundle-SymbolicName: ${project.groupId}.${project.artifactId}
+Bundle-URL: ${project.url}
 Bundle-DocURL: ${project.url}
 
-Bundle-Activator: life.qbic.example.Activator
-
-Export-Package: life.qbic.example
+Export-Package: life.qbic.datamodel*;version="${project.version}"
+Import-Package: *
