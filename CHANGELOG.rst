@@ -14,6 +14,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 * Add bnd.bnd file to enable OSGI bundling
 
 **Fixed**
+* Change ProductUnit.PER_GIGABYTE String representation to `Gigabyte`
 
 **Dependencies**
 
