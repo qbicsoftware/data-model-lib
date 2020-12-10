@@ -7,7 +7,7 @@ package life.qbic.datamodel.dtos.business.services
  */
 enum ProductUnit {
 
-  PER_GIGABYTE("1 GB"),
+  PER_GIGABYTE("Gigabyte"),
   PER_SAMPLE("Sample"),
   PER_DATASET("Dataset")
 
