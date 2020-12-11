@@ -1,6 +1,7 @@
 package life.qbic.datamodel.dtos.business
 
-
+import life.qbic.datamodel.dtos.business.services.ProductUnit
+import life.qbic.datamodel.dtos.business.services.Sequencing
 import spock.lang.Specification
 
 /**
@@ -29,11 +30,12 @@ class OfferSpec extends Specification {
         double overhead = 0.2
         double net = 900
         OfferId offerId = new OfferId("ab", "cd", 1)
+        ProductItem item = new ProductItem(2,new Sequencing("DNA Sequencing","This is a sequencing package",1.50, ProductUnit.PER_SAMPLE))
 
         when:
         Offer testOffer =
-                new Offer.Builder(customer, projectManager, "Archer", "Cartoon Series", [], selectedAffiliation)
-                        .modificationDate(date).expirationDate(date).totalPrice(price).identifier(offerId).vat(vat).overhead(overhead).net(net)
+                new Offer.Builder(customer, projectManager, "Archer", "Cartoon Series", selectedAffiliation)
+                        .modificationDate(date).expirationDate(date).totalPrice(price).identifier(offerId).vat(vat).overhead(overhead).net(net).items([item])
                         .build()
 
         then:
@@ -43,10 +45,10 @@ class OfferSpec extends Specification {
         testOffer.getProjectManager() == projectManager
         testOffer.getProjectTitle() == "Archer"
         testOffer.getProjectDescription() == "Cartoon Series"
-        testOffer.getItems() == []
         testOffer.getVat() == vat
         testOffer.getOverhead() == overhead
         testOffer.getNet() == net
+        testOffer.getItems() == [item]
         testOffer.getTotalPrice() == price
         testOffer.getIdentifier() == offerId
         testOffer.getSelectedCustomerAffiliation() == selectedAffiliation
@@ -59,7 +61,7 @@ class OfferSpec extends Specification {
 
         when:
         Offer testOffer =
-                new Offer.Builder(customer, projectManager, "Archer", "Cartoon Series", [], selectedAffiliation)
+                new Offer.Builder(customer, projectManager, "Archer", "Cartoon Series", selectedAffiliation)
                         .build()
 
         then:
