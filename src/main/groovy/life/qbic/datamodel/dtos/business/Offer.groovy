@@ -71,7 +71,7 @@ class Offer {
             this.projectManager = Objects.requireNonNull(projectManager, "Project Manager must not be null")
             this.projectTitle = Objects.requireNonNull(projectTitle, "Project Title must not be null")
             this.projectDescription = Objects.requireNonNull(projectDescription, "Project Description must not be null")
-            this.items = []
+            this.items = Objects.requireNonNull(items, "Items must not be null")
             this.selectedCustomerAffiliation = Objects.requireNonNull(selectedCustomerAffiliation, "Customer Affiliation must not be null")
         }
 
