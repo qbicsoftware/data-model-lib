@@ -31,8 +31,8 @@ class OfferSpec extends Specification {
 
         when:
         Offer testOffer =
-                new Offer.Builder(customer, projectManager, "Archer", "Cartoon Series", [item], selectedAffiliation)
-                        .modificationDate(date).expirationDate(date).totalPrice(price).identifier(offerId)
+                new Offer.Builder(customer, projectManager, "Archer", "Cartoon Series", selectedAffiliation)
+                        .modificationDate(date).expirationDate(date).totalPrice(price).identifier(offerId).items([item])
                         .build()
 
         then:
@@ -55,7 +55,7 @@ class OfferSpec extends Specification {
 
         when:
         Offer testOffer =
-                new Offer.Builder(customer, projectManager, "Archer", "Cartoon Series", [], selectedAffiliation)
+                new Offer.Builder(customer, projectManager, "Archer", "Cartoon Series", selectedAffiliation)
                         .build()
 
         then:
