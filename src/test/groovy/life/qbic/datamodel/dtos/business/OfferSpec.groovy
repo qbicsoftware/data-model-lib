@@ -24,13 +24,16 @@ class OfferSpec extends Specification {
     def "Fluent API shall create an Offer object"() {
 
         given:
-        Double price = 1000
+        double price = 1000
+        double vat = 0.19
+        double overhead = 0.2
+        double net = 900
         OfferId offerId = new OfferId("ab", "cd", 1)
 
         when:
         Offer testOffer =
                 new Offer.Builder(customer, projectManager, "Archer", "Cartoon Series", [], selectedAffiliation)
-                        .modificationDate(date).expirationDate(date).totalPrice(price).identifier(offerId)
+                        .modificationDate(date).expirationDate(date).totalPrice(price).identifier(offerId).vat(vat).overhead(overhead).net(net)
                         .build()
 
         then:
@@ -41,6 +44,9 @@ class OfferSpec extends Specification {
         testOffer.getProjectTitle() == "Archer"
         testOffer.getProjectDescription() == "Cartoon Series"
         testOffer.getItems() == []
+        testOffer.getVat() == vat
+        testOffer.getOverhead() == overhead
+        testOffer.getNet() == net
         testOffer.getTotalPrice() == price
         testOffer.getIdentifier() == offerId
         testOffer.getSelectedCustomerAffiliation() == selectedAffiliation

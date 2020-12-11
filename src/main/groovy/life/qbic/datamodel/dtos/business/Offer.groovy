@@ -45,6 +45,18 @@ class Offer {
      */
     final double totalPrice
     /**
+     * The net value of the offer price
+     */
+    final double net
+    /**
+     * The overheads applied to the offer price
+     */
+    final double overhead
+    /**
+     * The value added taxes for the offer price
+     */
+    final double vat
+    /**
      * The identifier for the offer which makes it distinguishable from other offers
      */
     final OfferId identifier
@@ -63,6 +75,9 @@ class Offer {
         String projectDescription
         List<ProductItem> items
         double totalPrice
+        double vat
+        double net
+        double overhead
         OfferId identifier
         Affiliation selectedCustomerAffiliation
 
@@ -95,6 +110,21 @@ class Offer {
             return this
         }
 
+        Builder vat(double vat) {
+            this.vat = vat
+            return this
+        }
+
+        Builder net(double net) {
+            this.net = net
+            return this
+        }
+
+        Builder overhead(double overhead) {
+            this.overhead = overhead
+            return this
+        }
+
         Offer build() {
             return new Offer(this)
         }
@@ -109,6 +139,9 @@ class Offer {
         this.projectTitle = builder.projectTitle
         this.items = builder.items
         this.totalPrice = builder.totalPrice
+        this.vat = builder.vat
+        this.net = builder.net
+        this.overhead = builder.overhead
         this.identifier = builder.identifier
         this.selectedCustomerAffiliation = builder.selectedCustomerAffiliation
     }
