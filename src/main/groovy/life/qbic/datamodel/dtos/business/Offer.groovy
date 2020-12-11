@@ -66,13 +66,13 @@ class Offer {
         OfferId identifier
         Affiliation selectedCustomerAffiliation
 
-        Builder(Customer customer, ProjectManager projectManager, String projectTitle, String projectDescription, List<ProductItem> items, Affiliation selectedCustomerAffiliation) {
+        Builder(Customer customer, ProjectManager projectManager, String projectTitle, String projectDescription, Affiliation selectedCustomerAffiliation) {
             this.customer = Objects.requireNonNull(customer, "Customer must not be null")
             this.projectManager = Objects.requireNonNull(projectManager, "Project Manager must not be null")
             this.projectTitle = Objects.requireNonNull(projectTitle, "Project Title must not be null")
             this.projectDescription = Objects.requireNonNull(projectDescription, "Project Description must not be null")
-            this.items = []
             this.selectedCustomerAffiliation = Objects.requireNonNull(selectedCustomerAffiliation, "Customer Affiliation must not be null")
+            this.items = []
         }
 
         Builder modificationDate(Date modificationDate) {
@@ -87,6 +87,11 @@ class Offer {
 
         Builder totalPrice(Double totalPrice) {
             this.totalPrice = totalPrice
+            return this
+        }
+
+        Builder items(List<ProductItem> items) {
+            this.items = items
             return this
         }
 
