@@ -1,5 +1,7 @@
 package life.qbic.datamodel.dtos.business.services
 
+import groovy.transform.EqualsAndHashCode
+
 /**
  * Holds information about a simple QBiC service product.
  *
@@ -8,6 +10,7 @@ package life.qbic.datamodel.dtos.business.services
  *
  * @since 1.12.0
  */
+@EqualsAndHashCode
 abstract class Product {
 
   /**

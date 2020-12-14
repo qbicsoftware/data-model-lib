@@ -16,10 +16,20 @@ class ProductItemSpec extends Specification {
     def "ProductItem shall store and provide the given properties: name, description and product"() {
         when:
         Product product = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE)
+
         def productItem = new ProductItem(3.0, product)
 
         then:
         productItem.product == product
+    }
+
+    def "Products shall be comparable"(){
+        when:
+        Product product = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE)
+        Product product2 = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE)
+
+        then:
+        product == product2
     }
 
 
