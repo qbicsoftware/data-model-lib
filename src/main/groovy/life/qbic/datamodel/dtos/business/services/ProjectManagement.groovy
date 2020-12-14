@@ -1,10 +1,13 @@
 package life.qbic.datamodel.dtos.business.services
 
+import groovy.transform.EqualsAndHashCode
+
 /**
  * Describes a product for project management services.
  *
  * @since 1.12.0
  */
+@EqualsAndHashCode(callSuper = true)
 class ProjectManagement extends PartialProduct {
   /**
    * Basic product constructor.

@@ -1,5 +1,7 @@
 package life.qbic.datamodel.dtos.business.services
 
+import groovy.transform.EqualsAndHashCode
+
 /**
  * Describes a product type that can only have positive natural unit multipliers (N={0,1...,inf+})
  *
@@ -9,6 +11,7 @@ package life.qbic.datamodel.dtos.business.services
  *
  * @since 1.12.0
  */
+@EqualsAndHashCode(callSuper = true)
 class PartialProduct extends Product {
   /**
    * Basic product constructor.
