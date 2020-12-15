@@ -45,6 +45,18 @@ class Offer {
      */
     final double totalPrice
     /**
+     * The net price of all items without taxes and overhead
+     */
+    final double netPrice
+    /**
+     * The amount of taxes, part of the total total price
+     */
+    final double taxes
+    /**
+     * The amount of overheads part, of the total price
+     */
+    final double overheads
+    /**
      * The identifier for the offer which makes it distinguishable from other offers
      */
     final OfferId identifier
@@ -55,16 +67,30 @@ class Offer {
 
     static class Builder {
 
-        Date modificationDate
-        Date expirationDate
-        Customer customer
-        ProjectManager projectManager
+        /*
+        Overall offer describing properties
+         */
         String projectTitle
         String projectDescription
-        List<ProductItem> items
-        double totalPrice
-        OfferId identifier
+        Customer customer
+        ProjectManager projectManager
         Affiliation selectedCustomerAffiliation
+        Date modificationDate
+        Date expirationDate
+        List<ProductItem> items
+
+        /*
+        Offer identifier
+         */
+        OfferId identifier
+
+        /*
+        Price related properties
+         */
+        double totalPrice
+        double netPrice
+        double taxes
+        double overheads
 
         Builder(Customer customer, ProjectManager projectManager, String projectTitle, String projectDescription, Affiliation selectedCustomerAffiliation) {
             this.customer = Objects.requireNonNull(customer, "Customer must not be null")
@@ -73,6 +99,10 @@ class Offer {
             this.projectDescription = Objects.requireNonNull(projectDescription, "Project Description must not be null")
             this.selectedCustomerAffiliation = Objects.requireNonNull(selectedCustomerAffiliation, "Customer Affiliation must not be null")
             this.items = []
+            netPrice = 0
+            overheads = 0
+            taxes = 0
+            totalPrice = 0
         }
 
         Builder modificationDate(Date modificationDate) {
@@ -82,6 +112,21 @@ class Offer {
 
         Builder expirationDate(Date expirationDate) {
             this.expirationDate = expirationDate
+            return this
+        }
+
+        Builder netPrice(Double netPrice) {
+            this.netPrice = netPrice
+            return this
+        }
+
+        Builder overheads(Double overheads) {
+            this.overheads = overheads
+            return this
+        }
+
+        Builder taxes(Double taxes) {
+            this.taxes = taxes
             return this
         }
 
@@ -100,6 +145,21 @@ class Offer {
             return this
         }
 
+        Builder vat(double vat) {
+            this.vat = vat
+            return this
+        }
+
+        Builder net(double net) {
+            this.net = net
+            return this
+        }
+
+        Builder overhead(double overhead) {
+            this.overhead = overhead
+            return this
+        }
+
         Offer build() {
             return new Offer(this)
         }
@@ -113,9 +173,12 @@ class Offer {
         this.projectDescription = builder.projectDescription
         this.projectTitle = builder.projectTitle
         this.items = builder.items
-        this.totalPrice = builder.totalPrice
         this.identifier = builder.identifier
         this.selectedCustomerAffiliation = builder.selectedCustomerAffiliation
+        this.netPrice = builder.netPrice
+        this.overheads = builder.overheads
+        this.taxes = builder.taxes
+        this.totalPrice = builder.totalPrice
     }
 
     /**
