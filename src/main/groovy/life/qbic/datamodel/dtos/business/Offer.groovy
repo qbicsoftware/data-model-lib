@@ -145,6 +145,21 @@ class Offer {
             return this
         }
 
+        Builder vat(double vat) {
+            this.vat = vat
+            return this
+        }
+
+        Builder net(double net) {
+            this.net = net
+            return this
+        }
+
+        Builder overhead(double overhead) {
+            this.overhead = overhead
+            return this
+        }
+
         Offer build() {
             return new Offer(this)
         }
