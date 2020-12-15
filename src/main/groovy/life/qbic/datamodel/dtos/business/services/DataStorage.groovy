@@ -1,10 +1,13 @@
 package life.qbic.datamodel.dtos.business.services
 
+import groovy.transform.EqualsAndHashCode
+
 /**
  * Describes a product for data storage services.
  *
  * @since 1.12.0
  */
+@EqualsAndHashCode(callSuper = true)
 class DataStorage extends PartialProduct {
   /**
    * Basic product constructor.

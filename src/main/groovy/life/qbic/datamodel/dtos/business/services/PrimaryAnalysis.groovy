@@ -1,10 +1,13 @@
 package life.qbic.datamodel.dtos.business.services
 
+import groovy.transform.EqualsAndHashCode
+
 /**
  * Describes a product for primary bioinformatic analysis services.
  *
  * @since 1.12.0
  */
+@EqualsAndHashCode(callSuper = true)
 class PrimaryAnalysis extends AtomicProduct {
   /**
    * Basic product constructor.
