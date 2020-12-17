@@ -37,7 +37,7 @@ class ProductItemSpec extends Specification {
         Product product = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE)
 
         then:
-        product.currency.symbol == "EUR"
+        product.currency.toString() == "EUR"
         product.currency.displayName == "Euro"
     }
 
