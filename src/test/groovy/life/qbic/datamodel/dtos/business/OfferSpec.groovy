@@ -52,6 +52,7 @@ class OfferSpec extends Specification {
         testOffer.getTotalPrice() == price
         testOffer.getIdentifier() == offerId
         testOffer.getSelectedCustomerAffiliation() == selectedAffiliation
+        testOffer.currency.toString() == "EUR"
     }
 
     def "Missing optional Field definitions shall haven null values in an Offer object"() {

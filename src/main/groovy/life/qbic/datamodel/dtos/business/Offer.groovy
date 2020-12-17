@@ -53,9 +53,13 @@ class Offer {
      */
     final double taxes
     /**
-     * The amount of overheads part, of the total price
+     * The amount of overheads, part of the total price
      */
     final double overheads
+    /**
+     * The currency of the price
+     */
+    final Currency currency
     /**
      * The identifier for the offer which makes it distinguishable from other offers
      */
@@ -91,6 +95,7 @@ class Offer {
         double netPrice
         double taxes
         double overheads
+        Currency currency
 
         Builder(Customer customer, ProjectManager projectManager, String projectTitle, String projectDescription, Affiliation selectedCustomerAffiliation) {
             this.customer = Objects.requireNonNull(customer, "Customer must not be null")
@@ -103,6 +108,7 @@ class Offer {
             overheads = 0
             taxes = 0
             totalPrice = 0
+            currency = Currency.getInstance(Locale.GERMANY)
         }
 
         Builder modificationDate(Date modificationDate) {
@@ -145,21 +151,6 @@ class Offer {
             return this
         }
 
-        Builder vat(double vat) {
-            this.vat = vat
-            return this
-        }
-
-        Builder net(double net) {
-            this.net = net
-            return this
-        }
-
-        Builder overhead(double overhead) {
-            this.overhead = overhead
-            return this
-        }
-
         Offer build() {
             return new Offer(this)
         }
@@ -179,6 +170,7 @@ class Offer {
         this.overheads = builder.overheads
         this.taxes = builder.taxes
         this.totalPrice = builder.totalPrice
+        this.currency = builder.currency
     }
 
     /**

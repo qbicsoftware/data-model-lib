@@ -12,6 +12,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 * Introduce profiles to pom to differentiate between OSGI and non-OSGI packaging
 * Added a netPrice, taxes and overheads property to the offer DTO
 * Add bnd.bnd file to enable OSGI bundling
+* Add currency for Product and Offer
 
 **Fixed**
 * Change ProductUnit.PER_GIGABYTE String representation to `Gigabyte`
