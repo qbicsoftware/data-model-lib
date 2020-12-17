@@ -32,5 +32,14 @@ class ProductItemSpec extends Specification {
         product == product2
     }
 
+    def "Product currency is euro"(){
+        when:
+        Product product = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE)
+
+        then:
+        product.currency.toString() == "EUR"
+        product.currency.displayName == "Euro"
+    }
+
 
 }
