@@ -29,6 +29,11 @@ abstract class Product {
   final double unitPrice
 
   /**
+   * The currency of the price
+   */
+  final Currency currency
+
+  /**
    * The unit of the product.
    */
   final ProductUnit unit
@@ -48,6 +53,8 @@ abstract class Product {
     this.description = Objects.requireNonNull(description, "Description must not be null")
     this.unitPrice = Objects.requireNonNull(unitPrice, "Unit price must not be null")
     this.unit = Objects.requireNonNull(unit, "Unit must not be null")
+    //currency is on default in euro
+    this.currency = Currency.getInstance(Locale.GERMANY)
   }
 
 }
