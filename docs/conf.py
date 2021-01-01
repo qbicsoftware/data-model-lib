@@ -47,7 +47,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'data-model-lib'
-copyright = "2020, Sven Fillinger"
+copyright = "2021, Sven Fillinger"
 author = "Sven Fillinger"
 
 # The version info for the project you're documenting, acts as replacement
