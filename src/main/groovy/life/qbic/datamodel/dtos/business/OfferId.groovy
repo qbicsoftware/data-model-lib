@@ -15,7 +15,7 @@ class OfferId extends TomatoId{
     private static final String TYPE = "O"
 
 
-    OfferId(String projectConservedPart, String randomPart, int version) {
+    OfferId(String projectConservedPart, String randomPart, String version) {
         super(TYPE,projectConservedPart,randomPart,version)
     }
 
