@@ -23,9 +23,9 @@ abstract class TomatoId {
      */
     private String random
     /**
-     * Version of the identifier which is a number between 0 and 9
+     * Version of the identifier
      */
-    private int version
+    private String version
 
     /**
      * Creates an identifier object with the
@@ -35,7 +35,7 @@ abstract class TomatoId {
      * @param randomPart describes the random part of the identifier
      * @param version describes the version of the identifier
      */
-    TomatoId(String type, String projectConservedPart, String randomPart, int version){
+    TomatoId(String type, String projectConservedPart, String randomPart, String version){
         this.type = Objects.requireNonNull(type, "type must not be null")
         this.projectConserved = Objects.requireNonNull(projectConservedPart, "projectConservedPart must not be null")
         this.random = Objects.requireNonNull(randomPart, "randomPart must not be null")
@@ -74,7 +74,7 @@ abstract class TomatoId {
      * Returns the version of the identifier
      * @return
      */
-    int getVersion() {
+    String getVersion() {
         return version
     }
     /**
