@@ -70,7 +70,7 @@ abstract class TomatoId {
      * @return
      */
     String getRandomPart() {
-        return randomPart
+        return random
     }
 
     /**
