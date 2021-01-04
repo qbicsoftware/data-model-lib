@@ -1,5 +1,7 @@
 package life.qbic.datamodel.dtos.business
 
+import groovy.transform.CompileStatic
+
 /**
  * A DTO describing Tomato identifiers
  *
@@ -9,23 +11,24 @@ package life.qbic.datamodel.dtos.business
  * @since: 1.12.0
  *
  */
+@CompileStatic
 abstract class TomatoId {
     /**
      * The type of the identifier is defined by the implementing identifier
      */
-    private final String type
+    final private String type
     /**
      * Conserved part of a project which is the name of the customer
      */
-    private String projectConserved
+    final private String projectConserved
     /**
      * Random part of the identifier which should follow the Regex [a-x0-9]{4}
      */
-    private String random
+    final private String random
     /**
      * Version of the identifier
      */
-    private String version
+    final private String version
 
     /**
      * Creates an identifier object with the
