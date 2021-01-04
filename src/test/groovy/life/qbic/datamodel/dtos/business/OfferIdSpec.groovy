@@ -3,11 +3,8 @@ package life.qbic.datamodel.dtos.business
 import spock.lang.Specification
 
 /**
- * <class short description - 1 Line!>
- *
- * <More detailed description - When to use, what it solves, etc.>
- *
- * @since <versiontag>
+ * Test class to check the offer id performance
+ * @since 1.13.0
  */
 class OfferIdSpec extends Specification {
 
