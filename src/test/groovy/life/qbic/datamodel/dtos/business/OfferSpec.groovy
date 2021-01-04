@@ -29,7 +29,7 @@ class OfferSpec extends Specification {
         double vat = 0.19
         double overhead = 0.2
         double net = 900
-        OfferId offerId = new OfferId("ab", "cd", 1)
+        OfferId offerId = new OfferId("ab", "cd", "1")
         ProductItem item = new ProductItem(2,new Sequencing("DNA Sequencing","This is a sequencing package",1.50, ProductUnit.PER_SAMPLE))
 
         when:
@@ -57,7 +57,7 @@ class OfferSpec extends Specification {
     def "Missing optional Field definitions shall haven null values in an Offer object"() {
 
         given:
-        OfferId offerId = new OfferId("ab", "cd", 1)
+        OfferId offerId = new OfferId("ab", "cd", "1")
 
         when:
         Offer testOffer =
