@@ -50,7 +50,9 @@ abstract class TomatoId {
      * looks like for all implementing classes to provide a uniform identifier format
      *
      * @return a String containing the type, project conserved part, random part and the version
+     * @deprecated As of release 1.13, please use the {@link #toString()} method
      */
+    @Deprecated
     String getIdentifier(){
         return type + "_" + projectConserved + "_" + randomPart + "_" + "v" + version
     }
@@ -86,5 +88,17 @@ abstract class TomatoId {
      */
     String getType() {
         return type
+    }
+
+    /**
+     * Returns a String representation in the format:
+     *
+     *      [type]_[project conserved part]_[random id]_[version]
+     *
+     * @return A String representation of the identifier
+     */
+    @Override
+    String toString() {
+        return type + "_" + projectConserved + "_" + randomPart + "_" + version
     }
 }

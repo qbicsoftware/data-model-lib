@@ -21,4 +21,8 @@ class OfferId extends TomatoId{
         super(TYPE,projectConservedPart,randomPart,version)
     }
 
+    @Override
+    String toString() {
+        return super.toString()
+    }
 }
