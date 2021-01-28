@@ -12,7 +12,8 @@ enum AcademicTitle {
 
     PROFESSOR("Prof. Dr."),
     DOCTOR("Dr."),
-    NONE("None")
+    NONE("None"),
+    PHD("PhD")
 
     /**
      Holds the String value of the enum
