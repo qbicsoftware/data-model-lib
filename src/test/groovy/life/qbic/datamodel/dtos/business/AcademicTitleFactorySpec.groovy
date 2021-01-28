@@ -28,17 +28,17 @@ class AcademicTitleFactorySpec extends Specification {
         factory.getForString(" None") == AcademicTitle.NONE
         factory.getForString(" Dr.") == AcademicTitle.DOCTOR
         factory.getForString(" Prof. Dr.") == AcademicTitle.PROFESSOR
-        factory.getForString(" Phd") == AcademicTitle.PHD
+        factory.getForString(" PhD") == AcademicTitle.PHD
 
         factory.getForString("None ") == AcademicTitle.NONE
         factory.getForString("Dr. ") == AcademicTitle.DOCTOR
         factory.getForString("Prof. Dr. ") == AcademicTitle.PROFESSOR
-        factory.getForString("Phd ") == AcademicTitle.PHD
+        factory.getForString("PhD ") == AcademicTitle.PHD
 
         factory.getForString(" None ") == AcademicTitle.NONE
         factory.getForString(" Dr. ") == AcademicTitle.DOCTOR
         factory.getForString(" Prof. Dr. ") == AcademicTitle.PROFESSOR
-        factory.getForString(" Phd ") == AcademicTitle.PHD
+        factory.getForString(" PhD ") == AcademicTitle.PHD
     }
 
     def "GetForString throws IllegalArgumentException for incorrect values"() {
