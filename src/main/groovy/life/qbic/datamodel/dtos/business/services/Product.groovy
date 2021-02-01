@@ -1,6 +1,7 @@
 package life.qbic.datamodel.dtos.business.services
 
 import groovy.transform.EqualsAndHashCode
+import life.qbic.datamodel.dtos.business.ProductId
 
 /**
  * Holds information about a simple QBiC service product.
@@ -39,22 +40,30 @@ abstract class Product {
   final ProductUnit unit
 
   /**
+   * The Id of the product.
+   */
+  final ProductId productId
+
+  /**
    * Basic product constructor.
    *
-   * Checks that all passed arguments are not null.
+   * Checks that all passed arguments except productId are not null.
    *
    * @param name The name of the product.
    * @param description The description of what the product is about.
    * @param unitPrice The price in € per unit
    * @param unit The product unit
+   * @param productId The Id of the product
    */
-  Product(String name, String description, double unitPrice, ProductUnit unit) {
+  Product(String name, String description, double unitPrice, ProductUnit unit, ProductId productId) {
     this.productName = Objects.requireNonNull(name, "Name must not be null")
     this.description = Objects.requireNonNull(description, "Description must not be null")
     this.unitPrice = Objects.requireNonNull(unitPrice, "Unit price must not be null")
     this.unit = Objects.requireNonNull(unit, "Unit must not be null")
+    this.productId = Objects.requireNonNull(productId, "ProductId must not be null")
     //currency is on default in euro
     this.currency = Currency.getInstance(Locale.GERMANY)
+
   }
 
 }

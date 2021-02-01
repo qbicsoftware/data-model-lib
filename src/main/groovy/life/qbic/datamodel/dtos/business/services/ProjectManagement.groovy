@@ -1,6 +1,7 @@
 package life.qbic.datamodel.dtos.business.services
 
 import groovy.transform.EqualsAndHashCode
+import life.qbic.datamodel.dtos.business.ProductId
 
 /**
  * Describes a product for project management services.
@@ -18,8 +19,9 @@ class ProjectManagement extends PartialProduct {
    * @param description The description of what the product is about.
    * @param unitPrice The price in € per unit
    * @param unit The product unit
+   * @param productId The product identifier
    */
-  ProjectManagement(String name, String description, double unitPrice, ProductUnit unit) {
-    super(name, description, unitPrice, unit)
+  ProjectManagement(String name, String description, double unitPrice, ProductUnit unit, ProductId productId) {
+    super(name, description, unitPrice, unit, productId)
   }
 }
