@@ -34,7 +34,7 @@ class ProductId {
 
     ProductId(String type, String version){
         this.type = Objects.requireNonNull(type, "type must not be null")
-        this.version= Objects.requireNonNull(type, "version must not be null")
+        this.version= Objects.requireNonNull(version, "version must not be null")
 
     }
 
