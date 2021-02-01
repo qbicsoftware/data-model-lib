@@ -14,8 +14,10 @@ class ProductItemSpec extends Specification {
 
 
     def "ProductItem shall store and provide the given properties: name, description and product"() {
+
         when:
-        Product product = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE)
+        ProductId productId = new ProductId("SE", "0")
+        Product product = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE, productId)
 
         def productItem = new ProductItem(3.0, product)
 
@@ -25,8 +27,9 @@ class ProductItemSpec extends Specification {
 
     def "Products shall be comparable"(){
         when:
-        Product product = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE)
-        Product product2 = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE)
+        ProductId productId = new ProductId("SE", "0")
+        Product product = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE, productId)
+        Product product2 = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE, productId)
 
         then:
         product == product2
@@ -34,7 +37,8 @@ class ProductItemSpec extends Specification {
 
     def "Product currency is euro"(){
         when:
-        Product product = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE)
+        ProductId productId = new ProductId("SE", "0")
+        Product product = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE, productId)
 
         then:
         product.currency.toString() == "EUR"
