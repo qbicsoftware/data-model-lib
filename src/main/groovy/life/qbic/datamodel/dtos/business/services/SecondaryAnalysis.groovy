@@ -22,11 +22,10 @@ class SecondaryAnalysis extends AtomicProduct {
    * @param unit The product unit
    * @param productId The product identifier
    */
-  private static final String TYPE = "SB"
 
   SecondaryAnalysis(String name, String description, double unitPrice, ProductUnit unit, String identifier) {
 
-    super(name, description, unitPrice, unit, new ProductId(TYPE , identifier))
+    super(name, description, unitPrice, unit, new ProductId(ProductType.SECONDARY_BIOINFO.toString() , identifier))
 
   }
 }

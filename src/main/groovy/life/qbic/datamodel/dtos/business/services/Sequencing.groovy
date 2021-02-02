@@ -22,9 +22,7 @@ class Sequencing extends AtomicProduct {
    * @param productId The product identifier
    */
 
-  private static final String TYPE = "SE"
-
   Sequencing(String name, String description, double unitPrice, ProductUnit unit, String identifier) {
-    super(name, description, unitPrice, unit, new ProductId(TYPE, identifier))
+    super(name, description, unitPrice, unit, new ProductId(ProductType.SEQUENCING.toString(), identifier))
   }
 }

@@ -22,9 +22,7 @@ class DataStorage extends PartialProduct {
    * @param productId The product identifier
    */
 
-  private static final String TYPE = "DS"
-
   DataStorage(String name, String description, double unitPrice, ProductUnit unit, String identifier) {
-    super(name, description, unitPrice, unit, new ProductId(TYPE, identifier))
+    super(name, description, unitPrice, unit, new ProductId(ProductType.DATA_STORAGE.toString(), identifier))
   }
 }

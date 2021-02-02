@@ -22,9 +22,7 @@ class ProjectManagement extends PartialProduct {
    * @param productId The product identifier
    */
 
-  private static final String TYPE = "PM"
-
   ProjectManagement(String name, String description, double unitPrice, ProductUnit unit, String identifier) {
-    super(name, description, unitPrice, unit, new ProductId(TYPE, identifier))
+    super(name, description, unitPrice, unit, new ProductId(ProductType.PROJECT_MANAGEMENT.toString(), identifier))
   }
 }
