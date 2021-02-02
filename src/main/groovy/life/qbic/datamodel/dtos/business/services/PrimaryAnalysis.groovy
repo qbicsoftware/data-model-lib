@@ -21,7 +21,10 @@ class PrimaryAnalysis extends AtomicProduct {
    * @param unit The product unit
    * @param productId The product identifier
    */
-  PrimaryAnalysis(String name, String description, double unitPrice, ProductUnit unit, ProductId productId) {
-    super(name, description, unitPrice, unit, productId)
+
+  private static final String TYPE = "PB"
+
+  PrimaryAnalysis(String name, String description, double unitPrice, ProductUnit unit, String identifier) {
+    super(name, description, unitPrice, unit, new ProductId(TYPE, identifier))
   }
 }

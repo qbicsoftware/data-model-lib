@@ -16,8 +16,7 @@ class ProductItemSpec extends Specification {
     def "ProductItem shall store and provide the given properties: name, description and product"() {
 
         when:
-        ProductId productId = new ProductId("SE", "0")
-        Product product = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE, productId)
+        Product product = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE, "1")
 
         def productItem = new ProductItem(3.0, product)
 
@@ -27,18 +26,22 @@ class ProductItemSpec extends Specification {
 
     def "Products shall be comparable"(){
         when:
-        ProductId productId = new ProductId("SE", "0")
-        Product product = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE, productId)
-        Product product2 = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE, productId)
+
+        Product product = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE, "1")
+        Product product2 = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE, "1")
 
         then:
-        product == product2
+        product.currency == product2.currency
+        product.description == product2.description
+        product.productName == product2.productName
+        product.unit == product2.unit
+        product.unitPrice == product2.unitPrice
+        product.productId.toString() == product2.productId.toString()
     }
 
     def "Product currency is euro"(){
         when:
-        ProductId productId = new ProductId("SE", "0")
-        Product product = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE, productId)
+        Product product = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE, "1")
 
         then:
         product.currency.toString() == "EUR"

@@ -21,7 +21,10 @@ class Sequencing extends AtomicProduct {
    * @param unit The product unit
    * @param productId The product identifier
    */
-  Sequencing(String name, String description, double unitPrice, ProductUnit unit, ProductId productId) {
-    super(name, description, unitPrice, unit, productId)
+
+  private static final String TYPE = "SE"
+
+  Sequencing(String name, String description, double unitPrice, ProductUnit unit, String identifier) {
+    super(name, description, unitPrice, unit, new ProductId(TYPE, identifier))
   }
 }

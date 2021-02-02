@@ -21,29 +21,29 @@ class ProductId {
     final private String type
 
     /**
-     * Version of the identifier
+     * Identifying number used in conjunction with the type
      */
-    final private String version
+    final private String identifier
 
     /**
      * Creates an identifier object with the
      *
      * @param type describing the type of the underlying identifier
-     * @param version describes the version of the identifier
+     * @param identifier describes the identifying running number
      */
 
-    ProductId(String type, String version){
+    ProductId(String type, String identifier){
         this.type = Objects.requireNonNull(type, "type must not be null")
-        this.version= Objects.requireNonNull(version, "version must not be null")
+        this.identifier= Objects.requireNonNull(identifier, "version must not be null")
 
     }
 
     /**
-     * Returns the version of the identifier
+     * Returns the identifying running number
      * @return
      */
-    String getVersion() {
-        return version
+    String getIdentifier() {
+        return identifier
     }
     /**
      * Returns the type of the identifier
@@ -62,6 +62,6 @@ class ProductId {
      */
     @Override
     String toString() {
-        return type + "_" + version
+        return type + "_" + identifier
     }
 }
