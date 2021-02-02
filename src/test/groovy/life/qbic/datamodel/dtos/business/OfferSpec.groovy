@@ -30,7 +30,7 @@ class OfferSpec extends Specification {
         double overhead = 0.2
         double net = 900
         OfferId offerId = new OfferId("ab", "cd", "1")
-        ProductItem item = new ProductItem(2,new Sequencing("DNA Sequencing","This is a sequencing package",1.50, ProductUnit.PER_SAMPLE))
+        ProductItem item = new ProductItem(2,new Sequencing("DNA Sequencing","This is a sequencing package",1.50, ProductUnit.PER_SAMPLE, "1"))
 
         when:
         Offer testOffer =
