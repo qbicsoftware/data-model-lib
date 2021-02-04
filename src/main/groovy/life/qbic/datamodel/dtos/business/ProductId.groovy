@@ -18,12 +18,12 @@ class ProductId {
     /**
      * The type of the identifier is defined by the implementing identifier
      */
-    final private String type
+    private final String type
 
     /**
      * Identifying number used in conjunction with the type
      */
-    final private String identifier
+    private final String identifier
 
     /**
      * Creates an identifier object with the
