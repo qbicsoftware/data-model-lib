@@ -21,6 +21,13 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
+    <pluginRepositories>
+        <pluginRepository>
+            <id>qbic-plugins-2</id>
+            <url>https://qbic-repo.qbic.uni-tuebingen.de/repository/maven-releases</url>
+        </pluginRepository>
+    </pluginRepositories>
+
 	<!-- we only need to tell maven where to find our parent pom and other QBiC dependencies -->
 	<repositories>
 		<repository>
@@ -68,30 +75,30 @@
             <url>https://jitpack.io</url>
         </repository>
 	</repositories>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.codehaus.groovy</groupId>
                 <artifactId>groovy-bom</artifactId>
-                <version>3.0.6</version>
+                <version>3.0.7</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+          <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>3.0.7</version>
+            <type>pom</type>
+            <scope>${osgi.scope}</scope>
+          </dependency>
         </dependencies>
     </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>osgi.core</artifactId>
             <version>7.0.0</version>
             <scope>${osgi.scope}</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy</artifactId>
-            <scope>provided</scope>
         </dependency>
         <!-- JSON schema validator -->
         <dependency>
@@ -128,7 +135,6 @@
           <scope>test</scope>
       </dependency>
     </dependencies>
-
      <distributionManagement>
       <repository>
         <uniqueVersion>true</uniqueVersion>
@@ -162,7 +168,7 @@
             <plugin>
                 <groupId>org.codehaus.gmavenplus</groupId>
                 <artifactId>gmavenplus-plugin</artifactId>
-                <version>1.11.0</version>
+                <version>1.12.0</version>
                 <executions>
                     <execution>
                         <goals>
@@ -177,10 +183,47 @@
                             <goal>removeTestStubs</goal>
                         </goals>
                     </execution>
+                  <execution>
+                    <id>site</id>
+                    <phase>site</phase>
+                    <goals>
+                      <goal>generateStubs</goal>
+                      <goal>generateTestStubs</goal>
+                      <goal>groovydoc</goal>
+                      <goal>groovydocTests</goal>
+                    </goals>
+                  </execution>
                 </executions>
+              <configuration>
+                <groovyDocOutputDirectory>${project.build.directory}/site/gapidocs</groovyDocOutputDirectory>
+                <testGroovyDocOutputDirectory>${project.build.directory}/site/testgapidocs</testGroovyDocOutputDirectory>
+              </configuration>
             </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
+            <version>3.7.1</version>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-project-info-reports-plugin</artifactId>
+            <version>3.0.0</version>
+          </plugin>
+          <plugin>
+            <groupId>life.qbic</groupId>
+            <artifactId>groovydoc-maven-plugin</artifactId>
+            <version>1.0.2</version>
+          </plugin>
         </plugins>
     </build>
+  <reporting>
+    <plugins>
+    <plugin>
+    <groupId>life.qbic</groupId>
+    <artifactId>groovydoc-maven-plugin</artifactId>
+  </plugin>
+  </plugins>
+</reporting>
   <profiles>
     <profile>
       <id>no-liferay</id>
