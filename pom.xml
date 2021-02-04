@@ -21,6 +21,25 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
+    <pluginRepositories>
+        <pluginRepository>
+            <id>maven-central-plugins</id>
+            <url>
+                https://repo.maven.apache.org/maven2
+            </url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>liferay-releases-plugins</id>
+            <url>
+                https://repository.liferay.com/nexus/content/repositories/liferay-public-releases/com/liferay/portal/
+            </url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>qbic-plugins-2</id>
+            <url>https://qbic-repo.qbic.uni-tuebingen.de/repository/maven-releases</url>
+        </pluginRepository>
+    </pluginRepositories>
+
 	<!-- we only need to tell maven where to find our parent pom and other QBiC dependencies -->
 	<repositories>
 		<repository>
