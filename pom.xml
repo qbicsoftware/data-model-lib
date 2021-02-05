@@ -7,19 +7,26 @@
 
     <groupId>life.qbic</groupId>
 	<artifactId>data-model-lib</artifactId>
-	<version>1.12.0</version> <!-- <<QUBE_FORCE_BUMP>> -->
+	<version>1.13.0-SNAPSHOT</version> <!-- <<QUBE_FORCE_BUMP>> -->
 	<name>data-model-lib</name>
 	<url>http://github.com/qbicsoftware/data-model-lib</url>
 	<description>Data models. A collection of QBiC's central data models and DTOs. </description>
 	<packaging>jar</packaging>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>qbic-plugins-2</id>
+            <url>https://qbic-repo.qbic.uni-tuebingen.de/repository/maven-releases</url>
+        </pluginRepository>
+    </pluginRepositories>
 
 	<!-- we only need to tell maven where to find our parent pom and other QBiC dependencies -->
 	<repositories>
@@ -62,40 +69,72 @@
 			<name>QBiC Releases</name>
 			<url>https://qbic-repo.qbic.uni-tuebingen.de/repository/maven-releases</url>
 		</repository>
+        <!-- Host the everit json schema dependency -->
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
 	</repositories>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.codehaus.groovy</groupId>
                 <artifactId>groovy-bom</artifactId>
-                <version>3.0.6</version>
+                <version>3.0.7</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+          <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>3.0.7</version>
+            <type>pom</type>
+            <scope>${osgi.scope}</scope>
+          </dependency>
         </dependencies>
     </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>osgi.core</artifactId>
             <version>7.0.0</version>
-            <scope>provided</scope>
+            <scope>${osgi.scope}</scope>
         </dependency>
+        <!-- JSON schema validator -->
         <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy</artifactId>
-            <scope>provided</scope>
+            <groupId>com.github.everit-org.json-schema</groupId>
+            <artifactId>org.everit.json.schema</artifactId>
+            <version>1.12.1</version>
+          <scope>${osgi.scope}</scope>
         </dependency>
-        <dependency>
-            <groupId>org.spockframework</groupId>
-            <artifactId>spock-core</artifactId>
-            <version>1.3-groovy-2.5</version>
-            <scope>test</scope>
-        </dependency>
+      <dependency>
+        <groupId>life.qbic</groupId>
+        <artifactId>xml-manager-lib</artifactId>
+        <version>1.6.0</version>
+        <scope>${osgi.scope}</scope>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+        <version>2.12.0</version>
+        <scope>${osgi.scope}</scope>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+      <dependency>
+        <groupId>javax.validation</groupId>
+        <artifactId>validation-api</artifactId>
+        <version>2.0.1.Final</version>
+        <scope>${osgi.scope}</scope>
+      </dependency>
+      <!-- Spock testing framework -->
+      <dependency>
+          <groupId>org.spockframework</groupId>
+          <artifactId>spock-core</artifactId>
+          <version>2.0-M4-groovy-3.0</version>
+          <scope>test</scope>
+      </dependency>
     </dependencies>
-
      <distributionManagement>
       <repository>
         <uniqueVersion>true</uniqueVersion>
@@ -110,7 +149,6 @@
         <url>https://qbic-repo.qbic.uni-tuebingen.de/repository/maven-snapshots</url>
       </snapshotRepository>
     </distributionManagement>
-    
     <build>
         <plugins>
             <plugin>
@@ -118,22 +156,19 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.2.0</version>
-                <configuration>
-                    <archive>
-                        <manifestFile>
-                            ${project.build.outputDirectory}/META-INF/MANIFEST.MF
-                        </manifestFile>
-                    </archive>
-                </configuration>
-            </plugin>
+          <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.0.0-M5</version>
+            <configuration>
+              <includes>
+                <include>**/*Spec</include>
+              </includes>
+            </configuration>
+          </plugin>
             <plugin>
                 <groupId>org.codehaus.gmavenplus</groupId>
                 <artifactId>gmavenplus-plugin</artifactId>
-                <version>1.11.0</version>
+                <version>1.12.0</version>
                 <executions>
                     <execution>
                         <goals>
@@ -148,20 +183,88 @@
                             <goal>removeTestStubs</goal>
                         </goals>
                     </execution>
+                  <execution>
+                    <id>site</id>
+                    <phase>site</phase>
+                    <goals>
+                      <goal>generateStubs</goal>
+                      <goal>generateTestStubs</goal>
+                      <goal>groovydoc</goal>
+                      <goal>groovydocTests</goal>
+                    </goals>
+                  </execution>
                 </executions>
+              <configuration>
+                <groovyDocOutputDirectory>${project.build.directory}/site/gapidocs</groovyDocOutputDirectory>
+                <testGroovyDocOutputDirectory>${project.build.directory}/site/testgapidocs</testGroovyDocOutputDirectory>
+              </configuration>
             </plugin>
-            <plugin>
-                <groupId>biz.aQute.bnd</groupId>
-                <artifactId>bnd-maven-plugin</artifactId>
-                <version>5.1.2</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>bnd-process</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
+            <version>3.7.1</version>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-project-info-reports-plugin</artifactId>
+            <version>3.0.0</version>
+          </plugin>
+          <plugin>
+            <groupId>life.qbic</groupId>
+            <artifactId>groovydoc-maven-plugin</artifactId>
+            <version>1.0.2</version>
+          </plugin>
         </plugins>
     </build>
+  <reporting>
+    <plugins>
+    <plugin>
+    <groupId>life.qbic</groupId>
+    <artifactId>groovydoc-maven-plugin</artifactId>
+  </plugin>
+  </plugins>
+</reporting>
+  <profiles>
+    <profile>
+      <id>no-liferay</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <osgi.scope>compile</osgi.scope>
+      </properties>
+    </profile>
+    <profile>
+      <id>liferay</id>
+      <properties>
+        <osgi.scope>provided</osgi.scope>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.2.0</version>
+            <configuration>
+              <archive>
+                <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+              </archive>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>biz.aQute.bnd</groupId>
+            <artifactId>bnd-maven-plugin</artifactId>
+            <version>5.1.2</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>bnd-process</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
