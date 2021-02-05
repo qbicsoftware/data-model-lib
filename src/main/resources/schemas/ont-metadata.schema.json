@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://qbic.life/v1/ont-metadata.schema.json",
+  "title": "Nanopore Instrument Metadata Output",
+  "description": "Describes in which form Nanopore metadata is received from the lab.",
+  "type": "object",
+  "properties": {
+    "adapter": {
+      "type": "string",
+      "minLength": 1
+    },
+    "asic_temp": {
+      "type": "string",
+      "minLength": 1
+    },
+    "device_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "flow_cell_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "flow_cell_position": {
+      "type": "string",
+      "minLength": 1
+    },
+    "flow_cell_product_code": {
+      "type": "string",
+      "minLength": 1
+    },
+    "base_caller":  {
+      "type": "string",
+      "minLength": 1
+    },
+    "base_caller_version":  {
+      "type": "string",
+      "minLength": 1
+    },
+    "hostname": {
+      "type": "string",
+      "minLength": 1
+    },
+    "protocol": {
+      "type": "string",
+      "pattern": "SQK-.*(?=:)"
+    },
+    "started": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "asic_temp",
+    "base_caller",
+    "base_caller_version",
+    "device_type",
+    "flow_cell_id",
+    "flow_cell_position",
+    "flow_cell_product_code",
+    "hostname",
+    "protocol",
+    "started"
+  ]
+}
