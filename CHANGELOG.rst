@@ -17,10 +17,11 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Fixed**
 
-* Change ProductUnit.PER_GIGABYTE String representation to `Gigabyte`
 * ``life.qbic.datamodel.datasets.OxfordNanoporeMeasurement#extractLibraryKit(String)`` now throws
   ``MissingPropertyException`` instead of ``groovyjarjarcommonscli.MissingArgumentException``
-*
+* Change ``life.qbic.datamodel.dtos.business.services.ProductUnit.PER_GIGABYTE`` String representation to `Gigabyte` (`#125 <https://github.com/qbicsoftware/data-model-lib/pull/125>`_)
+
+
 
 
 **Dependencies**
