@@ -8,7 +8,7 @@ import groovy.transform.CompileStatic
  * The ProductId should be used as a general class describing identifiers like the {@link OfferId} and the {@link CostEstimateId}.
  * It consists of a fixed Part depending on the product category and an Integer based versioning
  *
- * @since: 1.13.0
+ * @since: 2.0.0
  *
  */
 

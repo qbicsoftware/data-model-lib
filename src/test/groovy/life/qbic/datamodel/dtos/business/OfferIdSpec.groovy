@@ -4,7 +4,7 @@ import spock.lang.Specification
 
 /**
  * Test class to check the offer id performance
- * @since 1.13.0
+ * @since 2.0.0
  */
 class OfferIdSpec extends Specification {
 
