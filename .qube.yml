@@ -4,7 +4,7 @@ email: sven.fillinger@qbic.uni-tuebingen.de
 project_name: data-model-lib
 project_short_description: "Data models. A collection of QBiC's central data models\
   \ and DTOs. "
-version: 1.13.0-SNAPSHOT
+version: 1.13.0
 domain: lib
 language: groovy
 project_slug: data-model-lib

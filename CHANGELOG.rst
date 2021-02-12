@@ -5,8 +5,8 @@ Changelog
 This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 
-1.13.0-SNAPSHOT (2020-12-02)
-----------------------------
+1.13.0 (2021-02-12)
+-------------------
 
 **Added**
 * Introduce profiles to pom to differentiate between OSGI and non-OSGI packaging
