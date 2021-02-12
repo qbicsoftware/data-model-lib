@@ -65,17 +65,32 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 * ``life.qbic.datamodel.workflows.*``
 
-1.12.0 (2020-12-02)
-----------------------------------------------
+1.12.0 (2020-11-20)
+-------------------
 
 **Added**
 
-* EnumFactory
-* Include support for QUBE template sync
+* Add `hashValue` and `equals` to `package life.qbic.datamodel.dtos` classes
+* Add `EnumFactory`
+* Add `EnumFactory` implementation for `AffiliationCategory`, `AcademicTitle`
+* Support for QUBE template sync
+* Introduce life/qbic/datamodel/dtos/general/Person.groovy DTO based on an abstract builder pattern
+* Introduce life/qbic/datamodel/dtos/general/CommonPerson.groovy DTO as extension of Person DTO
+* Introduce life/qbic/datamodel/dtos/business/Customer.groovy DTO as extension of Person DTO
+* Introduce life/qbic/datamodel/dtos/business/ProjectManager.groovy DTO as extension of Person DTO
+* Introduce life/qbic/datamodel/dtos/general/Address.groovy DTO
+* Update life/qbic/datamodel/accounting/CostEstimate.groovy so it matches the properties of the Offer DTO
+* life/qbic/datamodel/accounting/ProductItem.groovy no longer provides the computeTotalCost method
+* Introduce life/qbic/datamodel/dtos/business/Offer.groovy DTO
 * Update and introduce Builder Pattern to DTO classes for offer management
+* Refactor life/qbic/datamodel/accounting/CostEstimate.groovy into Builder pattern
+* Add diagram and description of DTO structure related to Offer management to README
+* Add enum factory for product units
+* Remove "Unknown" member from Affiliation Category Enum
 
 **Fixed**
 
+* Add default values to previous Address Implementation to avoid NullExceptions
 * Increase gha-git-credentials version (`#108 <https://github.com/qbicsoftware/data-model-lib/pull/108/>`_)
 * Customer ``hashCode()`` not working as expected (`#107 <https://github.com/qbicsoftware/data-model-lib/pull/107>`_)
 * Refactor old accounting classes into DTOs (`#101 <https://github.com/qbicsoftware/data-model-lib/pull/101>`_)
@@ -84,4 +99,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Deprecated**
 
-* Deprecate offer related accounting classes
+* Deprecate life/qbic/datamodel/people/Person.groovy
+* Deprecate life/qbic/datamodel/people/Address.groovy
+* Deprecate "PersonType" property of life/qbic/datamodel/dtos/general/Person.groovy
+* Deprecate life/qbic/datamodel/accounting/Offer.groovy
