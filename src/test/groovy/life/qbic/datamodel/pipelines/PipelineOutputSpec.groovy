@@ -36,7 +36,7 @@ class PipelineOutputSpec extends Specification {
 
         and:
         String validPipelineOutput = this.class.getClassLoader()
-                .getResourceAsStream("valid-resultset-example.json")
+                .getResourceAsStream("examples/resultset/valid-resultset-example.json")
                 .text
 
         and:
@@ -61,7 +61,81 @@ class PipelineOutputSpec extends Specification {
 
         and:
         String validPipelineOutput = this.class.getClassLoader()
-                .getResourceAsStream("invalid-resultset-example.json")
+                .getResourceAsStream("examples/resultset/invalid-resultset-example.json")
+                .text
+
+        and:
+        SchemaLoader schemaLoader = SchemaLoader.builder()
+                .schemaClient(SchemaClient.classPathAwareClient())
+                .schemaJson(new JSONObject(new JSONTokener(stream)))
+                .resolutionScope("classpath://schemas/")
+                .build()
+        Schema schema = schemaLoader.load().build()
+
+        when:
+        schema.validate(new JSONObject(validPipelineOutput))
+
+        then:
+        thrown(ValidationException)
+    }
+
+    def "Missing pipeline info property shall raise a validation exception"() {
+        given:
+        def stream = PipelineOutput.getSchemaAsStream()
+
+        and:
+        String validPipelineOutput = this.class.getClassLoader()
+                .getResourceAsStream("examples/resultset/missing-pipeline-info-resultset-example.json")
+                .text
+
+        and:
+        SchemaLoader schemaLoader = SchemaLoader.builder()
+                .schemaClient(SchemaClient.classPathAwareClient())
+                .schemaJson(new JSONObject(new JSONTokener(stream)))
+                .resolutionScope("classpath://schemas/")
+                .build()
+        Schema schema = schemaLoader.load().build()
+
+        when:
+        schema.validate(new JSONObject(validPipelineOutput))
+
+        then:
+        thrown(ValidationException)
+    }
+
+    def "Missing quality control property shall raise a validation exception"() {
+        given:
+        def stream = PipelineOutput.getSchemaAsStream()
+
+        and:
+        String validPipelineOutput = this.class.getClassLoader()
+                .getResourceAsStream("examples/resultset/missing-quality-control-resultset" +
+                        "-example.json")
+                .text
+
+        and:
+        SchemaLoader schemaLoader = SchemaLoader.builder()
+                .schemaClient(SchemaClient.classPathAwareClient())
+                .schemaJson(new JSONObject(new JSONTokener(stream)))
+                .resolutionScope("classpath://schemas/")
+                .build()
+        Schema schema = schemaLoader.load().build()
+
+        when:
+        schema.validate(new JSONObject(validPipelineOutput))
+
+        then:
+        thrown(ValidationException)
+    }
+
+    def "Missing process folders property shall raise a validation exception"() {
+        given:
+        def stream = PipelineOutput.getSchemaAsStream()
+
+        and:
+        String validPipelineOutput = this.class.getClassLoader()
+                .getResourceAsStream("examples/resultset/missing-process-folders-resultset" +
+                        "-example.json")
                 .text
 
         and:

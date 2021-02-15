@@ -1,0 +1,32 @@
+{
+  "qualityControl": {
+    "name": "multiqc",
+    "path": "./",
+    "children": [
+      {
+        "name": "star_salmon",
+        "path": "multiqc/star_salmon",
+        "children": [
+          {
+            "name": "multiqc_report.html",
+            "path": "multiqc/star_salmon/multiqc_report.html",
+            "fileType": "html"
+          }
+        ]
+      }
+    ]
+  },
+  "processFolders": [
+    {
+      "name": "salmon",
+      "path": "./",
+      "children": [
+        {
+          "name": "salmon.merged.gene_tpm",
+          "fileType": "tsv",
+          "path": "salmon/salmon.merged.gene_tpm"
+        }
+      ]
+    }
+  ]
+}
