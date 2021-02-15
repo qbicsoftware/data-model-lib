@@ -27,7 +27,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
   ``MissingPropertyException`` instead of ``groovyjarjarcommonscli.MissingArgumentException``
 * Change ``life.qbic.datamodel.dtos.business.services.ProductUnit.PER_GIGABYTE`` String representation to `Gigabyte` (`#125 <https://github.com/qbicsoftware/data-model-lib/pull/125>`_)
 * Change ``life.qbic.datamodel.dtos.business.TomatoId`` and extending classes now provide the version as ``String`` (`#134 <https://github.com/qbicsoftware/data-model-lib/pull/134>`_)
-* Add missing dependencies for report generation. Fix issue `#145 <https://github.com/qbicsoftware/data-model-lib/pull/145>`_ with PR `#147 <https://github.com/qbicsoftware/data-model-lib/pull/147>`_
+* Add missing dependencies for report generation. Fix issue `#145 <https://github.com/qbicsoftware/data-model-lib/issues/145>`_ with PR `#147 <https://github.com/qbicsoftware/data-model-lib/pull/147>`_
 
 
 **Dependencies**
@@ -110,3 +110,77 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 * Deprecate ``life/qbic/datamodel/people/Address.groovy``
 * Deprecate "PersonType" property of ``life/qbic/datamodel/dtos/general/Person.groovy``
 * Deprecate ``life/qbic/datamodel/accounting/Offer.groovy``
+
+
+ 
+1.11.0 (2020-09-23)
+-------------------
+
+* Add DTOs for the offer management business process
+* Reference parent pom 3.0.0
+
+1.10.1
+-------------------
+
+* Fix field accessibility for imaging metadata DTOs (`#51 <https://github.com/qbicsoftware/data-model-lib/issues/51>`_)
+
+1.10.0 25-08-2020
+-------------------
+
+* Provide DTO classes for imaging metadata
+
+1.9.4
+-------------------
+
+* Fix implementation of ``containsAtLeastOneBarcodedFolder``, such that the method checks all child elements to contain at least one barcoded folder in order to flag the measurement as pooled measurement.
+
+1.9.3
+-------------------
+
+* Fix (`#31 <https://github.com/qbicsoftware/data-model-lib/issues/31>`_)
+
+1.9.2
+-------------------
+
+* Adds missing getter method for the measurement adapter
+
+1.9.1
+-------------------
+
+* Fix for ``getRawDataPerSample()``, which failed in the presence of unclassified folders.
+
+1.9.0
+-------------------
+
+* New class ``OxfordNanoporeInstrumentOutput`` that provides access to the instrument output JSON schema
+* Support for unclassified reads
+
+  * Two new folder classes ``UnclassifiedFast5Folder`` and ``UnclassifiedFastQFolder``
+
+  * New API method ``getUnclassifiedData()`` for the ``OxfordNanoporeMeasurement`` class
+
+* Bugfix for object comparison infinity crisis
+* Bugfix for wrong data assignment on pooled sample data
+
+1.8.3
+-------------------
+
+* ``OxfordNanoporeMeasurement:getLogFiles`` now provides a list with all the log files
+
+1.8.2
+-------------------
+
+* Fix recursion error, when client code wants to access ``OxfordNanoporeMeasurement:getRelativePath``
+
+1.8.1
+-------------------
+
+* Provide JAR with all dependencies included for single deployment (i.e. ETL dropboxes, etc.)
+
+1.8.0
+-------------------
+
+* Provide new classes that describe incoming Oxford Nanopore instrument data structures
+* Provide new classes that describe a Oxford Nanopore Experiment(``OxfordNanoporeExperiment.class``) and its containing Oxford Nanopre Measurements (OxfordNanoporeMeasurement.class)
+* Provide a new method in the ``SampleCodeFunction.class`` ``public static List<String> findAllQbicSampleCodes(String text)`` that can be used to find all QBiC sample identifiers in a String object 
+
