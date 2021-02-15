@@ -5,7 +5,7 @@ Changelog
 This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 
-2.0.0-SNAPSHOT (2021-02-12)
+2.0.0-SNAPSHOT (2021-02-15)
 ---------------------------
 
 **Added**
@@ -72,7 +72,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 * ``life.qbic.datamodel.workflows.*``
 
 
-1.12.0 (2020-11-20)
+1.12.0 (2020-11-23)
 -------------------
 
 **Added**
@@ -119,37 +119,100 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 * Add DTOs for the offer management business process
 * Reference parent pom 3.0.0
 
-1.10.1
+**Added**
+
+**Fixed**
+
+**Dependencies**
+
+**Deprecated**
+
+
+1.10.1 (2020-08-28)
 -------------------
 
 * Fix field accessibility for imaging metadata DTOs (`#51 <https://github.com/qbicsoftware/data-model-lib/issues/51>`_)
 
-1.10.0 25-08-2020
+**Added**
+
+**Fixed**
+
+**Dependencies**
+
+**Deprecated**
+
+
+1.10.0 (2020-08-25)
 -------------------
 
 * Provide DTO classes for imaging metadata
 
-1.9.4
+**Added**
+
+**Fixed**
+
+**Dependencies**
+
+**Deprecated**
+
+
+1.9.4 (2021-02-12)
 -------------------
 
 * Fix implementation of ``containsAtLeastOneBarcodedFolder``, such that the method checks all child elements to contain at least one barcoded folder in order to flag the measurement as pooled measurement.
 
-1.9.3
+**Added**
+
+**Fixed**
+
+**Dependencies**
+
+**Deprecated**
+
+
+1.9.3 (2020-07-17)
 -------------------
 
 * Fix (`#31 <https://github.com/qbicsoftware/data-model-lib/issues/31>`_)
 
-1.9.2
+**Added**
+
+**Fixed**
+
+**Dependencies**
+
+**Deprecated**
+
+
+1.9.2 (2020-07-10)
 -------------------
 
 * Adds missing getter method for the measurement adapter
 
-1.9.1
+**Added**
+
+**Fixed**
+
+**Dependencies**
+
+**Deprecated**
+
+
+1.9.1 (2020-07-10)
 -------------------
 
 * Fix for ``getRawDataPerSample()``, which failed in the presence of unclassified folders.
 
-1.9.0
+**Added**
+
+**Fixed**
+
+**Dependencies**
+
+**Deprecated**
+
+
+1.9.0 (2020-07-08)
 -------------------
 
 * New class ``OxfordNanoporeInstrumentOutput`` that provides access to the instrument output JSON schema
@@ -162,25 +225,70 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 * Bugfix for object comparison infinity crisis
 * Bugfix for wrong data assignment on pooled sample data
 
-1.8.3
+**Added**
+
+**Fixed**
+
+**Dependencies**
+
+**Deprecated**
+
+
+1.8.3 (2020-05-26)
 -------------------
 
 * ``OxfordNanoporeMeasurement:getLogFiles`` now provides a list with all the log files
 
-1.8.2
+**Added**
+
+**Fixed**
+
+**Dependencies**
+
+**Deprecated**
+
+
+1.8.2 (0000-00-00)
 -------------------
 
 * Fix recursion error, when client code wants to access ``OxfordNanoporeMeasurement:getRelativePath``
 
-1.8.1
+**Added**
+
+**Fixed**
+
+**Dependencies**
+
+**Deprecated**
+
+
+1.8.1 (0000-00-00)
 -------------------
 
 * Provide JAR with all dependencies included for single deployment (i.e. ETL dropboxes, etc.)
 
-1.8.0
+**Added**
+
+**Fixed**
+
+**Dependencies**
+
+**Deprecated**
+
+
+1.8.0 (0000-00-00)
 -------------------
 
 * Provide new classes that describe incoming Oxford Nanopore instrument data structures
 * Provide new classes that describe a Oxford Nanopore Experiment(``OxfordNanoporeExperiment.class``) and its containing Oxford Nanopre Measurements (OxfordNanoporeMeasurement.class)
 * Provide a new method in the ``SampleCodeFunction.class`` ``public static List<String> findAllQbicSampleCodes(String text)`` that can be used to find all QBiC sample identifiers in a String object 
+
+**Added**
+
+**Fixed**
+
+**Dependencies**
+
+**Deprecated**
+
 
