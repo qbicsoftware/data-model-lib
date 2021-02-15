@@ -10,6 +10,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Added**
 
+* Introduce a schema resource for bioinformatic pipeline result sets validation via `PipelineOutput`
+
 **Fixed**
 
 **Dependencies**
