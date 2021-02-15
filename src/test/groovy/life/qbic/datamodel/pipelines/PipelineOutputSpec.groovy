@@ -1,5 +1,9 @@
 package life.qbic.datamodel.pipelines
 
+import org.everit.json.schema.Schema
+import org.everit.json.schema.ValidationException
+import org.everit.json.schema.loader.SchemaClient
+import org.everit.json.schema.loader.SchemaLoader
 import org.json.JSONObject
 import org.json.JSONTokener
 import spock.lang.Specification
@@ -14,9 +18,9 @@ import spock.lang.Specification
  * @since 1.9.0
  */
 
-class PipelineOutputSpec {
+class PipelineOutputSpec extends Specification {
 
-    def "Return the JSON schema as stream and be parsable as JSON object"() {
+    def "Return the JSON schema as stream and be parseable as JSON object"() {
         given:
         def stream = PipelineOutput.getSchemaAsStream()
 
@@ -25,6 +29,55 @@ class PipelineOutputSpec {
 
         then:
         assert  !json.empty
+    }
+
+    def "Validation of an example valid pipeline output shall pass and not throw any exception"() {
+        given:
+        def stream = PipelineOutput.getSchemaAsStream()
+
+        and:
+        String validPipelineOutput = this.class.getClassLoader()
+                .getResourceAsStream("valid-resultset-example.json")
+                .text
+
+        and:
+        SchemaLoader schemaLoader = SchemaLoader.builder()
+                .schemaClient(SchemaClient.classPathAwareClient())
+                .schemaJson(new JSONObject(new JSONTokener(stream)))
+                .resolutionScope("classpath://schemas/")
+                .build()
+        Schema schema = schemaLoader.load().build()
+
+        when:
+        schema.validate(new JSONObject(validPipelineOutput))
+
+        then:
+        noExceptionThrown()
+
+    }
+
+    def "Validation of an invalid pipeline output shall not pass an validation exception"() {
+        given:
+        def stream = PipelineOutput.getSchemaAsStream()
+
+        and:
+        String validPipelineOutput = this.class.getClassLoader()
+                .getResourceAsStream("invalid-resultset-example.json")
+                .text
+
+        and:
+        SchemaLoader schemaLoader = SchemaLoader.builder()
+                .schemaClient(SchemaClient.classPathAwareClient())
+                .schemaJson(new JSONObject(new JSONTokener(stream)))
+                .resolutionScope("classpath://schemas/")
+                .build()
+        Schema schema = schemaLoader.load().build()
+
+        when:
+        schema.validate(new JSONObject(validPipelineOutput))
+
+        then:
+        thrown(ValidationException)
     }
 }
 

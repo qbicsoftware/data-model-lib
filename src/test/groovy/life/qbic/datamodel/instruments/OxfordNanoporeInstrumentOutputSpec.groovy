@@ -1,5 +1,6 @@
 package life.qbic.datamodel.instruments
 
+import org.everit.json.schema.ValidationException
 import org.json.JSONObject
 import org.json.JSONTokener
 import spock.lang.Specification
@@ -25,6 +26,4 @@ class OxfordNanoporeInstrumentOutputSpec extends Specification {
         then:
         assert !json.empty
     }
-
-
 }
