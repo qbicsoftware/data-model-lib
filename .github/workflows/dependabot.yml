@@ -1,10 +1,10 @@
 version: 2
-updates_configs:
+update_configs:
     - package_manager: "java:maven"
       directory: "/"
       update_schedule: "daily"
-      target-branch: development
-      default_labels: "dependabot"
-      commit-message:
+      target_branch: "development"
+      default_labels:
+          - "dependabot"
+      commit_message:
           prefix: "[DEPENDABOT]"
-

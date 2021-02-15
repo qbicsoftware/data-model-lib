@@ -4,12 +4,12 @@ email: sven.fillinger@qbic.uni-tuebingen.de
 project_name: data-model-lib
 project_short_description: "Data models. A collection of QBiC's central data models\
   \ and DTOs. "
-version: 1.12.0
+version: 2.0.0
 domain: lib
 language: groovy
 project_slug: data-model-lib
 project_slug_no_hyphen: data_model_lib
-template_version: '1.0.0 # <<QUBE_NO_BUMP>>'
+template_version: '1.0.1 # <<QUBE_NO_BUMP>>'
 template_handle: lib-groovy
 github_username: qbicsoftware
 creator_github_username: sven1103

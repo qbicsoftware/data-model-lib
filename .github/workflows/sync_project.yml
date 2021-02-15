@@ -1,9 +1,6 @@
 name: Sync qube project
 
-on:
-  schedule:
-    - cron: '0 1 * * *'
-  workflow_dispatch:
+on: [push]
 
 jobs:
   build:
@@ -23,7 +20,7 @@ jobs:
               token: '${{ secrets.JOHNNY_Q5_REPORTS_TOKEN  }}'
           name: Check out source-code repository
 
-        - uses: oleksiyrudenko/gha-git-credentials@v2-latest
+        - uses: oleksiyrudenko/gha-git-credentials@v2
           with:
               name: 'JohnnyQ5'
               email: 'support@qbic.zendesk.com'

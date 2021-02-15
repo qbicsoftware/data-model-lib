@@ -17,6 +17,7 @@ class AcademicTitleFactorySpec extends Specification {
         factory.getForString("None") == AcademicTitle.NONE
         factory.getForString("Dr.") == AcademicTitle.DOCTOR
         factory.getForString("Prof. Dr.") == AcademicTitle.PROFESSOR
+        factory.getForString("PhD") == AcademicTitle.PHD
     }
 
     def "GetForString works for correct strings regardless of leading and tailing whitespace"() {
@@ -27,14 +28,17 @@ class AcademicTitleFactorySpec extends Specification {
         factory.getForString(" None") == AcademicTitle.NONE
         factory.getForString(" Dr.") == AcademicTitle.DOCTOR
         factory.getForString(" Prof. Dr.") == AcademicTitle.PROFESSOR
+        factory.getForString(" PhD") == AcademicTitle.PHD
 
         factory.getForString("None ") == AcademicTitle.NONE
         factory.getForString("Dr. ") == AcademicTitle.DOCTOR
         factory.getForString("Prof. Dr. ") == AcademicTitle.PROFESSOR
+        factory.getForString("PhD ") == AcademicTitle.PHD
 
         factory.getForString(" None ") == AcademicTitle.NONE
         factory.getForString(" Dr. ") == AcademicTitle.DOCTOR
         factory.getForString(" Prof. Dr. ") == AcademicTitle.PROFESSOR
+        factory.getForString(" PhD ") == AcademicTitle.PHD
     }
 
     def "GetForString throws IllegalArgumentException for incorrect values"() {

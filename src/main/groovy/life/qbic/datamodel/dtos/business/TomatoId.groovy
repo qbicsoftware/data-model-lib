@@ -1,5 +1,7 @@
 package life.qbic.datamodel.dtos.business
 
+import groovy.transform.CompileStatic
+
 /**
  * A DTO describing Tomato identifiers
  *
@@ -9,23 +11,24 @@ package life.qbic.datamodel.dtos.business
  * @since: 1.12.0
  *
  */
+@CompileStatic
 abstract class TomatoId {
     /**
      * The type of the identifier is defined by the implementing identifier
      */
-    private final String type
+    final private String type
     /**
      * Conserved part of a project which is the name of the customer
      */
-    private String projectConserved
+    final private String projectConserved
     /**
      * Random part of the identifier which should follow the Regex [a-x0-9]{4}
      */
-    private String random
+    final private String random
     /**
-     * Version of the identifier which is a number between 0 and 9
+     * Version of the identifier
      */
-    private int version
+    final private String version
 
     /**
      * Creates an identifier object with the
@@ -35,7 +38,7 @@ abstract class TomatoId {
      * @param randomPart describes the random part of the identifier
      * @param version describes the version of the identifier
      */
-    TomatoId(String type, String projectConservedPart, String randomPart, int version){
+    TomatoId(String type, String projectConservedPart, String randomPart, String version){
         this.type = Objects.requireNonNull(type, "type must not be null")
         this.projectConserved = Objects.requireNonNull(projectConservedPart, "projectConservedPart must not be null")
         this.random = Objects.requireNonNull(randomPart, "randomPart must not be null")
@@ -47,7 +50,9 @@ abstract class TomatoId {
      * looks like for all implementing classes to provide a uniform identifier format
      *
      * @return a String containing the type, project conserved part, random part and the version
+     * @deprecated As of release 2.0.0, please use the {@link #toString()} method
      */
+    @Deprecated
     String getIdentifier(){
         return type + "_" + projectConserved + "_" + randomPart + "_" + "v" + version
     }
@@ -67,14 +72,14 @@ abstract class TomatoId {
      * @return
      */
     String getRandomPart() {
-        return randomPart
+        return random
     }
 
     /**
      * Returns the version of the identifier
      * @return
      */
-    int getVersion() {
+    String getVersion() {
         return version
     }
     /**
@@ -83,5 +88,17 @@ abstract class TomatoId {
      */
     String getType() {
         return type
+    }
+
+    /**
+     * Returns a String representation in the format:
+     *
+     *      [type]_[project conserved part]_[random id]_[version]
+     *
+     * @return A String representation of the identifier
+     */
+    @Override
+    String toString() {
+        return type + "_" + projectConserved + "_" + randomPart + "_" + version
     }
 }
