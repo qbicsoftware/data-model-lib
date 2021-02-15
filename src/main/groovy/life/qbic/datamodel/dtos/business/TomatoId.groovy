@@ -50,7 +50,7 @@ abstract class TomatoId {
      * looks like for all implementing classes to provide a uniform identifier format
      *
      * @return a String containing the type, project conserved part, random part and the version
-     * @deprecated As of release 1.13, please use the {@link #toString()} method
+     * @deprecated As of release 2.0.0, please use the {@link #toString()} method
      */
     @Deprecated
     String getIdentifier(){

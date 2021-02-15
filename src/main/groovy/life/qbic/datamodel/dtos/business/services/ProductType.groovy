@@ -4,7 +4,7 @@ package life.qbic.datamodel.dtos.business.services
  * Lists the abbreviation for each Product used as a type specification
  * by the ProductIdentifier {@link life.qbic.datamodel.dtos.business.ProductId}
  *
- * @since: 1.13.0
+ * @since: 2.0.0
  */
 
 enum ProductType {
