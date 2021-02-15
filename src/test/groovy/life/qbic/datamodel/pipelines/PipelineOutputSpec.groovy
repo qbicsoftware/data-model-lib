@@ -17,7 +17,6 @@ import spock.lang.Specification
  * @author Sven Fillinger, Kevin Menden
  * @since 1.9.0
  */
-
 class PipelineOutputSpec extends Specification {
 
     def "Return the JSON schema as stream and be parseable as JSON object"() {
@@ -28,7 +27,7 @@ class PipelineOutputSpec extends Specification {
         JSONObject json = new JSONObject(new JSONTokener(stream))
 
         then:
-        assert  !json.empty
+        assert !json.empty
     }
 
     def "Validation of an example valid pipeline output shall pass and not throw any exception"() {
