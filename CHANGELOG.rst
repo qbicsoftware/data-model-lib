@@ -13,15 +13,21 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 * Introduce profiles to pom to differentiate between OSGI and non-OSGI packaging (`#122 <https://github.com/qbicsoftware/data-model-lib/pull/122>`_)
 * Added a netPrice, taxes and overheads property to the offer DTO
 * Add bnd.bnd file to enable OSGI bundling
-* Add new possible sample statuses (#149)
+* Add new possible sample statuses (`#149 <https://github.com/qbicsoftware/data-model-lib/pull/149>`_)
+* Add price fields to ``life.qbic.datamodel.dtos.business.Offer`` (`#127 <https://github.com/qbicsoftware/data-model-lib/pull/127>`_)
+* Add currency field to ``life.qbic.datamodel.dtos.business.services.Product`` (`#131 <https://github.com/qbicsoftware/data-model-lib/pull/131>`_)
+* Add ``@EqualsAndHashCode`` to ``life.qbic.datamodel.dtos.business.services.*`` (`#129 <https://github.com/qbicsoftware/data-model-lib/pull/129>`_)
+* Add a meaningful ``toString()`` method to ``life.qbic.datamodel.dtos.business.TomatoId`` (`#140 <https://github.com/qbicsoftware/data-model-lib/pull/140>`_)
+* Add ``life.qbic.datamodel.dtos.business.AcademicTitle.PHD`` (`#144 <https://github.com/qbicsoftware/data-model-lib/pull/144>`_)
+* Add ``life.qbic.datamodel.dtos.business.ProductId`` attribute to Product DTOs in ``life.qbic.datamodel.dtos.business.services`` (`#146 <https://github.com/qbicsoftware/data-model-lib/pull/146>`_)
 
 **Fixed**
 
 * ``life.qbic.datamodel.datasets.OxfordNanoporeMeasurement#extractLibraryKit(String)`` now throws
   ``MissingPropertyException`` instead of ``groovyjarjarcommonscli.MissingArgumentException``
 * Change ``life.qbic.datamodel.dtos.business.services.ProductUnit.PER_GIGABYTE`` String representation to `Gigabyte` (`#125 <https://github.com/qbicsoftware/data-model-lib/pull/125>`_)
-
-
+* Change ``life.qbic.datamodel.dtos.business.TomatoId`` and extending classes now provide the version as ``String`` (`#134 <https://github.com/qbicsoftware/data-model-lib/pull/134>`_)
+* Add missing dependencies for report generation. Fix issue `#145 <https://github.com/qbicsoftware/data-model-lib/pull/145>`_ with PR `#147 <https://github.com/qbicsoftware/data-model-lib/pull/147>`_
 
 
 **Dependencies**
