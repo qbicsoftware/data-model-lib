@@ -20,5 +20,4 @@ class OfferIdSpec extends Specification {
         then:
         offerId.getRandomPart().equals("abc")
     }
-
 }

@@ -44,15 +44,39 @@ Make sure, that you have defined the Github package Maven repository, in order f
 ```
 
 
-## Models
+## Data Models
 
-## Nanopore Data Structure
+### Expected incoming data structures
+
+#### Nanopore Data Structure
 
 A Nanopore NGS measurement output is delivered to us as a nested folder structure, following this model:
 
 ![Nanopore Data Structure Model](./doc/figures/Nanopore_Data_Structure_Model.png)
 
-## OpenBIS Data Overview 
+#### Bioinformatics Analysis Result Sets
+
+These result sets describe a result set from a nf-core analysis pipeline
+run with detailed modelling of `quality control`, `software versions`
+and individual `process reports`.
+
+The schema to validate such a structure can be loaded via the Everit
+`SchemaLoader` class:
+
+```java
+InputStream stream = PipelineOutput.getSchemaAsStream()
+SchemaLoader schemaLoader = SchemaLoader.builder()
+                .schemaClient(SchemaClient.classPathAwareClient())
+                .schemaJson(new JSONObject(new JSONTokener(stream)))
+                .resolutionScope("classpath://schemas/")
+                .build()
+```
+
+![Bioinformatics Analysis Result Set ER](./doc/figures/ER_diagram_pipeline_results.png)
+
+### Translated data structures in openBIS
+
+#### OpenBIS Data Overview
 
 The Nanopore data structure is saved in an openBIS 18.06.2 database. 
 An overview of the openBIS data model and the location and entity relationship of the Nanopore data stucture within it can be seen in this diagram: 

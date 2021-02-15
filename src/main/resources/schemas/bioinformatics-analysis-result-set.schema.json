@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "bioinformatics-analysis-result-set.schema.json",
+  "title": "Structure of nf-core analysis results.",
+  "description": "Describes the structural composition of nf-core analysis result data sets.",
+  "definitions": {
+    "pipelineInformation": {
+      "description": "Information about the software versions, the analysis run and general execution report.",
+      "allOf": [
+        {
+          "$ref": "data-structure-commons.json#/definitions/dataFolder"
+        },
+        {
+          "properties": {
+            "name": { "pattern": "pipeline_info"},
+            "softwareVersions": { "$ref": "#/definitions/softwareVersions" },
+            "pipelineReport": { "$ref": "#/definitions/pipelineReport" },
+            "executionReport": { "$ref": "#/definitions/executionReport" }
+          },
+          "required": [
+            "softwareVersions",
+            "pipelineReport",
+            "executionReport"
+          ]
+        }
+      ]
+    },
+    "softwareVersions": {
+      "description": "A data file that describes the used software versions of an analysis.",
+      "allOf": [
+        {
+          "$ref": "data-structure-commons.json#/definitions/dataFile"
+        },
+        {
+          "properties": {
+            "name": { "pattern": "software_versions"},
+            "fileType": { "pattern": "csv" }
+          }
+        }
+      ]
+    },
+    "pipelineReport": {
+      "description": "A data file that describes the pipeline configuration.",
+      "allOf": [
+        {
+          "$ref": "data-structure-commons.json#/definitions/dataFile"
+        },
+        {
+          "properties": {
+            "name": { "pattern": "pipeline_report"},
+            "fileType": { "pattern": "txt" }
+          }
+        }
+      ]
+    },
+    "executionReport": {
+      "description": "A data file that contains information about the pipeline execution.",
+      "allOf": [
+        {
+          "$ref": "data-structure-commons.json#/definitions/dataFile"
+        },
+        {
+          "properties": {
+            "name": { "pattern": "execution_report"},
+            "fileType": { "pattern": "txt" }
+          }
+        }
+      ]
+    },
+    "qualityControl": {
+      "description": "A data folder that holds pipeline one or more folders or files with quality control information.",
+      "allOf": [
+        {
+          "$ref": "data-structure-commons.json#/definitions/dataFolder"
+        },
+        {
+          "properties": {
+            "name": { "pattern": "multiqc" }
+          }
+        }
+      ]
+    },
+    "processFolders": {
+      "description": "Result folders from individual pipeline steps.",
+      "type": "array",
+      "items": { "$ref": "data-structure-commons.json#/definitions/dataFolder" },
+      "minItems": 1
+    }
+  },
+  "type": "object",
+  "properties": {
+    "pipelineInformation": {"$ref": "#/definitions/pipelineInformation"},
+    "qualityControl": {"$ref":  "#/definitions/qualityControl"}
+  },
+  "required": [
+    "pipelineInformation",
+    "qualityControl",
+    "processFolders"
+  ]
+}
