@@ -23,6 +23,7 @@ life.qbic.datamodel.instruments
 life.qbic.datamodel.ms
 life.qbic.datamodel.people
 life.qbic.datamodel.persons
+life.qbic.datamodel.pipelines
 life.qbic.datamodel.printing
 life.qbic.datamodel.projects
 life.qbic.datamodel.samples
