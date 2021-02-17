@@ -31,11 +31,12 @@ class OfferSpec extends Specification {
         double net = 900
         OfferId offerId = new OfferId("ab", "cd", "1")
         ProductItem item = new ProductItem(2,new Sequencing("DNA Sequencing","This is a sequencing package",1.50, ProductUnit.PER_SAMPLE, "1"))
-
+        double itemsWithOverheadNet = 123
+        double itemsWithoutOverheadNet = 456
         when:
         Offer testOffer =
                 new Offer.Builder(customer, projectManager, "Archer", "Cartoon Series", selectedAffiliation)
-                        .modificationDate(date).expirationDate(date).totalPrice(price).identifier(offerId).taxes(vat).overheads(overhead).netPrice(net).items([item])
+                        .modificationDate(date).expirationDate(date).totalPrice(price).identifier(offerId).taxes(vat).overheads(overhead).netPrice(net).items([item]).itemsWithOverhead([item]).itemsWithoutOverhead([item]).itemsWithOverheadNet(itemsWithOverheadNet).itemsWithoutOverheadNet(itemsWithoutOverheadNet)
                         .build()
 
         then:
@@ -52,6 +53,10 @@ class OfferSpec extends Specification {
         testOffer.getTotalPrice() == price
         testOffer.getIdentifier() == offerId
         testOffer.getSelectedCustomerAffiliation() == selectedAffiliation
+        testOffer.getItemsWithOverhead() == [item]
+        testOffer.getItemsWithoutOverhead() == [item]
+        testOffer.getItemsWithOverheadNetPrice() == 123
+        testOffer.getItemsWithoutOverheadNetPrice() == 456
     }
 
     def "Missing optional Field definitions shall haven null values in an Offer object"() {

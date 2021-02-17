@@ -64,13 +64,21 @@ class Offer {
      * The affiliation of the customer selected for this offer
      */
     final Affiliation selectedCustomerAffiliation
-
+    /**
+     * A list of items for which an overhead cost is applicable
+     */
     final List<ProductItem> itemsWithOverhead
-
+    /**
+     * A list of Items for which an overhead cost is not applicable
+     */
     final List<ProductItem> itemsWithoutOverhead
-
+    /**
+     * The net price of all items for which an overhead cost is applicable, without overhead and taxes
+     */
     final double itemsWithOverheadNetPrice
-
+    /**
+     * The net price of all items for which an overhead cost is not applicable, without overhead and taxes
+     */
     final double itemsWithoutOverheadNetPrice
 
     static class Builder {
