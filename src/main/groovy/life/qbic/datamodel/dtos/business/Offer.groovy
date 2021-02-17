@@ -65,6 +65,14 @@ class Offer {
      */
     final Affiliation selectedCustomerAffiliation
 
+    final List<ProductItem> itemsWithOverhead
+
+    final List<ProductItem> itemsWithoutOverhead
+
+    final double itemsWithOverheadNetPrice
+
+    final double itemsWithoutOverheadNetPrice
+
     static class Builder {
 
         /*
@@ -78,7 +86,8 @@ class Offer {
         Date modificationDate
         Date expirationDate
         List<ProductItem> items
-
+        List<ProductItem> itemsWithOverhead
+        List<ProductItem> itemsWithoutOverhead
         /*
         Offer identifier
          */
@@ -91,6 +100,8 @@ class Offer {
         double netPrice
         double taxes
         double overheads
+        double itemsWithOverheadNet
+        double itemsWithoutOverheadNet
 
         Builder(Customer customer, ProjectManager projectManager, String projectTitle, String projectDescription, Affiliation selectedCustomerAffiliation) {
             this.customer = Objects.requireNonNull(customer, "Customer must not be null")
@@ -103,6 +114,10 @@ class Offer {
             overheads = 0
             taxes = 0
             totalPrice = 0
+            itemsWithOverhead = []
+            itemsWithoutOverhead = []
+            itemsWithOverheadNet = 0
+            itemsWithoutOverheadNet = 0
         }
 
         Builder modificationDate(Date modificationDate) {
@@ -160,6 +175,26 @@ class Offer {
             return this
         }
 
+        Builder itemsWithOverhead(List<ProductItem> itemsWithOverhead) {
+            this.itemsWithOverhead= itemsWithOverhead
+            return this
+        }
+
+        Builder itemsWithoutOverhead(List<ProductItem> itemsWithoutOverhead) {
+            this.itemsWithoutOverhead= itemsWithoutOverhead
+            return this
+        }
+
+        Builder itemsWithOverheadNet(double itemsWithOverheadNet) {
+            this.itemsWithOverheadNet = itemsWithOverheadNet
+            return this
+        }
+
+        Builder itemsWithoutOverheadNet(double itemsWithoutOverheadNet) {
+            this.itemsWithoutOverheadNet = itemsWithoutOverheadNet
+            return this
+        }
+
         Offer build() {
             return new Offer(this)
         }
@@ -179,6 +214,10 @@ class Offer {
         this.overheads = builder.overheads
         this.taxes = builder.taxes
         this.totalPrice = builder.totalPrice
+        this.itemsWithOverhead = builder.itemsWithOverhead
+        this.itemsWithoutOverhead = builder.itemsWithoutOverhead
+        this.itemsWithOverheadNetPrice = builder.itemsWithOverheadNet
+        this.itemsWithoutOverheadNetPrice = builder.itemsWithoutOverheadNet
     }
 
     /**
