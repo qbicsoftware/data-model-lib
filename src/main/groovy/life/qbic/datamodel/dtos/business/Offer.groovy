@@ -33,7 +33,7 @@ class Offer {
      */
     final String projectTitle
     /**
-     * A short description of the project
+     * A short objective of the project
      */
     final String projectObjective
     /**
