@@ -35,7 +35,7 @@ class Offer {
     /**
      * A short description of the project
      */
-    final String projectDescription
+    final String projectObjective
     /**
      * A list of items for which the customer will be charged
      */
@@ -87,7 +87,7 @@ class Offer {
         Overall offer describing properties
          */
         String projectTitle
-        String projectDescription
+        String projectObjective
         Customer customer
         ProjectManager projectManager
         Affiliation selectedCustomerAffiliation
@@ -111,11 +111,11 @@ class Offer {
         double itemsWithOverheadNet
         double itemsWithoutOverheadNet
 
-        Builder(Customer customer, ProjectManager projectManager, String projectTitle, String projectDescription, Affiliation selectedCustomerAffiliation) {
+        Builder(Customer customer, ProjectManager projectManager, String projectTitle, String projectObjective, Affiliation selectedCustomerAffiliation) {
             this.customer = Objects.requireNonNull(customer, "Customer must not be null")
             this.projectManager = Objects.requireNonNull(projectManager, "Project Manager must not be null")
             this.projectTitle = Objects.requireNonNull(projectTitle, "Project Title must not be null")
-            this.projectDescription = Objects.requireNonNull(projectDescription, "Project Description must not be null")
+            this.projectObjective = Objects.requireNonNull(projectObjective, "Project Objective must not be null")
             this.selectedCustomerAffiliation = Objects.requireNonNull(selectedCustomerAffiliation, "Customer Affiliation must not be null")
             this.items = []
             netPrice = 0
@@ -168,21 +168,6 @@ class Offer {
             return this
         }
 
-        Builder vat(double vat) {
-            this.vat = vat
-            return this
-        }
-
-        Builder net(double net) {
-            this.net = net
-            return this
-        }
-
-        Builder overhead(double overhead) {
-            this.overhead = overhead
-            return this
-        }
-
         Builder itemsWithOverhead(List<ProductItem> itemsWithOverhead) {
             this.itemsWithOverhead= itemsWithOverhead
             return this
@@ -213,7 +198,7 @@ class Offer {
         this.expirationDate = builder.expirationDate
         this.customer = builder.customer
         this.projectManager = builder.projectManager
-        this.projectDescription = builder.projectDescription
+        this.projectObjective = builder.projectObjective
         this.projectTitle = builder.projectTitle
         this.items = builder.items
         this.identifier = builder.identifier
