@@ -45,7 +45,7 @@ class OfferSpec extends Specification {
         testOffer.getCustomer() == customer
         testOffer.getProjectManager() == projectManager
         testOffer.getProjectTitle() == "Archer"
-        testOffer.getProjectObjective() == "Cartoon Series"
+        testOffer.getProjectDescription() == "Cartoon Series"
         testOffer.getTaxes() == vat
         testOffer.getOverheads() == overhead
         testOffer.getNetPrice() == net
@@ -75,7 +75,7 @@ class OfferSpec extends Specification {
         testOffer.getCustomer() == customer
         testOffer.getProjectManager() == projectManager
         testOffer.getProjectTitle() == "Archer"
-        testOffer.getProjectObjective() == "Cartoon Series"
+        testOffer.getProjectDescription() == "Cartoon Series"
         testOffer.getItems() == []
         testOffer.getTotalPrice() == 0
         testOffer.getIdentifier() == null
