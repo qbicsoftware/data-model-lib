@@ -34,6 +34,7 @@ class Offer {
     final String projectTitle
     /**
      * A short description of the project
+     * @deprecated Replaced with {@link #projectObjective}, since 2.1.0
      */
     @Deprecated
     final String projectDescription
@@ -92,7 +93,6 @@ class Offer {
         Overall offer describing properties
          */
         String projectTitle
-        String projectDescription
         String projectObjective
         Customer customer
         ProjectManager projectManager
@@ -117,6 +117,11 @@ class Offer {
         double itemsWithOverheadNet
         double itemsWithoutOverheadNet
 
+        /**
+         * @deprecated Replaced with {@link #projectObjective}, since 2.1.0
+         */
+        String projectDescription
+
         Builder(Customer customer, ProjectManager projectManager, String projectTitle, String projectObjective, Affiliation selectedCustomerAffiliation) {
             /*
             Overall offer describing properties
@@ -124,7 +129,7 @@ class Offer {
             this.customer = Objects.requireNonNull(customer, "Customer must not be null")
             this.projectManager = Objects.requireNonNull(projectManager, "Project Manager must not be null")
             this.projectTitle = Objects.requireNonNull(projectTitle, "Project Title must not be null")
-            this.projectObjective = Objects.requireNonNull(projectObjective, "Project Description must not be null")
+            this.projectObjective = Objects.requireNonNull(projectObjective, "Project Objective must not be null")
             this.selectedCustomerAffiliation = Objects.requireNonNull(selectedCustomerAffiliation, "Customer Affiliation must not be null")
             this.items = []
 
@@ -140,8 +145,10 @@ class Offer {
             this.itemsWithOverheadNet = 0
             this.itemsWithoutOverheadNet = 0
 
-            @Deprecated
-            this.projectDescription = ""
+            /*
+            Deprecated
+             */
+            this.projectDescription = Objects.requireNonNull(projectObjective, "Project Objective must not be null")
         }
 
         Builder modificationDate(Date modificationDate) {

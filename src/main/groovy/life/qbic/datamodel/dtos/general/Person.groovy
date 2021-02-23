@@ -16,7 +16,7 @@ abstract class Person {
   /**
    * Person type.
    *
-   * @deprecated: Please subclass the Person class instead of using this property.
+   * @deprecated Please subclass the Person class instead of using this property.
    */
   final String personType
 
