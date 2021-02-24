@@ -10,8 +10,9 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Added**
 
-* Introduce a schema resource for bioinformatic pipeline result sets validation via `PipelineOutput`
+* Introduce a schema resource for bioinformatic pipeline result sets validation via `PipelineOutput` (`#159 <https://github.com/qbicsoftware/data-model-lib/pull/159/>`_)
 * Add the projectObjective field in ``life.qbic.datamodel.dtos.business.Offer``, will replace projectDescription (`#161 <https://github.com/qbicsoftware/data-model-lib/pull/161>`_)
+* Introduce List of ProductItems associated with and without overhead cost and net price fields to Offer DTO (`#160 <https://github.com/qbicsoftware/data-model-lib/pull/160/>`_)
 
 **Fixed**
 
