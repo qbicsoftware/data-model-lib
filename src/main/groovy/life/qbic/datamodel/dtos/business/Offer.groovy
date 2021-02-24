@@ -34,8 +34,14 @@ class Offer {
     final String projectTitle
     /**
      * A short description of the project
+     * @deprecated Replaced with {@link #projectObjective}, since 2.1.0
      */
+    @Deprecated
     final String projectDescription
+    /**
+     * A short objective of the project
+     */
+    final String projectObjective
     /**
      * A list of items for which the customer will be charged
      */
@@ -87,7 +93,7 @@ class Offer {
         Overall offer describing properties
          */
         String projectTitle
-        String projectDescription
+        String projectObjective
         Customer customer
         ProjectManager projectManager
         Affiliation selectedCustomerAffiliation
@@ -111,21 +117,38 @@ class Offer {
         double itemsWithOverheadNet
         double itemsWithoutOverheadNet
 
-        Builder(Customer customer, ProjectManager projectManager, String projectTitle, String projectDescription, Affiliation selectedCustomerAffiliation) {
+        /**
+         * @deprecated Replaced with {@link #projectObjective}, since 2.1.0
+         */
+        String projectDescription
+
+        Builder(Customer customer, ProjectManager projectManager, String projectTitle, String projectObjective, Affiliation selectedCustomerAffiliation) {
+            /*
+            Overall offer describing properties
+             */
             this.customer = Objects.requireNonNull(customer, "Customer must not be null")
             this.projectManager = Objects.requireNonNull(projectManager, "Project Manager must not be null")
             this.projectTitle = Objects.requireNonNull(projectTitle, "Project Title must not be null")
-            this.projectDescription = Objects.requireNonNull(projectDescription, "Project Description must not be null")
+            this.projectObjective = Objects.requireNonNull(projectObjective, "Project Objective must not be null")
             this.selectedCustomerAffiliation = Objects.requireNonNull(selectedCustomerAffiliation, "Customer Affiliation must not be null")
             this.items = []
-            netPrice = 0
-            overheads = 0
-            taxes = 0
-            totalPrice = 0
-            itemsWithOverhead = []
-            itemsWithoutOverhead = []
-            itemsWithOverheadNet = 0
-            itemsWithoutOverheadNet = 0
+
+            /*
+            Price related properties
+            */
+            this.netPrice = 0
+            this.overheads = 0
+            this.taxes = 0
+            this.totalPrice = 0
+            this.itemsWithOverhead = []
+            this.itemsWithoutOverhead = []
+            this.itemsWithOverheadNet = 0
+            this.itemsWithoutOverheadNet = 0
+
+            /*
+            Deprecated
+             */
+            this.projectDescription = Objects.requireNonNull(projectObjective, "Project Objective must not be null")
         }
 
         Builder modificationDate(Date modificationDate) {
@@ -168,21 +191,6 @@ class Offer {
             return this
         }
 
-        Builder vat(double vat) {
-            this.vat = vat
-            return this
-        }
-
-        Builder net(double net) {
-            this.net = net
-            return this
-        }
-
-        Builder overhead(double overhead) {
-            this.overhead = overhead
-            return this
-        }
-
         Builder itemsWithOverhead(List<ProductItem> itemsWithOverhead) {
             this.itemsWithOverhead= itemsWithOverhead
             return this
@@ -209,15 +217,26 @@ class Offer {
     }
 
     private Offer(Builder builder) {
+        /*
+        Offer Related Properties
+         */
         this.modificationDate = builder.modificationDate
         this.expirationDate = builder.expirationDate
         this.customer = builder.customer
         this.projectManager = builder.projectManager
-        this.projectDescription = builder.projectDescription
+        this.projectObjective = builder.projectObjective
         this.projectTitle = builder.projectTitle
-        this.items = builder.items
-        this.identifier = builder.identifier
         this.selectedCustomerAffiliation = builder.selectedCustomerAffiliation
+        this.items = builder.items
+
+        /*
+        Offer Identifier
+         */
+        this.identifier = builder.identifier
+
+        /*
+        Price Related properties
+         */
         this.netPrice = builder.netPrice
         this.overheads = builder.overheads
         this.taxes = builder.taxes
@@ -226,6 +245,11 @@ class Offer {
         this.itemsWithoutOverhead = builder.itemsWithoutOverhead
         this.itemsWithOverheadNetPrice = builder.itemsWithOverheadNet
         this.itemsWithoutOverheadNetPrice = builder.itemsWithoutOverheadNet
+
+        /*
+        Deprecated properties
+        */
+        this.projectDescription = builder.projectDescription
     }
 
     /**
