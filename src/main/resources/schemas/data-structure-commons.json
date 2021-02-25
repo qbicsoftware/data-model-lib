@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "data-structure-commons.json",
+  "title": "Common QBiC data structures",
+  "description": "A collection of shared common data structures at QBiC, that can be used for data structure validation.",
+  "definitions": {
+    "dataFolder": {
+      "description": "Describes a common data folder",
+      "type": "object",
+      "required": [
+        "name",
+        "path",
+        "children"
+      ],
+      "properties": {
+        "name": {
+          "description": "The folder name",
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "description": "The path of the folder",
+          "type": "string",
+          "minLength": 1
+        },
+        "children": {
+          "description": "Describes files and/or sub-folders if existent",
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/dataFolder"
+              },
+              {
+                "$ref": "#/definitions/dataFile"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "dataFile": {
+      "description": "Describes a common data file",
+      "type": "object",
+      "required": [
+        "name",
+        "path",
+        "fileType"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fileType": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}
