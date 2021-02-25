@@ -1,6 +1,7 @@
 package life.qbic.datamodel.samples
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import life.qbic.datamodel.Constants
 import life.qbic.datamodel.people.Address
 
 import java.text.DateFormat
@@ -168,7 +169,7 @@ class Location  {
     if(date==null)
       return ""
     TimeZone tz = TimeZone.getTimeZone("MEZ");
-    DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
+    DateFormat df = new SimpleDateFormat(Constants.ISO_8601_DATETIME_FORMAT);
     df.setTimeZone(tz);
     return df.format(date);
   }
