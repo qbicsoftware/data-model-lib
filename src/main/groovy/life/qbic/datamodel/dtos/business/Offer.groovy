@@ -260,4 +260,3 @@ class Offer {
         return Collections.unmodifiableList(items)
     }
 }
-
