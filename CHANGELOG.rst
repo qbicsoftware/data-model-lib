@@ -16,7 +16,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 ``life.qbic.datamodel.dtos.business.Offer#itemsWithOverheadNetPrice`` and ``life.qbic.datamodel.dtos.business.Offer#itemsWithoutOverheadNetPrice`` to Offer DTO (`#160 <https://github.com/qbicsoftware/data-model-lib/pull/160/>`_)
 
 **Fixed**
-* ``life.qbic.datamodel.samples.Location#parseDate`` now uses ``life.qbic.datamodel.Constants#ISO_8601_DATETIME_FORMAT``
+* ``life.qbic.datamodel.samples.Location#parseDate`` now uses ``life.qbic.datamodel.Constants#ISO_8601_DATETIME_FORMAT`` (`#163 <https://github.com/qbicsoftware/data-model-lib/pull/163>`_)
 
 **Dependencies**
 
