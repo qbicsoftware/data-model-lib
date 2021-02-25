@@ -36,7 +36,7 @@ class Offer {
      * A short description of the project
      * @deprecated Replaced with {@link #projectObjective}, since 2.1.0
      */
-    @Deprecated
+    @Deprecated(since="2.1.0")
     final String projectDescription
     /**
      * A short objective of the project
@@ -260,4 +260,3 @@ class Offer {
         return Collections.unmodifiableList(items)
     }
 }
-
