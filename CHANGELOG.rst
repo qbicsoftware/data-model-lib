@@ -10,6 +10,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Added**
 
+* Checksum property for ``life.qbic.datamodel.dtos.business.Offer``
+
 **Fixed**
 
 **Dependencies**
