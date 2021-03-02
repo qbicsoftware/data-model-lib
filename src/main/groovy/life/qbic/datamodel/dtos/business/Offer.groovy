@@ -13,6 +13,11 @@ import groovy.transform.EqualsAndHashCode
 class Offer {
 
     /**
+     * The checksum of the offer
+     */
+    final String checksum
+
+    /**
      * Date on which the offer was lastly modified
      */
     final Date modificationDate
@@ -102,6 +107,7 @@ class Offer {
         List<ProductItem> items
         List<ProductItem> itemsWithOverhead
         List<ProductItem> itemsWithoutOverhead
+        String checksum
         /*
         Offer identifier
          */
@@ -144,11 +150,17 @@ class Offer {
             this.itemsWithoutOverhead = []
             this.itemsWithOverheadNet = 0
             this.itemsWithoutOverheadNet = 0
+            this.checksum = ""
 
             /*
             Deprecated
              */
             this.projectDescription = Objects.requireNonNull(projectObjective, "Project Objective must not be null")
+        }
+
+        Builder checksum(String checksum) {
+            this.checksum = checksum
+            return this
         }
 
         Builder modificationDate(Date modificationDate) {
@@ -228,6 +240,7 @@ class Offer {
         this.projectTitle = builder.projectTitle
         this.selectedCustomerAffiliation = builder.selectedCustomerAffiliation
         this.items = builder.items
+        this.checksum = builder.checksum
 
         /*
         Offer Identifier
