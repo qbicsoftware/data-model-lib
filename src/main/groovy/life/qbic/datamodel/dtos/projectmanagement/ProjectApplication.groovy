@@ -50,7 +50,7 @@ class ProjectApplication {
     final Customer customer
 
     /**
-     * The requested project space the project shall be associated with (optional)
+     * The requested project space the project shall be associated with
      */
     ProjectSpace projectSpace
 
