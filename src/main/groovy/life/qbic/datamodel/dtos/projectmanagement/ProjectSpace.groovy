@@ -27,8 +27,8 @@ final class ProjectSpace {
     }
 
     private static String formatSpaceName(String name) {
-        def capitalizedName = name.capitalize()
-        def replacedWhiteSpace = capitalizedName.replaceAll("%s", "_")
+        def capitalizedName = name.trim().toUpperCase()
+        def replacedWhiteSpace = capitalizedName.replaceAll("\\s+", "_")
         return replacedWhiteSpace
     }
 
