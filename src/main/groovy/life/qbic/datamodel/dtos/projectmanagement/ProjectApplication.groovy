@@ -52,7 +52,7 @@ class ProjectApplication {
     /**
      * The requested project space the project shall be associated with (optional)
      */
-    final Optional<ProjectSpace> projectSpace
+    ProjectSpace projectSpace
 
     /**
      * The desired project code (optional)
@@ -67,7 +67,7 @@ class ProjectApplication {
         String experimentalDesign
         ProjectManager projectManager
         Customer customer
-        Optional<ProjectSpace> projectSpace
+        ProjectSpace projectSpace
         Optional<ProjectCode> projectCode
 
         Builder(OfferId linkedOffer,
@@ -75,6 +75,7 @@ class ProjectApplication {
                 String projectObjective,
                 String experimentalDesign,
                 ProjectManager projectManager,
+                ProjectSpace projectSpace,
                 Customer customer) {
             this.linkedOffer = Objects.requireNonNull(linkedOffer)
             this.projectTitle =  Objects.requireNonNull(projectTitle)
@@ -82,13 +83,8 @@ class ProjectApplication {
             this.experimentalDesign =  Objects.requireNonNull(experimentalDesign)
             this.projectManager =  Objects.requireNonNull(projectManager)
             this.customer =  Objects.requireNonNull(customer)
-            this.projectSpace = Optional.empty()
+            this.projectSpace = Objects.requireNonNull(projectSpace)
             this.projectCode = Optional.empty()
-        }
-
-        Builder projectSpace(ProjectSpace space) {
-            this.projectSpace = Optional.of(space)
-            return this
         }
 
         Builder projectCode(ProjectCode code) {
