@@ -9,8 +9,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Added**
 
-* ``ProjectIdentifier``, ``ProjectCode``, ``ProjectSpace`` and ``Project`` to describe QBiC projects
-* ``ProjectApplication`` to describe a project application for registration at QBiC's data management platform
+* ``life.qbic.datamodel.dtos.projectmanagement.ProjectIdentifier``, ``life.qbic.datamodel.dtos.projectmanagement.ProjectCode``, ``life.qbic.datamodel.dtos.projectmanagement.ProjectSpace`` and ``life.qbic.datamodel.dtos.projectmanagement.Project`` to describe QBiC projects
+* ``life.qbic.datamodel.dtos.projectmanagement.ProjectApplication`` to describe a project application for registration at QBiC's data management platform
 
 **Fixed**
 
@@ -338,4 +338,3 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 **Dependencies**
 
 **Deprecated**
-

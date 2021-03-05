@@ -7,7 +7,7 @@ package life.qbic.datamodel.dtos.projectmanagement
  *
  * A project code can be validated with the following regular expression: "Q[A-X0-9]{4}".
  *
- * @since 1.0.0
+ * @since 2.3.0
  */
 class ProjectCode {
 
@@ -16,7 +16,7 @@ class ProjectCode {
     private static final def REGEX = ~'Q[A-X0-9]{4}'
 
     /**
-     * Constructs a project code instance based on the given code String.
+     * Constructs a project code instance based on the given code string.
      * @param code The project code
      * @throws IllegalArgumentException If the code parameter does not match format requirements.
      */

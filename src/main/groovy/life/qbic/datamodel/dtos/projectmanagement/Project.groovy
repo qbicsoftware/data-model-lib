@@ -8,7 +8,7 @@ import life.qbic.datamodel.dtos.business.OfferId
  * Describes and provides information about a scientific project
  * at QBiC.
  *
- * @since 1.0.0
+ * @since 2.3.0
  */
 class Project {
 
