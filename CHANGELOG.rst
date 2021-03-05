@@ -10,6 +10,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 **Added**
 
 * ``ProjectIdentifier``, ``ProjectCode``, ``ProjectSpace`` and ``Project`` to describe QBiC projects
+* ``ProjectApplication`` to describe a project application for registration at QBiC's data management platform
 
 **Fixed**
 
