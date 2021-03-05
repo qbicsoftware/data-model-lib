@@ -19,6 +19,18 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 **Deprecated**
 
 
+2.3.0-SNAPSHOT (2021-03-05)
+---------------------------
+
+**Added**
+
+**Fixed**
+
+**Dependencies**
+
+**Deprecated**
+
+
 2.2.0 (2021-03-02)
 ------------------
 
