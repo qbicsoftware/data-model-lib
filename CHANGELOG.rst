@@ -9,6 +9,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Added**
 
+* ``ProjectIdentifier``, ``ProjectCode``, ``ProjectSpace`` and ``Project`` to describe QBiC projects
+
 **Fixed**
 
 **Dependencies**

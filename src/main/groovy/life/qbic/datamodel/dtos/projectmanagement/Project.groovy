@@ -1,4 +1,6 @@
-package life.qbic.datamodel.dtos.business
+package life.qbic.datamodel.dtos.projectmanagement
+
+import life.qbic.datamodel.dtos.business.OfferId
 
 /**
  * A typical scientific QBiC project.

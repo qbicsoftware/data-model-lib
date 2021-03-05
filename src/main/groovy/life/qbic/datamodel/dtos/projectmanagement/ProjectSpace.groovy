@@ -1,4 +1,4 @@
-package life.qbic.datamodel.dtos.business
+package life.qbic.datamodel.dtos.projectmanagement
 
 /**
  * Represents a QBiC project space.

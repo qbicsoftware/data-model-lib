@@ -1,4 +1,4 @@
-package life.qbic.datamodel.dtos.business
+package life.qbic.datamodel.dtos.projectmanagement
 
 /**
  * Global project identifier for QBiC projects

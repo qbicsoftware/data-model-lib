@@ -1,4 +1,4 @@
-package life.qbic.datamodel.dtos.business
+package life.qbic.datamodel.dtos.projectmanagement
 
 /**
  * Describes the project code, that identifies the project within a project space.
