@@ -91,6 +91,10 @@ class Offer {
      * The net price of all items for which an overhead cost is not applicable, without overhead and taxes
      */
     final double itemsWithoutOverheadNetPrice
+    /**
+     * The overhead modifier applied to the pricing dependent on the customer affiliation
+     */
+    final double overheadModifier
 
     static class Builder {
 
@@ -122,7 +126,7 @@ class Offer {
         double overheads
         double itemsWithOverheadNet
         double itemsWithoutOverheadNet
-
+        double overheadModifier
         /**
          * @deprecated Replaced with {@link #projectObjective}, since 2.1.0
          */
@@ -151,6 +155,7 @@ class Offer {
             this.itemsWithOverheadNet = 0
             this.itemsWithoutOverheadNet = 0
             this.checksum = ""
+            this.overheadModifier = 0
 
             /*
             Deprecated
@@ -223,6 +228,11 @@ class Offer {
             return this
         }
 
+        Builder overheadModifier(double overheadModifier){
+            this.overheadModifier = overheadModifier
+            return this
+        }
+
         Offer build() {
             return new Offer(this)
         }
@@ -258,6 +268,7 @@ class Offer {
         this.itemsWithoutOverhead = builder.itemsWithoutOverhead
         this.itemsWithOverheadNetPrice = builder.itemsWithOverheadNet
         this.itemsWithoutOverheadNetPrice = builder.itemsWithoutOverheadNet
+        this.overheadModifier = builder.overheadModifier
 
         /*
         Deprecated properties
