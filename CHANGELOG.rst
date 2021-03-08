@@ -4,25 +4,15 @@ Changelog
 
 This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
-2.3.0
---------
-
-**Added**
-
-* ``life.qbic.datamodel.dtos.projectmanagement.ProjectIdentifier``, ``life.qbic.datamodel.dtos.projectmanagement.ProjectCode``, ``life.qbic.datamodel.dtos.projectmanagement.ProjectSpace`` and ``life.qbic.datamodel.dtos.projectmanagement.Project`` to describe QBiC projects
-* ``life.qbic.datamodel.dtos.projectmanagement.ProjectApplication`` to describe a project application for registration at QBiC's data management platform
-
-**Fixed**
-
-**Dependencies**
-
-**Deprecated**
-
 
 2.3.0-SNAPSHOT (2021-03-05)
 ---------------------------
 
 **Added**
+
+* overheadModifier property for ``life.qbic.datamodel.dtos.business.Offer``
+* ``life.qbic.datamodel.dtos.projectmanagement.ProjectIdentifier``, ``life.qbic.datamodel.dtos.projectmanagement.ProjectCode``, ``life.qbic.datamodel.dtos.projectmanagement.ProjectSpace`` and ``life.qbic.datamodel.dtos.projectmanagement.Project`` to describe QBiC projects
+* ``life.qbic.datamodel.dtos.projectmanagement.ProjectApplication`` to describe a project application for registration at QBiC's data management platform
 
 **Fixed**
 
