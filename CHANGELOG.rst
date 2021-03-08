@@ -24,6 +24,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Added**
 
+* overheadModifier property for ``life.qbic.datamodel.dtos.business.Offer``
+
 **Fixed**
 
 **Dependencies**
