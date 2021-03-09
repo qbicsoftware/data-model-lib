@@ -59,18 +59,7 @@ class ProjectApplication {
      */
     final ProjectCode projectCode
 
-    static class Builder {
-
-        OfferId linkedOffer
-        String projectTitle
-        String projectObjective
-        String experimentalDesign
-        ProjectManager projectManager
-        Customer customer
-        ProjectSpace projectSpace
-        ProjectCode projectCode
-
-        Builder(OfferId linkedOffer,
+    ProjectApplication(OfferId linkedOffer,
                 String projectTitle,
                 String projectObjective,
                 String experimentalDesign,
@@ -86,21 +75,5 @@ class ProjectApplication {
             this.customer =  Objects.requireNonNull(customer)
             this.projectSpace = Objects.requireNonNull(projectSpace)
             this.projectCode = Objects.requireNonNull(code)
-        }
-
-        ProjectApplication build() {
-            return new ProjectApplication(this)
-        }
-    }
-
-    private ProjectApplication(Builder builder) {
-        this.projectTitle = builder.projectTitle
-        this.linkedOffer = builder.linkedOffer
-        this.projectObjective = builder.projectObjective
-        this.experimentalDesign = builder.experimentalDesign
-        this.projectManager = builder.projectManager
-        this.customer = builder.customer
-        this.projectSpace = builder.projectSpace
-        this.projectCode = builder.projectCode
     }
 }
