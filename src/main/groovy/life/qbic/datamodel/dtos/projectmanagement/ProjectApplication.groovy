@@ -52,31 +52,21 @@ class ProjectApplication {
     /**
      * The requested project space the project shall be associated with
      */
-    ProjectSpace projectSpace
+    final ProjectSpace projectSpace
 
     /**
      * The desired project code
      */
     final ProjectCode projectCode
 
-    class Builder {
-
-        OfferId linkedOffer
-        String projectTitle
-        String projectObjective
-        String experimentalDesign
-        ProjectManager projectManager
-        Customer customer
-        ProjectSpace projectSpace
-        Optional<ProjectCode> projectCode
-
-        Builder(OfferId linkedOffer,
+    ProjectApplication(OfferId linkedOffer,
                 String projectTitle,
                 String projectObjective,
                 String experimentalDesign,
                 ProjectManager projectManager,
                 ProjectSpace projectSpace,
-                Customer customer) {
+                Customer customer,
+                ProjectCode code) {
             this.linkedOffer = Objects.requireNonNull(linkedOffer)
             this.projectTitle =  Objects.requireNonNull(projectTitle)
             this.projectObjective =  Objects.requireNonNull(projectObjective)
@@ -84,27 +74,6 @@ class ProjectApplication {
             this.projectManager =  Objects.requireNonNull(projectManager)
             this.customer =  Objects.requireNonNull(customer)
             this.projectSpace = Objects.requireNonNull(projectSpace)
-            this.projectCode = Optional.empty()
-        }
-
-        Builder projectCode(ProjectCode code) {
-            this.projectCode = Optional.of(code)
-            return this
-        }
-
-        ProjectApplication build() {
-            return new ProjectApplication(this)
-        }
-    }
-
-    private ProjectApplication(Builder builder) {
-        this.projectTitle = builder.projectTitle
-        this.linkedOffer = builder.linkedOffer
-        this.projectObjective = builder.projectObjective
-        this.experimentalDesign = builder.experimentalDesign
-        this.projectManager = builder.projectManager
-        this.customer = builder.customer
-        this.projectSpace = builder.projectSpace
-        this.projectCode = builder.projectCode
+            this.projectCode = Objects.requireNonNull(code)
     }
 }
