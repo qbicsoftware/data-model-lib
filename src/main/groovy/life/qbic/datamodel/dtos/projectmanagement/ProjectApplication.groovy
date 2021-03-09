@@ -55,9 +55,9 @@ class ProjectApplication {
     ProjectSpace projectSpace
 
     /**
-     * The desired project code (optional)
+     * The desired project code
      */
-    final Optional<ProjectCode> projectCode
+    final ProjectCode projectCode
 
     class Builder {
 
