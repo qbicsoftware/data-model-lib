@@ -52,14 +52,14 @@ class ProjectApplication {
     /**
      * The requested project space the project shall be associated with
      */
-    ProjectSpace projectSpace
+    final ProjectSpace projectSpace
 
     /**
      * The desired project code
      */
     final ProjectCode projectCode
 
-    class Builder {
+    static class Builder {
 
         OfferId linkedOffer
         String projectTitle
@@ -68,7 +68,7 @@ class ProjectApplication {
         ProjectManager projectManager
         Customer customer
         ProjectSpace projectSpace
-        Optional<ProjectCode> projectCode
+        ProjectCode projectCode
 
         Builder(OfferId linkedOffer,
                 String projectTitle,
@@ -76,7 +76,8 @@ class ProjectApplication {
                 String experimentalDesign,
                 ProjectManager projectManager,
                 ProjectSpace projectSpace,
-                Customer customer) {
+                Customer customer,
+                ProjectCode code) {
             this.linkedOffer = Objects.requireNonNull(linkedOffer)
             this.projectTitle =  Objects.requireNonNull(projectTitle)
             this.projectObjective =  Objects.requireNonNull(projectObjective)
@@ -84,12 +85,7 @@ class ProjectApplication {
             this.projectManager =  Objects.requireNonNull(projectManager)
             this.customer =  Objects.requireNonNull(customer)
             this.projectSpace = Objects.requireNonNull(projectSpace)
-            this.projectCode = Optional.empty()
-        }
-
-        Builder projectCode(ProjectCode code) {
-            this.projectCode = Optional.of(code)
-            return this
+            this.projectCode = Objects.requireNonNull(code)
         }
 
         ProjectApplication build() {
