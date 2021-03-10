@@ -19,4 +19,15 @@ class ProjectSpaceSpec extends Specification {
         then:
         space.name.equals("MY_NEW_SPACE")
     }
+
+    def "Dashes are replaced by underscores"() {
+        given:
+        String projectSpaceName = "my-new-space"
+
+        when:
+        ProjectSpace space = new ProjectSpace(projectSpaceName)
+
+        then:
+        space.name.equals("MY_NEW_SPACE")
+    }
 }
