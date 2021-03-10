@@ -1,17 +1,19 @@
 package life.qbic.datamodel.dtos.projectmanagement
 
 /**
- * Represents a QBiC project space.
+ * <h1>Represents a QBiC project space</h1>
  *
- * A space is a logical grouping of projects that have the same context.
+ * <p>A space is a logical grouping of projects that have the same context.</p>
  *
- * A project space has a name that follows this convention:
+ * <p>A project space has a name that follows this convention:</p>
  *
- *  1. No white space
- *  2. Capital letters only
- *  3. Inner white space is replaced by `_`
- *  4. Trailing and leading white space are trimmed
- *
+ * <ul>
+ *  <li> No white space </li>
+ *  <li> Capital letters only </li>
+ *  <li> Inner white space is replaced by `_` </li>
+ *  <li> Trailing and leading white space are trimmed </li>
+ *  <li> Dashes are replaced by `_` </li>
+ * </ul>
  * @since 2.3.0
  */
 final class ProjectSpace {
@@ -28,8 +30,9 @@ final class ProjectSpace {
 
     private static String formatSpaceName(String name) {
         def capitalizedName = name.trim().toUpperCase()
-        def replacedWhiteSpace = capitalizedName.replaceAll("\\s+", "_")
-        return replacedWhiteSpace
+        def refactoredName = capitalizedName.replaceAll("\\s+", "_")
+                .replaceAll("-", "_")
+        return refactoredName
     }
 
     /**
