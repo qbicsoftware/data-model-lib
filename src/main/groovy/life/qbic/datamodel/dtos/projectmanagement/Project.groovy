@@ -27,9 +27,40 @@ class Project {
      */
     final OfferId linkedOffer
 
-    Project(ProjectIdentifier projectIdentifier, String projectTitle, OfferId linkedOffer) {
-        this.projectId = Objects.requireNonNull(projectIdentifier)
-        this.projectTitle = Objects.requireNonNull(projectTitle)
-        this.linkedOffer = Objects.requireNonNull(linkedOffer)
+    private Project(Builder builder) {
+        this.projectId = Objects.requireNonNull(builder.projectIdentifier)
+        this.projectTitle = Objects.requireNonNull(builder.projectTitle)
+        this.linkedOffer = builder.linkedOfferId
+    }
+
+    static class Builder {
+        private ProjectIdentifier projectIdentifier
+        private String projectTitle
+        private OfferId linkedOfferId
+
+        Builder(ProjectIdentifier projectIdentifier, String projectTitle) {
+            this.projectIdentifier = projectIdentifier
+            this.projectTitle = projectTitle
+            this.linkedOfferId = null
+        }
+
+        Builder projectIdentifier(ProjectIdentifier projectIdentifier) {
+            this.projectIdentifier = projectIdentifier
+            return this
+        }
+
+        Builder projectTitle(String projectTitle) {
+            this.projectTitle = projectTitle
+            return this
+        }
+
+        Builder linkedOfferId(OfferId offerId) {
+            this.linkedOfferId = offerId
+            return this
+        }
+
+        Project build() {
+            return new Project(this)
+        }
     }
 }
