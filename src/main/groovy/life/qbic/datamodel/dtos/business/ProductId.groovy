@@ -57,7 +57,7 @@ class ProductId {
         }
 
         Builder identifier(long identifier) {
-            this.identifier = identifier
+            this.uniqueId = identifier
             return this
         }
         /**
@@ -84,7 +84,7 @@ class ProductId {
 
     private ProductId(Builder builder) {
         this.type = builder.productType
-        this.identifier = builder.identifier
+        this.uniqueId = builder.uniqueId
     }
 
     /**
