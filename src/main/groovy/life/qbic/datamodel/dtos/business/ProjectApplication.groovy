@@ -1,8 +1,10 @@
-package life.qbic.datamodel.dtos.projectmanagement
+package life.qbic.datamodel.dtos.business
 
 import life.qbic.datamodel.dtos.business.Customer
 import life.qbic.datamodel.dtos.business.OfferId
 import life.qbic.datamodel.dtos.business.ProjectManager
+import life.qbic.datamodel.dtos.projectmanagement.ProjectCode
+import life.qbic.datamodel.dtos.projectmanagement.ProjectSpace
 
 /**
  * Information about a desired project registration in QBiC's project management system.
