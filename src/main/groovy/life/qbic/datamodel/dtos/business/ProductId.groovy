@@ -23,27 +23,86 @@ class ProductId {
     /**
      * Identifying number used in conjunction with the type
      */
-    private final String identifier
+    private final long uniqueId
+
+    /**
+     * A builder for ProductId instances.
+     */
+    static class Builder {
+        private String productType
+        private long uniqueId
+
+        /**
+         *
+         * @param productType
+         * @param identifier the unique id - will be interpreted as unsigned long
+         */
+        Builder(String productType, String identifier) {
+            Builder(productType, Long.parseUnsignedLong(identifier))
+        }
+
+        /**
+         *
+         * @param productType
+         * @param uniqueId the unique id - will be interpreted as unsigned long
+         */
+        Builder(String productType, long uniqueId) {
+            this.productType = Objects.requireNonNull(productType)
+            this.uniqueId = Objects.requireNonNull(uniqueId)
+        }
+
+        Builder productType(String productType) {
+            this.productType = productType
+            return this
+        }
+
+        Builder identifier(long identifier) {
+            this.identifier = identifier
+            return this
+        }
+        /**
+         * Constructs a product identifier based on the configuration of the builder
+         * @return
+         */
+        ProductId build() {
+            return new ProductId(this)
+        }
+    }
 
     /**
      * Creates an identifier object with the
      *
      * @param type describing the type of the underlying identifier
      * @param identifier describes the identifying running number
+     * @deprecated please use {@link ProductId.Builder}
      */
-
+    @Deprecated
     ProductId(String type, String identifier){
-        this.type = Objects.requireNonNull(type, "type must not be null")
-        this.identifier= Objects.requireNonNull(identifier, "version must not be null")
+        Builder builder = new Builder(type, identifier)
+        ProductId(builder)
+    }
 
+    private ProductId(Builder builder) {
+        this.type = builder.productType
+        this.identifier = builder.identifier
     }
 
     /**
      * Returns the identifying running number
-     * @return
+     * @return the identifier
+     * @deprecated please use {@link ProductId#getUniqueId()}
      */
+    @Deprecated
     String getIdentifier() {
-        return identifier
+        return uniqueId.toString()
+    }
+
+    /**
+     * Returns the identifying running number
+     * @return the identifier
+     */
+    Long getUniqueId() {
+        return uniqueId
     }
     /**
      * Returns the type of the identifier
@@ -62,6 +121,6 @@ class ProductId {
      */
     @Override
     String toString() {
-        return type + "_" + identifier
+        return "${type}_${uniqueId}"
     }
 }
