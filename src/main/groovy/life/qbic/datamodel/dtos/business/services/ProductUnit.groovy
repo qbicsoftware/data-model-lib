@@ -9,7 +9,8 @@ enum ProductUnit {
 
   PER_GIGABYTE("Gigabyte"),
   PER_SAMPLE("Sample"),
-  PER_DATASET("Dataset")
+  PER_DATASET("Dataset"),
+  PER_HOUR("Hour")
 
   /**
    Holds the String value of the enum
