@@ -56,7 +56,7 @@ class ProductId {
             return this
         }
 
-        Builder identifier(long identifier) {
+        Builder uniqueId(long identifier) {
             this.uniqueId = identifier
             return this
         }
