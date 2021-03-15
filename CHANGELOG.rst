@@ -44,6 +44,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 * Add field ``life.qbic.datamodel.dtos.business.Offer#projectObjective``, will replace ``life.qbic.datamodel.dtos.business.Offer#projectDescription`` (`#161 <https://github.com/qbicsoftware/data-model-lib/pull/161>`_)
 * Add fields ``life.qbic.datamodel.dtos.business.Offer#itemsWithOverhead``, ``life.qbic.datamodel.dtos.business.Offer#itemsWithoutOverhead``,
 ``life.qbic.datamodel.dtos.business.Offer#itemsWithOverheadNetPrice`` and ``life.qbic.datamodel.dtos.business.Offer#itemsWithoutOverheadNetPrice`` to Offer DTO (`#160 <https://github.com/qbicsoftware/data-model-lib/pull/160/>`_)
+* Add `Hour` ``life.qbic.datamodel.dtos.business.services.ProductUnit.PER_HOUR`` (`#175 <https://github.com/qbicsoftware/data-model-lib/pull/175>`_)
 
 **Fixed**
 
