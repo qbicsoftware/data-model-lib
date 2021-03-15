@@ -38,7 +38,8 @@ class ProductId {
          * @param identifier the unique id - will be interpreted as unsigned long
          */
         Builder(String productType, String identifier) {
-            Builder(productType, Long.parseUnsignedLong(identifier))
+            this.productType = Objects.requireNonNull(productType)
+            this.uniqueId = Objects.requireNonNull(Long.parseUnsignedLong(identifier))
         }
 
         /**
@@ -79,7 +80,8 @@ class ProductId {
     @Deprecated
     ProductId(String type, String identifier){
         Builder builder = new Builder(type, identifier)
-        ProductId(builder)
+        this.type = builder.productType
+        this.uniqueId = builder.uniqueId
     }
 
     private ProductId(Builder builder) {
