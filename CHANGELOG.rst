@@ -13,12 +13,15 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 * overheadModifier property for ``life.qbic.datamodel.dtos.business.Offer``
 * ``life.qbic.datamodel.dtos.projectmanagement.ProjectIdentifier``, ``life.qbic.datamodel.dtos.projectmanagement.ProjectCode``, ``life.qbic.datamodel.dtos.projectmanagement.ProjectSpace`` and ``life.qbic.datamodel.dtos.projectmanagement.Project`` to describe QBiC projects
 * ``life.qbic.datamodel.dtos.business.ProjectApplication`` to describe a project application for registration at QBiC's data management platform
+* Added uniqueId field to ``life.qbic.datamodel.dtos.business.ProductId`` (`#173 <https://github.com/qbicsoftware/data-model-lib/pull/173>`_)
 
 **Fixed**
 
 **Dependencies**
 
 **Deprecated**
+
+* ``life.qbic.datamodel.dtos.business.ProductId#identifier`` is replaced by ``life.qbic.datamodel.dtos.business.ProductId#uniqueId`` (`#173 <https://github.com/qbicsoftware/data-model-lib/pull/173>`_)
 
 
 2.2.0 (2021-03-02)
