@@ -47,4 +47,16 @@ final class ProjectSpace {
     String toString() {
         return this.name
     }
+
+    @Override
+    boolean equals(Object obj) {
+        if (this.is(obj)) {
+            return true
+        }
+        if (!obj instanceof ProjectSpace) {
+            return false
+        }
+        ProjectSpace otherSpace = (ProjectSpace) obj
+        return this.name.equals(otherSpace.name)
+    }
 }
