@@ -11,9 +11,14 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 **Added**
 
 * overheadModifier property for ``life.qbic.datamodel.dtos.business.Offer``
+
 * ``life.qbic.datamodel.dtos.projectmanagement.ProjectIdentifier``, ``life.qbic.datamodel.dtos.projectmanagement.ProjectCode``, ``life.qbic.datamodel.dtos.projectmanagement.ProjectSpace`` and ``life.qbic.datamodel.dtos.projectmanagement.Project`` to describe QBiC projects
+
 * ``life.qbic.datamodel.dtos.business.ProjectApplication`` to describe a project application for registration at QBiC's data management platform
+
 * Added uniqueId field to ``life.qbic.datamodel.dtos.business.ProductId`` (`#173 <https://github.com/qbicsoftware/data-model-lib/pull/173>`_)
+
+* Add `Hour` ``life.qbic.datamodel.dtos.business.services.ProductUnit.PER_HOUR`` (`#175 <https://github.com/qbicsoftware/data-model-lib/pull/175>`_)
 
 **Fixed**
 
@@ -47,7 +52,6 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 * Add field ``life.qbic.datamodel.dtos.business.Offer#projectObjective``, will replace ``life.qbic.datamodel.dtos.business.Offer#projectDescription`` (`#161 <https://github.com/qbicsoftware/data-model-lib/pull/161>`_)
 * Add fields ``life.qbic.datamodel.dtos.business.Offer#itemsWithOverhead``, ``life.qbic.datamodel.dtos.business.Offer#itemsWithoutOverhead``,
 ``life.qbic.datamodel.dtos.business.Offer#itemsWithOverheadNetPrice`` and ``life.qbic.datamodel.dtos.business.Offer#itemsWithoutOverheadNetPrice`` to Offer DTO (`#160 <https://github.com/qbicsoftware/data-model-lib/pull/160/>`_)
-* Add `Hour` ``life.qbic.datamodel.dtos.business.services.ProductUnit.PER_HOUR`` (`#175 <https://github.com/qbicsoftware/data-model-lib/pull/175>`_)
 
 **Fixed**
 
