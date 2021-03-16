@@ -10,7 +10,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Added**
 
-* overheadModifier property for ``life.qbic.datamodel.dtos.business.Offer``
+* overheadRatio property for ``life.qbic.datamodel.dtos.business.Offer``
 
 * ``life.qbic.datamodel.dtos.projectmanagement.ProjectIdentifier``, ``life.qbic.datamodel.dtos.projectmanagement.ProjectCode``, ``life.qbic.datamodel.dtos.projectmanagement.ProjectSpace`` and ``life.qbic.datamodel.dtos.projectmanagement.Project`` to describe QBiC projects
 
@@ -51,7 +51,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 * Introduce a schema resource for bioinformatic pipeline result sets validation via ``life.qbic.datamodel.pipelines.PipelineOutput`` (`#159 <https://github.com/qbicsoftware/data-model-lib/pull/159/>`_)
 * Add field ``life.qbic.datamodel.dtos.business.Offer#projectObjective``, will replace ``life.qbic.datamodel.dtos.business.Offer#projectDescription`` (`#161 <https://github.com/qbicsoftware/data-model-lib/pull/161>`_)
 * Add fields ``life.qbic.datamodel.dtos.business.Offer#itemsWithOverhead``, ``life.qbic.datamodel.dtos.business.Offer#itemsWithoutOverhead``,
-``life.qbic.datamodel.dtos.business.Offer#itemsWithOverheadNetPrice`` and ``life.qbic.datamodel.dtos.business.Offer#itemsWithoutOverheadNetPrice`` to Offer DTO (`#160 <https://github.com/qbicsoftware/data-model-lib/pull/160/>`_)
+  ``life.qbic.datamodel.dtos.business.Offer#itemsWithOverheadNetPrice`` and ``life.qbic.datamodel.dtos.business.Offer#itemsWithoutOverheadNetPrice`` to Offer DTO (`#160 <https://github.com/qbicsoftware/data-model-lib/pull/160/>`_)
 
 **Fixed**
 
