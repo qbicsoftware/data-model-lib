@@ -10,6 +10,9 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Added**
 
+* added SAMPLE_RECEIVED, LIBRARY_PREP_FINISHED, DATA_AVAILABLE sample statuses
+* Deprecated DATA_AT_QBIC sample status (replaced by DATA_AVAILABLE)
+
 **Fixed**
 
 **Dependencies**
