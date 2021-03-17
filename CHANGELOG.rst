@@ -11,7 +11,6 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 **Added**
 
 * Added ``life.qbic.datamodel.samples.Status.SAMPLE_RECEIVED``, ``life.qbic.datamodel.samples.Status.LIBRARY_PREP_FINISHED``, ``life.qbic.datamodel.samples.Status.DATA_AVAILABLE`` sample statuses
-* Deprecated ``life.qbic.datamodel.samples.Status.DATA_AT_QBIC`` please use ``life.qbic.datamodel.samples.Status.DATA_AVAILABLE``
 
 **Fixed**
 
@@ -19,6 +18,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Deprecated**
 
+* Deprecated ``life.qbic.datamodel.samples.Status.DATA_AT_QBIC`` please use ``life.qbic.datamodel.samples.Status.DATA_AVAILABLE``
 
 2.3.0 (2021-03-16)
 ------------------
