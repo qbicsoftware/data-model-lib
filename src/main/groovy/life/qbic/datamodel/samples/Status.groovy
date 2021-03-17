@@ -16,7 +16,9 @@ public enum Status {
   FAILED_QC,
   PROCESSED,
   DATA_AVAILABLE,
+  /** 
+  * @deprecated this is deprecated since 2.4.0 please use {@link #DATA_AVAILABLE} instead
+  */
   @Deprecated
-  //replaced by DATA_AVAILABLE
   DATA_AT_QBIC
 }
