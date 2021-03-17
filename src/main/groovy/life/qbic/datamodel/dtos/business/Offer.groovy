@@ -289,8 +289,11 @@ class Offer {
         this.itemsWithoutOverheadNetPrice = builder.itemsWithoutOverheadNet
         this.overheadRatio = builder.overheadRatio
 
-        this.associatedProject = builder.associatedProject.isPresent() ? builder
-                .associatedProject.get() : Optional.empty() as Optional<ProjectIdentifier>
+        if (builder.associatedProject.isPresent()) {
+            this.associatedProject = Optional.of(builder.associatedProject.get())
+        } else {
+            this.associatedProject = Optional.empty()
+        }
 
         /*
         Deprecated properties
