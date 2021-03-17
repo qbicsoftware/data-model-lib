@@ -36,4 +36,16 @@ class ProjectCode {
     String toString() {
         return this.code
     }
+
+    @Override
+    boolean equals(Object obj) {
+        if (this.is(obj)) {
+            return true
+        }
+        if (!obj instanceof ProjectCode) {
+            return false
+        }
+        ProjectCode otherCode = (ProjectCode) obj
+        return this.code.equals(otherCode.code)
+    }
 }
