@@ -1,6 +1,7 @@
 package life.qbic.datamodel.dtos.business
 
 import groovy.transform.EqualsAndHashCode
+import life.qbic.datamodel.dtos.projectmanagement.ProjectIdentifier
 
 /**
  * An offer DTO for a project
@@ -95,6 +96,10 @@ class Offer {
      * The overhead ratio applied to the pricing dependent on the customer affiliation
      */
     final double overheadRatio
+    /**
+     * The associated project identifier, if a project based on the offer exists.
+     */
+    final Optional<ProjectIdentifier> associatedProject
 
     static class Builder {
 
@@ -131,6 +136,10 @@ class Offer {
          * @deprecated Replaced with {@link #projectObjective}, since 2.1.0
          */
         String projectDescription
+        /**
+         * Sets an associated project
+         */
+        Optional<ProjectIdentifier> associatedProject
 
         Builder(Customer customer, ProjectManager projectManager, String projectTitle, String projectObjective, Affiliation selectedCustomerAffiliation) {
             /*
@@ -156,6 +165,11 @@ class Offer {
             this.itemsWithoutOverheadNet = 0
             this.checksum = ""
             this.overheadRatio = 0
+
+            /*
+            Project related
+             */
+            this.associatedProject = Optional.empty()
 
             /*
             Deprecated
@@ -233,6 +247,11 @@ class Offer {
             return this
         }
 
+        Builder associatedProject(ProjectIdentifier associatedProject) {
+            this.associatedProject = Optional.of(associatedProject)
+            return this
+        }
+
         Offer build() {
             return new Offer(this)
         }
@@ -269,6 +288,9 @@ class Offer {
         this.itemsWithOverheadNetPrice = builder.itemsWithOverheadNet
         this.itemsWithoutOverheadNetPrice = builder.itemsWithoutOverheadNet
         this.overheadRatio = builder.overheadRatio
+
+        this.associatedProject = builder.associatedProject.isPresent() ? builder
+                .associatedProject.get() : Optional.empty() as Optional<ProjectIdentifier>
 
         /*
         Deprecated properties
