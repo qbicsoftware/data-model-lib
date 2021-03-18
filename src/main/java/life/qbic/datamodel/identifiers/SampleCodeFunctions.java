@@ -23,7 +23,7 @@ public class SampleCodeFunctions {
    */
   @Deprecated
   public static final String QBIC_SAMPLE_ID_SCHEMA = "Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}";
-  public static final String QBIC_SAMPLE_CODE_SCHEMA = "Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}";
+  public static final String QBIC_SAMPLE_BARCODE_SCHEMA = "Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}";
   public static final String QBIC_ENTITY_SAMPLE_CODE_SCHEMA = "Q[A-X0-9]{4}ENTITY-[1-9][0-9]*";
 
   private static final Logger logger = LogManager.getLogger(SampleCodeFunctions.class);
@@ -50,7 +50,7 @@ public class SampleCodeFunctions {
    * @return true if String is a QBiC barcode with matching checksum, false if not
    */
   public static boolean isQbicBarcode(String code) {
-    Pattern codePattern = Pattern.compile(QBIC_SAMPLE_CODE_SCHEMA, Pattern.CASE_INSENSITIVE);
+    Pattern codePattern = Pattern.compile(QBIC_SAMPLE_BARCODE_SCHEMA, Pattern.CASE_INSENSITIVE);
     Matcher matcher = codePattern.matcher(code);
     if (matcher.matches()) {
       String base = code.substring(0, 9);
@@ -282,7 +282,7 @@ public class SampleCodeFunctions {
    */
   public static List<String> findAllQbicSampleCodes(String text) {
     List<String> result = new ArrayList<>();
-    Pattern pattern = Pattern.compile(QBIC_SAMPLE_CODE_SCHEMA, Pattern.CASE_INSENSITIVE);
+    Pattern pattern = Pattern.compile(QBIC_SAMPLE_BARCODE_SCHEMA, Pattern.CASE_INSENSITIVE);
     Matcher m = pattern.matcher(text);
     while (m.find()) {
       result.add(m.group());
