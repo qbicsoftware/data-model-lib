@@ -3,11 +3,9 @@ package life.qbic.datamodel.dtos.business.services
 import spock.lang.Specification
 
 /**
- * <class short description - 1 Line!>
+ * Some tests for the primary analysis class
  *
- * <More detailed description - When to use, what it solves, etc.>
- *
- * @since <versiontag>
+ * @since 2.4.0
  */
 class PrimaryAnalysisSpec extends Specification{
 

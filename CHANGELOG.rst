@@ -14,6 +14,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Fixed**
 
+* Equals method is now properly overridden for ``life.qbic.datamodel.dtos.business.ProductId``
+
 **Dependencies**
 
 **Deprecated**
