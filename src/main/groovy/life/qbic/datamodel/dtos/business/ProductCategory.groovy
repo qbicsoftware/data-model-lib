@@ -13,7 +13,9 @@ enum ProductCategory {
     PROJECT_MANAGEMENT("Project Management"),
     PRIMARY_BIOINFO("Primary Bioinformatics"),
     SECONDARY_BIOINFO("Secondary Bioinformatics"),
-    DATA_STORAGE("Data Storage")
+    DATA_STORAGE("Data Storage"),
+    PROTEOMIC("Proteomics"),
+    METABOLOMIC("Metabolomics")
 
     /**
      * Value describing the enum type with a string
