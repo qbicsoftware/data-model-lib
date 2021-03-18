@@ -19,7 +19,7 @@ import org.apache.logging.log4j.Logger;
 public class SampleCodeFunctions {
 
   /** 
-   * @deprecated this is deprecated since 2.4.0 please use QBIC_SAMPLE_CODE_SCHEMA instead
+   * @deprecated this is deprecated since 2.4.0 please use QBIC_SAMPLE_BARCODE_SCHEMA instead
    */
   @Deprecated
   public static final String QBIC_SAMPLE_ID_SCHEMA = "Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}";
