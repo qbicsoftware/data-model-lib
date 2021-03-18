@@ -21,7 +21,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Deprecated**
 
-* Deprecated ``life.qbic.datamodel.identifiers.SampleCodeFunctions#QQBIC_SAMPLE_ID_SCHEMA, please use ``life.qbic.datamodel.identifiers.SampleCodeFunctions#QBIC_SAMPLE_BARCODE_SCHEMA``
+* Deprecated ``life.qbic.datamodel.identifiers.SampleCodeFunctions#QBIC_SAMPLE_ID_SCHEMA``, please use ``life.qbic.datamodel.identifiers.SampleCodeFunctions#QBIC_SAMPLE_BARCODE_SCHEMA``
 * Deprecated ``life.qbic.datamodel.samples.Status.DATA_AT_QBIC``, please use ``life.qbic.datamodel.samples.Status.DATA_AVAILABLE``
 
 2.3.0 (2021-03-16)
