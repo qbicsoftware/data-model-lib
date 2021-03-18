@@ -13,6 +13,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 * Added ``life.qbic.datamodel.samples.Status.SAMPLE_RECEIVED``, ``life.qbic.datamodel.samples.Status.LIBRARY_PREP_FINISHED``, ``life.qbic.datamodel.samples.Status.DATA_AVAILABLE`` sample statuses
 * Added optional property ``associatedProject`` to ``life.qbic.datamodel.dtos.business.Offer``
 * Added ``life.qbic.datamodel.dtos.business.ProductCategory.PROTEOMIC``, ``life.qbic.datamodel.dtos.business.ProductCategory.METABOLOMIC`` product categories
+* Added ``life.qbic.datamodel.dtos.business.services.ProductType.PROTEOMIC``, ``life.qbic.datamodel.dtos.business.services.ProductType.METABOLOMIC`` product types
 
 **Fixed**
 
