@@ -11,6 +11,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 **Added**
 
 * Added ``life.qbic.datamodel.samples.Status.SAMPLE_RECEIVED``, ``life.qbic.datamodel.samples.Status.LIBRARY_PREP_FINISHED``, ``life.qbic.datamodel.samples.Status.DATA_AVAILABLE`` sample statuses
+* Added schema for sample entity codes (species/patient level) to ``life.qbic.datamodel.identifiers.SampleCodeFunctions``
 * Added optional property ``associatedProject`` to ``life.qbic.datamodel.dtos.business.Offer``
 * Added ``life.qbic.datamodel.dtos.business.ProductCategory.PROTEOMIC``, ``life.qbic.datamodel.dtos.business.ProductCategory.METABOLOMIC`` product categories
 * Added ``life.qbic.datamodel.dtos.business.services.ProductType.PROTEOMIC``, ``life.qbic.datamodel.dtos.business.services.ProductType.METABOLOMIC`` product types
@@ -18,11 +19,14 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Fixed**
 
+* Correctly name and use respective sample code schemata for codes with check digits and entity codes (e.g. QABCDENTITY-2)
+
 **Dependencies**
 
 **Deprecated**
 
-* Deprecated ``life.qbic.datamodel.samples.Status.DATA_AT_QBIC`` please use ``life.qbic.datamodel.samples.Status.DATA_AVAILABLE``
+* Deprecated ``life.qbic.datamodel.identifiers.SampleCodeFunctions#QBIC_SAMPLE_ID_SCHEMA``, please use ``life.qbic.datamodel.identifiers.SampleCodeFunctions#QBIC_SAMPLE_BARCODE_SCHEMA``
+* Deprecated ``life.qbic.datamodel.samples.Status.DATA_AT_QBIC``, please use ``life.qbic.datamodel.samples.Status.DATA_AVAILABLE``
 
 2.3.0 (2021-03-16)
 ------------------
