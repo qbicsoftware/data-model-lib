@@ -19,6 +19,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Fixed**
 
+* Equals method is now properly overridden for ``life.qbic.datamodel.dtos.business.ProductId``
+
 * Correctly name and use respective sample code schemata for codes with check digits and entity codes (e.g. QABCDENTITY-2)
 
 **Dependencies**

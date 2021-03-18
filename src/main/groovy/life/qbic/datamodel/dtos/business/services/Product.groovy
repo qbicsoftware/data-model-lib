@@ -65,5 +65,4 @@ abstract class Product {
     this.currency = Currency.getInstance(Locale.GERMANY)
 
   }
-
 }
