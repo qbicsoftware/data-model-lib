@@ -6,12 +6,19 @@ package life.qbic.datamodel.samples;
 public enum Status {
   SAMPLE_QC_FAIL,
   SAMPLE_QC_PASS,
+  SAMPLE_RECEIVED,
+  LIBRARY_PREP_FINISHED,
   SEQUENCING,
   SEQUENCING_COMPLETE,
-  DATA_AT_QBIC,
   METADATA_REGISTERED,
   WAITING,
   PROCESSING,
   FAILED_QC,
-  PROCESSED
+  PROCESSED,
+  DATA_AVAILABLE,
+  /** 
+  * @deprecated this is deprecated since 2.4.0 please use {@link #DATA_AVAILABLE} instead
+  */
+  @Deprecated
+  DATA_AT_QBIC
 }

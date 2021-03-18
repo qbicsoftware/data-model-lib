@@ -1,6 +1,7 @@
 package life.qbic.datamodel.dtos.business
 
 import groovy.transform.CompileStatic
+import groovy.transform.EqualsAndHashCode
 
 /**
  * A DTO describing Product Identifiers
@@ -11,8 +12,8 @@ import groovy.transform.CompileStatic
  * @since: 2.0.0
  *
  */
-
 @CompileStatic
+@EqualsAndHashCode
 class ProductId {
 
     /**

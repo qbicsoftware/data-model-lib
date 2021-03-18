@@ -13,7 +13,9 @@ enum ProductType {
     PROJECT_MANAGEMENT("PM"),
     PRIMARY_BIOINFO("PB"),
     SECONDARY_BIOINFO("SB"),
-    DATA_STORAGE("DS")
+    DATA_STORAGE("DS"),
+    PROTEOMIC("PR"),
+    METABOLOMIC("ME")
 
     /**
      Holds the String value of the enum

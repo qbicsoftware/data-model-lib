@@ -18,7 +18,13 @@ import org.apache.logging.log4j.Logger;
  */
 public class SampleCodeFunctions {
 
+  /** 
+   * @deprecated this is deprecated since 2.4.0 please use QBIC_SAMPLE_BARCODE_SCHEMA instead
+   */
+  @Deprecated
   public static final String QBIC_SAMPLE_ID_SCHEMA = "Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}";
+  public static final String QBIC_SAMPLE_BARCODE_SCHEMA = "Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}";
+  public static final String QBIC_ENTITY_SAMPLE_CODE_SCHEMA = "Q[A-X0-9]{4}ENTITY-[1-9][0-9]*";
 
   private static final Logger logger = LogManager.getLogger(SampleCodeFunctions.class);
 
@@ -44,8 +50,7 @@ public class SampleCodeFunctions {
    * @return true if String is a QBiC barcode with matching checksum, false if not
    */
   public static boolean isQbicBarcode(String code) {
-    Pattern codePattern =
-        Pattern.compile("Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}", Pattern.CASE_INSENSITIVE);
+    Pattern codePattern = Pattern.compile(QBIC_SAMPLE_BARCODE_SCHEMA, Pattern.CASE_INSENSITIVE);
     Matcher matcher = codePattern.matcher(code);
     if (matcher.matches()) {
       String base = code.substring(0, 9);
@@ -55,13 +60,14 @@ public class SampleCodeFunctions {
   }
 
   /**
-   * Checks if a String fits the QBiC entity code pattern
+   * Checks if a String fits the QBiC entity code pattern, as used for the species level
    *
    * @param code A String that may be a qbic entity code
    * @return true if String is a QBiC entity code, false if not
    */
   public static boolean isQbicEntityCode(String code) {
-    Pattern entityPattern = Pattern.compile(QBIC_SAMPLE_ID_SCHEMA, Pattern.CASE_INSENSITIVE);
+    Pattern entityPattern =
+        Pattern.compile(QBIC_ENTITY_SAMPLE_CODE_SCHEMA, Pattern.CASE_INSENSITIVE);
     Matcher matcher = entityPattern.matcher(code);
     return matcher.find();
   }
@@ -77,28 +83,26 @@ public class SampleCodeFunctions {
   }
 
   public static int compareSampleCodes(String c1, String c2) {
-    if (!c1.startsWith("Q")
-        || c1.contains("ENTITY")
-        || !c2.startsWith("Q")
-        || c2.contains("ENTITY")) return c1.compareTo(c2);
+    if (!c1.startsWith("Q") || c1.contains("ENTITY") || !c2.startsWith("Q")
+        || c2.contains("ENTITY"))
+      return c1.compareTo(c2);
     try {
       // compares sample codes by projects, ending letters (999A --> 001B) and numbers (001A -->
       // 002A)
       int projCompare = c1.substring(0, 5).compareTo(c2.substring(0, 5));
       int numCompare = c1.substring(5, 8).compareTo(c2.substring(5, 8));
       int letterCompare = c1.substring(8, 9).compareTo(c2.substring(8, 9));
-      if (projCompare != 0) return projCompare;
+      if (projCompare != 0)
+        return projCompare;
       else {
-        if (letterCompare != 0) return letterCompare;
-        else return numCompare;
+        if (letterCompare != 0)
+          return letterCompare;
+        else
+          return numCompare;
       }
     } catch (Exception e) {
-      logger.warn(
-          "Could not split code "
-              + c1
-              + " or "
-              + c2
-              + ". Falling back to primitive lexicographical comparison.");
+      logger.warn("Could not split code " + c1 + " or " + c2
+          + ". Falling back to primitive lexicographical comparison.");
     }
     return c1.compareTo(c2);
   }
@@ -125,7 +129,8 @@ public class SampleCodeFunctions {
    * @return the next letter in the alphabet relative to the input char
    */
   public static char incrementUppercase(char c) {
-    if (c == 'X') return 'A';
+    if (c == 'X')
+      return 'A';
     else {
       int charValue = c;
       return (char) (charValue + 1);
@@ -147,7 +152,8 @@ public class SampleCodeFunctions {
     char letter = code.charAt(8);
     if (newNum > 999) {
       num = "001" + incrementUppercase(letter);
-    } else num = createCountString(newNum, 3) + letter;
+    } else
+      num = createCountString(newNum, 3) + letter;
     String res = code.substring(0, 5) + num;
     return res + checksum(res);
   }
@@ -177,8 +183,10 @@ public class SampleCodeFunctions {
   public static String max(String a, String b) {
     int a1 = Integer.parseInt(a);
     int b1 = Integer.parseInt(b);
-    if (Math.max(a1, b1) == a1) return a;
-    else return b;
+    if (Math.max(a1, b1) == a1)
+      return a;
+    else
+      return b;
   }
 
   /**
@@ -243,8 +251,10 @@ public class SampleCodeFunctions {
     String max = min;
     for (String id : ids) {
       String num = id.substring(5, 8);
-      if (num.compareTo(min) < 0) min = num;
-      if (num.compareTo(max) > 0) max = num;
+      if (num.compareTo(min) < 0)
+        min = num;
+      if (num.compareTo(max) > 0)
+        max = num;
     }
     return head + min + "-" + max;
   }
@@ -264,13 +274,15 @@ public class SampleCodeFunctions {
   }
 
   /**
-   * Finds all QBiC sample ids in a String object.
+   * Finds all QBiC sample codes in a String object. Only works for the codes with check digit, not
+   * for the entity codes.
+   * 
    * @param text The text to search
-   * @return A list of found ids. Is empty if no id was found.
+   * @return A list of found codes. Is empty if no code was found.
    */
   public static List<String> findAllQbicSampleCodes(String text) {
     List<String> result = new ArrayList<>();
-    Pattern pattern = Pattern.compile(QBIC_SAMPLE_ID_SCHEMA, Pattern.CASE_INSENSITIVE);
+    Pattern pattern = Pattern.compile(QBIC_SAMPLE_BARCODE_SCHEMA, Pattern.CASE_INSENSITIVE);
     Matcher m = pattern.matcher(text);
     while (m.find()) {
       result.add(m.group());
