@@ -9,12 +9,18 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 ---------------------------
 
 **Added**
+* New constructor using the new ``life.qbic.datamodel.dtos.business.ProductId`` constructor for ``life.qbic.datamodel.dtos.business.services.Sequencing``, ``life.qbic.datamodel.dtos.business.services.SecondaryAnalysis`,
+``life.qbic.datamodel.dtos.business.services.ProteomicAnalysis``, ``life.qbic.datamodel.dtos.business.services.ProjectManagement``, ``life.qbic.datamodel.dtos.business.services.PrimaryAnalysis`,
+``life.qbic.datamodel.dtos.business.services.MetabolomicAnalysis``, ``life.qbic.datamodel.dtos.business.services.DataStorage``
 
 **Fixed**
 
 **Dependencies**
 
 **Deprecated**
+* Constructor using the deprecated ``life.qbic.datamodel.dtos.business.ProductId`` constructor for ``life.qbic.datamodel.dtos.business.services.Sequencing``, ``life.qbic.datamodel.dtos.business.services.SecondaryAnalysis`,
+``life.qbic.datamodel.dtos.business.services.ProteomicAnalysis``, ``life.qbic.datamodel.dtos.business.services.ProjectManagement``, ``life.qbic.datamodel.dtos.business.services.PrimaryAnalysis`,
+``life.qbic.datamodel.dtos.business.services.MetabolomicAnalysis``, ``life.qbic.datamodel.dtos.business.services.DataStorage``
 
 
 2.4.0 (2021-03-18)
