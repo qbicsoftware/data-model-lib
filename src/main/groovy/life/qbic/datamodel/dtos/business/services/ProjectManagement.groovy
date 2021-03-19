@@ -20,7 +20,9 @@ class ProjectManagement extends PartialProduct {
    * @param unitPrice The price in € per unit
    * @param unit The product unit
    * @param runningNumber Number used in conjunction with ProductType{@link life.qbic.datamodel.dtos.business.services.ProductType} to identify product
+   * @deprecated since 2.5.0
    */
+  @Deprecated
   ProjectManagement(String name, String description, double unitPrice, ProductUnit unit, String runningNumber) {
     super(name, description, unitPrice, unit, new ProductId(ProductType.PROJECT_MANAGEMENT.toString(), runningNumber))
   }

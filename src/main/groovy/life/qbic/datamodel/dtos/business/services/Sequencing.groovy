@@ -20,8 +20,9 @@ class Sequencing extends AtomicProduct {
    * @param unitPrice The price in € per unit
    * @param unit The product unit
    * @param runningNumber Number used in conjunction with ProductType{@link life.qbic.datamodel.dtos.business.services.ProductType} to identify product
+   * @deprecated 2.5.0
    */
-
+  @Deprecated
   Sequencing(String name, String description, double unitPrice, ProductUnit unit, String runningNumber) {
     super(name, description, unitPrice, unit, new ProductId(ProductType.SEQUENCING.toString(), runningNumber))
   }
