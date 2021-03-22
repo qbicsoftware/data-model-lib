@@ -14,6 +14,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 ``life.qbic.datamodel.dtos.business.services.MetabolomicAnalysis``, ``life.qbic.datamodel.dtos.business.services.DataStorage``
 
 **Fixed**
+* Override ``equals()`` method for ``life.qbic.datamodel.dtos.business.OfferId` and ``life.qbic
+.datamodel.dtos.business.TomatoId``properly
 
 **Dependencies**
 
