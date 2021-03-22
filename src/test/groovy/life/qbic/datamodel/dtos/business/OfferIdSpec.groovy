@@ -20,4 +20,28 @@ class OfferIdSpec extends Specification {
         then:
         offerId.getRandomPart().equals("abc")
     }
+
+    def 'confirm equals method override works as intended'() {
+        given: "two offer id instances with the same content"
+        OfferId idOne = new OfferId("project", "random", "1")
+        OfferId idOther = new OfferId("project", "random", "1")
+
+        when: "we compare them"
+        def isEqual = idOne.equals(idOther)
+
+        then: "the comparison shall return true"
+        isEqual
+    }
+
+    def 'Equality check shall return false, if id conent differs'() {
+        given: "two offer id instances with the same content"
+        OfferId idOne = new OfferId("project", "random", "1")
+        OfferId idOther = new OfferId("project", "random", "2")
+
+        when: "we compare them"
+        def isEqual = idOne.equals(idOther)
+
+        then: "the comparison shall return true"
+        !isEqual
+    }
 }
