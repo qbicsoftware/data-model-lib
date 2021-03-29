@@ -14,7 +14,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
   ``life.qbic.datamodel.dtos.business.services.ProteomicAnalysis``, ``life.qbic.datamodel.dtos.business.services.ProjectManagement``, ``life.qbic.datamodel.dtos.business.services.PrimaryAnalysis``,
   ``life.qbic.datamodel.dtos.business.services.MetabolomicAnalysis``, ``life.qbic.datamodel.dtos.business.services.DataStorage``
 
-* Tests for ``life.qbic.datamodel.dtos.business.services.ProductUnitFactory#getForString(java.lang.String)``
+* Add Tests for ``life.qbic.datamodel.dtos.business.services.ProductUnitFactory#getForString(java.lang.String)`` (`#190 <https://github.com/qbicsoftware/data-model-lib/pull/190>`_)
 
 **Fixed**
 
