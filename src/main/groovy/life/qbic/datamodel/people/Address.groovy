@@ -2,7 +2,6 @@ package life.qbic.datamodel.people
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-@Deprecated
 class Address  {
 
   private String affiliation = ""
