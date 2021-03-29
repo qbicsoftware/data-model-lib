@@ -20,10 +20,18 @@ enum ProductCategory {
     /**
      * Value describing the enum type with a string
      */
-    private String value
+    private final String value
 
     ProductCategory(String value) {
         this.value = value
     }
 
+    /**
+     * Returns the value associated to the given enum
+     * This is <em>NOT</em> the same as {@link #toString}
+     * @return a user-friendly string value
+     */
+    String getValue() {
+        return value
+    }
 }
