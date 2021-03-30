@@ -16,6 +16,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 * Add Tests for ``life.qbic.datamodel.dtos.business.services.ProductUnitFactory#getForString(java.lang.String)`` (`#190 <https://github.com/qbicsoftware/data-model-lib/pull/190>`_)
 
+* New EnumFactory ``life.qbic.datamodel.dtos.business.ProductCategoryFactory`` (`#192 <https://github.com/qbicsoftware/data-model-lib/pull/192>`_)
+
 **Fixed**
 
 * Override ``equals()`` method for ``life.qbic.datamodel.dtos.business.OfferId`` and
