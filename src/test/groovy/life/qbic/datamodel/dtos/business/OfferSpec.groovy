@@ -37,7 +37,10 @@ class OfferSpec extends Specification {
         when:
         Offer testOffer =
                 new Offer.Builder(customer, projectManager, "Archer", "Cartoon Series", selectedAffiliation)
-                        .modificationDate(date).expirationDate(date).totalPrice(price).identifier(offerId).taxes(vat).overheads(overhead).netPrice(net).items([item]).itemsWithOverhead([item]).itemsWithoutOverhead([item]).itemsWithOverheadNet(itemsWithOverheadNet).itemsWithoutOverheadNet(itemsWithoutOverheadNet).overheadRatio(overheadRatio)
+                        .modificationDate(date).expirationDate(date).totalPrice(price).identifier(offerId).taxes(vat).overheads(overhead).netPrice(net).items([item])
+                        .itemsWithOverhead([item]).itemsWithoutOverhead([item]).itemsWithOverheadNet(itemsWithOverheadNet)
+                        .itemsWithoutOverheadNet(itemsWithoutOverheadNet).overheadRatio(overheadRatio)
+                        .experimentalDesign("design")
                         .build()
 
         then:
@@ -47,6 +50,7 @@ class OfferSpec extends Specification {
         testOffer.getProjectManager() == projectManager
         testOffer.getProjectTitle() == "Archer"
         testOffer.getProjectObjective() == "Cartoon Series"
+        testOffer.getExperimentalDesign() == "design"
         testOffer.getTaxes() == vat
         testOffer.getOverheads() == overhead
         testOffer.getNetPrice() == net
@@ -78,6 +82,31 @@ class OfferSpec extends Specification {
         testOffer.getProjectManager() == projectManager
         testOffer.getProjectTitle() == "Archer"
         testOffer.getProjectObjective() == "Cartoon Series"
+        testOffer.getItems() == []
+        testOffer.getTotalPrice() == 0
+        testOffer.getIdentifier() == null
+        testOffer.getSelectedCustomerAffiliation() == selectedAffiliation
+    }
+
+
+    def "Two builder constructors work"() {
+
+        given:
+        OfferId offerId = new OfferId("ab", "cd", "1")
+
+        when:
+        Offer testOffer =
+                new Offer.Builder(customer, projectManager, "Archer", "Cartoon Series", "Experimental Design",selectedAffiliation)
+                        .build()
+
+        then:
+        testOffer.getModificationDate() == null
+        testOffer.getExpirationDate() == null
+        testOffer.getCustomer() == customer
+        testOffer.getProjectManager() == projectManager
+        testOffer.getProjectTitle() == "Archer"
+        testOffer.getProjectObjective() == "Cartoon Series"
+        testOffer.experimentalDesign == "Experimental Design"
         testOffer.getItems() == []
         testOffer.getTotalPrice() == 0
         testOffer.getIdentifier() == null
