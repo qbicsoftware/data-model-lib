@@ -49,6 +49,10 @@ class Offer {
      */
     final String projectObjective
     /**
+     * The experimental design of a project
+     */
+    final Optional<String> experimentalDesign
+    /**
      * A list of items for which the customer will be charged
      */
     final List<ProductItem> items
@@ -108,6 +112,7 @@ class Offer {
          */
         String projectTitle
         String projectObjective
+        Optional<String> experimentalDesign
         Customer customer
         ProjectManager projectManager
         Affiliation selectedCustomerAffiliation
@@ -149,6 +154,7 @@ class Offer {
             this.projectManager = Objects.requireNonNull(projectManager, "Project Manager must not be null")
             this.projectTitle = Objects.requireNonNull(projectTitle, "Project Title must not be null")
             this.projectObjective = Objects.requireNonNull(projectObjective, "Project Objective must not be null")
+            this.experimentalDesign = Optional.empty()
             this.selectedCustomerAffiliation = Objects.requireNonNull(selectedCustomerAffiliation, "Customer Affiliation must not be null")
             this.items = []
 
@@ -252,6 +258,11 @@ class Offer {
             return this
         }
 
+        Builder experimentalDesign(String experimentalDesign){
+            this.experimentalDesign = Optional.of(experimentalDesign)
+            return this
+        }
+
         Offer build() {
             return new Offer(this)
         }
@@ -270,6 +281,13 @@ class Offer {
         this.selectedCustomerAffiliation = builder.selectedCustomerAffiliation
         this.items = builder.items
         this.checksum = builder.checksum
+
+        if (builder.experimentalDesign.isPresent()) {
+            this.experimentalDesign = builder.experimentalDesign
+        } else {
+            this.experimentalDesign = Optional.empty()
+        }
+
 
         /*
         Offer Identifier
