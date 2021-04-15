@@ -23,6 +23,7 @@ class AffiliationSpec extends Specification{
     assert testAffiliation.getOrganisation().equals("Universität Tübingen")
     assert testAffiliation.getCategory().equals(AffiliationCategory.EXTERNAL)
     assert testAffiliation.getCountry().equals("Germany")
+    assert testAffiliation.getLabel().equals(AffiliationLabel.NONE)
   }
 
 }
