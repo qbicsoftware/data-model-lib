@@ -51,7 +51,7 @@ class Offer {
     /**
      * The experimental design of a project
      */
-    final String experimentalDesign
+    final Optional<String> experimentalDesign
     /**
      * A list of items for which the customer will be charged
      */
@@ -112,7 +112,7 @@ class Offer {
          */
         String projectTitle
         String projectObjective
-        String experimentalDesign
+        Optional<String> experimentalDesign
         Customer customer
         ProjectManager projectManager
         Affiliation selectedCustomerAffiliation
@@ -154,7 +154,7 @@ class Offer {
             this.projectManager = Objects.requireNonNull(projectManager, "Project Manager must not be null")
             this.projectTitle = Objects.requireNonNull(projectTitle, "Project Title must not be null")
             this.projectObjective = Objects.requireNonNull(projectObjective, "Project Objective must not be null")
-            this.experimentalDesign = ""
+            this.experimentalDesign = Optional.empty()
             this.selectedCustomerAffiliation = Objects.requireNonNull(selectedCustomerAffiliation, "Customer Affiliation must not be null")
             this.items = []
 
@@ -259,7 +259,7 @@ class Offer {
         }
 
         Builder experimentalDesign(String experimentalDesign){
-            this.experimentalDesign = experimentalDesign
+            this.experimentalDesign = Optional.of(experimentalDesign)
             return this
         }
 
@@ -278,10 +278,16 @@ class Offer {
         this.projectManager = builder.projectManager
         this.projectObjective = builder.projectObjective
         this.projectTitle = builder.projectTitle
-        this.experimentalDesign = builder.experimentalDesign
         this.selectedCustomerAffiliation = builder.selectedCustomerAffiliation
         this.items = builder.items
         this.checksum = builder.checksum
+
+        if (builder.experimentalDesign.isPresent()) {
+            this.experimentalDesign = builder.experimentalDesign
+        } else {
+            this.experimentalDesign = Optional.empty()
+        }
+
 
         /*
         Offer Identifier

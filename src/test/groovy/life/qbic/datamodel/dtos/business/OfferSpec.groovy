@@ -50,7 +50,7 @@ class OfferSpec extends Specification {
         testOffer.getProjectManager() == projectManager
         testOffer.getProjectTitle() == "Archer"
         testOffer.getProjectObjective() == "Cartoon Series"
-        testOffer.getExperimentalDesign() == "design"
+        testOffer.getExperimentalDesign().get() == "design"
         testOffer.getTaxes() == vat
         testOffer.getOverheads() == overhead
         testOffer.getNetPrice() == net
