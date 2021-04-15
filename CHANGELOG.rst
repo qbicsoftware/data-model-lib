@@ -18,6 +18,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 * New EnumFactory ``life.qbic.datamodel.dtos.business.ProductCategoryFactory`` (`#192 <https://github.com/qbicsoftware/data-model-lib/pull/192>`_)
 
+* New property experimentalDesign for ``life.qbic.datamodel.dtos.business.Offer``
+
 **Fixed**
 
 * Override ``equals()`` method for ``life.qbic.datamodel.dtos.business.OfferId`` and
