@@ -183,38 +183,6 @@ class Offer {
             this.projectDescription = Objects.requireNonNull(projectObjective, "Project Objective must not be null")
         }
 
-        Builder(Customer customer, ProjectManager projectManager, String projectTitle, String projectObjective, String experimentalDesign, Affiliation selectedCustomerAffiliation) {
-            /*
-            Overall offer describing properties
-             */
-            this.customer = Objects.requireNonNull(customer, "Customer must not be null")
-            this.projectManager = Objects.requireNonNull(projectManager, "Project Manager must not be null")
-            this.projectTitle = Objects.requireNonNull(projectTitle, "Project Title must not be null")
-            this.projectObjective = Objects.requireNonNull(projectObjective, "Project Objective must not be null")
-            this.experimentalDesign = Objects.requireNonNull(experimentalDesign, "Experimental Design must not be null")
-            this.selectedCustomerAffiliation = Objects.requireNonNull(selectedCustomerAffiliation, "Customer Affiliation must not be null")
-            this.items = []
-
-            /*
-            Price related properties
-            */
-            this.netPrice = 0
-            this.overheads = 0
-            this.taxes = 0
-            this.totalPrice = 0
-            this.itemsWithOverhead = []
-            this.itemsWithoutOverhead = []
-            this.itemsWithOverheadNet = 0
-            this.itemsWithoutOverheadNet = 0
-            this.checksum = ""
-            this.overheadRatio = 0
-
-            /*
-            Project related
-             */
-            this.associatedProject = Optional.empty()
-        }
-
         Builder checksum(String checksum) {
             this.checksum = checksum
             return this
