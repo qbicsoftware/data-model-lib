@@ -53,7 +53,7 @@ final class Affiliation {
   final AffiliationCategory category
 
   /**
-   * An affiliation category @link{AffiliationCategory}.
+   * An affiliation label @link{AffiliationLabel}.
    *
    * Defaults to "none".
    */
