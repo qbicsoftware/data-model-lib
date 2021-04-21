@@ -12,10 +12,10 @@ class AffiliationLabelSpec extends Specification {
 
     def "Established Enum properties can be accessed with the getValue and toString Methods "() {
         when:
-        AffiliationLabel affiliationLabel = AffiliationLabel.NONE
+        AffiliationLabel affiliationLabel = AffiliationLabel.MNF
 
         then:
-        affiliationLabel.getValue() == "none"
-        affiliationLabel.toString() == "none"
+        affiliationLabel.getValue() == "faculty of medicine"
+        affiliationLabel.toString() == "faculty of medicine"
     }
 }

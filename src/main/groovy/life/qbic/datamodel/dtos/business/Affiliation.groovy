@@ -85,7 +85,7 @@ final class Affiliation {
       this.addressAddition = ""
       this.country = "Germany"
       this.category = AffiliationCategory.EXTERNAL
-      this.label = AffiliationLabel.NONE
+      this.label = AffiliationLabel.MNF
     }
 
     /**
