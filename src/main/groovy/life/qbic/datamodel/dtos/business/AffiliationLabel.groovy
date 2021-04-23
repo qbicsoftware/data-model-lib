@@ -1,12 +1,10 @@
 package life.qbic.datamodel.dtos.business
 
 /**
- * We define 4 affiliation faculty labels here, which will be associated to affiliations.
+ * We define 2 affiliation faculty labels here, which will be associated to internal affiliations.
  * The following affiliation labels are defined
  *  - MNF: Internal affiliation originated from a faculty of medicine
  *  - MFT: Internal affiliation originated from a faculty of natural sciences
- *  - EXTERN_ACADEMIC: External affiliation with an academic background
- *  - EXTERN_INDUSTRY: External affiliation with an industry background
  *   @since: 2.5.0
  */
 enum AffiliationLabel {
