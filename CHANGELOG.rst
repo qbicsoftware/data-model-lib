@@ -20,6 +20,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 * New property experimentalDesign for ``life.qbic.datamodel.dtos.business.Offer``
 
+* Introduce new Enum ``life.qbic.datamodel.dtos.business.AffiliationLabel`` and new EnumFactory ``life.qbic.datamodel.dtos.business.AffiliationLabelFactory`` (`#194 <https://github.com/qbicsoftware/data-model-lib/pull/194>`_)
+
 **Fixed**
 
 * Override ``equals()`` method for ``life.qbic.datamodel.dtos.business.OfferId`` and
