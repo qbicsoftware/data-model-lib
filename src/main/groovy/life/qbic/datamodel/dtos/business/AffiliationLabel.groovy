@@ -13,8 +13,6 @@ enum AffiliationLabel {
 
     MNF("faculty of medicine"),
     MFT("faculty of natural sciences"),
-    EXTERN_ACADEMIC("external academic"),
-    EXTERN_INDUSTRY("external industry")
 
     /**
      * Holds the value of the enum
