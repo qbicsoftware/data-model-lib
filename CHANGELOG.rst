@@ -27,7 +27,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 * Override ``equals()`` method for ``life.qbic.datamodel.dtos.business.OfferId`` and
   ``life.qbic.datamodel.dtos.business.TomatoId`` properly
 
-* Overide ``equals()`` method for ``life.qbic.datamodel.dtos.business.ProductId` properly
+* Override ``equals()`` method for ``life.qbic.datamodel.dtos.business.ProductId`` properly
 
 **Dependencies**
 
