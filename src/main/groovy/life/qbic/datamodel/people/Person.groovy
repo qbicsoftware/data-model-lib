@@ -1,6 +1,5 @@
 package life.qbic.datamodel.people;
 
-@Deprecated
 class Person {
 
   private String firstName

@@ -5,6 +5,40 @@ Changelog
 This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 
+2.5.0 (2021-04-26)
+------------------
+
+**Added**
+
+* New constructor using the new ``life.qbic.datamodel.dtos.business.ProductId`` constructor for ``life.qbic.datamodel.dtos.business.services.Sequencing``, ``life.qbic.datamodel.dtos.business.services.SecondaryAnalysis``,
+  ``life.qbic.datamodel.dtos.business.services.ProteomicAnalysis``, ``life.qbic.datamodel.dtos.business.services.ProjectManagement``, ``life.qbic.datamodel.dtos.business.services.PrimaryAnalysis``,
+  ``life.qbic.datamodel.dtos.business.services.MetabolomicAnalysis``, ``life.qbic.datamodel.dtos.business.services.DataStorage``
+
+* Add Tests for ``life.qbic.datamodel.dtos.business.services.ProductUnitFactory#getForString(java.lang.String)`` (`#190 <https://github.com/qbicsoftware/data-model-lib/pull/190>`_)
+
+* New EnumFactory ``life.qbic.datamodel.dtos.business.ProductCategoryFactory`` (`#192 <https://github.com/qbicsoftware/data-model-lib/pull/192>`_)
+
+* New property experimentalDesign for ``life.qbic.datamodel.dtos.business.Offer``
+
+* Introduce new Enum ``life.qbic.datamodel.dtos.business.AffiliationLabel`` and new EnumFactory ``life.qbic.datamodel.dtos.business.AffiliationLabelFactory`` (`#194 <https://github.com/qbicsoftware/data-model-lib/pull/194>`_)
+
+**Fixed**
+
+* Override ``equals()`` method for ``life.qbic.datamodel.dtos.business.OfferId`` and
+  ``life.qbic.datamodel.dtos.business.TomatoId`` properly
+
+* Override ``equals()`` method for ``life.qbic.datamodel.dtos.business.ProductId`` properly
+
+**Dependencies**
+
+**Deprecated**
+
+* Constructor using the deprecated ``life.qbic.datamodel.dtos.business.ProductId`` constructor for ``life.qbic.datamodel.dtos.business.services.Sequencing``, ``life.qbic.datamodel.dtos.business.services.SecondaryAnalysis``,
+  ``life.qbic.datamodel.dtos.business.services.ProteomicAnalysis``, ``life.qbic.datamodel.dtos.business.services.ProjectManagement``, ``life.qbic.datamodel.dtos.business.services.PrimaryAnalysis``,
+  ``life.qbic.datamodel.dtos.business.services.MetabolomicAnalysis``, ``life.qbic.datamodel.dtos.business.services.DataStorage``
+* Removed Deprecation for ``life.qbic.datamodel.people.*``
+
+
 2.4.0 (2021-03-18)
 ------------------
 

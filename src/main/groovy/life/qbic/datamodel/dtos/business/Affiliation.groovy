@@ -52,6 +52,13 @@ final class Affiliation {
    */
   final AffiliationCategory category
 
+  /**
+   * An affiliation label @link{AffiliationLabel}.
+   *
+   * Defaults to "none".
+   */
+  final AffiliationLabel label
+
   static class Builder {
 
     String organisation
@@ -68,6 +75,8 @@ final class Affiliation {
 
     AffiliationCategory category
 
+    AffiliationLabel label
+
     Builder(String organisation, String street, String postalCode, String city) {
       this.organisation = organisation
       this.street = street
@@ -76,6 +85,7 @@ final class Affiliation {
       this.addressAddition = ""
       this.country = "Germany"
       this.category = AffiliationCategory.EXTERNAL
+      this.label = AffiliationLabel.MNF
     }
 
     /**
@@ -98,6 +108,12 @@ final class Affiliation {
       return this
     }
 
+    Builder label(AffiliationLabel label) {
+      this.label = label
+      return this
+    }
+
+
     Affiliation build() {
       return new Affiliation(this)
     }
@@ -112,6 +128,7 @@ final class Affiliation {
     this.postalCode = builder.postalCode
     this.category = builder.category
     this.city = builder.city
+    this.label = builder.label
   }
 
   @Override

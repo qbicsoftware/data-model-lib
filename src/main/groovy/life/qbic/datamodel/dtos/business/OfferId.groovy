@@ -1,6 +1,7 @@
 package life.qbic.datamodel.dtos.business
 
 import groovy.transform.CompileStatic
+import groovy.transform.EqualsAndHashCode
 
 /**
  * A DTO describing the offer identifier
@@ -11,6 +12,7 @@ import groovy.transform.CompileStatic
  *
  */
 @CompileStatic
+@EqualsAndHashCode(callSuper = true)
 class OfferId extends TomatoId{
     /**
      * An Offer is identified by the type O

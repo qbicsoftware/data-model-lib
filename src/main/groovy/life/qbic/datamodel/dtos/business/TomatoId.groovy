@@ -1,6 +1,7 @@
 package life.qbic.datamodel.dtos.business
 
 import groovy.transform.CompileStatic
+import groovy.transform.EqualsAndHashCode
 
 /**
  * A DTO describing Tomato identifiers
@@ -12,6 +13,7 @@ import groovy.transform.CompileStatic
  *
  */
 @CompileStatic
+@EqualsAndHashCode(includeFields = true)
 abstract class TomatoId {
     /**
      * The type of the identifier is defined by the implementing identifier

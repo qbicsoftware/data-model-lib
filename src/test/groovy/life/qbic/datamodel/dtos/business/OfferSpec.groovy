@@ -37,7 +37,10 @@ class OfferSpec extends Specification {
         when:
         Offer testOffer =
                 new Offer.Builder(customer, projectManager, "Archer", "Cartoon Series", selectedAffiliation)
-                        .modificationDate(date).expirationDate(date).totalPrice(price).identifier(offerId).taxes(vat).overheads(overhead).netPrice(net).items([item]).itemsWithOverhead([item]).itemsWithoutOverhead([item]).itemsWithOverheadNet(itemsWithOverheadNet).itemsWithoutOverheadNet(itemsWithoutOverheadNet).overheadRatio(overheadRatio)
+                        .modificationDate(date).expirationDate(date).totalPrice(price).identifier(offerId).taxes(vat).overheads(overhead).netPrice(net).items([item])
+                        .itemsWithOverhead([item]).itemsWithoutOverhead([item]).itemsWithOverheadNet(itemsWithOverheadNet)
+                        .itemsWithoutOverheadNet(itemsWithoutOverheadNet).overheadRatio(overheadRatio)
+                        .experimentalDesign("design")
                         .build()
 
         then:
@@ -47,6 +50,7 @@ class OfferSpec extends Specification {
         testOffer.getProjectManager() == projectManager
         testOffer.getProjectTitle() == "Archer"
         testOffer.getProjectObjective() == "Cartoon Series"
+        testOffer.getExperimentalDesign().get() == "design"
         testOffer.getTaxes() == vat
         testOffer.getOverheads() == overhead
         testOffer.getNetPrice() == net
