@@ -19,12 +19,12 @@ class ProductId {
     /**
      * The type of the identifier is defined by the implementing identifier
      */
-    private final String type
+    final String type
 
     /**
      * Identifying number used in conjunction with the type
      */
-    private final long uniqueId
+    final long uniqueId
 
     /**
      * A builder for ProductId instances.
