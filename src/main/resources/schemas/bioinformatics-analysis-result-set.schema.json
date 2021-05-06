@@ -123,6 +123,7 @@
   "properties": {
     "pipelineInformation": {"$ref": "#/definitions/pipelineInformation"},
     "qualityControl": {"$ref":  "#/definitions/qualityControl"},
+    "processFolders": {"$ref":  "#/definitions/processFolders"},
     "runID": {"$ref":  "#/definitions/runID"},
     "inputIDs": {"$ref":  "#/definitions/inputIDs"}
   },
