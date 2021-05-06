@@ -20,7 +20,7 @@ final class NfCoreExperiment {
     // Fully qualified domain name of the nfcore file structure package
     private final static String FQDN_FILES = "life.qbic.datamodel.datasets.datastructure.files.nfcore"
 
-    private final List<DataFolder> resultSet
+    private final List<?> resultSet
 
     private final static Set nfCoreFileTypes = [
             FQDN_FILES + ".ExecutionReport",
@@ -36,8 +36,8 @@ final class NfCoreExperiment {
             FQDN_FOLDERS + ".ProcessFolder"
     ]
 
-    private NfCoreExperiment(List<DataFolder> resultSet) {
-        this.resultSet = Objects.requireNonNull(resultSet, "resultSet must not be null")
+    private NfCoreExperiment(List<?> resultSet) {
+        this.resultSet = Objects.requireNonNull(resultSet as Object, "resultSet must not be null") as List<?>
     }
 
     /**
@@ -48,10 +48,15 @@ final class NfCoreExperiment {
      */
     static NfCoreExperiment create(Map bioinformaticPipelineOutput) {
 
+        //Check if all required folders are in root directory
         Objects.requireNonNull(bioinformaticPipelineOutput.get("pipelineInformation"), "The root folder must contain a PipelineInformation folder.")
         Objects.requireNonNull(bioinformaticPipelineOutput.get("qualityControl"),"The root folder must contain a QualityControl folder.")
         Objects.requireNonNull(bioinformaticPipelineOutput.get("processFolders"), "The root folder must contain at least one process folder.")
+        //Check if all required files are in root directory
+        Objects.requireNonNull(bioinformaticPipelineOutput.get("RunID"), "The root folder must contain a RunId.txt file.")
+        Objects.requireNonNull(bioinformaticPipelineOutput.get("InputIDs"), "The root folder must contain an InputIds.txt file.")
 
+        //Parse all folders in the root directory
         DataFolder pipelineInformation = parseFolder(bioinformaticPipelineOutput.get("pipelineInformation") as Map)
         DataFolder qualityControl = parseFolder(bioinformaticPipelineOutput.get("qualityControl") as Map)
         List<DataFolder> processFolders = []
@@ -60,13 +65,16 @@ final class NfCoreExperiment {
             DataFolder processFolder = parseFolder(it as Map)
             processFolders.add(processFolder)
         }
-        DataFile
 
-        List<DataFolder> resultSet = [pipelineInformation, qualityControl, processFolders] as List<DataFolder>
+        //Parse all files in the root directory
+        DataFile inputId = parseFile(bioinformaticPipelineOutput.get("inputIDs") as Map)
+        DataFile runId = parseFile(bioinformaticPipelineOutput.get("RunID") as Map)
+
+        List<?> resultSet = [pipelineInformation, qualityControl, processFolders, inputId, runId] as List<?>
         return new NfCoreExperiment(resultSet)
     }
 
-    List<DataFolder> getResultSet() {
+    List<?> getResultSet() {
         return this.resultSet
     }
 
@@ -117,9 +125,6 @@ final class NfCoreExperiment {
     /*
      * Helper method that tries to create a DataFolder instance
      * based on the DataFolder's different static factory create methods.
-     * As we do not know, whether a folder element is another typed folder
-     * such as FastQPassFolder or a named folder such as Fast5Folder, we have to
-     * try and fail.
      */
 
     private static Optional<DataFolder> tryToCreateDataFolder(Method method,
@@ -127,22 +132,14 @@ final class NfCoreExperiment {
                                                               String relativePath,
                                                               List children) {
         Optional<DataFolder> folder = Optional.empty()
-        try {
-            // Try typed folder
-            def dataFolder = method.invoke(null, relativePath, children) as DataFolder
-            println(dataFolder)
-            folder = Optional.of(dataFolder)
-        } catch (InvocationTargetException e) {
-            // Do nothing
-        } catch (IllegalArgumentException e) {
             try {
-                // Try named folder
+                // We only have named Folders
                 def dataFolder = method.invoke(null, name, relativePath, children) as DataFolder
                 folder = Optional.of(dataFolder)
             } catch (InvocationTargetException e2) {
                 // Do nothing
             }
-        }
+
         return folder
     }
 
