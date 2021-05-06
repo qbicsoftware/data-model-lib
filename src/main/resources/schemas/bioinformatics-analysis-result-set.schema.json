@@ -86,7 +86,7 @@
       "items": { "$ref": "data-structure-commons.json#/definitions/dataFolder" },
       "minItems": 1
     },
-    "runID": {
+    "runId": {
       "description": "A data file that contains the runId.",
       "allOf": [
         {
@@ -100,7 +100,7 @@
         }
       ]
     },
-    "inputIDs": {
+    "sampleIds": {
       "description": "A data file that contains the sample identifiers, which served as input data for the analysis run.",
       "allOf": [
         {
@@ -109,7 +109,7 @@
         {
           "properties": {
             "name": {
-              "pattern": "input_ids"
+              "pattern": "sample_ids"
             },
             "fileType": {
               "pattern": "txt"

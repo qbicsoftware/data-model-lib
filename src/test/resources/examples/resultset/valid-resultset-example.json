@@ -49,14 +49,14 @@
       ]
     }
   ],
-  "runID": {
+  "runId": {
     "name": "run_id",
     "fileType": "txt",
     "path": "./run_id.txt"
   },
-  "inputIDs": {
-    "name": "input_ids",
+  "sampleIds": {
+    "name": "sample_ids",
     "fileType": "txt",
-    "path": "./input_ids.txt"
+    "path": "./sample_ids.txt"
   }
 }
