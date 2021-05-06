@@ -62,7 +62,7 @@ class NfCoreExperimentSpec extends Specification {
         final List<DataFolder> validResultSet = validExperiment.getResultSet()
 
         then:
-        assert validResultSet.size() == 3
+        assert validResultSet.size() == 5
     }
 
     def "Invalid fileTree will return a NullPointerException"() {
