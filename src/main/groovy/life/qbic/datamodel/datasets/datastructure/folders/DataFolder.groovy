@@ -14,9 +14,7 @@ class DataFolder {
     protected DataFolder() {}
 
     protected DataFolder(String name, String relativePath, List childrenList) {
-        if (!(relativePath.contains(name))) {
-            throw new IllegalArgumentException("Name must be contained in the relative path.")
-        }
+
         this.name = Objects.requireNonNull(name, "Name must not be null")
         this.relativePath = Objects.requireNonNull(relativePath, "You shall not path! Path must not be null")
         Objects.requireNonNull(childrenList, "Children list must not be null")
