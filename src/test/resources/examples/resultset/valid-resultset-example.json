@@ -1,7 +1,7 @@
 {
   "pipelineInformation": {
     "name": "pipeline_info",
-    "path": "./",
+    "path": "./pipeline_info",
     "children": [],
     "softwareVersions": {
       "name": "software_versions",
@@ -21,7 +21,7 @@
   },
   "qualityControl": {
     "name": "multiqc",
-    "path": "./",
+    "path": "./multiqc",
     "children": [
       {
         "name": "star_salmon",
@@ -39,7 +39,7 @@
   "processFolders": [
     {
       "name": "salmon",
-      "path": "./",
+      "path": "./salmon",
       "children": [
         {
           "name": "salmon.merged.gene_tpm",
