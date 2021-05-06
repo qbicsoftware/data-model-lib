@@ -94,7 +94,7 @@
         },
         {
           "properties": {
-            "name": { "pattern": "runId"},
+            "name": { "pattern": "run_id"},
             "fileType": { "pattern": "txt" }
           }
         }
@@ -109,7 +109,7 @@
         {
           "properties": {
             "name": {
-              "pattern": "runId"
+              "pattern": "input_ids"
             },
             "fileType": {
               "pattern": "txt"
