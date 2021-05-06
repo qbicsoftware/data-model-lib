@@ -124,14 +124,14 @@
     "pipelineInformation": {"$ref": "#/definitions/pipelineInformation"},
     "qualityControl": {"$ref":  "#/definitions/qualityControl"},
     "processFolders": {"$ref":  "#/definitions/processFolders"},
-    "runID": {"$ref":  "#/definitions/runID"},
-    "inputIDs": {"$ref":  "#/definitions/inputIDs"}
+    "runID": {"$ref":  "#/definitions/runId"},
+    "inputIDs": {"$ref":  "#/definitions/sampleIds"}
   },
   "required": [
     "pipelineInformation",
     "qualityControl",
     "processFolders",
-    "inputIDs",
-    "runID"
+    "sampleIds",
+    "runId"
   ]
 }
