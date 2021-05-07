@@ -1,0 +1,205 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://qbic.life/v1/img-metadata.schema.json",
+  "title": "Imaging Metadata Model",
+  "description": "Describes the imaging metadata model.",
+  "type": "object",
+  "properties": {
+    "image_filename": {
+      "type": "string",
+      "minLength": 1
+    },
+    "imaging_modality": {
+      "type": "string",
+      "minLength": 1
+    },
+    "imaging_date": {
+      "type": "string",
+      "minLength": 1
+    },
+    "instrument_user": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sample_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "instrument_manufacturer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "image_binning": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "camera_acquisition_time":  {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "imaged_tissue":  {
+      "type": "string",
+      "minLength": 1
+    },
+
+    "pixel_size":  {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "resolution":  {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+
+    "laser_power_tirf_lens":  {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "laser_power_beam_splitter":  {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "position_x":  {
+      "type": "number"
+    },
+    "position_y":  {
+      "type": "number"
+    },
+    "position_z":  {
+      "type": "number"
+    },
+    "tcspc_resolution": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "tcspc_position_x":  {
+      "type": "number"
+    },
+    "tcspc_position_y":  {
+      "type": "number"
+    },
+    "tcspc_position_z":  {
+      "type": "number"
+    },
+    "tcspc_scan_mode": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scan_acquisition_rate": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "scan_area":  {
+      "type": "number",
+      "minimum": 0
+    },
+    "staining": {
+      "type": "string",
+      "minLength": 1
+    },
+    "magnification":  {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "accelerating_voltage":  {
+      "type": "number",
+      "minimum": 0
+    },
+    "target_defocus":  {
+      "type": "number"
+    },
+    "cumulative_electron_dose":  {
+      "type": "number",
+      "minimum": 0
+    },
+    "imaging_plane": {
+      "type": "string",
+      "minLength": 1
+    },
+    "imaging_parameters": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pet_tracer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mri_contrast": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mri_weighting": {
+      "type": "string",
+      "minLength": 1
+    },
+    "time_after_contrast":  {
+      "type": "number",
+      "minimum": 0
+    },
+    "instrument_model": {
+      "type": "string",
+      "minLength": 1
+    },
+    "instrument_location": {
+      "type": "string",
+      "minLength": 1
+    },
+    "instrument_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "instrument_detector": {
+      "type": "string",
+      "minLength": 1
+    },
+    "instrument_objective": {
+      "type": "string",
+      "minLength": 1
+    },
+
+    "piezo_table_controller": {
+      "type": "string",
+      "minLength": 1
+    },
+    "piezo_scanner": {
+      "type": "string",
+      "minLength": 1
+    },
+    "polarization_optics": {
+      "type": "string",
+      "minLength": 1
+    },
+    "excitation_beam_splitter": {
+      "type": "string",
+      "minLength": 1
+    },
+    "illumination_mode": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pinhole_size":  {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "laser_lines_cw": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "laser_lines_pulsed": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "laser_repetition_rate": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "required": [
+    "image_filename",
+    "imaging_modality",
+    "imaging_date",
+    "instrument_user",
+    "instrument_manufacturer",
+    "imaged_tissue"
+  ]
+}
