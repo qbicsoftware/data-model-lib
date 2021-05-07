@@ -85,16 +85,53 @@
       "type": "array",
       "items": { "$ref": "data-structure-commons.json#/definitions/dataFolder" },
       "minItems": 1
+    },
+    "runId": {
+      "description": "A data file that contains the runId.",
+      "allOf": [
+        {
+          "$ref": "data-structure-commons.json#/definitions/dataFile"
+        },
+        {
+          "properties": {
+            "name": { "pattern": "run_id"},
+            "fileType": { "pattern": "txt" }
+          }
+        }
+      ]
+    },
+    "sampleIds": {
+      "description": "A data file that contains the sample identifiers, which served as input data for the analysis run.",
+      "allOf": [
+        {
+          "$ref": "data-structure-commons.json#/definitions/dataFile"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "sample_ids"
+            },
+            "fileType": {
+              "pattern": "txt"
+            }
+          }
+        }
+      ]
     }
   },
   "type": "object",
   "properties": {
     "pipelineInformation": {"$ref": "#/definitions/pipelineInformation"},
-    "qualityControl": {"$ref":  "#/definitions/qualityControl"}
+    "qualityControl": {"$ref":  "#/definitions/qualityControl"},
+    "processFolders": {"$ref":  "#/definitions/processFolders"},
+    "runID": {"$ref":  "#/definitions/runId"},
+    "inputIDs": {"$ref":  "#/definitions/sampleIds"}
   },
   "required": [
     "pipelineInformation",
     "qualityControl",
-    "processFolders"
+    "processFolders",
+    "sampleIds",
+    "runId"
   ]
 }
