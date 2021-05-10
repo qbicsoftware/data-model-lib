@@ -1,8 +1,7 @@
 package life.qbic.datamodel.datasets.datastructure
 
 import groovy.json.JsonSlurper
-import life.qbic.datamodel.datasets.NfCoreExperiment
-import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
+import life.qbic.datamodel.datasets.NfCorePipelineResult
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -11,7 +10,7 @@ import spock.lang.Specification
  *
  * @since 2.5.0
  */
-class NfCoreExperimentSpec extends Specification {
+class NfCorePipelineResultSpec extends Specification {
     /**
      * Map that stores the bioinformatic pipeline resultSet folder structure
      * according to the schema
@@ -58,7 +57,7 @@ class NfCoreExperimentSpec extends Specification {
         final Map validExample = validDataStructure
 
         when:
-        final NfCoreExperiment validExperiment = NfCoreExperiment.create(validExample)
+        final NfCorePipelineResult validExperiment = NfCorePipelineResult.create(validExample)
         final List<?> validResultSet = validExperiment.getResultSet()
         then:
         assert validResultSet.size() == 5
@@ -69,7 +68,7 @@ class NfCoreExperimentSpec extends Specification {
         final Map invalidExample = invalidDataStructure
 
         when:
-        final NfCoreExperiment invalidExperiment = NfCoreExperiment.create(invalidExample)
+        final NfCorePipelineResult invalidExperiment = NfCorePipelineResult.create(invalidExample)
         final List<?> invalidResultSet = invalidExperiment.getResultSet()
 
         then:
@@ -81,7 +80,7 @@ class NfCoreExperimentSpec extends Specification {
         final Map noPipelineFolderExample = missingPipelineInfoDataStructure
 
         when:
-        final NfCoreExperiment noPipelineFolderExperiment = NfCoreExperiment.create(noPipelineFolderExample)
+        final NfCorePipelineResult noPipelineFolderExperiment = NfCorePipelineResult.create(noPipelineFolderExample)
         final List<?> noPipelineFolderResultSet = noPipelineFolderExperiment.getResultSet()
 
         then:
@@ -93,7 +92,7 @@ class NfCoreExperimentSpec extends Specification {
         final Map noProcessFolderExample = missingProcessFoldersDataStructure
 
         when:
-        final NfCoreExperiment noProcessFolderExperiment = NfCoreExperiment.create(noProcessFolderExample)
+        final NfCorePipelineResult noProcessFolderExperiment = NfCorePipelineResult.create(noProcessFolderExample)
         final List<?> resultSet = noProcessFolderExperiment.getResultSet()
 
         then:
@@ -105,7 +104,7 @@ class NfCoreExperimentSpec extends Specification {
         final Map noQualityControlFolderExample = missingQualityControlDataStructure
 
         when:
-        final NfCoreExperiment noQualityControlFolderExperiment = NfCoreExperiment.create(noQualityControlFolderExample)
+        final NfCorePipelineResult noQualityControlFolderExperiment = NfCorePipelineResult.create(noQualityControlFolderExample)
         final List<?> noQualityControlFolderResultSet = noQualityControlFolderExperiment.getResultSet()
 
         then:

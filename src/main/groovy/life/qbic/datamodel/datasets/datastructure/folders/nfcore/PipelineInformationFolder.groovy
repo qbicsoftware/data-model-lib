@@ -1,6 +1,9 @@
 package life.qbic.datamodel.datasets.datastructure.folders.nfcore
 
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
+import life.qbic.datamodel.datasets.datastructure.files.nfcore.ExecutionReport
+import life.qbic.datamodel.datasets.datastructure.files.nfcore.PipelineReport
+import life.qbic.datamodel.datasets.datastructure.files.nfcore.SoftwareVersions
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 
 /**
@@ -12,7 +15,13 @@ import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
  */
 class PipelineInformationFolder extends DataFolder {
 
-    final private static String NAME_SCHEMA = /pipeline_info/
+    private final static String NAME_SCHEMA = /pipeline_info/
+
+    SoftwareVersions softwareVersions
+
+    PipelineReport pipelineReport
+
+    ExecutionReport executionReport
 
     protected PipelineInformationFolder() {}
 
@@ -37,5 +46,29 @@ class PipelineInformationFolder extends DataFolder {
         if (!(this.name =~ NAME_SCHEMA)) {
             throw new IllegalArgumentException("Name must match the nf-core PipelineInformation directory schema!")
         }
+    }
+
+    /**
+     * Provides access to the information stored in the process folders
+     * @return
+     */
+    SoftwareVersions getSoftwareVersions() {
+        return softwareVersions
+    }
+
+    /**
+     * Provides access to the information stored in the runId file
+     * @return
+     */
+    PipelineReport getPipelineReport() {
+        return pipelineReport
+    }
+
+    /**
+     * Provides access to the information stored in the sampleIds file
+     * @return
+     */
+    ExecutionReport getExecutionReport() {
+        return executionReport
     }
 }

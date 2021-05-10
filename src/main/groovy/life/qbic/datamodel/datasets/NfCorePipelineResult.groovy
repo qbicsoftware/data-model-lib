@@ -1,9 +1,15 @@
 package life.qbic.datamodel.datasets
 
+
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
+import life.qbic.datamodel.datasets.datastructure.files.nfcore.ExecutionReport
+import life.qbic.datamodel.datasets.datastructure.files.nfcore.PipelineReport
+import life.qbic.datamodel.datasets.datastructure.files.nfcore.RunId
+import life.qbic.datamodel.datasets.datastructure.files.nfcore.SampleIds
+import life.qbic.datamodel.datasets.datastructure.files.nfcore.SoftwareVersions
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
-import life.qbic.datamodel.datasets.datastructure.folders.nfcore.ProcessFolder
-import life.qbic.datamodel.identifiers.SampleCodeFunctions
+import life.qbic.datamodel.datasets.datastructure.folders.nfcore.PipelineInformationFolder
+import life.qbic.datamodel.datasets.datastructure.folders.nfcore.QualityControlFolder
 
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Method
@@ -13,14 +19,12 @@ import java.lang.reflect.Method
  *
  * @since 2.5.0
  */
-final class NfCoreExperiment {
+final class NfCorePipelineResult {
 
     // Fully qualified domain name of the nfcore folder structure package
     private final static String FQDN_FOLDERS = "life.qbic.datamodel.datasets.datastructure.folders.nfcore"
     // Fully qualified domain name of the nfcore file structure package
     private final static String FQDN_FILES = "life.qbic.datamodel.datasets.datastructure.files.nfcore"
-
-    private final List<?> resultSet
 
     private final static Set nfCoreFileTypes = [
             FQDN_FILES + ".ExecutionReport",
@@ -36,8 +40,29 @@ final class NfCoreExperiment {
             FQDN_FOLDERS + ".ProcessFolder"
     ]
 
-    private NfCoreExperiment(List<?> resultSet) {
-        this.resultSet = Objects.requireNonNull(resultSet as Object, "resultSet must not be null") as List<?>
+
+    private SampleIds sampleIds
+
+    private RunId runId
+
+    private PipelineInformationFolder pipelineInformationFolder
+
+    private QualityControlFolder qualityControlFolder
+
+    private List<DataFolder> processFolders
+
+    private NfCorePipelineResult(PipelineInformationFolder pipelineInformationFolder, QualityControlFolder qualityControlFolder, List<DataFolder> processFolders,  RunId runId, SampleIds sampleIds) {
+        Objects.requireNonNull(pipelineInformationFolder, "Please provide a PipelineInformation folder.")
+        Objects.requireNonNull(qualityControlFolder, "Please provide a QualityControl folder")
+        Objects.requireNonNull(processFolders, "Please provide a List of process folders")
+        Objects.requireNonNull(runId, "Please provide a runId file")
+        Objects.requireNonNull(sampleIds, "Please provide a sampleIds file")
+
+        this.pipelineInformationFolder = pipelineInformationFolder
+        this.qualityControlFolder = qualityControlFolder
+        this.processFolders = processFolders
+        this.runId = runId
+        this.sampleIds = sampleIds
     }
 
     /**
@@ -46,7 +71,7 @@ final class NfCoreExperiment {
      * @param Map bioinformaticPipelineOutput
      * @return NfCoreExperiment A new instance of a nfcore bioinformatic experiment.
      */
-    static NfCoreExperiment create(Map bioinformaticPipelineOutput) {
+    static NfCorePipelineResult create(Map bioinformaticPipelineOutput) {
 
         //Check if all required folders are in root directory
         Objects.requireNonNull(bioinformaticPipelineOutput.get("pipelineInformation"), "The root folder must contain a PipelineInformation folder.")
@@ -62,8 +87,8 @@ final class NfCoreExperiment {
         Objects.requireNonNull(bioinformaticPipelineOutput.get("sampleIds"), "The root folder must contain an sample_ids.txt file.")
 
         //Parse all folders in the root directory
-        DataFolder pipelineInformation = parseFolder(bioinformaticPipelineOutput.get("pipelineInformation") as Map)
-        DataFolder qualityControl = parseFolder(bioinformaticPipelineOutput.get("qualityControl") as Map)
+        PipelineInformationFolder pipelineInformation = parseFolder(bioinformaticPipelineOutput.get("pipelineInformation") as Map) as PipelineInformationFolder
+        DataFolder qualityControl = parseFolder(bioinformaticPipelineOutput.get("qualityControl") as Map) as QualityControlFolder
         List<DataFolder> processFolders = []
         //The root folder contains one or multiple Process folders stored in the "processFolders" key
         bioinformaticPipelineOutput.get("processFolders").each { it ->
@@ -71,28 +96,65 @@ final class NfCoreExperiment {
             processFolders.add(processFolder)
         }
 
-        //Parse all files in the pipeline_info directory
-
-
         //These files are not stored as children but as properties of the pipeline_info folder
         DataFile softwareVersions = parseFile(pipelineInfoMap.get("softwareVersions") as Map)
         DataFile executionReport = parseFile(pipelineInfoMap.get("executionReport") as Map)
         DataFile pipelineReport = parseFile(pipelineInfoMap.get("pipelineReport") as Map)
-        List<DataFile> pipelineInformationProperties = [softwareVersions, executionReport, pipelineReport]
+
+        //Set information of pipelineInformation properties
+        pipelineInformation.softwareVersions = softwareVersions as SoftwareVersions
+        pipelineInformation.pipelineReport = pipelineReport as PipelineReport
+        pipelineInformation.executionReport = executionReport as ExecutionReport
 
         //Parse all files in the root directory
-        DataFile runId = parseFile(bioinformaticPipelineOutput.get("runId") as Map)
-        DataFile sampleIds = parseFile(bioinformaticPipelineOutput.get("sampleIds") as Map)
+        DataFile runId = parseFile(bioinformaticPipelineOutput.get("runId") as Map) as RunId
+        DataFile sampleIds = parseFile(bioinformaticPipelineOutput.get("sampleIds") as Map) as SampleIds
 
-        //Add files to resultSet
-        //ToDo How should the properties and ProcessFolders be included in the Experiment File?
-        List<?> resultSet = [[pipelineInformation, pipelineInformationProperties], qualityControl, processFolders, runId, sampleIds]
-        return new NfCoreExperiment(resultSet)
+        //Create new NfCorePipelineResult with parsed information
+        return new NfCorePipelineResult(pipelineInformation, qualityControl, processFolders, runId, sampleIds)
     }
 
-    List<?> getResultSet() {
-        return this.resultSet
+    /**
+     * Provides access to the information stored in the pipeline information folder
+     *
+     * @return
+     */
+    PipelineInformationFolder getPipelineInformation() {
+        return pipelineInformationFolder
     }
+
+    /**
+     * Provides access to the information stored in the quality Control folder
+     * @return
+     */
+    String getQualityControlFolder() {
+        return qualityControlFolder
+    }
+
+    /**
+     * Provides access to the information stored in the process folders
+     * @return
+     */
+    String getProcessFolders() {
+        return processFolders
+    }
+
+    /**
+     * Provides access to the information stored in the runId file
+     * @return
+     */
+    String getRunId() {
+        return runId
+    }
+
+    /**
+     * Provides access to the information stored in the sampleIds file
+     * @return
+     */
+    String getSampleIds() {
+        return sampleIds
+    }
+
 
     /*
      * Helper method that creates a DataFile instance from a map
