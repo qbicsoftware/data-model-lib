@@ -11,8 +11,8 @@ class SoftwareVersionsSpec extends Specification {
 
     def "shall create a SoftwareVersions instance"() {
         given:
-        final name = "software_versions_testfile.csv"
-        final path = "root/software_versions_testfile.csv"
+        final name = "software_versions.csv"
+        final path = "root/software_versions.csv"
 
         when:
         def dataObject = SoftwareVersions.create(name, path)
@@ -25,8 +25,8 @@ class SoftwareVersionsSpec extends Specification {
 
     def "name not matching schema shall throw IllegalArgumentException"() {
         given:
-        final name = "software_versions.log"
-        final path = "root/software_versions.log"
+        final name = "hardware_versions.log"
+        final path = "root/hardware_versions.log"
 
         when:
         def dataObject = SoftwareVersions.create(name, path)

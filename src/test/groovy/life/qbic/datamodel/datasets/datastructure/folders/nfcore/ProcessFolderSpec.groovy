@@ -13,9 +13,9 @@ class ProcessFolderSpec extends Specification {
     def "create Process folder"() {
         given:
         final def name = "processtest"
-        final def relativePath = "root/process"
+        final def relativePath = "root/processtest"
         final def children = []
-        final def datafile = ExecutionReport.create("execution_report_test.txt", "root/execution_report_test.txt")
+        final def datafile = ExecutionReport.create("execution_report.txt", "root/processtest/execution_report.txt")
         children.add(datafile)
 
         when:

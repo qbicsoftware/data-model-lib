@@ -11,8 +11,8 @@ class ExecutionReportSpec extends Specification {
 
     def "shall create a ExecutionReport instance"() {
         given:
-        final name = "execution_report_test.txt"
-        final relativePath = "root/execution_report_test.txt"
+        final name = "execution_report.txt"
+        final relativePath = "root/execution_report.txt"
 
         when:
         def dataObject = ExecutionReport.create(name, relativePath)
@@ -25,8 +25,8 @@ class ExecutionReportSpec extends Specification {
 
     def "name not matching schema shall throw IllegalArgumentException"() {
         given:
-        final name = "execution_report.txt"
-        final relativePath = "root/execution_report.txt"
+        final name = "stalling_report.txt"
+        final relativePath = "root/stalling_report.txt"
 
         when:
         def dataObject = ExecutionReport.create(name, relativePath)

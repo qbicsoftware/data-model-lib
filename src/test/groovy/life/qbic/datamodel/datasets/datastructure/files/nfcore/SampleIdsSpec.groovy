@@ -11,8 +11,8 @@ class SampleIdsSpec extends Specification {
 
     def "shall create a sampleId instance"() {
         given:
-        final name = "sample_ids_test.txt"
-        final relativePath = "root/sample_ids_test.txt"
+        final name = "sample_ids.txt"
+        final relativePath = "root/sample_ids.txt"
 
         when:
         def dataObject = SampleIds.create(name, relativePath)
@@ -25,8 +25,8 @@ class SampleIdsSpec extends Specification {
 
     def "name not matching schema shall throw IllegalArgumentException"() {
         given:
-        final name = "sample_ids.txt"
-        final relativePath = "root/sample_ids.txt"
+        final name = "sample_itts.txt"
+        final relativePath = "root/sample_itts.txt"
 
         when:
         def dataObject = SampleIds.create(name, relativePath)

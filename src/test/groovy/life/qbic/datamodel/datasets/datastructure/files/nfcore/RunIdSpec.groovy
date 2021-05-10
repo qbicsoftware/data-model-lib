@@ -11,8 +11,8 @@ class RunIdSpec extends Specification {
 
     def "shall create a runId instance"() {
         given:
-        final name = "run_id_test.txt"
-        final relativePath = "root/run_id_test.txt"
+        final name = "run_id.txt"
+        final relativePath = "root/run_id.txt"
 
         when:
         def dataObject = RunId.create(name, relativePath)
@@ -25,8 +25,8 @@ class RunIdSpec extends Specification {
 
     def "name not matching schema shall throw IllegalArgumentException"() {
         given:
-        final name = "run_id.txt"
-        final relativePath = "root/run_id.txt"
+        final name = "walk_id.txt"
+        final relativePath = "root/walk_id.txt"
 
         when:
         def dataObject = RunId.create(name, relativePath)
