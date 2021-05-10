@@ -9,7 +9,7 @@ import life.qbic.datamodel.datasets.datastructure.files.nfcore.SampleIds
 import life.qbic.datamodel.datasets.datastructure.files.nfcore.SoftwareVersions
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nfcore.PipelineInformationFolder
-import life.qbic.datamodel.datasets.datastructure.folders.nfcore.ProcessFolders
+import life.qbic.datamodel.datasets.datastructure.folders.nfcore.ProcessFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nfcore.QualityControlFolder
 
 import java.lang.reflect.InvocationTargetException
@@ -67,7 +67,8 @@ final class NfCorePipelineResult {
 
     /**
      * Static factory method that creates a new nfcoreExperiment instance from the bioinformatic pipeline output.
-     * See {@link valid-resultset-example.json}
+     * See this @{link <a href="https://github.com/qbicsoftware/data-model-lib/blob/master/src/test/resources/examples/resultset/valid-resultset-example.json">example</a>}
+     * for a JSON representation of a valid map structure
      *
      * @param Map bioinformaticPipelineOutput
      * @return NfCoreExperiment A new instance of a nfcore bioinformatic experiment.
@@ -93,7 +94,7 @@ final class NfCorePipelineResult {
         List<DataFolder> processFolders = []
         //The root folder contains one or multiple Process folders stored in the "processFolders" key
         bioinformaticPipelineOutput.get("processFolders").each { it ->
-            DataFolder processFolder = parseFolder(it as Map)
+            ProcessFolder processFolder = parseFolder(it as Map)
             processFolders.add(processFolder)
         }
 
@@ -117,8 +118,7 @@ final class NfCorePipelineResult {
 
     /**
      * Provides access to the information stored in the pipeline information folder
-     *
-     * @return
+     * @return PipelineInformationFolder
      */
     PipelineInformationFolder getPipelineInformation() {
         return pipelineInformationFolder
@@ -126,7 +126,7 @@ final class NfCorePipelineResult {
 
     /**
      * Provides access to the information stored in the quality Control folder
-     * @return
+     * @return QualityControlFolder
      */
     QualityControlFolder getQualityControlFolder() {
         return qualityControlFolder
@@ -134,7 +134,7 @@ final class NfCorePipelineResult {
 
     /**
      * Provides access to the information stored in the process folders
-     * @return
+     * @return List<DataFolder>
      */
     List<DataFolder> getProcessFolders() {
         return processFolders
@@ -142,7 +142,7 @@ final class NfCorePipelineResult {
 
     /**
      * Provides access to the information stored in the runId file
-     * @return
+     * @return RunId
      */
     RunId getRunId() {
         return runId
@@ -150,9 +150,9 @@ final class NfCorePipelineResult {
 
     /**
      * Provides access to the information stored in the sampleIds file
-     * @return
+     * @return SampleIds
      */
-    String getSampleIds() {
+    SampleIds getSampleIds() {
         return sampleIds
     }
 

@@ -2,6 +2,11 @@ package life.qbic.datamodel.datasets.datastructure
 
 import groovy.json.JsonSlurper
 import life.qbic.datamodel.datasets.NfCorePipelineResult
+import life.qbic.datamodel.datasets.datastructure.files.nfcore.RunId
+import life.qbic.datamodel.datasets.datastructure.files.nfcore.SampleIds
+import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
+import life.qbic.datamodel.datasets.datastructure.folders.nfcore.PipelineInformationFolder
+import life.qbic.datamodel.datasets.datastructure.folders.nfcore.QualityControlFolder
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -52,15 +57,26 @@ class NfCorePipelineResultSpec extends Specification {
         missingQualityControlStream.close()
     }
 
-    def "Create simple experiment and resultset successfully"() {
+    def "Create NfCorePipelineOutput from Map successfully"() {
         given:
         final Map validExample = validDataStructure
 
         when:
-        final NfCorePipelineResult validExperiment = NfCorePipelineResult.createFrom(validExample)
-        final List<?> validResultSet = validExperiment.getResultSet()
+        final NfCorePipelineResult validPipelineResult = NfCorePipelineResult.createFrom(validExample)
+        SampleIds sampleIds = validPipelineResult.getSampleIds()
+        RunId runId = validPipelineResult.getRunId()
+        List<DataFolder> processFolders = validPipelineResult.getProcessFolders()
+        QualityControlFolder qualityControlFolder = validPipelineResult.getQualityControlFolder()
+        PipelineInformationFolder pipelineInformationFolder = validPipelineResult.getPipelineInformation()
+
         then:
-        assert validResultSet.size() == 5
+        sampleIds.name == "sample_ids.txt"
+        runId.name == "run_id.txt"
+        processFolders.get(0).name == "salmon"
+        qualityControlFolder.name == "multiqc"
+        pipelineInformationFolder.getSoftwareVersions().name == "software_versions.csv"
+        pipelineInformationFolder.getPipelineReport().name == "pipeline_report.txt"
+        pipelineInformationFolder.getExecutionReport().name == "execution_report.txt"
     }
 
     def "Invalid fileTree will return a NullPointerException"() {
@@ -68,8 +84,7 @@ class NfCorePipelineResultSpec extends Specification {
         final Map invalidExample = invalidDataStructure
 
         when:
-        final NfCorePipelineResult invalidExperiment = NfCorePipelineResult.createFrom(invalidExample)
-        final List<?> invalidResultSet = invalidExperiment.getResultSet()
+        final NfCorePipelineResult invalidPipelineOutput = NfCorePipelineResult.createFrom(invalidExample)
 
         then:
         thrown(NullPointerException)
@@ -80,8 +95,7 @@ class NfCorePipelineResultSpec extends Specification {
         final Map noPipelineFolderExample = missingPipelineInfoDataStructure
 
         when:
-        final NfCorePipelineResult noPipelineFolderExperiment = NfCorePipelineResult.createFrom(noPipelineFolderExample)
-        final List<?> noPipelineFolderResultSet = noPipelineFolderExperiment.getResultSet()
+        final NfCorePipelineResult noPipelineFolderOutput = NfCorePipelineResult.createFrom(noPipelineFolderExample)
 
         then:
         thrown(NullPointerException)
@@ -92,8 +106,7 @@ class NfCorePipelineResultSpec extends Specification {
         final Map noProcessFolderExample = missingProcessFoldersDataStructure
 
         when:
-        final NfCorePipelineResult noProcessFolderExperiment = NfCorePipelineResult.createFrom(noProcessFolderExample)
-        final List<?> resultSet = noProcessFolderExperiment.getResultSet()
+        final NfCorePipelineResult noProcessFolderOutput = NfCorePipelineResult.createFrom(noProcessFolderExample)
 
         then:
         thrown(NullPointerException)
@@ -104,8 +117,7 @@ class NfCorePipelineResultSpec extends Specification {
         final Map noQualityControlFolderExample = missingQualityControlDataStructure
 
         when:
-        final NfCorePipelineResult noQualityControlFolderExperiment = NfCorePipelineResult.createFrom(noQualityControlFolderExample)
-        final List<?> noQualityControlFolderResultSet = noQualityControlFolderExperiment.getResultSet()
+        final NfCorePipelineResult noQualityControlFolderOutput = NfCorePipelineResult.createFrom(noQualityControlFolderExample)
 
         then:
         thrown(NullPointerException)

@@ -8,7 +8,7 @@ import spock.lang.Specification
  *
  * @since 2.5.0
  */
-class ProcessFoldersSpec extends Specification {
+class ProcessFolderSpec extends Specification {
 
     def "create Process folder"() {
         given:
@@ -19,7 +19,7 @@ class ProcessFoldersSpec extends Specification {
         children.add(datafile)
 
         when:
-        final def dataFolder = ProcessFolders.create(name, relativePath, children)
+        final def dataFolder = ProcessFolder.create(name, relativePath, children)
 
         then:
         assert dataFolder.getChildren().get(0) instanceof ExecutionReport

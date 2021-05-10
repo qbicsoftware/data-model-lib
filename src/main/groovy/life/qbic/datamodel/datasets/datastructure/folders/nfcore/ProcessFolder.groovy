@@ -9,11 +9,11 @@ import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
  *
  * @since 2.5.0
  */
-class ProcessFolders extends DataFolder {
+class ProcessFolder extends DataFolder {
 
-    protected ProcessFolders() {}
+    protected ProcessFolder() {}
 
-    protected ProcessFolders(String name, String relativePath, List<?> children) {
+    protected ProcessFolder(String name, String relativePath, List<?> children) {
         super(name, relativePath, children)
 
     }
@@ -26,8 +26,8 @@ class ProcessFolders extends DataFolder {
      * @param children A list with child elements of the folder
      * @return A new instance of a ProcessFolder object
      */
-    static ProcessFolders create(String name, String relativePath, List<?> children) {
-        new ProcessFolders(name, relativePath, children)
+    static ProcessFolder create(String name, String relativePath, List<?> children) {
+        new ProcessFolder(name, relativePath, children)
     }
 
 }
