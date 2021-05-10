@@ -2,7 +2,7 @@ package life.qbic.datamodel.datasets
 
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
-
+import life.qbic.datamodel.datasets.datastructure.folders.nfcore.ProcessFolder
 import life.qbic.datamodel.identifiers.SampleCodeFunctions
 
 import java.lang.reflect.InvocationTargetException
@@ -78,13 +78,15 @@ final class NfCoreExperiment {
         DataFile softwareVersions = parseFile(pipelineInfoMap.get("softwareVersions") as Map)
         DataFile executionReport = parseFile(pipelineInfoMap.get("executionReport") as Map)
         DataFile pipelineReport = parseFile(pipelineInfoMap.get("pipelineReport") as Map)
-        List<DataFile> pipelineInfoProperties = [softwareVersions, executionReport, pipelineReport]
+        List<DataFile> pipelineInformationProperties = [softwareVersions, executionReport, pipelineReport]
 
         //Parse all files in the root directory
         DataFile runId = parseFile(bioinformaticPipelineOutput.get("runId") as Map)
         DataFile sampleIds = parseFile(bioinformaticPipelineOutput.get("sampleIds") as Map)
 
-        List<?> resultSet = [pipelineInformation, qualityControl, processFolders, runId, sampleIds]
+        //Add files to resultSet
+        //ToDo How should the properties and ProcessFolders be included in the Experiment File?
+        List<?> resultSet = [[pipelineInformation, pipelineInformationProperties], qualityControl, processFolders, runId, sampleIds]
         return new NfCoreExperiment(resultSet)
     }
 
