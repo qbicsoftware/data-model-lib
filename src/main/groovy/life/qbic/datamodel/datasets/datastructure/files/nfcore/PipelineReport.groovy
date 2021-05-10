@@ -11,7 +11,7 @@ class PipelineReport extends DataFile {
 
     final private static String FILE_TYPE = "txt"
 
-    final private static String NAME_SCHEMA = $/pipeline_report_.*/$
+    final private static String NAME_SCHEMA = $/pipeline_report.*/$
 
     protected PipelineReport() {}
 

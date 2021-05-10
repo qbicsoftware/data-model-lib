@@ -52,6 +52,11 @@ final class NfCoreExperiment {
         Objects.requireNonNull(bioinformaticPipelineOutput.get("pipelineInformation"), "The root folder must contain a PipelineInformation folder.")
         Objects.requireNonNull(bioinformaticPipelineOutput.get("qualityControl"),"The root folder must contain a QualityControl folder.")
         Objects.requireNonNull(bioinformaticPipelineOutput.get("processFolders"), "The root folder must contain at least one process folder.")
+        //Check if all required files are in the pipeline_info directory
+        Map pipelineInfoMap = bioinformaticPipelineOutput["pipelineInformation"] as Map
+        Objects.requireNonNull(pipelineInfoMap.get("softwareVersions"), "The pipeline_info folder must contain a softwareVersions.csv file.")
+        Objects.requireNonNull(pipelineInfoMap.get("executionReport"), "The pipeline_info folder must contain a executionReport.txt file.")
+        Objects.requireNonNull(pipelineInfoMap.get("pipelineReport"), "The pipeline_info folder must contain a pipeline_info.txt file.")
         //Check if all required files are in root directory
         Objects.requireNonNull(bioinformaticPipelineOutput.get("runId"), "The root folder must contain a run_id.txt file.")
         Objects.requireNonNull(bioinformaticPipelineOutput.get("sampleIds"), "The root folder must contain an sample_ids.txt file.")
@@ -66,12 +71,20 @@ final class NfCoreExperiment {
             processFolders.add(processFolder)
         }
 
+        //Parse all files in the pipeline_info directory
+
+
+        //These files are not stored as children but as properties of the pipeline_info folder
+        DataFile softwareVersions = parseFile(pipelineInfoMap.get("softwareVersions") as Map)
+        DataFile executionReport = parseFile(pipelineInfoMap.get("executionReport") as Map)
+        DataFile pipelineReport = parseFile(pipelineInfoMap.get("pipelineReport") as Map)
+        List<DataFile> pipelineInfoProperties = [softwareVersions, executionReport, pipelineReport]
+
         //Parse all files in the root directory
         DataFile runId = parseFile(bioinformaticPipelineOutput.get("runId") as Map)
         DataFile sampleIds = parseFile(bioinformaticPipelineOutput.get("sampleIds") as Map)
 
-
-        List<?> resultSet = [pipelineInformation, qualityControl, processFolders, runId, sampleIds] as List<?>
+        List<?> resultSet = [pipelineInformation, qualityControl, processFolders, runId, sampleIds]
         return new NfCoreExperiment(resultSet)
     }
 
@@ -84,14 +97,15 @@ final class NfCoreExperiment {
      */
 
     private static DataFile parseFile(Map fileTree) throws IllegalArgumentException {
-        def name = fileTree.get("name")
-        def path = fileTree.get("path")
-        for (String nanoPoreFileType : nfCoreFileTypes) {
-            Class<?> c = Class.forName(nanoPoreFileType)
+        String name = fileTree.get("name")
+        String fileType = fileTree.get("fileType")
+        String path = fileTree.get("path")
+        String fullName = name + "." + fileType
+        for (String nfCoreFileType : nfCoreFileTypes) {
+            Class<?> c = Class.forName(nfCoreFileType)
             Method method = c.getDeclaredMethod("create", String.class, String.class)
             try {
-                DataFile dataFile = method.invoke(null, name, path) as DataFile
-                println(dataFile)
+                DataFile dataFile = method.invoke(null, fullName, path) as DataFile
                 return dataFile
             } catch (InvocationTargetException e) {
                 // Do nothing as we need to try out all specialisations that extend the
@@ -113,7 +127,8 @@ final class NfCoreExperiment {
         def children = parseChildren(fileTree.get("children") as List)
 
         for (String bioinformaticPipelineFolderType : nfCoreFolderTypes) {
-            Method method = determineMethod(Class.forName(bioinformaticPipelineFolderType))
+            Class<?> c = Class.forName(bioinformaticPipelineFolderType)
+            Method method = c.getDeclaredMethod("create", String.class, String.class, List.class)
             Optional<DataFolder> folder = tryToCreateDataFolder(method, name, path, children)
             if (folder.isPresent()) {
                 return folder.get()
@@ -166,18 +181,4 @@ final class NfCoreExperiment {
         return parsedChildren
     }
 
-    /*
-    Determines the correct static create method for a data folder.
-     */
-
-    private static Method determineMethod(Class c) {
-        def method
-        try {
-            // named folder (i.e. QualityControl)
-            method = c.getDeclaredMethod("create", String.class, String.class, List.class)
-        } catch (NoSuchMethodException e) {
-            // Do nothing
-        }
-        return method
-    }
 }

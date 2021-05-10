@@ -11,7 +11,7 @@ class ExecutionReport extends DataFile {
 
     final private static String FILE_TYPE = "txt"
 
-    final private static String NAME_SCHEMA = $/execution_report_.*/$
+    final private static String NAME_SCHEMA = $/execution_report.*/$
 
     protected ExecutionReport() {}
 

@@ -11,7 +11,7 @@ class SampleIds extends DataFile {
 
     final private static String FILE_TYPE = "txt"
 
-    final private static String NAME_SCHEMA = $/sample_ids_.*/$
+    final private static String NAME_SCHEMA = $/sample_ids.*/$
 
     protected SampleIds() {}
 

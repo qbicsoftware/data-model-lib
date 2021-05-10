@@ -11,7 +11,7 @@ class RunId extends DataFile {
 
     final private static String FILE_TYPE = "txt"
 
-    final private static String NAME_SCHEMA = $/run_id_.*/$
+    final private static String NAME_SCHEMA = $/run_id.*/$
 
     protected RunId() {}
 
