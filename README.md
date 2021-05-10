@@ -78,7 +78,7 @@ SchemaLoader schemaLoader = SchemaLoader.builder()
 
 For usage examples, see the [usage example documentation](./doc/examples.md).
 
-For complete examples, see the [JSON example files](./src/test/resources) provided for the unit tests.
+For complete examples, see the [JSON example files](./src/test/resources/examples/resultset) provided for the unit tests.
 
 In order to create an instance of type `NfCorePipelineResult`, you need to provide a map that provides content following the [Nfcore Pipeline Output Schema JSON](./src/main/resources/schemas/bioinformatics-analysis-result-set.schema.json).  
 
