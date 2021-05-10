@@ -94,7 +94,7 @@ final class NfCorePipelineResult {
         List<DataFolder> processFolders = []
         //The root folder contains one or multiple Process folders stored in the "processFolders" key
         bioinformaticPipelineOutput.get("processFolders").each { it ->
-            ProcessFolder processFolder = parseFolder(it as Map)
+            ProcessFolder processFolder = parseFolder(it as Map) as ProcessFolder
             processFolders.add(processFolder)
         }
 
