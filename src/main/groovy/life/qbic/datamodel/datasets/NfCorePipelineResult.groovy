@@ -9,6 +9,7 @@ import life.qbic.datamodel.datasets.datastructure.files.nfcore.SampleIds
 import life.qbic.datamodel.datasets.datastructure.files.nfcore.SoftwareVersions
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nfcore.PipelineInformationFolder
+import life.qbic.datamodel.datasets.datastructure.folders.nfcore.ProcessFolders
 import life.qbic.datamodel.datasets.datastructure.folders.nfcore.QualityControlFolder
 
 import java.lang.reflect.InvocationTargetException
@@ -40,7 +41,6 @@ final class NfCorePipelineResult {
             FQDN_FOLDERS + ".ProcessFolder"
     ]
 
-
     private SampleIds sampleIds
 
     private RunId runId
@@ -51,7 +51,7 @@ final class NfCorePipelineResult {
 
     private List<DataFolder> processFolders
 
-    private NfCorePipelineResult(PipelineInformationFolder pipelineInformationFolder, QualityControlFolder qualityControlFolder, List<DataFolder> processFolders,  RunId runId, SampleIds sampleIds) {
+    NfCorePipelineResult(PipelineInformationFolder pipelineInformationFolder, QualityControlFolder qualityControlFolder, List<DataFolder> processFolders,  RunId runId, SampleIds sampleIds) {
         Objects.requireNonNull(pipelineInformationFolder, "Please provide a PipelineInformation folder.")
         Objects.requireNonNull(qualityControlFolder, "Please provide a QualityControl folder")
         Objects.requireNonNull(processFolders, "Please provide a List of process folders")
@@ -67,11 +67,12 @@ final class NfCorePipelineResult {
 
     /**
      * Static factory method that creates a new nfcoreExperiment instance from the bioinformatic pipeline output.
+     * See {@link valid-resultset-example.json}
      *
      * @param Map bioinformaticPipelineOutput
      * @return NfCoreExperiment A new instance of a nfcore bioinformatic experiment.
      */
-    static NfCorePipelineResult create(Map bioinformaticPipelineOutput) {
+    static NfCorePipelineResult createFrom(Map bioinformaticPipelineOutput) {
 
         //Check if all required folders are in root directory
         Objects.requireNonNull(bioinformaticPipelineOutput.get("pipelineInformation"), "The root folder must contain a PipelineInformation folder.")
@@ -127,7 +128,7 @@ final class NfCorePipelineResult {
      * Provides access to the information stored in the quality Control folder
      * @return
      */
-    String getQualityControlFolder() {
+    QualityControlFolder getQualityControlFolder() {
         return qualityControlFolder
     }
 
@@ -135,7 +136,7 @@ final class NfCorePipelineResult {
      * Provides access to the information stored in the process folders
      * @return
      */
-    String getProcessFolders() {
+    ProcessFolders getProcessFolders() {
         return processFolders
     }
 
@@ -143,7 +144,7 @@ final class NfCorePipelineResult {
      * Provides access to the information stored in the runId file
      * @return
      */
-    String getRunId() {
+    RunId getRunId() {
         return runId
     }
 

@@ -57,7 +57,7 @@ class NfCorePipelineResultSpec extends Specification {
         final Map validExample = validDataStructure
 
         when:
-        final NfCorePipelineResult validExperiment = NfCorePipelineResult.create(validExample)
+        final NfCorePipelineResult validExperiment = NfCorePipelineResult.createFrom(validExample)
         final List<?> validResultSet = validExperiment.getResultSet()
         then:
         assert validResultSet.size() == 5
@@ -68,7 +68,7 @@ class NfCorePipelineResultSpec extends Specification {
         final Map invalidExample = invalidDataStructure
 
         when:
-        final NfCorePipelineResult invalidExperiment = NfCorePipelineResult.create(invalidExample)
+        final NfCorePipelineResult invalidExperiment = NfCorePipelineResult.createFrom(invalidExample)
         final List<?> invalidResultSet = invalidExperiment.getResultSet()
 
         then:
@@ -80,7 +80,7 @@ class NfCorePipelineResultSpec extends Specification {
         final Map noPipelineFolderExample = missingPipelineInfoDataStructure
 
         when:
-        final NfCorePipelineResult noPipelineFolderExperiment = NfCorePipelineResult.create(noPipelineFolderExample)
+        final NfCorePipelineResult noPipelineFolderExperiment = NfCorePipelineResult.createFrom(noPipelineFolderExample)
         final List<?> noPipelineFolderResultSet = noPipelineFolderExperiment.getResultSet()
 
         then:
@@ -92,7 +92,7 @@ class NfCorePipelineResultSpec extends Specification {
         final Map noProcessFolderExample = missingProcessFoldersDataStructure
 
         when:
-        final NfCorePipelineResult noProcessFolderExperiment = NfCorePipelineResult.create(noProcessFolderExample)
+        final NfCorePipelineResult noProcessFolderExperiment = NfCorePipelineResult.createFrom(noProcessFolderExample)
         final List<?> resultSet = noProcessFolderExperiment.getResultSet()
 
         then:
@@ -104,7 +104,7 @@ class NfCorePipelineResultSpec extends Specification {
         final Map noQualityControlFolderExample = missingQualityControlDataStructure
 
         when:
-        final NfCorePipelineResult noQualityControlFolderExperiment = NfCorePipelineResult.create(noQualityControlFolderExample)
+        final NfCorePipelineResult noQualityControlFolderExperiment = NfCorePipelineResult.createFrom(noQualityControlFolderExample)
         final List<?> noQualityControlFolderResultSet = noQualityControlFolderExperiment.getResultSet()
 
         then:
