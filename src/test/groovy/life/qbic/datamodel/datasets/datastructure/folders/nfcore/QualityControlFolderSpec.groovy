@@ -6,7 +6,7 @@ import spock.lang.Specification
 /**
  * Tests for the PipelineInformationFolder Object
  *
- * @since 2.5.0
+ * @since 2.6.0
  */
 class QualityControlFolderSpec extends Specification {
 

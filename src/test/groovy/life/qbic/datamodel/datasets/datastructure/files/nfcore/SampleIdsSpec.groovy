@@ -5,7 +5,7 @@ import spock.lang.Specification
 /**
  * Test for the InputIDs class
  *
- * @since 2.5.0
+ * @since 2.6.0
  */
 class SampleIdsSpec extends Specification {
 
