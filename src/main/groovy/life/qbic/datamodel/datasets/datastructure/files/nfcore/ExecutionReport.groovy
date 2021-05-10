@@ -5,7 +5,7 @@ import life.qbic.datamodel.datasets.datastructure.files.DataFile
 /**
  A specialisation of a DataFile, represents a nf-core Pipeline execution report file
  *
- * @since 2.5.0
+ * @since 2.6.0
  */
 class ExecutionReport extends DataFile {
 

@@ -7,7 +7,7 @@ import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
  *
  * Its children field contains a list of type List<DataFile> or type List<DataFolder>
  *
- * @since 2.5.0
+ * @since 2.6.0
  */
 class ProcessFolder extends DataFolder {
 

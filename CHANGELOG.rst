@@ -10,6 +10,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Added**
 
+* Provide new classes that describe incoming nf-core bioinformatic pipeline data structures and contains it in a dedicated NfCorePipelineResult class (`#198 <https://github.com/qbicsoftware/data-model-lib/pull/198>`_)
+
 **Fixed**
 
 **Dependencies**
@@ -21,8 +23,6 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 ------------------
 
 **Added**
-
-* Provide new classes that describe incoming nf-core bioinformatic pipeline data structures and contains it in a dedicated NfCoreExperiment class (`#198 <https://github.com/qbicsoftware/data-model-lib/pull/198>`_)
 
 * New constructor using the new ``life.qbic.datamodel.dtos.business.ProductId`` constructor for ``life.qbic.datamodel.dtos.business.services.Sequencing``, ``life.qbic.datamodel.dtos.business.services.SecondaryAnalysis``,
   ``life.qbic.datamodel.dtos.business.services.ProteomicAnalysis``, ``life.qbic.datamodel.dtos.business.services.ProjectManagement``, ``life.qbic.datamodel.dtos.business.services.PrimaryAnalysis``,

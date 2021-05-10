@@ -18,7 +18,7 @@ import java.lang.reflect.Method
 /**
  * Class that holds information about a the output of a nf-core pipeline
  *
- * @since 2.5.0
+ * @since 2.6.0
  */
 final class NfCorePipelineResult {
 
