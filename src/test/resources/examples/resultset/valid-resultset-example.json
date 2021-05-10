@@ -1,35 +1,35 @@
 {
   "pipelineInformation": {
     "name": "pipeline_info",
-    "path": "./",
+    "path": "./pipeline_info",
     "children": [],
     "softwareVersions": {
       "name": "software_versions",
       "fileType": "csv",
-      "path": "pipeline_info/software_versions"
+      "path": "./pipeline_info/software_versions.csv"
     },
     "pipelineReport": {
       "name": "pipeline_report",
       "fileType": "txt",
-      "path": "pipeline_info/pipeline_report"
+      "path": "./pipeline_info/pipeline_report.txt"
     },
     "executionReport": {
       "name": "execution_report",
       "fileType": "txt",
-      "path": "pipeline_info/execution_report"
+      "path": "./pipeline_info/execution_report.txt"
     }
   },
   "qualityControl": {
     "name": "multiqc",
-    "path": "./",
+    "path": "./multiqc",
     "children": [
       {
         "name": "star_salmon",
-        "path": "multiqc/star_salmon",
+        "path": "./multiqc/star_salmon",
         "children": [
           {
             "name": "multiqc_report.html",
-            "path": "multiqc/star_salmon/multiqc_report.html",
+            "path": "./multiqc/star_salmon/multiqc_report.html",
             "fileType": "html"
           }
         ]
@@ -39,14 +39,24 @@
   "processFolders": [
     {
       "name": "salmon",
-      "path": "./",
+      "path": "./salmon",
       "children": [
         {
           "name": "salmon.merged.gene_tpm",
           "fileType": "tsv",
-          "path": "salmon/salmon.merged.gene_tpm"
+          "path": "./salmon/salmon.merged.gene_tpm"
         }
       ]
     }
-  ]
+  ],
+  "runId": {
+    "name": "run_id",
+    "fileType": "txt",
+    "path": "./run_id.txt"
+  },
+  "sampleIds": {
+    "name": "sample_ids",
+    "fileType": "txt",
+    "path": "./sample_ids.txt"
+  }
 }
