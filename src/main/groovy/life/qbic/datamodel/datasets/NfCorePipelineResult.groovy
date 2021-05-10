@@ -136,7 +136,7 @@ final class NfCorePipelineResult {
      * Provides access to the information stored in the process folders
      * @return
      */
-    ProcessFolders getProcessFolders() {
+    List<DataFolder> getProcessFolders() {
         return processFolders
     }
 
