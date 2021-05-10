@@ -59,8 +59,7 @@ class NfCoreExperimentSpec extends Specification {
 
         when:
         final NfCoreExperiment validExperiment = NfCoreExperiment.create(validExample)
-        final List<DataFolder> validResultSet = validExperiment.getResultSet()
-
+        final List<?> validResultSet = validExperiment.getResultSet()
         then:
         assert validResultSet.size() == 5
     }
@@ -71,7 +70,7 @@ class NfCoreExperimentSpec extends Specification {
 
         when:
         final NfCoreExperiment invalidExperiment = NfCoreExperiment.create(invalidExample)
-        final List<DataFolder> invalidResultSet = invalidExperiment.getResultSet()
+        final List<?> invalidResultSet = invalidExperiment.getResultSet()
 
         then:
         thrown(NullPointerException)
@@ -83,7 +82,7 @@ class NfCoreExperimentSpec extends Specification {
 
         when:
         final NfCoreExperiment noPipelineFolderExperiment = NfCoreExperiment.create(noPipelineFolderExample)
-        final List<DataFolder> noPipelineFolderResultSet = noPipelineFolderExperiment.getResultSet()
+        final List<?> noPipelineFolderResultSet = noPipelineFolderExperiment.getResultSet()
 
         then:
         thrown(NullPointerException)
@@ -95,7 +94,7 @@ class NfCoreExperimentSpec extends Specification {
 
         when:
         final NfCoreExperiment noProcessFolderExperiment = NfCoreExperiment.create(noProcessFolderExample)
-        final List<DataFolder> resultSet = noProcessFolderExperiment.getResultSet()
+        final List<?> resultSet = noProcessFolderExperiment.getResultSet()
 
         then:
         thrown(NullPointerException)
@@ -107,7 +106,7 @@ class NfCoreExperimentSpec extends Specification {
 
         when:
         final NfCoreExperiment noQualityControlFolderExperiment = NfCoreExperiment.create(noQualityControlFolderExample)
-        final List<DataFolder> noQualityControlFolderResultSet = noQualityControlFolderExperiment.getResultSet()
+        final List<?> noQualityControlFolderResultSet = noQualityControlFolderExperiment.getResultSet()
 
         then:
         thrown(NullPointerException)

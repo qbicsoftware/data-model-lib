@@ -24,7 +24,7 @@ final class NfCoreExperiment {
 
     private final static Set nfCoreFileTypes = [
             FQDN_FILES + ".ExecutionReport",
-            FQDN_FILES + ".InputIds",
+            FQDN_FILES + ".SampleIds",
             FQDN_FILES + ".PipelineReport",
             FQDN_FILES + ".SoftwareVersions",
             FQDN_FILES + ".RunId"
@@ -53,8 +53,8 @@ final class NfCoreExperiment {
         Objects.requireNonNull(bioinformaticPipelineOutput.get("qualityControl"),"The root folder must contain a QualityControl folder.")
         Objects.requireNonNull(bioinformaticPipelineOutput.get("processFolders"), "The root folder must contain at least one process folder.")
         //Check if all required files are in root directory
-        Objects.requireNonNull(bioinformaticPipelineOutput.get("RunID"), "The root folder must contain a RunId.txt file.")
-        Objects.requireNonNull(bioinformaticPipelineOutput.get("InputIDs"), "The root folder must contain an InputIds.txt file.")
+        Objects.requireNonNull(bioinformaticPipelineOutput.get("runId"), "The root folder must contain a run_id.txt file.")
+        Objects.requireNonNull(bioinformaticPipelineOutput.get("sampleIds"), "The root folder must contain an sample_ids.txt file.")
 
         //Parse all folders in the root directory
         DataFolder pipelineInformation = parseFolder(bioinformaticPipelineOutput.get("pipelineInformation") as Map)
@@ -67,10 +67,11 @@ final class NfCoreExperiment {
         }
 
         //Parse all files in the root directory
-        DataFile inputId = parseFile(bioinformaticPipelineOutput.get("inputIDs") as Map)
-        DataFile runId = parseFile(bioinformaticPipelineOutput.get("RunID") as Map)
+        DataFile runId = parseFile(bioinformaticPipelineOutput.get("runId") as Map)
+        DataFile sampleIds = parseFile(bioinformaticPipelineOutput.get("sampleIds") as Map)
 
-        List<?> resultSet = [pipelineInformation, qualityControl, processFolders, inputId, runId] as List<?>
+
+        List<?> resultSet = [pipelineInformation, qualityControl, processFolders, runId, sampleIds] as List<?>
         return new NfCoreExperiment(resultSet)
     }
 
@@ -90,6 +91,7 @@ final class NfCoreExperiment {
             Method method = c.getDeclaredMethod("create", String.class, String.class)
             try {
                 DataFile dataFile = method.invoke(null, name, path) as DataFile
+                println(dataFile)
                 return dataFile
             } catch (InvocationTargetException e) {
                 // Do nothing as we need to try out all specialisations that extend the
@@ -97,7 +99,7 @@ final class NfCoreExperiment {
             }
         }
         // If we cannot create a DataFile object at all, throw an exception
-        throw new IllegalArgumentException("File $name with path $path is of unknown Oxford Nanopore file type.")
+        throw new IllegalArgumentException("File $name with path $path is of unknown nfcore file type.")
     }
 
     /*

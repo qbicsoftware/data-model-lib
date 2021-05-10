@@ -7,26 +7,26 @@ import life.qbic.datamodel.datasets.datastructure.files.DataFile
  *
  * @since 2.5.0
  */
-class InputIds extends DataFile {
+class SampleIds extends DataFile {
 
     final private static String FILE_TYPE = "txt"
 
-    final private static String NAME_SCHEMA = $/input_ids_.*/$
+    final private static String NAME_SCHEMA = $/sample_ids_.*/$
 
-    protected InputIds() {}
+    protected SampleIds() {}
 
-    protected InputIds(String name, String relativePath) {
+    protected SampleIds(String name, String relativePath) {
         super(name, relativePath, FILE_TYPE)
         validateName()
     }
 
-    static InputIds create(String name, String relativePath) {
-        return new InputIds(name, relativePath)
+    static SampleIds create(String name, String relativePath) {
+        return new SampleIds(name, relativePath)
     }
 
     private void validateName() {
         if (!(this.name =~ NAME_SCHEMA)) {
-            throw new IllegalArgumentException("Name must match the InputId schema!")
+            throw new IllegalArgumentException("Name must match the sampleIds schema!")
         }
     }
 

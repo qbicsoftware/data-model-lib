@@ -7,29 +7,29 @@ import spock.lang.Specification
  *
  * @since 2.5.0
  */
-class InputIdsSpec extends Specification {
+class SampleIdsSpec extends Specification {
 
-    def "shall create a InputIds instance"() {
+    def "shall create a sampleId instance"() {
         given:
-        final name = "input_ids_test.txt"
-        final relativePath = "root/input_ids_test.txt"
+        final name = "sample_ids_test.txt"
+        final relativePath = "root/sample_ids_test.txt"
 
         when:
-        def dataObject = InputIds.create(name, relativePath)
+        def dataObject = SampleIds.create(name, relativePath)
 
         then:
-        assert dataObject instanceof InputIds
+        assert dataObject instanceof SampleIds
         assert dataObject.relativePath == relativePath
         assert dataObject.name == name
     }
 
     def "name not matching schema shall throw IllegalArgumentException"() {
         given:
-        final name = "input_ids.txt"
-        final relativePath = "root/input_ids.txt"
+        final name = "sample_ids.txt"
+        final relativePath = "root/sample_ids.txt"
 
         when:
-        def dataObject = InputIds.create(name, relativePath)
+        def dataObject = SampleIds.create(name, relativePath)
 
         then:
         thrown(IllegalArgumentException)
