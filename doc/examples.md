@@ -21,3 +21,18 @@ public class SchemaImport {
   }
 }
 ```
+
+**Nf Core pipeline output**
+
+The schema for the nf core pipeline output can be accessed via the
+`NfCorePipelineResult` class:
+
+```JAVA
+import life.qbic.datamodel.instruments.*;
+
+public class SchemaImport {
+  public static void main(String[] args) {
+    InputStream inputStream = PipelineOutput.getSchemaAsStream();
+  }
+}
+```
