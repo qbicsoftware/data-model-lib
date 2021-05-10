@@ -10,6 +10,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Added**
 
+* Add json schema and wrapper for imaging data ``life/qbic/datamodel/datasets/imaging/ImageMetadata.groovy``
+
 **Fixed**
 
 **Dependencies**
