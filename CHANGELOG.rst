@@ -5,10 +5,24 @@ Changelog
 This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 
-2.6.0-SNAPSHOT (2021-05-10)
+2.7.0-SNAPSHOT (2021-05-11)
 ---------------------------
 
 **Added**
+
+**Fixed**
+
+**Dependencies**
+
+**Deprecated**
+
+
+2.6.0 (2021-05-10)
+------------------
+
+**Added**
+
+* Add json schema and wrapper for imaging data ``life.qbic.datamodel.datasets.imaging.ImageMetadata`` (`#199 <https://github.com/qbicsoftware/data-model-lib/pull/199>`_)
 
 * Provide new classes that describe incoming nf-core bioinformatic pipeline data structures and contains it in a dedicated NfCorePipelineResult class (`#198 <https://github.com/qbicsoftware/data-model-lib/pull/198>`_)
 
@@ -19,7 +33,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 **Deprecated**
 
 
-2.5.0 (2021-05-10)
+2.5.0 (2021-04-26)
 ------------------
 
 **Added**
@@ -41,7 +55,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 * Override ``equals()`` method for ``life.qbic.datamodel.dtos.business.OfferId`` and
   ``life.qbic.datamodel.dtos.business.TomatoId`` properly
 
-* Overide ``equals()`` method for ``life.qbic.datamodel.dtos.business.ProductId` properly
+* Override ``equals()`` method for ``life.qbic.datamodel.dtos.business.ProductId`` properly
 
 **Dependencies**
 

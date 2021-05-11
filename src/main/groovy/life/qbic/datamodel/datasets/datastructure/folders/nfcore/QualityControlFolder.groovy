@@ -27,6 +27,7 @@ class QualityControlFolder extends DataFolder {
      * @param relativePath The relative path of the folder
      * @param children A list with child elements of the folder
      * @return A new instance of a QualityControlFolder object
+     * @since 2.6.0
      */
     static QualityControlFolder create(String name, String relativePath, List<?> children) {
         new QualityControlFolder(name, relativePath, children)

@@ -3,7 +3,7 @@ package life.qbic.datamodel.datasets.datastructure.files.nfcore
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
 
 /**
- A specialisation of a DataFile, represents a nf-core Pipeline report file
+ * A specialisation of a DataFile, represents a nf-core Pipeline report file
  *
  * @since 2.6.0
  */
@@ -20,6 +20,13 @@ class PipelineReport extends DataFile {
         validateName()
     }
 
+    /**
+     * Creates the PipelineReport object based on a report name and a relative path of it
+     * @param name The file name of the pipeline report
+     * @param relativePath The relative path to the file in a file system
+     * @return the PipelineReport object, which also validates if the filename is valid
+     * @since 2.6.0
+     */
     static PipelineReport create(String name, String relativePath) {
         return new PipelineReport(name, relativePath)
     }

@@ -72,6 +72,7 @@ final class NfCorePipelineResult {
      *
      * @param Map bioinformaticPipelineOutput
      * @return NfCoreExperiment A new instance of a nfcore bioinformatic experiment.
+     * @since 2.6.0
      */
     static NfCorePipelineResult createFrom(Map bioinformaticPipelineOutput) {
 
@@ -119,6 +120,7 @@ final class NfCorePipelineResult {
     /**
      * Provides access to the information stored in the pipeline information folder
      * @return PipelineInformationFolder
+     * @since 2.6.0
      */
     PipelineInformationFolder getPipelineInformation() {
         return pipelineInformationFolder
@@ -127,6 +129,7 @@ final class NfCorePipelineResult {
     /**
      * Provides access to the information stored in the quality Control folder
      * @return QualityControlFolder
+     * @since 2.6.0
      */
     QualityControlFolder getQualityControlFolder() {
         return qualityControlFolder
@@ -135,6 +138,7 @@ final class NfCorePipelineResult {
     /**
      * Provides access to the information stored in the process folders
      * @return List<DataFolder>
+     * @since 2.6.0
      */
     List<DataFolder> getProcessFolders() {
         return processFolders
@@ -143,6 +147,7 @@ final class NfCorePipelineResult {
     /**
      * Provides access to the information stored in the runId file
      * @return RunId
+     * @since 2.6.0
      */
     RunId getRunId() {
         return runId
@@ -151,6 +156,7 @@ final class NfCorePipelineResult {
     /**
      * Provides access to the information stored in the sampleIds file
      * @return SampleIds
+     * @since 2.6.0
      */
     SampleIds getSampleIds() {
         return sampleIds
@@ -160,7 +166,6 @@ final class NfCorePipelineResult {
     /*
      * Helper method that creates a DataFile instance from a map
      */
-
     private static DataFile parseFile(Map fileTree) throws IllegalArgumentException {
         String name = fileTree.get("name")
         String fileType = fileTree.get("fileType")
@@ -183,7 +188,6 @@ final class NfCorePipelineResult {
     /*
      * Helper method that creates a DataFolder instance from a map
      */
-
     private static DataFolder parseFolder(Map fileTree) throws IllegalArgumentException {
 
         def name = fileTree.get("name") as String
@@ -207,7 +211,6 @@ final class NfCorePipelineResult {
      * Helper method that tries to create a DataFolder instance
      * based on the DataFolder's different static factory create methods.
      */
-
     private static Optional<DataFolder> tryToCreateDataFolder(Method method,
                                                               String name,
                                                               String relativePath,
@@ -227,7 +230,6 @@ final class NfCorePipelineResult {
     /*
      * Helper method that parses the children of a folder.
      */
-
     private static List parseChildren(List<Map> children) {
         def parsedChildren = []
         children.each { Map unknownChild ->
