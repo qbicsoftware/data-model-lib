@@ -170,12 +170,11 @@ final class NfCorePipelineResult {
         String name = fileTree.get("name")
         String fileType = fileTree.get("fileType")
         String path = fileTree.get("path")
-        String fullName = name + "." + fileType
         for (String nfCoreFileType : nfCoreFileTypes) {
             Class<?> c = Class.forName(nfCoreFileType)
             Method method = c.getDeclaredMethod("create", String.class, String.class)
             try {
-                DataFile dataFile = method.invoke(null, fullName, path) as DataFile
+                DataFile dataFile = method.invoke(null, name, path) as DataFile
                 return dataFile
             } catch (InvocationTargetException e) {
                 // Do nothing as we need to try out all specialisations that extend the

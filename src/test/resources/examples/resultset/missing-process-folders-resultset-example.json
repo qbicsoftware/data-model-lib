@@ -4,19 +4,19 @@
     "path": "./",
     "children": [],
     "softwareVersions": {
-      "name": "software_versions",
+      "name": "software_versions.csv",
       "fileType": "csv",
-      "path": "pipeline_info/software_versions"
+      "path": "pipeline_info/software_versions.csv"
     },
     "pipelineReport": {
-      "name": "pipeline_report",
+      "name": "pipeline_report.txt",
       "fileType": "txt",
-      "path": "pipeline_info/pipeline_report"
+      "path": "pipeline_info/pipeline_report.txt"
     },
     "executionReport": {
-      "name": "execution_report",
+      "name": "execution_report.txt",
       "fileType": "txt",
-      "path": "pipeline_info/execution_report"
+      "path": "pipeline_info/execution_report.txt"
     }
   },
   "qualityControl": {
