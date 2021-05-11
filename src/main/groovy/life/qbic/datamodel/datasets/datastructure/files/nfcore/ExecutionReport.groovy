@@ -24,7 +24,8 @@ class ExecutionReport extends DataFile {
      * Creates the ExecutionReport object based on a report name and a relative path of it
      * @param name The file name of the execution report
      * @param relativePath The relative path to the file in a file system
-     * @return the ExecutionReport object, which also validates if the the filename is valid
+     * @return the ExecutionReport object, which also validates if the filename is valid
+     * @since 2.6.0
      */
     static ExecutionReport create(String name, String relativePath) {
         return new ExecutionReport(name, relativePath)
