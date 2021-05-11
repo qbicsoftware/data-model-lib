@@ -22,9 +22,9 @@
       "path": "./",
       "children": [
         {
-          "name": "salmon.merged.gene_tpm",
+          "name": "salmon.merged.gene_tpm.tsv",
           "fileType": "tsv",
-          "path": "salmon/salmon.merged.gene_tpm"
+          "path": "salmon/salmon.merged.gene_tpm.tsv"
         }
       ]
     }
