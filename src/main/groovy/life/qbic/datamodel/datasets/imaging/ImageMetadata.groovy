@@ -15,6 +15,10 @@ class ImageMetadata {
 
     private static final String SCHEMA_PATH = "/schemas/img-metadata.schema.json"
 
+    /**
+     * Returns the json imaging schema based on the path defined in {@link ImageMetadata}
+     * @return InputStream containing the schema json content
+     */
     static InputStream getSchemaAsStream() {
         return ImageMetadata.getResourceAsStream(SCHEMA_PATH)
     }
