@@ -5,8 +5,10 @@ life.qbic.datamodel.attachments
 life.qbic.datamodel.datasets
 life.qbic.datamodel.datasets.datastructure.files
 life.qbic.datamodel.datasets.datastructure.files.nanopore
+life.qbic.datamodel.datasets.datastructure.files.nfcore
 life.qbic.datamodel.datasets.datastructure.folders
 life.qbic.datamodel.datasets.datastructure.folders.nanopore
+life.qbic.datamodel.datasets.datastructure.folders.nfcore
 life.qbic.datamodel.datasets.imaging
 life.qbic.datamodel.dtos
 life.qbic.datamodel.dtos.business

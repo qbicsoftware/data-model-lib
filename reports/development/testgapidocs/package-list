@@ -3,8 +3,10 @@ life.qbic
 life.qbic.datamodel.datasets.datastructure
 life.qbic.datamodel.datasets.datastructure.files
 life.qbic.datamodel.datasets.datastructure.files.nanopore
+life.qbic.datamodel.datasets.datastructure.files.nfcore
 life.qbic.datamodel.datasets.datastructure.folders
 life.qbic.datamodel.datasets.datastructure.folders.nanopore
+life.qbic.datamodel.datasets.datastructure.folders.nfcore
 life.qbic.datamodel.dtos.business
 life.qbic.datamodel.dtos.business.services
 life.qbic.datamodel.dtos.general
