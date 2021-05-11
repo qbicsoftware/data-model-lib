@@ -20,6 +20,12 @@ class SoftwareVersions extends DataFile {
         validateName()
     }
 
+    /**
+     * Creates the SoftwareVersions object based on a file name and a relative path of it
+     * @param name The file name of the SoftwareVersions
+     * @param relativePath The relative path to the file in a file system
+     * @return the SoftwareVersions object, which also validates if the the filename is valid
+     */
     static SoftwareVersions create(String name, String relativePath) {
         return new SoftwareVersions(name, relativePath)
     }

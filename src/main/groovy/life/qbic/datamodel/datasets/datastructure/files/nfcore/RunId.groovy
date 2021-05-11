@@ -20,6 +20,12 @@ class RunId extends DataFile {
         validateName()
     }
 
+    /**
+     * Creates the RunId object based on a RunId name and a relative path of it
+     * @param name The file name of the RunId
+     * @param relativePath The relative path to the file in a file system
+     * @return the RunId object, which also validates if the the filename is valid
+     */
     static RunId create(String name, String relativePath) {
         return new RunId(name, relativePath)
     }
