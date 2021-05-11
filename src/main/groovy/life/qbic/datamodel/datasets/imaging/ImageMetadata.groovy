@@ -9,7 +9,7 @@ package life.qbic.datamodel.datasets.imaging
  * output structure against the schema.
  *
  * @author Luis Kuhn
- * @since x.x.x
+ * @since 2.6.0
  */
 class ImageMetadata {
 

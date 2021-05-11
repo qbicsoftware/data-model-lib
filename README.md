@@ -82,7 +82,7 @@ For complete examples, see the [JSON example files](./src/test/resources/example
 
 In order to create an instance of type `NfCorePipelineResult`, you need to provide a map that provides content following the [Nfcore Pipeline Output Schema JSON](./src/main/resources/schemas/bioinformatics-analysis-result-set.schema.json).  
 
-The final map contains an additional `metadata` property for each measurement, that for example can look like this:
+The final map contains an additional `metadata` property for each measurement. The following is an example of how a property can look like:
 
 You can than use the data model API to create an `NfCorePipelineResult` with this static factory method:
 
@@ -90,7 +90,7 @@ You can than use the data model API to create an `NfCorePipelineResult` with thi
 import life.qbic.datamodel.datasets.NfCorePipelineResult
 
 // Replace with a real map that follows the schema
-def outputMap = [:]
+Map outputMap = [:]
 
 def nfCorePipelineOutput = NfCorePipelineResult.create(outputMap)
 ```

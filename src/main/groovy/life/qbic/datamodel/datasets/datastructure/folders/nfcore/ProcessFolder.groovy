@@ -25,6 +25,7 @@ class ProcessFolder extends DataFolder {
      * @param relativePath The relative path of the folder
      * @param children A list with child elements of the folder
      * @return A new instance of a ProcessFolder object
+     * @since 2.6.0
      */
     static ProcessFolder create(String name, String relativePath, List<?> children) {
         new ProcessFolder(name, relativePath, children)

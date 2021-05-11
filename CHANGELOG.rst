@@ -10,7 +10,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Added**
 
-* Add json schema and wrapper for imaging data ``life/qbic/datamodel/datasets/imaging/ImageMetadata.groovy``
+* Add json schema and wrapper for imaging data ``life.qbic.datamodel.datasets.imaging.ImageMetadata``
 
 * Provide new classes that describe incoming nf-core bioinformatic pipeline data structures and contains it in a dedicated NfCorePipelineResult class (`#198 <https://github.com/qbicsoftware/data-model-lib/pull/198>`_)
 

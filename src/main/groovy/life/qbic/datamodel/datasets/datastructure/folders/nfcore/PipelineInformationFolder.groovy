@@ -37,6 +37,7 @@ class PipelineInformationFolder extends DataFolder {
      * @param relativePath The relative path of the folder
      * @param children A list with child elements of the folder
      * @return A new instance of a PipelineInformationFolder object
+     * @since 2.6.0
      */
     static PipelineInformationFolder create(String name, String relativePath, List<DataFile> children) {
         new PipelineInformationFolder(name, relativePath, children)
@@ -50,7 +51,8 @@ class PipelineInformationFolder extends DataFolder {
 
     /**
      * Provides access to the information stored in the process folders
-     * @return
+     * @return <sth>
+     * @since 2.6.0
      */
     SoftwareVersions getSoftwareVersions() {
         return softwareVersions
@@ -58,7 +60,8 @@ class PipelineInformationFolder extends DataFolder {
 
     /**
      * Provides access to the information stored in the runId file
-     * @return
+     * @return <sth>
+     * @since 2.6.0
      */
     PipelineReport getPipelineReport() {
         return pipelineReport
@@ -66,7 +69,8 @@ class PipelineInformationFolder extends DataFolder {
 
     /**
      * Provides access to the information stored in the sampleIds file
-     * @return
+     * @return <sth>
+     * @since 2.6.0
      */
     ExecutionReport getExecutionReport() {
         return executionReport

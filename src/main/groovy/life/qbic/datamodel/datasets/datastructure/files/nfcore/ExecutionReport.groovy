@@ -3,7 +3,7 @@ package life.qbic.datamodel.datasets.datastructure.files.nfcore
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
 
 /**
- A specialisation of a DataFile, represents a nf-core Pipeline execution report file
+ * A specialisation of a DataFile, represents a nf-core Pipeline execution report file
  *
  * @since 2.6.0
  */

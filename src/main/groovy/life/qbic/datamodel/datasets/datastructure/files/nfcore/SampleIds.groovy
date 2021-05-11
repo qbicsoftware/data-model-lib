@@ -3,7 +3,7 @@ package life.qbic.datamodel.datasets.datastructure.files.nfcore
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
 
 /**
- A specialisation of a DataFile, represents a nf-core InputIds file
+ * A specialisation of a DataFile, represents a nf-core InputIds file
  *
  * @since 2.6.0
  */
