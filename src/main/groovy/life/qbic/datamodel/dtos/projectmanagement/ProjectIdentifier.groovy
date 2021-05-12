@@ -31,6 +31,6 @@ class ProjectIdentifier {
 
     @Override
     String toString() {
-        return "${projectSpace.toString()}/${projectCode.toString()}"
+        return "/${projectSpace.toString()}/${projectCode.toString()}"
     }
 }
