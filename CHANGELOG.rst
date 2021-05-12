@@ -12,6 +12,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Fixed**
 
+* add missing leading slash to toString() method in ``life/qbic/datamodel/dtos/projectmanagement/ProjectIdentifier.groovy`` (`#207 <https://github.com/qbicsoftware/data-model-lib/pull/207>`_)
+
 **Dependencies**
 
 **Deprecated**
