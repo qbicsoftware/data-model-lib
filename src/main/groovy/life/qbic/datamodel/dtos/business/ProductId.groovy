@@ -1,6 +1,5 @@
 package life.qbic.datamodel.dtos.business
 
-import groovy.transform.CompileStatic
 import groovy.transform.EqualsAndHashCode
 
 /**
@@ -12,7 +11,7 @@ import groovy.transform.EqualsAndHashCode
  * @since: 2.0.0
  *
  */
-@CompileStatic
+
 @EqualsAndHashCode
 class ProductId {
 
