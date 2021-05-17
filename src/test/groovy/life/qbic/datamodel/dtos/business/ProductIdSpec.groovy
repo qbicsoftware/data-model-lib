@@ -82,9 +82,9 @@ class ProductIdSpec extends Specification {
         x.compareTo(z) > 0
         where: "x, y and z are as follows"
         x   |   y   |   z
-        10  |   5   |   2
-        2   |   1   |   0
-        10 |   -20 |   -25
+        new ProductId.Builder("C",1).build()  |   new ProductId.Builder("B",1).build()   |   new ProductId.Builder("A",1).build()
+        new ProductId.Builder("CCC",1).build()  |   new ProductId.Builder("CC",1).build()   |   new ProductId.Builder("C",1).build()
+        new ProductId.Builder("A",3).build()  |   new ProductId.Builder("A",2).build()   |   new ProductId.Builder("A",0).build()
     }
 
 
@@ -94,9 +94,11 @@ class ProductIdSpec extends Specification {
         Integer.signum(x.compareTo(y)) == -Integer.signum(y.compareTo(x))
         where:
         x   |   y
-        10  |   0
-        0   |   2
-        3   |   3
+        new ProductId.Builder("A",1).build()  |   new ProductId.Builder("B",1).build()
+        new ProductId.Builder("B",1).build()  |   new ProductId.Builder("A",1).build()
+        new ProductId.Builder("A",1).build()  |   new ProductId.Builder("A",1).build()
+        new ProductId.Builder("A",1).build()  |   new ProductId.Builder("A",42).build()
+        new ProductId.Builder("A",42).build()  |   new ProductId.Builder("A",1).build()
     }
 
     @Unroll
@@ -107,8 +109,7 @@ class ProductIdSpec extends Specification {
         result == 0
         productId.equals(productId)
         where:
-        productId = new ProductId.Builder("DS", 1).build()
-
+        productId << [new ProductId.Builder("A", 1).build(), new ProductId.Builder("ZA", 42).build()]
     }
 
     @Unroll
@@ -120,12 +121,11 @@ class ProductIdSpec extends Specification {
 
         where:
         x | y | expectedResult
-        1 | 0 | 1
-        42 | -0 | 1
-        0 | -0 | 0
-        0 | 42 | -1
-        -10 | -42 | 1
-        -3 | -2 | -1
+        new ProductId.Builder("A",1).build()  |   new ProductId.Builder("B",1).build()  |   -1
+        new ProductId.Builder("B",1).build()  |   new ProductId.Builder("A",1).build()  |   1
+        new ProductId.Builder("A",1).build()  |   new ProductId.Builder("A",1).build()  |   0
+        new ProductId.Builder("A",1).build()  |   new ProductId.Builder("A",42).build() |   -1
+        new ProductId.Builder("A",42).build()  |   new ProductId.Builder("A",1).build() |   1
     }
 
 
