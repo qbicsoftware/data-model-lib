@@ -126,6 +126,9 @@ class ProductIdSpec extends Specification {
         new ProductId.Builder("A",1).build()  |   new ProductId.Builder("A",1).build()  |   0
         new ProductId.Builder("A",1).build()  |   new ProductId.Builder("A",42).build() |   -1
         new ProductId.Builder("A",42).build()  |   new ProductId.Builder("A",1).build() |   1
+        new ProductId.Builder("A",1).build()  |   new ProductId.Builder("B",0).build() |   -1
+        new ProductId.Builder("Z",42).build()  |   new ProductId.Builder("A",100).build() |   1
+
     }
 
 
