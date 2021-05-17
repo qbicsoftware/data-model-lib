@@ -12,6 +12,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Fixed**
 
+* Introduce UnspecifiedFile class to account for variations in the pipeline output files
+
 **Dependencies**
 
 **Deprecated**
