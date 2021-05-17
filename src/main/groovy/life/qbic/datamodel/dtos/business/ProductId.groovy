@@ -11,7 +11,6 @@ import groovy.transform.EqualsAndHashCode
  * @since: 2.0.0
  *
  */
-
 @EqualsAndHashCode
 class ProductId {
 
