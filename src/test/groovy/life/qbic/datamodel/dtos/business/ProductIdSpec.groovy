@@ -1,6 +1,7 @@
 package life.qbic.datamodel.dtos.business
 
 import spock.lang.Specification
+import spock.lang.Unroll
 
 /**
  * <h1>Tests for ProductId creation</h1>
@@ -74,5 +75,60 @@ class ProductIdSpec extends Specification {
         res1 < 0
         res2 > 0
     }
+
+    @Unroll
+    def "compareTo is transitive: (#x > #y and #y > #z) then #x > #z"() {
+        when: "x.compareTo(y) > 0 && y.compareTo(z) > 0"
+        assert x.compareTo(y) > 0 && y.compareTo(z) > 0
+        then: "x.compareTo(y) > 0"
+        x.compareTo(z) > 0
+        where: "x, y and z are as follows"
+        x   |   y   |   z
+        10  |   5   |   2
+        2   |   1   |   0
+        10 |   -20 |   -25
+    }
+
+
+    @Unroll
+    def "compareTo is symmetric: sgn(x.compareTo(y)) = -sgn(y.compareTo(x)) for x=#x and y=#y"() {
+        expect: "sgn(#x.compareTo(#y)) = -sgn(#y.compareTo(#x))"
+        Integer.signum(x.compareTo(y)) == -Integer.signum(y.compareTo(x))
+        where:
+        x   |   y
+        10  |   0
+        0   |   2
+        3   |   3
+    }
+
+    @Unroll
+    def "compareTo is reflexive: #productId equals itself"() {
+        when:
+        int result = productId.compareTo(productId)
+        then:
+        result == 0
+        productId.equals(productId)
+        where:
+        productId = new ProductId.Builder("DS", 1).build()
+
+    }
+
+    @Unroll
+    def "compareTo #x <=> #y = #expectedResult"() {
+        when:
+        int result = x <=> y
+        then:
+        result == expectedResult
+
+        where:
+        x | y | expectedResult
+        1 | 0 | 1
+        42 | -0 | 1
+        0 | -0 | 0
+        0 | 42 | -1
+        -10 | -42 | 1
+        -3 | -2 | -1
+    }
+
 
 }
