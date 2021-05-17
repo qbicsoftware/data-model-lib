@@ -11,8 +11,8 @@ class UnspecifiedFileSpec extends Specification {
 
     def "shall create an UnspecifiedFile instance"() {
         given:
-        final name = "DummyFile"
-        final relativePath = "root/DummyFile"
+        final name = "DummyFile.txt"
+        final relativePath = "root/DummyFile.txt"
 
         when:
         def dataObject = UnspecifiedFile.create(name, relativePath, "txt")
