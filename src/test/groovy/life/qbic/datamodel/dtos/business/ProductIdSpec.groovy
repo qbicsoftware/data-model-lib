@@ -66,14 +66,12 @@ class ProductIdSpec extends Specification {
         and:"two ids with equal types"
         ProductId productId3 = new ProductId.Builder("DS",1).build()
         ProductId productId4 = new ProductId.Builder("DS",10).build()
-
-        when:
-        def res1 = productId1.compareTo(productId2)
-        def res2 = productId4.compareTo(productId3)
+        ProductId productId5 = new ProductId.Builder("DS",3).build()
 
         then:
-        res1 < 0
-        res2 > 0
+        productId1.compareTo(productId2) < 0
+        productId4.compareTo(productId3) > 0
+        productId4.compareTo(productId5) > 0
     }
 
     @Unroll
