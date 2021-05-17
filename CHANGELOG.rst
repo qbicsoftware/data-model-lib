@@ -10,6 +10,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Added**
 
+* Make ``life.qbic.datamodel.dtos.business.ProductId`` comparable (`#211 <https://github.com/qbicsoftware/data-model-lib/pull/211>`_)
+
 **Fixed**
 
 **Dependencies**
