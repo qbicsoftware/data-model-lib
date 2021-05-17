@@ -12,6 +12,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Fixed**
 
+* Remove @CompileStatic annotation from ProductId to enable builder pattern usage during compilation (`#186 <https://github.com/qbicsoftware/data-model-lib/issues/186>`_)
+
 **Dependencies**
 
 **Deprecated**
@@ -54,8 +56,6 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 * Override ``equals()`` method for ``life.qbic.datamodel.dtos.business.OfferId`` and
   ``life.qbic.datamodel.dtos.business.TomatoId`` properly
-
-* Remove @CompileStatic annotation from ProductId to enable builder pattern usage during compilation (`#186 <https://github.com/qbicsoftware/data-model-lib/issues/186>`_)
 
 * Override ``equals()`` method for ``life.qbic.datamodel.dtos.business.ProductId`` properly
 
