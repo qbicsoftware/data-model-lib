@@ -68,7 +68,7 @@ class ProductIdSpec extends Specification {
         ProductId productId4 = new ProductId.Builder("DS",10).build()
         ProductId productId5 = new ProductId.Builder("DS",3).build()
 
-        then:
+        expect:
         productId1.compareTo(productId2) < 0
         productId4.compareTo(productId3) > 0
         productId4.compareTo(productId5) > 0
