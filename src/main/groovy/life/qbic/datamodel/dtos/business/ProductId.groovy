@@ -14,7 +14,7 @@ import groovy.transform.EqualsAndHashCode
  */
 @CompileStatic
 @EqualsAndHashCode
-class ProductId {
+class ProductId implements Comparable<ProductId>{
 
     /**
      * The type of the identifier is defined by the implementing identifier
@@ -125,5 +125,12 @@ class ProductId {
     @Override
     String toString() {
         return "${type}_${uniqueId}"
+    }
+
+    @Override
+    int compareTo(ProductId productId2) {
+        //if the types are equal compare by uniqueId
+        if(this.type == productId2.type) return this.uniqueId.compareTo(productId2.uniqueId)
+        return this.type.compareTo(productId2.type)
     }
 }
