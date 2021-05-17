@@ -7,6 +7,7 @@ import life.qbic.datamodel.datasets.datastructure.files.nfcore.PipelineReport
 import life.qbic.datamodel.datasets.datastructure.files.nfcore.RunId
 import life.qbic.datamodel.datasets.datastructure.files.nfcore.SampleIds
 import life.qbic.datamodel.datasets.datastructure.files.nfcore.SoftwareVersions
+import life.qbic.datamodel.datasets.datastructure.files.nfcore.UnspecifiedFile
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nfcore.PipelineInformationFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nfcore.ProcessFolder
@@ -170,19 +171,29 @@ final class NfCorePipelineResult {
         String name = fileTree.get("name")
         String fileType = fileTree.get("fileType")
         String path = fileTree.get("path")
+        boolean nfCoreFileTypeFound = false
         for (String nfCoreFileType : nfCoreFileTypes) {
             Class<?> c = Class.forName(nfCoreFileType)
             Method method = c.getDeclaredMethod("create", String.class, String.class)
             try {
                 DataFile dataFile = method.invoke(null, name, path) as DataFile
+                nfCoreFileTypeFound = true
                 return dataFile
             } catch (InvocationTargetException e) {
                 // Do nothing as we need to try out all specialisations that extend the
                 // DataFile class
             }
         }
+        // We have to check for files of unknown type since this Parser will encounter variable file output dependent on the pipeline
+        if(fileType && !nfCoreFileTypeFound)
+        {
+            UnspecifiedFile unspecifiedFile = UnspecifiedFile.create(name,path,fileType)
+        }
         // If we cannot create a DataFile object at all, throw an exception
+        else
+        {
         throw new IllegalArgumentException("File $name with path $path is of unknown nfcore file type.")
+        }
     }
 
     /*
