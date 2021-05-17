@@ -12,7 +12,6 @@ import groovy.transform.EqualsAndHashCode
  * @since: 2.0.0
  *
  */
-@CompileStatic
 @EqualsAndHashCode
 class ProductId implements Comparable<ProductId>{
 
