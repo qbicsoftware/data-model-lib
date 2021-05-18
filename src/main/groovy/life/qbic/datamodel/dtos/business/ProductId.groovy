@@ -128,7 +128,7 @@ class ProductId implements Comparable<ProductId>{
     @Override
     int compareTo(ProductId productId2) {
         //if the types are equal compare by uniqueId
-        if(this.type == productId2.type) return this.uniqueId.compareTo(productId2.uniqueId)
+        if(this.type.equals(productId2.type)) return this.uniqueId.compareTo(productId2.uniqueId)
         return this.type.compareTo(productId2.type)
     }
 }
