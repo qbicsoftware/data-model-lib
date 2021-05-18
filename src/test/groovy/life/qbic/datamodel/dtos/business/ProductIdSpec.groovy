@@ -34,7 +34,7 @@ class ProductIdSpec extends Specification {
         ProductId.Builder builder = new ProductId.Builder(productType, uniqueId)
         when: "a productId is build"
         ProductId productId = builder.build()
-        then: "no exceptions occure and the product is not null"
+        then: "no exceptions occur and the product is not null"
         noExceptionThrown()
         productId instanceof ProductId
         and: "the uniqueId is greater or equal to 0"
