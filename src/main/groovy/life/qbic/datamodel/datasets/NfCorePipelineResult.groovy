@@ -7,6 +7,7 @@ import life.qbic.datamodel.datasets.datastructure.files.nfcore.PipelineReport
 import life.qbic.datamodel.datasets.datastructure.files.nfcore.RunId
 import life.qbic.datamodel.datasets.datastructure.files.nfcore.SampleIds
 import life.qbic.datamodel.datasets.datastructure.files.nfcore.SoftwareVersions
+
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nfcore.PipelineInformationFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nfcore.ProcessFolder
@@ -170,19 +171,30 @@ final class NfCorePipelineResult {
         String name = fileTree.get("name")
         String fileType = fileTree.get("fileType")
         String path = fileTree.get("path")
+        boolean nfCoreFileTypeFound = false
         for (String nfCoreFileType : nfCoreFileTypes) {
             Class<?> c = Class.forName(nfCoreFileType)
             Method method = c.getDeclaredMethod("create", String.class, String.class)
             try {
                 DataFile dataFile = method.invoke(null, name, path) as DataFile
+                nfCoreFileTypeFound = true
                 return dataFile
             } catch (InvocationTargetException e) {
                 // Do nothing as we need to try out all specialisations that extend the
                 // DataFile class
+
             }
         }
+        // We have to check for files of unknown type since this Parser will encounter variable file output dependent on the pipeline
+        if(fileType && !nfCoreFileTypeFound)
+        {
+            //Unknown Files will be ignored for now
+        }
         // If we cannot create a DataFile object at all, throw an exception
+        else
+        {
         throw new IllegalArgumentException("File $name with path $path is of unknown nfcore file type.")
+        }
     }
 
     /*
@@ -235,7 +247,10 @@ final class NfCorePipelineResult {
         children.each { Map unknownChild ->
             try {
                 def child = parseFile(unknownChild)
-                parsedChildren.add(child)
+                //only add child if the Datafile is not null
+                if (child) {
+                    parsedChildren.add(child)
+                }
             } catch (IllegalArgumentException e) {
                 // We do not capture the second parse call, as we want to fail the parsing at this point.
                 // This means that we ultimately found a child of unknown type, which should

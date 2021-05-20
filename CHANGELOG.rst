@@ -16,6 +16,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 * Remove @CompileStatic annotation from ProductId to enable builder pattern usage during compilation (`#186 <https://github.com/qbicsoftware/data-model-lib/issues/186>`_)
 
+* Introduce UnspecifiedFile class to account for variations in the pipeline output files
+
 **Dependencies**
 
 **Deprecated**
