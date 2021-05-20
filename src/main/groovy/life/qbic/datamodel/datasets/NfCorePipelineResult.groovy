@@ -7,7 +7,7 @@ import life.qbic.datamodel.datasets.datastructure.files.nfcore.PipelineReport
 import life.qbic.datamodel.datasets.datastructure.files.nfcore.RunId
 import life.qbic.datamodel.datasets.datastructure.files.nfcore.SampleIds
 import life.qbic.datamodel.datasets.datastructure.files.nfcore.SoftwareVersions
-import life.qbic.datamodel.datasets.datastructure.files.nfcore.UnspecifiedFile
+
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nfcore.PipelineInformationFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nfcore.ProcessFolder
@@ -182,12 +182,13 @@ final class NfCorePipelineResult {
             } catch (InvocationTargetException e) {
                 // Do nothing as we need to try out all specialisations that extend the
                 // DataFile class
+
             }
         }
         // We have to check for files of unknown type since this Parser will encounter variable file output dependent on the pipeline
         if(fileType && !nfCoreFileTypeFound)
         {
-            UnspecifiedFile unspecifiedFile = UnspecifiedFile.create(name,path,fileType)
+            //Unknown Files will be ignored for now
         }
         // If we cannot create a DataFile object at all, throw an exception
         else
@@ -246,7 +247,10 @@ final class NfCorePipelineResult {
         children.each { Map unknownChild ->
             try {
                 def child = parseFile(unknownChild)
-                parsedChildren.add(child)
+                //only add child if the Datafile is not null
+                if (child) {
+                    parsedChildren.add(child)
+                }
             } catch (IllegalArgumentException e) {
                 // We do not capture the second parse call, as we want to fail the parsing at this point.
                 // This means that we ultimately found a child of unknown type, which should
