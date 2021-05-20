@@ -16,7 +16,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 * Remove @CompileStatic annotation from ProductId to enable builder pattern usage during compilation (`#186 <https://github.com/qbicsoftware/data-model-lib/issues/186>`_)
 
-* Introduce UnspecifiedFile class to account for variations in the pipeline output files
+* Files not specified in the Nfcore datastructure will be ignored while creating the NfCorePipelineResult Object (`#212 <https://github.com/qbicsoftware/data-model-lib/pull/212>`_)
 
 **Dependencies**
 
