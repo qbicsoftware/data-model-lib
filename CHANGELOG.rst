@@ -12,6 +12,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 * Make ``life.qbic.datamodel.dtos.business.ProductId`` comparable (`#211 <https://github.com/qbicsoftware/data-model-lib/pull/211>`_)
 
+* Add file extensions to names in Json examples (`#204 <https://github.com/qbicsoftware/data-model-lib/pull/204>`_)
+
 **Fixed**
 
 * Remove @CompileStatic annotation from ProductId to enable builder pattern usage during compilation (`#186 <https://github.com/qbicsoftware/data-model-lib/issues/186>`_)
