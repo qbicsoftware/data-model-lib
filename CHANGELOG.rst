@@ -5,6 +5,26 @@ Changelog
 This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 
+2.7.0 (2021-05-21)
+------------------
+
+**Added**
+
+* Make ``life.qbic.datamodel.dtos.business.ProductId`` comparable (`#211 <https://github.com/qbicsoftware/data-model-lib/pull/211>`_)
+
+* Add file extensions to names in Json examples (`#204 <https://github.com/qbicsoftware/data-model-lib/pull/204>`_)
+
+**Fixed**
+
+* Remove @CompileStatic annotation from ProductId to enable builder pattern usage during compilation (`#186 <https://github.com/qbicsoftware/data-model-lib/issues/186>`_)
+
+* Unspecified files will be ignored while creating the NfCorePipelineResult Object (`#212 <https://github.com/qbicsoftware/data-model-lib/pull/212>`_)
+
+**Dependencies**
+
+**Deprecated**
+
+
 2.6.1 (2021-05-12)
 ------------------
 

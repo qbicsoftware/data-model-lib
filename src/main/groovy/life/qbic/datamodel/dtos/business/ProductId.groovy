@@ -1,6 +1,5 @@
 package life.qbic.datamodel.dtos.business
 
-import groovy.transform.CompileStatic
 import groovy.transform.EqualsAndHashCode
 
 /**
@@ -12,9 +11,8 @@ import groovy.transform.EqualsAndHashCode
  * @since: 2.0.0
  *
  */
-@CompileStatic
 @EqualsAndHashCode
-class ProductId {
+class ProductId implements Comparable<ProductId>{
 
     /**
      * The type of the identifier is defined by the implementing identifier
@@ -125,5 +123,13 @@ class ProductId {
     @Override
     String toString() {
         return "${type}_${uniqueId}"
+    }
+
+    @Override
+    int compareTo(ProductId productId2) {
+        //if the types are equal compare by uniqueId
+        if(this.equals(productId2)) return 0
+        if(this.type.equals(productId2.type)) return this.uniqueId.compareTo(productId2.uniqueId)
+        return this.type.compareTo(productId2.type)
     }
 }
