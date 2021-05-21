@@ -186,12 +186,7 @@ final class NfCorePipelineResult {
             }
         }
         // We have to check for files of unknown type since this Parser will encounter variable file output dependent on the pipeline
-        if(fileType && !nfCoreFileTypeFound)
-        {
-            //Unknown Files will be ignored for now
-        }
-        // If we cannot create a DataFile object at all, throw an exception
-        else
+        if(!fileType)
         {
         throw new IllegalArgumentException("File $name with path $path is of unknown nfcore file type.")
         }
