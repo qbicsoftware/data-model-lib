@@ -171,7 +171,7 @@ final class NfCorePipelineResult {
         String name = fileTree.get("name")
         String fileType = fileTree.get("fileType")
         String path = fileTree.get("path")
-        boolean nfCoreFileTypeFound = false
+        
         for (String nfCoreFileType : nfCoreFileTypes) {
             Class<?> c = Class.forName(nfCoreFileType)
             Method method = c.getDeclaredMethod("create", String.class, String.class)
