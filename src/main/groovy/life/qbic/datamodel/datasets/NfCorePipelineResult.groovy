@@ -177,7 +177,6 @@ final class NfCorePipelineResult {
             Method method = c.getDeclaredMethod("create", String.class, String.class)
             try {
                 DataFile dataFile = method.invoke(null, name, path) as DataFile
-                nfCoreFileTypeFound = true
                 return dataFile
             } catch (InvocationTargetException e) {
                 // Do nothing as we need to try out all specialisations that extend the
