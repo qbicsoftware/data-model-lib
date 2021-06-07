@@ -5,6 +5,32 @@ Changelog
 This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 
+2.8.0 (2021-06-07)
+------------------
+
+**Added**
+
+* Add new product unit types to ``life.qbic.datamodel.dtos.business.services.ProductUnit`` (`#215 <https://github.com/qbicsoftware/data-model-lib/pull/215>`_)
+
+  -   PER_HOUR("Hour"),
+  -   PER_PROJECT("Project"),
+  -   PER_RUN("Run"),
+  -   PER_CYCLE("Cycle"),
+  -   PER_GEL("Gel/HpH"),
+  -   PER_10_MG("10 milligram"),
+  -   PER_MEASUREMENT("Measurement"),
+  -   PER_CHANNEL("Channel"),
+  -   PER_100_MICROGRAM_PEPTIDE_CHANNEL("100 microgram peptides channel"),
+  -   PER_500_ML("500 milliliter"),
+  -   PER_COMPARISON("Comparison")
+
+**Fixed**
+
+**Dependencies**
+
+**Deprecated**
+
+
 2.7.0 (2021-05-21)
 ------------------
 
