@@ -10,7 +10,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Added**
 
-* Add new product unit types to 'life.qbic.datamodel.dtos.business.services.ProductUnit' (`#215 <https://github.com/qbicsoftware/data-model-lib/pull/215>`_)
+* Add new product unit types to ``life.qbic.datamodel.dtos.business.services.ProductUnit`` (`#215 <https://github.com/qbicsoftware/data-model-lib/pull/215>`_)
 
   -   PER_HOUR("Hour"),
   -   PER_PROJECT("Project"),
@@ -23,7 +23,6 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
   -   PER_100_MICROGRAM_PEPTIDE_CHANNEL("100 microgram peptides channel"),
   -   PER_500_ML("500 milliliter"),
   -   PER_COMPARISON("Comparison")
-to 'life.qbic.datamodel.dtos.business.services.ProductUnit' (`#215 <https://github.com/qbicsoftware/data-model-lib/pull/215>`_)
 
 **Fixed**
 
