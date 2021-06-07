@@ -10,6 +10,9 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Added**
 
+* Add new product unit types PER_RUN, PER_CYCLE, PER_GEL, PER_MG, PER_MEASUREMENT, PER_CHANNEL, PER_PEPTIDE_CHANNEL, PER_ML, PER_COMPARISON
+to 'life.qbic.datamodel.dtos.business.services.ProductUnit' (`#215 <https://github.com/qbicsoftware/data-model-lib/pull/215>`_)
+
 **Fixed**
 
 **Dependencies**
