@@ -15,11 +15,11 @@ enum ProductUnit {
   PER_RUN("Run"),
   PER_CYCLE("Cycle"),
   PER_GEL("Gel/HpH"),
-  PER_10_MG("10 Milligram"),
+  PER_10_MG("10 milligram"),
   PER_MEASUREMENT("Measurement"),
   PER_CHANNEL("Channel"),
-  PER_100_MICROGRAM_PEPTIDE_CHANNEL("100 Microgram peptides channel"),
-  PER_500_ML("500 Milliliter"),
+  PER_100_MICROGRAM_PEPTIDE_CHANNEL("100 microgram peptides channel"),
+  PER_500_ML("500 milliliter"),
   PER_COMPARISON("COMPARISON")
 
   /**
