@@ -11,6 +11,7 @@ enum ProductUnit {
   PER_SAMPLE("Sample"),
   PER_DATASET("Dataset"),
   PER_HOUR("Hour"),
+  PER_PROJECT("Project"),
   PER_RUN("Run"),
   PER_CYCLE("Cycle"),
   PER_GEL("Gel/HpH"),
