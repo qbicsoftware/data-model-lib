@@ -10,7 +10,16 @@ enum ProductUnit {
   PER_GIGABYTE("Gigabyte"),
   PER_SAMPLE("Sample"),
   PER_DATASET("Dataset"),
-  PER_HOUR("Hour")
+  PER_HOUR("Hour"),
+  PER_RUN("Run"),
+  PER_CYCLE("Cycle"),
+  PER_GEL("Gel/HpH"),
+  PER_MG("10 mg"),
+  PER_MEASUREMENT("Measurement"),
+  PER_CHANNEL("Channel"),
+  PER_PEPTIDE_CHANNEL("100 µg peptides channel"),
+  PER_ML("500 ml"),
+  PER_COMPARISON("COMPARISON")
 
   /**
    Holds the String value of the enum
