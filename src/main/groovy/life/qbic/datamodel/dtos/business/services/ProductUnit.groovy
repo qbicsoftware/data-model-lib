@@ -20,7 +20,7 @@ enum ProductUnit {
   PER_CHANNEL("Channel"),
   PER_100_MICROGRAM_PEPTIDE_CHANNEL("100 microgram peptides channel"),
   PER_500_ML("500 milliliter"),
-  PER_COMPARISON("COMPARISON")
+  PER_COMPARISON("Comparison")
 
   /**
    Holds the String value of the enum
