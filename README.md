@@ -12,20 +12,20 @@ Created by Andreas Friedrich, Luis de la Garza, Sven Fillinger.
 
 ## How to Install
 
-With Maven you can include the library as dependency with:
+With Maven you can include the recent library version as dependency with:
 
 ```XML
 <dependency>
   <groupId>life.qbic</groupId>
   <artifactId>data-model-lib</artifactId>
-  <version>1.12.0</version>
+  <version>2.8.0</version>
 </dependency>
 ```
 or Groovy Grape:
 
 ```
 @Grapes(
-  @Grab(group='life.qbic', module='data-model-lib', version='1.12.0')
+  @Grab(group='life.qbic', module='data-model-lib', version='2.8.0')
 )
 ```
 
@@ -46,7 +46,7 @@ Make sure, that you have defined the Github package Maven repository, in order f
 
 ## Data Models
 
-### Expected incoming data structures
+### Datastructures for registration at QBiC
 
 #### Nanopore Data Structure
 
@@ -97,7 +97,7 @@ def nfCorePipelineOutput = NfCorePipelineResult.create(outputMap)
 
 ### Translated data structures in openBIS
 
-#### OpenBIS Data Overview
+#### Oxford Nanopore Dataset
 
 The Nanopore data structure is saved in an openBIS 18.06.2 database. 
 An overview of the openBIS data model and the location and entity relationship of the Nanopore data stucture within it can be seen in this diagram: 
@@ -153,6 +153,13 @@ def outputMap = [:]
 
 def onExperiment = OxfordNanoporeExperiment.create(outputMap)
 ```
+
+#### Bioinformatics Analysis Result Sets openBIS
+
+The following figure displays the current openBIS model of an nf-core pipeline result dataset:
+
+![Nanopore Data Structure Model](./doc/figures/ER_diagram_pipeline_results_openBIS.png)
+
 
 ## DTOs - Data Transfer Objects
 
