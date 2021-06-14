@@ -10,6 +10,10 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Added**
 
+* Add new product unit types to ``life.qbic.datamodel.dtos.business.services.ProductUnit`` (`#219 <https://github.com/qbicsoftware/data-model-lib/pull/219>`_)
+
+  -   PER_FLOW_CELL("Flow cell")
+
 **Fixed**
 
 **Dependencies**
