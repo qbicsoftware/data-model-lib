@@ -5,6 +5,20 @@ Changelog
 This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 
+2.8.1 (2021-06-14)
+------------------
+
+**Added**
+
+* Add new product unit type PER_FLOW_CELL("Flow Cell") to ``life.qbic.datamodel.dtos.business.services.ProductUnit`` (`#221 <https://github.com/qbicsoftware/data-model-lib/pull/221>`_)
+
+**Fixed**
+
+**Dependencies**
+
+**Deprecated**
+
+
 2.8.0 (2021-06-07)
 ------------------
 
