@@ -10,6 +10,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Added**
 
+* Add new product unit type PER_BATCH("Batch") to ``life.qbic.datamodel.dtos.business.services.ProductUnit`` (`#223 <https://github.com/qbicsoftware/data-model-lib/pull/223>`_)
+
 **Fixed**
 
 **Dependencies**
