@@ -18,14 +18,14 @@ With Maven you can include the recent library version as dependency with:
 <dependency>
   <groupId>life.qbic</groupId>
   <artifactId>data-model-lib</artifactId>
-  <version>2.8.0</version>
+  <version>2.8.1</version>
 </dependency>
 ```
 or Groovy Grape:
 
 ```
 @Grapes(
-  @Grab(group='life.qbic', module='data-model-lib', version='2.8.0')
+  @Grab(group='life.qbic', module='data-model-lib', version='2.8.1')
 )
 ```
 
