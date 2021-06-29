@@ -10,6 +10,25 @@ Data Model Library - A collection of QBiC data models.
 ## Author
 Created by Andreas Friedrich, Luis de la Garza, Sven Fillinger.
 
+Overview:
+
+- [How to Install](#how-to-install)
+- [Data Models](#data-models)
+    * [Oxford Nanopore Data Structure](#oxford-nanopore-data-structure)
+        * [Datastructures for registration at QBiC](#datastructures-for-registration-at-qbic)
+        * [Usage Example](#usage-example)
+        * [Translated data structures in openBIS](#translated-data-structures-in-openbis)
+        
+    * [NF-Core Bioinformatics Analysis Result Sets](#nf-core-bioinformatics-analysis-result-sets)
+        * [Datastructures for registration at QBiC](#datastructures-for-registration-at-qbic)
+        * [Usage Example](#usage-example)
+        * [Translated data structures in openBIS](#translated-data-structures-in-openbis)
+        
+- [DTOs - Data Transfer Objects](#dtos---data-transfer-objects)
+    * [Imaging context - Omero and more](#imaging-context---omero-and-more)
+    * [Business context - Offer Management and more](#business-context---offer-management-and-more)
+
+
 ## How to Install
 
 With Maven you can include the recent library version as dependency with:
@@ -46,67 +65,15 @@ Make sure, that you have defined the Github package Maven repository, in order f
 
 ## Data Models
 
-### Datastructures for registration at QBiC
+### Oxford Nanopore Data Structure
 
-#### Nanopore Data Structure
+#### Datastructures for registration at QBiC
 
 A Nanopore NGS measurement output is delivered to us as a nested folder structure, following this model:
 
 ![Nanopore Data Structure Model](./doc/figures/Nanopore_Data_Structure_Model.png)
 
-#### Bioinformatics Analysis Result Sets
-
-These result sets describe a result set from a nf-core analysis pipeline
-run with detailed modelling of `quality control`, `software versions`
-and individual `process reports`.
-
-The schema to validate such a structure can be loaded via the Everit
-`SchemaLoader` class:
-
-```java
-InputStream stream = PipelineOutput.getSchemaAsStream()
-SchemaLoader schemaLoader = SchemaLoader.builder()
-                .schemaClient(SchemaClient.classPathAwareClient())
-                .schemaJson(new JSONObject(new JSONTokener(stream)))
-                .resolutionScope("classpath://schemas/")
-                .build()
-```
-
-![Bioinformatics Analysis Result Set ER](./doc/figures/ER_diagram_pipeline_results.png)
-
-### Example
-
-For usage examples, see the [usage example documentation](./doc/examples.md).
-
-For complete examples, see the [JSON example files](./src/test/resources/examples/resultset) provided for the unit tests.
-
-In order to create an instance of type `NfCorePipelineResult`, you need to provide a map that provides content following the [Nfcore Pipeline Output Schema JSON](./src/main/resources/schemas/bioinformatics-analysis-result-set.schema.json).  
-
-The final map contains an additional `metadata` property for each measurement. The following is an example of how a property can look like:
-
-You can than use the data model API to create an `NfCorePipelineResult` with this static factory method:
-
-```groovy
-import life.qbic.datamodel.datasets.NfCorePipelineResult
-
-// Replace with a real map that follows the schema
-Map outputMap = [:]
-
-def nfCorePipelineOutput = NfCorePipelineResult.create(outputMap)
-```
-
-### Translated data structures in openBIS
-
-#### Oxford Nanopore Dataset
-
-The Nanopore data structure is saved in an openBIS 18.06.2 database. 
-An overview of the openBIS data model and the location and entity relationship of the Nanopore data stucture within it can be seen in this diagram: 
-
-
-
-![Nanopore Data Structure Model](./doc/figures/OpenBIS_ER_diagram.png)
-
-### Example
+#### Usage Example
 
 For usage examples, see the [usage example documentation](./doc/examples.md).
 
@@ -154,9 +121,57 @@ def outputMap = [:]
 def onExperiment = OxfordNanoporeExperiment.create(outputMap)
 ```
 
-#### Bioinformatics Analysis Result Sets openBIS
+#### Translated data structures in openBIS
 
-The following figure displays the current openBIS model of an nf-core pipeline result dataset:
+The Nanopore data structure is saved in an openBIS 18.06.2 database. 
+An overview of the openBIS data model and the location and entity relationship of the Nanopore data stucture within it can be seen in this diagram: 
+
+![Nanopore Data Structure Model](./doc/figures/OpenBIS_ER_diagram.png)
+
+### NF-Core Bioinformatics Analysis Result Sets
+
+These result sets describe a result set from a nf-core analysis pipeline
+run with detailed modelling of `quality control`, `software versions`
+and individual `process reports` and follow this model: 
+
+![Bioinformatics Analysis Result Set ER](./doc/figures/ER_diagram_pipeline_results.png)
+
+The schema to validate such a structure can be loaded via the Everit
+`SchemaLoader` class:
+
+```java
+InputStream stream = PipelineOutput.getSchemaAsStream()
+SchemaLoader schemaLoader = SchemaLoader.builder()
+                .schemaClient(SchemaClient.classPathAwareClient())
+                .schemaJson(new JSONObject(new JSONTokener(stream)))
+                .resolutionScope("classpath://schemas/")
+                .build()
+```
+
+### Usage Example
+
+For usage examples, see the [usage example documentation](./doc/examples.md).
+
+For complete examples, see the [JSON example files](./src/test/resources/examples/resultset) provided for the unit tests.
+
+In order to create an instance of type `NfCorePipelineResult`, you need to provide a map that provides content following the [Nfcore Pipeline Output Schema JSON](./src/main/resources/schemas/bioinformatics-analysis-result-set.schema.json).  
+
+The final map contains an additional `metadata` property for each measurement. The following is an example of how a property can look like:
+
+You can than use the data model API to create an `NfCorePipelineResult` with this static factory method:
+
+```groovy
+import life.qbic.datamodel.datasets.NfCorePipelineResult
+
+// Replace with a real map that follows the schema
+Map outputMap = [:]
+
+def nfCorePipelineOutput = NfCorePipelineResult.create(outputMap)
+```
+
+#### Translated data structures in openBIS
+
+The following figure displays the current openBIS model of a nf-core pipeline result dataset:
 
 ![Nanopore Data Structure Model](./doc/figures/ER_diagram_pipeline_results_openBIS.png)
 
@@ -173,16 +188,17 @@ life-science domain data assets.
 
 The following figure describes the entity relation of the imaging DTOs.
 
+![Imaging Data Structure Model](./doc/figures/Imaging_Data_Structure.png)
+
 Please have a look at the detailed JavaDoc class description of the
 DTOs.
 
-![Imaging Data Structure Model](./doc/figures/Imaging_Data_Structure.png)
 
 ### Business context - Offer Management and more
 
 The following figure describes the entity relation of the DTOs related to Offer Management.
  
+![OfferData_Structure Model](./doc/figures/Offer_Data_Structure.png)
+
 Detailed Information can be found in the GroovyDoc class description of the
 DTOs.
-
-![OfferData_Structure Model](./doc/figures/Offer_Data_Structure.png)
