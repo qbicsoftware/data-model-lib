@@ -62,7 +62,6 @@ Make sure, that you have defined the Github package Maven repository, in order f
 </repositories>
 ```
 
-
 ## Data Models
 
 ### Oxford Nanopore Data Structure
@@ -77,49 +76,7 @@ A Nanopore NGS measurement output is delivered to us as a nested folder structur
 
 For usage examples, see the [usage example documentation](./doc/examples.md).
 
-For complete examples, see the [JSON example files](./src/test/resources) provided for the unit tests.
-
-In order to create an instance of type `OxfordNanoporeExperiment`, you need to provide a map that provides content following the [Nanopore Instrument Output Schema JSON](./src/main/resources/schemas/nanopore-instrument-output.schema.json).  
-Every measurement folder also needs to be enriched with metadata, which itself is specified with another [JSON schema](./src/main/resources/schemas/ont-metadata.schema.json).
-
-The final map contains an additional `metadata` property for each measurement, that for example can look like this:
-
-```
-{
-    "name": "QABCD001AB_E12A345a01_PAE12345",
-    "path": "./",
-    "children": [
-        {
-            "name": "20200122_1217_1-A1-B1-PAE12345_1234567a",
-            "metadata":  {
-                "adapter": "flongle",
-                "asic_temp": "32.631687",
-                "base_caller": "Guppy",
-                "base_caller_version": "3.2.8+bd67289",
-                "device_type" : "promethion",
-                "flow_cell_id": "PAE26306",
-                "flow_cell_product_code": "FLO-PRO002",
-                "flow_cell_position": "2-A3-D3",
-                "hostname": "PCT0094",
-                "protocol": "sequencing/sequencing_PRO002_DNA:FLO-PRO002:SQK-LSK109:True",
-                "started": "2020-02-11T15:52:10.465982+01:00"
-            },
-            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a",
-            ...
-            ]
-}
-```
-
-You can than use the data model API to create an `OxfordNanoporeExperiment` with this static factory method:
-
-```groovy
-import life.qbic.datamodel.datasets.OxfordNanoporeExperiment
-
-// Replace with a real map that follows the schema
-def outputMap = [:]
-
-def onExperiment = OxfordNanoporeExperiment.create(outputMap)
-```
+For directory examples, see the [JSON example files](./src/test/resources) provided for the unit tests.
 
 #### Nanopore data structures translated in openBIS
 
@@ -132,10 +89,7 @@ An overview of the openBIS data model and the location and entity relationship o
 
 #### NF-Core data structure for registration at QBiC
 
-These result sets describe a result set from a nf-core analysis pipeline
-run with detailed modelling of `quality control`, `software versions`
-and individual `process reports` and follow this model: 
-
+A NF-Core pipeline directory output is provided as a nested folder structure, following this model:
 ![Bioinformatics Analysis Result Set ER](./doc/figures/ER_diagram_pipeline_results.png)
 
 The schema to validate such a structure can be loaded via the Everit
@@ -154,22 +108,7 @@ SchemaLoader schemaLoader = SchemaLoader.builder()
 
 For usage examples, see the [usage example documentation](./doc/examples.md).
 
-For complete examples, see the [JSON example files](./src/test/resources/examples/resultset) provided for the unit tests.
-
-In order to create an instance of type `NfCorePipelineResult`, you need to provide a map that provides content following the [Nfcore Pipeline Output Schema JSON](./src/main/resources/schemas/bioinformatics-analysis-result-set.schema.json).  
-
-The final map contains an additional `metadata` property for each measurement. The following is an example of how a property can look like:
-
-You can than use the data model API to create an `NfCorePipelineResult` with this static factory method:
-
-```groovy
-import life.qbic.datamodel.datasets.NfCorePipelineResult
-
-// Replace with a real map that follows the schema
-Map outputMap = [:]
-
-def nfCorePipelineOutput = NfCorePipelineResult.create(outputMap)
-```
+For directory structure examples, see the [JSON example files](./src/test/resources/examples/resultset) provided for the unit tests.
 
 #### NF-Core data structures translated in openBIS
 
