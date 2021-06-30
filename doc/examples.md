@@ -8,12 +8,13 @@ Overview:
 - [Oxford Nanopore output](#oxford-nanopore-output)
 
     * [Create Nanopore experiment object](#create-nanopore-experiment-object)
-    * [Access schema for Nanopore data structure](#access-schema-for-nanopore-data-**structure)
-    * [Nanopore experiment object implementation example](#nanopore-experiment-implementation-example)
+    * [Validate Nanopore data structure](#validate-nanopore-data-structure)
+    * [Nanopore experiment object implementation example](#nanopore-experiment-object-implementation-example)
+    
 - [Nf Core pipeline output](#data-models)
 
     * [Create NfCore experiment object](#create-nfcore-experiment-object)
-    * [Access schema for NF-Core data structure](#access-schema-for-nf-core-data-structure)
+    * [Validate NF-Core data structure](#validate-nf-core-data-structure)
     * [NfCore experiment object implementation example](#nf-core-experiment-object-implementation-example)
 
 ## Oxford Nanopore output
@@ -62,9 +63,7 @@ def outputMap = [:]
 def onExperiment = OxfordNanoporeExperiment.create(outputMap)
 ```
 
-
-
-### Access Schema for Nanopore data structure
+### Validate Nanopore data structure
 
 The schema for the Oxford Nanopore instrument output can be accessed via the
 `OxfordNanoporeInstrumentOutput` class:
@@ -77,6 +76,15 @@ public class SchemaImport {
     InputStream inputStream = OxfordNanoporeInstrumentOutput.getSchemaAsStream();
   }
 }
+```
+
+To validate the Nanopore instrument output, the schema can be loaded by the [Everit](https://github.com/everit-org/json-schema)
+`SchemaLoader` class:
+
+```java
+InputStream schemaStream = OxfordNanoporeInstrumentOutput.getSchemaAsStream()
+JSONObject rawSchema = new JSONObject(new JSONTokener(schemaStream))
+Schema jsonSchema = SchemaLoader.load(rawSchema)
 ```
 
 ### Nanopore experiment object implementation example
@@ -101,7 +109,7 @@ Map outputMap = [:]
 def nfCorePipelineOutput = NfCorePipelineResult.create(outputMap)
 ```
 
-### Access schema for NF-Core data structure 
+### Validate NF-Core data structure 
 
 The schema for the nf core pipeline output can be accessed via the
 `NfCorePipelineResult` class:
@@ -114,6 +122,18 @@ public class SchemaImport {
     InputStream inputStream = PipelineOutput.getSchemaAsStream();
   }
 }
+```
+
+To validate the nf core pipeline output, the schema can be loaded via its classpath by the [Everit](https://github.com/everit-org/json-schema)
+`SchemaLoader` class:
+
+```java
+InputStream stream = PipelineOutput.getSchemaAsStream()
+SchemaLoader schemaLoader = SchemaLoader.builder()
+                .schemaClient(SchemaClient.classPathAwareClient())
+                .schemaJson(new JSONObject(new JSONTokener(stream)))
+                .resolutionScope("classpath://schemas/")
+                .build()
 ```
 
 ### NF-Core experiment object implementation example

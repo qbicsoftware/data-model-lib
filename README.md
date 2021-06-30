@@ -21,6 +21,7 @@ Overview:
         * [Nanopore data structures translated in openBIS](#nanopore-data-structures-translated-in-openbis)
         
     * [NF-Core Bioinformatics Analysis Result Sets](#nf-core-bioinformatics-analysis-result-sets)
+    
         * [NF-Core data structure for registration at QBiC](#nf-core-data-structure-for-registration-at-qbic)
         * [NF-Core usage example](#nf-core-usage-example)
         * [NF-Core data structures translated in openBIS](#nf-core-data-structures-translated-in-openbis)
@@ -92,18 +93,6 @@ An overview of the openBIS data model and the location and entity relationship o
 
 A NF-Core pipeline directory output is provided as a nested folder structure, following this model:
 ![Bioinformatics Analysis Result Set ER](./doc/figures/ER_diagram_pipeline_results.png)
-
-The schema to validate such a structure can be loaded via the Everit
-`SchemaLoader` class:
-
-```java
-InputStream stream = PipelineOutput.getSchemaAsStream()
-SchemaLoader schemaLoader = SchemaLoader.builder()
-                .schemaClient(SchemaClient.classPathAwareClient())
-                .schemaJson(new JSONObject(new JSONTokener(stream)))
-                .resolutionScope("classpath://schemas/")
-                .build()
-```
 
 #### NF-Core usage example
 
