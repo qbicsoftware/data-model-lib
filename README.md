@@ -15,6 +15,7 @@ Overview:
 - [How to Install](#how-to-install)
 - [Data Models](#data-models)
     * [Oxford Nanopore Data Structure](#oxford-nanopore-data-structure)
+    
         * [Nanopore result set for registration at QBiC](#nanopore-result-set-for-registration-at-qbic)
         * [Nanopore usage example](#nanopore-usage-example)
         * [Nanopore data structures translated in openBIS](#nanopore-data-structures-translated-in-openbis)
@@ -25,9 +26,9 @@ Overview:
         * [NF-Core data structures translated in openBIS](#nf-core-data-structures-translated-in-openbis)
         
 - [DTOs - Data Transfer Objects](#dtos---data-transfer-objects)
+
     * [Imaging context - Omero and more](#imaging-context---omero-and-more)
     * [Business context - Offer Management and more](#business-context---offer-management-and-more)
-
 
 ## How to Install
 
@@ -64,7 +65,7 @@ Make sure, that you have defined the Github package Maven repository, in order f
 
 ## Data Models
 
-### Oxford Nanopore Data Structure
+### Oxford Nanopore data structure
 
 #### Nanopore result set for registration at QBiC
 
@@ -85,7 +86,7 @@ An overview of the openBIS data model and the location and entity relationship o
 
 ![Nanopore Data Structure Model](./doc/figures/OpenBIS_ER_diagram.png)
 
-### NF-Core Bioinformatics Analysis Result Sets
+### NF-Core Bioinformatics analysis result sets
 
 #### NF-Core data structure for registration at QBiC
 
