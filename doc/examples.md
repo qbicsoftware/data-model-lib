@@ -52,7 +52,7 @@ The final map contains an additional `metadata` property for each measurement, t
 }
 ```
 
-You can than use the [data model API]((./src/main/groovy/life/qbic/datamodel/datasets/OxfordNanoporeExperiment.groovy)) to create an `OxfordNanoporeExperiment` with this static factory method:
+You can than use the [data model API](./src/main/groovy/life/qbic/datamodel/datasets/OxfordNanoporeExperiment.groovy) to create an `OxfordNanoporeExperiment` with this static factory method:
 
 ```groovy
 import life.qbic.datamodel.datasets.OxfordNanoporeExperiment
@@ -89,8 +89,8 @@ Schema jsonSchema = SchemaLoader.load(rawSchema)
 
 ### Nanopore experiment object implementation example
 
-The Nanopore experiment object is currently implemented in the [core utils API](https://github.com/qbicsoftware/core-utils-lib/blob/master/src/main/groovy/life/qbic/utils/NanoporeParser.groovy). 
-Usage examples can also be seen in the associated test class [OxfordNanoporeExperimentSpec](./src/test/groovy/life/qbic/datamodel/datasets/datastructure/OxfordNanoporeExperimentSpec.groovy)
+The Nanopore experiment object is currently implemented in the [core utils API](./src/main/groovy/life/qbic/datamodel/datasets/datastructure/OxfordNanoporeExperimentSpec.groovy). 
+Usage examples can also be seen in the associated [unit test](./src/test/groovy/life/qbic/datamodel/datasets/datastructure/OxfordNanoporeExperimentSpec.groovy)
 
 ## Nf Core pipeline output
 
@@ -139,5 +139,5 @@ SchemaLoader schemaLoader = SchemaLoader.builder()
 ### NF-Core experiment object implementation example
 
 The NfCore experiment object is currently implemented in the [core utils API](https://github.com/qbicsoftware/core-utils-lib/blob/master/src/main/groovy/life/qbic/utils/BioinformaticAnalysisParser.groovy). 
-Usage examples can also be seen in the associated test class [NfCorePipelineResultSpec](./src/test/groovy/life/qbic/datamodel/datasets/datastructure/NfCorePipelineResultSpec.groovy)
+Usage examples can also be seen in the associated [unit test](./src/test/groovy/life/qbic/datamodel/datasets/datastructure/NfCorePipelineResultSpec.groovy)
 
