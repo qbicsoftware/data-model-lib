@@ -20,13 +20,24 @@ class PortalUser extends Person {
      */
     final String userId
 
+    /**
+     * The id, that has been given by the authentication
+     * provider service, for example LDAP.
+     *
+     * @since 2.9.0
+     */
+    final String authProviderId
+
     static class Builder extends Person.Builder<Builder> {
 
         private String userId
 
-        Builder(String userId, String firstName, String lastName, String emailAddress) {
+        private String authProviderId
+
+        Builder(String userId, String authProviderId, String firstName, String lastName, String emailAddress) {
             super(firstName, lastName, emailAddress)
             this.userId = userId
+            this.authProviderId = authProviderId
         }
 
         @Override
@@ -43,5 +54,6 @@ class PortalUser extends Person {
     private PortalUser(Builder builder) {
         super(builder)
         this.userId = builder.userId
+        this.authProviderId = builder.authProviderId
     }
 }
