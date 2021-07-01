@@ -20,6 +20,7 @@ life.qbic.datamodel.dtos.imaging.parameters.electronmicroscopy
 life.qbic.datamodel.dtos.imaging.parameters.lightmicroscopy
 life.qbic.datamodel.dtos.imaging.parameters.srm
 life.qbic.datamodel.dtos.imaging.properties
+life.qbic.datamodel.dtos.portal
 life.qbic.datamodel.dtos.projectmanagement
 life.qbic.datamodel.experiments
 life.qbic.datamodel.identifiers
