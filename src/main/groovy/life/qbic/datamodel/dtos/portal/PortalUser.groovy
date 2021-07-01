@@ -1,6 +1,6 @@
 package life.qbic.datamodel.dtos.portal
 
-import groovy.transform.Immutable
+import life.qbic.datamodel.dtos.general.Person
 
 /**
  * <p>A user within QBiC's data management platform.</p>
@@ -10,37 +10,38 @@ import groovy.transform.Immutable
  *
  * @since 2.9.0
  */
-@Immutable
-class PortalUser {
+class PortalUser extends Person {
 
     /**
-     * The portal system's user id
+     * The user id, which uniquely identifies the
+     * user in the portal.
+     *
      * @since 2.9.0
      */
-    String id
+    final String userId
 
-    /**
-     * The full name of the user
-     * @since 2.9.0
-     */
-    String fullName
+    static class Builder extends Person.Builder<Builder> {
 
-    /**
-     * The first name of the user
-     * @since 2.9.0
-     */
-    String firstName
+        private String userId
 
-    /**
-     * The middle name of the user
-     * @since 2.9.0
-     */
-    String middleName
+        Builder(String userId, String firstName, String lastName, String emailAddress) {
+            super(firstName, lastName, emailAddress)
+            this.userId = userId
+        }
 
-    /**
-     * The last name of the user
-     * @since 2.9.0
-     */
-    String lastName
+        @Override
+        Person build() {
+            return new PortalUser(this)
+        }
 
+        @Override
+        protected Builder self() {
+            return this
+        }
+    }
+
+    private PortalUser(Builder builder) {
+        super(builder)
+        this.userId = builder.userId
+    }
 }
