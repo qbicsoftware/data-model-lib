@@ -21,7 +21,7 @@ Overview:
 
 ### Create Nanopore Experiment object
 
-In order to create an instance of type `OxfordNanoporeExperiment`, you need to provide a map that provides content following the [Nanopore Instrument Output Schema JSON](./src/main/resources/schemas/nanopore-instrument-output.schema.json).  
+In order to create an instance of type `OxfordNanoporeExperiment`, you need to provide a map that provides content following the [Nanopore Instrument Output Schema JSON](../src/main/resources/schemas/nanopore-instrument-output.schema.json).  
 Every measurement folder also needs to be enriched with metadata, which itself is specified with another [JSON schema](../src/main/resources/schemas/ont-metadata.schema.json).
 
 The final map contains an additional `metadata` property for each measurement, that for example can look like this:
