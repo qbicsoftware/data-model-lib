@@ -30,7 +30,7 @@ class PortalUser extends Person {
         }
 
         @Override
-        Person build() {
+        PortalUser build() {
             return new PortalUser(this)
         }
 
