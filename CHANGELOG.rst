@@ -9,6 +9,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Added**
 
+* Provide overviews in Readme and link javadocs (`#230 <https://github.com/qbicsoftware/data-model-lib/pull/#230>`_)
+
 **Fixed**
 
 **Dependencies**
