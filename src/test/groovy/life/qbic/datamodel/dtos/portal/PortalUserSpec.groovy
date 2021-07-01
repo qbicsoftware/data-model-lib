@@ -20,6 +20,7 @@ class PortalUserSpec extends Specification{
 
         then:
         user.getUserId().equals("1234")
+        assert user instanceof PortalUser
     }
 
 }
