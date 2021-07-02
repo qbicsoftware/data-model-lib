@@ -49,7 +49,7 @@ The final map contains an additional `metadata` property for each measurement, t
 The [data model API](../src/main/groovy/life/qbic/datamodel/datasets/OxfordNanoporeExperiment.groovy) outlines how to create an instance of `OxfordNanoporeExperiment`.
 
 
-###Nf-Core dataset
+### Nf-Core dataset
 
 In order to create an instance of type `NfCorePipelineResult`, you need to provide a map that provides content following the [Nfcore Pipeline Output Schema JSON](./src/main/resources/schemas/bioinformatics-analysis-result-set.schema.json).  
 
