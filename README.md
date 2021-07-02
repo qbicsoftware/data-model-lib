@@ -20,7 +20,7 @@ Overview:
         * [Nanopore usage example](#nanopore-usage-example)
         * [Nanopore data structures translated in openBIS](#nanopore-data-structures-translated-in-openbis)
         
-    * [NF-Core Bioinformatics Analysis Result Sets](#nf-core-bioinformatics-analysis-result-sets)
+    * [Nf-Core Bioinformatics Analysis Result Sets](#nf-core-bioinformatics-analysis-result-sets)
     
         * [NF-Core data structure for registration at QBiC](#nf-core-data-structure-for-registration-at-qbic)
         * [NF-Core usage example](#nf-core-usage-example)
