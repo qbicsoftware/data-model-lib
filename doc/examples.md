@@ -1,17 +1,17 @@
-# Usage examples
+# How to use
 
 The data model library provides access to different sequencer and bioinformatic pipeline output schemas
 in JSON that have been defined in collaboration with the labs.
 
 Overview:
 
-* [Create experiment object](#create-experiment-object)
+* [Create object](#create-object)
     * [Nanopore experiment output](#nanopore-experiment-output)
     * [Nf-Core dataset](#nf-core-dataset)
 * [Validate data structure](#validate-data-structure)
-* [Implementation examples](#implementation-examples)
+* [Usage examples](#usage-examples)
     
-## Create Experiment Object
+## Create object
 
 ### Nanopore experiment output
 
@@ -51,7 +51,7 @@ The [data model API](../src/main/groovy/life/qbic/datamodel/datasets/OxfordNanop
 
 ### Nf-Core dataset
 
-In order to create an instance of type `NfCorePipelineResult`, you need to provide a map that provides content following the [Nfcore Pipeline Output Schema JSON](./src/main/resources/schemas/bioinformatics-analysis-result-set.schema.json).  
+In order to create an instance of type `NfCorePipelineResult`, you need to provide a map that provides content following the [Nfcore Pipeline Output Schema JSON](../src/main/resources/schemas/bioinformatics-analysis-result-set.schema.json).  
 
 The [data model API](../src/main/groovy/life/qbic/datamodel/datasets/NfCorePipelineResult.groovy) outlines how to create an instance of `NfCorePipelineResult`.
 
@@ -60,10 +60,10 @@ The [data model API](../src/main/groovy/life/qbic/datamodel/datasets/NfCorePipel
 Each object contains a schema within which can be used to test if a parsed file tree conforms to the expected structure.  
 The validation itself is performed via the `SchemaLoader` class provided by the [Everit](https://github.com/everit-org/json-schema) package.
 
-## Implementation examples 
+## Usage examples 
 
-The Nanopore experiment object is implemented in the [core utils API](https://github.com/qbicsoftware/core-utils-lib/blob/master/src/main/groovy/life/qbic/utils/NanoporeParser.groovy). 
+`OxfordNanoporeExperiment` is used in the [core utils API](https://github.com/qbicsoftware/core-utils-lib/blob/master/src/main/groovy/life/qbic/utils/NanoporeParser.groovy). 
 Usage examples can also be seen in the associated [unit test](../src/test/groovy/life/qbic/datamodel/datasets/datastructure/OxfordNanoporeExperimentSpec.groovy).
 
-The NfCore pipeline result object is implemented in the [core utils API](https://github.com/qbicsoftware/core-utils-lib/blob/master/src/main/groovy/life/qbic/utils/BioinformaticAnalysisParser.groovy). 
+`NfCorePipelineResult` is used in the [core utils API](https://github.com/qbicsoftware/core-utils-lib/blob/master/src/main/groovy/life/qbic/utils/BioinformaticAnalysisParser.groovy). 
 Usage examples can also be seen in the associated [unit test](../src/test/groovy/life/qbic/datamodel/datasets/datastructure/NfCorePipelineResultSpec.groovy).

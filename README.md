@@ -28,8 +28,8 @@ Overview:
         
 - [DTOs - Data Transfer Objects](#dtos---data-transfer-objects)
 
-    * [Imaging context - Omero and more](#imaging-context---omero-and-more)
-    * [Business context - Offer Management and more](#business-context---offer-management-and-more)
+    * [Imaging context - Omero and more](#imaging-context---omero)
+    * [Business context - Offer Management and more](#business-context---offer-management)
 
 ## How to Install
 
@@ -76,7 +76,7 @@ A Nanopore NGS measurement output is delivered to us as a nested folder structur
 
 #### Nanopore usage example
 
-For usage examples, see the [usage example documentation](./doc/examples.md).
+For usage examples, see the [usage documentation](./doc/examples.md).
 
 For directory examples, see the [JSON example files](./src/test/resources) provided for the unit tests.
 
@@ -87,7 +87,7 @@ An overview of the openBIS data model and the location and entity relationship o
 
 ![Nanopore Data Structure Model](./doc/figures/OpenBIS_ER_diagram.png)
 
-### NF-Core Bioinformatics analysis result sets
+### NF-Core bioinformatics analysis result sets
 
 #### NF-Core data structure for registration at QBiC
 
@@ -96,7 +96,7 @@ A NF-Core pipeline directory output is provided as a nested folder structure, fo
 
 #### NF-Core usage example
 
-For usage examples, see the [usage example documentation](./doc/examples.md).
+For usage examples, see the [usage documentation](./doc/examples.md).
 
 For directory structure examples, see the [JSON example files](./src/test/resources/examples/resultset) provided for the unit tests.
 
@@ -115,7 +115,7 @@ They don't contain any business logic, they are just representing data.
 This DTO collection contains classes, that represent real world
 life-science domain data assets.
 
-### Imaging context - Omero and more
+### Imaging Context - Omero
 
 The following figure describes the entity relation of the imaging DTOs.
 
@@ -125,7 +125,7 @@ Please have a look at the detailed JavaDoc class description of the
 DTOs.
 
 
-### Business context - Offer Management and more
+### Business Context - Offer Management
 
 The following figure describes the entity relation of the DTOs related to Offer Management.
  
