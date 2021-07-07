@@ -46,14 +46,14 @@ The final map contains an additional `metadata` property for each measurement, t
 }
 ```
 
-The [data model API](../src/main/groovy/life/qbic/datamodel/datasets/OxfordNanoporeExperiment.groovy) outlines how to create an instance of `OxfordNanoporeExperiment`.
+The [data model API](https://qbicsoftware.github.io/data-model-lib/reports/2.8.2/gapidocs/life/qbic/datamodel/datasets/OxfordNanoporeExperiment.html) outlines how to create an instance of `OxfordNanoporeExperiment`.
 
 
 ### Nf-Core dataset
 
 In order to create an instance of type `NfCorePipelineResult`, you need to provide a map that provides content following the [Nfcore Pipeline Output Schema JSON](../src/main/resources/schemas/bioinformatics-analysis-result-set.schema.json).  
 
-The [data model API](../src/main/groovy/life/qbic/datamodel/datasets/NfCorePipelineResult.groovy) outlines how to create an instance of `NfCorePipelineResult`.
+The [data model API](https://qbicsoftware.github.io/data-model-lib/reports/2.8.2/gapidocs/life/qbic/datamodel/datasets/NfCorePipelineResult.html) outlines how to create an instance of `NfCorePipelineResult`.
 
 ## Validate data structure
 
@@ -62,8 +62,8 @@ The validation itself is performed via the `SchemaLoader` class provided by the 
 
 ## Usage examples 
 
-`OxfordNanoporeExperiment` is used in the [core utils API](https://github.com/qbicsoftware/core-utils-lib/blob/master/src/main/groovy/life/qbic/utils/NanoporeParser.groovy). 
+`OxfordNanoporeExperiment` is used in the [core utils API](https://qbicsoftware.github.io/core-utils-lib/reports/1.8.0/gapidocs/life/qbic/utils/NanoporeParser.html). 
 Usage examples can also be seen in the associated [unit test](../src/test/groovy/life/qbic/datamodel/datasets/datastructure/OxfordNanoporeExperimentSpec.groovy).
 
-`NfCorePipelineResult` is used in the [core utils API](https://github.com/qbicsoftware/core-utils-lib/blob/master/src/main/groovy/life/qbic/utils/BioinformaticAnalysisParser.groovy). 
+`NfCorePipelineResult` is used in the [core utils API](https://qbicsoftware.github.io/core-utils-lib/reports/1.8.0/gapidocs/life/qbic/utils/BioinformaticAnalysisParser.html). 
 Usage examples can also be seen in the associated [unit test](../src/test/groovy/life/qbic/datamodel/datasets/datastructure/NfCorePipelineResultSpec.groovy).
