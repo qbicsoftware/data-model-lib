@@ -39,7 +39,7 @@ With Maven you can include the recent library version as dependency with:
 <dependency>
   <groupId>life.qbic</groupId>
   <artifactId>data-model-lib</artifactId>
-  <version>Insert preferred version</version>
+  <version><Insert preferred version></version>
 </dependency>
 ```
 or Groovy Grape:
