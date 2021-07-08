@@ -46,7 +46,7 @@ or Groovy Grape:
 
 ```
 @Grapes(
-  @Grab(group='life.qbic', module='data-model-lib', version='Insert preferred version')
+  @Grab(group='life.qbic', module='data-model-lib', version=<Insert preferred version>)
 )
 ```
 
