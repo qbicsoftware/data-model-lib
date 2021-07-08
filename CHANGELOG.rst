@@ -9,6 +9,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Added**
 
+* Provide new classes that describe incoming MaxQuant data structure (`#237 <https://github.com/qbicsoftware/data-model-lib/pull/237>`_)
+
 **Fixed**
 
 **Dependencies**
