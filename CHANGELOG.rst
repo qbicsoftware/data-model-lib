@@ -9,6 +9,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Added**
 
+Introduce Json Schema ``maxquant-result-set.schema`` for validating a provided maxQuant dataset (`#238 <https://github.com/qbicsoftware/data-model-lib/pull/238>`_)
+
 **Fixed**
 
 **Dependencies**
