@@ -25,6 +25,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 * A new class ``life.qbic.datamodel.dtos.portal.PortalUser`` that represents a user within QBiC's data management platform. (`#229 <https://github.com/qbicsoftware/data-model-lib/pull/229>`_)
 
+* Provide overviews in Readme and link javadocs (`#230 <https://github.com/qbicsoftware/data-model-lib/pull/#230>`_)
+
 **Fixed**
 
 **Dependencies**
