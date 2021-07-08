@@ -1,0 +1,174 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "maxquant-result-set.schema.json",
+  "title": "Structure of maxQuant result datasets.",
+  "description": "Describes the structural composition of a maxQuant result data sets.",
+  "definitions": {
+    "maxQuantRun": {
+      "description": "Information about the NOT KNOWN YET.",
+      "allOf": [
+        {
+          "$ref": "data-structure-commons.json#/definitions/dataFolder"
+        },
+        {
+          "properties": {
+            "name": { "pattern": "NOT KNOWN YET"},
+            "allPeptides": { "$ref": "#/definitions/allPeptides" },
+            "evidence": { "$ref": "#/definitions/evidence" },
+            "runParameters": { "$ref": "#/definitions/runParameters" },
+            "experimentalDesignTemplate": { "$ref": "#/definitions/experimentalDesignTemplate" },
+            "summary": { "$ref": "#/definitions/summary" },
+            "parameters": { "$ref": "#/definitions/parameters" },
+            "peptides": { "$ref": "#/definitions/peptides" },
+            "proteinGroups": { "$ref": "#/definitions/proteinGroups" }
+          },
+          "required": [
+            "allPeptides",
+            "evidence",
+            "runParameters",
+            "experimentalDesignTemplate",
+            "summary",
+            "parameters",
+            "peptides",
+            "proteinGroups"
+          ]
+        }
+      ]
+    },
+    "allPeptides": {
+      "description": "A data file that contains information about all detected LC-MS features",
+      "allOf": [
+        {
+          "$ref": "data-structure-commons.json#/definitions/dataFile"
+        },
+        {
+          "properties": {
+            "name": { "pattern": "allPeptides"},
+            "fileType": { "pattern": "txt" }
+          }
+        }
+      ]
+    },
+    "evidence": {
+      "description": "A data file that contains information about all identified LC-MS-features",
+      "allOf": [
+        {
+          "$ref": "data-structure-commons.json#/definitions/dataFile"
+        },
+        {
+          "properties": {
+            "name": { "pattern": "evidence"},
+            "fileType": { "pattern": "txt" }
+          }
+        }
+      ]
+    },
+    "runParameters": {
+      "description": "A data file that contains information about NOT KNOWN YET",
+      "allOf": [
+        {
+          "$ref": "data-structure-commons.json#/definitions/dataFile"
+        },
+        {
+          "properties": {
+            "name": { "pattern": "mqpar"},
+            "fileType": { "pattern": "xml" }
+          }
+        }
+      ]
+    },
+    "experimentalDesignTemplate": {
+      "description": "A data file that contains the experimental design template containing the *.raw files and the chosen experimental design",
+      "allOf": [
+        {
+          "$ref": "data-structure-commons.json#/definitions/dataFile"
+        },
+        {
+          "properties": {
+            "name": { "pattern": "experimentalDesignTemplate"},
+            "fileType": { "pattern": "txt" }
+          }
+        }
+      ]
+    },
+    "summary": {
+      "description": "A data file that contains a general overview of the run",
+      "allOf": [
+        {
+          "$ref": "data-structure-commons.json#/definitions/dataFile"
+        },
+        {
+          "properties": {
+            "name": { "pattern": "summary_\\d{3}[0-9]"},
+            "fileType": { "pattern": "pdf" }
+          }
+        }
+      ]
+    },
+    "parameters": {
+      "description": "A data file that contains an overview over the used search and quantification parameters",
+      "allOf": [
+        {
+          "$ref": "data-structure-commons.json#/definitions/dataFile"
+        },
+        {
+          "properties": {
+            "name": { "pattern": "parameters"},
+            "fileType": { "pattern": "txt" }
+          }
+        }
+      ]
+    },
+    "peptides": {
+      "description": "A data file that contains information about all identified peptide sequences",
+      "allOf": [
+        {
+          "$ref": "data-structure-commons.json#/definitions/dataFile"
+        },
+        {
+          "properties": {
+            "name": { "pattern": "peptides"},
+            "fileType": { "pattern": "txt" }
+          }
+        }
+      ]
+    },
+    "proteinGroups": {
+      "description": "A data file that contains information about the identified protein groups",
+      "allOf": [
+        {
+          "$ref": "data-structure-commons.json#/definitions/dataFile"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "proteinGroups"
+            },
+            "fileType": {
+              "pattern": "txt"
+            }
+          }
+        }
+      ]
+    }
+    },
+  "type": "object",
+  "properties": {
+    "allPeptides": {"$ref": "#/definitions/allPeptides"},
+    "evidence": {"$ref":  "#/definitions/evidence"},
+    "runParameters": {"$ref":  "#/definitions/runParameters"},
+    "experimentalDesignTemplate": {"$ref":  "#/definitions/experimentalDesignTemplate"},
+    "parameters": {"$ref":  "#/definitions/parameters"},
+    "summary": {"$ref":  "#/definitions/summary"},
+    "peptides": {"$ref":  "#/definitions/peptides"}
+  },
+  "required": [
+    "allPeptides",
+    "evidence",
+    "runParameters",
+    "experimentalDesignTemplate",
+    "parameters",
+    "summary",
+    "peptides"
+  ]
+}
