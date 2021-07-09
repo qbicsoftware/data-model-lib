@@ -5,7 +5,7 @@
   "description": "Describes the structural composition of a maxQuant result data sets.",
   "definitions": {
     "maxQuantRun": {
-      "description": "Describes the structural composition of maxQuant result data sets.",
+      "description": "DataFolder containing a maxQuant dataset associated with a run.",
       "allOf": [
         {
           "$ref": "data-structure-commons.json#/definitions/dataFolder"
