@@ -25,7 +25,7 @@ class Peptides extends DataFile{
 
     private void validateName() {
         if (!(this.name =~ NAME_SCHEMA)) {
-            throw new IllegalArgumentException("Name must match the MaxQuant summary schema!")
+            throw new IllegalArgumentException("Name must match the MaxQuant Peptides schema!")
         }
     }
 }
