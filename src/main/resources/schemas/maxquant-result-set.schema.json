@@ -5,14 +5,14 @@
   "description": "Describes the structural composition of a maxQuant result data sets.",
   "definitions": {
     "maxQuantRun": {
-      "description": "Information about the NOT KNOWN YET.",
+      "description": "Describes the structural composition of maxQuant result data sets.",
       "allOf": [
         {
           "$ref": "data-structure-commons.json#/definitions/dataFolder"
         },
         {
           "properties": {
-            "name": { "pattern": "NOT KNOWN YET"},
+            "name": { "pattern": "maxquant_run"},
             "allPeptides": { "$ref": "#/definitions/allPeptides" },
             "evidence": { "$ref": "#/definitions/evidence" },
             "runParameters": { "$ref": "#/definitions/runParameters" },
