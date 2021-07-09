@@ -18,6 +18,13 @@ class Evidence extends DataFile{
         validateName()
     }
 
+    /**
+     * Creates the Evidence object based on a file name and a relative path of it
+     * @param name The file name of the Evidence file
+     * @param relativePath The relative path to the file in a file system
+     * @return the Evidence object, which also validates if the filename is valid
+     * @since 2.10.0
+     */
     static Evidence create(String name, String relativePath) {
         return new Evidence(name, relativePath)
     }
