@@ -1,0 +1,47 @@
+{
+  "maxQuantRun": {
+    "name": "maxquant_run",
+    "path": "./maxquant_run",
+    "children": [],
+    "allPeptides": {
+      "name": "allPeptides.txt",
+      "fileType": "txt",
+      "path": "./maxquant_run/allPeptides.txt"
+    },
+    "evidence": {
+      "name": "evidence.txt",
+      "fileType": "txt",
+      "path": "./maxquant_run/evidence.txt"
+    },
+    "experimentalDesignTemplate": {
+      "name": "experimentalDesignTemplate.txt",
+      "fileType": "txt",
+      "path": "./maxquant_run/experimentalDesignTemplate.txt"
+    },
+    "parameters": {
+      "name": "parameters.txt",
+      "fileType": "txt",
+      "path": "./maxquant_run/parameters.txt"
+    },
+    "peptides": {
+      "name": "peptides.txt",
+      "fileType": "txt",
+      "path": "./maxquant_run/peptides.txt"
+    },
+    "proteinGroups": {
+      "name": "proteinGroups.txt",
+      "fileType": "txt",
+      "path": "./maxquant_run/proteinGroups.txt"
+    },
+    "runParameters": {
+      "name": "mqpar.xml",
+      "fileType": "xml",
+      "path": "./maxquant_run/mqpar.xml"
+    },
+    "summary": {
+      "name": "summary_1234.pdf",
+      "fileType": "pdf",
+      "path": "./maxquant_run/summary_1234.pdf"
+    }
+  }
+}
