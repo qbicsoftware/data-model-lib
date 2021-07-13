@@ -53,8 +53,8 @@ class MaxQuantRunResultSpec extends Specification {
         Peptides peptides = maxQuantRunResult.peptides
         ProteinGroups proteinGroups = maxQuantRunResult.proteinGroups
         RunParameters runParameters = maxQuantRunResult.runParameters
-        Summary summary = maxQuantRunResult.summary
         SampleIds sampleIds = maxQuantRunResult.sampleIds
+        Summary summary = maxQuantRunResult.summary
         then:
 
         allPeptides.name == "allPeptides.txt"
@@ -64,8 +64,8 @@ class MaxQuantRunResultSpec extends Specification {
         peptides.name == "peptides.txt"
         proteinGroups.name == "proteinGroups.txt"
         runParameters.name == "mqpar.xml"
-        summary.name == "summary_1234.pdf"
         sampleIds.name == "sample_ids.txt"
+        summary.name == "summary_1234.pdf"
     }
 
     def "Invalid fileTree will return a NullPointerException"() {
