@@ -123,21 +123,21 @@
           }
         }
       ]
-    }
-  },
-  "summary": {
-    "description": "A data file that contains a general overview of the run",
-    "allOf": [
-      {
-        "$ref": "data-structure-commons.json#/definitions/dataFile"
-      },
-      {
-        "properties": {
-          "name": { "pattern": "summary_\\d{3}[0-9]"},
-          "fileType": { "pattern": "pdf" }
+    },
+    "summary": {
+      "description": "A data file that contains a general overview of the run",
+      "allOf": [
+        {
+          "$ref": "data-structure-commons.json#/definitions/dataFile"
+        },
+        {
+          "properties": {
+            "name": { "pattern": "summary_\\d{3}[0-9]"},
+            "fileType": { "pattern": "pdf" }
+          }
         }
-      }
-    ]
+      ]
+    }
   },
   "type": "object",
   "properties": {
