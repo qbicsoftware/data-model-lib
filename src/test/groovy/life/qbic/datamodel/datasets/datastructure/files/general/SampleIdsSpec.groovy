@@ -1,5 +1,6 @@
 package life.qbic.datamodel.datasets.datastructure.files.nfcore
 
+import life.qbic.datamodel.datasets.datastructure.files.general.SampleIds
 import spock.lang.Specification
 
 /**
