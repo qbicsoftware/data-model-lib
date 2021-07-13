@@ -9,8 +9,6 @@ import life.qbic.datamodel.datasets.datastructure.files.maxquant.Peptides
 import life.qbic.datamodel.datasets.datastructure.files.maxquant.ProteinGroups
 import life.qbic.datamodel.datasets.datastructure.files.maxquant.RunParameters
 import life.qbic.datamodel.datasets.datastructure.files.maxquant.Summary
-import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
-import life.qbic.datamodel.datasets.datastructure.folders.maxquant.MaxQuantRunFolder
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Method
 
@@ -37,16 +35,32 @@ final class MaxQuantRunResult {
             FQDN_FILES + ".Summary"
     ]
 
-    private final static Set maxQuantFolderTypes = [
-            FQDN_FOLDERS + ".MaxQuantRunFolder",
-    ]
+    private AllPeptides allPeptides
 
-    private MaxQuantRunFolder maxQuantRunFolder
+    private Evidence evidence
 
-    MaxQuantRunResult(MaxQuantRunFolder maxQuantRunFolder) {
-        Objects.requireNonNull(maxQuantRunFolder, "Please provide a maxQuantRun folder.")
+    private ExperimentalDesignTemplate experimentalDesignTemplate
 
-        this.maxQuantRunFolder = maxQuantRunFolder
+    private Parameters parameters
+
+    private Peptides peptides
+
+    private ProteinGroups proteinGroups
+
+    private RunParameters runParameters
+
+    private Summary summary
+
+    MaxQuantRunResult(AllPeptides allPeptides, Evidence evidence, ExperimentalDesignTemplate experimentalDesignTemplate, Parameters parameters, Peptides peptides, ProteinGroups proteinGroups, RunParameters runParameters, Summary summary) {
+        this.allPeptides = Objects.requireNonNull(allPeptides, "allPeptides must not be null.")
+        this.evidence = Objects.requireNonNull(evidence, "evidence must not be null.")
+        this.experimentalDesignTemplate = Objects.requireNonNull(experimentalDesignTemplate, "experimentalDesignTemplate must not be null.")
+        this.parameters = Objects.requireNonNull(parameters, "parameters must not be null.")
+        this.peptides = Objects.requireNonNull(peptides, "peptides must not be null.")
+        this.proteinGroups = Objects.requireNonNull(proteinGroups, "proteinGroups must not be null.")
+        this.runParameters = Objects.requireNonNull(runParameters, "runParameters must not be null.")
+        this.summary = Objects.requireNonNull(summary, "summary must not be null.")
+
     }
 
     /**
@@ -60,53 +74,100 @@ final class MaxQuantRunResult {
      */
     static MaxQuantRunResult createFrom(Map maxQuantRunOutput) {
 
-        //Check if the required folders is in root directory
-        Objects.requireNonNull(maxQuantRunOutput.get("maxQuantRun"), "The root folder must contain a maxQuantRun folder.")
-        //Check if all required files are in the pipeline_info directory
-        Map maxQuantRunMap = maxQuantRunOutput["maxQuantRun"] as Map
-        Objects.requireNonNull(maxQuantRunMap.get("allPeptides"), "The maxQuantRun folder must contain a allPeptides.txt file.")
-        Objects.requireNonNull(maxQuantRunMap.get("evidence"), "The maxQuantRun folder must contain a evidence.txt file.")
-        Objects.requireNonNull(maxQuantRunMap.get("experimentalDesignTemplate"), "The maxQuantRun folder must contain a experimentalDesignTemplate.txt file.")
-        Objects.requireNonNull(maxQuantRunMap.get("parameters"), "The maxQuantRun folder must contain a parameters.txt file.")
-        Objects.requireNonNull(maxQuantRunMap.get("peptides"), "The maxQuantRun folder must contain a peptides.txt file.")
-        Objects.requireNonNull(maxQuantRunMap.get("proteinGroups"), "The maxQuantRun folder must contain a proteinGroups.txt file.")
-        Objects.requireNonNull(maxQuantRunMap.get("runParameters"), "The maxQuantRun folder must contain a runParameters.xml file.")
-        Objects.requireNonNull(maxQuantRunMap.get("summary"), "The maxQuantRun folder must contain a summary.pdf file.")
+        //Check if the required folders are in the root directory
+        Objects.requireNonNull(maxQuantRunOutput.get("allPeptides"), "The provided directory must contain a allPeptides.txt file.")
+        Objects.requireNonNull(maxQuantRunOutput.get("evidence"), "The provided directory must contain a evidence.txt file.")
+        Objects.requireNonNull(maxQuantRunOutput.get("experimentalDesignTemplate"), "The provided directory must contain a experimentalDesignTemplate.txt file.")
+        Objects.requireNonNull(maxQuantRunOutput.get("parameters"), "The provided directory must contain a parameters.txt file.")
+        Objects.requireNonNull(maxQuantRunOutput.get("peptides"), "The provided directory must contain a peptides.txt file.")
+        Objects.requireNonNull(maxQuantRunOutput.get("proteinGroups"), "The provided directory must contain a proteinGroups.txt file.")
+        Objects.requireNonNull(maxQuantRunOutput.get("runParameters"), "The provided director must contain a runParameters.xml file.")
+        Objects.requireNonNull(maxQuantRunOutput.get("summary"), "The provided directory must contain a summary.pdf file.")
 
-        //Parse all folders in the root directory
-        MaxQuantRunFolder maxQuantRunFolder = parseFolder(maxQuantRunOutput.get("maxQuantRun") as Map) as MaxQuantRunFolder
-
-        //These files are not stored as children but as properties of the pipeline_info folder
-        DataFile allPeptides = parseFile(maxQuantRunMap.get("allPeptides") as Map)
-        DataFile evidence = parseFile(maxQuantRunMap.get("evidence") as Map)
-        DataFile experimentalDesignTemplate = parseFile(maxQuantRunMap.get("experimentalDesignTemplate") as Map)
-        DataFile parameters = parseFile(maxQuantRunMap.get("parameters") as Map)
-        DataFile peptides = parseFile(maxQuantRunMap.get("peptides") as Map)
-        DataFile proteinGroups = parseFile(maxQuantRunMap.get("proteinGroups") as Map)
-        DataFile runParameters = parseFile(maxQuantRunMap.get("runParameters") as Map)
-        DataFile summary = parseFile(maxQuantRunMap.get("summary") as Map)
-
-        //Set information of maxQuantRunFolder properties
-        maxQuantRunFolder.allPeptides = allPeptides as AllPeptides
-        maxQuantRunFolder.evidence = evidence as Evidence
-        maxQuantRunFolder.experimentalDesignTemplate = experimentalDesignTemplate as ExperimentalDesignTemplate
-        maxQuantRunFolder.parameters = parameters as Parameters
-        maxQuantRunFolder.peptides = peptides as Peptides
-        maxQuantRunFolder.proteinGroups = proteinGroups as ProteinGroups
-        maxQuantRunFolder.runParameters = runParameters as RunParameters
-        maxQuantRunFolder.summary = summary as Summary
+        //Get Files from Root Directory
+        AllPeptides allPeptides = parseFile(maxQuantRunOutput.get("allPeptides") as Map) as AllPeptides
+        Evidence evidence  = parseFile(maxQuantRunOutput.get("evidence") as Map) as Evidence
+        ExperimentalDesignTemplate experimentalDesignTemplate = parseFile(maxQuantRunOutput.get("experimentalDesignTemplate") as Map) as ExperimentalDesignTemplate
+        Parameters parameters = parseFile(maxQuantRunOutput.get("parameters") as Map) as Parameters
+        Peptides peptides = parseFile(maxQuantRunOutput.get("peptides") as Map) as Peptides
+        ProteinGroups proteinGroups = parseFile(maxQuantRunOutput.get("proteinGroups") as Map) as ProteinGroups
+        RunParameters runParameters = parseFile(maxQuantRunOutput.get("runParameters") as Map) as RunParameters
+        Summary summary = parseFile(maxQuantRunOutput.get("summary") as Map) as Summary
 
         //Create new MaxQuantRunResult object with parsed information
-        return new MaxQuantRunResult(maxQuantRunFolder)
+        return new MaxQuantRunResult(allPeptides, evidence, experimentalDesignTemplate, parameters, peptides, proteinGroups, runParameters, summary)
     }
 
     /**
-     * Provides access to the information stored in the MaxQuantRun folder
-     * @return MaxQuantRunFolder
+     * Provides access to the information stored in the AllPeptides file
+     * @return an AllPeptides file generated by MaxQuant
      * @since 2.10.0
      */
-    MaxQuantRunFolder getMaxQuantRunInformation() {
-        return maxQuantRunFolder
+    AllPeptides getAllPeptides() {
+        return allPeptides
+    }
+
+    /**
+     * Provides access to the information stored in the Evidence file
+     * @return an Evidence file generated by MaxQuant
+     * @since 2.10.0
+     */
+    Evidence getEvidence() {
+        return evidence
+    }
+
+    /**
+     * Provides access to the information stored in the ExperimentalDesignTemplate file
+     * @return an ExperimentalDesignTemplate file generated by MaxQuant
+     * @since 2.10.0
+     */
+    ExperimentalDesignTemplate getExperimentalDesignTemplate() {
+        return experimentalDesignTemplate
+    }
+
+    /**
+     * Provides access to the information stored in the Parameters file
+     * @return a Parameters file generated by MaxQuant
+     * @since 2.10.0
+     */
+    Parameters getParameters() {
+        return parameters
+    }
+
+    /**
+     * Provides access to the information stored in the Peptides file
+     * @return a Peptides file generated by MaxQuant
+     * @since 2.10.0
+     */
+    Peptides getPeptides() {
+        return peptides
+    }
+
+    /**
+     * Provides access to the information stored in the ProteinGroups file
+     * @return a ProteinsGroups file generated by MaxQuant
+     * @since 2.10.0
+     */
+    ProteinGroups getProteinGroups() {
+        return proteinGroups
+    }
+
+    /**
+     * Provides access to the information stored in the RunParameters file
+     * @return a RunParameters file generated by MaxQuant
+     * @since 2.10.0
+     */
+    RunParameters getRunParameters() {
+        return runParameters
+    }
+
+    /**
+     * Provides access to the information stored in the Summary file
+     * @return a Summary file generated by MaxQuant
+     * @since 2.10.0
+     */
+    Summary getSummary() {
+        return summary
     }
 
     /*
@@ -131,70 +192,4 @@ final class MaxQuantRunResult {
         // If we cannot create a DataFile object at all, throw an exception
         throw new IllegalArgumentException("File $name with path $path is of unknown maxQuant file type.")
     }
-
-    /*
-     * Helper method that creates a DataFolder instance from a map
-     */
-    private static DataFolder parseFolder(Map fileTree) throws IllegalArgumentException {
-
-        def name = fileTree.get("name") as String
-        def path = fileTree.get("path") as String
-        def children = parseChildren(fileTree.get("children") as List)
-
-        for (String maxQuantFolderType : maxQuantFolderTypes) {
-            Class<?> c = Class.forName(maxQuantFolderType)
-            Method method = c.getDeclaredMethod("create", String.class, String.class, List.class)
-            Optional<DataFolder> folder = tryToCreateDataFolder(method, name, path, children)
-            if (folder.isPresent()) {
-                return folder.get()
-            }
-        }
-        // If we reach this point, no DataFolder could be created based on the known folder types
-        // in life.qbic.datamodel.datasets.datastructure.folders.maxquant *
-        throw new IllegalArgumentException("Folder $name with path $path is of unknown maxQuant folder type.")
-    }
-
-    /*
-     * Helper method that tries to create a DataFolder instance
-     * based on the DataFolder's different static factory create methods.
-     */
-    private static Optional<DataFolder> tryToCreateDataFolder(Method method,
-                                                              String name,
-                                                              String relativePath,
-                                                              List children) {
-        Optional<DataFolder> folder = Optional.empty()
-            try {
-                // We only have named folders
-                def dataFolder = method.invoke(null, name, relativePath, children) as DataFolder
-                folder = Optional.of(dataFolder)
-            } catch (InvocationTargetException e2) {
-                // Do nothing
-            }
-
-        return folder
-    }
-
-    /*
-     * Helper method that parses the children of a folder.
-     */
-    private static List parseChildren(List<Map> children) {
-        def parsedChildren = []
-        children.each { Map unknownChild ->
-            try {
-                def child = parseFile(unknownChild)
-                //only add child if the Datafile is not null
-                if (child) {
-                    parsedChildren.add(child)
-                }
-            } catch (IllegalArgumentException e) {
-                // We do not capture the second parse call, as we want to fail the parsing at this point.
-                // This means that we ultimately found a child of unknown type, which should
-                // break the parsing.
-                def child = parseFolder(unknownChild)
-                parsedChildren.add(child)
-            }
-        }
-        return parsedChildren
-    }
-
 }

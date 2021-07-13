@@ -2,7 +2,6 @@ package life.qbic.datamodel.datasets.datastructure
 
 import groovy.json.JsonSlurper
 import life.qbic.datamodel.datasets.MaxQuantRunResult
-import life.qbic.datamodel.datasets.NfCorePipelineResult
 import life.qbic.datamodel.datasets.datastructure.files.maxquant.AllPeptides
 import life.qbic.datamodel.datasets.datastructure.files.maxquant.Evidence
 import life.qbic.datamodel.datasets.datastructure.files.maxquant.ExperimentalDesignTemplate
@@ -11,12 +10,6 @@ import life.qbic.datamodel.datasets.datastructure.files.maxquant.Peptides
 import life.qbic.datamodel.datasets.datastructure.files.maxquant.ProteinGroups
 import life.qbic.datamodel.datasets.datastructure.files.maxquant.RunParameters
 import life.qbic.datamodel.datasets.datastructure.files.maxquant.Summary
-import life.qbic.datamodel.datasets.datastructure.files.nfcore.RunId
-import life.qbic.datamodel.datasets.datastructure.files.nfcore.SampleIds
-import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
-import life.qbic.datamodel.datasets.datastructure.folders.maxquant.MaxQuantRunFolder
-import life.qbic.datamodel.datasets.datastructure.folders.nfcore.PipelineInformationFolder
-import life.qbic.datamodel.datasets.datastructure.folders.nfcore.QualityControlFolder
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -40,6 +33,7 @@ class MaxQuantRunResultSpec extends Specification {
         InputStream validStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("examples/resultset/maxquant/valid-resultset-example.json")
         validDataStructure = (Map) new JsonSlurper().parse(validStream)
         validStream.close()
+        println(validDataStructure)
 
         InputStream invalidStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("examples/resultset/maxquant/invalid-resultset-example.json")
         invalidDataStructure = (Map) new JsonSlurper().parse(invalidStream)
@@ -52,15 +46,14 @@ class MaxQuantRunResultSpec extends Specification {
 
         when:
         final MaxQuantRunResult maxQuantRunResult = MaxQuantRunResult.createFrom(validExample)
-        MaxQuantRunFolder maxQuantRunResultFolder = maxQuantRunResult.getMaxQuantRunInformation()
-        AllPeptides allPeptides = maxQuantRunResultFolder.allPeptides
-        Evidence evidence = maxQuantRunResultFolder.evidence
-        ExperimentalDesignTemplate experimentalDesignTemplate = maxQuantRunResultFolder.experimentalDesignTemplate
-        Parameters parameters = maxQuantRunResultFolder.parameters
-        Peptides peptides = maxQuantRunResultFolder.peptides
-        ProteinGroups proteinGroups = maxQuantRunResultFolder.proteinGroups
-        RunParameters runParameters = maxQuantRunResultFolder.runParameters
-        Summary summary = maxQuantRunResultFolder.summary
+        AllPeptides allPeptides = maxQuantRunResult.allPeptides
+        Evidence evidence = maxQuantRunResult.evidence
+        ExperimentalDesignTemplate experimentalDesignTemplate = maxQuantRunResult.experimentalDesignTemplate
+        Parameters parameters = maxQuantRunResult.parameters
+        Peptides peptides = maxQuantRunResult.peptides
+        ProteinGroups proteinGroups = maxQuantRunResult.proteinGroups
+        RunParameters runParameters = maxQuantRunResult.runParameters
+        Summary summary = maxQuantRunResult.summary
         then:
 
         allPeptides.name == "allPeptides.txt"

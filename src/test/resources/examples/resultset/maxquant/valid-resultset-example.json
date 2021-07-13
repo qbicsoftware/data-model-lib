@@ -1,19 +1,15 @@
 {
-  "maxQuantRun": {
-    "name": "maxquant_run",
-    "path": "./maxquant_run",
-    "children": [],
-    "allPeptides": {
-      "name": "allPeptides.txt",
-      "fileType": "txt",
-      "path": "./maxquant_run/allPeptides.txt"
-    },
-    "evidence": {
-      "name": "evidence.txt",
-      "fileType": "txt",
-      "path": "./maxquant_run/evidence.txt"
-    },
-    "experimentalDesignTemplate": {
+  "allPeptides": {
+    "name": "allPeptides.txt",
+    "fileType": "txt",
+    "path": "./maxquant_run/allPeptides.txt"
+  },
+  "evidence": {
+    "name": "evidence.txt",
+    "fileType": "txt",
+    "path": "./maxquant_run/evidence.txt"
+  },
+  "experimentalDesignTemplate": {
       "name": "experimentalDesignTemplate.txt",
       "fileType": "txt",
       "path": "./maxquant_run/experimentalDesignTemplate.txt"

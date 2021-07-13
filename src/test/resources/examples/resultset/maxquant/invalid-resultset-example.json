@@ -1,5 +1,7 @@
 {
-  "maxQuantRun": {
-    "name": "maxquant_run"
+  "somePeptides": {
+    "name": "allPeptides.txt",
+    "fileType": "txt",
+    "path": "./maxquant_run/allPeptides.txt"
   }
 }
