@@ -63,7 +63,7 @@ final class MaxQuantRunResult {
         //Check if the required folders is in root directory
         Objects.requireNonNull(maxQuantRunOutput.get("maxQuantRun"), "The root folder must contain a maxQuantRun folder.")
         //Check if all required files are in the pipeline_info directory
-        Map maxQuantRunMap = maxQuantRunOutput["MaxQuantRun"] as Map
+        Map maxQuantRunMap = maxQuantRunOutput["maxQuantRun"] as Map
         Objects.requireNonNull(maxQuantRunMap.get("allPeptides"), "The maxQuantRun folder must contain a allPeptides.txt file.")
         Objects.requireNonNull(maxQuantRunMap.get("evidence"), "The maxQuantRun folder must contain a evidence.txt file.")
         Objects.requireNonNull(maxQuantRunMap.get("experimentalDesignTemplate"), "The maxQuantRun folder must contain a experimentalDesignTemplate.txt file.")
@@ -74,7 +74,7 @@ final class MaxQuantRunResult {
         Objects.requireNonNull(maxQuantRunMap.get("summary"), "The maxQuantRun folder must contain a summary.pdf file.")
 
         //Parse all folders in the root directory
-        MaxQuantRunFolder maxQuantRunFolder = parseFolder(maxQuantRunOutput.get("pipelineInformation") as Map) as MaxQuantRunFolder
+        MaxQuantRunFolder maxQuantRunFolder = parseFolder(maxQuantRunOutput.get("maxQuantRun") as Map) as MaxQuantRunFolder
 
         //These files are not stored as children but as properties of the pipeline_info folder
         DataFile allPeptides = parseFile(maxQuantRunMap.get("allPeptides") as Map)
