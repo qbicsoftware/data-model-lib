@@ -11,9 +11,15 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 * Provide new classes that describe incoming MaxQuant data structure (`#237 <https://github.com/qbicsoftware/data-model-lib/pull/237>`_)
 
+* Provide dedicated data structure `life.qbic.datamodel.datasets.MaxQuantRunResult.groovy`` for grouping maxQuant run data structure (`#239 <https://github.com/qbicsoftware/data-model-lib/pull/239>`_)
+
+* Introduce
+
 **Fixed**
 
 **Dependencies**
+
+* Replace ``life.qbic.datamodel.datasets.datastructure.files.nfcore.SampleIds.groovy`` with ``life.qbic.datamodel.datasets.datastructure.files.general.SampleIds.groovy`` (`#239 <https://github.com/qbicsoftware/data-model-lib/pull/239>`_)
 
 **Deprecated**
 
