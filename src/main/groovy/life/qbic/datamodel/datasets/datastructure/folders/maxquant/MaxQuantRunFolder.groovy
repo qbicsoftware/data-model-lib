@@ -13,50 +13,50 @@ import life.qbic.datamodel.datasets.datastructure.files.maxquant.Summary
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 
 /**
- * A special case of a DataFolder, its name is always MaxQuantRun.
+ * A special case of a DataFolder, its name is always MaxQuantRunFolder.
  *
  * Its children field contains a list of type List<DataFile>
  *
  * @since 2.10.0
  */
-class MaxQuantRun extends DataFolder{
+class MaxQuantRunFolder extends DataFolder{
 
     private final static String NAME_SCHEMA = /maxquant_run/ //todo this was not specified in the ER diagram
 
-    private AllPeptides allPeptides
+    AllPeptides allPeptides
 
-    private Evidence evidence
+    Evidence evidence
 
-    private ExperimentalDesignTemplate experimentalDesignTemplate
+    ExperimentalDesignTemplate experimentalDesignTemplate
 
-    private Parameters parameters
+    Parameters parameters
 
-    private Peptides peptides
+    Peptides peptides
 
-    private ProteinGroups proteinGroups
+    ProteinGroups proteinGroups
 
-    private RunParameters runParameters
+    RunParameters runParameters
 
-    private Summary summary
+    Summary summary
 
-    protected MaxQuantRun() {}
+    protected MaxQuantRunFolder() {}
 
-    protected MaxQuantRun(String name, String relativePath, List<DataFile> children) {
+    protected MaxQuantRunFolder(String name, String relativePath, List<DataFile> children) {
         super(name, relativePath, children)
         validateName()
     }
 
     /**
-     * Creates a new instance of a MaxQuantRun object
+     * Creates a new instance of a MaxQuantRunFolder object
      *
      * @param name The folder name
      * @param relativePath The relative path of the folder
      * @param children A list with child elements of the folder
-     * @return A new instance of a MaxQuantRun object
+     * @return A new instance of a MaxQuantRunFolder object
      * @since 2.6.0
      */
-    static MaxQuantRun create(String name, String relativePath, List<DataFile> children) {
-        new MaxQuantRun(name, relativePath, children)
+    static MaxQuantRunFolder create(String name, String relativePath, List<DataFile> children) {
+        new MaxQuantRunFolder(name, relativePath, children)
     }
 
     private void validateName() {
