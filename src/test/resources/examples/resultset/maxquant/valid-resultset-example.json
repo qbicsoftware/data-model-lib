@@ -2,32 +2,32 @@
   "allPeptides": {
     "name": "allPeptides.txt",
     "fileType": "txt",
-    "path": "./maxquant_run/allPeptides.txt"
+    "path": "./combined/txt/allPeptides.txt"
   },
   "evidence": {
     "name": "evidence.txt",
     "fileType": "txt",
-    "path": "./maxquant_run/evidence.txt"
+    "path": "./combined/txt/evidence.txt"
   },
   "experimentalDesignTemplate": {
       "name": "experimentalDesignTemplate.txt",
       "fileType": "txt",
-      "path": "./maxquant_run/experimentalDesignTemplate.txt"
+      "path": "./combined/txt/experimentalDesignTemplate.txt"
     },
     "parameters": {
       "name": "parameters.txt",
       "fileType": "txt",
-      "path": "./maxquant_run/parameters.txt"
+      "path": "./combined/txt/parameters.txt"
     },
     "peptides": {
       "name": "peptides.txt",
       "fileType": "txt",
-      "path": "./maxquant_run/peptides.txt"
+      "path": "./combined/txt/peptides.txt"
     },
     "proteinGroups": {
       "name": "proteinGroups.txt",
       "fileType": "txt",
-      "path": "./maxquant_run/proteinGroups.txt"
+      "path": "./combined/txt/proteinGroups.txt"
     },
     "runParameters": {
       "name": "mqpar.xml",
@@ -38,6 +38,10 @@
       "name": "summary_1234.pdf",
       "fileType": "pdf",
       "path": "./maxquant_run/summary_1234.pdf"
-    }
+    },
+    "sampleIds": {
+      "name": "sample_ids.txt",
+      "fileType": "txt",
+      "path": "./sample_ids.txt"
   }
 }

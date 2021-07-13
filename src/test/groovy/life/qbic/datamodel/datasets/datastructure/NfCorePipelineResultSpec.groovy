@@ -3,7 +3,7 @@ package life.qbic.datamodel.datasets.datastructure
 import groovy.json.JsonSlurper
 import life.qbic.datamodel.datasets.NfCorePipelineResult
 import life.qbic.datamodel.datasets.datastructure.files.nfcore.RunId
-import life.qbic.datamodel.datasets.datastructure.files.nfcore.SampleIds
+import life.qbic.datamodel.datasets.datastructure.files.general.SampleIds
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nfcore.PipelineInformationFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nfcore.QualityControlFolder

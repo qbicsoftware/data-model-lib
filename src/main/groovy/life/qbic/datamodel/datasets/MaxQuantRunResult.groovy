@@ -9,6 +9,8 @@ import life.qbic.datamodel.datasets.datastructure.files.maxquant.Peptides
 import life.qbic.datamodel.datasets.datastructure.files.maxquant.ProteinGroups
 import life.qbic.datamodel.datasets.datastructure.files.maxquant.RunParameters
 import life.qbic.datamodel.datasets.datastructure.files.maxquant.Summary
+import life.qbic.datamodel.datasets.datastructure.files.general.SampleIds
+
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Method
 
@@ -19,10 +21,10 @@ import java.lang.reflect.Method
  */
 final class MaxQuantRunResult {
 
-    // Fully qualified domain name of the maxQuant folder structure package
-    private final static String FQDN_FOLDERS = "life.qbic.datamodel.datasets.datastructure.folders.maxquant"
     // Fully qualified domain name of the maxQuant file structure package
     private final static String FQDN_FILES = "life.qbic.datamodel.datasets.datastructure.files.maxquant"
+    // Fully qualified domain name of the general file structure package
+    private final static String GENERAL_FILES = "life.qbic.datamodel.datasets.datastructure.files.general"
 
     private final static Set maxQuantFileTypes = [
             FQDN_FILES + ".AllPeptides",
@@ -32,7 +34,8 @@ final class MaxQuantRunResult {
             FQDN_FILES + ".Peptides",
             FQDN_FILES + ".ProteinGroups",
             FQDN_FILES + ".RunParameters",
-            FQDN_FILES + ".Summary"
+            FQDN_FILES + ".Summary",
+            GENERAL_FILES + ".SampleIds"
     ]
 
     private AllPeptides allPeptides
@@ -51,7 +54,9 @@ final class MaxQuantRunResult {
 
     private Summary summary
 
-    MaxQuantRunResult(AllPeptides allPeptides, Evidence evidence, ExperimentalDesignTemplate experimentalDesignTemplate, Parameters parameters, Peptides peptides, ProteinGroups proteinGroups, RunParameters runParameters, Summary summary) {
+    private SampleIds sampleIds
+
+    MaxQuantRunResult(AllPeptides allPeptides, Evidence evidence, ExperimentalDesignTemplate experimentalDesignTemplate, Parameters parameters, Peptides peptides, ProteinGroups proteinGroups, RunParameters runParameters, Summary summary, SampleIds sampleIds) {
         this.allPeptides = Objects.requireNonNull(allPeptides, "allPeptides must not be null.")
         this.evidence = Objects.requireNonNull(evidence, "evidence must not be null.")
         this.experimentalDesignTemplate = Objects.requireNonNull(experimentalDesignTemplate, "experimentalDesignTemplate must not be null.")
@@ -60,7 +65,7 @@ final class MaxQuantRunResult {
         this.proteinGroups = Objects.requireNonNull(proteinGroups, "proteinGroups must not be null.")
         this.runParameters = Objects.requireNonNull(runParameters, "runParameters must not be null.")
         this.summary = Objects.requireNonNull(summary, "summary must not be null.")
-
+        this.sampleIds = Objects.requireNonNull(sampleIds, "sampleIds must not be null.")
     }
 
     /**
@@ -83,6 +88,7 @@ final class MaxQuantRunResult {
         Objects.requireNonNull(maxQuantRunOutput.get("proteinGroups"), "The provided directory must contain a proteinGroups.txt file.")
         Objects.requireNonNull(maxQuantRunOutput.get("runParameters"), "The provided director must contain a runParameters.xml file.")
         Objects.requireNonNull(maxQuantRunOutput.get("summary"), "The provided directory must contain a summary.pdf file.")
+        Objects.requireNonNull(maxQuantRunOutput.get("sampleIds"), "The provided directory must contain a sampleIds.txt file.")
 
         //Get Files from Root Directory
         AllPeptides allPeptides = parseFile(maxQuantRunOutput.get("allPeptides") as Map) as AllPeptides
@@ -93,9 +99,10 @@ final class MaxQuantRunResult {
         ProteinGroups proteinGroups = parseFile(maxQuantRunOutput.get("proteinGroups") as Map) as ProteinGroups
         RunParameters runParameters = parseFile(maxQuantRunOutput.get("runParameters") as Map) as RunParameters
         Summary summary = parseFile(maxQuantRunOutput.get("summary") as Map) as Summary
+        SampleIds sampleIds = parseFile(maxQuantRunOutput.get("sampleIds") as Map) as SampleIds
 
         //Create new MaxQuantRunResult object with parsed information
-        return new MaxQuantRunResult(allPeptides, evidence, experimentalDesignTemplate, parameters, peptides, proteinGroups, runParameters, summary)
+        return new MaxQuantRunResult(allPeptides, evidence, experimentalDesignTemplate, parameters, peptides, proteinGroups, runParameters, summary, sampleIds)
     }
 
     /**
@@ -170,6 +177,15 @@ final class MaxQuantRunResult {
         return summary
     }
 
+    /**
+     * Provides access to the information stored in the sampleIds file
+     * @return SampleIds
+     * @since 2.10.0
+     */
+    SampleIds getSampleIds() {
+        return sampleIds
+    }
+
     /*
      * Helper method that creates a DataFile instance from a map
      */
@@ -189,6 +205,7 @@ final class MaxQuantRunResult {
 
             }
         }
+
         // If we cannot create a DataFile object at all, throw an exception
         throw new IllegalArgumentException("File $name with path $path is of unknown maxQuant file type.")
     }

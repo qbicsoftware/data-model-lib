@@ -10,6 +10,7 @@ import life.qbic.datamodel.datasets.datastructure.files.maxquant.Peptides
 import life.qbic.datamodel.datasets.datastructure.files.maxquant.ProteinGroups
 import life.qbic.datamodel.datasets.datastructure.files.maxquant.RunParameters
 import life.qbic.datamodel.datasets.datastructure.files.maxquant.Summary
+import life.qbic.datamodel.datasets.datastructure.files.general.SampleIds
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -54,6 +55,7 @@ class MaxQuantRunResultSpec extends Specification {
         ProteinGroups proteinGroups = maxQuantRunResult.proteinGroups
         RunParameters runParameters = maxQuantRunResult.runParameters
         Summary summary = maxQuantRunResult.summary
+        SampleIds sampleIds = maxQuantRunResult.sampleIds
         then:
 
         allPeptides.name == "allPeptides.txt"
@@ -64,6 +66,7 @@ class MaxQuantRunResultSpec extends Specification {
         proteinGroups.name == "proteinGroups.txt"
         runParameters.name == "mqpar.xml"
         summary.name == "summary_1234.pdf"
+        sampleIds.name == "sample_ids.txt"
     }
 
     def "Invalid fileTree will return a NullPointerException"() {
