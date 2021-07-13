@@ -38,23 +38,23 @@ final class MaxQuantRunResult {
             GENERAL_FILES + ".SampleIds"
     ]
 
-    private AllPeptides allPeptides
+    private final AllPeptides allPeptides
 
-    private Evidence evidence
+    private final Evidence evidence
 
-    private ExperimentalDesignTemplate experimentalDesignTemplate
+    private final ExperimentalDesignTemplate experimentalDesignTemplate
 
-    private Parameters parameters
+    private final Parameters parameters
 
-    private Peptides peptides
+    private final Peptides peptides
 
-    private ProteinGroups proteinGroups
+    private final ProteinGroups proteinGroups
 
-    private RunParameters runParameters
+    private final RunParameters runParameters
 
-    private Summary summary
+    private final Summary summary
 
-    private SampleIds sampleIds
+    private final SampleIds sampleIds
 
     MaxQuantRunResult(AllPeptides allPeptides, Evidence evidence, ExperimentalDesignTemplate experimentalDesignTemplate, Parameters parameters, Peptides peptides, ProteinGroups proteinGroups, RunParameters runParameters, Summary summary, SampleIds sampleIds) {
         this.allPeptides = Objects.requireNonNull(allPeptides, "allPeptides must not be null.")

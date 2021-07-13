@@ -32,12 +32,12 @@
     "runParameters": {
       "name": "mqpar.xml",
       "fileType": "xml",
-      "path": "./maxquant_run/mqpar.xml"
+      "path": "./mqpar.xml"
     },
     "summary": {
       "name": "summary_1234.pdf",
       "fileType": "pdf",
-      "path": "./maxquant_run/summary_1234.pdf"
+      "path": "./combined/txt/summary_1234.pdf"
     },
     "sampleIds": {
       "name": "sample_ids.txt",
