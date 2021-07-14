@@ -2,6 +2,7 @@ FunctionsTest
 life.qbic
 life.qbic.datamodel.datasets.datastructure
 life.qbic.datamodel.datasets.datastructure.files
+life.qbic.datamodel.datasets.datastructure.files.general
 life.qbic.datamodel.datasets.datastructure.files.maxquant
 life.qbic.datamodel.datasets.datastructure.files.nanopore
 life.qbic.datamodel.datasets.datastructure.files.nfcore
