@@ -5,7 +5,7 @@ import life.qbic.datamodel.datasets.datastructure.files.DataFile
 import life.qbic.datamodel.datasets.datastructure.files.nfcore.ExecutionReport
 import life.qbic.datamodel.datasets.datastructure.files.nfcore.PipelineReport
 import life.qbic.datamodel.datasets.datastructure.files.nfcore.RunId
-import life.qbic.datamodel.datasets.datastructure.files.nfcore.SampleIds
+import life.qbic.datamodel.datasets.datastructure.files.general.SampleIds
 import life.qbic.datamodel.datasets.datastructure.files.nfcore.SoftwareVersions
 
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
@@ -27,10 +27,12 @@ final class NfCorePipelineResult {
     private final static String FQDN_FOLDERS = "life.qbic.datamodel.datasets.datastructure.folders.nfcore"
     // Fully qualified domain name of the nfcore file structure package
     private final static String FQDN_FILES = "life.qbic.datamodel.datasets.datastructure.files.nfcore"
+    // Fully qualified domain name of the general file structure package
+    private final static String GENERAL_FILES = "life.qbic.datamodel.datasets.datastructure.files.general"
 
     private final static Set nfCoreFileTypes = [
             FQDN_FILES + ".ExecutionReport",
-            FQDN_FILES + ".SampleIds",
+            GENERAL_FILES + ".SampleIds",
             FQDN_FILES + ".PipelineReport",
             FQDN_FILES + ".SoftwareVersions",
             FQDN_FILES + ".RunId"
