@@ -148,7 +148,7 @@
     "peptides": {"$ref":  "#/definitions/peptides"},
     "proteinGroups": {"$ref":  "#/definitions/proteinGroups"},
     "runParameters": {"$ref":  "#/definitions/runParameters"},
-    "sampleIDs": {"$ref":  "#/definitions/sampleIds"},
+    "sampleIds": {"$ref":  "#/definitions/sampleIds"},
     "summary": {"$ref":  "#/definitions/summary"}
   },
   "required": [
@@ -159,7 +159,7 @@
     "peptides",
     "proteinGroups",
     "runParameters",
-    "sampleIDs",
+    "sampleIds",
     "summary"
   ]
 }
