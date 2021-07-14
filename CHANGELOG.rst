@@ -13,7 +13,9 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 * Provide dedicated data structure `life.qbic.datamodel.datasets.MaxQuantRunResult.groovy`` for grouping maxQuant run data structure (`#239 <https://github.com/qbicsoftware/data-model-lib/pull/239>`_)
 
-Introduce Json schema ``maxquant-result-set.schema`` for validating a provided maxQuant dataset (`#238 <https://github.com/qbicsoftware/data-model-lib/pull/238>`_)
+* Introduce Json schema ``maxquant-result-set.schema`` for validating a provided maxQuant dataset (`#238 <https://github.com/qbicsoftware/data-model-lib/pull/238>`_)
+
+* Introduce ``life.qbic.datamodel.maxquant.MaxQuantOutput.groovy`` that provides access to the maxQuant JSON schema (`#238 <https://github.com/qbicsoftware/data-model-lib/pull/238>`_)
 
 **Fixed**
 
