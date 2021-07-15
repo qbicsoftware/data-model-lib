@@ -17,5 +17,6 @@ life.qbic.datamodel.dtos.imaging.properties
 life.qbic.datamodel.dtos.portal
 life.qbic.datamodel.dtos.projectmanagement
 life.qbic.datamodel.instruments
+life.qbic.datamodel.maxquant
 life.qbic.datamodel.people
 life.qbic.datamodel.pipelines
