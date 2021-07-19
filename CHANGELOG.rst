@@ -19,6 +19,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Fixed**
 
+* Override ``equals()`` for ``life.qbic.datamodel.dtos.projectmanagement.Project`` and ``life.qbic.datamodel.dtos.projectmanagement.ProjectIdentifier`` (`#236 <https://github.com/qbicsoftware/data-model-lib/pull/236>`_)
+
 **Dependencies**
 
 * Replace ``life.qbic.datamodel.datasets.datastructure.files.nfcore.SampleIds.groovy`` with ``life.qbic.datamodel.datasets.datastructure.files.general.SampleIds.groovy`` (`#239 <https://github.com/qbicsoftware/data-model-lib/pull/239>`_)
