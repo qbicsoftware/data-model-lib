@@ -8,6 +8,7 @@ Overview:
 * [Create object](#create-object)
     * [Nanopore experiment output](#nanopore-experiment-output)
     * [Nf-Core dataset](#nf-core-dataset)
+    * [MaxQuant dataset](#maxquant-dataset)
 * [Validate data structure](#validate-data-structure)
 * [Usage examples](#usage-examples)
     
@@ -46,14 +47,21 @@ The final map contains an additional `metadata` property for each measurement, t
 }
 ```
 
-The [data model API](https://qbicsoftware.github.io/data-model-lib/reports/2.8.2/gapidocs/life/qbic/datamodel/datasets/OxfordNanoporeExperiment.html) outlines how to create an instance of `OxfordNanoporeExperiment`.
+The [data model API](https://qbicsoftware.github.io/data-model-lib/reports/2.10.0/gapidocs/life/qbic/datamodel/datasets/OxfordNanoporeExperiment.html) outlines how to create an instance of `OxfordNanoporeExperiment`.
 
 
 ### Nf-Core dataset
 
 In order to create an instance of type `NfCorePipelineResult`, you need to provide a map that provides content following the [Nfcore Pipeline Output Schema JSON](../src/main/resources/schemas/bioinformatics-analysis-result-set.schema.json).  
 
-The [data model API](https://qbicsoftware.github.io/data-model-lib/reports/2.8.2/gapidocs/life/qbic/datamodel/datasets/NfCorePipelineResult.html) outlines how to create an instance of `NfCorePipelineResult`.
+The [data model API](https://qbicsoftware.github.io/data-model-lib/reports/2.10.0/gapidocs/life/qbic/datamodel/datasets/NfCorePipelineResult.html) outlines how to create an instance of `NfCorePipelineResult`.
+
+### MaxQuant dataset
+
+In order to create an instance of type `MaxQuantRunResult`, you need to provide a map that provides content following the [MaxQuant Schema JSON](../src/main/resources/schemas/maxquant-result-set.schema.json).  
+
+The [data model API](https://qbicsoftware.github.io/data-model-lib/reports/2.10.0/gapidocs/life/qbic/datamodel/datasets/MaxQuantRunResult.html) outlines how to create an instance of `MaxQuantRunResult`.
+
 
 ## Validate data structure
 
@@ -67,3 +75,6 @@ Usage examples can also be seen in the associated [unit test](../src/test/groovy
 
 `NfCorePipelineResult` is used in the [core utils API](https://qbicsoftware.github.io/core-utils-lib/reports/1.8.0/gapidocs/life/qbic/utils/BioinformaticAnalysisParser.html). 
 Usage examples can also be seen in the associated [unit test](../src/test/groovy/life/qbic/datamodel/datasets/datastructure/NfCorePipelineResultSpec.groovy).
+
+`MaxQuantRunResult` is used in the [core utils API](https://qbicsoftware.github.io/core-utils-lib/reports/1.9.0/gapidocs/life/qbic/utils/MaxQuantParser.html). 
+Usage examples can also be seen in the associated [unit test](../src/test/groovy/life/qbic/datamodel/datasets/datastructure/MaxQuantRunResultSpec.groovy).
