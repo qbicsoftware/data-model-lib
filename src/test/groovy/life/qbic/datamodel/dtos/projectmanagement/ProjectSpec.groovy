@@ -49,6 +49,7 @@ class ProjectSpec extends Specification {
         descriptionA | descriptionB | id1 | id2
         "Test"       | "Other"      | idA | idA
         "Test"       | "Test"       | idA | idB
+        "Test"       | "Other"      | idA | idB
     }
 
 }

@@ -23,14 +23,21 @@ class ProjectIdentifierSpec extends Specification{
 
     def "Compare to unequal ids"() {
         given:
-        ProjectIdentifier idA = new ProjectIdentifier(new ProjectSpace("TEST"), new ProjectCode("QTEST"))
-        ProjectIdentifier idB = new ProjectIdentifier(new ProjectSpace("REMO"), new ProjectCode("QTEST"))
+        ProjectIdentifier idA = new ProjectIdentifier(new ProjectSpace(projectSpaceA), new ProjectCode(projectCodeA))
+        ProjectIdentifier idB = new ProjectIdentifier(new ProjectSpace(projectSpaceB), new ProjectCode(projectCodeB))
 
         when:
         boolean comparison = idA.equals(idB)
 
         then:
         assert !comparison
+
+        where:
+        projectSpaceA | projectSpaceB | projectCodeA | projectCodeB
+        "TEST" | "TEST" | "QTEST" | "QREMU"
+        "TEST" | "REMU" | "QTEST" | "QREMU"
+        "TEST" | "REMU" | "QTEST" | "QTEST"
+
     }
 
 }
