@@ -10,6 +10,33 @@ Data Model Library - A collection of QBiC data models.
 ## Author
 Created by Andreas Friedrich, Luis de la Garza, Sven Fillinger.
 
+Overview:
+
+- [How to Install](#how-to-install)
+- [Data Models](#data-models)
+    * [Oxford Nanopore Data Structure](#oxford-nanopore-data-structure)
+    
+        * [Nanopore result set for registration at QBiC](#nanopore-result-set-for-registration-at-qbic)
+        * [Nanopore usage example](#nanopore-usage-example)
+        * [Nanopore data structures translated in openBIS](#nanopore-data-structures-translated-in-openbis)
+        
+    * [Nf-Core Bioinformatics Analysis Result Sets](#nf-core-bioinformatics-analysis-result-sets)
+    
+        * [NF-Core data structure for registration at QBiC](#nf-core-data-structure-for-registration-at-qbic)
+        * [NF-Core usage example](#nf-core-usage-example)
+        * [NF-Core data structures translated in openBIS](#nf-core-data-structures-translated-in-openbis)
+        
+    * [MaxQuant Result Sets](#maxquant-result-sets)
+        
+        * [MaxQuant data structure for registration at QBiC](#maxquant-data-structure-for-registration-at-qbic)
+        * [MaxQuant usage example](#maxquant-usage-example)
+        * [MaxQuant data structures translated in openBIS](#maxquant-data-structures-translated-in-openbis)   
+        
+- [DTOs - Data Transfer Objects](#dtos---data-transfer-objects)
+
+    * [Imaging context - Omero and more](#imaging-context---omero)
+    * [Business context - Offer Management and more](#business-context---offer-management)
+
 ## How to Install
 
 With Maven you can include the recent library version as dependency with:
@@ -18,14 +45,14 @@ With Maven you can include the recent library version as dependency with:
 <dependency>
   <groupId>life.qbic</groupId>
   <artifactId>data-model-lib</artifactId>
-  <version>2.9.0</version>
+  <version><Insert preferred version></version>
 </dependency>
 ```
 or Groovy Grape:
 
 ```
 @Grapes(
-  @Grab(group='life.qbic', module='data-model-lib', version='2.9.0')
+  @Grab(group='life.qbic', module='data-model-lib', version=<Insert preferred version>)
 )
 ```
 
@@ -43,123 +70,67 @@ Make sure, that you have defined the Github package Maven repository, in order f
 </repositories>
 ```
 
-
 ## Data Models
 
-### Datastructures for registration at QBiC
+### Oxford Nanopore data structure
 
-#### Nanopore Data Structure
+#### Nanopore result set for registration at QBiC
 
 A Nanopore NGS measurement output is delivered to us as a nested folder structure, following this model:
 
 ![Nanopore Data Structure Model](./doc/figures/Nanopore_Data_Structure_Model.png)
 
-#### Bioinformatics Analysis Result Sets
+#### Nanopore usage example
 
-These result sets describe a result set from a nf-core analysis pipeline
-run with detailed modelling of `quality control`, `software versions`
-and individual `process reports`.
+For usage examples, see the [usage documentation](./doc/examples.md).
 
-The schema to validate such a structure can be loaded via the Everit
-`SchemaLoader` class:
+For directory examples, see the [JSON example files](./src/test/resources) provided for the unit tests.
 
-```java
-InputStream stream = PipelineOutput.getSchemaAsStream()
-SchemaLoader schemaLoader = SchemaLoader.builder()
-                .schemaClient(SchemaClient.classPathAwareClient())
-                .schemaJson(new JSONObject(new JSONTokener(stream)))
-                .resolutionScope("classpath://schemas/")
-                .build()
-```
-
-![Bioinformatics Analysis Result Set ER](./doc/figures/ER_diagram_pipeline_results.png)
-
-### Example
-
-For usage examples, see the [usage example documentation](./doc/examples.md).
-
-For complete examples, see the [JSON example files](./src/test/resources/examples/resultset) provided for the unit tests.
-
-In order to create an instance of type `NfCorePipelineResult`, you need to provide a map that provides content following the [Nfcore Pipeline Output Schema JSON](./src/main/resources/schemas/bioinformatics-analysis-result-set.schema.json).  
-
-The final map contains an additional `metadata` property for each measurement. The following is an example of how a property can look like:
-
-You can than use the data model API to create an `NfCorePipelineResult` with this static factory method:
-
-```groovy
-import life.qbic.datamodel.datasets.NfCorePipelineResult
-
-// Replace with a real map that follows the schema
-Map outputMap = [:]
-
-def nfCorePipelineOutput = NfCorePipelineResult.create(outputMap)
-```
-
-### Translated data structures in openBIS
-
-#### Oxford Nanopore Dataset
+#### Nanopore data structures translated in openBIS
 
 The Nanopore data structure is saved in an openBIS 18.06.2 database. 
 An overview of the openBIS data model and the location and entity relationship of the Nanopore data stucture within it can be seen in this diagram: 
 
-
-
 ![Nanopore Data Structure Model](./doc/figures/OpenBIS_ER_diagram.png)
 
-### Example
+### NF-Core bioinformatics analysis result sets
 
-For usage examples, see the [usage example documentation](./doc/examples.md).
+#### NF-Core data structure for registration at QBiC
 
-For complete examples, see the [JSON example files](./src/test/resources) provided for the unit tests.
+A NF-Core pipeline directory output is provided as a nested folder structure, following this model:
+![Bioinformatics Analysis Result Set ER](./doc/figures/ER_diagram_pipeline_results.png)
 
-In order to create an instance of type `OxfordNanoporeExperiment`, you need to provide a map that provides content following the [Nanopore Instrument Output Schema JSON](./src/main/resources/schemas/nanopore-instrument-output.schema.json).  
-Every measurement folder also needs to be enriched with metadata, which itself is specified with another [JSON schema](./src/main/resources/schemas/ont-metadata.schema.json).
+#### NF-Core usage example
 
-The final map contains an additional `metadata` property for each measurement, that for example can look like this:
+For usage examples, see the [usage documentation](./doc/examples.md).
 
-```
-{
-    "name": "QABCD001AB_E12A345a01_PAE12345",
-    "path": "./",
-    "children": [
-        {
-            "name": "20200122_1217_1-A1-B1-PAE12345_1234567a",
-            "metadata":  {
-                "adapter": "flongle",
-                "asic_temp": "32.631687",
-                "base_caller": "Guppy",
-                "base_caller_version": "3.2.8+bd67289",
-                "device_type" : "promethion",
-                "flow_cell_id": "PAE26306",
-                "flow_cell_product_code": "FLO-PRO002",
-                "flow_cell_position": "2-A3-D3",
-                "hostname": "PCT0094",
-                "protocol": "sequencing/sequencing_PRO002_DNA:FLO-PRO002:SQK-LSK109:True",
-                "started": "2020-02-11T15:52:10.465982+01:00"
-            },
-            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a",
-            ...
-            ]
-}
-```
+For directory structure examples, see the [JSON example files](./src/test/resources/examples/resultset) provided for the unit tests.
 
-You can than use the data model API to create an `OxfordNanoporeExperiment` with this static factory method:
+#### NF-Core data structures translated in openBIS
 
-```groovy
-import life.qbic.datamodel.datasets.OxfordNanoporeExperiment
+The following figure displays the current openBIS model of a nf-core pipeline result dataset:
 
-// Replace with a real map that follows the schema
-def outputMap = [:]
+![NF-Core Data Structure Model](./doc/figures/ER_diagram_pipeline_results_openBIS.png)
 
-def onExperiment = OxfordNanoporeExperiment.create(outputMap)
-```
 
-#### Bioinformatics Analysis Result Sets openBIS
+### MaxQuant result sets
 
-The following figure displays the current openBIS model of an nf-core pipeline result dataset:
+#### MaxQuant data structure for registration at QBiC
 
-![Nanopore Data Structure Model](./doc/figures/ER_diagram_pipeline_results_openBIS.png)
+A MaxQuant directory output is provided as a nested folder structure, following this model:
+![MaxQuant Result Set ER](./doc/figures/MaxQuant_Data_Structure.png)
 
+#### MaxQuant usage example
+
+For usage examples, see the [usage documentation](./doc/examples.md).
+
+For directory structure examples, see the [JSON example files](./src/test/resources/examples/resultset/maxquant) provided for the unit tests.
+
+#### MaxQuant data structures translated in openBIS
+
+The following figure displays the current openBIS model of a MaxQuant result dataset:
+
+![MaxQuant Data Structure Model](./doc/figures/MaxQuant_openBIS_Data_Model.png)
 
 ## DTOs - Data Transfer Objects
 
@@ -169,20 +140,21 @@ They don't contain any business logic, they are just representing data.
 This DTO collection contains classes, that represent real world
 life-science domain data assets.
 
-### Imaging context - Omero and more
+### Imaging Context - Omero
 
 The following figure describes the entity relation of the imaging DTOs.
+
+![Imaging Data Structure Model](./doc/figures/Imaging_Data_Structure.png)
 
 Please have a look at the detailed JavaDoc class description of the
 DTOs.
 
-![Imaging Data Structure Model](./doc/figures/Imaging_Data_Structure.png)
 
-### Business context - Offer Management and more
+### Business Context - Offer Management
 
 The following figure describes the entity relation of the DTOs related to Offer Management.
  
+![OfferData_Structure Model](./doc/figures/Offer_Data_Structure.png)
+
 Detailed Information can be found in the GroovyDoc class description of the
 DTOs.
-
-![OfferData_Structure Model](./doc/figures/Offer_Data_Structure.png)

@@ -4,6 +4,35 @@ Changelog
 
 This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
+2.10.0 (2021-07-19)
+-------------------
+
+**Added**
+
+* Provide new classes that describe incoming MaxQuant data structure (`#237 <https://github.com/qbicsoftware/data-model-lib/pull/237>`_)
+
+* Provide dedicated data structure `life.qbic.datamodel.datasets.MaxQuantRunResult.groovy`` for grouping maxQuant run data structure (`#239 <https://github.com/qbicsoftware/data-model-lib/pull/239>`_)
+
+* Introduce Json schema ``maxquant-result-set.schema`` for validating a provided maxQuant dataset (`#238 <https://github.com/qbicsoftware/data-model-lib/pull/238>`_)
+
+* Introduce ``life.qbic.datamodel.maxquant.MaxQuantOutput.groovy`` that provides access to the maxQuant JSON schema (`#238 <https://github.com/qbicsoftware/data-model-lib/pull/238>`_)
+
+* Add MaxQuant Dataset Information to the Readme (`#241 <https://github.com/qbicsoftware/data-model-lib/pull/241>`_)
+
+* Provide overviews in Readme and link javadocs (`#230 <https://github.com/qbicsoftware/data-model-lib/pull/230>`_)
+
+
+**Fixed**
+
+* Override ``equals()`` for ``life.qbic.datamodel.dtos.projectmanagement.Project`` and ``life.qbic.datamodel.dtos.projectmanagement.ProjectIdentifier`` (`#236 <https://github.com/qbicsoftware/data-model-lib/pull/236>`_)
+
+**Dependencies**
+
+* Replace ``life.qbic.datamodel.datasets.datastructure.files.nfcore.SampleIds.groovy`` with ``life.qbic.datamodel.datasets.datastructure.files.general.SampleIds.groovy`` (`#239 <https://github.com/qbicsoftware/data-model-lib/pull/239>`_)
+
+**Deprecated**
+
+
 2.9.0 (2021-07-06)
 ------------------
 
