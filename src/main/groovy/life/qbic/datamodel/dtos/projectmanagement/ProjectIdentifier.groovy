@@ -33,4 +33,17 @@ class ProjectIdentifier {
     String toString() {
         return "/${projectSpace.toString()}/${projectCode.toString()}"
     }
+
+    @Override
+    boolean equals(Object obj) {
+        if (this.is(obj)) {
+            return true
+        }
+        if (!obj instanceof ProjectIdentifier) {
+            return false
+        }
+        ProjectIdentifier otherIdentifier = (ProjectIdentifier) obj
+        return this.projectSpace.equals(otherIdentifier.getProjectSpace()) \
+                && this.projectCode.equals(otherIdentifier.getProjectCode())
+    }
 }
