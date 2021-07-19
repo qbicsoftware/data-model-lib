@@ -118,7 +118,7 @@ The following figure displays the current openBIS model of a nf-core pipeline re
 #### MaxQuant data structure for registration at QBiC
 
 A MaxQuant directory output is provided as a nested folder structure, following this model:
-![Bioinformatics Analysis Result Set ER](./doc/figures/MaxQuant_Data_Structure.png)
+![MaxQuant Result Set ER](./doc/figures/MaxQuant_Data_Structure.png)
 
 #### MaxQuant usage example
 
@@ -130,7 +130,7 @@ For directory structure examples, see the [JSON example files](./src/test/resour
 
 The following figure displays the current openBIS model of a MaxQuant result dataset:
 
-![NF-Core Data Structure Model](./doc/figures/MaxQuant_openBIS_Data_Model.png)
+![MaxQuant Data Structure Model](./doc/figures/MaxQuant_openBIS_Data_Model.png)
 
 ## DTOs - Data Transfer Objects
 
