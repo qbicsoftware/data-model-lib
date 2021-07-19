@@ -26,6 +26,12 @@ Overview:
         * [NF-Core usage example](#nf-core-usage-example)
         * [NF-Core data structures translated in openBIS](#nf-core-data-structures-translated-in-openbis)
         
+    * [MaxQuant Result Sets](#maxquant-result-sets)
+        
+        * [MaxQuant data structure for registration at QBiC](#maxquant-data-structure-for-registration-at-qbic)
+        * [MaxQuant usage example](#maxquant-usage-example)
+        * [MaxQuant data structures translated in openBIS](#maxquant-data-structures-translated-in-openbis)   
+        
 - [DTOs - Data Transfer Objects](#dtos---data-transfer-objects)
 
     * [Imaging context - Omero and more](#imaging-context---omero)
@@ -106,6 +112,25 @@ The following figure displays the current openBIS model of a nf-core pipeline re
 
 ![NF-Core Data Structure Model](./doc/figures/ER_diagram_pipeline_results_openBIS.png)
 
+
+### MaxQuant result sets
+
+#### MaxQuant data structure for registration at QBiC
+
+A MaxQuant directory output is provided as a nested folder structure, following this model:
+![MaxQuant Result Set ER](./doc/figures/MaxQuant_Data_Structure.png)
+
+#### MaxQuant usage example
+
+For usage examples, see the [usage documentation](./doc/examples.md).
+
+For directory structure examples, see the [JSON example files](./src/test/resources/examples/resultset/maxquant) provided for the unit tests.
+
+#### MaxQuant data structures translated in openBIS
+
+The following figure displays the current openBIS model of a MaxQuant result dataset:
+
+![MaxQuant Data Structure Model](./doc/figures/MaxQuant_openBIS_Data_Model.png)
 
 ## DTOs - Data Transfer Objects
 

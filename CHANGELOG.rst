@@ -17,6 +17,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 * Introduce ``life.qbic.datamodel.maxquant.MaxQuantOutput.groovy`` that provides access to the maxQuant JSON schema (`#238 <https://github.com/qbicsoftware/data-model-lib/pull/238>`_)
 
+* Add MaxQuant Dataset Information to the Readme (`#241 <https://github.com/qbicsoftware/data-model-lib/pull/241>`_)
+
 **Fixed**
 
 * Override ``equals()`` for ``life.qbic.datamodel.dtos.projectmanagement.Project`` and ``life.qbic.datamodel.dtos.projectmanagement.ProjectIdentifier`` (`#236 <https://github.com/qbicsoftware/data-model-lib/pull/236>`_)
