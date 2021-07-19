@@ -19,6 +19,9 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 * Add MaxQuant Dataset Information to the Readme (`#241 <https://github.com/qbicsoftware/data-model-lib/pull/241>`_)
 
+* Provide overviews in Readme and link javadocs (`#230 <https://github.com/qbicsoftware/data-model-lib/pull/230>`_)
+
+
 **Fixed**
 
 * Override ``equals()`` for ``life.qbic.datamodel.dtos.projectmanagement.Project`` and ``life.qbic.datamodel.dtos.projectmanagement.ProjectIdentifier`` (`#236 <https://github.com/qbicsoftware/data-model-lib/pull/236>`_)
@@ -36,8 +39,6 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 **Added**
 
 * A new class ``life.qbic.datamodel.dtos.portal.PortalUser`` that represents a user within QBiC's data management platform. (`#229 <https://github.com/qbicsoftware/data-model-lib/pull/229>`_)
-
-* Provide overviews in Readme and link javadocs (`#230 <https://github.com/qbicsoftware/data-model-lib/pull/230>`_)
 
 **Fixed**
 
