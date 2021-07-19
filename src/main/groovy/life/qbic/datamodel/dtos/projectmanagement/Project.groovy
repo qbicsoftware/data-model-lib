@@ -1,5 +1,6 @@
 package life.qbic.datamodel.dtos.projectmanagement
 
+import groovy.transform.EqualsAndHashCode
 import life.qbic.datamodel.dtos.business.OfferId
 
 /**
@@ -10,6 +11,7 @@ import life.qbic.datamodel.dtos.business.OfferId
  *
  * @since 2.3.0
  */
+@EqualsAndHashCode
 class Project {
 
     /**
