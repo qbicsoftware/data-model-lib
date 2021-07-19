@@ -1,4 +1,4 @@
-package life.qbic.datamodel.datasets.datastructure.files.nfcore
+package life.qbic.datamodel.datasets.datastructure.files.general
 
 import spock.lang.Specification
 
