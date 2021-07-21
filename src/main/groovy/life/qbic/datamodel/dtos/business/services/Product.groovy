@@ -25,9 +25,14 @@ abstract class Product {
   final String productName
 
   /**
-   * The unit price in €/unit.
+   * The unit price in €/unit for internal customers.
    */
-  final double unitPrice
+  final double internalUnitPrice
+
+  /**
+   * The unit price in €/unit for external customers.
+   */
+  final double externalUnitPrice
 
   /**
    * The currency of the price
@@ -51,14 +56,16 @@ abstract class Product {
    *
    * @param name The name of the product.
    * @param description The description of what the product is about.
-   * @param unitPrice The price in € per unit
+   * @param internalUnitPrice The price in € per unit for internal customers
+   * @param externalUnitPrice The price in € per unit for external customers
    * @param unit The product unit
    * @param productId The Id of the product
    */
-  Product(String name, String description, double unitPrice, ProductUnit unit, ProductId productId) {
+  Product(String name, String description, double internalUnitPrice, double externalUnitPrice, ProductUnit unit, ProductId productId) {
     this.productName = Objects.requireNonNull(name, "Name must not be null")
     this.description = Objects.requireNonNull(description, "Description must not be null")
-    this.unitPrice = Objects.requireNonNull(unitPrice, "Unit price must not be null")
+    this.internalUnitPrice = Objects.requireNonNull(internalUnitPrice, "Internal unit price must not be null")
+    this.externalUnitPrice = Objects.requireNonNull(externalUnitPrice, "External unit price must not be null")
     this.unit = Objects.requireNonNull(unit, "Unit must not be null")
     this.productId = Objects.requireNonNull(productId, "ProductId must not be null")
     //currency is on default in euro
