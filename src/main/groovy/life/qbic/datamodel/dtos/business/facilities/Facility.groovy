@@ -25,23 +25,25 @@ enum Facility {
 
     private final String fullName
 
-    Facility(String value) {
-        this.value = value
+    Facility(String fullName) {
+        this.fullName = fullName
     }
     /**
      * Returns to the enum item value
      * @return
      */
-    String getValue() {
-        return this.value
+    String getFullName() {
+        return this.fullName
     }
 
     /**
-     * Returns a String representation of the enum item
+     * Returns a String representation of the enum item.
+     *
+     * Is equivalent to {@link #getFullName()}.
      * @return
      */
     @Override
     String toString() {
-        return this.getValue()
+        return this.getFullName()
     }
 }
