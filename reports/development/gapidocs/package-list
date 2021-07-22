@@ -14,6 +14,7 @@ life.qbic.datamodel.datasets.datastructure.folders.nfcore
 life.qbic.datamodel.datasets.imaging
 life.qbic.datamodel.dtos
 life.qbic.datamodel.dtos.business
+life.qbic.datamodel.dtos.business.facilities
 life.qbic.datamodel.dtos.business.services
 life.qbic.datamodel.dtos.general
 life.qbic.datamodel.dtos.imaging
