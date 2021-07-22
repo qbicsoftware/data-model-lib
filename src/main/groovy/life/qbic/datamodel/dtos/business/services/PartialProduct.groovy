@@ -21,11 +21,12 @@ class PartialProduct extends Product {
    *
    * @param name The name of the product.
    * @param description The description of what the product is about.
-   * @param unitPrice The price in € per unit
+   * @param internalUnitPrice The price in € per unit for internal customers
+   * @param externalUnitPrice The price in € per unit for external customers
    * @param unit The product unit
    * @param productId The product identifier
    */
-  PartialProduct(String name, String description, double unitPrice, ProductUnit unit, ProductId productId) {
-    super(name, description, unitPrice, unit, productId)
+  PartialProduct(String name, String description, double internalUnitPrice, double externalUnitPrice, ProductUnit unit, ProductId productId) {
+    super(name, description, internalUnitPrice, externalUnitPrice, unit, productId)
   }
 }
