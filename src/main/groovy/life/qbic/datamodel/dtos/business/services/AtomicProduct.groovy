@@ -20,6 +20,22 @@ class AtomicProduct extends Product {
    *
    * @param name The name of the product.
    * @param description The description of what the product is about.
+   * @param unitPrice The price in € per unit
+   * @param unit The product unit
+   * @param productId The product identifier
+   */
+  @Deprecated
+  AtomicProduct(String name, String description, double unitPrice, ProductUnit unit, ProductId productId) {
+    super(name, description, unitPrice, unit, productId)
+  }
+
+  /**
+   * Basic product constructor.
+   *
+   * Checks that all passed arguments are not null.
+   *
+   * @param name The name of the product.
+   * @param description The description of what the product is about.
    * @param internalUnitPrice The price in € per unit for internal customers
    * @param externalUnitPrice The price in € per unit for external customers
    * @param unit The product unit

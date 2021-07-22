@@ -56,6 +56,28 @@ abstract class Product {
    *
    * @param name The name of the product.
    * @param description The description of what the product is about.
+   * @param unitPrice The price in € per unit
+   * @param unit The product unit
+   * @param productId The Id of the product
+   */
+  @Deprecated
+  Product(String name, String description, double unitPrice, ProductUnit unit, ProductId productId) {
+    this.productName = Objects.requireNonNull(name, "Name must not be null")
+    this.description = Objects.requireNonNull(description, "Description must not be null")
+    this.internalUnitPrice = Objects.requireNonNull(unitPrice, "Internal unit price must not be null")
+    this.unit = Objects.requireNonNull(unit, "Unit must not be null")
+    this.productId = Objects.requireNonNull(productId, "ProductId must not be null")
+    //currency is on default in euro
+    this.currency = Currency.getInstance(Locale.GERMANY)
+  }
+
+  /**
+   * Basic product constructor.
+   *
+   * Checks that all passed arguments except productId are not null.
+   *
+   * @param name The name of the product.
+   * @param description The description of what the product is about.
    * @param internalUnitPrice The price in € per unit for internal customers
    * @param externalUnitPrice The price in € per unit for external customers
    * @param unit The product unit
@@ -70,6 +92,6 @@ abstract class Product {
     this.productId = Objects.requireNonNull(productId, "ProductId must not be null")
     //currency is on default in euro
     this.currency = Currency.getInstance(Locale.GERMANY)
-
   }
+
 }
