@@ -25,11 +25,16 @@ enum Facility {
 
     private final String fullName
 
+    /**
+     * Creates an instance of a facility enum
+     * @param fullName The full name representation of the enum
+     */
     Facility(String fullName) {
         this.fullName = fullName
     }
+
     /**
-     * Returns to the enum item value
+     * Returns to the full name representation of the facility
      * @return
      */
     String getFullName() {
@@ -37,7 +42,7 @@ enum Facility {
     }
 
     /**
-     * Returns a String representation of the enum item.
+     * Returns a String representation of the facility enum.
      *
      * Is equivalent to {@link #getFullName()}.
      * @return
