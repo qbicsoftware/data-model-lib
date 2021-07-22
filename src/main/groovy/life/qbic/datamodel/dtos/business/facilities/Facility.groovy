@@ -23,7 +23,7 @@ enum Facility {
     QBIC("Quantitative Biology Center"),
     PCT("Proteome Center Tübingen")
 
-    private final String value
+    private final String fullName
 
     Facility(String value) {
         this.value = value
