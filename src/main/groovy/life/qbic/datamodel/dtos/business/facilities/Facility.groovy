@@ -44,5 +44,4 @@ enum Facility {
     String toString() {
         return this.getValue()
     }
-
 }
