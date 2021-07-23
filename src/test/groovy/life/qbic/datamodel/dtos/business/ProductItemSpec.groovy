@@ -1,5 +1,6 @@
 package life.qbic.datamodel.dtos.business
 
+import life.qbic.datamodel.dtos.business.facilities.Facility
 import life.qbic.datamodel.dtos.business.services.Product
 import life.qbic.datamodel.dtos.business.services.ProductUnit
 import life.qbic.datamodel.dtos.business.services.Sequencing
@@ -16,7 +17,7 @@ class ProductItemSpec extends Specification {
     def "ProductItem shall store and provide the given properties: name, description and product"() {
 
         when:
-        Product product = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE, "1")
+        Product product = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, 3.0, ProductUnit.PER_SAMPLE, 1, Facility.QBIC)
 
         def productItem = new ProductItem(3.0, product)
 
@@ -27,21 +28,27 @@ class ProductItemSpec extends Specification {
     def "Products shall be comparable"(){
         when:
 
-        Product product = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE, "1")
-        Product product2 = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE, "1")
+        Product product = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE, 1)
+        Product product2 = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, 2.0, ProductUnit.PER_SAMPLE, 1, Facility.QBIC)
+        Product product3 = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, 2.0, ProductUnit.PER_SAMPLE, 1, Facility.QBIC)
 
         then:
         product.currency == product2.currency
         product.description == product2.description
         product.productName == product2.productName
         product.unit == product2.unit
-        product.unitPrice == product2.unitPrice
+        product.unitPrice != product2.unitPrice
+        product2.unitPrice == 0
         product.productId.toString() == product2.productId.toString()
+
+        product3.internalUnitPrice == product2.internalUnitPrice
+        product3.externalUnitPrice == product2.externalUnitPrice
+        product3.equals(product2)
     }
 
     def "Product currency is euro"(){
         when:
-        Product product = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, ProductUnit.PER_SAMPLE, "1")
+        Product product = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, 2.0, ProductUnit.PER_SAMPLE, 1, Facility.QBIC)
 
         then:
         product.currency.toString() == "EUR"
