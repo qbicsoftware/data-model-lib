@@ -18,6 +18,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Deprecated**
 
+* The ``unitPrice`` property in ``life.qbic.datamodel.dtos.business.services.Product``
+
 
 2.10.0 (2021-07-19)
 -------------------
