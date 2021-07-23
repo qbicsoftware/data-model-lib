@@ -10,6 +10,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 **Added**
 
 * A new enumeration for facilities ``life.qbic.datamodel.dtos.business.facilities.Facility`` (`#244 <https://github.com/qbicsoftware/data-model-lib/pull/244>`_)
+* New properties ``internalUnitPrice``, ``externalUnitPrice`` and ``serviceProvider`` for the ``life.qbic.datamodel.dtos.business.services.Product`` and its derivatives (`#245 <https://github.com/qbicsoftware/data-model-lib/pull/245>`_)
 
 **Fixed**
 
