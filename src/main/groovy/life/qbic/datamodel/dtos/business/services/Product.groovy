@@ -26,7 +26,7 @@ abstract class Product {
   final String productName
 
   /**
-   * The unit price in €/unit for customers.
+   * The unit price in €/unit for customers. Can be 0 in case the deprecated constructor was used to create the product.
    *
    * @deprecated 2.11.0, please call the {@link #internalUnitPrice} or {@link #externalUnitPrice}
    */
@@ -85,7 +85,7 @@ abstract class Product {
   Product(String name, String description, double unitPrice, ProductUnit unit, ProductId productId) {
     this.productName = Objects.requireNonNull(name, "Name must not be null")
     this.description = Objects.requireNonNull(description, "Description must not be null")
-    this.unitPrice = Objects.requireNonNull(unitPrice, "Internal unit price must not be null")
+    this.unitPrice = Objects.requireNonNull(unitPrice, "Unit price must not be null")
     this.unit = Objects.requireNonNull(unit, "Unit must not be null")
     this.productId = Objects.requireNonNull(productId, "ProductId must not be null")
     //currency is on default in euro
