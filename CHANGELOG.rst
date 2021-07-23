@@ -4,6 +4,20 @@ Changelog
 
 This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
+2.11.0-SNAPSHOT
+----------------------------
+
+**Added**
+
+* A new enumeration for facilities ``life.qbic.datamodel.dtos.business.facilities.Facility`` (`#244 <https://github.com/qbicsoftware/data-model-lib/pull/244>`_)
+
+**Fixed**
+
+**Dependencies**
+
+**Deprecated**
+
+
 2.10.0 (2021-07-19)
 -------------------
 
