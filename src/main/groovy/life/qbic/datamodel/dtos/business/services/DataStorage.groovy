@@ -2,6 +2,7 @@ package life.qbic.datamodel.dtos.business.services
 
 import groovy.transform.EqualsAndHashCode
 import life.qbic.datamodel.dtos.business.ProductId
+import life.qbic.datamodel.dtos.business.facilities.Facility
 
 /**
  * Describes a product for data storage services.
@@ -37,6 +38,8 @@ class DataStorage extends PartialProduct {
    * @param unitPrice The price in € per unit
    * @param unit The product unit
    * @param runningNumber Number used in conjunction with ProductType{@link life.qbic.datamodel.dtos.business.services.ProductType} to identify product
+   *
+   * @deprecated 2.11.0
    */
   @Deprecated
   DataStorage(String name, String description, double unitPrice, ProductUnit unit, long runningNumber) {
@@ -54,8 +57,10 @@ class DataStorage extends PartialProduct {
    * @param externalUnitPrice The price in € per unit for external customers
    * @param unit The product unit
    * @param runningNumber Number used in conjunction with ProductType{@link life.qbic.datamodel.dtos.business.services.ProductType} to identify product
+   *
+   * @since 2.11.0
    */
-  DataStorage(String name, String description, double internalUnitPrice, double externalUnitPrice, ProductUnit unit, long runningNumber) {
-    super(name, description, internalUnitPrice, externalUnitPrice, unit, new ProductId.Builder(ProductType.DATA_STORAGE.toString(), runningNumber).build())
+  DataStorage(String name, String description, double internalUnitPrice, double externalUnitPrice, ProductUnit unit, long runningNumber, Facility serviceProvider) {
+    super(name, description, internalUnitPrice, externalUnitPrice, unit, new ProductId.Builder(ProductType.DATA_STORAGE.toString(), runningNumber).build(), serviceProvider)
   }
 }

@@ -28,7 +28,7 @@ abstract class Product {
   /**
    * The unit price in €/unit for customers.
    *
-   * @deprecated since 2.11.0, please call the {@link #internalUnitPrice} or {@link #externalUnitPrice}
+   * @deprecated 2.11.0, please call the {@link #internalUnitPrice} or {@link #externalUnitPrice}
    */
   final double unitPrice
 
@@ -79,7 +79,7 @@ abstract class Product {
    * @param unit The product unit
    * @param productId The Id of the product
    *
-   * @deprecated since 2.11.0
+   * @deprecated 2.11.0
    */
   @Deprecated
   Product(String name, String description, double unitPrice, ProductUnit unit, ProductId productId) {

@@ -2,6 +2,7 @@ package life.qbic.datamodel.dtos.business.services
 
 import groovy.transform.EqualsAndHashCode
 import life.qbic.datamodel.dtos.business.ProductId
+import life.qbic.datamodel.dtos.business.facilities.Facility
 
 /**
  * Describes a product for proteomics services.
@@ -38,6 +39,8 @@ class ProteomicAnalysis extends AtomicProduct {
      * @param unitPrice The price in € per unit
      * @param unit The product unit
      * @param runningNumber Number used in conjunction with ProductType{@link life.qbic.datamodel.dtos.business.services.ProductType} to identify product
+     *
+     * @deprecated 2.11.0
      */
     @Deprecated
     ProteomicAnalysis(String name, String description, double unitPrice, ProductUnit unit, long runningNumber) {
@@ -55,8 +58,11 @@ class ProteomicAnalysis extends AtomicProduct {
    * @param externalUnitPrice The price in € per unit for external customers
    * @param unit The product unit
    * @param runningNumber Number used in conjunction with ProductType{@link life.qbic.datamodel.dtos.business.services.ProductType} to identify product
+   * @param serviceProvider The facility providing the service product
+   *
+   * @since 2.11.0
    */
-  ProteomicAnalysis(String name, String description, double internalUnitPrice, double externalUnitPrice, ProductUnit unit, long runningNumber) {
-    super(name, description, internalUnitPrice, externalUnitPrice, unit, new ProductId.Builder(ProductType.PROTEOMIC.toString(), runningNumber).build())
+  ProteomicAnalysis(String name, String description, double internalUnitPrice, double externalUnitPrice, ProductUnit unit, long runningNumber, Facility serviceProvider) {
+    super(name, description, internalUnitPrice, externalUnitPrice, unit, new ProductId.Builder(ProductType.PROTEOMIC.toString(), runningNumber).build(), serviceProvider)
   }
 }

@@ -2,6 +2,7 @@ package life.qbic.datamodel.dtos.business.services
 
 import groovy.transform.EqualsAndHashCode
 import life.qbic.datamodel.dtos.business.ProductId
+import life.qbic.datamodel.dtos.business.facilities.Facility
 
 /**
  * Describes a product type that can have positive rational unit multipliers (N={0,1...,inf+})
@@ -24,6 +25,8 @@ class PartialProduct extends Product {
    * @param unitPrice The price in € per unit
    * @param unit The product unit
    * @param productId The product identifier
+   *
+   * @deprecated 2.11.0
    */
   @Deprecated
   PartialProduct(String name, String description, double unitPrice, ProductUnit unit, ProductId productId) {
@@ -41,8 +44,11 @@ class PartialProduct extends Product {
    * @param externalUnitPrice The price in € per unit for external customers
    * @param unit The product unit
    * @param productId The product identifier
+   * @param serviceProvider The facility providing the service product
+   *
+   * @since 2.11.0
    */
-  PartialProduct(String name, String description, double internalUnitPrice, double externalUnitPrice, ProductUnit unit, ProductId productId) {
-    super(name, description, internalUnitPrice, externalUnitPrice, unit, productId)
+  PartialProduct(String name, String description, double internalUnitPrice, double externalUnitPrice, ProductUnit unit, ProductId productId, Facility serviceProvider) {
+    super(name, description, internalUnitPrice, externalUnitPrice, unit, productId, serviceProvider)
   }
 }
