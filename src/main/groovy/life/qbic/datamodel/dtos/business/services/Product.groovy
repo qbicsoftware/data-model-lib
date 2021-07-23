@@ -2,6 +2,7 @@ package life.qbic.datamodel.dtos.business.services
 
 import groovy.transform.EqualsAndHashCode
 import life.qbic.datamodel.dtos.business.ProductId
+import life.qbic.datamodel.dtos.business.facilities.Facility
 
 /**
  * Holds information about a simple QBiC service product.
@@ -91,7 +92,7 @@ abstract class Product {
     this.currency = Currency.getInstance(Locale.GERMANY)
     this.externalUnitPrice = 0.00
     this.internalUnitPrice = 0.00
-    this.serviceProvider = Facility.
+    this.serviceProvider = Facility.QBIC
   }
 
   /**
@@ -124,6 +125,7 @@ abstract class Product {
     this.productId = Objects.requireNonNull(productId, "ProductId must not be null")
     //currency is on default in euro
     this.currency = Currency.getInstance(Locale.GERMANY)
+    this.serviceProvider = Objects.requireNonNull(serviceProvider, "Service provider must not be null")
   }
 
 }
