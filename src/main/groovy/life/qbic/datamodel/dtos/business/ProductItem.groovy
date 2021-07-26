@@ -23,10 +23,39 @@ class ProductItem {
      */
     final Product product
 
+    /**
+     * Describes the total price of an item based on the quantity and unit price of a product
+     */
+    final double totalPrice
+
+    /**
+     * Describe the total discount price for a product (based on the quantity)
+     */
+    final double totalDiscountPrice
+
+    /**
+     *
+     * @param quantity The quantity of a product
+     * @param product The product for which an item is created
+     *
+     * @deprecated 2.11.0
+     */
+    @Deprecated
     ProductItem(double quantity, Product product) {
         this.quantity = quantity
         this.product = product
+        this.totalPrice = 0
+        this.totalDiscountPrice = 0
     }
+
+    ProductItem(double quantity, Product product, double totalPrice, double totalDiscountPrice) {
+        this.quantity = quantity
+        this.product = product
+        this.totalPrice = totalPrice
+        this.totalDiscountPrice = totalDiscountPrice
+    }
+
+
 
 }
 
