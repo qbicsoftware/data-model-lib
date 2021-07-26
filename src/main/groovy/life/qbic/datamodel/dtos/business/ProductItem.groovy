@@ -45,14 +45,14 @@ class ProductItem {
         this.quantity = quantity
         this.product = product
         this.totalPrice = 0
-        this.totalDiscountPrice = 0
+        this.quantityDiscount = 0
     }
 
-    ProductItem(double quantity, Product product, double totalPrice, double totalDiscountPrice) {
+    ProductItem(double quantity, Product product, double totalPrice, double quantityDiscount) {
         this.quantity = quantity
         this.product = product
         this.totalPrice = totalPrice
-        this.totalDiscountPrice = totalDiscountPrice
+        this.quantityDiscount = quantityDiscount
     }
 
 
