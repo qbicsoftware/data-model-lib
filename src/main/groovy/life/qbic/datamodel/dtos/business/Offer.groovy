@@ -73,6 +73,10 @@ class Offer {
      */
     final double overheads
     /**
+     * The sum of all discounts for this offer
+     */
+    final double totalDiscountPrice
+    /**
      * The identifier for the offer which makes it distinguishable from other offers
      */
     final OfferId identifier
@@ -132,6 +136,7 @@ class Offer {
          */
         double totalPrice
         double netPrice
+        double totalDiscountPrice
         double taxes
         double overheads
         double itemsWithOverheadNet
@@ -165,6 +170,7 @@ class Offer {
             this.overheads = 0
             this.taxes = 0
             this.totalPrice = 0
+            this.totalDiscountPrice = 0
             this.itemsWithOverhead = []
             this.itemsWithoutOverhead = []
             this.itemsWithOverheadNet = 0
@@ -263,6 +269,11 @@ class Offer {
             return this
         }
 
+        Builder totalDiscountPrice(double totalDiscountPrice){
+            this.totalDiscountPrice = totalDiscountPrice
+            return this
+        }
+
         Offer build() {
             return new Offer(this)
         }
@@ -306,6 +317,7 @@ class Offer {
         this.itemsWithOverheadNetPrice = builder.itemsWithOverheadNet
         this.itemsWithoutOverheadNetPrice = builder.itemsWithoutOverheadNet
         this.overheadRatio = builder.overheadRatio
+        this.totalDiscountPrice = builder.totalDiscountPrice
 
         if (builder.associatedProject.isPresent()) {
             this.associatedProject = Optional.of(builder.associatedProject.get())
