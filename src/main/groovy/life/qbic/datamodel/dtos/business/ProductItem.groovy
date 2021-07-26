@@ -31,7 +31,7 @@ class ProductItem {
     /**
      * Describe the total discount price for a product (based on the quantity)
      */
-    final double totalDiscountPrice
+    final double quantityDiscount
 
     /**
      *
@@ -58,4 +58,3 @@ class ProductItem {
 
 
 }
-
