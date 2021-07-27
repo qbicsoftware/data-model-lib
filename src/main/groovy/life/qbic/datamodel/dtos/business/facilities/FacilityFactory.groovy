@@ -1,14 +1,14 @@
 package life.qbic.datamodel.dtos.business.facilities
 
 import life.qbic.datamodel.dtos.EnumFactory
-import life.qbic.datamodel.dtos.business.AcademicTitle
 
 /**
- * <b><short description></b>
+ * This class provides functionality for enum key retrieval
  *
- * <p><detailed description></p>
+ * This class retrieves the corresponding Facility for a given String
  *
- * @since <versiontag>
+ * @see Facility
+ * @since: 2.11.0
  */
 class FacilityFactory extends EnumFactory<Facility> {
     /**
