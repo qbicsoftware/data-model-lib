@@ -23,9 +23,19 @@ final class ProjectSpace {
      */
     final String name
 
+    private static final def REGEX = ~'[-\\w]+'
+
     ProjectSpace(String name) {
         final def space = Objects.requireNonNull(name, "Space name must not be null.")
+        validateName(name)
         this.name = formatSpaceName(space)
+    }
+
+    private void validateName(String name) {
+        // validation happens with the formatted name, but the input name must be returned so the user does not get confused
+        if(! REGEX.matcher(formatSpaceName(name)).matches()) {
+            throw new IllegalArgumentException("${name} is not a valid project code.")
+        }
     }
 
     private static String formatSpaceName(String name) {

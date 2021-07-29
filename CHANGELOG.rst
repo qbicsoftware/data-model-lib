@@ -13,7 +13,10 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 * New properties ``internalUnitPrice``, ``externalUnitPrice`` and ``serviceProvider`` for the ``life.qbic.datamodel.dtos.business.services.Product`` and its derivatives (`#245 <https://github.com/qbicsoftware/data-model-lib/pull/245>`_)
 * New properties ``totalPrice`` and ``totalDiscountPrice`` for the ``life.qbic.datamodel.dtos.business.ProductItem`` and ``totalDiscountPrice`` for the ``life.qbic.datamodel.dtos.business.Offer``
 * A ``life.qbic.datamodel.dtos.business.facilities.FacilityFactory`` to get the facility for a given string representation (`#247 <https://github.com/qbicsoftware/data-model-lib/pull/247>`_)
+
 **Fixed**
+
+* ProjectSpace names are now validated
 
 **Dependencies**
 
