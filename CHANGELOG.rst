@@ -16,7 +16,7 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Fixed**
 
-* ProjectSpace names are now validated
+* ProjectSpace names are now validated (`#249 <https://github.com/qbicsoftware/data-model-lib/pull/249>`_)
 
 **Dependencies**
 
