@@ -60,8 +60,12 @@ class ProductItemSpec extends Specification {
         ProductItem reference = new ProductItem(referenceQuantity, referenceProduct, referenceTotalPrice, referenceQuantityDiscount)
         ProductItem differentItem = new ProductItem(quantity, product, totalPrice, quantityDiscount)
 
+        ProductItem reference1 = new ProductItem(referenceQuantity, referenceProduct)
+        ProductItem differentItem1 = new ProductItem(quantity, product)
+
         then: "the product items are not equal"
         reference != differentItem
+        reference1 != differentItem1
 
         where: "for every property"
         differentProperty | quantity| product| totalPrice| quantityDiscount
