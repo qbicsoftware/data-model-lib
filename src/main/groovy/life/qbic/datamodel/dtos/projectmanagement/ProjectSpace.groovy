@@ -24,7 +24,7 @@ final class ProjectSpace {
     final String name
 
     /**
-     * Alphanumerical characters, underscores and '-' allowed
+     * Alphanumerical characters, underscores and '-' allowed, German umlauts will lead to a mismatch
      */
     private static final def SPACE_NAME_REGEX = ~'[-\\w]+'
 
