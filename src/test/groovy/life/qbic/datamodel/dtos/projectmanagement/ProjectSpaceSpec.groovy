@@ -20,6 +20,18 @@ class ProjectSpaceSpec extends Specification {
         space.name.equals("MY_NEW_SPACE")
     }
 
+    def "A String violating the space name format standard shall throw an IllegalArgumentException" () {
+        given:
+        String invalidCode = "Plausibilitätsüberprüfungs_Space"
+
+        when:
+        new ProjectSpace(invalidCode)
+
+        then:
+        thrown(IllegalArgumentException)
+
+    }
+
     def "Dashes are replaced by underscores"() {
         given:
         String projectSpaceName = "my-new-space"
