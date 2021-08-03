@@ -23,9 +23,22 @@ final class ProjectSpace {
      */
     final String name
 
+    /**
+     * Alphanumerical characters, underscores and '-' allowed, German umlauts will lead to a mismatch
+     */
+    private static final def SPACE_NAME_REGEX = ~'[-\\w]+'
+
     ProjectSpace(String name) {
         final def space = Objects.requireNonNull(name, "Space name must not be null.")
+        validateName(name)
         this.name = formatSpaceName(space)
+    }
+
+    private void validateName(String name) {
+        // validation happens with the formatted name, but the input name must be returned so the user does not get confused
+        if(! SPACE_NAME_REGEX.matcher(formatSpaceName(name)).matches()) {
+            throw new IllegalArgumentException("${name} is not a valid project code.")
+        }
     }
 
     private static String formatSpaceName(String name) {
