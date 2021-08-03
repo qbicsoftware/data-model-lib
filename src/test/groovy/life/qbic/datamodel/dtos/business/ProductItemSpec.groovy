@@ -1,10 +1,12 @@
 package life.qbic.datamodel.dtos.business
 
 import life.qbic.datamodel.dtos.business.facilities.Facility
+import life.qbic.datamodel.dtos.business.services.PrimaryAnalysis
 import life.qbic.datamodel.dtos.business.services.Product
 import life.qbic.datamodel.dtos.business.services.ProductUnit
 import life.qbic.datamodel.dtos.business.services.Sequencing
 import spock.lang.Specification
+import spock.lang.Unroll
 
 /**
  * Simple tests for the ProductItem dto class
@@ -23,6 +25,50 @@ class ProductItemSpec extends Specification {
 
         then:
         productItem.product == product
+    }
+
+    def "Equal ProductItems shall be equal"() {
+
+        given: "two product item contents"
+        def referenceProduct = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, 3.0, ProductUnit.PER_SAMPLE, 1, Facility.QBIC)
+        Double referenceQuantity = 1.0
+        Double referenceTotalPrice = 3.0
+        Double referenceQuantityDiscount = 0.0
+
+        when: "two product items are created from the same content"
+        ProductItem item1 = new ProductItem(referenceQuantity, referenceProduct, referenceTotalPrice, referenceQuantityDiscount)
+        ProductItem item2 = new ProductItem(referenceQuantity, referenceProduct, referenceTotalPrice, referenceQuantityDiscount)
+
+        ProductItem item3 = new ProductItem(referenceQuantity, referenceProduct)
+        ProductItem item4 = new ProductItem(referenceQuantity, referenceProduct)
+
+        then: "the product items are equal"
+        item1 == item2
+        item3 == item4
+    }
+
+    @Unroll
+    def "Different ProductItems shall be different for property #differentProperty"() {
+
+        given: "a reference product item and a different product"
+        def referenceProduct = new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, 3.0, ProductUnit.PER_SAMPLE, 1, Facility.QBIC)
+        Double referenceQuantity = 1.0
+        Double referenceTotalPrice = 3.0
+        Double referenceQuantityDiscount = 0.0
+
+        when: "we create a product item with different information"
+        ProductItem reference = new ProductItem(referenceQuantity, referenceProduct, referenceTotalPrice, referenceQuantityDiscount)
+        ProductItem differentItem = new ProductItem(quantity, product, totalPrice, quantityDiscount)
+
+        then: "the product items are not equal"
+        reference != differentItem
+
+        where: "for every property"
+        differentProperty | quantity| product| totalPrice| quantityDiscount
+        "quantity" | 1.0 +1 | new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, 3.0, ProductUnit.PER_SAMPLE, 1, Facility.QBIC) | 3.0 | 0.0
+        "product" | 1.0 | new PrimaryAnalysis("Test", "Different description", 1.0, 3.0, ProductUnit.PER_SAMPLE, 1, Facility.QBIC) | 3.0 | 0.0
+        "totalPrice" | 1.0 | new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, 3.0, ProductUnit.PER_SAMPLE, 1, Facility.QBIC) | 3.0 +1 | 0.0
+        "quantityDiscount" | 1.0 | new Sequencing("RNA Sequencing", "This package manages the pricing for all RNA sequencings", 1.0, 3.0, ProductUnit.PER_SAMPLE, 1, Facility.QBIC) | 3.0 | 0.0 + 1
     }
 
     def "Products shall be comparable"(){
