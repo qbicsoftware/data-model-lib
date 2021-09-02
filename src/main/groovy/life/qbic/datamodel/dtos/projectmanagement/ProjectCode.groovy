@@ -26,7 +26,7 @@ class ProjectCode {
         Objects.requireNonNull(code, "Code must not be null")
         String projectCode = code.trim()
         try {
-            projectCodeValidator.accept(code)
+            projectCodeValidator.accept(projectCode)
         } catch (ValidationException validationException) {
             throw new IllegalArgumentException(validationException.message)
         }
