@@ -20,3 +20,4 @@ life.qbic.datamodel.instruments
 life.qbic.datamodel.maxquant
 life.qbic.datamodel.people
 life.qbic.datamodel.pipelines
+life.qbic.datamodel.validation.projectmanagement

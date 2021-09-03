@@ -38,4 +38,6 @@ life.qbic.datamodel.projects
 life.qbic.datamodel.samples
 life.qbic.datamodel.services
 life.qbic.datamodel.sorters
+life.qbic.datamodel.validation
+life.qbic.datamodel.validation.projectmanagement
 life.qbic.example
