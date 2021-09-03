@@ -19,7 +19,7 @@ class ProjectCodeValidatorSpec extends Specification {
         then:
         noExceptionThrown()
         where:
-        validProjectCode << ["QABCD", "QBBBA", "QPPEO", "QQQQQ"]
+        validProjectCode << ["QABCD", "QBBBA", "QPPEO", "QQQQQ", "Q0000", "Q00A0"]
     }
 
     @Unroll
