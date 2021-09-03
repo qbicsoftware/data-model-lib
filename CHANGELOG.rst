@@ -9,6 +9,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Added**
 
+* Add ``life.qbic.datamodel.validation.*`` for project code validation.
+
 **Fixed**
 
 **Dependencies**
