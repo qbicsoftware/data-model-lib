@@ -1,6 +1,7 @@
 package life.qbic.datamodel.dtos.projectmanagement
 
-import life.qbic.datamodel.dtos.validation.ValidationException
+import life.qbic.datamodel.validation.ValidationException
+import life.qbic.datamodel.validation.projectmanagement.ProjectCodeValidator
 
 /**
  * Describes the project code, that identifies the project within a project space.

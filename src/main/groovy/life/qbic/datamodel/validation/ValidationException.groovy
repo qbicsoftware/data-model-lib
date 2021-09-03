@@ -1,4 +1,4 @@
-package life.qbic.datamodel.dtos.validation
+package life.qbic.datamodel.validation
 
 /**
  * <p>Should be thrown in case a validation failed</p>
@@ -10,7 +10,7 @@ class ValidationException extends RuntimeException {
      * The cause is not initialized, and may subsequently be initialized by a
      * call to {@link #initCause}.
      *
-     * @param   message   the detail message. The detail message is saved for
+     * @param message the detail message. The detail message is saved for
      *          later retrieval by the {@link #getMessage()} method.
      * @since 2.12.0
      */

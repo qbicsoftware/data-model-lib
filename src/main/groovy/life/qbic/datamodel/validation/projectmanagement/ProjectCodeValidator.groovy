@@ -1,6 +1,6 @@
-package life.qbic.datamodel.dtos.projectmanagement
+package life.qbic.datamodel.validation.projectmanagement
 
-import life.qbic.datamodel.dtos.validation.ValidationException
+import life.qbic.datamodel.validation.ValidationException
 
 import java.util.function.Consumer
 import java.util.function.Predicate
@@ -26,10 +26,10 @@ class ProjectCodeValidator implements Consumer<String> {
     @Override
     void accept(String projectCode) throws ValidationException {
         ValidationException validationException = new ValidationException("'${projectCode}' is not a valid project code.")
-        if (! projectCode) {
+        if (!projectCode) {
             throw validationException
         }
-        if (! IS_VALID_PROJECT_CODE.test(projectCode)) {
+        if (!IS_VALID_PROJECT_CODE.test(projectCode)) {
             throw validationException
         }
     }
