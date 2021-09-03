@@ -14,7 +14,7 @@ import java.util.regex.Pattern
  * @since 2.12.0
  */
 class ProjectCodeValidator implements Consumer<String> {
-    private static final Predicate<String> IS_VALID_PROJECT_CODE = Pattern.compile("^Q[A-X0-9]{4}").asPredicate()
+    private static final Predicate<String> IS_VALID_PROJECT_CODE = Pattern.compile("^Q[A-X0-9]{4}\$").asPredicate()
 
     /**
      * Consumes the project code and throws a {@link ValidationException} in case of invalidity.
