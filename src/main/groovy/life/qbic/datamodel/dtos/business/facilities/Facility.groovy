@@ -27,21 +27,12 @@ enum Facility {
     private final String label
 
     /**
-     * Creates an instance of a facility enum
-     * @param fullName The full name representation of the facility
-     */
-    Facility(String fullName) {
-        this.fullName = fullName
-        this.label = ""
-    }
-
-    /**
      * Creates an instance of a facility enum with shorthand label
      * @param fullName The full name representation of the facility
      * @param label The shorthand label of the facility
      */
     Facility(String fullName, String label) {
-        this(fullName)
+        this.fullName = fullName
         this.label = label
     }
 
