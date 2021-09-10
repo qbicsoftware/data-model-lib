@@ -19,7 +19,6 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Deprecated**
 
-
 2.11.0 (2021-08-03)
 ----------------------------
 
