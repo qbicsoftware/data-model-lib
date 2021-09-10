@@ -17,21 +17,25 @@ package life.qbic.datamodel.dtos.business.facilities
  */
 enum Facility {
 
-    CFMB("Core Facility for Medical Bioanalytics"),
-    IMGAG("Institute for Medical Genetics and Applied Genomics"),
-    MGM("Institute for Medical Microbiology and Hygiene"),
-    QBIC("Quantitative Biology Center"),
-    PCT("Proteome Center Tübingen")
+    CFMB("Core Facility for Medical Bioanalytics", "CFMB"),
+    IMGAG("Institute for Medical Genetics and Applied Genomics", "IMGAG"),
+    MGM("Institute for Medical Microbiology and Hygiene", "MGM"),
+    QBIC("Quantitative Biology Center", "QBIC"),
+    CFMB_PCT("Proteomics Facility Tübingen", "Proteomics Facility")
 
     private final String fullName
+    private final String label
 
     /**
-     * Creates an instance of a facility enum
-     * @param fullName The full name representation of the enum
+     * Creates an instance of a facility enum with shorthand label
+     * @param fullName The full name representation of the facility
+     * @param label The shorthand label of the facility
      */
-    Facility(String fullName) {
+    Facility(String fullName, String label) {
         this.fullName = fullName
+        this.label = label
     }
+
 
     /**
      * Returns to the full name representation of the facility
@@ -39,6 +43,14 @@ enum Facility {
      */
     String getFullName() {
         return this.fullName
+    }
+
+    /**
+     * Returns the short representation form of the facility
+     * @return
+     */
+    String getLabel() {
+       return this.label
     }
 
     /**
