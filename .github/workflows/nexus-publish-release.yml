@@ -29,6 +29,9 @@ jobs:
             restore-keys: |
                 ${{ runner.os }}-maven-
 
+    -   name: Remove snapshot tags
+        run:  mvn versions:set -DremoveSnapshot
+
     -   name: Build with Maven
         run: mvn -B package --file pom.xml
 
