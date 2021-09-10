@@ -4,6 +4,21 @@ Changelog
 
 This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
+2.12.0 (2021-09-10)
+-------------------
+
+**Added**
+
+* Add ``life.qbic.datamodel.validation.*`` for project code validation. (`#254 <https://github.com/qbicsoftware/data-model-lib/pull/254>`_)
+
+* ``life.qbic.datamodel.dtos.business.facilities.Facility`` can provide a shorthand label now (`#255 <https://github.com/qbicsoftware/data-model-lib/pull/255>`_)
+
+**Fixed**
+
+**Dependencies**
+
+**Deprecated**
+
 2.11.0 (2021-08-03)
 ----------------------------
 
