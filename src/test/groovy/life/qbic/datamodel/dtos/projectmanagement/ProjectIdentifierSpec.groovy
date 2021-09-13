@@ -40,4 +40,22 @@ class ProjectIdentifierSpec extends Specification{
 
     }
 
+    def "Test equals method fulfills full method contract"() {
+        when:
+        ProjectIdentifier idX = new ProjectIdentifier(new ProjectSpace(projectSpace), new ProjectCode(projectCode))
+        ProjectIdentifier idY = new ProjectIdentifier(new ProjectSpace(projectSpace), new ProjectCode(projectCode))
+        ProjectIdentifier idZ = new ProjectIdentifier(new ProjectSpace(projectSpace), new ProjectCode(projectCode))
+
+        then:
+        idX.equals(idX) == true // Reflexive
+        (idX.equals(idY) == true) && (idY.equals(idX) == true) // Symmetric
+        (idX.equals(idY) == true) && (idY.equals(idZ) == true) && (idX.equals(idZ) == true) // Transitive
+        (idX.equals(idX) == true) && (idX.equals(idX) == true) // Consistent
+        idX.equals(null) == false // Non-nullity
+
+        where:
+        projectSpace | projectCode
+        "TEST" | "QTEST"
+    }
+
 }

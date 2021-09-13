@@ -4,6 +4,19 @@ Changelog
 
 This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
+2.12.1 (2021-09-13)
+-------------------
+
+**Added**
+
+**Fixed**
+
+* NPE when comparing ``life.qbic.datamodel.dtos.projectmanagement.ProjectIdentifier`` to null reference
+
+**Dependencies**
+
+**Deprecated**
+
 2.12.0 (2021-09-10)
 -------------------
 
