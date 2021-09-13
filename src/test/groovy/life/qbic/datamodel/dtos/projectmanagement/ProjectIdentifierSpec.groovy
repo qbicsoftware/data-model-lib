@@ -40,6 +40,10 @@ class ProjectIdentifierSpec extends Specification{
 
     }
 
+    /**
+     * Tests for Joshua Bloch's Item 8 in Effective Java, how to override equals() properly.
+     * https://biratkirat.medium.com/learning-effective-java-item-8-d05f3847213d
+     */
     def "Test equals method fulfills full method contract"() {
         when:
         ProjectIdentifier idX = new ProjectIdentifier(new ProjectSpace(projectSpace), new ProjectCode(projectCode))
