@@ -36,6 +36,9 @@ class ProjectIdentifier {
 
     @Override
     boolean equals(Object obj) {
+        if (obj == null) {
+            return false
+        }
         if (this.is(obj)) {
             return true
         }
