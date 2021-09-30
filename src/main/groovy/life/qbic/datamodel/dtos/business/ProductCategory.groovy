@@ -15,7 +15,8 @@ enum ProductCategory {
     SECONDARY_BIOINFO("Secondary Bioinformatics"),
     DATA_STORAGE("Data Storage"),
     PROTEOMIC("Proteomics"),
-    METABOLOMIC("Metabolomics")
+    METABOLOMIC("Metabolomics"),
+    EXTERNAL_SERVICE("External Service")
 
     /**
      * Value describing the enum type with a string
