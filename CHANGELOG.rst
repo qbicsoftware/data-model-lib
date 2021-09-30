@@ -9,6 +9,9 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Added**
 
+* Added new product type ``life.qbic.datamodel.dtos.business.services.ExternalServiceProduct`` (#262)
+* Added new ``Facility`` enum ``CEGAT`` (#262)
+
 **Fixed**
 
 **Dependencies**
