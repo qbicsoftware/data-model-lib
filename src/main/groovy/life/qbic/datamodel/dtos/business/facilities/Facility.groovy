@@ -10,7 +10,8 @@ package life.qbic.datamodel.dtos.business.facilities
  *     <li>IMGAG: Institute for Medical Genetics and Applied Genomics</li>
  *     <li>MGM: Institute for Medical Microbiology and Hygiene</li>
  *     <li>QBIC: Quantitative Biology Center</li>
- *     <li>PCT: Proteome Center Tübingen</li>
+ *     <li>CFMB_PCT: Proteomics Facility Tübingen</li>
+ *     <li>CEGAT: CeGaT GmbH</li>
  * </ul>
  *
  * @since 2.11.0
@@ -21,7 +22,8 @@ enum Facility {
     IMGAG("Institute for Medical Genetics and Applied Genomics", "IMGAG"),
     MGM("Institute for Medical Microbiology and Hygiene", "MGM"),
     QBIC("Quantitative Biology Center", "QBIC"),
-    CFMB_PCT("Proteomics Facility Tübingen", "Proteomics Facility")
+    CFMB_PCT("Proteomics Facility Tübingen", "Proteomics Facility"),
+    CEGAT("CeGaT GmbH", "CeGaT GmbH")
 
     private final String fullName
     private final String label
