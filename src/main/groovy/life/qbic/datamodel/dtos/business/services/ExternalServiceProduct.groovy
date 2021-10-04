@@ -23,7 +23,7 @@ class ExternalServiceProduct extends PartialProduct {
      * @param productId A product id, uniquely identifying the product in the offer environment
      * @param serviceProvider The service provider
      */
-    ExternalServiceProduct(String name, String description, double internalUnitPrice, double externalUnitPrice, ProductUnit unit, ProductId productId, Facility serviceProvider) {
-        super(name, description, internalUnitPrice, externalUnitPrice, unit, productId, serviceProvider)
+    ExternalServiceProduct(String name, String description, double internalUnitPrice, double externalUnitPrice, ProductUnit unit, long runningNumber, Facility serviceProvider) {
+        super(name, description, internalUnitPrice, externalUnitPrice, unit, new ProductId.Builder(ProductType.EXTERNAL_SERVICE.toString(), runningNumber).build(), serviceProvider)
     }
 }

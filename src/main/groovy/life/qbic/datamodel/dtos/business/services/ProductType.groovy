@@ -15,7 +15,8 @@ enum ProductType {
     SECONDARY_BIOINFO("SB"),
     DATA_STORAGE("DS"),
     PROTEOMIC("PR"),
-    METABOLOMIC("ME")
+    METABOLOMIC("ME"),
+    EXTERNAL_SERVICE("EXT")
 
     /**
      Holds the String value of the enum
