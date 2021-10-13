@@ -4,6 +4,21 @@ Changelog
 
 This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
+2.13.0 (2021-10-13)
+-------------------
+
+**Added**
+
+* Added new product type ``life.qbic.datamodel.dtos.business.services.ExternalServiceProduct`` (#262)
+* Added new ``Facility`` enum ``CEGAT`` in ``life.qbic.datamodel.dtos.business.facilities.Facility`` (#262)
+* Added new product type ``EXTERNAL_SERVICE`` for ``life.qbic.datamodel.dtos.business.ProductCategory`` (#262)
+
+**Fixed**
+
+**Dependencies**
+
+**Deprecated**
+
 2.12.1 (2021-09-13)
 -------------------
 
