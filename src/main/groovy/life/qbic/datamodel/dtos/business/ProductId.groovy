@@ -1,6 +1,7 @@
 package life.qbic.datamodel.dtos.business
 
 import groovy.transform.EqualsAndHashCode
+import life.qbic.datamodel.dtos.business.services.ProductTypeFactory
 
 /**
  * A DTO describing Product Identifiers
@@ -111,6 +112,30 @@ class ProductId implements Comparable<ProductId>{
      */
     String getType() {
         return type
+    }
+
+    /**
+     * Returns a ProductId from a given String representation
+     * @param String representation of a productId
+     * @return ProductId containing type and uniqueNumber of String representation
+     */
+    static ProductId from(String productId) {
+        if (!productId.contains("_")) {
+            throw new IllegalArgumentException("Not a valid product identifier.")
+        }
+        def splitId = productId.split("_")
+        try {
+            ProductTypeFactory productTypeFactory = new ProductTypeFactory()
+            productTypeFactory.getForString(splitId[0])
+            Integer.getInteger(splitId[1].trim())
+        }
+        catch (NumberFormatException numberFormatException) {
+            throw new NumberFormatException("Provided productId does not have a valid uniqueID")
+        }
+        catch (IllegalArgumentException illegalArgumentException) {
+            throw new IllegalArgumentException("ProductId does not have a valid ProductType")
+        }
+        return new ProductId(splitId[0], splitId[1])
     }
 
     /**
