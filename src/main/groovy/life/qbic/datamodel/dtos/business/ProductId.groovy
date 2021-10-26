@@ -1,6 +1,7 @@
 package life.qbic.datamodel.dtos.business
 
 import groovy.transform.EqualsAndHashCode
+import life.qbic.datamodel.dtos.business.services.ProductType
 import life.qbic.datamodel.dtos.business.services.ProductTypeFactory
 
 /**
@@ -116,6 +117,11 @@ class ProductId implements Comparable<ProductId>{
 
     /**
      * Returns a ProductId from a given String representation
+     *
+     * Expects a ProductIdString with the Format P_N
+     * P being the one of the abbreviation values stored in {@link ProductType} enum
+     * N being an Integer Number
+     *
      * @param String representation of a productId
      * @return ProductId containing type and uniqueNumber of String representation
      */
@@ -124,10 +130,14 @@ class ProductId implements Comparable<ProductId>{
             throw new IllegalArgumentException("Not a valid product identifier.")
         }
         def splitId = productId.split("_")
+        String productTypeString
+        String runningNumberString
         try {
             ProductTypeFactory productTypeFactory = new ProductTypeFactory()
-            productTypeFactory.getForString(splitId[0])
-            Integer.getInteger(splitId[1].trim())
+            productTypeString = splitId[0].trim()
+            runningNumberString = splitId[1].trim()
+            Long runningNumber = Long.getLong(runningNumberString)
+            ProductType productType = productTypeFactory.getForString(productTypeString)
         }
         catch (NumberFormatException numberFormatException) {
             throw new NumberFormatException("Provided productId does not have a valid uniqueID")
@@ -135,7 +145,7 @@ class ProductId implements Comparable<ProductId>{
         catch (IllegalArgumentException illegalArgumentException) {
             throw new IllegalArgumentException("ProductId does not have a valid ProductType")
         }
-        return new ProductId(splitId[0], splitId[1])
+        return new Builder(productTypeString, runningNumberString).build()
     }
 
     /**
