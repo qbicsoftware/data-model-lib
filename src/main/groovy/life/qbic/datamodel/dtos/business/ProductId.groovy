@@ -137,7 +137,7 @@ class ProductId implements Comparable<ProductId>{
             ProductTypeFactory productTypeFactory = new ProductTypeFactory()
             productTypeString = splitId[0].trim()
             runningNumberString = splitId[1].trim()
-            runningNumber = Long.getLong(runningNumberString)
+            runningNumber = Long.parseUnsignedLong(runningNumberString)
             ProductType productType = productTypeFactory.getForString(productTypeString)
         }
         catch (NumberFormatException numberFormatException) {
@@ -146,7 +146,7 @@ class ProductId implements Comparable<ProductId>{
         catch (IllegalArgumentException illegalArgumentException) {
             throw new IllegalArgumentException("ProductId does not have a valid ProductType")
         }
-        return new Builder(productTypeString, runningNumberString).build()
+        return new Builder(productTypeString, runningNumber).build()
     }
 
     /**
