@@ -146,7 +146,7 @@ class ProductId implements Comparable<ProductId>{
         catch (IllegalArgumentException illegalArgumentException) {
             throw new IllegalArgumentException("ProductId does not have a valid ProductType")
         }
-        return new Builder(productTypeString, runningNumber).build()
+        return new Builder(productTypeString, runningNumberString).build()
     }
 
     /**
