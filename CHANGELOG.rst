@@ -9,6 +9,9 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Added**
 
+* Added ProductTypeFactory ``life.qbic.datamodel.dtos.business.services.ProductTypeFactory``
+* ProductId now provides 'From' method to be created via String representation
+
 **Fixed**
 
 **Dependencies**
