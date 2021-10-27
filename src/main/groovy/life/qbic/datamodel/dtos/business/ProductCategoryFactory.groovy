@@ -27,4 +27,13 @@ class ProductCategoryFactory extends EnumFactory<ProductCategory>{
         }
         return desiredKey
     }
+
+    ProductCategory getForAbbreviation(String abbreviation) {
+        ProductCategory desiredKey
+        desiredKey = ProductCategory.values().find {it.abbreviation.equals(abbreviation.trim())}
+        if (!desiredKey) {
+            throw new IllegalArgumentException("Invalid value '$abbreviation' for ${ProductCategory.getSimpleName()}")
+        }
+        return desiredKey
+    }
 }

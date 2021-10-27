@@ -2,7 +2,6 @@ package life.qbic.datamodel.dtos.business
 
 import groovy.transform.EqualsAndHashCode
 import life.qbic.datamodel.dtos.business.services.ProductType
-import life.qbic.datamodel.dtos.business.services.ProductTypeFactory
 
 /**
  * A DTO describing Product Identifiers
@@ -123,30 +122,31 @@ class ProductId implements Comparable<ProductId>{
      * N being an Integer Number
      *
      * @param String representation of a productId
-     * @return ProductId containing type and uniqueNumber of String representation
+     * @return ProductId containing productCategory abbreviation and uniqueNumber of String representation
      */
     static ProductId from(String productId) {
         if (!productId.contains("_")) {
             throw new IllegalArgumentException("Not a valid product identifier.")
         }
         def splitId = productId.split("_")
-        String productTypeString
+        String productCategoryString
         String runningNumberString
         Long runningNumber
         try {
-            ProductTypeFactory productTypeFactory = new ProductTypeFactory()
-            productTypeString = splitId[0].trim()
+            ProductCategoryFactory productCategoryFactory = new ProductCategoryFactory()
+            productCategoryString = splitId[0].trim()
             runningNumberString = splitId[1].trim()
             runningNumber = Long.parseUnsignedLong(runningNumberString)
-            ProductType productType = productTypeFactory.getForString(productTypeString)
+            ProductCategory productCategory = productCategoryFactory.getForAbbreviation(productCategoryString)
+            println(productCategoryString)
         }
         catch (NumberFormatException numberFormatException) {
             throw new NumberFormatException("Provided productId does not have a valid uniqueID")
         }
         catch (IllegalArgumentException illegalArgumentException) {
-            throw new IllegalArgumentException("ProductId does not have a valid ProductType")
+            throw new IllegalArgumentException("ProductId does not have a valid ProductCategory abbreviation")
         }
-        return new Builder(productTypeString, runningNumber).build()
+        return new Builder(productCategoryString, runningNumber).build()
     }
 
     /**
