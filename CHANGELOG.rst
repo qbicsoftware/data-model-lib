@@ -4,13 +4,13 @@ Changelog
 
 This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
-2.14.0 (2021-10-26)
+2.14.0 (2021-10-27)
 -------------------
 
 **Added**
 
-* Added ProductTypeFactory ``life.qbic.datamodel.dtos.business.services.ProductTypeFactory`` (#265)
-* ProductId now provides 'From' method to be created via String representation (#265)
+* Added String representing product abbreviation to ProductCategory Enum
+* ProductId now provides 'From' method to be created via String representation
 
 **Fixed**
 
