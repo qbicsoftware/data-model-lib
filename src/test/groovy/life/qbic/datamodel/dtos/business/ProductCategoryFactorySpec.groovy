@@ -38,6 +38,7 @@ class ProductCategoryFactorySpec extends Specification {
         "Data Storage" | ProductCategory.DATA_STORAGE
         "Proteomics" | ProductCategory.PROTEOMIC
         "Metabolomics" | ProductCategory.METABOLOMIC
+        "External Service" | ProductCategory.EXTERNAL_SERVICE
     }
 
     def "GetForString(java.lang.String) returns the correct enums and ignores whitespace"() {
@@ -56,5 +57,44 @@ class ProductCategoryFactorySpec extends Specification {
         "\nData Storage\t" | ProductCategory.DATA_STORAGE
         "  Proteomics  " | ProductCategory.PROTEOMIC
         "  Metabolomics  " | ProductCategory.METABOLOMIC
+        "  External Service  " | ProductCategory.EXTERNAL_SERVICE
+    }
+
+    def "GetForAbbreviation(java.lang.String) returns the correct enums for correct requests"() {
+        when: "the factory is tasked to deliver an enum given a string value"
+        ProductCategory category = productCategoryFactory.getForAbbreviation(request)
+
+        then: "the returned ProductCategory is the same as the expected result"
+        category == expectedEnum
+
+        where: "all valid combinations are tested"
+        request | expectedEnum
+        "SE" | ProductCategory.SEQUENCING
+        "PM" | ProductCategory.PROJECT_MANAGEMENT
+        "PB" | ProductCategory.PRIMARY_BIOINFO
+        "SB" | ProductCategory.SECONDARY_BIOINFO
+        "DS" | ProductCategory.DATA_STORAGE
+        "PR" | ProductCategory.PROTEOMIC
+        "ME" | ProductCategory.METABOLOMIC
+        "EXT" | ProductCategory.EXTERNAL_SERVICE
+    }
+
+    def "GetForAbbreviation(java.lang.String) returns the correct enums and ignores whitespace"() {
+        when: "the factory is tasked to deliver an enum given a string value"
+        ProductCategory category = productCategoryFactory.getForAbbreviation(request)
+
+        then: "the returned ProductCategory is the same as the expected result"
+        category == expectedEnum
+
+        where: "all valid combinations are tested"
+        request | expectedEnum
+        "SE    " | ProductCategory.SEQUENCING
+        "      PM" | ProductCategory.PROJECT_MANAGEMENT
+        "    PB       " | ProductCategory.PRIMARY_BIOINFO
+        "\tSB    " | ProductCategory.SECONDARY_BIOINFO
+        "\nDS\t" | ProductCategory.DATA_STORAGE
+        "  PR  " | ProductCategory.PROTEOMIC
+        "  ME  " | ProductCategory.METABOLOMIC
+        "  EXT  " | ProductCategory.EXTERNAL_SERVICE
     }
 }

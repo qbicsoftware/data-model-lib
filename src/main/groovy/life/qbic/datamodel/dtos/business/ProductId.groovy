@@ -27,6 +27,9 @@ class ProductId implements Comparable<ProductId>{
     /**
      * A builder for ProductId instances.
      */
+
+    private static final ProductCategoryFactory productCategoryFactory = new ProductCategoryFactory()
+
     static class Builder {
         private String productType
         private long uniqueId
@@ -111,6 +114,39 @@ class ProductId implements Comparable<ProductId>{
      */
     String getType() {
         return type
+    }
+
+    /**
+     * Returns a ProductId from a given String representation
+     *
+     * Expects a ProductIdString with the Format P_N
+     * P being the one of the abbreviation values stored in {@link ProductCategory} enum
+     * N being an Integer Number
+     *
+     * @param String representation of a productId
+     * @return ProductId containing productCategory abbreviation and uniqueNumber of String representation
+     */
+    static ProductId from(String productId) {
+        if (!productId.contains("_")) {
+            throw new IllegalArgumentException("${productId} is not a valid product identifier.")
+        }
+        def splitId = productId.split("_")
+        String productCategoryString = splitId[0].trim()
+        String runningNumberString = splitId[1].trim()
+        Long runningNumber
+        ProductCategory productCategory
+        try {
+            runningNumber = Long.parseUnsignedLong(runningNumberString)
+            productCategory = productCategoryFactory.getForAbbreviation(productCategoryString)
+        }
+        catch (NumberFormatException numberFormatException) {
+            throw new NumberFormatException("Provided productId does not have a valid uniqueID. Provided unique id: ${runningNumberString}")
+        }
+        catch (IllegalArgumentException illegalArgumentException) {
+            throw new IllegalArgumentException("ProductId does not have a valid ProductCategory abbreviation. Provided abbreviation: ${productCategoryString}")
+
+        }
+        return new Builder(productCategory.getAbbreviation() , runningNumber).build()
     }
 
     /**

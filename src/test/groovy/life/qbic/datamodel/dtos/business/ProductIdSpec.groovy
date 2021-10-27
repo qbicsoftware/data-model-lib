@@ -120,16 +120,84 @@ class ProductIdSpec extends Specification {
         result == expectedResult
 
         where:
-        x | y | expectedResult
-        new ProductId.Builder("A",1).build()  |   new ProductId.Builder("B",1).build()  |   -1
-        new ProductId.Builder("B",1).build()  |   new ProductId.Builder("A",1).build()  |   1
-        new ProductId.Builder("A",1).build()  |   new ProductId.Builder("A",1).build()  |   0
-        new ProductId.Builder("A",1).build()  |   new ProductId.Builder("A",42).build() |   -1
-        new ProductId.Builder("A",42).build()  |   new ProductId.Builder("A",1).build() |   1
-        new ProductId.Builder("A",1).build()  |   new ProductId.Builder("B",0).build() |   -1
-        new ProductId.Builder("Z",42).build()  |   new ProductId.Builder("A",100).build() |   1
+        x                                      | y                                       | expectedResult
+        new ProductId.Builder("A", 1).build()  | new ProductId.Builder("B", 1).build()   | -1
+        new ProductId.Builder("B", 1).build()  | new ProductId.Builder("A", 1).build()   | 1
+        new ProductId.Builder("A", 1).build()  | new ProductId.Builder("A", 1).build()   | 0
+        new ProductId.Builder("A", 1).build()  | new ProductId.Builder("A", 42).build()  | -1
+        new ProductId.Builder("A", 42).build() | new ProductId.Builder("A", 1).build()   | 1
+        new ProductId.Builder("A", 1).build()  | new ProductId.Builder("B", 0).build()   | -1
+        new ProductId.Builder("Z", 42).build() | new ProductId.Builder("A", 100).build() | 1
 
     }
 
+    def "Valid ProductId String can be converted to ProductId"() {
+        when:
+        ProductId productId = ProductId.from(validProductIdString)
+        then:
+        validProductId == productId
+
+        where:
+        validProductIdString | validProductId
+        "SE_1"               | new ProductId.Builder("SE", 1).build()
+        "PM_2"               | new ProductId.Builder("PM", 2).build()
+        "PB_3"               | new ProductId.Builder("PB", 3).build()
+        "SB_4"               | new ProductId.Builder("SB", 4).build()
+        "DS_5"               | new ProductId.Builder("DS", 5).build()
+        "PR_6"               | new ProductId.Builder("PR", 6).build()
+        "ME_7"               | new ProductId.Builder("ME", 7).build()
+        "EXT_8"              | new ProductId.Builder("EXT", 8).build()
+    }
+
+    def "ProductId String with invalid number will return NumberFormatException"() {
+        when:
+        ProductId.from(inValidProductIdString)
+        then:
+        thrown(NumberFormatException)
+        where:
+        inValidProductIdString | _
+        "SE_1.5"               | _
+        "PM_Z"                 | _
+        "PB_ARG"               | _
+        "SB_1,4"               | _
+        "DS_1,A"               | _
+        "PR_A_5"               | _
+        "ME_A-0"               | _
+        "EXT_D/0"              | _
+    }
+
+    def "ProductId String with invalid productType will return IllegalArgumentException"() {
+        when:
+        ProductId.from(inValidProductIdString)
+        then:
+        thrown(IllegalArgumentException)
+        where:
+        inValidProductIdString | _
+        "Dane_1"               | _
+        "Mary_2"               | _
+        "Fred_3"               | _
+        "A:P_4"                | _
+        "101_5"                | _
+        "Wat_6"                | _
+        "Decibel_7"            | _
+        "Why_8"                | _
+    }
+
+    def "ProductId String with invalid Format will return IllegalArgumentException"() {
+        when:
+        ProductId.from(inValidProductIdString)
+        then:
+        thrown(IllegalArgumentException)
+        where:
+        inValidProductIdString | _
+        "SE1"                  | _
+        "PM2"                  | _
+        "PB3"                  | _
+        "SB4"                  | _
+        "DS5"                  | _
+        "PR&6"                 | _
+        "ME-7"                 | _
+        "EXT/8"                | _
+    }
 
 }

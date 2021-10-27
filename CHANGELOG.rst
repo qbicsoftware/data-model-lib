@@ -4,6 +4,22 @@ Changelog
 
 This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
+2.14.0 (2021-10-27)
+-------------------
+
+**Added**
+
+* Added String representing product abbreviation to ProductCategory Enum (`#266 <https://github.com/qbicsoftware/data-model-lib/pull/266>`_)
+* ProductId now provides 'From' method to be created via String representation (`#264 <https://github.com/qbicsoftware/data-model-lib/pull/264>`_)
+
+**Fixed**
+
+**Dependencies**
+
+**Deprecated**
+
+* ``life.qbic.datamodel.dtos.business.services.ProductType.groovy``. The abbreviation is now accessible via the ``abbreviation`` property in ``life.qbic.datamodel.dtos.business.ProductCategory``  (`#266 <https://github.com/qbicsoftware/data-model-lib/pull/266>`_)
+
 2.13.0 (2021-10-13)
 -------------------
 

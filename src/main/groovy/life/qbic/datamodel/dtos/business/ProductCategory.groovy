@@ -9,22 +9,28 @@ package life.qbic.datamodel.dtos.business
  */
 enum ProductCategory {
 
-    SEQUENCING("Sequencing"),
-    PROJECT_MANAGEMENT("Project Management"),
-    PRIMARY_BIOINFO("Primary Bioinformatics"),
-    SECONDARY_BIOINFO("Secondary Bioinformatics"),
-    DATA_STORAGE("Data Storage"),
-    PROTEOMIC("Proteomics"),
-    METABOLOMIC("Metabolomics"),
-    EXTERNAL_SERVICE("External Service")
+    SEQUENCING("Sequencing", "SE"),
+    PROJECT_MANAGEMENT("Project Management", "PM"),
+    PRIMARY_BIOINFO("Primary Bioinformatics", "PB"),
+    SECONDARY_BIOINFO("Secondary Bioinformatics", "SB"),
+    DATA_STORAGE("Data Storage", "DS"),
+    PROTEOMIC("Proteomics", "PR"),
+    METABOLOMIC("Metabolomics", "ME"),
+    EXTERNAL_SERVICE("External Service", "EXT")
 
     /**
      * Value describing the enum type with a string
      */
-    private final String value
+    private String value
 
-    ProductCategory(String value) {
+    /**
+     * Abbreviation for the enum type name
+     */
+    private String abbreviation
+
+    ProductCategory(String value, String abbreviation) {
         this.value = value
+        this.abbreviation = abbreviation
     }
 
     /**
@@ -35,4 +41,14 @@ enum ProductCategory {
     String getValue() {
         return value
     }
+
+    /**
+     * Returns the abbreviation associated to the given enum
+     * This is <em>NOT</em> the same as {@link #toString}
+     * @return a user-friendly string value
+     */
+    String getAbbreviation() {
+        return abbreviation
+    }
+
 }
