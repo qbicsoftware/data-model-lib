@@ -143,7 +143,7 @@ class ProductId implements Comparable<ProductId>{
             productCategory = productCategoryFactory.getForAbbreviation(productCategoryString)
         }
         catch (NumberFormatException numberFormatException) {
-            throw new NumberFormatException("Provided productId does not have a valid uniqueID")
+            throw new NumberFormatException("Provided productId does not have a valid uniqueID. Provided unique id: ${runningNumberString}")
         }
         catch (IllegalArgumentException illegalArgumentException) {
             throw new IllegalArgumentException("ProductId does not have a valid ProductCategory abbreviation. Provided abbreviation: ${productCategoryString}")
