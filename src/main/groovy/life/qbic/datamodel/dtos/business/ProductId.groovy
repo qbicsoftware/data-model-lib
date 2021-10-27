@@ -28,6 +28,9 @@ class ProductId implements Comparable<ProductId>{
     /**
      * A builder for ProductId instances.
      */
+
+    static final ProductCategoryFactory productCategoryFactory = new ProductCategoryFactory()
+
     static class Builder {
         private String productType
         private long uniqueId
@@ -132,13 +135,12 @@ class ProductId implements Comparable<ProductId>{
         String productCategoryString
         String runningNumberString
         Long runningNumber
+        ProductCategory productCategory
         try {
-            ProductCategoryFactory productCategoryFactory = new ProductCategoryFactory()
             productCategoryString = splitId[0].trim()
             runningNumberString = splitId[1].trim()
             runningNumber = Long.parseUnsignedLong(runningNumberString)
-            ProductCategory productCategory = productCategoryFactory.getForAbbreviation(productCategoryString)
-            println(productCategoryString)
+            productCategory = productCategoryFactory.getForAbbreviation(productCategoryString)
         }
         catch (NumberFormatException numberFormatException) {
             throw new NumberFormatException("Provided productId does not have a valid uniqueID")
@@ -146,7 +148,7 @@ class ProductId implements Comparable<ProductId>{
         catch (IllegalArgumentException illegalArgumentException) {
             throw new IllegalArgumentException("ProductId does not have a valid ProductCategory abbreviation")
         }
-        return new Builder(productCategoryString, runningNumber).build()
+        return new Builder(productCategory.getAbbreviation() , runningNumber).build()
     }
 
     /**

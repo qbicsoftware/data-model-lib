@@ -5,7 +5,7 @@ package life.qbic.datamodel.dtos.business.services
  * by the ProductIdentifier {@link life.qbic.datamodel.dtos.business.ProductId}
  *
  * @since: 2.0.0
- * @deprecated: Will be removed, please use the abbreviation in the {@link life.qbic.datamodel.dtos.business.ProductCategory}
+ * @deprecated Will be removed, please use the abbreviation in the {@link life.qbic.datamodel.dtos.business.ProductCategory}
  * @see life.qbic.datamodel.dtos.business.ProductCategory#getAbbreviation()
  */
 @Deprecated

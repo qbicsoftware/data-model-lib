@@ -24,8 +24,7 @@ enum ProductCategory {
     private String value
 
     /**
-     * Contains the abbreviation for each Product used as a type specification
-     * by the ProductIdentifier {@link life.qbic.datamodel.dtos.business.ProductId}
+     * Abbreviation for the enum type name
      */
     private String abbreviation
 
