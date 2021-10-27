@@ -1,7 +1,6 @@
 package life.qbic.datamodel.dtos.business
 
 import groovy.transform.EqualsAndHashCode
-import life.qbic.datamodel.dtos.business.services.ProductType
 
 /**
  * A DTO describing Product Identifiers
@@ -29,7 +28,7 @@ class ProductId implements Comparable<ProductId>{
      * A builder for ProductId instances.
      */
 
-    static final ProductCategoryFactory productCategoryFactory = new ProductCategoryFactory()
+    private static final ProductCategoryFactory productCategoryFactory = new ProductCategoryFactory()
 
     static class Builder {
         private String productType
