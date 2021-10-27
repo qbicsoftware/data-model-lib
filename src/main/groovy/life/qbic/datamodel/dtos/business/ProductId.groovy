@@ -129,7 +129,7 @@ class ProductId implements Comparable<ProductId>{
      */
     static ProductId from(String productId) {
         if (!productId.contains("_")) {
-            throw new IllegalArgumentException("Not a valid product identifier.")
+            throw new IllegalArgumentException("${productId} is not a valid product identifier.")
         }
         def splitId = productId.split("_")
         String productCategoryString
