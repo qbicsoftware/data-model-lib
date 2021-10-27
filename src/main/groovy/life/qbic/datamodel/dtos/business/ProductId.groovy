@@ -121,7 +121,7 @@ class ProductId implements Comparable<ProductId>{
      * Returns a ProductId from a given String representation
      *
      * Expects a ProductIdString with the Format P_N
-     * P being the one of the abbreviation values stored in {@link ProductType} enum
+     * P being the one of the abbreviation values stored in {@link ProductCategory} enum
      * N being an Integer Number
      *
      * @param String representation of a productId
@@ -132,13 +132,11 @@ class ProductId implements Comparable<ProductId>{
             throw new IllegalArgumentException("${productId} is not a valid product identifier.")
         }
         def splitId = productId.split("_")
-        String productCategoryString
-        String runningNumberString
+        String productCategoryString = splitId[0].trim()
+        String runningNumberString = splitId[1].trim()
         Long runningNumber
         ProductCategory productCategory
         try {
-            productCategoryString = splitId[0].trim()
-            runningNumberString = splitId[1].trim()
             runningNumber = Long.parseUnsignedLong(runningNumberString)
             productCategory = productCategoryFactory.getForAbbreviation(productCategoryString)
         }
