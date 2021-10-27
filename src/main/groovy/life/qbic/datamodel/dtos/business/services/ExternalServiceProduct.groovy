@@ -1,6 +1,7 @@
 package life.qbic.datamodel.dtos.business.services
 
 import groovy.transform.EqualsAndHashCode
+import life.qbic.datamodel.dtos.business.ProductCategory
 import life.qbic.datamodel.dtos.business.ProductId
 import life.qbic.datamodel.dtos.business.facilities.Facility
 
@@ -24,6 +25,7 @@ class ExternalServiceProduct extends PartialProduct {
      * @param serviceProvider The service provider
      */
     ExternalServiceProduct(String name, String description, double internalUnitPrice, double externalUnitPrice, ProductUnit unit, long runningNumber, Facility serviceProvider) {
-        super(name, description, internalUnitPrice, externalUnitPrice, unit, new ProductId.Builder(ProductType.EXTERNAL_SERVICE.toString(), runningNumber).build(), serviceProvider)
+        super(name, description, internalUnitPrice, externalUnitPrice, unit, new ProductId.Builder(
+                ProductCategory.EXTERNAL_SERVICE.getAbbreviation(), runningNumber).build(), serviceProvider)
     }
 }
