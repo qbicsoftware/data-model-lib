@@ -121,7 +121,7 @@ class ProductId implements Comparable<ProductId>{
      * Returns a ProductId from a given String representation
      *
      * Expects a ProductIdString with the Format P_N
-     * P being the one of the abbreviation values stored in {@link ProductType} enum
+     * P being the one of the abbreviation values stored in {@link ProductCategory} enum
      * N being an Integer Number
      *
      * @param String representation of a productId
@@ -129,24 +129,23 @@ class ProductId implements Comparable<ProductId>{
      */
     static ProductId from(String productId) {
         if (!productId.contains("_")) {
-            throw new IllegalArgumentException("Not a valid product identifier.")
+            throw new IllegalArgumentException("${productId} is not a valid product identifier.")
         }
         def splitId = productId.split("_")
-        String productCategoryString
-        String runningNumberString
+        String productCategoryString = splitId[0].trim()
+        String runningNumberString = splitId[1].trim()
         Long runningNumber
         ProductCategory productCategory
         try {
-            productCategoryString = splitId[0].trim()
-            runningNumberString = splitId[1].trim()
             runningNumber = Long.parseUnsignedLong(runningNumberString)
             productCategory = productCategoryFactory.getForAbbreviation(productCategoryString)
         }
         catch (NumberFormatException numberFormatException) {
-            throw new NumberFormatException("Provided productId does not have a valid uniqueID")
+            throw new NumberFormatException("Provided productId does not have a valid uniqueID. Provided unique id: ${runningNumberString}")
         }
         catch (IllegalArgumentException illegalArgumentException) {
-            throw new IllegalArgumentException("ProductId does not have a valid ProductCategory abbreviation")
+            throw new IllegalArgumentException("ProductId does not have a valid ProductCategory abbreviation. Provided abbreviation: ${productCategoryString}")
+
         }
         return new Builder(productCategory.getAbbreviation() , runningNumber).build()
     }

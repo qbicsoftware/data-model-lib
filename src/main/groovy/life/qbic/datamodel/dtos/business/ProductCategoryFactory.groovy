@@ -28,6 +28,13 @@ class ProductCategoryFactory extends EnumFactory<ProductCategory>{
         return desiredKey
     }
 
+    /**
+     * This method returns the enum with the provided String abbreviation.
+     *
+     * @throws IllegalArgumentException in case the String could not be mapped
+     * @param abbreviation the String corresponding to the abbreviation stored in the enum
+     * @return the enum key for the provided abbreviation
+     */
     ProductCategory getForAbbreviation(String abbreviation) {
         ProductCategory desiredKey
         desiredKey = ProductCategory.values().find {it.abbreviation.equals(abbreviation.trim())}
