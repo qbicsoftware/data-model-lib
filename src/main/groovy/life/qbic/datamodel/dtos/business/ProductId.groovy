@@ -1,8 +1,6 @@
 package life.qbic.datamodel.dtos.business
 
 import groovy.transform.EqualsAndHashCode
-import life.qbic.datamodel.dtos.business.services.ProductType
-import life.qbic.datamodel.dtos.business.services.ProductTypeFactory
 
 /**
  * A DTO describing Product Identifiers
@@ -29,6 +27,9 @@ class ProductId implements Comparable<ProductId>{
     /**
      * A builder for ProductId instances.
      */
+
+    private static final ProductCategoryFactory productCategoryFactory = new ProductCategoryFactory()
+
     static class Builder {
         private String productType
         private long uniqueId
@@ -119,34 +120,33 @@ class ProductId implements Comparable<ProductId>{
      * Returns a ProductId from a given String representation
      *
      * Expects a ProductIdString with the Format P_N
-     * P being the one of the abbreviation values stored in {@link ProductType} enum
+     * P being the one of the abbreviation values stored in {@link ProductCategory} enum
      * N being an Integer Number
      *
      * @param String representation of a productId
-     * @return ProductId containing type and uniqueNumber of String representation
+     * @return ProductId containing productCategory abbreviation and uniqueNumber of String representation
      */
     static ProductId from(String productId) {
         if (!productId.contains("_")) {
-            throw new IllegalArgumentException("Not a valid product identifier.")
+            throw new IllegalArgumentException("${productId} is not a valid product identifier.")
         }
         def splitId = productId.split("_")
-        String productTypeString
-        String runningNumberString
+        String productCategoryString = splitId[0].trim()
+        String runningNumberString = splitId[1].trim()
         Long runningNumber
+        ProductCategory productCategory
         try {
-            ProductTypeFactory productTypeFactory = new ProductTypeFactory()
-            productTypeString = splitId[0].trim()
-            runningNumberString = splitId[1].trim()
             runningNumber = Long.parseUnsignedLong(runningNumberString)
-            ProductType productType = productTypeFactory.getForString(productTypeString)
+            productCategory = productCategoryFactory.getForAbbreviation(productCategoryString)
         }
         catch (NumberFormatException numberFormatException) {
-            throw new NumberFormatException("Provided productId does not have a valid uniqueID")
+            throw new NumberFormatException("Provided productId does not have a valid uniqueID. Provided unique id: ${runningNumberString}")
         }
         catch (IllegalArgumentException illegalArgumentException) {
-            throw new IllegalArgumentException("ProductId does not have a valid ProductType")
+            throw new IllegalArgumentException("ProductId does not have a valid ProductCategory abbreviation. Provided abbreviation: ${productCategoryString}")
+
         }
-        return new Builder(productTypeString, runningNumber).build()
+        return new Builder(productCategory.getAbbreviation() , runningNumber).build()
     }
 
     /**
