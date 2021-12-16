@@ -1,241 +1,243 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project
-	xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-    <groupId>life.qbic</groupId>
-	<artifactId>data-model-lib</artifactId>
-	<version>2.14.2</version> <!-- <<QUBE_FORCE_BUMP>> -->
-	<name>data-model-lib</name>
-	<url>http://github.com/qbicsoftware/data-model-lib</url>
-	<description>Data models. A collection of QBiC's central data models and DTOs. </description>
-	<packaging>jar</packaging>
+  <groupId>life.qbic</groupId>
+  <artifactId>data-model-lib</artifactId>
+  <version>2.14.2</version> <!-- <<QUBE_FORCE_BUMP>> -->
+  <name>data-model-lib</name>
+  <url>http://github.com/qbicsoftware/data-model-lib</url>
+  <description>Data models. A collection of QBiC's central data models and DTOs.</description>
+  <packaging>jar</packaging>
 
-    <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
 
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    </properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>qbic-plugins-2</id>
-            <url>https://qbic-repo.qbic.uni-tuebingen.de/repository/maven-releases</url>
-        </pluginRepository>
-    </pluginRepositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>qbic-plugins-2</id>
+      <url>https://qbic-repo.qbic.uni-tuebingen.de/repository/maven-releases</url>
+    </pluginRepository>
+  </pluginRepositories>
 
-	<!-- we only need to tell maven where to find our parent pom and other QBiC dependencies -->
-	<repositories>
-		<repository>
-			<releases>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-				<checksumPolicy>fail</checksumPolicy>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<id>maven-central</id>
-			<name>Maven central</name>
-			<url>https://repo.maven.apache.org/maven2</url>
-		</repository>
-		<repository>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-				<checksumPolicy>fail</checksumPolicy>
-			</snapshots>
-			<id>nexus-snapshots</id>
-			<name>QBiC Snapshots</name>
-			<url>https://qbic-repo.qbic.uni-tuebingen.de/repository/maven-snapshots</url>
-		</repository>
-		<repository>
-			<releases>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-				<checksumPolicy>fail</checksumPolicy>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<id>nexus-releases</id>
-			<name>QBiC Releases</name>
-			<url>https://qbic-repo.qbic.uni-tuebingen.de/repository/maven-releases</url>
-		</repository>
-        <!-- Host the everit json schema dependency -->
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-	</repositories>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.codehaus.groovy</groupId>
-                <artifactId>groovy-bom</artifactId>
-                <version>2.5.10</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-          <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>2.5.10</version>
-            <type>pom</type>
-            <scope>${osgi.scope}</scope>
-          </dependency>
-        </dependencies>
-    </dependencyManagement>
+  <!-- we only need to tell maven where to find our parent pom and other QBiC dependencies -->
+  <repositories>
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>fail</checksumPolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>maven-central</id>
+      <name>Maven central</name>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </repository>
+    <repository>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>fail</checksumPolicy>
+      </snapshots>
+      <id>nexus-snapshots</id>
+      <name>QBiC Snapshots</name>
+      <url>https://qbic-repo.qbic.uni-tuebingen.de/repository/maven-snapshots</url>
+    </repository>
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>fail</checksumPolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>nexus-releases</id>
+      <name>QBiC Releases</name>
+      <url>https://qbic-repo.qbic.uni-tuebingen.de/repository/maven-releases</url>
+    </repository>
+    <!-- Host the everit json schema dependency -->
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
+  <dependencyManagement>
     <dependencies>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>osgi.core</artifactId>
-            <version>7.0.0</version>
-            <scope>${osgi.scope}</scope>
-        </dependency>
-        <!-- JSON schema validator -->
-        <dependency>
-            <groupId>com.github.everit-org.json-schema</groupId>
-            <artifactId>org.everit.json.schema</artifactId>
-            <version>1.12.1</version>
-          <scope>${osgi.scope}</scope>
-        </dependency>
       <dependency>
-        <groupId>life.qbic</groupId>
-        <artifactId>xml-manager-lib</artifactId>
-        <version>1.6.0</version>
-        <scope>${osgi.scope}</scope>
+        <groupId>org.codehaus.groovy</groupId>
+        <artifactId>groovy-bom</artifactId>
+        <version>2.5.10</version>
+        <type>pom</type>
+        <scope>import</scope>
       </dependency>
-      		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-			<version>2.15.0</version>
-			<scope>${osgi.scope}</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-api</artifactId>
-			<version>2.15.0</version>
-			<scope>${osgi.scope}</scope>
-		</dependency>
-      <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
       <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-annotations</artifactId>
-        <version>2.13.0</version>
+        <groupId>org.codehaus.groovy</groupId>
+        <artifactId>groovy-all</artifactId>
+        <version>2.5.10</version>
+        <type>pom</type>
         <scope>${osgi.scope}</scope>
-      </dependency>
-      <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
-      <dependency>
-        <groupId>javax.validation</groupId>
-        <artifactId>validation-api</artifactId>
-        <version>2.0.1.Final</version>
-        <scope>${osgi.scope}</scope>
-      </dependency>
-      <!-- Spock testing framework -->
-      <dependency>
-          <groupId>org.spockframework</groupId>
-          <artifactId>spock-core</artifactId>
-          <version>2.0-groovy-2.5</version>
-          <scope>test</scope>
       </dependency>
     </dependencies>
-     <distributionManagement>
-      <repository>
-        <uniqueVersion>true</uniqueVersion>
-        <id>nexus-releases</id>
-        <name>QBiC Releases</name>
-        <url>https://qbic-repo.qbic.uni-tuebingen.de/repository/maven-releases</url>
-      </repository>
-      <snapshotRepository>
-        <uniqueVersion>false</uniqueVersion>
-        <id>nexus-snapshots</id>
-        <name>QBiC Snapshots</name>
-        <url>https://qbic-repo.qbic.uni-tuebingen.de/repository/maven-snapshots</url>
-      </snapshotRepository>
-    </distributionManagement>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-            </plugin>
-          <plugin>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>2.21.0</version>
-            <configuration>
-              <includes>
-                <include>**/*Spec</include>
-              </includes>
-            </configuration>
-          </plugin>
-            <plugin>
-                <groupId>org.codehaus.gmavenplus</groupId>
-                <artifactId>gmavenplus-plugin</artifactId>
-                <version>1.12.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>execute</goal>
-                            <goal>addSources</goal>
-                            <goal>addTestSources</goal>
-                            <goal>generateStubs</goal>
-                            <goal>compile</goal>
-                            <goal>generateTestStubs</goal>
-                            <goal>compileTests</goal>
-                            <goal>removeStubs</goal>
-                            <goal>removeTestStubs</goal>
-                        </goals>
-                    </execution>
-                  <execution>
-                    <id>site</id>
-                    <phase>site</phase>
-                    <goals>
-                      <goal>generateStubs</goal>
-                      <goal>generateTestStubs</goal>
-                      <goal>groovydoc</goal>
-                      <goal>groovydocTests</goal>
-                    </goals>
-                  </execution>
-                </executions>
-              <configuration>
-                <groovyDocOutputDirectory>${project.build.directory}/site/gapidocs</groovyDocOutputDirectory>
-                <testGroovyDocOutputDirectory>${project.build.directory}/site/testgapidocs</testGroovyDocOutputDirectory>
-              </configuration>
-            </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-site-plugin</artifactId>
-            <version>3.7.1</version>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-project-info-reports-plugin</artifactId>
-            <version>3.0.0</version>
-          </plugin>
-          <plugin>
-            <groupId>life.qbic</groupId>
-            <artifactId>groovydoc-maven-plugin</artifactId>
-            <version>1.0.2</version>
-          </plugin>
-        </plugins>
-    </build>
+  </dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>osgi.core</artifactId>
+      <version>7.0.0</version>
+      <scope>${osgi.scope}</scope>
+    </dependency>
+    <!-- JSON schema validator -->
+    <dependency>
+      <groupId>com.github.everit-org.json-schema</groupId>
+      <artifactId>org.everit.json.schema</artifactId>
+      <version>1.12.1</version>
+      <scope>${osgi.scope}</scope>
+    </dependency>
+    <dependency>
+      <groupId>life.qbic</groupId>
+      <artifactId>xml-manager-lib</artifactId>
+      <version>1.6.0</version>
+      <scope>${osgi.scope}</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>2.15.0</version>
+      <scope>${osgi.scope}</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>2.15.0</version>
+      <scope>${osgi.scope}</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>2.13.0</version>
+      <scope>${osgi.scope}</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>2.0.1.Final</version>
+      <scope>${osgi.scope}</scope>
+    </dependency>
+    <!-- Spock testing framework -->
+    <dependency>
+      <groupId>org.spockframework</groupId>
+      <artifactId>spock-core</artifactId>
+      <version>2.0-groovy-2.5</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <distributionManagement>
+    <repository>
+      <uniqueVersion>true</uniqueVersion>
+      <id>nexus-releases</id>
+      <name>QBiC Releases</name>
+      <url>https://qbic-repo.qbic.uni-tuebingen.de/repository/maven-releases</url>
+    </repository>
+    <snapshotRepository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>nexus-snapshots</id>
+      <name>QBiC Snapshots</name>
+      <url>https://qbic-repo.qbic.uni-tuebingen.de/repository/maven-snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.21.0</version>
+        <configuration>
+          <includes>
+            <include>**/*Spec</include>
+          </includes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.gmavenplus</groupId>
+        <artifactId>gmavenplus-plugin</artifactId>
+        <version>1.12.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>execute</goal>
+              <goal>addSources</goal>
+              <goal>addTestSources</goal>
+              <goal>generateStubs</goal>
+              <goal>compile</goal>
+              <goal>generateTestStubs</goal>
+              <goal>compileTests</goal>
+              <goal>removeStubs</goal>
+              <goal>removeTestStubs</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>site</id>
+            <phase>site</phase>
+            <goals>
+              <goal>generateStubs</goal>
+              <goal>generateTestStubs</goal>
+              <goal>groovydoc</goal>
+              <goal>groovydocTests</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <groovyDocOutputDirectory>${project.build.directory}/site/gapidocs
+          </groovyDocOutputDirectory>
+          <testGroovyDocOutputDirectory>${project.build.directory}/site/testgapidocs
+          </testGroovyDocOutputDirectory>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.7.1</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>3.0.0</version>
+      </plugin>
+      <plugin>
+        <groupId>life.qbic</groupId>
+        <artifactId>groovydoc-maven-plugin</artifactId>
+        <version>1.0.2</version>
+      </plugin>
+    </plugins>
+  </build>
   <reporting>
     <plugins>
-    <plugin>
-    <groupId>life.qbic</groupId>
-    <artifactId>groovydoc-maven-plugin</artifactId>
-  </plugin>
-  </plugins>
-</reporting>
+      <plugin>
+        <groupId>life.qbic</groupId>
+        <artifactId>groovydoc-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </reporting>
   <profiles>
     <profile>
       <id>no-liferay</id>
