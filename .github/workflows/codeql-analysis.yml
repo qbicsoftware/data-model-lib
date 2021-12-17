@@ -45,6 +45,13 @@ jobs:
         java-version: 1.8
         settings-path: ${{ github.workspace }}
 
+    - name: Load local Maven repository cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
