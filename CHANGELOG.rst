@@ -15,6 +15,77 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Deprecated**
 
+2.14.4 (2022-01-04)
+-------------------
+
+**Added**
+
+**Fixed**
+
+* CVE-2021-44832
+
+**Dependencies**
+
+* Bump `org.apache.logging.log4j:log4j-api` from 2.17.0 to 2.17.1
+
+* Bump `org.apache.logging.log4j:log4j-core` from 2.17.0 to 2.17.1
+
+**Deprecated**
+
+2.14.3 (2021-12-20)
+-------------------
+
+**Added**
+
+**Fixed**
+
+* CVE-2021-45105
+
+**Dependencies**
+
+* Bump `org.apache.logging.log4j:log4j-api` from 2.16.0 to 2.17.0
+
+* Bump `org.apache.logging.log4j:log4j-core` from 2.16.0 to 2.17.0
+
+**Deprecated**
+
+2.14.2 (2021-12-16)
+-------------------
+
+**Added**
+
+**Fixed**
+
+* CVE-2021-45046
+
+**Dependencies**
+
+* `org.codehaus.groovy:groovy-bom:2.5.10` -> `2.5.14`
+* `org.codehaus.groovy:groovy-all:2.5.10` -> `2.5.14`
+* `org.osgi:osgi.core:7.0.0` -> 8.0.0
+* `com.github.everit-org.json-schema:org.everit.json.schema:1.12.1` -> `1.12.2`
+* `org.apache.logging.log4j:log4j-api:2.15.0` -> `2.16.0` (CVE-2021-45046)
+* `org.apache.logging.log4j:log4j-core:2.15.0` -> `2.16.0` (CVE-2021-45046)
+* `maven-surefire-plugin:2.21.0` -> `2.22.2`
+* `org.codehaus.gmavenplus:gmavenplus-plugin:1.12.0` -> `1.12.1`
+* `org.apache.maven.plugins:maven-site-plugin:3.7.1` -> `3.9.1`
+* `org.apache.maven.plugins:maven-project-info-reports-plugin:3.0.0` -> `3.1.1`
+
+**Deprecated**
+
+2.14.1 (2021-12-13)
+-------------------
+
+**Added**
+
+**Fixed**
+
+**Dependencies**
+
+* org.apache.logging.log4j 2.13.2 -> 2.15.0 (addresses CVE-2021-44228)
+
+**Deprecated**
+
 
 2.14.0 (2021-10-27)
 -------------------
