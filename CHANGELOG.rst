@@ -9,6 +9,8 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Added**
 
+* Add displayName to ``life.qbic.datamodel.samples.Status``
+
 **Fixed**
 
 **Dependencies**
