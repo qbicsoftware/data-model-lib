@@ -5,13 +5,13 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-    <groupId>life.qbic</groupId>
-	<artifactId>data-model-lib</artifactId>
-	<version>2.15.0</version> <!-- <<QUBE_FORCE_BUMP>> -->
-	<name>data-model-lib</name>
-	<url>http://github.com/qbicsoftware/data-model-lib</url>
-	<description>Data models. A collection of QBiC's central data models and DTOs. </description>
-	<packaging>jar</packaging>
+  <groupId>life.qbic</groupId>
+  <artifactId>data-model-lib</artifactId>
+  <version>2.15.0</version> <!-- <<QUBE_FORCE_BUMP>> -->
+  <name>data-model-lib</name>
+  <url>http://github.com/qbicsoftware/data-model-lib</url>
+  <description>Data models. A collection of QBiC's central data models and DTOs. </description>
+  <packaging>jar</packaging>
 
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
