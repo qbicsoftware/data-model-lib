@@ -4,6 +4,19 @@ Changelog
 
 This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
+2.15.0 (2022-01-24)
+----------------------------
+
+**Added**
+
+* Add displayName to ``life.qbic.datamodel.samples.Status`` (#282)
+
+**Fixed**
+
+**Dependencies**
+
+**Deprecated**
+
 2.14.4 (2022-01-04)
 -------------------
 
