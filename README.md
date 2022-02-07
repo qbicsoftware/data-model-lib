@@ -1,16 +1,19 @@
-# Data Model Library
-[![Build Status](https://travis-ci.org/qbicsoftware/data-model-lib.svg?branch=master)](https://travis-ci.com/qbicsoftware/data-model-lib)
-[![Code Coverage]( https://codecov.io/gh/qbicsoftware/data-model-lib/branch/master/graph/badge.svg)](https://codecov.io/gh/qbicsoftware/data-model-lib)
-[![Latest Release ](https://img.shields.io/github/v/release/qbicsoftware/data-model-lib.svg)](https://github.com/qbicsoftware/data-model-lib/releases)
-![Java Language](https://img.shields.io/badge/language-java-blue.svg)
-![Groovy Language](https://img.shields.io/badge/language-groovy-blue.svg)
+<div align="center">
+
+#Data Model Library
+
+[![Build Maven Package](https://github.com/qbicsoftware/data-model-lib/actions/workflows/build_package.yml/badge.svg)](https://github.com/qbicsoftware/data-model-lib/actions/workflows/build_package.yml)
+[![Run Maven Tests](https://github.com/qbicsoftware/data-model-lib/actions/workflows/run_tests.yml/badge.svg)](https://github.com/qbicsoftware/data-model-lib/actions/workflows/run_tests.yml)
+[![CodeQL](https://github.com/qbicsoftware/data-model-lib/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/qbicsoftware/data-model-lib/actions/workflows/codeql-analysis.yml)
+[![release](https://img.shields.io/github/v/release/qbicsoftware/data-model-lib?include_prereleases)](https://github.com/qbicsoftware/data-model-lib/releases)
+
+[![license](https://img.shields.io/github/license/qbicsoftware/data-model-lib)](https://github.com/qbicsoftware/data-model-lib/blob/main/LICENSE)
+![language](https://img.shields.io/badge/language-groovy,%20java-blue.svg)
 
 Data Model Library - A collection of QBiC data models.
+</div>
 
-## Author
-Created by Andreas Friedrich, Luis de la Garza, Sven Fillinger.
-
-Overview:
+##Overview:
 
 - [How to Install](#how-to-install)
 - [Data Models](#data-models)
