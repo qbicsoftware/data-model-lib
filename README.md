@@ -15,7 +15,8 @@ Data Model Library - A collection of QBiC data models.
 
 ##Overview:
 
-- [How to Install](#how-to-install)
+- [How to Run](#how-to-run)
+- [How to Use](#how-to-use)
 - [Data Models](#data-models)
     * [Oxford Nanopore Data Structure](#oxford-nanopore-data-structure)
     
@@ -40,7 +41,25 @@ Data Model Library - A collection of QBiC data models.
     * [Imaging context - Omero and more](#imaging-context---omero)
     * [Business context - Offer Management and more](#business-context---offer-management)
 
-## How to Install
+## How to Run
+
+Create a runable version of this code with maven and java 8:
+
+```
+> mvn clean package
+
+```
+
+The JAR file will be created in the ``/target`` folder, for example:
+
+```
+|-target
+|---data-model-lib-1.0.0.jar
+|---...
+```
+
+
+## How to Use
 
 With Maven you can include the recent library version as dependency with:
 
@@ -48,14 +67,14 @@ With Maven you can include the recent library version as dependency with:
 <dependency>
   <groupId>life.qbic</groupId>
   <artifactId>data-model-lib</artifactId>
-  <version><Insert preferred version></version>
+  <version>version-number</version-number>
 </dependency>
 ```
 or Groovy Grape:
 
 ```
 @Grapes(
-  @Grab(group='life.qbic', module='data-model-lib', version=<Insert preferred version>)
+  @Grab(group='life.qbic', module='data-model-lib', version=<version-number>)
 )
 ```
 
