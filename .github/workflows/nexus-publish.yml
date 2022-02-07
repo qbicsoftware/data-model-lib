@@ -30,6 +30,12 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
+      # Remove existing snapshot tags which are not supposed to be present
+      - name: Remove snapshot tags
+        run: mvn versions:set -DremoveSnapshot
+      # Set the SNAPSHOT for this build and deployment
+      - name: Set version in Maven project
+        run:  mvn versions:set -DnewVersion='${project.version}-SNAPSHOT'
 
       - name: Build with Maven
         run: mvn -B package --file pom.xml
