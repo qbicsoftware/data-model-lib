@@ -13,7 +13,7 @@
 Data Model Library - A collection of QBiC data models.
 </div>
 
-##Overview:
+## Overview:
 
 - [How to Run](#how-to-run)
 - [How to Use](#how-to-use)
@@ -47,7 +47,6 @@ Create a runable version of this code with maven and java 8:
 
 ```
 > mvn clean package
-
 ```
 
 The JAR file will be created in the ``/target`` folder, for example:
@@ -67,7 +66,7 @@ With Maven you can include the recent library version as dependency with:
 <dependency>
   <groupId>life.qbic</groupId>
   <artifactId>data-model-lib</artifactId>
-  <version>version-number</version-number>
+  <version>version-number</version>
 </dependency>
 ```
 or Groovy Grape:
