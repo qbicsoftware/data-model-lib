@@ -1,0 +1,19 @@
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+    authors:
+      - JohnnyQ5
+  categories:
+    - title: New Features 🚀
+      labels:
+        - feature
+    - title: Bugfixes 🪲
+      labels:
+        - fix
+    - title: Documentation & CI 🪂
+      labels:
+        - chore
+    - title: Others 🧃
+      labels:
+        - "*"

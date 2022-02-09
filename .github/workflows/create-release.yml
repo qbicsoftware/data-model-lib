@@ -35,12 +35,6 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml
 
-      - name: Checkin commit
-        run: git commit . -m 'Set version to ${{ github.event.inputs.versionTag }}'
-
-      - name: Push version update to Github
-        run: git push https://${{ secrets.JOHNNY_Q5_REPORTS_TOKEN  }}@github.com/${{ github.repository }}.git
-
       - name: Create Release Notes
         if: ${{ !startsWith(github.ref, 'refs/tags/')
           && !( contains(github.event.inputs.versionTag, 'alpha')
@@ -73,3 +67,23 @@ jobs:
         env:
           MAVEN_REPO_USERNAME: ${{ secrets.NEXUS_USERNAME }}
           MAVEN_REPO_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+
+      - name: Switch to new branch
+        run: git checkout -b release/set-version-to-${{ github.event.inputs.versionTag }}
+
+      - name: Checkin commit
+        run: git commit . -m 'Set version to ${{ github.event.inputs.versionTag }}'
+
+      - name: Set remote branch
+        run: git push --set-upstream origin release/set-version-to-${{ github.event.inputs.versionTag }}
+
+      - name: Open PR with version bump
+        uses: actions/github-script@v4.0.2
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            await github.request(`POST /repos/${{ github.repository }}/pulls`, {
+              title: 'Update version to ${{ github.event.inputs.versionTag }}',
+              head: 'release/set-version-to-${{ github.event.inputs.versionTag }}',
+              base: 'main'
+            });
