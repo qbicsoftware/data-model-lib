@@ -2,6 +2,9 @@
 
 #Data Model Library
 
+_Data Model Library - A collection of QBiC data models._
+
+
 [![Build Maven Package](https://github.com/qbicsoftware/data-model-lib/actions/workflows/build_package.yml/badge.svg)](https://github.com/qbicsoftware/data-model-lib/actions/workflows/build_package.yml)
 [![Run Maven Tests](https://github.com/qbicsoftware/data-model-lib/actions/workflows/run_tests.yml/badge.svg)](https://github.com/qbicsoftware/data-model-lib/actions/workflows/run_tests.yml)
 [![CodeQL](https://github.com/qbicsoftware/data-model-lib/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/qbicsoftware/data-model-lib/actions/workflows/codeql-analysis.yml)
@@ -10,7 +13,6 @@
 [![license](https://img.shields.io/github/license/qbicsoftware/data-model-lib)](https://github.com/qbicsoftware/data-model-lib/blob/main/LICENSE)
 ![language](https://img.shields.io/badge/language-groovy,%20java-blue.svg)
 
-Data Model Library - A collection of QBiC data models.
 </div>
 
 ## Overview:
@@ -179,3 +181,7 @@ The following figure describes the entity relation of the DTOs related to Offer 
 
 Detailed Information can be found in the GroovyDoc class description of the
 DTOs.
+
+## License
+
+This work is licensed under the [MIT license](https://mit-license.org/).
