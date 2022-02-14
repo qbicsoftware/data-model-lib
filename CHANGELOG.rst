@@ -88,7 +88,6 @@ This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
 **Deprecated**
 
-
 2.14.0 (2021-10-27)
 -------------------
 
