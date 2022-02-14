@@ -1,6 +1,6 @@
 <div align="center">
 
-#Data Model Library
+# Data Model Library
 
 _Data Model Library - A collection of QBiC data models._
 
@@ -48,7 +48,7 @@ _Data Model Library - A collection of QBiC data models._
 Create a runable version of this code with maven and java 8:
 
 ```
-> mvn clean package
+mvn clean package
 ```
 
 The JAR file will be created in the ``/target`` folder, for example:
