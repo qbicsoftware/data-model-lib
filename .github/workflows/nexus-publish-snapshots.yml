@@ -2,7 +2,7 @@
 # qbic-repo.qbic.uni-tuebingen.de packages when a release is created
 # For more information see: https://github.com/actions/setup-java#apache-maven-with-a-settings-path
 
-name: Nexus Package
+name: Nexus Publish Snapshots
 
 on:
   push:
@@ -45,4 +45,3 @@ jobs:
         env:
           MAVEN_REPO_USERNAME: ${{ secrets.NEXUS_USERNAME }}
           MAVEN_REPO_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
-        
