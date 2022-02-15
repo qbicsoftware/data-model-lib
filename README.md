@@ -1,18 +1,24 @@
+<div align="center">
+
 # Data Model Library
-[![Build Status](https://travis-ci.org/qbicsoftware/data-model-lib.svg?branch=master)](https://travis-ci.com/qbicsoftware/data-model-lib)
-[![Code Coverage]( https://codecov.io/gh/qbicsoftware/data-model-lib/branch/master/graph/badge.svg)](https://codecov.io/gh/qbicsoftware/data-model-lib)
-[![Latest Release ](https://img.shields.io/github/v/release/qbicsoftware/data-model-lib.svg)](https://github.com/qbicsoftware/data-model-lib/releases)
-![Java Language](https://img.shields.io/badge/language-java-blue.svg)
-![Groovy Language](https://img.shields.io/badge/language-groovy-blue.svg)
 
-Data Model Library - A collection of QBiC data models.
+_Data Model Library - A collection of QBiC data models._
 
-## Author
-Created by Andreas Friedrich, Luis de la Garza, Sven Fillinger.
 
-Overview:
+[![Build Maven Package](https://github.com/qbicsoftware/data-model-lib/actions/workflows/build_package.yml/badge.svg)](https://github.com/qbicsoftware/data-model-lib/actions/workflows/build_package.yml)
+[![Run Maven Tests](https://github.com/qbicsoftware/data-model-lib/actions/workflows/run_tests.yml/badge.svg)](https://github.com/qbicsoftware/data-model-lib/actions/workflows/run_tests.yml)
+[![CodeQL](https://github.com/qbicsoftware/data-model-lib/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/qbicsoftware/data-model-lib/actions/workflows/codeql-analysis.yml)
+[![release](https://img.shields.io/github/v/release/qbicsoftware/data-model-lib?include_prereleases)](https://github.com/qbicsoftware/data-model-lib/releases)
 
-- [How to Install](#how-to-install)
+[![license](https://img.shields.io/github/license/qbicsoftware/data-model-lib)](https://github.com/qbicsoftware/data-model-lib/blob/main/LICENSE)
+![language](https://img.shields.io/badge/language-groovy,%20java-blue.svg)
+
+</div>
+
+## Overview:
+
+- [How to Run](#how-to-run)
+- [How to Use](#how-to-use)
 - [Data Models](#data-models)
     * [Oxford Nanopore Data Structure](#oxford-nanopore-data-structure)
     
@@ -37,7 +43,24 @@ Overview:
     * [Imaging context - Omero and more](#imaging-context---omero)
     * [Business context - Offer Management and more](#business-context---offer-management)
 
-## How to Install
+## How to Run
+
+Create a runable version of this code with maven and java 8:
+
+```
+mvn clean package
+```
+
+The JAR file will be created in the ``/target`` folder, for example:
+
+```
+|-target
+|---data-model-lib-1.0.0.jar
+|---...
+```
+
+
+## How to Use
 
 With Maven you can include the recent library version as dependency with:
 
@@ -45,14 +68,14 @@ With Maven you can include the recent library version as dependency with:
 <dependency>
   <groupId>life.qbic</groupId>
   <artifactId>data-model-lib</artifactId>
-  <version><Insert preferred version></version>
+  <version>version-number</version>
 </dependency>
 ```
 or Groovy Grape:
 
 ```
 @Grapes(
-  @Grab(group='life.qbic', module='data-model-lib', version=<Insert preferred version>)
+  @Grab(group='life.qbic', module='data-model-lib', version=<version-number>)
 )
 ```
 
@@ -158,3 +181,7 @@ The following figure describes the entity relation of the DTOs related to Offer 
 
 Detailed Information can be found in the GroovyDoc class description of the
 DTOs.
+
+## License
+
+This work is licensed under the [MIT license](https://mit-license.org/).
