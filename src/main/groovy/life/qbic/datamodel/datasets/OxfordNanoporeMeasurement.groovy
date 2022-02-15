@@ -66,7 +66,6 @@ final class OxfordNanoporeMeasurement {
 
     private static void validateMetaData(Map metadata) throws IllegalArgumentException {
         def expectedKeys = [
-                "adapter",
                 "asic_temp",
                 "base_caller",
                 "base_caller_version",
