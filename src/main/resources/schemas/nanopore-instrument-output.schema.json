@@ -82,6 +82,34 @@
         }
       ]
     },
+    "other_reports_folder": {
+      "description": "subfolder containing some of the report files",
+      "allOf": [
+        {
+          "$ref": "#/definitions/folder"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "other_reports"
+            },
+            "children": {
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/drift_correction_log"
+                  },
+                  {
+                    "$ref": "#/definitions/mux_scan_data_log"
+                  }
+                ]
+              },
+              "minItems": 2
+            }
+          }
+        }
+      ]
+    },
     "fast5_file": {
       "allOf": [
         {
@@ -391,6 +419,9 @@
                     "$ref": "#/definitions/duty_time_log"
                   },
                   {
+                    "$ref": "#/definitions/barcode_alignment_log"
+                  },
+                  {
                     "$ref": "#/definitions/final_summary_log"
                   },
                   {
@@ -407,6 +438,9 @@
                   },
                   {
                     "$ref": "#/definitions/throughput_log"
+                  },
+                  {
+                    "$ref": "#/definitions/other_reports_folder"
                   }
                 ]
               }
@@ -444,6 +478,23 @@
             },
             "file_type": {
               "pattern": "csv"
+            }
+          }
+        }
+      ]
+    },
+    "barcode_alignment_log": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/file"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "barcode_alignment_.*"
+            },
+            "file_type": {
+              "pattern": "tsv"
             }
           }
         }
