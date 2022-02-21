@@ -21,7 +21,7 @@ import groovy.util.logging.Log4j2
 @Log4j2
 final class OxfordNanoporeMeasurement {
 
-    private static final String LIBRARY_PREP_KIT_SCHEMA = "SQK-.*(?=:)"
+    private static final String LIBRARY_PREP_KIT_SCHEMA = "SQK-.*"
 
     private static final enum METADATA_FIELD {
         ADAPTER,
@@ -112,6 +112,8 @@ final class OxfordNanoporeMeasurement {
     }
 
     private static String extractLibraryKit(String text) {
+        // cut off optional suffix
+        text = text.replace(":True", "")
         Set<String> result = []
         Pattern pattern = Pattern.compile(LIBRARY_PREP_KIT_SCHEMA, Pattern.CASE_INSENSITIVE)
         Matcher m = pattern.matcher(text)

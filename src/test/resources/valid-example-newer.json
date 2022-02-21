@@ -14,7 +14,7 @@
                 "flow_cell_product_code": "FLO-PRO002",
                 "flow_cell_position": "2-A3-D3",
                 "hostname": "PCT0094",
-                "protocol": "sequencing/sequencing_PRO002_DNA:FLO-PRO002:SQK-LSK109:True",
+                "protocol": "protocol=sequencing/sequencing_PRO002_DNA:FLO-PRO002:SQK-LSK109-XL",
                 "started": "2020-02-11T15:52:10.465982+01:00"
             },
             "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a",
