@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "http://qbic.life/nanopore-instrument-output.schema.json",
+  "$id": "http://qbic.life/nanopore-instrument-output_v2.schema.json",
   "title": "Nanopore Instrument Output",
   "description": "Describes in which form Nanopore data is received from the lab.",
   "definitions": {
@@ -77,6 +77,34 @@
           "properties": {
             "name": {
               "$ref": "#/definitions/qbic_code"
+            }
+          }
+        }
+      ]
+    },
+    "other_reports_folder": {
+      "description": "subfolder containing some of the report files",
+      "allOf": [
+        {
+          "$ref": "#/definitions/folder"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "other_reports"
+            },
+            "children": {
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/drift_correction_log"
+                  },
+                  {
+                    "$ref": "#/definitions/mux_scan_data_log"
+                  }
+                ]
+              },
+              "minItems": 2
             }
           }
         }
@@ -385,9 +413,6 @@
                     "$ref": "#/definitions/fast5_fail"
                   },
                   {
-                    "$ref": "#/definitions/drift_correction_log"
-                  },
-                  {
                     "$ref": "#/definitions/duty_time_log"
                   },
                   {
@@ -395,9 +420,6 @@
                   },
                   {
                     "$ref": "#/definitions/final_summary_log"
-                  },
-                  {
-                    "$ref": "#/definitions/mux_scan_data_log"
                   },
                   {
                     "$ref": "#/definitions/report_md_log"
@@ -410,6 +432,9 @@
                   },
                   {
                     "$ref": "#/definitions/throughput_log"
+                  },
+                  {
+                    "$ref": "#/definitions/other_reports_folder"
                   }
                 ]
               }
