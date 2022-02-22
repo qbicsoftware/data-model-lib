@@ -62,6 +62,7 @@ class OxfordNanoporeExperimentSpec extends Specification {
         then:
         assert experiment.sampleCode == "QABCD001AB"
         assert measurements.size() == 1
+        assert measurements[0].libraryPreparationKit == "SQK-LSK109"
     }
 
     def "Create simple sample Oxford Nanopore experiment successfully for newer structure"() {
@@ -75,6 +76,7 @@ class OxfordNanoporeExperimentSpec extends Specification {
         then:
         assert experiment.sampleCode == "QABCD001AB"
         assert measurements.size() == 1
+        assert measurements[0].libraryPreparationKit == "SQK-LSK109-XL"
     }
 
     def "Create a simple pooled Oxford Nanopore experiment successfully"() {
