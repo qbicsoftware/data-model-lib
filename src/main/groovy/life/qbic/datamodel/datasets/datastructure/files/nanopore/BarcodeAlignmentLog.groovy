@@ -5,7 +5,6 @@ import life.qbic.datamodel.datasets.datastructure.files.DataFile
 /**
  * A specialisation of a DataFile, represents an Oxford Nanopore barcode alignment log file
  *
- * @author: Sven Fillinger
  */
 class BarcodeAlignmentLog extends DataFile {
 
