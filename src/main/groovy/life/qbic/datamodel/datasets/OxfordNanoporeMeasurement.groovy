@@ -67,8 +67,8 @@ final class OxfordNanoporeMeasurement {
 
     private static void validateMetaData(Map metadata) throws IllegalArgumentException {
 
-        InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream("schemas/ont-metadata.schema.json")
-        Map schema = (Map) new JsonSlurper().parse(stream)
+        InputStream stream = this.getClassLoader().getResourceAsStream("schemas/ont-metadata.schema.json")
+        def schema = new JsonSlurper().parse(stream) as Map<String, ?>
 
         def expectedKeys = schema.get("required") as List<String>
 
