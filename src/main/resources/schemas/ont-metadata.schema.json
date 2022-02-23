@@ -43,7 +43,7 @@
     },
     "protocol": {
       "type": "string",
-      "pattern": "SQK-.*(?=:)"
+      "pattern": "SQK-.*"
     },
     "started": {
       "type": "string",

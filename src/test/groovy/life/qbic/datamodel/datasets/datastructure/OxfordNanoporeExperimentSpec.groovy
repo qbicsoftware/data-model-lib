@@ -18,6 +18,12 @@ class OxfordNanoporeExperimentSpec extends Specification {
     @Shared
     Map minimalWorkingSimpleDataStructure
     /**
+     * Newer map that stores the Oxford Nanopore folder structure
+     * according to the schema that puts some reports in its own folder and adds a new report
+     */
+    @Shared
+    Map minimalWorkingSimpleDataStructureWithReportsFolder
+    /**
      * Map that that stores the Oxford Nanopore folder structure
      * according to the schema containing unclassified read information
      */
@@ -33,6 +39,9 @@ class OxfordNanoporeExperimentSpec extends Specification {
     def setupSpec() {
         InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream("valid-example.json")
         minimalWorkingSimpleDataStructure = (Map) new JsonSlurper().parse(stream)
+        // new example with slightly different structure
+        stream = Thread.currentThread().getContextClassLoader().getResourceAsStream("valid-example-newer.json")
+        minimalWorkingSimpleDataStructureWithReportsFolder = (Map) new JsonSlurper().parse(stream)
         // read in unclassified example
         stream = Thread.currentThread().getContextClassLoader().getResourceAsStream("valid-example-unclassified.json")
         unclassifiedWorkingDataStructure = (Map) new JsonSlurper().parse(stream)
@@ -53,6 +62,21 @@ class OxfordNanoporeExperimentSpec extends Specification {
         then:
         assert experiment.sampleCode == "QABCD001AB"
         assert measurements.size() == 1
+        assert measurements[0].libraryPreparationKit == "SQK-LSK109"
+    }
+
+    def "Create simple sample Oxford Nanopore experiment successfully for newer structure"() {
+        given:
+        final def example = minimalWorkingSimpleDataStructureWithReportsFolder
+
+        when:
+        final def experiment = OxfordNanoporeExperiment.create(example)
+        final def measurements = experiment.getMeasurements()
+
+        then:
+        assert experiment.sampleCode == "QABCD001AB"
+        assert measurements.size() == 1
+        assert measurements[0].libraryPreparationKit == "SQK-LSK109-XL"
     }
 
     def "Create a simple pooled Oxford Nanopore experiment successfully"() {
