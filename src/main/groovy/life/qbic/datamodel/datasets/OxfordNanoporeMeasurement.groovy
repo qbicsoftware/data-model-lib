@@ -1,17 +1,12 @@
 package life.qbic.datamodel.datasets
 
+import groovy.util.logging.Log4j2
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nanopore.*
-import org.everit.json.schema.ValidationException
 
 import java.util.regex.Matcher
 import java.util.regex.Pattern
-
-import org.everit.json.schema.loader.SchemaLoader
-import org.json.JSONObject
-import org.json.JSONTokener
-import groovy.util.logging.Log4j2
 
 /**
  * A dataset that represents a Oxford Nanopore Measurement.
@@ -70,12 +65,23 @@ final class OxfordNanoporeMeasurement {
     }
 
     private static void validateMetaData(Map metadata) throws IllegalArgumentException {
-        try {
-            MetaData.validateMetadata(metadata)
-        } catch (ValidationException e) {
-            // Aggregate the causing exceptions
-            def causes = e.getAllMessages().join("\n")
-            throw new IllegalArgumentException("The Nanopore metadata could not be collected.\nReason:\n$causes",)
+        def expectedKeys = [
+                "asic_temp",
+                "base_caller",
+                "base_caller_version",
+                "device_type",
+                "flow_cell_id",
+                "flow_cell_position",
+                "flow_cell_product_code",
+                "protocol",
+                "hostname",
+                "started"
+        ]
+        def missingKeys = expectedKeys.stream()
+                .filter({ !metadata.keySet().contains(it) })
+                .collect()
+        if (!missingKeys.isEmpty()) {
+            throw new IllegalArgumentException('Required metadata properties missing: ' + missingKeys.join(", "))
         }
     }
 
@@ -370,25 +376,4 @@ final class OxfordNanoporeMeasurement {
     String getRelativePath() {
         return this.measurementFolder.relativePath
     }
-
-    /*
-    Inner class that contains the logic for the metadata validation
-     */
-    private static class MetaData {
-
-        private static final SCHEMA = "/schemas/ont-metadata.schema.json"
-
-        static validateMetadata(Map metaData) throws ValidationException {
-            // Load schema
-            final def metaDataJson = new JSONObject(metaData)
-            final def schemaStream = OxfordNanoporeMeasurement.getResourceAsStream(SCHEMA)
-            final def rawSchema = new JSONObject(new JSONTokener(schemaStream))
-            final def jsonSchema = SchemaLoader.load(rawSchema)
-            // Validate against schema
-            jsonSchema.validate(metaDataJson)
-        }
-
-    }
-
-
 }
