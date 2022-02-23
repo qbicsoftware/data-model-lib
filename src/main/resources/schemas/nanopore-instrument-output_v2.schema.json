@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "http://qbic.life/nanopore-instrument-output_v2.schema.json",
-  "title": "Nanopore Instrument Output",
+  "title": "Nanopore Instrument Output V2",
   "description": "Describes in which form Nanopore data is received from the lab.",
   "definitions": {
     "folder": {

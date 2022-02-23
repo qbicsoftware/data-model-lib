@@ -17,6 +17,6 @@ class OxfordNanoporeInstrumentOutputV2 {
     private static final String SCHEMA_PATH = "/schemas/nanopore-instrument-output_v2.schema.json"
 
     static InputStream getSchemaAsStream() {
-        return OxfordNanoporeInstrumentOutput.getResourceAsStream(SCHEMA_PATH)
+        return OxfordNanoporeInstrumentOutputV2.getResourceAsStream(SCHEMA_PATH)
     }
 }
