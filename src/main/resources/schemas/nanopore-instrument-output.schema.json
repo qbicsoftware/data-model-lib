@@ -391,9 +391,6 @@
                     "$ref": "#/definitions/duty_time_log"
                   },
                   {
-                    "$ref": "#/definitions/barcode_alignment_log"
-                  },
-                  {
                     "$ref": "#/definitions/final_summary_log"
                   },
                   {
@@ -447,23 +444,6 @@
             },
             "file_type": {
               "pattern": "csv"
-            }
-          }
-        }
-      ]
-    },
-    "barcode_alignment_log": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/file"
-        },
-        {
-          "properties": {
-            "name": {
-              "pattern": "barcode_alignment_.*"
-            },
-            "file_type": {
-              "pattern": "tsv"
             }
           }
         }
