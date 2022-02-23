@@ -7,7 +7,6 @@ import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
  *
  * Holds information about a Oxford Nanopore NGS measurement.
  *
- * @author: Sven Fillinger
  */
 class OtherReportsFolder extends DataFolder {
 
