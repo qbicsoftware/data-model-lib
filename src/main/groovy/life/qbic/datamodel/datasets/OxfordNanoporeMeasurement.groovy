@@ -1,5 +1,6 @@
 package life.qbic.datamodel.datasets
 
+import groovy.json.JsonSlurper
 import groovy.util.logging.Log4j2
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
@@ -65,18 +66,12 @@ final class OxfordNanoporeMeasurement {
     }
 
     private static void validateMetaData(Map metadata) throws IllegalArgumentException {
-        def expectedKeys = [
-                "asic_temp",
-                "base_caller",
-                "base_caller_version",
-                "device_type",
-                "flow_cell_id",
-                "flow_cell_position",
-                "flow_cell_product_code",
-                "protocol",
-                "hostname",
-                "started"
-        ]
+
+        InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream("schemas/ont-metadata.schema.json")
+        Map schema = (Map) new JsonSlurper().parse(stream)
+
+        def expectedKeys = schema.get("required") as List<String>
+
         def missingKeys = expectedKeys.stream()
                 .filter({ !metadata.keySet().contains(it) })
                 .collect()
