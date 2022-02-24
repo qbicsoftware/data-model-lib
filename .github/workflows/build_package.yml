@@ -3,7 +3,7 @@ name: Build Maven Package
 on: [push]
 
 jobs:
-  build:
+  package:
     runs-on: ubuntu-latest
 
     steps:
@@ -12,6 +12,13 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      - name: Load local Maven repository cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
 
       - name: Run mvn package
         run: mvn -B package --file pom.xml

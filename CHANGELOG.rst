@@ -4,6 +4,36 @@ Changelog
 
 This project adheres to `Semantic Versioning <https://semver.org/>`_.
 
+2.15.0 (2022-01-24)
+----------------------------
+
+**Added**
+
+* Add displayName to ``life.qbic.datamodel.samples.Status`` (#282)
+
+**Fixed**
+
+**Dependencies**
+
+**Deprecated**
+
+2.14.4 (2022-01-04)
+-------------------
+
+**Added**
+
+**Fixed**
+
+* CVE-2021-44832
+
+**Dependencies**
+
+* Bump `org.apache.logging.log4j:log4j-api` from 2.17.0 to 2.17.1
+
+* Bump `org.apache.logging.log4j:log4j-core` from 2.17.0 to 2.17.1
+
+**Deprecated**
+
 2.14.3 (2021-12-20)
 -------------------
 
