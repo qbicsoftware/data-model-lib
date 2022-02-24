@@ -10,7 +10,7 @@ on:
       - development
 
 jobs:
-  build:
+  publish_snapshots:
 
     runs-on: ubuntu-latest
 
