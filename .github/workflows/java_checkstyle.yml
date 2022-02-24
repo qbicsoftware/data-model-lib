@@ -3,7 +3,7 @@ name: Java Checkstyle
 on: [push]
 
 jobs:
-  build:
+  checkstyle:
     runs-on: ubuntu-latest
 
     steps:
