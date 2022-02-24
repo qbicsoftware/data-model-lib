@@ -1,5 +1,6 @@
 package life.qbic.datamodel.datasets
 
+import groovy.json.JsonSlurper
 import groovy.util.logging.Log4j2
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
@@ -16,23 +17,8 @@ import java.util.regex.Pattern
 @Log4j2
 final class OxfordNanoporeMeasurement {
 
-    private static final String LIBRARY_PREP_KIT_SCHEMA = "SQK-.*"
 
-    private static final enum METADATA_FIELD {
-        ADAPTER,
-        ASIC_TEMP,
-        BASE_CALLER,
-        BASE_CALLER_VERSION,
-        DEVICE_TYPE,
-        FLOWCELL_ID,
-        FLOWCELL_POSITION,
-        FLOWCELL_TYPE,
-        LIBRARY_PREPARATION_KIT,
-        MACHINE_HOST,
-        START_DATE
-    }
-
-    private final Map<METADATA_FIELD, String> metadata
+    private final Metadata metadata
 
     private final Map<String, DataFolder> folders
 
@@ -45,12 +31,11 @@ final class OxfordNanoporeMeasurement {
     protected OxfordNanoporeMeasurement(String name, String path, List children, Map metadata) {
         this.logFilesCollection = new ArrayList<>()
         this.folders = new HashMap<>()
-        this.metadata = new HashMap()
 
         this.measurementFolder = MeasurementFolder.create(name, path, children)
 
-        validateMetaData(metadata)
-        readMetaData(metadata)
+        this.metadata = Metadata.from(metadata)
+
         createContent()
         assessPooledStatus()
         assessState()
@@ -62,27 +47,6 @@ final class OxfordNanoporeMeasurement {
 
     static OxfordNanoporeMeasurement create(String name, String path, List children, Map metadata) {
         return new OxfordNanoporeMeasurement(name, path, children, metadata)
-    }
-
-    private static void validateMetaData(Map metadata) throws IllegalArgumentException {
-        def expectedKeys = [
-                "asic_temp",
-                "base_caller",
-                "base_caller_version",
-                "device_type",
-                "flow_cell_id",
-                "flow_cell_position",
-                "flow_cell_product_code",
-                "protocol",
-                "hostname",
-                "started"
-        ]
-        def missingKeys = expectedKeys.stream()
-                .filter({ !metadata.keySet().contains(it) })
-                .collect()
-        if (!missingKeys.isEmpty()) {
-            throw new IllegalArgumentException('Required metadata properties missing: ' + missingKeys.join(", "))
-        }
     }
 
     private void assessPooledStatus() {
@@ -101,35 +65,6 @@ final class OxfordNanoporeMeasurement {
             return folder.getChildren().any { it instanceof Fast5Folder }
         }
         return false
-    }
-
-    private void readMetaData(Map<String, String> metadata) {
-        this.metadata[METADATA_FIELD.ADAPTER] = metadata["adapter"]
-        this.metadata[METADATA_FIELD.ASIC_TEMP] = metadata["asic_temp"]
-        this.metadata[METADATA_FIELD.BASE_CALLER] = metadata["base_caller"]
-        this.metadata[METADATA_FIELD.BASE_CALLER_VERSION] = metadata["base_caller_version"]
-        this.metadata[METADATA_FIELD.DEVICE_TYPE] = metadata["device_type"]
-        this.metadata[METADATA_FIELD.FLOWCELL_ID] = metadata["flow_cell_id"]
-        this.metadata[METADATA_FIELD.FLOWCELL_POSITION] = metadata["flow_cell_position"]
-        this.metadata[METADATA_FIELD.FLOWCELL_TYPE] = metadata["flow_cell_product_code"]
-        this.metadata[METADATA_FIELD.LIBRARY_PREPARATION_KIT] = extractLibraryKit(metadata["protocol"] ?: "")
-        this.metadata[METADATA_FIELD.MACHINE_HOST] = metadata["hostname"]
-        this.metadata[METADATA_FIELD.START_DATE] = metadata["started"]
-    }
-
-    private static String extractLibraryKit(String text) {
-        // cut off optional suffix
-        text = text.replace(":True", "")
-        Set<String> result = []
-        Pattern pattern = Pattern.compile(LIBRARY_PREP_KIT_SCHEMA, Pattern.CASE_INSENSITIVE)
-        Matcher m = pattern.matcher(text)
-        while (m.find()) {
-            result.add(m.group())
-        }
-        if (result.isEmpty()) {
-            throw new MissingPropertyException("Could not find information about the library preparation kit.")
-        }
-        return result[0]
     }
 
     private void createContent() {
@@ -223,7 +158,7 @@ final class OxfordNanoporeMeasurement {
      * @return
      */
     String getAdapter() {
-        return metadata.get(METADATA_FIELD.ADAPTER) ?: ""
+        return metadata.getAdapter()
     }
 
     /**
@@ -231,7 +166,7 @@ final class OxfordNanoporeMeasurement {
      * @return
      */
     String getAsicTemp() {
-        return metadata.get(METADATA_FIELD.ASIC_TEMP)
+        return metadata.getAsicTemp()
     }
 
     /**
@@ -239,7 +174,7 @@ final class OxfordNanoporeMeasurement {
      * @return
      */
     String getDeviceType() {
-        return metadata.get(METADATA_FIELD.DEVICE_TYPE)
+        return metadata.getDeviceType()
     }
 
     /**
@@ -247,7 +182,7 @@ final class OxfordNanoporeMeasurement {
      * @return
      */
     String getFlowcellId() {
-        return metadata.get(METADATA_FIELD.FLOWCELL_ID)
+        return metadata.getFlowcellId()
     }
 
     /**
@@ -255,7 +190,7 @@ final class OxfordNanoporeMeasurement {
      * @return
      */
     String getFlowCellPosition() {
-        return metadata.get(METADATA_FIELD.FLOWCELL_POSITION)
+        return metadata.getFlowcellPosition()
     }
 
     /**
@@ -263,7 +198,7 @@ final class OxfordNanoporeMeasurement {
      * @return
      */
     String getFlowCellType() {
-        return metadata.get(METADATA_FIELD.FLOWCELL_TYPE)
+        return metadata.getFlowcellType()
     }
 
     /**
@@ -271,7 +206,7 @@ final class OxfordNanoporeMeasurement {
      * @return
      */
     String getBaseCaller() {
-        return metadata.get(METADATA_FIELD.BASE_CALLER)
+        return metadata.getBaseCaller()
     }
 
     /**
@@ -279,7 +214,7 @@ final class OxfordNanoporeMeasurement {
      * @return
      */
     String getBaseCallerVersion() {
-        return metadata.get(METADATA_FIELD.BASE_CALLER_VERSION)
+        return metadata.getBaseCallerVersion()
     }
 
     /**
@@ -287,7 +222,7 @@ final class OxfordNanoporeMeasurement {
      * @return
      */
     String getLibraryPreparationKit() {
-        return metadata.get(METADATA_FIELD.LIBRARY_PREPARATION_KIT)
+        metadata.getLibraryPreparationKit()
     }
 
     /**
@@ -295,7 +230,7 @@ final class OxfordNanoporeMeasurement {
      * @return
      */
     String getMachineHost() {
-        return metadata.get(METADATA_FIELD.MACHINE_HOST)
+        metadata.getMachineHost()
     }
 
     /**
@@ -303,7 +238,7 @@ final class OxfordNanoporeMeasurement {
      * @return
      */
     String getStartDate() {
-        return metadata.get(METADATA_FIELD.START_DATE)
+        metadata.getStartDate()
     }
 
     private Map<String, DataFolder> prepareUnclassifiedData() {
@@ -375,5 +310,126 @@ final class OxfordNanoporeMeasurement {
      */
     String getRelativePath() {
         return this.measurementFolder.relativePath
+    }
+
+    private static class Metadata {
+        private static final Map<String, ?> SCHEMA = parseMetadataSchema()
+        private static final String LIBRARY_PREP_KIT_SCHEMA = "SQK-.*"
+
+        private String adapter
+        private String asicTemp
+        private String deviceType
+        private String flowcellId
+        private String flowcellPosition
+        private String flowcellType
+        private String baseCaller
+        private String baseCallerVersion
+        private String libraryPreparationKit
+        private String machineHost
+        private String startDate
+
+        private Metadata() {}
+
+        /**
+         * Reads metadata information from the provided map given the map is valid according to the schema.
+         *
+         * @param metadataMap a map containing all required metadata
+         * @return a valid Metadata instance containing relevant information from the map
+         */
+        static Metadata from(Map<String, ?> metadataMap) {
+            validateMetaDataMap(metadataMap)
+            Metadata metadata = new Metadata()
+            metadata.readMetaData(metadataMap)
+            return metadata
+        }
+
+        private static Map<String, ?> parseMetadataSchema() {
+            URL schemaUrl = this.getClassLoader().getResource("schemas/ont-metadata.schema.json")
+            return new JsonSlurper().parse(schemaUrl) as Map<String, ?>
+        }
+
+        private static void validateMetaDataMap(Map metadata) throws IllegalArgumentException {
+            def expectedKeys = SCHEMA.get("required") as List<String>
+
+            def missingKeys = expectedKeys.stream()
+                    .filter({ !metadata.keySet().contains(it) })
+                    .collect()
+            if (!missingKeys.isEmpty()) {
+                throw new IllegalArgumentException('Required metadata properties missing: ' + missingKeys.join(", "))
+            }
+        }
+
+        private static String extractLibraryKit(String text) {
+            // cut off optional, unused suffix
+            text = text.replace(":True", "")
+            Set<String> result = []
+            Pattern pattern = Pattern.compile(LIBRARY_PREP_KIT_SCHEMA, Pattern.CASE_INSENSITIVE)
+            Matcher m = pattern.matcher(text)
+            while (m.find()) {
+                result.add(m.group())
+            }
+            if (result.isEmpty()) {
+                throw new MissingPropertyException("Could not find information about the library preparation kit.")
+            }
+            return result[0]
+        }
+
+        private void readMetaData(Map<String, String> metadata) {
+            this.adapter = metadata["adapter"] ?: ""
+            this.asicTemp = metadata["asic_temp"]
+            this.baseCaller = metadata["base_caller"]
+            this.baseCallerVersion = metadata["base_caller_version"]
+            this.deviceType = metadata["device_type"]
+            this.flowcellId = metadata["flow_cell_id"]
+            this.flowcellPosition = metadata["flow_cell_position"]
+            this.flowcellType = metadata["flow_cell_product_code"]
+            this.libraryPreparationKit = extractLibraryKit(metadata["protocol"] ?: "")
+            this.machineHost = metadata["hostname"]
+            this.startDate = metadata["started"]
+        }
+
+        String getAdapter() {
+            return adapter
+        }
+
+        String getAsicTemp() {
+            return asicTemp
+        }
+
+        String getDeviceType() {
+            return deviceType
+        }
+
+        String getFlowcellId() {
+            return flowcellId
+        }
+
+        String getFlowcellPosition() {
+            return flowcellPosition
+        }
+
+        String getFlowcellType() {
+            return flowcellType
+        }
+
+        String getBaseCaller() {
+            return baseCaller
+        }
+
+        String getBaseCallerVersion() {
+            return baseCallerVersion
+        }
+
+        String getLibraryPreparationKit() {
+            return libraryPreparationKit
+        }
+
+        String getMachineHost() {
+            return machineHost
+        }
+
+        String getStartDate() {
+            return startDate
+        }
     }
 }
