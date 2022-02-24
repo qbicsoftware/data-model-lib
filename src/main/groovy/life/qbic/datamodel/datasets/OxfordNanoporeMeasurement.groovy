@@ -19,20 +19,6 @@ final class OxfordNanoporeMeasurement {
 
     private static final String LIBRARY_PREP_KIT_SCHEMA = "SQK-.*"
 
-    private static final enum METADATA_FIELD {
-        ADAPTER,
-        ASIC_TEMP,
-        BASE_CALLER,
-        BASE_CALLER_VERSION,
-        DEVICE_TYPE,
-        FLOWCELL_ID,
-        FLOWCELL_POSITION,
-        FLOWCELL_TYPE,
-        LIBRARY_PREPARATION_KIT,
-        MACHINE_HOST,
-        START_DATE
-    }
-
     private final Metadata metadata
 
     private final Map<String, DataFolder> folders
@@ -80,35 +66,6 @@ final class OxfordNanoporeMeasurement {
             return folder.getChildren().any { it instanceof Fast5Folder }
         }
         return false
-    }
-
-    private void readMetaData(Map<String, String> metadata) {
-        this.metadata[METADATA_FIELD.ADAPTER] = metadata["adapter"]
-        this.metadata[METADATA_FIELD.ASIC_TEMP] = metadata["asic_temp"]
-        this.metadata[METADATA_FIELD.BASE_CALLER] = metadata["base_caller"]
-        this.metadata[METADATA_FIELD.BASE_CALLER_VERSION] = metadata["base_caller_version"]
-        this.metadata[METADATA_FIELD.DEVICE_TYPE] = metadata["device_type"]
-        this.metadata[METADATA_FIELD.FLOWCELL_ID] = metadata["flow_cell_id"]
-        this.metadata[METADATA_FIELD.FLOWCELL_POSITION] = metadata["flow_cell_position"]
-        this.metadata[METADATA_FIELD.FLOWCELL_TYPE] = metadata["flow_cell_product_code"]
-        this.metadata[METADATA_FIELD.LIBRARY_PREPARATION_KIT] = extractLibraryKit(metadata["protocol"] ?: "")
-        this.metadata[METADATA_FIELD.MACHINE_HOST] = metadata["hostname"]
-        this.metadata[METADATA_FIELD.START_DATE] = metadata["started"]
-    }
-
-    private static String extractLibraryKit(String text) {
-        // cut off optional suffix
-        text = text.replace(":True", "")
-        Set<String> result = []
-        Pattern pattern = Pattern.compile(LIBRARY_PREP_KIT_SCHEMA, Pattern.CASE_INSENSITIVE)
-        Matcher m = pattern.matcher(text)
-        while (m.find()) {
-            result.add(m.group())
-        }
-        if (result.isEmpty()) {
-            throw new MissingPropertyException("Could not find information about the library preparation kit.")
-        }
-        return result[0]
     }
 
     private void createContent() {
@@ -358,7 +315,7 @@ final class OxfordNanoporeMeasurement {
 
     private static class Metadata {
         private static final Map<String, ?> SCHEMA = parseMetadataSchema()
-        private static final String LIBRARY_PREP_KIT_SCHEMA = "SQK-.*(?=:)"
+        private static final String LIBRARY_PREP_KIT_SCHEMA = "SQK-.*"
 
         private String adapter
         private String asicTemp
@@ -404,6 +361,8 @@ final class OxfordNanoporeMeasurement {
         }
 
         private static String extractLibraryKit(String text) {
+            // cut off optional, unused suffix
+            text = text.replace(":True", "")
             Set<String> result = []
             Pattern pattern = Pattern.compile(LIBRARY_PREP_KIT_SCHEMA, Pattern.CASE_INSENSITIVE)
             Matcher m = pattern.matcher(text)
