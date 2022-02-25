@@ -45,7 +45,7 @@ _Data Model Library - A collection of QBiC data models._
 
 ## How to Run
 
-Create a runable version of this code with maven and java 8:
+Create a runable version of this code with maven and java 11:
 
 ```
 mvn clean package
