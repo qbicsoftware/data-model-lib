@@ -1,6 +1,6 @@
 name: Build Maven Package
 
-on: [push]
+on: [push] # Test
 
 jobs:
   package:
