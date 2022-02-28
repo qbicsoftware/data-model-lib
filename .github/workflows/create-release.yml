@@ -42,7 +42,7 @@ jobs:
           || contains(github.event.inputs.versionTag, 'rc')) }}
         uses: actions/github-script@v4.0.2
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
+          github-token: ${{secrets.JOHNNY_Q5_REPORTS_TOKEN}}
           script: |
             await github.request(`POST /repos/${{ github.repository }}/releases`, {
               tag_name: "${{ github.event.inputs.versionTag }}",
@@ -55,7 +55,7 @@ jobs:
           || contains(github.event.inputs.versionTag, 'rc')) }}
         uses: actions/github-script@v4.0.2
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
+          github-token: ${{secrets.JOHNNY_Q5_REPORTS_TOKEN}}
           script: |
             await github.request(`POST /repos/${{ github.repository }}/releases`, {
               tag_name: "${{ github.event.inputs.versionTag }}",
@@ -80,7 +80,7 @@ jobs:
       - name: Open PR with version bump
         uses: actions/github-script@v4.0.2
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
+          github-token: ${{secrets.JOHNNY_Q5_REPORTS_TOKEN}}
           script: |
             await github.request(`POST /repos/${{ github.repository }}/pulls`, {
               title: 'Update version to ${{ github.event.inputs.versionTag }}',
