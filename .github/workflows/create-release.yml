@@ -85,5 +85,5 @@ jobs:
             await github.request(`POST /repos/${{ github.repository }}/pulls`, {
               title: 'Update version to ${{ github.event.inputs.versionTag }}',
               head: 'release/set-version-to-${{ github.event.inputs.versionTag }}',
-              base: 'main'
+              base: 'master'
             });
