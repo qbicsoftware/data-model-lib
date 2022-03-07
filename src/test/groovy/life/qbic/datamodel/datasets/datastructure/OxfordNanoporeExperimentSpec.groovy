@@ -28,6 +28,12 @@ class OxfordNanoporeExperimentSpec extends Specification {
      * according to the schema containing unclassified read information
      */
     @Shared
+    Map extendedWorkingSimpleDataStructureWithReportsFolder
+    /**
+     * Map that that stores the Oxford Nanopore folder structure
+     * according to the schema containing unclassified read information
+     */
+    @Shared
     Map unclassifiedWorkingDataStructure
     /**
      * Map that that stores the Oxford Nanopore folder structure
@@ -37,16 +43,20 @@ class OxfordNanoporeExperimentSpec extends Specification {
     Map minimalWorkingPooledDataStructure
 
     def setupSpec() {
-        InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream("valid-example.json")
+        def folder = "nanopore/"
+        InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-example.json")
         minimalWorkingSimpleDataStructure = (Map) new JsonSlurper().parse(stream)
         // new example with slightly different structure
-        stream = Thread.currentThread().getContextClassLoader().getResourceAsStream("valid-example-newer.json")
+        stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-example-v2.json")
+        extendedWorkingSimpleDataStructureWithReportsFolder = (Map) new JsonSlurper().parse(stream)
+        // v2 example with minimum of necessary files
+        stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-example-v2-minimal.json")
         minimalWorkingSimpleDataStructureWithReportsFolder = (Map) new JsonSlurper().parse(stream)
         // read in unclassified example
-        stream = Thread.currentThread().getContextClassLoader().getResourceAsStream("valid-example-unclassified.json")
+        stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-example-unclassified.json")
         unclassifiedWorkingDataStructure = (Map) new JsonSlurper().parse(stream)
         // read in pooled example
-        stream = Thread.currentThread().getContextClassLoader().getResourceAsStream("valid-example-pooled.json")
+        stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-example-pooled.json")
         minimalWorkingPooledDataStructure = (Map) new JsonSlurper().parse(stream)
         stream.close()
     }
@@ -68,6 +78,20 @@ class OxfordNanoporeExperimentSpec extends Specification {
     def "Create simple sample Oxford Nanopore experiment successfully for newer structure"() {
         given:
         final def example = minimalWorkingSimpleDataStructureWithReportsFolder
+
+        when:
+        final def experiment = OxfordNanoporeExperiment.create(example)
+        final def measurements = experiment.getMeasurements()
+
+        then:
+        assert experiment.sampleCode == "QABCD001AB"
+        assert measurements.size() == 1
+        assert measurements[0].libraryPreparationKit == "SQK-LSK109-XL"
+    }
+
+    def "Create extended sample Oxford Nanopore experiment successfully for newer structure"() {
+        given:
+        final def example = extendedWorkingSimpleDataStructureWithReportsFolder
 
         when:
         final def experiment = OxfordNanoporeExperiment.create(example)
