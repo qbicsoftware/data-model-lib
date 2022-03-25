@@ -18,8 +18,7 @@ class ProductItem {
      *
      * For example "1"
      */
-
-    private int id
+    final int id
 
     /**
      * Describes the amount of a given item
@@ -63,8 +62,13 @@ class ProductItem {
         this.quantityDiscount = quantityDiscount
     }
 
-    void setId(int id) {
+    ProductItem(int id, double quantity, Product product, double totalPrice, double quantityDiscount) {
         this.id = id
+        this.quantity = quantity
+        this.product = product
+        this.totalPrice = totalPrice
+        this.quantityDiscount = quantityDiscount
     }
+
 
 }
