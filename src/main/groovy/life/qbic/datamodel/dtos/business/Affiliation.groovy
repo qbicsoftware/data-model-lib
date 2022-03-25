@@ -12,6 +12,13 @@ import groovy.transform.EqualsAndHashCode
 final class Affiliation {
 
   /**
+   * The database id of an affiliation.
+   *
+   * For example "1"
+   */
+  final int id
+
+  /**
    * The organisation label of an affiliation.
    *
    * For example "University of Tübingen"
@@ -61,6 +68,8 @@ final class Affiliation {
 
   static class Builder {
 
+    int id
+
     String organisation
 
     String addressAddition
@@ -78,6 +87,7 @@ final class Affiliation {
     AffiliationLabel label
 
     Builder(String organisation, String street, String postalCode, String city) {
+      this.id = id
       this.organisation = organisation
       this.street = street
       this.postalCode = postalCode
@@ -86,6 +96,11 @@ final class Affiliation {
       this.country = "Germany"
       this.category = AffiliationCategory.EXTERNAL
       this.label = AffiliationLabel.MNF
+    }
+
+    Builder id(int id){
+      this.id = id
+      return this
     }
 
     /**
@@ -121,6 +136,7 @@ final class Affiliation {
   }
 
   private Affiliation(Builder builder) {
+    this.id = builder.id
     this.addressAddition = builder.addressAddition
     this.organisation = builder.organisation
     this.street = builder.street
