@@ -18,6 +18,7 @@ class ProductItem {
      *
      * For example "1"
      */
+
     private int id
 
     /**
@@ -62,10 +63,8 @@ class ProductItem {
         this.quantityDiscount = quantityDiscount
     }
 
-    setId(int id){
+    void setId(int id) {
         this.id = id
     }
-
-
 
 }

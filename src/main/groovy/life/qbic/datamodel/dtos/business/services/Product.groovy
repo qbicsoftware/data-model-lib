@@ -135,7 +135,7 @@ abstract class Product {
     this.serviceProvider = Objects.requireNonNull(serviceProvider, "Service provider must not be null")
   }
 
-  setId(int id) {
+  void setId(int id) {
     this.id = id
   }
 
