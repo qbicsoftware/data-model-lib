@@ -1,5 +1,7 @@
 package life.qbic.datamodel.dtos.projectmanagement
 
+import groovy.transform.EqualsAndHashCode
+
 /**
  * Global project identifier for QBiC projects
  *
@@ -7,6 +9,7 @@ package life.qbic.datamodel.dtos.projectmanagement
  *
  * @since 2.3.0
  */
+@EqualsAndHashCode
 class ProjectIdentifier {
 
     /**
