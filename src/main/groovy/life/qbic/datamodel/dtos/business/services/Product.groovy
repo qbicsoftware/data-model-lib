@@ -20,7 +20,7 @@ abstract class Product {
    *
    * For example "1"
    */
-  private int id
+  final int id
 
   /**
    * Some text describing what the the product providing.
