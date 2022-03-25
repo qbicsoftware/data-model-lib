@@ -16,6 +16,13 @@ import life.qbic.datamodel.dtos.business.facilities.Facility
 abstract class Product {
 
   /**
+   * The database id of a Product.
+   *
+   * For example "1"
+   */
+  private int id
+
+  /**
    * Some text describing what the the product providing.
    */
   final String description
@@ -126,6 +133,10 @@ abstract class Product {
     //currency is on default in euro
     this.currency = Currency.getInstance(Locale.GERMANY)
     this.serviceProvider = Objects.requireNonNull(serviceProvider, "Service provider must not be null")
+  }
+
+  setId(int id) {
+    this.id = id
   }
 
 }
