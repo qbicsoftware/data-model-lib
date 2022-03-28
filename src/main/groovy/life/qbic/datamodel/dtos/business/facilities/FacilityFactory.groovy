@@ -21,11 +21,15 @@ class FacilityFactory extends EnumFactory<Facility> {
      */
     @Override
     Facility getForString(String value) {
-        Facility desiredKey
-        desiredKey = Facility.values().find {it.fullName.equals(value.trim())}
-        if (!desiredKey) {
-            throw new IllegalArgumentException("Invalid value '$value' for ${Facility.getSimpleName()}")
-        }
-        return desiredKey
+        Optional<Facility> matchingFullName = Arrays.stream(Facility.values())
+                .filter(it -> it.fullName == value)
+                .findFirst()
+        Optional<Facility> matchingLabel = Arrays.stream(Facility.values())
+                .filter(it -> it.label == value)
+                .findFirst()
+      return matchingFullName.orElse(
+              matchingLabel.orElseThrow(
+                      () -> new IllegalArgumentException("Invalid value '$value' for ${Facility.getSimpleName()}")
+              ))
     }
 }
