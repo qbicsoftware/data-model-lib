@@ -21,15 +21,20 @@ class FacilityFactory extends EnumFactory<Facility> {
      */
     @Override
     Facility getForString(String value) {
-        Optional<Facility> matchingFullName = Arrays.stream(Facility.values())
-                .filter(it -> it.fullName == value)
-                .findFirst()
-        Optional<Facility> matchingLabel = Arrays.stream(Facility.values())
-                .filter(it -> it.label == value)
-                .findFirst()
-      return matchingFullName.orElse(
-              matchingLabel.orElseThrow(
-                      () -> new IllegalArgumentException("Invalid value '$value' for ${Facility.getSimpleName()}")
-              ))
+      Optional<Facility> matchingFullName = Arrays.stream(Facility.values())
+              .filter(it -> it.fullName == value)
+              .findFirst()
+      Optional<Facility> matchingLabel = Arrays.stream(Facility.values())
+              .filter(it -> it.label == value)
+              .findFirst()
+      Optional<Facility> matchingEnumValue = Arrays.stream(Facility.values())
+              .filter(it -> it.name() == value)
+              .findFirst()
+
+      return matchingFullName
+              .orElse( matchingLabel
+                      .orElse(matchingEnumValue
+                              .orElseThrow(() ->
+                                      new IllegalArgumentException("Invalid value '$value' for ${Facility.getSimpleName()}"))))
     }
 }
