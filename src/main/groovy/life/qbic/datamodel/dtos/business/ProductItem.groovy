@@ -14,6 +14,13 @@ import life.qbic.datamodel.dtos.business.services.Product
 class ProductItem {
 
     /**
+     * The database of an id of a ProductItem
+     *
+     * For example "1"
+     */
+    final int id
+
+    /**
      * Describes the amount of a given item
      */
     final double quantity
@@ -55,6 +62,13 @@ class ProductItem {
         this.quantityDiscount = quantityDiscount
     }
 
+    ProductItem(int id, double quantity, Product product, double totalPrice, double quantityDiscount) {
+        this.id = id
+        this.quantity = quantity
+        this.product = product
+        this.totalPrice = totalPrice
+        this.quantityDiscount = quantityDiscount
+    }
 
 
 }

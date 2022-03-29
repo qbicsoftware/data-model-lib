@@ -13,6 +13,12 @@ import life.qbic.datamodel.dtos.projectmanagement.ProjectIdentifier
 @EqualsAndHashCode
 class Offer {
 
+
+    /**
+     * database id of an offer
+     */
+    final int id
+
     /**
      * The checksum of the offer
      */
@@ -111,6 +117,7 @@ class Offer {
 
     static class Builder {
 
+        int id
         /*
         Overall offer describing properties
          */
@@ -187,6 +194,11 @@ class Offer {
             Deprecated
              */
             this.projectDescription = Objects.requireNonNull(projectObjective, "Project Objective must not be null")
+        }
+
+        Builder id(int id) {
+            this.id = id
+            return this
         }
 
         Builder checksum(String checksum) {
@@ -280,6 +292,9 @@ class Offer {
     }
 
     private Offer(Builder builder) {
+
+        this.id = builder.id
+
         /*
         Offer Related Properties
          */

@@ -21,6 +21,13 @@ abstract class Person {
   final String personType
 
   /**
+   * The database id of a person.
+   *
+   * For example "1"
+   */
+  final int id
+
+  /**
    * The person's first name
    */
   final String firstName
@@ -46,6 +53,9 @@ abstract class Person {
   final List<Affiliation> affiliations
 
   abstract static class Builder<T extends Builder<T>> {
+
+    int id
+
     String firstName
 
     String lastName
@@ -62,6 +72,11 @@ abstract class Person {
       this.emailAddress = Objects.requireNonNull(emailAddress, "Email must not be null")
       this.title = AcademicTitle.NONE
       this.affiliations = new ArrayList<>()
+    }
+
+    T id(int id) {
+      this.id = id
+      return self()
     }
 
     T title(AcademicTitle title) {
@@ -90,6 +105,7 @@ abstract class Person {
   }
 
   Person(Builder<?> builder) {
+    id = builder.id
     firstName = builder.firstName
     lastName = builder.lastName
     emailAddress = builder.emailAddress
