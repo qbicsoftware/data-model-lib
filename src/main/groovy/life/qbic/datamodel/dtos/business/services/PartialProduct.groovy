@@ -13,7 +13,7 @@ import life.qbic.datamodel.dtos.business.facilities.Facility
  *
  * @since 1.12.0
  */
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(excludes = ["id"], callSuper = true)
 class PartialProduct extends Product {
   /**
    * Basic product constructor.

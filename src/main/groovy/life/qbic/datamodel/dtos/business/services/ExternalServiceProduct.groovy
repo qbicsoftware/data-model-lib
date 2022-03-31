@@ -12,7 +12,7 @@ import life.qbic.datamodel.dtos.business.facilities.Facility
  *
  * @since 2.13.0
  */
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(excludes = ["id"], callSuper = true)
 class ExternalServiceProduct extends PartialProduct {
     /**
      * Creates an instance of an {@link ExternalServiceProduct}.

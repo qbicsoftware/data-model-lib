@@ -17,7 +17,7 @@ import life.qbic.datamodel.dtos.projectmanagement.ProjectSpace
  *
  * @since 2.3.0
  */
-@EqualsAndHashCode
+@EqualsAndHashCode(excludes = ["id"])
 class ProjectApplication {
 
     /**

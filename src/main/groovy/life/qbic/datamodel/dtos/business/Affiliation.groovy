@@ -8,7 +8,7 @@ import groovy.transform.EqualsAndHashCode
  * @author Sven Fillinger
  * @since 1.11.0
  */
-@EqualsAndHashCode
+@EqualsAndHashCode(excludes = ["id"])
 final class Affiliation {
 
   /**
@@ -53,10 +53,10 @@ final class Affiliation {
   final String country
 
 /**
-   * An affiliation category @link{AffiliationCategory}.
-   *
-   * Defaults to 'external non-academic'.
-   */
+ * An affiliation category @link{AffiliationCategory}.
+ *
+ * Defaults to 'external non-academic'.
+ */
   final AffiliationCategory category
 
   /**
@@ -98,7 +98,7 @@ final class Affiliation {
       this.label = AffiliationLabel.MNF
     }
 
-    Builder id(int id){
+    Builder id(int id) {
       this.id = id
       return this
     }

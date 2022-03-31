@@ -11,7 +11,7 @@ import life.qbic.datamodel.dtos.business.OfferId
  *
  * @since 2.3.0
  */
-@EqualsAndHashCode
+@EqualsAndHashCode(excludes = ["id"])
 class Project {
 
     /**
