@@ -1,5 +1,7 @@
 package life.qbic.datamodel.dtos.general
 
+import groovy.transform.EqualsAndHashCode
+
 /**
  * A person without a specific context.
  *
@@ -7,6 +9,7 @@ package life.qbic.datamodel.dtos.general
  *
  * @since 1.12.0
  */
+@EqualsAndHashCode(callSuper = true)
 class CommonPerson extends Person {
 
   static class Builder extends Person.Builder<Builder> {

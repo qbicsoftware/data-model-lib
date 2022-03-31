@@ -11,8 +11,15 @@ import life.qbic.datamodel.dtos.business.OfferId
  *
  * @since 2.3.0
  */
-@EqualsAndHashCode
+@EqualsAndHashCode(excludes = ["id"])
 class Project {
+
+    /**
+     * The database id of a project
+     *
+     * For example "1"
+     */
+    final int id
 
     /**
      * A short but descriptive project title
@@ -30,12 +37,14 @@ class Project {
     final OfferId linkedOffer
 
     private Project(Builder builder) {
+        this.id = builder.id
         this.projectId = Objects.requireNonNull(builder.projectIdentifier)
         this.projectTitle = Objects.requireNonNull(builder.projectTitle)
         this.linkedOffer = builder.linkedOfferId
     }
 
     static class Builder {
+        private int id
         private ProjectIdentifier projectIdentifier
         private String projectTitle
         private OfferId linkedOfferId
@@ -44,6 +53,11 @@ class Project {
             this.projectIdentifier = projectIdentifier
             this.projectTitle = projectTitle
             this.linkedOfferId = null
+        }
+
+        Builder id(int id) {
+            this.id = id
+            return this
         }
 
         Builder projectIdentifier(ProjectIdentifier projectIdentifier) {
