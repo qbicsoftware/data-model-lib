@@ -10,7 +10,7 @@ import life.qbic.datamodel.dtos.business.Affiliation
  * @author Sven Fillinger
  * @since 1.11.0
  */
-@EqualsAndHashCode
+@EqualsAndHashCode(excludes = ["id"])
 abstract class Person {
 
   /**

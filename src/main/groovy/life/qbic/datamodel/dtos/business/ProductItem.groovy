@@ -10,7 +10,7 @@ import life.qbic.datamodel.dtos.business.services.Product
  * The unit price is always provided in euros.
  * @since: 1.9.0
  */
-@EqualsAndHashCode
+@EqualsAndHashCode(excludes = ["id"])
 class ProductItem {
 
     /**

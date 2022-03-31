@@ -10,7 +10,7 @@ import life.qbic.datamodel.dtos.projectmanagement.ProjectIdentifier
  *
  * @since: 1.12.0
  */
-@EqualsAndHashCode
+@EqualsAndHashCode(excludes = ["id"])
 class Offer {
 
 
@@ -247,12 +247,12 @@ class Offer {
         }
 
         Builder itemsWithOverhead(List<ProductItem> itemsWithOverhead) {
-            this.itemsWithOverhead= itemsWithOverhead
+            this.itemsWithOverhead = itemsWithOverhead
             return this
         }
 
         Builder itemsWithoutOverhead(List<ProductItem> itemsWithoutOverhead) {
-            this.itemsWithoutOverhead= itemsWithoutOverhead
+            this.itemsWithoutOverhead = itemsWithoutOverhead
             return this
         }
 
@@ -266,7 +266,7 @@ class Offer {
             return this
         }
 
-        Builder overheadRatio(double overheadRatio){
+        Builder overheadRatio(double overheadRatio) {
             this.overheadRatio = overheadRatio
             return this
         }
@@ -276,12 +276,12 @@ class Offer {
             return this
         }
 
-        Builder experimentalDesign(String experimentalDesign){
+        Builder experimentalDesign(String experimentalDesign) {
             this.experimentalDesign = Optional.of(experimentalDesign)
             return this
         }
 
-        Builder totalDiscountPrice(double totalDiscountPrice){
+        Builder totalDiscountPrice(double totalDiscountPrice) {
             this.totalDiscountPrice = totalDiscountPrice
             return this
         }
