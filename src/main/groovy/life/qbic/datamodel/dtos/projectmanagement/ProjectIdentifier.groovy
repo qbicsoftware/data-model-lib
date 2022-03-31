@@ -9,7 +9,7 @@ import groovy.transform.EqualsAndHashCode
  *
  * @since 2.3.0
  */
-@EqualsAndHashCode(excludes = ["id"])
+@EqualsAndHashCode
 class ProjectIdentifier {
 
     /**

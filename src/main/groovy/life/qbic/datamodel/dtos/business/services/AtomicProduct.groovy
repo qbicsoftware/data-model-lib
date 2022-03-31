@@ -12,7 +12,7 @@ import life.qbic.datamodel.dtos.business.facilities.Facility
  *
  * @since 1.12.0
  */
-@EqualsAndHashCode(excludes = ["id"], callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 class AtomicProduct extends Product {
   /**
    * Basic product constructor.

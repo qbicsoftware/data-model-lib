@@ -9,7 +9,7 @@ import groovy.transform.EqualsAndHashCode
  *
  * @since 1.12.0
  */
-@EqualsAndHashCode(excludes = ["id"], callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 class CommonPerson extends Person {
 
   static class Builder extends Person.Builder<Builder> {
