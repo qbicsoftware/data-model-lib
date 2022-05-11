@@ -1,5 +1,6 @@
 package life.qbic.datamodel.maxquant
 
+import groovy.json.JsonSlurper
 import org.everit.json.schema.Schema
 import org.everit.json.schema.ValidationException
 import org.everit.json.schema.loader.SchemaClient
@@ -107,7 +108,7 @@ class MaxQuantOutputSpec extends Specification {
         def stream = MaxQuantOutput.getSchemaAsStream()
 
         and:
-        String missingMaxQuantOutput = this.class.getClassLoader()
+        String wrongMaxQuantOutput = this.class.getClassLoader()
                 .getResourceAsStream("examples/resultset/maxquant/old_valid-resultset-example.json")
                 .text
 
@@ -120,7 +121,7 @@ class MaxQuantOutputSpec extends Specification {
         Schema schema = schemaLoader.load().build()
 
         when:
-        schema.validate(new JSONObject(missingMaxQuantOutput))
+        schema.validate(new JSONObject(wrongMaxQuantOutput))
 
         then:
         thrown(ValidationException)

@@ -61,7 +61,7 @@ final class MaxQuantRunResult {
     }
 
     /**
-     * Static factory method that creates a new maxQuantRunResult instance from the bioinformatic pipeline output.
+     * Static factory method that creates a new maxQuantRunResult instance from the MaxQuant output.
      * See this @{link <a href="https://github.com/qbicsoftware/data-model-lib/blob/master/src/test/resources/examples/resultset/maxquant/valid-resultset-example_latest.json">example</a>}
      * for a JSON representation of a valid map structure
      *

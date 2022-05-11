@@ -35,7 +35,7 @@ class MaxQuantRunResultSpec extends Specification {
         validDataStructure = (Map) new JsonSlurper().parse(validStream)
         validStream.close()
 
-        InputStream invalidStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("examples/resultset/maxquant/old_valid-resultset-example.json")
+        InputStream invalidStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("examples/resultset/maxquant/no-sampleid-resultset-example.json")
         invalidDataStructure = (Map) new JsonSlurper().parse(invalidStream)
         invalidStream.close()
     }
