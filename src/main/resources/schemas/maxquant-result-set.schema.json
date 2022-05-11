@@ -115,7 +115,7 @@
         {
           "properties": {
             "name": {
-              "pattern": "sample_ids"
+              "pattern": "Q\\w{4}_sample_ids"
             },
             "fileType": {
               "pattern": "txt"
@@ -154,12 +154,10 @@
   "required": [
     "allPeptides",
     "evidence",
-    "experimentalDesignTemplate",
     "parameters",
     "peptides",
     "proteinGroups",
     "runParameters",
-    "sampleIds",
-    "summary"
+    "sampleIds"
   ]
 }
