@@ -143,13 +143,11 @@
   "properties": {
     "allPeptides": {"$ref": "#/definitions/allPeptides"},
     "evidence": {"$ref":  "#/definitions/evidence"},
-    "experimentalDesignTemplate": {"$ref":  "#/definitions/experimentalDesignTemplate"},
     "parameters": {"$ref":  "#/definitions/parameters"},
     "peptides": {"$ref":  "#/definitions/peptides"},
     "proteinGroups": {"$ref":  "#/definitions/proteinGroups"},
     "runParameters": {"$ref":  "#/definitions/runParameters"},
     "sampleIds": {"$ref":  "#/definitions/sampleIds"},
-    "summary": {"$ref":  "#/definitions/summary"}
   },
   "required": [
     "allPeptides",
