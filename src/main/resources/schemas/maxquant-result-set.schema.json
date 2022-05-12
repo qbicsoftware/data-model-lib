@@ -115,7 +115,7 @@
         {
           "properties": {
             "name": {
-              "pattern": "sample_ids"
+              "pattern": "Q\\w{4}_sample_ids"
             },
             "fileType": {
               "pattern": "txt"
@@ -143,23 +143,19 @@
   "properties": {
     "allPeptides": {"$ref": "#/definitions/allPeptides"},
     "evidence": {"$ref":  "#/definitions/evidence"},
-    "experimentalDesignTemplate": {"$ref":  "#/definitions/experimentalDesignTemplate"},
     "parameters": {"$ref":  "#/definitions/parameters"},
     "peptides": {"$ref":  "#/definitions/peptides"},
     "proteinGroups": {"$ref":  "#/definitions/proteinGroups"},
     "runParameters": {"$ref":  "#/definitions/runParameters"},
     "sampleIds": {"$ref":  "#/definitions/sampleIds"},
-    "summary": {"$ref":  "#/definitions/summary"}
   },
   "required": [
     "allPeptides",
     "evidence",
-    "experimentalDesignTemplate",
     "parameters",
     "peptides",
     "proteinGroups",
     "runParameters",
-    "sampleIds",
-    "summary"
+    "sampleIds"
   ]
 }

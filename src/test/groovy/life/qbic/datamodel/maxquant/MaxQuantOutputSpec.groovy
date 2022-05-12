@@ -1,5 +1,6 @@
 package life.qbic.datamodel.maxquant
 
+import groovy.json.JsonSlurper
 import org.everit.json.schema.Schema
 import org.everit.json.schema.ValidationException
 import org.everit.json.schema.loader.SchemaClient
@@ -35,7 +36,7 @@ class MaxQuantOutputSpec extends Specification {
 
         and:
         String validMaxQuantOutput = this.class.getClassLoader()
-                .getResourceAsStream("examples/resultset/maxquant/valid-resultset-example.json")
+                .getResourceAsStream("examples/resultset/maxquant/valid-resultset-example_latest.json")
                 .text
 
         and:
@@ -85,6 +86,54 @@ class MaxQuantOutputSpec extends Specification {
         and:
         String missingMaxQuantOutput = this.class.getClassLoader()
                 .getResourceAsStream("examples/resultset/maxquant/no-sampleid-resultset-example.json")
+                .text
+
+        and:
+        SchemaLoader schemaLoader = SchemaLoader.builder()
+                .schemaClient(SchemaClient.classPathAwareClient())
+                .schemaJson(new JSONObject(new JSONTokener(stream)))
+                .resolutionScope("classpath://schemas/")
+                .build()
+        Schema schema = schemaLoader.load().build()
+
+        when:
+        schema.validate(new JSONObject(missingMaxQuantOutput))
+
+        then:
+        thrown(ValidationException)
+    }
+
+    def "Validating the outdated schema v2 shall raise a validation exception"() {
+        given:
+        def stream = MaxQuantOutput.getSchemaAsStream()
+
+        and:
+        String wrongMaxQuantOutput = this.class.getClassLoader()
+                .getResourceAsStream("examples/resultset/maxquant/old_valid-resultset-example.json")
+                .text
+
+        and:
+        SchemaLoader schemaLoader = SchemaLoader.builder()
+                .schemaClient(SchemaClient.classPathAwareClient())
+                .schemaJson(new JSONObject(new JSONTokener(stream)))
+                .resolutionScope("classpath://schemas/")
+                .build()
+        Schema schema = schemaLoader.load().build()
+
+        when:
+        schema.validate(new JSONObject(wrongMaxQuantOutput))
+
+        then:
+        thrown(ValidationException)
+    }
+
+    def "An invalid project code in the sample ids file shall raise a validation exception"() {
+        given:
+        def stream = MaxQuantOutput.getSchemaAsStream()
+
+        and:
+        String missingMaxQuantOutput = this.class.getClassLoader()
+                .getResourceAsStream("examples/resultset/maxquant/invalid-project-resultset-example.json")
                 .text
 
         and:
