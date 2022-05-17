@@ -1,0 +1,37 @@
+{
+  "allPeptides": {
+    "name": "allPeptides.txt",
+    "fileType": "txt",
+    "path": "./txt/allPeptides.txt"
+  },
+  "evidence": {
+    "name": "evidence.txt",
+    "fileType": "txt",
+    "path": "./txt/evidence.txt"
+  },
+    "parameters": {
+      "name": "parameters.txt",
+      "fileType": "txt",
+      "path": "./txt/parameters.txt"
+    },
+    "peptides": {
+      "name": "peptides.txt",
+      "fileType": "txt",
+      "path": "./txt/peptides.txt"
+    },
+    "proteinGroups": {
+      "name": "proteinGroups.txt",
+      "fileType": "txt",
+      "path": "./txt/proteinGroups.txt"
+    },
+    "runParameters": {
+      "name": "mqpar.xml",
+      "fileType": "xml",
+      "path": "./mqpar.xml"
+    },
+    "sampleIds": {
+      "name": "0010_sample_ids.txt",
+      "fileType": "txt",
+      "path": "./0010_sample_ids.txt"
+  }
+}
