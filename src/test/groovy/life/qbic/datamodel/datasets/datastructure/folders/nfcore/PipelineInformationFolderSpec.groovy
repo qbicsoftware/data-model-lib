@@ -38,7 +38,7 @@ class PipelineInformationFolderSpec extends Specification {
         final def name = "pipeline_unsatisfied"
         final def relativePath = "root/pipeline_unsatisfied"
         final def children = []
-        final def datafile =  ExecutionReport.create("execution_report_test.txt", "root/execution_report_test.txt")
+        final def datafile =  ExecutionReport.create("execution_report_test.html", "root/execution_report_test.html")
         children.add(datafile)
 
         when:
