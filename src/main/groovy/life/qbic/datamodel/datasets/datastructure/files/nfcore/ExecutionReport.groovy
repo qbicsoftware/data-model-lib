@@ -9,9 +9,9 @@ import life.qbic.datamodel.datasets.datastructure.files.DataFile
  */
 class ExecutionReport extends DataFile {
 
-    final private static String FILE_TYPE = "txt"
+    final private static String FILE_TYPE = "html"
 
-    final private static String NAME_SCHEMA = $/execution_report.*/$
+    final private static String NAME_SCHEMA = $/^execution_report.*/$
 
     protected ExecutionReport() {}
 
