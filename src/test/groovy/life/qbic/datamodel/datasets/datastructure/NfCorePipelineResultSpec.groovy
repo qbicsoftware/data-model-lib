@@ -74,9 +74,8 @@ class NfCorePipelineResultSpec extends Specification {
         runId.name == "run_id.txt"
         processFolders.get(0).name == "salmon"
         qualityControlFolder.name == "multiqc"
-        pipelineInformationFolder.getSoftwareVersions().name == "software_versions.csv"
-        pipelineInformationFolder.getPipelineReport().name == "pipeline_report.txt"
-        pipelineInformationFolder.getExecutionReport().name == "execution_report.txt"
+        pipelineInformationFolder.getSoftwareVersions().name == "software_versions.yml"
+        pipelineInformationFolder.getExecutionReport().name == "execution_report.html"
     }
 
     def "Invalid fileTree will return a NullPointerException"() {

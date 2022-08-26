@@ -3,7 +3,7 @@ package life.qbic.datamodel.datasets
 
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
 import life.qbic.datamodel.datasets.datastructure.files.nfcore.ExecutionReport
-import life.qbic.datamodel.datasets.datastructure.files.nfcore.PipelineReport
+
 import life.qbic.datamodel.datasets.datastructure.files.nfcore.RunId
 import life.qbic.datamodel.datasets.datastructure.files.general.SampleIds
 import life.qbic.datamodel.datasets.datastructure.files.nfcore.SoftwareVersions
@@ -33,7 +33,6 @@ final class NfCorePipelineResult {
     private final static Set nfCoreFileTypes = [
             FQDN_FILES + ".ExecutionReport",
             GENERAL_FILES + ".SampleIds",
-            FQDN_FILES + ".PipelineReport",
             FQDN_FILES + ".SoftwareVersions",
             FQDN_FILES + ".RunId"
     ]
@@ -85,9 +84,8 @@ final class NfCorePipelineResult {
         Objects.requireNonNull(bioinformaticPipelineOutput.get("processFolders"), "The root folder must contain at least one process folder.")
         //Check if all required files are in the pipeline_info directory
         Map pipelineInfoMap = bioinformaticPipelineOutput["pipelineInformation"] as Map
-        Objects.requireNonNull(pipelineInfoMap.get("softwareVersions"), "The pipeline_info folder must contain a softwareVersions.csv file.")
-        Objects.requireNonNull(pipelineInfoMap.get("executionReport"), "The pipeline_info folder must contain a executionReport.txt file.")
-        Objects.requireNonNull(pipelineInfoMap.get("pipelineReport"), "The pipeline_info folder must contain a pipeline_info.txt file.")
+        Objects.requireNonNull(pipelineInfoMap.get("softwareVersions"), "The pipeline_info folder must contain a softwareVersions.yml file.")
+        Objects.requireNonNull(pipelineInfoMap.get("executionReport"), "The pipeline_info folder must contain a executionReport.html file.")
         //Check if all required files are in root directory
         Objects.requireNonNull(bioinformaticPipelineOutput.get("runId"), "The root folder must contain a run_id.txt file.")
         Objects.requireNonNull(bioinformaticPipelineOutput.get("sampleIds"), "The root folder must contain an sample_ids.txt file.")
@@ -105,11 +103,9 @@ final class NfCorePipelineResult {
         //These files are not stored as children but as properties of the pipeline_info folder
         DataFile softwareVersions = parseFile(pipelineInfoMap.get("softwareVersions") as Map)
         DataFile executionReport = parseFile(pipelineInfoMap.get("executionReport") as Map)
-        DataFile pipelineReport = parseFile(pipelineInfoMap.get("pipelineReport") as Map)
 
         //Set information of pipelineInformation properties
         pipelineInformation.softwareVersions = softwareVersions as SoftwareVersions
-        pipelineInformation.pipelineReport = pipelineReport as PipelineReport
         pipelineInformation.executionReport = executionReport as ExecutionReport
 
         //Parse all files in the root directory

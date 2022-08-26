@@ -14,12 +14,10 @@
           "properties": {
             "name": { "pattern": "pipeline_info"},
             "softwareVersions": { "$ref": "#/definitions/softwareVersions" },
-            "pipelineReport": { "$ref": "#/definitions/pipelineReport" },
             "executionReport": { "$ref": "#/definitions/executionReport" }
           },
           "required": [
             "softwareVersions",
-            "pipelineReport",
             "executionReport"
           ]
         }
@@ -34,21 +32,7 @@
         {
           "properties": {
             "name": { "pattern": "software_versions"},
-            "fileType": { "pattern": "csv" }
-          }
-        }
-      ]
-    },
-    "pipelineReport": {
-      "description": "A data file that describes the pipeline configuration.",
-      "allOf": [
-        {
-          "$ref": "data-structure-commons.json#/definitions/dataFile"
-        },
-        {
-          "properties": {
-            "name": { "pattern": "pipeline_report"},
-            "fileType": { "pattern": "txt" }
+            "fileType": { "pattern": "yml" }
           }
         }
       ]
@@ -62,7 +46,7 @@
         {
           "properties": {
             "name": { "pattern": "execution_report"},
-            "fileType": { "pattern": "txt" }
+            "fileType": { "pattern": "html" }
           }
         }
       ]
