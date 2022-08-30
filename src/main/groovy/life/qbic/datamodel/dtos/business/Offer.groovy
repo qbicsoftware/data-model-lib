@@ -33,9 +33,13 @@ class Offer {
      */
     final Date expirationDate
     /**
-     * The customer for which this offer was created
+     * The PI for which this offer was created
      */
     final Customer customer
+    /**
+     * The contact person of the PI
+     */
+    final Customer contact
     /**
      * The QBiC project manager who was assigned to the project
      */
@@ -125,6 +129,7 @@ class Offer {
         String projectObjective
         Optional<String> experimentalDesign
         Customer customer
+        Customer contact
         ProjectManager projectManager
         Affiliation selectedCustomerAffiliation
         Date modificationDate
@@ -158,11 +163,12 @@ class Offer {
          */
         Optional<ProjectIdentifier> associatedProject
 
-        Builder(Customer customer, ProjectManager projectManager, String projectTitle, String projectObjective, Affiliation selectedCustomerAffiliation) {
+        Builder(Customer customer, Customer contact, ProjectManager projectManager, String projectTitle, String projectObjective, Affiliation selectedCustomerAffiliation) {
             /*
             Overall offer describing properties
              */
             this.customer = Objects.requireNonNull(customer, "Customer must not be null")
+            this.contact = Objects.requireNonNull(contact, "Contact must not be null")
             this.projectManager = Objects.requireNonNull(projectManager, "Project Manager must not be null")
             this.projectTitle = Objects.requireNonNull(projectTitle, "Project Title must not be null")
             this.projectObjective = Objects.requireNonNull(projectObjective, "Project Objective must not be null")
@@ -301,6 +307,7 @@ class Offer {
         this.modificationDate = builder.modificationDate
         this.expirationDate = builder.expirationDate
         this.customer = builder.customer
+        this.contact = builder.contact
         this.projectManager = builder.projectManager
         this.projectObjective = builder.projectObjective
         this.projectTitle = builder.projectTitle

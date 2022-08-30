@@ -15,6 +15,7 @@ class OfferSpec extends Specification {
 
     Date date = new Date(1000, 10, 10)
     Customer customer = new Customer.Builder("Max", "Mustermann", "").build()
+    Customer contact = new Customer.Builder("Maxime", "Musterfrau", "").build()
     ProjectManager projectManager = new ProjectManager.Builder("Max", "Mustermann", "").build()
     Affiliation selectedAffiliation = new Affiliation.Builder("Universität Tübingen",
             "Auf der Morgenstelle 10",
@@ -36,7 +37,7 @@ class OfferSpec extends Specification {
         double overheadRatio = 0.2
         when:
         Offer testOffer =
-                new Offer.Builder(customer, projectManager, "Archer", "Cartoon Series", selectedAffiliation)
+                new Offer.Builder(customer, contact, projectManager, "Archer", "Cartoon Series", selectedAffiliation)
                         .modificationDate(date).expirationDate(date).totalPrice(price).identifier(offerId).taxes(vat).overheads(overhead).netPrice(net).items([item])
                         .itemsWithOverhead([item]).itemsWithoutOverhead([item]).itemsWithOverheadNet(itemsWithOverheadNet)
                         .itemsWithoutOverheadNet(itemsWithoutOverheadNet).overheadRatio(overheadRatio)
@@ -47,6 +48,7 @@ class OfferSpec extends Specification {
         testOffer.getModificationDate() == date
         testOffer.getExpirationDate() == date
         testOffer.getCustomer() == customer
+        testOffer.getContact() == contact
         testOffer.getProjectManager() == projectManager
         testOffer.getProjectTitle() == "Archer"
         testOffer.getProjectObjective() == "Cartoon Series"
@@ -72,13 +74,14 @@ class OfferSpec extends Specification {
 
         when:
         Offer testOffer =
-                new Offer.Builder(customer, projectManager, "Archer", "Cartoon Series", selectedAffiliation)
+                new Offer.Builder(customer, contact, projectManager, "Archer", "Cartoon Series", selectedAffiliation)
                         .build()
 
         then:
         testOffer.getModificationDate() == null
         testOffer.getExpirationDate() == null
         testOffer.getCustomer() == customer
+        testOffer.getContact() == contact
         testOffer.getProjectManager() == projectManager
         testOffer.getProjectTitle() == "Archer"
         testOffer.getProjectObjective() == "Cartoon Series"
