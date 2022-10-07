@@ -49,13 +49,8 @@
                     "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/other_reports",
                     "children": [
                         {
-                            "name": "mux_scan_data.csv",
-                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/other_reports/mux_scan_data.csv",
-                            "file_type": "csv"
-                        },
-                        {
-                            "name": "drift_correction_.csv",
-                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/other_reports/drift_correction_.csv",
+                            "name": "pore_scan_data_.csv",
+                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/other_reports/pore_scan_data_.csv",
                             "file_type": "csv"
                         }
                     ]
@@ -123,11 +118,6 @@
                     ]
                 },
                 {
-                    "name": "duty_time_.csv",
-                    "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/duty_time_.csv",
-                    "file_type": "csv"
-                },
-                {
                     "name": "sequencing_summary_.txt",
                     "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/sequencing_summary_.txt",
                     "file_type": "txt"
@@ -140,7 +130,12 @@
                 {
                     "name": "report_test.json",
                     "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/report_test.json",
-                    "file_type": "pdf"
+                    "file_type": "json"
+                },
+                {
+                    "name": "sample_sheet_test.csv",
+                    "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/sample_sheet_test.csv",
+                    "file_type": "csv"
                 },
                 {
                     "name": "fast5_fail",

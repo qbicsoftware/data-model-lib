@@ -97,14 +97,11 @@
               "items": {
                 "oneOf": [
                   {
-                    "$ref": "#/definitions/drift_correction_log"
-                  },
-                  {
-                    "$ref": "#/definitions/mux_scan_data_log"
+                    "$ref": "#/definitions/pore_scan_data_log"
                   }
                 ]
               },
-              "minItems": 2
+              "minItems": 1
             }
           }
         }
@@ -397,7 +394,7 @@
             },
             "children": {
               "uniqueItems": true,
-              "minItems": 12,
+              "minItems": 14,
               "items": {
                 "oneOf": [
                   {
@@ -411,9 +408,6 @@
                   },
                   {
                     "$ref": "#/definitions/fast5_fail"
-                  },
-                  {
-                    "$ref": "#/definitions/duty_time_log"
                   },
                   {
                     "$ref": "#/definitions/barcode_alignment_log"
@@ -438,6 +432,9 @@
                   },
                   {
                     "$ref": "#/definitions/throughput_log"
+                  },
+                  {
+                    "$ref": "#/definitions/sample_sheet_log"
                   },
                   {
                     "$ref": "#/definitions/other_reports_folder"
@@ -517,6 +514,23 @@
         }
       ]
     },
+    "sample_sheet_log": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/file"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "sample_sheet_.*"
+            },
+            "file_type": {
+              "pattern": "csv"
+            }
+          }
+        }
+      ]
+    },
     "final_summary_log": {
       "allOf": [
         {
@@ -543,6 +557,23 @@
           "properties": {
             "name": {
               "pattern": "mux_scan_data_.*"
+            },
+            "file_type": {
+              "pattern": "csv"
+            }
+          }
+        }
+      ]
+    },
+    "pore_scan_data_log": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/file"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "pore_scan_data_.*"
             },
             "file_type": {
               "pattern": "csv"

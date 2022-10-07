@@ -38,7 +38,9 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
             FQDN_FILES + ".SequencingSummaryLog",
             FQDN_FILES + ".ThroughputLog",
             FQDN_FILES + ".BarcodeAlignmentLog",
-            FQDN_FILES + ".PoreActivityLog"
+            FQDN_FILES + ".PoreActivityLog",
+            FQDN_FILES + ".SampleSheetLog",
+            FQDN_FILES + ".PoreScanDataLog"
     ]
 
     private final static Set nanoporeFolderTypes = [

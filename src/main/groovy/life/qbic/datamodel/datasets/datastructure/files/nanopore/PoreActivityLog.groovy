@@ -3,7 +3,7 @@ package life.qbic.datamodel.datasets.datastructure.files.nanopore
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
 
 /**
- * A specialisation of a DataFile, represents an Oxford Nanopore barcode alignment log file
+ * A specialisation of a DataFile, represents an Oxford Nanopore pore activity log file
  *
  */
 class PoreActivityLog extends DataFile {
@@ -25,7 +25,7 @@ class PoreActivityLog extends DataFile {
 
     private void validateName() {
         if (!(this.name =~ NAME_SCHEMA)) {
-            throw new IllegalArgumentException("Name must match the Nanopore barcode alignment log name schema!")
+            throw new IllegalArgumentException("Name must match the Nanopore pore activity log name schema!")
         }
     }
 
