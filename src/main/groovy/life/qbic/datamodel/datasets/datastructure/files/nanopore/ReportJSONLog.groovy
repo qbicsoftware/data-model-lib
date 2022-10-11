@@ -3,9 +3,8 @@ package life.qbic.datamodel.datasets.datastructure.files.nanopore
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
 
 /**
- *  A specialisation of a DataFile, represents an Oxford Nanopore report PDF log file
+ *  A specialisation of a DataFile, represents an Oxford Nanopore report JSON log file
  *
- * @author: Sven Fillinger
  */
 class ReportJSONLog extends DataFile {
 

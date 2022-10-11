@@ -446,40 +446,6 @@
         }
       ]
     },
-    "drift_correction_log": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/file"
-        },
-        {
-          "properties": {
-            "name": {
-              "pattern": "drift_correction_.*"
-            },
-            "file_type": {
-              "pattern": "csv"
-            }
-          }
-        }
-      ]
-    },
-    "duty_time_log": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/file"
-        },
-        {
-          "properties": {
-            "name": {
-              "pattern": "duty_time_.*"
-            },
-            "file_type": {
-              "pattern": "csv"
-            }
-          }
-        }
-      ]
-    },
     "barcode_alignment_log": {
       "allOf": [
         {
@@ -543,23 +509,6 @@
             },
             "file_type": {
               "pattern": "txt"
-            }
-          }
-        }
-      ]
-    },
-    "mux_scan_data_log": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/file"
-        },
-        {
-          "properties": {
-            "name": {
-              "pattern": "mux_scan_data_.*"
-            },
-            "file_type": {
-              "pattern": "csv"
             }
           }
         }

@@ -125,7 +125,7 @@
                 {
                     "name": "report_test.html",
                     "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/report_test.html",
-                    "file_type": "pdf"
+                    "file_type": "html"
                 },
                 {
                     "name": "report_test.json",
