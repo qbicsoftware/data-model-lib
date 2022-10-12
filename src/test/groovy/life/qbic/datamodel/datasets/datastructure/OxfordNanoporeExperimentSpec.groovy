@@ -18,6 +18,12 @@ class OxfordNanoporeExperimentSpec extends Specification {
     @Shared
     Map minimalSimpleDataStructure
     /**
+     * Map that stores the Oxford Nanopore folder structure
+     * according to the schema with an alternate report file ending
+     */
+    @Shared
+    Map minimalSimpleDataStructureWithHtmlReport
+    /**
      * Newer map that stores the Oxford Nanopore folder structure according to the
      * schema that puts some reports in its own folder and adds a barcode alignment report
      */
@@ -46,6 +52,9 @@ class OxfordNanoporeExperimentSpec extends Specification {
         def folder = "nanopore/"
         InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-example.json")
         minimalSimpleDataStructure = (Map) new JsonSlurper().parse(stream)
+        //example with report.html instead of report.html
+        stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-example-html-report.json")
+        minimalSimpleDataStructureWithHtmlReport = (Map) new JsonSlurper().parse(stream)
         // example with slightly different structure
         stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-example-v2.json")
         extendedDataStructureWithReportsFolder = (Map) new JsonSlurper().parse(stream)
@@ -64,6 +73,20 @@ class OxfordNanoporeExperimentSpec extends Specification {
     def "Create simple sample Oxford Nanopore experiment successfully"() {
         given:
         final def example = minimalSimpleDataStructure
+
+        when:
+        final def experiment = OxfordNanoporeExperiment.create(example)
+        final def measurements = experiment.getMeasurements()
+
+        then:
+        assert experiment.sampleCode == "QABCD001AB"
+        assert measurements.size() == 1
+        assert measurements[0].libraryPreparationKit == "SQK-LSK109"
+    }
+
+    def "Create simple sample Oxford Nanopore experiment including an html report successfully"() {
+        given:
+        final def example = minimalSimpleDataStructureWithHtmlReport
 
         when:
         final def experiment = OxfordNanoporeExperiment.create(example)
