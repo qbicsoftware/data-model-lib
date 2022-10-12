@@ -29,6 +29,5 @@ class ProjectSpaceSpec extends Specification {
 
         then:
         thrown(IllegalArgumentException)
-
     }
 }
