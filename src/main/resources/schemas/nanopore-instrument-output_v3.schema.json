@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "http://qbic.life/nanopore-instrument-output_v2.schema.json",
-  "title": "Nanopore Instrument Output V2",
+  "$id": "http://qbic.life/nanopore-instrument-output_v3.schema.json",
+  "title": "Nanopore Instrument Output V3",
   "description": "Describes in which form Nanopore data is received from the lab.",
   "definitions": {
     "folder": {
@@ -95,11 +95,7 @@
             },
             "children": {
               "items": {
-                "oneOf": [
-                  {
-                    "$ref": "#/definitions/pore_scan_data_log"
-                  }
-                ]
+                "$ref": "#/definitions/pore_scan_data_log"
               },
               "minItems": 1
             }
