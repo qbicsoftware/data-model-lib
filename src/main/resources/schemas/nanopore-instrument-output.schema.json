@@ -403,6 +403,9 @@
                     "$ref": "#/definitions/report_pdf_log"
                   },
                   {
+                    "$ref": "#/definitions/report_html_log"
+                  },
+                  {
                     "$ref": "#/definitions/sequencing_summary_log"
                   },
                   {
@@ -512,6 +515,23 @@
             },
             "file_type": {
               "pattern": "pdf"
+            }
+          }
+        }
+      ]
+    },
+    "report_html_log": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/file"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "report_.*"
+            },
+            "file_type": {
+              "pattern": "html"
             }
           }
         }
