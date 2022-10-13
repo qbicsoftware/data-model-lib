@@ -18,11 +18,23 @@ class OxfordNanoporeExperimentSpec extends Specification {
     @Shared
     Map minimalSimpleDataStructure
     /**
+     * Map that stores the Oxford Nanopore folder structure
+     * according to the schema with an alternate report file ending
+     */
+    @Shared
+    Map minimalSimpleDataStructureWithHtmlReport
+    /**
      * Newer map that stores the Oxford Nanopore folder structure according to the
      * schema that puts some reports in its own folder and adds a barcode alignment report
      */
     @Shared
     Map extendedDataStructureWithReportsFolder
+    /**
+     * Addition to the newer structure, that changes report file types and adds a pore
+     * activity report
+     */
+    @Shared
+    Map extendedDataStructureWithReportsFolderV3
     /**
      * Map that that stores the Oxford Nanopore folder structure
      * according to the schema containing unclassified read information
@@ -40,9 +52,15 @@ class OxfordNanoporeExperimentSpec extends Specification {
         def folder = "nanopore/"
         InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-example.json")
         minimalSimpleDataStructure = (Map) new JsonSlurper().parse(stream)
-        // new example with slightly different structure
+        //example with report.html instead of report.html
+        stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-example-html-report.json")
+        minimalSimpleDataStructureWithHtmlReport = (Map) new JsonSlurper().parse(stream)
+        // example with slightly different structure
         stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-example-v2.json")
         extendedDataStructureWithReportsFolder = (Map) new JsonSlurper().parse(stream)
+        // latest example with slightly different structure
+        stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-example-v3.json")
+        extendedDataStructureWithReportsFolderV3 = (Map) new JsonSlurper().parse(stream)
         // read in unclassified example
         stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-example-unclassified.json")
         unclassifiedWorkingDataStructure = (Map) new JsonSlurper().parse(stream)
@@ -66,9 +84,37 @@ class OxfordNanoporeExperimentSpec extends Specification {
         assert measurements[0].libraryPreparationKit == "SQK-LSK109"
     }
 
+    def "Create simple sample Oxford Nanopore experiment including an html report successfully"() {
+        given:
+        final def example = minimalSimpleDataStructureWithHtmlReport
+
+        when:
+        final def experiment = OxfordNanoporeExperiment.create(example)
+        final def measurements = experiment.getMeasurements()
+
+        then:
+        assert experiment.sampleCode == "QABCD001AB"
+        assert measurements.size() == 1
+        assert measurements[0].libraryPreparationKit == "SQK-LSK109"
+    }
+
     def "Create sample Oxford Nanopore experiment successfully for newer structure"() {
         given:
         final def example = extendedDataStructureWithReportsFolder
+
+        when:
+        final def experiment = OxfordNanoporeExperiment.create(example)
+        final def measurements = experiment.getMeasurements()
+
+        then:
+        assert experiment.sampleCode == "QABCD001AB"
+        assert measurements.size() == 1
+        assert measurements[0].asicTemp == "32.631687"
+    }
+
+    def "Create sample Oxford Nanopore experiment successfully for latest structure"() {
+        given:
+        final def example = extendedDataStructureWithReportsFolderV3
 
         when:
         final def experiment = OxfordNanoporeExperiment.create(example)

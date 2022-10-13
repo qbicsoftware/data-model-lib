@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "http://qbic.life/nanopore-instrument-output.schema.json",
-  "title": "Nanopore Instrument Output",
+  "$id": "http://qbic.life/nanopore-instrument-output_v3.schema.json",
+  "title": "Nanopore Instrument Output V3",
   "description": "Describes in which form Nanopore data is received from the lab.",
   "definitions": {
     "folder": {
@@ -77,6 +77,27 @@
           "properties": {
             "name": {
               "$ref": "#/definitions/qbic_code"
+            }
+          }
+        }
+      ]
+    },
+    "other_reports_folder": {
+      "description": "subfolder containing some of the report files",
+      "allOf": [
+        {
+          "$ref": "#/definitions/folder"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "other_reports"
+            },
+            "children": {
+              "items": {
+                "$ref": "#/definitions/pore_scan_data_log"
+              },
+              "minItems": 1
             }
           }
         }
@@ -369,7 +390,7 @@
             },
             "children": {
               "uniqueItems": true,
-              "minItems": 12,
+              "minItems": 14,
               "items": {
                 "oneOf": [
                   {
@@ -385,22 +406,19 @@
                     "$ref": "#/definitions/fast5_fail"
                   },
                   {
-                    "$ref": "#/definitions/drift_correction_log"
+                    "$ref": "#/definitions/barcode_alignment_log"
                   },
                   {
-                    "$ref": "#/definitions/duty_time_log"
+                    "$ref": "#/definitions/pore_activity_log"
                   },
                   {
                     "$ref": "#/definitions/final_summary_log"
                   },
                   {
-                    "$ref": "#/definitions/mux_scan_data_log"
-                  },
-                  {
                     "$ref": "#/definitions/report_md_log"
                   },
                   {
-                    "$ref": "#/definitions/report_pdf_log"
+                    "$ref": "#/definitions/report_json_log"
                   },
                   {
                     "$ref": "#/definitions/report_html_log"
@@ -410,6 +428,12 @@
                   },
                   {
                     "$ref": "#/definitions/throughput_log"
+                  },
+                  {
+                    "$ref": "#/definitions/sample_sheet_log"
+                  },
+                  {
+                    "$ref": "#/definitions/other_reports_folder"
                   }
                 ]
               }
@@ -418,7 +442,7 @@
         }
       ]
     },
-    "drift_correction_log": {
+    "barcode_alignment_log": {
       "allOf": [
         {
           "$ref": "#/definitions/file"
@@ -426,7 +450,24 @@
         {
           "properties": {
             "name": {
-              "pattern": "drift_correction_.*"
+              "pattern": "barcode_alignment_.*"
+            },
+            "file_type": {
+              "pattern": "tsv"
+            }
+          }
+        }
+      ]
+    },
+    "pore_activity_log": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/file"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "pore_activity_.*"
             },
             "file_type": {
               "pattern": "csv"
@@ -435,7 +476,7 @@
         }
       ]
     },
-    "duty_time_log": {
+    "sample_sheet_log": {
       "allOf": [
         {
           "$ref": "#/definitions/file"
@@ -443,7 +484,7 @@
         {
           "properties": {
             "name": {
-              "pattern": "duty_time_.*"
+              "pattern": "sample_sheet_.*"
             },
             "file_type": {
               "pattern": "csv"
@@ -469,7 +510,7 @@
         }
       ]
     },
-    "mux_scan_data_log": {
+    "pore_scan_data_log": {
       "allOf": [
         {
           "$ref": "#/definitions/file"
@@ -477,7 +518,7 @@
         {
           "properties": {
             "name": {
-              "pattern": "mux_scan_data_.*"
+              "pattern": "pore_scan_data_.*"
             },
             "file_type": {
               "pattern": "csv"
@@ -503,7 +544,7 @@
         }
       ]
     },
-    "report_pdf_log": {
+    "report_json_log": {
       "allOf": [
         {
           "$ref": "#/definitions/file"
@@ -514,7 +555,7 @@
               "pattern": "report_.*"
             },
             "file_type": {
-              "pattern": "pdf"
+              "pattern": "json"
             }
           }
         }
