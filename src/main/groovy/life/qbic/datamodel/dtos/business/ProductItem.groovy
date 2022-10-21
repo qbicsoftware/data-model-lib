@@ -41,6 +41,13 @@ class ProductItem {
     final double quantityDiscount
 
     /**
+     * Stores the latest position on the offer.
+     *
+     * A negative value indicates no specific position was stored in the item.
+     */
+    private int offerPosition = -1
+
+    /**
      *
      * @param quantity The quantity of a product
      * @param product The product for which an item is created
@@ -68,6 +75,28 @@ class ProductItem {
         this.product = product
         this.totalPrice = totalPrice
         this.quantityDiscount = quantityDiscount
+    }
+
+    /**
+     * Sets the position information on the offer the item should be placed
+     *
+     * A negative value indicates no positional information.
+     * @param position a positive value >= 0 indicating a position on the offer
+     * @since 2.22.0
+     */
+    void setOrderPosition(int position) {
+        offerPosition = position
+    }
+
+    /**
+     * The position on the offer.
+     *
+     * Is negative, if no positional information is available.
+     * @return
+     * @since 2.22.0
+     */
+    int offerPosition() {
+        return offerPosition
     }
 
 
