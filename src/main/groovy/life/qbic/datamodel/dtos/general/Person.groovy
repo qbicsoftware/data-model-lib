@@ -28,6 +28,12 @@ abstract class Person {
   final int id
 
   /**
+   * Unique entity identifier (UUID)
+   * @since 2.22.0
+   */
+  final String referenceId
+
+  /**
    * The person's first name
    */
   final String firstName
@@ -66,12 +72,15 @@ abstract class Person {
 
     List<Affiliation> affiliations
 
+    String referenceId
+
     Builder(String firstName, String lastName, String emailAddress) {
       this.firstName = Objects.requireNonNull(firstName, "First name must not be null")
       this.lastName = Objects.requireNonNull(lastName, "Last name must not be null")
       this.emailAddress = Objects.requireNonNull(emailAddress, "Email must not be null")
       this.title = AcademicTitle.NONE
       this.affiliations = new ArrayList<>()
+      this.referenceId = UUID.randomUUID().toString()
     }
 
     T id(int id) {
@@ -94,6 +103,11 @@ abstract class Person {
       return self()
     }
 
+    T referenceId(UUID id) {
+      this.referenceId = id.toString()
+      return self()
+    }
+
     abstract Person build()
 
     /**
@@ -111,6 +125,7 @@ abstract class Person {
     emailAddress = builder.emailAddress
     title = builder.title
     affiliations = builder.affiliations
+    referenceId = builder.referenceId
   }
 
   /**
