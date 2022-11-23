@@ -12,7 +12,7 @@ import life.qbic.datamodel.dtos.business.facilities.Facility
  * @since 1.12.0
  */
 @EqualsAndHashCode(callSuper = true)
-class SecondaryAnalysis extends AtomicProduct {
+class SecondaryAnalysis extends PartialProduct {
   /**
    * Basic product constructor.
    *
