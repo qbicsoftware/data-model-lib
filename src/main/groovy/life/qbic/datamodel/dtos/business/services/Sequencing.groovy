@@ -11,7 +11,7 @@ import life.qbic.datamodel.dtos.business.facilities.Facility
  * @since 1.12.0
  */
 @EqualsAndHashCode(callSuper = true)
-class Sequencing extends AtomicProduct {
+class Sequencing extends PartialProduct {
   /**
    * Basic product constructor.
    *
