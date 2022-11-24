@@ -11,7 +11,7 @@ import life.qbic.datamodel.dtos.business.facilities.Facility
  * @since 2.4.0
  */
 @EqualsAndHashCode(callSuper = true)
-class MetabolomicAnalysis extends AtomicProduct {
+class MetabolomicAnalysis extends PartialProduct {
    /**
     * Basic product constructor.
     *

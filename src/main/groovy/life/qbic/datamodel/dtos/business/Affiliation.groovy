@@ -66,6 +66,12 @@ final class Affiliation {
    */
   final AffiliationLabel label
 
+  /**
+   * Boolean flag if an affiliation is active
+   * @since 2.23.0
+   */
+  final Boolean active
+
   static class Builder {
 
     int id
@@ -86,6 +92,8 @@ final class Affiliation {
 
     AffiliationLabel label
 
+    Boolean active
+
     Builder(String organisation, String street, String postalCode, String city) {
       this.id = id
       this.organisation = organisation
@@ -96,6 +104,7 @@ final class Affiliation {
       this.country = "Germany"
       this.category = AffiliationCategory.EXTERNAL
       this.label = AffiliationLabel.MNF
+      this.active = Boolean.TRUE
     }
 
     Builder id(int id) {
@@ -128,6 +137,16 @@ final class Affiliation {
       return this
     }
 
+    Builder setInactive() {
+      this.active = Boolean.FALSE
+      return this
+    }
+
+    Builder setActive() {
+      this.active = Boolean.TRUE
+      return this
+    }
+
 
     Affiliation build() {
       return new Affiliation(this)
@@ -145,6 +164,7 @@ final class Affiliation {
     this.category = builder.category
     this.city = builder.city
     this.label = builder.label
+    this.active = builder.active
   }
 
   @Override
