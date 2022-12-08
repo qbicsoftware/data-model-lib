@@ -348,6 +348,7 @@
             "children": {
               "items": {
                 "uniqueItems": true,
+                "minItems": 5,
                 "anyOf": [
                   {
                     "$ref": "#/definitions/fastq_pass"
