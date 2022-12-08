@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "http://qbic.life/nanopore-instrument-output_v3.schema.json",
   "title": "Nanopore Instrument Output V3",
-  "description": "Describes in which form Nanopore data is received from the lab.",
+  "description": "Describes in which form PromethION/MinION sequenced sequenced Nanopore data is received from the medical genetics lab. Accounts for the adapted new_reports structure provided by the lab",
   "definitions": {
     "folder": {
       "description": "Describes a folder",

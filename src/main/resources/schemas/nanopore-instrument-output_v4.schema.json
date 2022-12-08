@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "http://qbic.life/nanopore-instrument-output_v4.schema.json",
   "title": "Nanopore Instrument Output V4",
-  "description": "Describes in which form Nanopore data is received from the lab. For this dataset a second basecalling with higher accuracy was performed after the original initial fast basecalling after sequencing",
+  "description": "Describes in which form PromethION/MinION sequenced Nanopore data is received from the microbiology lab. For this dataset a second basecalling with higher accuracy was performed after the an initial fast basecalling during sequencing",
   "definitions": {
     "folder": {
       "description": "Describes a folder",
@@ -136,7 +136,7 @@
               "pattern": "unclassified"
             }
           }
-        }  
+        }
       ]
     },
     "fast5_unclassified_folder": {
@@ -334,7 +334,8 @@
         }
       ]
     },
-    "basecalling": {
+    "basecalling_folder": {
+      "description": "folder containing the files resulting from a second high accuracy basecalling performed after the initial sequencing",
       "allOf": [
         {
           "$ref": "#/definitions/folder"
@@ -346,12 +347,13 @@
             },
             "children": {
               "items": {
+                "uniqueItems": true,
                 "anyOf": [
                   {
-                    "$ref": "#/definitions/fastq_subfolder"
+                    "$ref": "#/definitions/fastq_pass"
                   },
                   {
-                    "$ref": "#/definitions/fastq_unclassified_folder"
+                    "$ref": "#/definitions/fastq_fail"
                   },
                   {
                     "$ref": "#/definitions/sequencing_summary_log"
@@ -361,31 +363,9 @@
                   },
                   {
                     "$ref": "#/definitions/guppy_basecall_client_log"
-                  },
-                  {
-                    "$ref": "#/definitions/guppy_basecall_client-core_dump_db_subfolder"
                   }
                 ]
               }
-            }
-          }
-        }
-      ]
-    },
-    //ToDo Missing children subfolder?? definitions however JM mentioned that it's not important?
-    "guppy_basecall_client-core_dump_db_subfolder": {
-      "description": "???",
-      "allOf": [
-        {
-          "$ref": "#/definitions/folder"
-        },
-        {
-          "properties": {
-            "children": {
-              "items": {
-                "$ref": "#/definitions/file"
-              },
-              "minItems": 1
             }
           }
         }
@@ -426,7 +406,7 @@
             },
             "children": {
               "uniqueItems": true,
-              "minItems": 12,
+              "minItems": 11,
               "items": {
                 "oneOf": [
                   {
@@ -459,16 +439,14 @@
                   {
                     "$ref": "#/definitions/report_html_log"
                   },
-                  //ToDo Remove this if we can set report_html_log optional in V1!
                   {
                     "$ref": "#/definitions/sequencing_summary_log"
                   },
                   {
                     "$ref": "#/definitions/throughput_log"
                   },
-                  //ToDo set Optional
                   {
-                    "$ref": "#/definitions/basecalling"
+                    "$ref": "#/definitions/basecalling_folder"
                   }
                 ]
               }
@@ -638,7 +616,7 @@
         {
           "properties": {
             "name": {
-              "pattern": "guppy_basecall_client_log_.*"
+              "pattern": "guppy_basecall_client_log-.*"
             },
             "file_type": {
               "pattern": "log"
