@@ -40,7 +40,9 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
             FQDN_FILES + ".BarcodeAlignmentLog",
             FQDN_FILES + ".PoreActivityLog",
             FQDN_FILES + ".SampleSheetLog",
-            FQDN_FILES + ".PoreScanDataLog"
+            FQDN_FILES + ".PoreScanDataLog",
+            FQDN_FILES + ".SequencingTelemetryLog",
+            FQDN_FILES + ".GuppyBasecallLog"
     ]
 
     private final static Set nanoporeFolderTypes = [
@@ -52,7 +54,8 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
             FQDN_FOLDERS + ".FastQFailFolder",
             FQDN_FOLDERS + ".UnclassifiedFast5Folder",
             FQDN_FOLDERS + ".UnclassifiedFastQFolder",
-            FQDN_FOLDERS + ".OtherReportsFolder"
+            FQDN_FOLDERS + ".OtherReportsFolder",
+            FQDN_FOLDERS + ".BasecallingFolder"
     ]
 
     private OxfordNanoporeExperiment(String sampleId, List<OxfordNanoporeMeasurement> measurements) {

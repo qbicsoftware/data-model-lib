@@ -35,6 +35,12 @@ class OxfordNanoporeExperimentSpec extends Specification {
      */
     @Shared
     Map extendedDataStructureWithReportsFolderV3
+
+    /**
+     * Addition to the newest structure, containing a second basecalling run
+     */
+    @Shared
+    Map extendedDataStructureWithReportsFolderV4
     /**
      * Map that that stores the Oxford Nanopore folder structure
      * according to the schema containing unclassified read information
@@ -61,6 +67,9 @@ class OxfordNanoporeExperimentSpec extends Specification {
         // latest example with slightly different structure
         stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-example-v3.json")
         extendedDataStructureWithReportsFolderV3 = (Map) new JsonSlurper().parse(stream)
+        // nanopore structure containing a second basecalling folder
+        stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-example-v4-with-basecalling.json")
+        extendedDataStructureWithReportsFolderV4 = (Map) new JsonSlurper().parse(stream)
         // read in unclassified example
         stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-example-unclassified.json")
         unclassifiedWorkingDataStructure = (Map) new JsonSlurper().parse(stream)
@@ -115,6 +124,20 @@ class OxfordNanoporeExperimentSpec extends Specification {
     def "Create sample Oxford Nanopore experiment successfully for latest structure"() {
         given:
         final def example = extendedDataStructureWithReportsFolderV3
+
+        when:
+        final def experiment = OxfordNanoporeExperiment.create(example)
+        final def measurements = experiment.getMeasurements()
+
+        then:
+        assert experiment.sampleCode == "QABCD001AB"
+        assert measurements.size() == 1
+        assert measurements[0].asicTemp == "32.631687"
+    }
+
+    def "Create sample Oxford Nanopore experiment successfully for structure with second basecalling"() {
+        given:
+        final def example = extendedDataStructureWithReportsFolderV4
 
         when:
         final def experiment = OxfordNanoporeExperiment.create(example)
