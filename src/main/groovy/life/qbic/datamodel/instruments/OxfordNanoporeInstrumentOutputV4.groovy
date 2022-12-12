@@ -9,7 +9,7 @@ package life.qbic.datamodel.instruments
  * in applications that want to validate the instrument
  * output structure against the schema.
  *
- * @author Sven Fillinger
+ * @author Steffen Greiner
  * @since 1.9.0
  */
 class OxfordNanoporeInstrumentOutputV4 {
