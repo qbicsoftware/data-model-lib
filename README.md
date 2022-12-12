@@ -107,6 +107,10 @@ A more recent model, which places two of the configuration files into a subfolde
 
 ![Nanopore Data Structure Model v2](./doc/figures/Nanopore_Data_Structure_Model_v2.svg)
 
+V4 outlines a model in which a second higher-accuracy basecalling was performed after the initial basecalling
+
+![Nanopore Data Structure Model v4](./doc/figures/Nanopore_Data_Structure_Model_v4.svg)
+
 #### Nanopore usage example
 
 For usage examples, see the [usage documentation](./doc/examples.md).
