@@ -147,6 +147,11 @@ class OxfordNanoporeExperimentSpec extends Specification {
         assert experiment.sampleCode == "QABCD001AB"
         assert measurements.size() == 1
         assert measurements[0].asicTemp == "32.631687"
+        assert measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").containsKey("basecalling")
+        assert !measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").get("basecalling").relativePath.isEmpty()
+        assert !measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").get("basecalling").children.isEmpty()
+        assert measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").get("basecalling").name.size() > 0
+        assert measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").containsKey("fastqfail")
     }
 
     def "Create a simple pooled Oxford Nanopore experiment successfully"() {

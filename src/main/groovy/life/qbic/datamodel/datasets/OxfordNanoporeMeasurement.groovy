@@ -29,6 +29,8 @@ final class OxfordNanoporeMeasurement {
 
     private boolean pooledSamplesMeasurement
 
+    private boolean hasBasecallingData
+
     protected OxfordNanoporeMeasurement(String name, String path, List children, Map metadata) {
         this.logFilesCollection = new ArrayList<>()
         this.folders = new HashMap<>()
@@ -39,6 +41,7 @@ final class OxfordNanoporeMeasurement {
 
         createContent()
         assessPooledStatus()
+        assessBasecallingStatus()
         assessState()
     }
 
@@ -53,10 +56,14 @@ final class OxfordNanoporeMeasurement {
     private void assessPooledStatus() {
         this.pooledSamplesMeasurement = containsAtLeastOneBarcodedFolder(folders["fast5pass"])
         // There can be still pooled samples in the failed folder, worst case is all
-        // samples failed, so we need to check there to
+        // samples failed, so we need to check there too
         if (! pooledSamplesMeasurement) {
             this.pooledSamplesMeasurement = containsAtLeastOneBarcodedFolder(folders["fast5fail"])
         }
+    }
+
+    private void assessBasecallingStatus() {
+        this.hasBasecallingData = folders["basecalling"];
     }
 
     private static boolean containsAtLeastOneBarcodedFolder(DataFolder folder) {
@@ -85,6 +92,9 @@ final class OxfordNanoporeMeasurement {
                     break
                 case DataFile:
                     logFilesCollection.add(element as DataFile)
+                    break
+                case BasecallingFolder:
+                    folders["basecalling"] = element as BasecallingFolder
                     break
             }
         }
@@ -273,13 +283,14 @@ final class OxfordNanoporeMeasurement {
 
     private Map<String, Map<String, DataFolder>> prepareRawData(String sampleId) {
         final def result = new HashMap()
-        final def folders = [
+        final def dataFolders = [
                 "fast5fail": (folders.get("fast5fail") as DataFolder),
                 "fast5pass": (folders.get("fast5pass") as DataFolder),
                 "fastqpass": (folders.get("fastqpass") as DataFolder),
                 "fastqfail": (folders.get("fastqfail") as DataFolder)
         ]
-        result.put(sampleId, folders)
+        if(hasBasecallingData) dataFolders.put("basecalling", (folders.get("basecalling") as DataFolder))
+        result.put(sampleId, dataFolders)
         return result
     }
 
