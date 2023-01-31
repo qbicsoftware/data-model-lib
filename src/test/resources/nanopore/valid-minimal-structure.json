@@ -35,11 +35,6 @@
           "file_type": "txt"
         },
         {
-          "name": "barcode_alignment_.tsv",
-          "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/barcode_alignment_.tsv",
-          "file_type": "tsv"
-        },
-        {
           "name": "additional_file_.new",
           "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/additional_file_.new",
           "file_type": "new"

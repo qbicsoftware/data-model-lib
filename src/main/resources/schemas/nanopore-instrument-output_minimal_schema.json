@@ -396,9 +396,6 @@
                 "optional_folder": {
                   "$ref": "#/definitions/optional_folder"
                 },
-                "barcode_alignment": {
-                  "$ref": "#/definitions/barcode_alignment_log"
-                },
                 "final_summary_log": {
                   "$ref": "#/definitions/final_summary_log"
                 },
@@ -417,28 +414,10 @@
                 "fastq_pass",
                 "fast5_pass",
                 "fast5_fail",
-                "barcode_alignment_log",
                 "final_summary_log",
                 "report_md_log",
                 "sequencing_summary_log"
               ]
-            }
-          }
-        }
-      ]
-    },
-    "barcode_alignment_log": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/file"
-        },
-        {
-          "properties": {
-            "name": {
-              "pattern": "barcode_alignment_.*"
-            },
-            "file_type": {
-              "pattern": "tsv"
             }
           }
         }
