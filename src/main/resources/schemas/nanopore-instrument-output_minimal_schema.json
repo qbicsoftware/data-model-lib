@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "http://qbic.life/nanopore-instrument-output_minimal.schema.json",
   "title": "Nanopore Instrument Output minimal",
   "description": "Describes in which form PromethION/MinION sequenced Nanopore data is received from the medical genetics lab. To be used if no other schema fits the description and ensure that the minimal necessary files are provided",
@@ -379,45 +379,35 @@
               "description": "Name of measurement subfolder. Starts with date and time of measurement."
             },
             "children": {
+              "type": "array",
               "uniqueItems": true,
-              "properties": {
-                "fastq_fail": {
-                  "$ref": "#/definitions/fastq_fail"
-                },
-                "fastq_pass": {
-                  "$ref": "#/definitions/fastq_pass"
-                },
-                "fast5_pass": {
-                  "$ref": "#/definitions/fast5_pass"
-                },
-                "fast5_fail": {
-                  "$ref": "#/definitions/fast5_fail"
-                },
-                "optional_folder": {
-                  "$ref": "#/definitions/optional_folder"
-                },
-                "final_summary_log": {
-                  "$ref": "#/definitions/final_summary_log"
-                },
-                "report_md_log": {
-                  "$ref": "#/definitions/report_md_log"
-                },
-                "sequencing_summary_log": {
-                  "$ref": "#/definitions/sequencing_summary_log"
-                },
-                "optional_file": {
-                  "$ref": "#/definitions/optional_file"
-                }
+              "minItems": 7,
+              "contains": {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/fastq_fail"
+                  },
+                  {
+                    "$ref": "#/definitions/fastq_pass"
+                  },
+                  {
+                    "$ref": "#/definitions/fast5_pass"
+                  },
+                  {
+                    "$ref": "#/definitions/fast5_fail"
+                  },
+                  {
+                    "$ref": "#/definitions/final_summary_log"
+                  },
+                  {
+                    "$ref": "#/definitions/report_md_log"
+                  },
+                  {
+                    "$ref": "#/definitions/sequencing_summary_log"
+                  }
+                ]
               },
-              "required": [
-                "fastq_fail",
-                "fastq_pass",
-                "fast5_pass",
-                "fast5_fail",
-                "final_summary_log",
-                "report_md_log",
-                "sequencing_summary_log"
-              ]
+              "minContains": 7
             }
           }
         }
