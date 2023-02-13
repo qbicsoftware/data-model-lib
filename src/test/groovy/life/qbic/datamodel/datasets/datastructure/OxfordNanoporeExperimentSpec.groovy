@@ -41,6 +41,7 @@ class OxfordNanoporeExperimentSpec extends Specification {
      */
     @Shared
     Map extendedDataStructureWithReportsFolderV4
+
     /**
      * Map that that stores the Oxford Nanopore folder structure
      * according to the schema containing unclassified read information
@@ -52,7 +53,13 @@ class OxfordNanoporeExperimentSpec extends Specification {
      * according to the schema containing pooled samples read information
      */
     @Shared
-    Map minimalWorkingPooledDataStructure
+    Map pooledDataStructure
+
+    @Shared
+    Map minimalDataStructure
+
+    @Shared
+    Map minimalDataStructurePooled
 
     def setupSpec() {
         def folder = "nanopore/"
@@ -75,7 +82,13 @@ class OxfordNanoporeExperimentSpec extends Specification {
         unclassifiedWorkingDataStructure = (Map) new JsonSlurper().parse(stream)
         // read in pooled example
         stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-example-pooled.json")
-        minimalWorkingPooledDataStructure = (Map) new JsonSlurper().parse(stream)
+        pooledDataStructure = (Map) new JsonSlurper().parse(stream)
+        // read in minimal required example
+        stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-minimal-structure.json")
+        minimalDataStructure = (Map) new JsonSlurper().parse(stream)
+        // read in minimal required pooled example
+        stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-minimal-structure-pooled.json")
+        minimalDataStructurePooled = (Map) new JsonSlurper().parse(stream)
         stream.close()
     }
 
@@ -154,9 +167,37 @@ class OxfordNanoporeExperimentSpec extends Specification {
         assert measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").containsKey("fastqfail")
     }
 
+    def "Create sample Oxford Nanopore experiment successfully for the minimal required structure"() {
+        given:
+        final def example = minimalDataStructure
+
+        when:
+        final def experiment = OxfordNanoporeExperiment.create(example)
+        final def measurements = experiment.getMeasurements()
+
+        then:
+        assert experiment.sampleCode == "QABCD001AB"
+        assert measurements.size() == 1
+        assert measurements[0].asicTemp == "32.631687"
+    }
+
+    def "Create sample Oxford Nanopore experiment successfully for the minimal required pooled structure"() {
+        given:
+        final def example = minimalDataStructurePooled
+
+        when:
+        final def experiment = OxfordNanoporeExperiment.create(example)
+        final def measurements = experiment.getMeasurements()
+
+        then:
+        assert experiment.sampleCode == "QABCD001AB"
+        assert measurements.size() == 1
+        assert measurements[0].asicTemp == "32.631687"
+    }
+
     def "Create a simple pooled Oxford Nanopore experiment successfully"() {
         given:
-        final def example = minimalWorkingPooledDataStructure
+        final def example = pooledDataStructure
 
         when:
         final def experiment = OxfordNanoporeExperiment.create(example)
