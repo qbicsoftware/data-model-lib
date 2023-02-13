@@ -90,3 +90,14 @@ jobs:
               head: 'release/set-version-to-${{ github.event.inputs.versionTag }}',
               base: 'master'
             });
+            
+      - name: Open PR to development
+        uses: actions/github-script@v4.0.2
+        with:
+          github-token: ${{secrets.JOHNNY_Q5_REPORTS_TOKEN}}
+          script: |
+            await github.request(`POST /repos/${{ github.repository }}/pulls`, {
+              title: 'Merge release ${{ github.event.inputs.versionTag }} into development',
+              head: 'master',
+              base: 'development'
+            });
