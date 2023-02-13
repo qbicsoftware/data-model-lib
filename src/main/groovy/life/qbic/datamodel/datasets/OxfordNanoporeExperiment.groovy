@@ -16,54 +16,9 @@ import java.lang.reflect.Method
  */
 final class OxfordNanoporeExperiment implements ExperimentFolder {
 
-  // Fully qualified domain name of the nanopore folder structure package
-  private static final String FQDN_FOLDERS = "life.qbic.datamodel.datasets.datastructure.folders.nanopore"
-  // Fully qualified domain name of the nanopore file structure package
-  private static final String FQDN_FILES = "life.qbic.datamodel.datasets.datastructure.files.nanopore"
-
-  //Unique key in fileTreeMap identifying a child as a file
-  private static final String FILEKEY = "file_type"
-  //Unique key in fileTreeMap identifyng a child as a folder
-  private static final String FOLDERKEY = "children"
-
   private final List<OxfordNanoporeMeasurement> measurements
 
   private final String sampleId
-
-  private final static Set nanoporeFileTypes = [
-          FQDN_FILES + ".DriftCorrectionLog",
-          FQDN_FILES + ".DutyTimeLog",
-          FQDN_FILES + ".Fast5File",
-          FQDN_FILES + ".FastQFile",
-          FQDN_FILES + ".FastQZippedFile",
-          FQDN_FILES + ".FinalSummaryLog",
-          FQDN_FILES + ".MuxScanDataLog",
-          FQDN_FILES + ".ReportMdLog",
-          FQDN_FILES + ".ReportPDFLog",
-          FQDN_FILES + ".ReportHTMLLog",
-          FQDN_FILES + ".ReportJSONLog",
-          FQDN_FILES + ".SequencingSummaryLog",
-          FQDN_FILES + ".ThroughputLog",
-          FQDN_FILES + ".BarcodeAlignmentLog",
-          FQDN_FILES + ".PoreActivityLog",
-          FQDN_FILES + ".SampleSheetLog",
-          FQDN_FILES + ".PoreScanDataLog",
-          FQDN_FILES + ".SequencingTelemetryLog",
-          FQDN_FILES + ".GuppyBasecallLog"
-  ]
-
-  private final static Set nanoporeFolderTypes = [
-          FQDN_FOLDERS + ".Fast5Folder",
-          FQDN_FOLDERS + ".FastQFolder",
-          FQDN_FOLDERS + ".Fast5PassFolder",
-          FQDN_FOLDERS + ".Fast5FailFolder",
-          FQDN_FOLDERS + ".FastQPassFolder",
-          FQDN_FOLDERS + ".FastQFailFolder",
-          FQDN_FOLDERS + ".UnclassifiedFast5Folder",
-          FQDN_FOLDERS + ".UnclassifiedFastQFolder",
-          FQDN_FOLDERS + ".OtherReportsFolder",
-          FQDN_FOLDERS + ".BasecallingFolder"
-  ]
 
   private OxfordNanoporeExperiment(String sampleId, List<OxfordNanoporeMeasurement> measurements) {
     this.measurements = Objects.requireNonNull(measurements, "measurements must not be null")
@@ -96,8 +51,7 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
   }
 
   /**
-   * Helper method that parses the QBiC identifier from the root folder name
-   */
+   * Helper method that parses the QBiC identifier from the root folder name*/
   private static String parseQbicIdFromRootFolder(Map nanoPoreSequencerOutput) {
     def name = Objects.requireNonNull(nanoPoreSequencerOutput.get("name"), "The root folder must contain a name property.")
     final def ids = SampleCodeFunctions.findAllQbicSampleCodes(name as String)
@@ -111,8 +65,7 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
   }
 
   /**
-   * Helper method that creates the measurements from the sequencer output
-   */
+   * Helper method that creates the measurements from the sequencer output*/
   private static List<OxfordNanoporeMeasurement> parseMeasurements(Map nanoPoreSequencerOutput) {
     final def measurements = []
     Objects.requireNonNull(nanoPoreSequencerOutput.get("children"), "The root folder must contain at least one measurement folder.")
@@ -134,15 +87,17 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
     final def children = []
     items.each { item ->
       {
-        if (item.get(FILEKEY)) {
-          // Lets try to parse it as a subclass of a DataFile
-          DataFile putativeFile = parseFile(item)
-          children.add(putativeFile)
-        }
-        if (item.get(FOLDERKEY)) {
-          // Lets try to parse it as a subclass of a DataFile
-          DataFolder putativeFolder = parseFolder(item)
-          children.add(putativeFolder)
+        if (!item.isEmpty()) {
+          if (isFile(item)) {
+            // Lets try to parse it as a subclass of a DataFile
+            DataFile putativeFile = parseFile(item)
+            children.add(putativeFile)
+          }
+          if (isFolder(item)) {
+            // Lets try to parse it as a subclass of a DataFile
+            DataFolder putativeFolder = parseFolder(item)
+            children.add(putativeFolder)
+          }
         }
       }
     }
@@ -156,7 +111,7 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
   private static DataFile parseFile(Map fileTree) throws IllegalArgumentException {
     String name = fileTree.get("name")
     String path = fileTree.get("path")
-    for (String nanoPoreFileType : nanoporeFileTypes) {
+    for (String nanoPoreFileType : NanoporeFileTypes.values()) {
       Class<?> c = Class.forName(nanoPoreFileType)
       Method method = c.getDeclaredMethod("create", String.class, String.class)
       try {
@@ -186,7 +141,7 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
     String path = fileTree.get("path") as String
     def children = parseChildren(fileTree.get("children") as List)
 
-    for (String nanoPoreFolderType : nanoporeFolderTypes) {
+    for (String nanoPoreFolderType : NanoporeFolderTypes.values()) {
       Method method = determineMethod(Class.forName(nanoPoreFolderType))
       Optional<DataFolder> folder = tryToCreateDataFolder(method, name, path, children)
       if (folder.isPresent()) {
@@ -239,16 +194,18 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
 
   private static List parseChildren(List<Map> children) {
     def parsedChildren = []
-    children.each { Map unknownChild ->
-      if (unknownChild.get(FILEKEY)) {
-        def child = parseFile(unknownChild)
-        parsedChildren.add(child)
+    children.forEach({ Map unknownChild ->
+      if (!unknownChild.isEmpty()) {
+        if (isFile(unknownChild)) {
+          def child = parseFile(unknownChild)
+          parsedChildren.add(child)
+        }
+        if (isFolder(unknownChild)) {
+          def child = parseFolder(unknownChild)
+          parsedChildren.add(child)
+        }
       }
-      if (unknownChild.get(FOLDERKEY)) {
-        def child = parseFolder(unknownChild)
-        parsedChildren.add(child)
-      }
-    }
+    })
     return parsedChildren
   }
 
@@ -266,5 +223,120 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
       method = c.getDeclaredMethod("create", String.class, List.class)
     }
     return method
+  }
+
+  private static boolean isFile(Map parsedChild) {
+    //Unique key in fileTreeMap identifying a child as a file
+    final String file_key = "file_type"
+    return parsedChild.containsKey(file_key)
+  }
+
+  private static boolean isFolder(Map parsedChild) {
+    //Unique key in fileTreeMap identifyng a child as a folder
+    final String folder_key = "children"
+    return parsedChild.containsKey(folder_key)
+  }
+
+  private enum NanoporeFileTypes {
+
+    DRIFT_CORRECTION_LOG(FQDN_FILES + ".DriftCorrectionLog"),
+    DUTY_TIME_LOG(FQDN_FILES + ".DutyTimeLog"),
+    FAST5_FILE(FQDN_FILES + ".Fast5File"),
+    FASTQ_FILE(FQDN_FILES + ".FastQFile"),
+    FASTQ_ZIPPED_FILE(FQDN_FILES + ".FastQZippedFile"),
+    FINAL_SUMMARY_LOG(FQDN_FILES + ".FinalSummaryLog"),
+    MUX_SCAN_DATA_LOG(FQDN_FILES + ".MuxScanDataLog"),
+    REPORT_MD_LOG(FQDN_FILES + ".ReportMdLog"),
+    REPORT_PDF_LOG(FQDN_FILES + ".ReportPDFLog"),
+    REPORT_HTML_LOG(FQDN_FILES + ".ReportHTMLLog"),
+    REPORT_JSON_LOG(FQDN_FILES + ".ReportJSONLog"),
+    SEQUENCING_SUMMARY_LOG(FQDN_FILES + ".SequencingSummaryLog"),
+    THROUGHPUT_LOG(FQDN_FILES + ".ThroughputLog"),
+    BARCODE_ALIGNMENT_LOG(FQDN_FILES + ".BarcodeAlignmentLog"),
+    PORE_ACTIVITY_LOG(FQDN_FILES + ".PoreActivityLog"),
+    SAMPLE_SHEET_LOG(FQDN_FILES + ".SampleSheetLog"),
+    PORE_SCAN_DATA_LOG(FQDN_FILES + ".PoreScanDataLog"),
+    SEQUENCING_TELEMETRY_LOG(FQDN_FILES + ".SequencingTelemetryLog"),
+    GUPPY_BASECALL_LOG(FQDN_FILES + ".GuppyBasecallLog")
+
+    /**
+     Holds the String value of the enum
+     */
+    private final String value
+
+    // Fully qualified domain name of the nanopore file structure package
+    private static final String FQDN_FILES = "life.qbic.datamodel.datasets.datastructure.files.nanopore"
+
+    /**
+     * Private constructor to create different NanoporeFileTypes enum items
+     * @param value
+     */
+    private NanoporeFileTypes(String value) {
+      this.value = value
+    }
+
+    /**
+     * Returns to the enum item value
+     * @return
+     */
+    String getValue() {
+      return value
+    }
+
+    /**
+     * Returns a String representation of the enum item
+     * @return
+     */
+    @Override
+    String toString() {
+      return this.getValue()
+    }
+  }
+
+  private enum NanoporeFolderTypes {
+
+    FAST5_FOLDER(FQDN_FOLDERS + ".Fast5Folder"),
+    FASTQ_FOLDER(FQDN_FOLDERS + ".FastQFolder"),
+    FAST5_PASS_FOLDER(FQDN_FOLDERS + ".Fast5PassFolder"),
+    FAST5_FAIL_FOLDER(FQDN_FOLDERS + ".Fast5FailFolder"),
+    FASTQ_PASS_FOLDER(FQDN_FOLDERS + ".FastQPassFolder"),
+    FASTQ_FAIL_FOLDER(FQDN_FOLDERS + ".FastQFailFolder"),
+    UNCLASSIFIED_FAST5_FOLDER(FQDN_FOLDERS + ".UnclassifiedFast5Folder"),
+    UNCLASSIFIED_FASTQ_FOLDER(FQDN_FOLDERS + ".UnclassifiedFastQFolder"),
+    OTHER_REPORTS_FOLDER(FQDN_FOLDERS + ".OtherReportsFolder"),
+    BASECALLING_FOLDER(FQDN_FOLDERS + ".BasecallingFolder"),
+
+    // Fully qualified domain name of the nanopore folder structure package
+    private static final String FQDN_FOLDERS = "life.qbic.datamodel.datasets.datastructure.folders.nanopore"
+
+    /**
+     Holds the String value of the enum
+     */
+    private final String value
+
+    /**
+     * Private constructor to create different NanoporeFolderTypes enum items
+     * @param value
+     */
+    private NanoporeFolderTypes(String value) {
+      this.value = value
+    }
+
+    /**
+     * Returns to the enum item value
+     * @return
+     */
+    String getValue() {
+      return value
+    }
+
+    /**
+     * Returns a String representation of the enum item
+     * @return
+     */
+    @Override
+    String toString() {
+      return this.getValue()
+    }
   }
 }
