@@ -3,7 +3,7 @@ package life.qbic.datamodel.datasets.datastructure.files.nanopore
 import life.qbic.datamodel.datasets.datastructure.files.DataFile
 
 /**
- * Unspecific OptionalFile used to store unexpected file n the nanopore registration
+ * Unspecific OptionalFile used to store unexpected file in the nanopore registration
  *
  * The high variety of the nanopore datasets registered made an optional all-purpose Datafile structure necessary.
  *
