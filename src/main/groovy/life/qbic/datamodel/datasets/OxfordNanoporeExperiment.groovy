@@ -17,14 +17,14 @@ import java.lang.reflect.Method
 final class OxfordNanoporeExperiment implements ExperimentFolder {
 
   // Fully qualified domain name of the nanopore folder structure package
-  private final static String FQDN_FOLDERS = "life.qbic.datamodel.datasets.datastructure.folders.nanopore"
+  private static final String FQDN_FOLDERS = "life.qbic.datamodel.datasets.datastructure.folders.nanopore"
   // Fully qualified domain name of the nanopore file structure package
-  private final static String FQDN_FILES = "life.qbic.datamodel.datasets.datastructure.files.nanopore"
+  private static final String FQDN_FILES = "life.qbic.datamodel.datasets.datastructure.files.nanopore"
 
   //Unique key in fileTreeMap identifying a child as a file
-  private final static String FILEKEY = "file_type"
+  private static final String FILEKEY = "file_type"
   //Unique key in fileTreeMap identifyng a child as a folder
-  private final static String FOLDERKEY = "children"
+  private static final String FOLDERKEY = "children"
 
   private final List<OxfordNanoporeMeasurement> measurements
 
@@ -245,9 +245,6 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
         parsedChildren.add(child)
       }
       if (unknownChild.get(FOLDERKEY)) {
-        // We do not capture the second parse call, as we want to fail the parsing at this point.
-        // This means that we ultimately found a child of unknown type, which should
-        // break the parsing.
         def child = parseFolder(unknownChild)
         parsedChildren.add(child)
       }
