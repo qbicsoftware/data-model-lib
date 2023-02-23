@@ -25,7 +25,8 @@ enum Facility {
     QBIC("Quantitative Biology Center", "QBIC"),
     CFMB_PCT("Proteomics Facility Tübingen", "Proteomics Facility"),
     PCT("Proteome Center Tübingen", "PCT"),
-    CEGAT("CeGaT GmbH", "CeGaT GmbH")
+    CEGAT("CeGaT GmbH", "CeGaT GmbH"),
+    METABOLOMICS("Metabolomics Facility Tübingen", "Metabolomics Facility")
 
     private final String fullName
     private final String label
