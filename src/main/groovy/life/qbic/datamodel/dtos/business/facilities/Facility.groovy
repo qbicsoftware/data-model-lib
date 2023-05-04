@@ -26,10 +26,11 @@ enum Facility {
     CFMB_PCT("Proteomics Facility Tübingen", "Proteomics Facility"),
     PCT("Proteome Center Tübingen", "PCT"),
     CEGAT("CeGaT GmbH", "CeGaT GmbH"),
+
     METABOLOMICS("Metabolomics Facility Tübingen", "Metabolomics Facility"),
     METABOLOMICS_BACTERIAL("Bacterial Metabolomics", "Bacterial Metabolomics"),
     METABOLOMICS_FUNCTIONAL("Functional Metabolomics", "Functional Metabolomics")
-
+    
     private final String fullName
     private final String label
 
