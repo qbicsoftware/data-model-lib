@@ -172,7 +172,6 @@ The following figure describes the entity relation of the imaging DTOs.
 Please have a look at the detailed JavaDoc class description of the
 DTOs.
 
-
 ### Business Context - Offer Management
 
 The following figure describes the entity relation of the DTOs related to Offer Management.
