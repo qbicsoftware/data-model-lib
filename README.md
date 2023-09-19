@@ -9,7 +9,6 @@ _Data Model Library - A collection of QBiC data models._
 [![Run Maven Tests](https://github.com/qbicsoftware/data-model-lib/actions/workflows/run_tests.yml/badge.svg)](https://github.com/qbicsoftware/data-model-lib/actions/workflows/run_tests.yml)
 [![CodeQL](https://github.com/qbicsoftware/data-model-lib/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/qbicsoftware/data-model-lib/actions/workflows/codeql-analysis.yml)
 [![release](https://img.shields.io/github/v/release/qbicsoftware/data-model-lib?include_prereleases)](https://github.com/qbicsoftware/data-model-lib/releases)
-
 [![license](https://img.shields.io/github/license/qbicsoftware/data-model-lib)](https://github.com/qbicsoftware/data-model-lib/blob/main/LICENSE)
 ![language](https://img.shields.io/badge/language-groovy,%20java-blue.svg)
 
