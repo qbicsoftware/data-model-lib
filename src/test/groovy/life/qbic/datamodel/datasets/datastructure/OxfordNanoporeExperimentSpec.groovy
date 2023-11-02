@@ -61,6 +61,9 @@ class OxfordNanoporeExperimentSpec extends Specification {
     @Shared
     Map minimalDataStructurePooled
 
+    @Shared
+    Map minimalDoradoDataStructure
+
     def setupSpec() {
         def folder = "nanopore/"
         InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-example.json")
@@ -89,6 +92,9 @@ class OxfordNanoporeExperimentSpec extends Specification {
         // read in minimal required pooled example
         stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-minimal-structure-pooled.json")
         minimalDataStructurePooled = (Map) new JsonSlurper().parse(stream)
+        // read in minimal required example with dorado based basecalling
+        stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-minimal-structure-dorado-basecaller.json")
+        minimalDoradoDataStructure = (Map) new JsonSlurper().parse(stream)
         stream.close()
     }
 
@@ -179,6 +185,8 @@ class OxfordNanoporeExperimentSpec extends Specification {
         assert experiment.sampleCode == "QABCD001AB"
         assert measurements.size() == 1
         assert measurements[0].asicTemp == "32.631687"
+        assert !measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").containsKey("pod5_skip")
+        assert !measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").containsKey("fast5_skip")
     }
 
     def "Create sample Oxford Nanopore experiment successfully for the minimal required pooled structure"() {
@@ -193,6 +201,22 @@ class OxfordNanoporeExperimentSpec extends Specification {
         assert experiment.sampleCode == "QABCD001AB"
         assert measurements.size() == 1
         assert measurements[0].asicTemp == "32.631687"
+    }
+
+    def "Create sample Oxford Nanopore experiment successfully for dorado basecaller generated structure"() {
+        given:
+        final def example = minimalDoradoDataStructure
+
+        when:
+        final def experiment = OxfordNanoporeExperiment.create(example)
+        final def measurements = experiment.getMeasurements()
+
+        then:
+        assert experiment.sampleCode == "QABCD001AB"
+        assert measurements.size() == 1
+        assert measurements[0].asicTemp == "32.631687"
+        assert measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").containsKey("pod5skip")
+        assert measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").containsKey("fast5skip")
     }
 
     def "Create a simple pooled Oxford Nanopore experiment successfully"() {
@@ -213,7 +237,7 @@ class OxfordNanoporeExperimentSpec extends Specification {
 
     }
 
-    def "Create unclassified example Oxford Nanopore experiment sucessfully"() {
+    def "Create unclassified example Oxford Nanopore experiment successfully"() {
         given:
         final def example = unclassifiedWorkingDataStructure
 

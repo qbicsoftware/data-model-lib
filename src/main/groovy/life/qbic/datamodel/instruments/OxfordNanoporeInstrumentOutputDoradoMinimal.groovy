@@ -9,11 +9,11 @@ package life.qbic.datamodel.instruments
  * in applications that want to validate the instrument
  * output structure against the schema.
  */
-class OxfordNanoporeInstrumentOutputMinimal {
+class OxfordNanoporeInstrumentOutputDoradoMinimal {
 
-  private static final String SCHEMA_PATH = "/schemas/nanopore-instrument-output_minimal.schema.json"
+  private static final String SCHEMA_PATH = "/schemas/nanopore-instrument-output_minimal_dorado.schema.json"
 
   static InputStream getSchemaAsStream() {
-    return OxfordNanoporeInstrumentOutputMinimal.getResourceAsStream(SCHEMA_PATH)
+    return OxfordNanoporeInstrumentOutputDoradoMinimal.getResourceAsStream(SCHEMA_PATH)
   }
 }
