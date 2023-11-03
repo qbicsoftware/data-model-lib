@@ -11,7 +11,7 @@ package life.qbic.datamodel.instruments
  */
 class OxfordNanoporeInstrumentOutputMinimal {
 
-  private static final String SCHEMA_PATH = "/schemas/nanopore-instrument-output_minimal_schema.json"
+  private static final String SCHEMA_PATH = "/schemas/nanopore-instrument-output_minimal.schema.json"
 
   static InputStream getSchemaAsStream() {
     return OxfordNanoporeInstrumentOutputMinimal.getResourceAsStream(SCHEMA_PATH)

@@ -38,6 +38,11 @@ class OxfordNanoporeMeasurementSpec extends Specification {
     @Shared
     UnclassifiedFastQFolder unclassifiedFastQFolder
     @Shared
+    Pod5SkipFolder pod5SkipFolder
+    @Shared
+    Fast5SkipFolder fast5SkipFolder
+
+    @Shared
     Map metaData
 
     def setupSpec() {
@@ -224,6 +229,23 @@ class OxfordNanoporeMeasurementSpec extends Specification {
             "path/20200219_1107_1-E3-H3_PAE26974_454b8dc6",
             [fast5PassedFolder, fast5FailedFolder, emptyFastQFailedFolder, emptyFastQPassedFolder],
             metaData)
+
+        then:
+        thrown(IllegalStateException)
+
+    }
+
+    def "If both pod5 skip and fast5 skip folder are empty, an IllegalStateException shall be thrown"() {
+        given:
+        def emptyPod5SkipFolder = Pod5SkipFolder.create("pod5_skip","root/pod5_skip", [])
+        def emptyFast5SkipFolder = Fast5SkipFolder.create("fast5_skip","root/fast5_skip", [])
+
+        when:
+        OxfordNanoporeMeasurement.create(
+                "20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+                "path/20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+                [emptyPod5SkipFolder, emptyFast5SkipFolder],
+                metaData)
 
         then:
         thrown(IllegalStateException)
