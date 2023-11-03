@@ -64,6 +64,9 @@ class OxfordNanoporeExperimentSpec extends Specification {
     @Shared
     Map minimalDoradoDataStructure
 
+    @Shared
+    Map fullDoradoDataStructure
+
     def setupSpec() {
         def folder = "nanopore/"
         InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-example.json")
@@ -95,6 +98,10 @@ class OxfordNanoporeExperimentSpec extends Specification {
         // read in minimal required example with dorado based basecalling
         stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-minimal-structure-dorado-basecaller.json")
         minimalDoradoDataStructure = (Map) new JsonSlurper().parse(stream)
+        stream.close()
+        // read in minimal required example with dorado based basecalling
+        stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-example-dorado-basecaller.json")
+        fullDoradoDataStructure = (Map) new JsonSlurper().parse(stream)
         stream.close()
     }
 
@@ -203,7 +210,7 @@ class OxfordNanoporeExperimentSpec extends Specification {
         assert measurements[0].asicTemp == "32.631687"
     }
 
-    def "Create sample Oxford Nanopore experiment successfully for dorado basecaller generated structure"() {
+    def "Create sample Oxford Nanopore experiment successfully for dorado basecaller generated minimal structure"() {
         given:
         final def example = minimalDoradoDataStructure
 
@@ -217,6 +224,26 @@ class OxfordNanoporeExperimentSpec extends Specification {
         assert measurements[0].asicTemp == "32.631687"
         assert measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").containsKey("pod5skip")
         assert measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").containsKey("fast5skip")
+    }
+
+    def "Create sample Oxford Nanopore experiment successfully for dorado basecaller generated full structure"() {
+        given:
+        final def example = fullDoradoDataStructure
+
+        when:
+        final def experiment = OxfordNanoporeExperiment.create(example)
+        final def measurements = experiment.getMeasurements()
+
+        then:
+        assert experiment.sampleCode == "QABCD001AB"
+        assert measurements.size() == 1
+        assert measurements[0].asicTemp == "32.631687"
+        assert measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").containsKey("pod5skip")
+        assert measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").containsKey("fast5skip")
+        assert measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").containsKey("fast5pass")
+        assert measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").containsKey("fast5fail")
+        assert measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").containsKey("pod5pass")
+        assert measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").containsKey("pod5fail")
     }
 
     def "Create a simple pooled Oxford Nanopore experiment successfully"() {
