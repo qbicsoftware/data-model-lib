@@ -6,7 +6,7 @@ import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 /**
  * A special case of a DataFolder, its name is always fast5_skip.
  *
- * Its children field contains either a list of type List<Fast5Files>
+ * Its children field contains a list of type List<Fast5Files>
  *
  */
 class Fast5SkipFolder extends DataFolder {

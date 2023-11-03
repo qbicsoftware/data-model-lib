@@ -6,7 +6,7 @@ import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 /**
  * A special case of a DataFolder, its name is always pod5_skip.
  *
- * Its children field contains either a list of type List<Pod5Files>
+ * Its children field contains a list of type List<Pod5Files>
  *
  */
 class Pod5SkipFolder extends DataFolder {
