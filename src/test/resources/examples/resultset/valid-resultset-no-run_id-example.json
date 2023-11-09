@@ -1,0 +1,52 @@
+{
+  "pipelineInformation": {
+    "name": "pipeline_info",
+    "path": "./pipeline_info",
+    "children": [],
+    "softwareVersions": {
+      "name": "software_versions.yml",
+      "fileType": "yml",
+      "path": "./pipeline_info/software_versions.yml"
+    },
+    "executionReport": {
+      "name": "execution_report.html",
+      "fileType": "html",
+      "path": "./pipeline_info/execution_report.html"
+    }
+  },
+  "qualityControl": {
+    "name": "multiqc",
+    "path": "./multiqc",
+    "children": [
+      {
+        "name": "star_salmon",
+        "path": "./multiqc/star_salmon",
+        "children": [
+          {
+            "name": "multiqc_report.html",
+            "path": "./multiqc/star_salmon/multiqc_report.html",
+            "fileType": "html"
+          }
+        ]
+      }
+    ]
+  },
+  "processFolders": [
+    {
+      "name": "salmon",
+      "path": "./salmon",
+      "children": [
+        {
+          "name": "salmon.merged.gene_tpm.tsv",
+          "fileType": "tsv",
+          "path": "./salmon/salmon.merged.gene_tpm.tsv"
+        }
+      ]
+    }
+  ],
+  "sampleIds": {
+    "name": "sample_ids.txt",
+    "fileType": "txt",
+    "path": "./sample_ids.txt"
+  }
+}
