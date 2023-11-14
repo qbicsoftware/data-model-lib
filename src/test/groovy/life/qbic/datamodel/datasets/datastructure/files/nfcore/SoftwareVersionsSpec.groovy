@@ -11,8 +11,8 @@ class SoftwareVersionsSpec extends Specification {
 
     def "shall create a SoftwareVersions instance"() {
         given:
-        final name = "software_versions.csv"
-        final path = "root/software_versions.csv"
+        final name = "software_versions.yml"
+        final path = "root/software_versions.yml"
 
         when:
         def dataObject = SoftwareVersions.create(name, path)

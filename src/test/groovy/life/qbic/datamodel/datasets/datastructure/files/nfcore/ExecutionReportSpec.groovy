@@ -11,8 +11,8 @@ class ExecutionReportSpec extends Specification {
 
     def "shall create a ExecutionReport instance"() {
         given:
-        final name = "execution_report.txt"
-        final relativePath = "root/execution_report.txt"
+        final name = "execution_report.html"
+        final relativePath = "root/execution_report.html"
 
         when:
         def dataObject = ExecutionReport.create(name, relativePath)

@@ -31,11 +31,11 @@ class MaxQuantRunResultSpec extends Specification {
     Map invalidDataStructure
 
     def setupSpec() {
-        InputStream validStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("examples/resultset/maxquant/valid-resultset-example.json")
+        InputStream validStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("examples/resultset/maxquant/valid-resultset-example_latest.json")
         validDataStructure = (Map) new JsonSlurper().parse(validStream)
         validStream.close()
 
-        InputStream invalidStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("examples/resultset/maxquant/invalid-resultset-example.json")
+        InputStream invalidStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("examples/resultset/maxquant/no-sampleid-resultset-example.json")
         invalidDataStructure = (Map) new JsonSlurper().parse(invalidStream)
         invalidStream.close()
     }
@@ -48,24 +48,20 @@ class MaxQuantRunResultSpec extends Specification {
         final MaxQuantRunResult maxQuantRunResult = MaxQuantRunResult.createFrom(validExample)
         AllPeptides allPeptides = maxQuantRunResult.allPeptides
         Evidence evidence = maxQuantRunResult.evidence
-        ExperimentalDesignTemplate experimentalDesignTemplate = maxQuantRunResult.experimentalDesignTemplate
         Parameters parameters = maxQuantRunResult.parameters
         Peptides peptides = maxQuantRunResult.peptides
         ProteinGroups proteinGroups = maxQuantRunResult.proteinGroups
         RunParameters runParameters = maxQuantRunResult.runParameters
         SampleIds sampleIds = maxQuantRunResult.sampleIds
-        Summary summary = maxQuantRunResult.summary
         then:
 
         allPeptides.name == "allPeptides.txt"
         evidence.name == "evidence.txt"
-        experimentalDesignTemplate.name == "experimentalDesignTemplate.txt"
         parameters.name == "parameters.txt"
         peptides.name == "peptides.txt"
         proteinGroups.name == "proteinGroups.txt"
         runParameters.name == "mqpar.xml"
-        sampleIds.name == "sample_ids.txt"
-        summary.name == "summary_1234.pdf"
+        sampleIds.name == "Q0010_sample_ids.txt"
     }
 
     def "Invalid fileTree will return a NullPointerException"() {

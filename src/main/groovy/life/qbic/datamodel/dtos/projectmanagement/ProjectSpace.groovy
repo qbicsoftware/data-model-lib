@@ -44,7 +44,6 @@ final class ProjectSpace {
     private static String formatSpaceName(String name) {
         def capitalizedName = name.trim().toUpperCase()
         def refactoredName = capitalizedName.replaceAll("\\s+", "_")
-                .replaceAll("-", "_")
         return refactoredName
     }
 

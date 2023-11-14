@@ -12,8 +12,15 @@ import life.qbic.datamodel.dtos.business.facilities.Facility
  *
  * @since 1.12.0
  */
-@EqualsAndHashCode
+@EqualsAndHashCode(excludes = ["id"])
 abstract class Product {
+
+  /**
+   * The database id of a Product.
+   *
+   * For example "1"
+   */
+  final int id
 
   /**
    * Some text describing what the the product providing.
@@ -116,6 +123,43 @@ abstract class Product {
           ProductUnit unit,
           ProductId productId,
           Facility serviceProvider) {
+    this.productName = Objects.requireNonNull(name, "Name must not be null")
+    this.description = Objects.requireNonNull(description, "Description must not be null")
+    this.internalUnitPrice = Objects.requireNonNull(internalUnitPrice, "Internal unit price must not be null")
+    this.externalUnitPrice = Objects.requireNonNull(externalUnitPrice, "External unit price must not be null")
+    this.unitPrice = 0.00
+    this.unit = Objects.requireNonNull(unit, "Unit must not be null")
+    this.productId = Objects.requireNonNull(productId, "ProductId must not be null")
+    //currency is on default in euro
+    this.currency = Currency.getInstance(Locale.GERMANY)
+    this.serviceProvider = Objects.requireNonNull(serviceProvider, "Service provider must not be null")
+  }
+
+  /**
+   * Basic product constructor.
+   *
+   * Checks that all passed arguments except id are not null.
+   *
+   * @param id The id of the product.
+   * @param name The name of the product.
+   * @param description The description of what the product is about.
+   * @param internalUnitPrice The price in € per unit for internal customers
+   * @param externalUnitPrice The price in € per unit for external customers
+   * @param unit The product unit
+   * @param productId The Id of the product
+   *
+   * @since 2.17.0
+   */
+
+  Product(int id,
+          String name,
+          String description,
+          double internalUnitPrice,
+          double externalUnitPrice,
+          ProductUnit unit,
+          ProductId productId,
+          Facility serviceProvider) {
+    this.id = id
     this.productName = Objects.requireNonNull(name, "Name must not be null")
     this.description = Objects.requireNonNull(description, "Description must not be null")
     this.internalUnitPrice = Objects.requireNonNull(internalUnitPrice, "Internal unit price must not be null")

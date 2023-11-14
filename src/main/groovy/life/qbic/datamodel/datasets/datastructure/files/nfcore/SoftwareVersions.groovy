@@ -9,7 +9,7 @@ import life.qbic.datamodel.datasets.datastructure.files.DataFile
  */
 class SoftwareVersions extends DataFile {
 
-    final private static String FILE_TYPE = "csv"
+    final private static String FILE_TYPE = "yml"
 
     final private static String NAME_SCHEMA = $/software_versions.*/$
 

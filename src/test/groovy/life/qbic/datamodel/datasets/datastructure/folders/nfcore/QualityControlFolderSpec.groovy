@@ -15,7 +15,7 @@ class QualityControlFolderSpec extends Specification {
         final def name = "multiqc"
         final def relativePath = "root/multiqc"
         final def children = []
-        final def datafile = ExecutionReport.create("execution_report_test.txt", "root/execution_report_test.txt")
+        final def datafile = ExecutionReport.create("execution_report_test.html", "root/execution_report_test.html")
         children.add(datafile)
 
         when:
@@ -31,7 +31,7 @@ class QualityControlFolderSpec extends Specification {
         final def name = "simpleqc"
         final def relativePath = "root/simpleqc"
         final def children = []
-        final def datafile =  ExecutionReport.create("execution_report_test.txt", "root/execution_report_test.txt")
+        final def datafile =  ExecutionReport.create("execution_report_test.html", "root/execution_report_test.html")
         children.add(datafile)
 
         when:
