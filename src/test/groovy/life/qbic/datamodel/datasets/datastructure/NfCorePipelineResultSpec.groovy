@@ -35,6 +35,9 @@ class NfCorePipelineResultSpec extends Specification {
     @Shared
     Map missingQualityControlDataStructure
 
+    @Shared
+    Map validDataStructureWithoutRunId
+
     def setupSpec() {
         InputStream validStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("examples/resultset/valid-resultset-example.json")
         validDataStructure = (Map) new JsonSlurper().parse(validStream)
@@ -55,6 +58,10 @@ class NfCorePipelineResultSpec extends Specification {
         InputStream missingQualityControlStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("examples/resultset/missing-quality-control-resultset-example.json")
         missingQualityControlDataStructure = (Map) new JsonSlurper().parse(missingQualityControlStream)
         missingQualityControlStream.close()
+
+        InputStream validStreamWithoutRunId = Thread.currentThread().getContextClassLoader().getResourceAsStream("examples/resultset/valid-resultset-no-run_id-example.json")
+        validDataStructureWithoutRunId = (Map) new JsonSlurper().parse(validStreamWithoutRunId)
+        validStreamWithoutRunId.close()
     }
 
     def "Create NfCorePipelineOutput from Map successfully"() {
@@ -120,6 +127,26 @@ class NfCorePipelineResultSpec extends Specification {
 
         then:
         thrown(NullPointerException)
+    }
+
+    def "Create NfCorePipelineOutput from Map without RunId successfully"() {
+        given:
+        final Map validExample = validDataStructureWithoutRunId
+
+        when:
+        final NfCorePipelineResult validPipelineResult = NfCorePipelineResult.createFrom(validExample)
+        SampleIds sampleIds = validPipelineResult.getSampleIds()
+        List<DataFolder> processFolders = validPipelineResult.getProcessFolders()
+        QualityControlFolder qualityControlFolder = validPipelineResult.getQualityControlFolder()
+        PipelineInformationFolder pipelineInformationFolder = validPipelineResult.getPipelineInformation()
+
+        then:
+        sampleIds.name == "sample_ids.txt"
+        processFolders.get(0).name == "salmon"
+        qualityControlFolder.name == "multiqc"
+        pipelineInformationFolder.getSoftwareVersions().name == "software_versions.yml"
+        pipelineInformationFolder.getExecutionReport().name == "execution_report.html"
+        assert validPipelineResult.runId == null
     }
 
 }
