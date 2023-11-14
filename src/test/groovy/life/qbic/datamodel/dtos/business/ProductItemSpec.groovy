@@ -1,9 +1,15 @@
 package life.qbic.datamodel.dtos.business
 
 import life.qbic.datamodel.dtos.business.facilities.Facility
+import life.qbic.datamodel.dtos.business.services.DataStorage
+import life.qbic.datamodel.dtos.business.services.ExternalServiceProduct
+import life.qbic.datamodel.dtos.business.services.MetabolomicAnalysis
 import life.qbic.datamodel.dtos.business.services.PrimaryAnalysis
 import life.qbic.datamodel.dtos.business.services.Product
 import life.qbic.datamodel.dtos.business.services.ProductUnit
+import life.qbic.datamodel.dtos.business.services.ProjectManagement
+import life.qbic.datamodel.dtos.business.services.ProteomicAnalysis
+import life.qbic.datamodel.dtos.business.services.SecondaryAnalysis
 import life.qbic.datamodel.dtos.business.services.Sequencing
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -101,5 +107,23 @@ class ProductItemSpec extends Specification {
         product.currency.displayName == "Euro"
     }
 
+  def "ProductItems allow partial quantities for all services"() {
 
+    when: "ProductItems for all service products can be created"
+    ProductItem productItem = new ProductItem(quantity, product, totalPrice, quantityDiscount)
+
+    then: "No exceptions are thrown"
+    noExceptionThrown()
+
+    where: "for every service product"
+    quantity | internalUnitPrice | product                                                                                                                                                        | totalPrice                   | quantityDiscount
+    1.1      | 1                 | new Sequencing("Sequencing", "Sequencing description", 1.0, 3.0, ProductUnit.PER_SAMPLE, 1, Facility.QBIC)                                                     | quantity * internalUnitPrice | 0.0
+    2.2      | 2                 | new PrimaryAnalysis("Primary Analysis", "Primary Analysis description", 2.0, 4.0, ProductUnit.PER_CYCLE, 2, Facility.QBIC)                                     | quantity * internalUnitPrice | 0.0
+    3.3      | 3                 | new SecondaryAnalysis("Secondary Analysis", "Secondary Analysis description", 3.0, 5.0, ProductUnit.PER_DATASET, 3, Facility.QBIC)                             | quantity * internalUnitPrice | 0.0
+    4.4      | 4                 | new ProteomicAnalysis("Proteomic Analysis", "Proteomic Analysis description", 4.0, 6.0, ProductUnit.PER_FLOW_CELL, 4, Facility.QBIC)                           | quantity * internalUnitPrice | 0.0
+    5.5      | 5                 | new MetabolomicAnalysis("Metabolomic Analysis", "Metabolomic Analysis description", 5.0, 7.0, ProductUnit.PER_100_MICROGRAM_PEPTIDE_CHANNEL, 5, Facility.QBIC) | quantity * internalUnitPrice | 0.0
+    6.6      | 6                 | new ProjectManagement("Project Management", "Project Management description", 6.0, 8.0, ProductUnit.PER_HOUR, 6, Facility.QBIC)                                | quantity * internalUnitPrice | 0.0
+    7.7      | 7                 | new DataStorage("Data Storage", "Data Storage description", 7.0, 9.0, ProductUnit.PER_GIGABYTE, 7, Facility.QBIC)                                              | quantity * internalUnitPrice | 0.0
+    8.8      | 8                 | new ExternalServiceProduct("External Service", "External Service description", 8.0, 10.0, ProductUnit.PER_PROJECT, 8, Facility.CEGAT)                          | quantity * 10                | 0.0
+  }
 }

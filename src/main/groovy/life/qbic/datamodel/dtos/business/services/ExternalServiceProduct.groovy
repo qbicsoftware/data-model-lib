@@ -28,4 +28,20 @@ class ExternalServiceProduct extends PartialProduct {
         super(name, description, internalUnitPrice, externalUnitPrice, unit, new ProductId.Builder(
                 ProductCategory.EXTERNAL_SERVICE.getAbbreviation(), runningNumber).build(), serviceProvider)
     }
+
+    /**
+     * Creates an instance of an {@link ExternalServiceProduct}.
+     * @param id the id of the product
+     * @param name The name of the product
+     * @param description A product description
+     * @param internalUnitPrice The net internal unit price of the product
+     * @param externalUnitPrice The net external unit price of the product
+     * @param unit The unit of the product
+     * @param productId A product id, uniquely identifying the product in the offer environment
+     * @param serviceProvider The service provider
+     */
+    ExternalServiceProduct(int id, String name, String description, double internalUnitPrice, double externalUnitPrice, ProductUnit unit, long runningNumber, Facility serviceProvider) {
+        super(id, name, description, internalUnitPrice, externalUnitPrice, unit, new ProductId.Builder(
+                ProductCategory.EXTERNAL_SERVICE.getAbbreviation(), runningNumber).build(), serviceProvider)
+    }
 }

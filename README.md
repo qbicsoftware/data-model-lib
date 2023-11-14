@@ -101,11 +101,8 @@ Make sure, that you have defined the Github package Maven repository, in order f
 
 A Nanopore NGS measurement output is delivered to us as a nested folder structure, following this model:
 
-![Nanopore Data Structure Model](./doc/figures/Nanopore_Data_Structure_Model.svg)
+![Nanopore Data Structure Model](./doc/figures/Nanopore_Data_Structure_Model.png)
 
-A more recent model, which places two of the configuration files into a subfolder and adds the barcode alignment file, is also supported:
-
-![Nanopore Data Structure Model v2](./doc/figures/Nanopore_Data_Structure_Model_v2.svg)
 
 #### Nanopore usage example
 

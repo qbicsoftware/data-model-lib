@@ -10,7 +10,7 @@ import life.qbic.datamodel.dtos.business.Affiliation
  * @author Sven Fillinger
  * @since 1.11.0
  */
-@EqualsAndHashCode
+@EqualsAndHashCode(excludes = ["id"])
 abstract class Person {
 
   /**
@@ -19,6 +19,19 @@ abstract class Person {
    * @deprecated Please subclass the Person class instead of using this property.
    */
   final String personType
+
+  /**
+   * The database id of a person.
+   *
+   * For example "1"
+   */
+  final int id
+
+  /**
+   * Unique entity identifier (UUID)
+   * @since 2.22.0
+   */
+  final String referenceId
 
   /**
    * The person's first name
@@ -46,6 +59,9 @@ abstract class Person {
   final List<Affiliation> affiliations
 
   abstract static class Builder<T extends Builder<T>> {
+
+    int id
+
     String firstName
 
     String lastName
@@ -56,12 +72,20 @@ abstract class Person {
 
     List<Affiliation> affiliations
 
+    String referenceId
+
     Builder(String firstName, String lastName, String emailAddress) {
       this.firstName = Objects.requireNonNull(firstName, "First name must not be null")
       this.lastName = Objects.requireNonNull(lastName, "Last name must not be null")
       this.emailAddress = Objects.requireNonNull(emailAddress, "Email must not be null")
       this.title = AcademicTitle.NONE
       this.affiliations = new ArrayList<>()
+      this.referenceId = UUID.randomUUID().toString()
+    }
+
+    T id(int id) {
+      this.id = id
+      return self()
     }
 
     T title(AcademicTitle title) {
@@ -79,6 +103,11 @@ abstract class Person {
       return self()
     }
 
+    T referenceId(UUID id) {
+      this.referenceId = id.toString()
+      return self()
+    }
+
     abstract Person build()
 
     /**
@@ -90,11 +119,13 @@ abstract class Person {
   }
 
   Person(Builder<?> builder) {
+    id = builder.id
     firstName = builder.firstName
     lastName = builder.lastName
     emailAddress = builder.emailAddress
     title = builder.title
     affiliations = builder.affiliations
+    referenceId = builder.referenceId
   }
 
   /**

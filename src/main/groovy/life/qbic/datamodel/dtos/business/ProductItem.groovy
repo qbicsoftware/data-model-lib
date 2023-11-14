@@ -10,8 +10,15 @@ import life.qbic.datamodel.dtos.business.services.Product
  * The unit price is always provided in euros.
  * @since: 1.9.0
  */
-@EqualsAndHashCode
+@EqualsAndHashCode(excludes = ["id"])
 class ProductItem {
+
+    /**
+     * The database of an id of a ProductItem
+     *
+     * For example "1"
+     */
+    final int id
 
     /**
      * Describes the amount of a given item
@@ -32,6 +39,13 @@ class ProductItem {
      * Describe the total discount price for a product (based on the quantity)
      */
     final double quantityDiscount
+
+    /**
+     * Stores the latest position on the offer.
+     *
+     * A negative value indicates no specific position was stored in the item.
+     */
+    private int offerPosition = -1
 
     /**
      *
@@ -55,6 +69,35 @@ class ProductItem {
         this.quantityDiscount = quantityDiscount
     }
 
+    ProductItem(int id, double quantity, Product product, double totalPrice, double quantityDiscount) {
+        this.id = id
+        this.quantity = quantity
+        this.product = product
+        this.totalPrice = totalPrice
+        this.quantityDiscount = quantityDiscount
+    }
+
+    /**
+     * Sets the position information on the offer the item should be placed
+     *
+     * A negative value indicates no positional information.
+     * @param position a positive value >= 0 indicating a position on the offer
+     * @since 2.22.0
+     */
+    void setOrderPosition(int position) {
+        offerPosition = position
+    }
+
+    /**
+     * The position on the offer.
+     *
+     * Is negative, if no positional information is available.
+     * @return
+     * @since 2.22.0
+     */
+    int offerPosition() {
+        return offerPosition
+    }
 
 
 }

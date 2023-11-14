@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "http://qbic.life/nanopore-instrument-output.schema.json",
   "title": "Nanopore Instrument Output",
-  "description": "Describes in which form Nanopore data is received from the lab.",
+  "description": "Describes in which form PromethION/MinION sequenced Nanopore is received from the Microbiology lab.",
   "definitions": {
     "folder": {
       "description": "Describes a folder",
@@ -403,6 +403,9 @@
                     "$ref": "#/definitions/report_pdf_log"
                   },
                   {
+                    "$ref": "#/definitions/report_html_log"
+                  },
+                  {
                     "$ref": "#/definitions/sequencing_summary_log"
                   },
                   {
@@ -512,6 +515,23 @@
             },
             "file_type": {
               "pattern": "pdf"
+            }
+          }
+        }
+      ]
+    },
+    "report_html_log": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/file"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "report_.*"
+            },
+            "file_type": {
+              "pattern": "html"
             }
           }
         }
