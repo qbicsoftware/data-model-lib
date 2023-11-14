@@ -1,0 +1,621 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://qbic.life/nanopore-instrument-output_v3.schema.json",
+  "title": "Nanopore Instrument Output V3",
+  "description": "Describes in which form PromethION/MinION sequenced Nanopore data is received from the medical genetics lab. Accounts for the adapted 'other_reports' folder structure provided by the lab",
+  "definitions": {
+    "folder": {
+      "description": "Describes a folder",
+      "type": "object",
+      "required": [
+        "name",
+        "path",
+        "children"
+      ],
+      "properties": {
+        "name": {
+          "description": "Folder name",
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "description": "relative folderpath",
+          "type": "string",
+          "minLength": 1
+        },
+        "children": {
+          "description": "Describes files and/or sub-folders if existent",
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/folder"
+              },
+              {
+                "$ref": "#/definitions/file"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "file": {
+      "description": "Describes a file",
+      "type": "object",
+      "required": [
+        "name",
+        "path",
+        "file_type"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "file_type": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "qbic_code": {
+      "description": "Describes a QBiC code used as a prefix",
+      "type": "string",
+      "pattern": "Q\\w{4}\\d{3}[A-X][A-X0-9].*"
+    },
+    "barcoded_folder": {
+      "description": "folder starting with qbic barcode prefix",
+      "allOf": [
+        {
+          "$ref": "#/definitions/folder"
+        },
+        {
+          "properties": {
+            "name": {
+              "$ref": "#/definitions/qbic_code"
+            }
+          }
+        }
+      ]
+    },
+    "other_reports_folder": {
+      "description": "subfolder containing some of the report files",
+      "allOf": [
+        {
+          "$ref": "#/definitions/folder"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "other_reports"
+            },
+            "children": {
+              "items": {
+                "$ref": "#/definitions/pore_scan_data_log"
+              },
+              "minItems": 1
+            }
+          }
+        }
+      ]
+    },
+    "fast5_file": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/file"
+        },
+        {
+          "properties": {
+            "file_type": {
+              "pattern": "fast5"
+            }
+          }
+        }
+      ]
+    },
+    "fastqgz_file": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/file"
+        },
+        {
+          "properties": {
+            "file_type": {
+              "pattern": "fastq.gz"
+            }
+          }
+        }
+      ]
+    },
+    "fastq_file": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/file"
+        },
+        {
+          "properties": {
+            "file_type": {
+              "pattern": "fastq"
+            }
+          }
+        }
+      ]
+    },
+    "unclassified_folder": {
+      "description": "folder containing unassigned read file(s)",
+      "allOf": [
+        {
+          "$ref": "#/definitions/folder"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "unclassified"
+            }
+          }
+        }  
+      ]
+    },
+    "fast5_unclassified_folder": {
+      "description": "folder containing fast5 data from a pooling experiment, that could not be assigned to one of the known samples",
+      "allOf": [
+        {
+          "$ref": "#/definitions/unclassified_folder"
+        },
+        {
+          "properties": {
+            "children": {
+              "items": {
+                "$ref": "#/definitions/fast5_file"
+              },
+              "minItems": 0
+            }
+          }
+        }
+      ]
+    },
+    "fastq_unclassified_folder": {
+      "description": "folder containing fastq and/or fastq.gz data from a pooling experiment, that could not be assigned to one of the known samples",
+      "allOf": [
+        {
+          "$ref": "#/definitions/unclassified_folder"
+        },
+        {
+          "properties": {
+            "children": {
+              "items": {
+                "anyOf": [
+                  {
+                    "$ref": "#/definitions/fastqgz_file"
+                  },
+                  {
+                    "$ref": "#/definitions/fastq_file"
+                  }
+                ]
+              },
+              "minItems": 0
+            }
+          }
+        }
+      ]
+    },
+    "fast5_subfolder": {
+      "description": "folder containing fast5 data from a single sample (only when pooling is used)",
+      "allOf": [
+        {
+          "$ref": "#/definitions/barcoded_folder"
+        },
+        {
+          "properties": {
+            "children": {
+              "items": {
+                "$ref": "#/definitions/fast5_file"
+              },
+              "minItems": 1
+            }
+          }
+        }
+      ]
+    },
+    "fast5_fail": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/folder"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "fast5_fail"
+            },
+            "children": {
+              "items": {
+                "anyOf": [
+                  {
+                    "$ref": "#/definitions/fast5_subfolder"
+                  },
+                  {
+                    "$ref": "#/definitions/fast5_unclassified_folder"
+                  },
+                  {
+                    "$ref": "#/definitions/fast5_file"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "fast5_pass": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/folder"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "fast5_pass"
+            },
+            "children": {
+              "items": {
+                "anyOf": [
+                  {
+                    "$ref": "#/definitions/fast5_subfolder"
+                  },
+                  {
+                    "$ref": "#/definitions/fast5_unclassified_folder"
+                  },
+                  {
+                    "$ref": "#/definitions/fast5_file"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "fastq_fail": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/folder"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "fastq_fail"
+            },
+            "children": {
+              "items": {
+                "anyOf": [
+                  {
+                    "$ref": "#/definitions/fastq_subfolder"
+                  },
+                  {
+                    "$ref": "#/definitions/fastq_unclassified_folder"
+                  },
+                  {
+                    "$ref": "#/definitions/fastqgz_file"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "fastq_pass": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/folder"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "fastq_pass"
+            },
+            "children": {
+              "items": {
+                "anyOf": [
+                  {
+                    "$ref": "#/definitions/fastq_subfolder"
+                  },
+                  {
+                    "$ref": "#/definitions/fastq_unclassified_folder"
+                  },
+                  {
+                    "$ref": "#/definitions/fastqgz_file"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "fastq_subfolder": {
+      "description": "folder containing gzipped fastq data from a single sample (only when pooling is used)",
+      "allOf": [
+        {
+          "$ref": "#/definitions/barcoded_folder"
+        },
+        {
+          "properties": {
+            "children": {
+              "items": {
+                "$ref": "#/definitions/fastqgz_file"
+              },
+              "minItems": 1
+            }
+          }
+        }
+      ]
+    },
+    "measurements": {
+      "description": "Top folder generated by the facility, containing one or more timestamped measurements",
+      "allOf": [
+        {
+          "$ref": "#/definitions/barcoded_folder"
+        },
+        {
+          "properties": {
+            "children": {
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/measurement"
+                  }
+                ]
+              },
+              "minItems": 1
+            }
+          }
+        }
+      ]
+    },
+    "measurement": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/folder"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "\\d{4}(0?[1-9]|1[012])(0?[1-9]|[12][0-9]|3[01])_([01][0-9]|2[0-3])([0-5][0-9]).*",
+              "description": "Name of measurement subfolder. Starts with date and time of measurement."
+            },
+            "children": {
+              "uniqueItems": true,
+              "minItems": 14,
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "#/definitions/fastq_fail"
+                  },
+                  {
+                    "$ref": "#/definitions/fastq_pass"
+                  },
+                  {
+                    "$ref": "#/definitions/fast5_pass"
+                  },
+                  {
+                    "$ref": "#/definitions/fast5_fail"
+                  },
+                  {
+                    "$ref": "#/definitions/barcode_alignment_log"
+                  },
+                  {
+                    "$ref": "#/definitions/pore_activity_log"
+                  },
+                  {
+                    "$ref": "#/definitions/final_summary_log"
+                  },
+                  {
+                    "$ref": "#/definitions/report_md_log"
+                  },
+                  {
+                    "$ref": "#/definitions/report_json_log"
+                  },
+                  {
+                    "$ref": "#/definitions/report_html_log"
+                  },
+                  {
+                    "$ref": "#/definitions/sequencing_summary_log"
+                  },
+                  {
+                    "$ref": "#/definitions/throughput_log"
+                  },
+                  {
+                    "$ref": "#/definitions/sample_sheet_log"
+                  },
+                  {
+                    "$ref": "#/definitions/other_reports_folder"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "barcode_alignment_log": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/file"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "barcode_alignment_.*"
+            },
+            "file_type": {
+              "pattern": "tsv"
+            }
+          }
+        }
+      ]
+    },
+    "pore_activity_log": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/file"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "pore_activity_.*"
+            },
+            "file_type": {
+              "pattern": "csv"
+            }
+          }
+        }
+      ]
+    },
+    "sample_sheet_log": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/file"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "sample_sheet_.*"
+            },
+            "file_type": {
+              "pattern": "csv"
+            }
+          }
+        }
+      ]
+    },
+    "final_summary_log": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/file"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "final_summary_.*"
+            },
+            "file_type": {
+              "pattern": "txt"
+            }
+          }
+        }
+      ]
+    },
+    "pore_scan_data_log": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/file"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "pore_scan_data_.*"
+            },
+            "file_type": {
+              "pattern": "csv"
+            }
+          }
+        }
+      ]
+    },
+    "report_md_log": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/file"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "report_.*"
+            },
+            "file_type": {
+              "pattern": "md"
+            }
+          }
+        }
+      ]
+    },
+    "report_json_log": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/file"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "report_.*"
+            },
+            "file_type": {
+              "pattern": "json"
+            }
+          }
+        }
+      ]
+    },
+    "report_html_log": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/file"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "report_.*"
+            },
+            "file_type": {
+              "pattern": "html"
+            }
+          }
+        }
+      ]
+    },
+    "sequencing_summary_log": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/file"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "sequencing_summary_.*"
+            },
+            "file_type": {
+              "pattern": "txt"
+            }
+          }
+        }
+      ]
+    },
+    "throughput_log": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/file"
+        },
+        {
+          "properties": {
+            "name": {
+              "pattern": "throughput_.*"
+            },
+            "file_type": {
+              "pattern": "csv"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/definitions/measurements"
+    }
+  ]
+}

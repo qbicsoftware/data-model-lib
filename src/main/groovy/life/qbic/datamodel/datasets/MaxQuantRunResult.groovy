@@ -29,19 +29,18 @@ final class MaxQuantRunResult {
     private final static Set maxQuantFileTypes = [
             FQDN_FILES + ".AllPeptides",
             FQDN_FILES + ".Evidence",
-            FQDN_FILES + ".ExperimentalDesignTemplate",
             FQDN_FILES + ".Parameters",
             FQDN_FILES + ".Peptides",
             FQDN_FILES + ".ProteinGroups",
             FQDN_FILES + ".RunParameters",
             GENERAL_FILES + ".SampleIds",
-            FQDN_FILES + ".Summary"
     ]
 
     private final AllPeptides allPeptides
 
     private final Evidence evidence
 
+    @Deprecated
     private final ExperimentalDesignTemplate experimentalDesignTemplate
 
     private final Parameters parameters
@@ -54,8 +53,10 @@ final class MaxQuantRunResult {
 
     private final SampleIds sampleIds
 
+    @Deprecated
     private final Summary summary
 
+    @Deprecated
     MaxQuantRunResult(AllPeptides allPeptides, Evidence evidence, ExperimentalDesignTemplate experimentalDesignTemplate, Parameters parameters, Peptides peptides, ProteinGroups proteinGroups, RunParameters runParameters, SampleIds sampleIds, Summary summary) {
         this.allPeptides = Objects.requireNonNull(allPeptides, "allPeptides must not be null.")
         this.evidence = Objects.requireNonNull(evidence, "evidence must not be null.")
@@ -68,9 +69,19 @@ final class MaxQuantRunResult {
         this.summary = Objects.requireNonNull(summary, "summary must not be null.")
     }
 
+    MaxQuantRunResult(AllPeptides allPeptides, Evidence evidence, Parameters parameters, Peptides peptides, ProteinGroups proteinGroups, RunParameters runParameters, SampleIds sampleIds) {
+        this.allPeptides = Objects.requireNonNull(allPeptides, "allPeptides must not be null.")
+        this.evidence = Objects.requireNonNull(evidence, "evidence must not be null.")
+        this.parameters = Objects.requireNonNull(parameters, "parameters must not be null.")
+        this.peptides = Objects.requireNonNull(peptides, "peptides must not be null.")
+        this.proteinGroups = Objects.requireNonNull(proteinGroups, "proteinGroups must not be null.")
+        this.runParameters = Objects.requireNonNull(runParameters, "runParameters must not be null.")
+        this.sampleIds = Objects.requireNonNull(sampleIds, "sampleIds must not be null.")
+    }
+
     /**
-     * Static factory method that creates a new maxQuantRunResult instance from the bioinformatic pipeline output.
-     * See this @{link <a href="https://github.com/qbicsoftware/data-model-lib/blob/master/src/test/resources/examples/resultset/maxquant/valid-resultset-example.json">example</a>}
+     * Static factory method that creates a new maxQuantRunResult instance from the MaxQuant output.
+     * See this @{link <a href="https://github.com/qbicsoftware/data-model-lib/blob/master/src/test/resources/examples/resultset/maxquant/valid-resultset-example_latest.json">example</a>}
      * for a JSON representation of a valid map structure
      *
      * @param Map maxQuantRunOutput
@@ -82,27 +93,23 @@ final class MaxQuantRunResult {
         //Check if the required folders are in the root directory
         Objects.requireNonNull(maxQuantRunOutput.get("allPeptides"), "The provided directory must contain a allPeptides.txt file.")
         Objects.requireNonNull(maxQuantRunOutput.get("evidence"), "The provided directory must contain a evidence.txt file.")
-        Objects.requireNonNull(maxQuantRunOutput.get("experimentalDesignTemplate"), "The provided directory must contain a experimentalDesignTemplate.txt file.")
         Objects.requireNonNull(maxQuantRunOutput.get("parameters"), "The provided directory must contain a parameters.txt file.")
         Objects.requireNonNull(maxQuantRunOutput.get("peptides"), "The provided directory must contain a peptides.txt file.")
         Objects.requireNonNull(maxQuantRunOutput.get("proteinGroups"), "The provided directory must contain a proteinGroups.txt file.")
         Objects.requireNonNull(maxQuantRunOutput.get("runParameters"), "The provided director must contain a runParameters.xml file.")
         Objects.requireNonNull(maxQuantRunOutput.get("sampleIds"), "The provided directory must contain a sampleIds.txt file.")
-        Objects.requireNonNull(maxQuantRunOutput.get("summary"), "The provided directory must contain a summary.pdf file.")
 
         //Get Files from Root Directory
         AllPeptides allPeptides = parseFile(maxQuantRunOutput.get("allPeptides") as Map) as AllPeptides
         Evidence evidence  = parseFile(maxQuantRunOutput.get("evidence") as Map) as Evidence
-        ExperimentalDesignTemplate experimentalDesignTemplate = parseFile(maxQuantRunOutput.get("experimentalDesignTemplate") as Map) as ExperimentalDesignTemplate
         Parameters parameters = parseFile(maxQuantRunOutput.get("parameters") as Map) as Parameters
         Peptides peptides = parseFile(maxQuantRunOutput.get("peptides") as Map) as Peptides
         ProteinGroups proteinGroups = parseFile(maxQuantRunOutput.get("proteinGroups") as Map) as ProteinGroups
         RunParameters runParameters = parseFile(maxQuantRunOutput.get("runParameters") as Map) as RunParameters
         SampleIds sampleIds = parseFile(maxQuantRunOutput.get("sampleIds") as Map) as SampleIds
-        Summary summary = parseFile(maxQuantRunOutput.get("summary") as Map) as Summary
 
         //Create new MaxQuantRunResult object with parsed information
-        return new MaxQuantRunResult(allPeptides, evidence, experimentalDesignTemplate, parameters, peptides, proteinGroups, runParameters, sampleIds, summary)
+        return new MaxQuantRunResult(allPeptides, evidence, parameters, peptides, proteinGroups, runParameters, sampleIds)
     }
 
     /**
@@ -128,6 +135,7 @@ final class MaxQuantRunResult {
      * @return an ExperimentalDesignTemplate file generated by MaxQuant
      * @since 2.10.0
      */
+    @Deprecated
     ExperimentalDesignTemplate getExperimentalDesignTemplate() {
         return experimentalDesignTemplate
     }
@@ -182,6 +190,7 @@ final class MaxQuantRunResult {
      * @return a Summary file generated by MaxQuant
      * @since 2.10.0
      */
+    @Deprecated
     Summary getSummary() {
         return summary
     }

@@ -42,7 +42,7 @@ jobs:
           || contains(github.event.inputs.versionTag, 'rc')) }}
         uses: actions/github-script@v4.0.2
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
+          github-token: ${{secrets.JOHNNY_Q5_REPORTS_TOKEN}}
           script: |
             await github.request(`POST /repos/${{ github.repository }}/releases`, {
               tag_name: "${{ github.event.inputs.versionTag }}",
@@ -55,7 +55,7 @@ jobs:
           || contains(github.event.inputs.versionTag, 'rc')) }}
         uses: actions/github-script@v4.0.2
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
+          github-token: ${{secrets.JOHNNY_Q5_REPORTS_TOKEN}}
           script: |
             await github.request(`POST /repos/${{ github.repository }}/releases`, {
               tag_name: "${{ github.event.inputs.versionTag }}",
@@ -71,19 +71,33 @@ jobs:
       - name: Switch to new branch
         run: git checkout -b release/set-version-to-${{ github.event.inputs.versionTag }}
 
+      - name: Set remote branch
+        run: git push --set-upstream origin release/set-version-to-${{ github.event.inputs.versionTag }}
+
       - name: Checkin commit
         run: git commit . -m 'Set version to ${{ github.event.inputs.versionTag }}'
 
-      - name: Set remote branch
-        run: git push --set-upstream origin release/set-version-to-${{ github.event.inputs.versionTag }}
+      - name: Push to Github
+        run: git push
 
       - name: Open PR with version bump
         uses: actions/github-script@v4.0.2
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
+          github-token: ${{secrets.JOHNNY_Q5_REPORTS_TOKEN}}
           script: |
             await github.request(`POST /repos/${{ github.repository }}/pulls`, {
               title: 'Update version to ${{ github.event.inputs.versionTag }}',
               head: 'release/set-version-to-${{ github.event.inputs.versionTag }}',
-              base: 'main'
+              base: 'master'
+            });
+            
+      - name: Open PR to development
+        uses: actions/github-script@v4.0.2
+        with:
+          github-token: ${{secrets.JOHNNY_Q5_REPORTS_TOKEN}}
+          script: |
+            await github.request(`POST /repos/${{ github.repository }}/pulls`, {
+              title: 'Merge release ${{ github.event.inputs.versionTag }} into development',
+              head: 'master',
+              base: 'development'
             });

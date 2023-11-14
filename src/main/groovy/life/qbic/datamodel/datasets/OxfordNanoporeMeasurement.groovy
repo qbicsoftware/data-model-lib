@@ -29,6 +29,8 @@ final class OxfordNanoporeMeasurement {
 
     private boolean pooledSamplesMeasurement
 
+    private boolean hasBasecallingData
+
     protected OxfordNanoporeMeasurement(String name, String path, List children, Map metadata) {
         this.logFilesCollection = new ArrayList<>()
         this.folders = new HashMap<>()
@@ -39,6 +41,7 @@ final class OxfordNanoporeMeasurement {
 
         createContent()
         assessPooledStatus()
+        assessBasecallingStatus()
         assessState()
     }
 
@@ -53,10 +56,14 @@ final class OxfordNanoporeMeasurement {
     private void assessPooledStatus() {
         this.pooledSamplesMeasurement = containsAtLeastOneBarcodedFolder(folders["fast5pass"])
         // There can be still pooled samples in the failed folder, worst case is all
-        // samples failed, so we need to check there to
-        if (! pooledSamplesMeasurement) {
+        // samples failed, so we need to check there too
+        if (!pooledSamplesMeasurement) {
             this.pooledSamplesMeasurement = containsAtLeastOneBarcodedFolder(folders["fast5fail"])
         }
+    }
+
+    private void assessBasecallingStatus() {
+        this.hasBasecallingData = folders["basecalling"]
     }
 
     private static boolean containsAtLeastOneBarcodedFolder(DataFolder folder) {
@@ -77,38 +84,67 @@ final class OxfordNanoporeMeasurement {
                 case Fast5FailFolder:
                     folders["fast5fail"] = element as Fast5FailFolder
                     break
+                case Fast5SkipFolder:
+                    folders["fast5skip"] = element as Fast5SkipFolder
+                    break
                 case FastQPassFolder:
                     folders["fastqpass"] = element as FastQPassFolder
                     break
                 case FastQFailFolder:
                     folders["fastqfail"] = element as FastQFailFolder
                     break
+                case Pod5PassFolder:
+                    folders["pod5pass"] = element as Pod5PassFolder
+                    break
+                case Pod5FailFolder:
+                    folders["pod5fail"] = element as Pod5FailFolder
+                    break
+                case Pod5SkipFolder:
+                    folders["pod5skip"] = element as Pod5SkipFolder
+                    break
                 case DataFile:
                     logFilesCollection.add(element as DataFile)
+                    break
+                case BasecallingFolder:
+                    folders["basecalling"] = element as BasecallingFolder
                     break
             }
         }
     }
 
     private void assessState() throws IllegalStateException {
-        // Condition one: Don't allow Fast5 pass and fail folder are empty
-        assessFast5Content()
-        // Condition two: Don't allow Fastq pass and fail folder are empty
-        assessFastQContent()
-    }
-
-    private void assessFast5Content() throws IllegalStateException {
-        if (folders["fast5pass"].getChildren().isEmpty() && folders["fast5fail"].getChildren()
-            .isEmpty()) {
-            throw new IllegalStateException("The fast5 pass folder and fail folder are empty.")
+        boolean isValid = false
+        // We need to ensure that fastq and fast5 information is provided if guppy basecaller was used
+        if (areFast5FoldersInMeasurement() && areFastQFoldersInMeasurement()) {
+            isValid = true
+        }
+        //// We need to ensure that pod5_skip and fast5_skip information is provided if dorado basecaller was used
+        if (arePod5FoldersInMeasurement()) {
+            isValid = true
+        }
+        if (isValid == false) {
+            throw new IllegalStateException("No valid data is contained in measurement")
         }
     }
 
-    private void assessFastQContent() throws IllegalStateException {
-        if (folders["fastqpass"].getChildren().isEmpty() && folders["fastqfail"].getChildren()
-            .isEmpty()) {
-            throw new IllegalStateException("The fastq pass folder and fail folder are empty.")
+    // Condition one: Don't allow empty Fast5 pass and fail folder
+    private boolean areFast5FoldersInMeasurement() {
+        return isDataFolderInMeasurement("fast5pass") || isDataFolderInMeasurement("fast5fail")
+    }
+    // Condition two: Don't allow empty Fastq pass and fail folder
+    private boolean areFastQFoldersInMeasurement() {
+        return isDataFolderInMeasurement("fastqpass") || isDataFolderInMeasurement("fastqfail")
+    }
+    // Condition three: Don't allow empty Pod5 skip and fast5 skip folder
+    private boolean arePod5FoldersInMeasurement() {
+        return isDataFolderInMeasurement("fast5skip") || isDataFolderInMeasurement("pod5skip")
+    }
+
+    private boolean isDataFolderInMeasurement(String string) {
+        if (folders[string] == null) {
+            return false
         }
+        return !folders[string].getChildren().isEmpty()
     }
 
     /**
@@ -273,13 +309,27 @@ final class OxfordNanoporeMeasurement {
 
     private Map<String, Map<String, DataFolder>> prepareRawData(String sampleId) {
         final def result = new HashMap()
-        final def folders = [
-                "fast5fail": (folders.get("fast5fail") as DataFolder),
-                "fast5pass": (folders.get("fast5pass") as DataFolder),
-                "fastqpass": (folders.get("fastqpass") as DataFolder),
-                "fastqfail": (folders.get("fastqfail") as DataFolder)
+        final def dataFolders = [
+                "fast5fail" : (folders.get("fast5fail") as DataFolder),
+                "fast5pass" : (folders.get("fast5pass") as DataFolder),
+                "fastqpass" : (folders.get("fastqpass") as DataFolder),
+                "fastqfail" : (folders.get("fastqfail") as DataFolder)
         ]
-        result.put(sampleId, folders)
+        if (hasBasecallingData) dataFolders.put("basecalling", (folders.get("basecalling") as DataFolder))
+        //Only add dorado based minimal required datafolders if present
+        if (folders.get("fast5skip") != null) {
+            dataFolders.put("fast5skip", (folders.get("fast5skip") as DataFolder))
+        }
+        if (folders.get("pod5skip") != null) {
+            dataFolders.put("pod5skip", (folders.get("pod5skip") as DataFolder))
+        }
+        if (folders.get("pod5fail") != null) {
+            dataFolders.put("pod5fail", (folders.get("pod5fail") as DataFolder))
+        }
+        if (folders.get("pod5pass") != null) {
+            dataFolders.put("pod5pass", (folders.get("pod5pass") as DataFolder))
+        }
+        result.put(sampleId, dataFolders)
         return result
     }
 

@@ -10,8 +10,14 @@ import life.qbic.datamodel.dtos.projectmanagement.ProjectIdentifier
  *
  * @since: 1.12.0
  */
-@EqualsAndHashCode
+@EqualsAndHashCode(excludes = ["id"])
 class Offer {
+
+
+    /**
+     * database id of an offer
+     */
+    final int id
 
     /**
      * The checksum of the offer
@@ -111,6 +117,7 @@ class Offer {
 
     static class Builder {
 
+        int id
         /*
         Overall offer describing properties
          */
@@ -189,6 +196,11 @@ class Offer {
             this.projectDescription = Objects.requireNonNull(projectObjective, "Project Objective must not be null")
         }
 
+        Builder id(int id) {
+            this.id = id
+            return this
+        }
+
         Builder checksum(String checksum) {
             this.checksum = checksum
             return this
@@ -235,12 +247,12 @@ class Offer {
         }
 
         Builder itemsWithOverhead(List<ProductItem> itemsWithOverhead) {
-            this.itemsWithOverhead= itemsWithOverhead
+            this.itemsWithOverhead = itemsWithOverhead
             return this
         }
 
         Builder itemsWithoutOverhead(List<ProductItem> itemsWithoutOverhead) {
-            this.itemsWithoutOverhead= itemsWithoutOverhead
+            this.itemsWithoutOverhead = itemsWithoutOverhead
             return this
         }
 
@@ -254,7 +266,7 @@ class Offer {
             return this
         }
 
-        Builder overheadRatio(double overheadRatio){
+        Builder overheadRatio(double overheadRatio) {
             this.overheadRatio = overheadRatio
             return this
         }
@@ -264,12 +276,12 @@ class Offer {
             return this
         }
 
-        Builder experimentalDesign(String experimentalDesign){
+        Builder experimentalDesign(String experimentalDesign) {
             this.experimentalDesign = Optional.of(experimentalDesign)
             return this
         }
 
-        Builder totalDiscountPrice(double totalDiscountPrice){
+        Builder totalDiscountPrice(double totalDiscountPrice) {
             this.totalDiscountPrice = totalDiscountPrice
             return this
         }
@@ -280,6 +292,9 @@ class Offer {
     }
 
     private Offer(Builder builder) {
+
+        this.id = builder.id
+
         /*
         Offer Related Properties
          */

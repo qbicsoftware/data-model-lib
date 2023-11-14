@@ -4,19 +4,14 @@
     "path": "./pipeline_info",
     "children": [],
     "softwareVersions": {
-      "name": "software_versions.csv",
-      "fileType": "csv",
-      "path": "./pipeline_info/software_versions.csv"
-    },
-    "pipelineReport": {
-      "name": "pipeline_report.txt",
-      "fileType": "txt",
-      "path": "./pipeline_info/pipeline_report.txt"
+      "name": "software_versions.yml",
+      "fileType": "yml",
+      "path": "./pipeline_info/software_versions.yml"
     },
     "executionReport": {
-      "name": "execution_report.txt",
-      "fileType": "txt",
-      "path": "./pipeline_info/execution_report.txt"
+      "name": "execution_report.html",
+      "fileType": "html",
+      "path": "./pipeline_info/execution_report.html"
     }
   },
   "qualityControl": {

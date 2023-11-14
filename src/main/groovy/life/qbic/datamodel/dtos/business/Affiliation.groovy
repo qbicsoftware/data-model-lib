@@ -8,8 +8,15 @@ import groovy.transform.EqualsAndHashCode
  * @author Sven Fillinger
  * @since 1.11.0
  */
-@EqualsAndHashCode
+@EqualsAndHashCode(excludes = ["id"])
 final class Affiliation {
+
+  /**
+   * The database id of an affiliation.
+   *
+   * For example "1"
+   */
+  final int id
 
   /**
    * The organisation label of an affiliation.
@@ -46,10 +53,10 @@ final class Affiliation {
   final String country
 
 /**
-   * An affiliation category @link{AffiliationCategory}.
-   *
-   * Defaults to 'external non-academic'.
-   */
+ * An affiliation category @link{AffiliationCategory}.
+ *
+ * Defaults to 'external non-academic'.
+ */
   final AffiliationCategory category
 
   /**
@@ -59,7 +66,15 @@ final class Affiliation {
    */
   final AffiliationLabel label
 
+  /**
+   * Boolean flag if an affiliation is active
+   * @since 2.23.0
+   */
+  final Boolean active
+
   static class Builder {
+
+    int id
 
     String organisation
 
@@ -77,7 +92,10 @@ final class Affiliation {
 
     AffiliationLabel label
 
+    Boolean active
+
     Builder(String organisation, String street, String postalCode, String city) {
+      this.id = id
       this.organisation = organisation
       this.street = street
       this.postalCode = postalCode
@@ -86,6 +104,12 @@ final class Affiliation {
       this.country = "Germany"
       this.category = AffiliationCategory.EXTERNAL
       this.label = AffiliationLabel.MNF
+      this.active = Boolean.TRUE
+    }
+
+    Builder id(int id) {
+      this.id = id
+      return this
     }
 
     /**
@@ -113,6 +137,16 @@ final class Affiliation {
       return this
     }
 
+    Builder setInactive() {
+      this.active = Boolean.FALSE
+      return this
+    }
+
+    Builder setActive() {
+      this.active = Boolean.TRUE
+      return this
+    }
+
 
     Affiliation build() {
       return new Affiliation(this)
@@ -121,6 +155,7 @@ final class Affiliation {
   }
 
   private Affiliation(Builder builder) {
+    this.id = builder.id
     this.addressAddition = builder.addressAddition
     this.organisation = builder.organisation
     this.street = builder.street
@@ -129,6 +164,7 @@ final class Affiliation {
     this.category = builder.category
     this.city = builder.city
     this.label = builder.label
+    this.active = builder.active
   }
 
   @Override

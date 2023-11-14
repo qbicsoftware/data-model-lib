@@ -1,0 +1,205 @@
+{
+    "name": "QABCD001AB_E12A345a01_PAE12345",
+    "path": "./",
+    "children": [
+        {
+            "name": "20200122_1217_1-A1-B1-PAE12345_1234567a",
+            "metadata":  {
+                "adapter": "flongle",
+                "asic_temp": "32.631687",
+                "base_caller": "Guppy",
+                "base_caller_version": "3.2.8+bd67289",
+                "device_type" : "promethion",
+                "flow_cell_id": "PAE26306",
+                "flow_cell_product_code": "FLO-PRO002",
+                "flow_cell_position": "2-A3-D3",
+                "hostname": "PCT0094",
+                "protocol": "protocol=sequencing/sequencing_PRO002_DNA:FLO-PRO002:SQK-LSK109-XL",
+                "started": "2020-02-11T15:52:10.465982+01:00"
+            },
+            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a",
+            "children": [
+                {
+                    "name": "throughput_.csv",
+                    "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/throughput_.csv",
+                    "file_type": "csv"
+                },
+                {
+                    "name": "report_.md",
+                    "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/report_.md",
+                    "file_type": "md"
+                },
+                {
+                    "name": "final_summary_.txt",
+                    "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/final_summary_.txt",
+                    "file_type": "txt"
+                },
+                {
+                    "name": "barcode_alignment_.tsv",
+                    "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/barcode_alignment_.tsv",
+                    "file_type": "tsv"
+                },
+                {
+                    "name": "pore_activity_.csv",
+                    "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/pore_activity_.csv",
+                    "file_type": "tsv"
+                },
+                {
+                    "name": "other_reports",
+                    "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/other_reports",
+                    "children": [
+                        {
+                            "name": "pore_scan_data_.csv",
+                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/other_reports/pore_scan_data_.csv",
+                            "file_type": "csv"
+                        }
+                    ]
+                },
+                {
+                    "name": "fastq_pass",
+                    "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fastq_pass",
+                    "children": [
+                        {
+                            "name": "myfile3.fastq.gz",
+                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fastq_pass/myfile3.fastq.gz",
+                            "file_type": "fastq.gz"
+                        },
+                        {
+                            "name": "myfile2.fastq.gz",
+                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fastq_pass/myfile2.fastq.gz",
+                            "file_type": "fastq.gz"
+                        },
+                        {
+                            "name": "myfile4.fastq.gz",
+                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fastq_pass/myfile4.fastq.gz",
+                            "file_type": "fastq.gz"
+                        },
+                        {
+                            "name": "myfile5.fastq.gz",
+                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fastq_pass/myfile5.fastq.gz",
+                            "file_type": "fastq.gz"
+                        },
+                        {
+                            "name": "myfile1.fastq.gz",
+                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fastq_pass/myfile1.fastq.gz",
+                            "file_type": "fastq.gz"
+                        }
+                    ]
+                },
+                {
+                    "name": "fastq_fail",
+                    "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fastq_fail/",
+                    "children": [
+                        {
+                            "name": "myfile3.fastq.gz",
+                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fastq_fail/myfile3.fastq.gz",
+                            "file_type": "fastq.gz"
+                        },
+                        {
+                            "name": "myfile2.fastq.gz",
+                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fastq_fail/myfile2.fastq.gz",
+                            "file_type": "fastq.gz"
+                        },
+                        {
+                            "name": "myfile4.fastq.gz",
+                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fastq_fail/myfile4.fastq.gz",
+                            "file_type": "fastq.gz"
+                        },
+                        {
+                            "name": "myfile5.fastq.gz",
+                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fastq_fail/myfile5.fastq.gz",
+                            "file_type": "fastq.gz"
+                        },
+                        {
+                            "name": "myfile.fastq.gz",
+                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fastq_fail/myfile.fastq.gz",
+                            "file_type": "fastq.gz"
+                        }
+                    ]
+                },
+                {
+                    "name": "sequencing_summary_.txt",
+                    "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/sequencing_summary_.txt",
+                    "file_type": "txt"
+                },
+                {
+                    "name": "report_test.html",
+                    "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/report_test.html",
+                    "file_type": "html"
+                },
+                {
+                    "name": "report_test.json",
+                    "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/report_test.json",
+                    "file_type": "json"
+                },
+                {
+                    "name": "sample_sheet_test.csv",
+                    "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/sample_sheet_test.csv",
+                    "file_type": "csv"
+                },
+                {
+                    "name": "fast5_fail",
+                    "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fast5_fail/",
+                    "children": [
+                        {
+                            "name": "myfile2.fast5",
+                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fast5_fail/myfile2.fast5",
+                            "file_type": "fast5"
+                        },
+                        {
+                            "name": "myfile4.fast5",
+                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fast5_fail/myfile4.fast5",
+                            "file_type": "fast5"
+                        },
+                        {
+                            "name": "myfile3.fast5",
+                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fast5_fail/myfile3.fast5",
+                            "file_type": "fast5"
+                        },
+                        {
+                            "name": "myfile5.fast5",
+                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fast5_fail/myfile5.fast5",
+                            "file_type": "fast5"
+                        },
+                        {
+                            "name": "myfile.fast5",
+                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fast5_fail/myfile.fast5",
+                            "file_type": "fast5"
+                        }
+                    ]
+                },
+                {
+                    "name": "fast5_pass",
+                    "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fast5_pass/",
+                    "children": [
+                        {
+                            "name": "myfile2.fast5",
+                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fast5_pass/myfile2.fast5",
+                            "file_type": "fast5"
+                        },
+                        {
+                            "name": "myfile4.fast5",
+                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fast5_pass/myfile4.fast5",
+                            "file_type": "fast5"
+                        },
+                        {
+                            "name": "myfile3.fast5",
+                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fast5_pass/myfile3.fast5",
+                            "file_type": "fast5"
+                        },
+                        {
+                            "name": "myfile5.fast5",
+                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fast5_pass/myfile5.fast5",
+                            "file_type": "fast5"
+                        },
+                        {
+                            "name": "myfile.fast5",
+                            "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/fast5_pass/myfile.fast5",
+                            "file_type": "fast5"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
