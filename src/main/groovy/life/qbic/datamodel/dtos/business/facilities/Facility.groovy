@@ -6,11 +6,13 @@ package life.qbic.datamodel.dtos.business.facilities
  * <p>The following facilities are currently defined:</p>
  *
  * <ul>
- *     <li>CFMB: Core Facility for Medical Bioanalytics</li>
+ *     <li>CFMB: Core Facility for Medical Bioanalytics (until 2024)</li>
+ *     <li>CFMP: Core Facility for Medical Bioanalytics</li>
  *     <li>IMGAG: Institute for Medical Genetics and Applied Genomics</li>
  *     <li>MGM: Institute for Medical Microbiology and Hygiene</li>
  *     <li>QBIC: Quantitative Biology Center</li>
- *     <li>CFMB_PCT: Proteomics Facility Tübingen</li>
+ *     <li>CFMB_PCT: Proteomics Facility Tübingen (until 2024)</li>
+ *     <li>CFMP_PCT: Proteomics Facility Tübingen</li>
  *     <li>PCT: Proteome Center Tübingen/li>
  *     <li>CEGAT: CeGaT GmbH</li>
  * </ul>
@@ -18,12 +20,17 @@ package life.qbic.datamodel.dtos.business.facilities
  * @since 2.11.0
  */
 enum Facility {
+    /*
+    From 2024 on CFMB changes to CFMP.
+     */
 
-    CFMB("Core Facility for Medical Bioanalytics", "CFMB"),
+    CFMB("Core Facility for Medical Bioanalytics", "CFMB"), // Deprecated from 2024 on
+    CFMP("Core Facility for Medical Bioanalytics", "CFMP"),
     IMGAG("Institute for Medical Genetics and Applied Genomics", "IMGAG"),
     MGM("Institute for Medical Microbiology and Hygiene", "MGM"),
     QBIC("Quantitative Biology Center", "QBIC"),
-    CFMB_PCT("Proteomics Facility Tübingen", "Proteomics Facility"),
+    CFMB_PCT("Proteomics Facility Tübingen", "Proteomics Facility"), // Deprecated from 2024 on
+    CFMP_PCT("Proteomics Facility Tübingen", "Proteomics Facility"),
     PCT("Proteome Center Tübingen", "PCT"),
     CEGAT("CeGaT GmbH", "CeGaT GmbH"),
 
