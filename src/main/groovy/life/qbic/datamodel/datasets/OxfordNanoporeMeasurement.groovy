@@ -102,6 +102,12 @@ final class OxfordNanoporeMeasurement {
                 case Pod5SkipFolder:
                     folders["pod5skip"] = element as Pod5SkipFolder
                     break
+                case BamPassFolder:
+                    folders["bampass"] = element as BamPassFolder
+                    break
+                case BamFailFolder:
+                    folders["bamfail"] = element as BamFailFolder
+                    break
                 case DataFile:
                     logFilesCollection.add(element as DataFile)
                     break
@@ -118,8 +124,11 @@ final class OxfordNanoporeMeasurement {
         if (areFast5FoldersInMeasurement() && areFastQFoldersInMeasurement()) {
             isValid = true
         }
-        //// We need to ensure that pod5_skip and fast5_skip information is provided if dorado basecaller was used
+        //// We need to ensure that pod5_pass and pod5_fail information is provided if dorado basecaller was used
         if (arePod5FoldersInMeasurement()) {
+            isValid = true
+        }
+        if (areBamFoldersInMeasurement()) {
             isValid = true
         }
         if (isValid == false) {
@@ -137,7 +146,11 @@ final class OxfordNanoporeMeasurement {
     }
     // Condition three: Don't allow empty Pod5 skip and fast5 skip folder
     private boolean arePod5FoldersInMeasurement() {
-        return isDataFolderInMeasurement("fast5skip") || isDataFolderInMeasurement("pod5skip")
+        return isDataFolderInMeasurement("pod5pass") || isDataFolderInMeasurement("pod5fail")
+    }
+
+    private boolean areBamFoldersInMeasurement() {
+        return isDataFolderInMeasurement("bampass") || isDataFolderInMeasurement("bamfail")
     }
 
     private boolean isDataFolderInMeasurement(String string) {
@@ -159,6 +172,10 @@ final class OxfordNanoporeMeasurement {
      *      "fast5pass": DataFolder
      *      "fastqfail": DataFolder
      *      "fastqpass": DataFolder
+     *      "bamfail": DataFolder
+     *      "bampass": DataFolder
+     *      "pod5fail": DataFolder
+     *      "pod5pass": DataFolder
      * "Other sample code":   // In case of pooled samples
      *      ...
      * @return nested Map with sample codes and data folders
@@ -310,25 +327,18 @@ final class OxfordNanoporeMeasurement {
     private Map<String, Map<String, DataFolder>> prepareRawData(String sampleId) {
         final def result = new HashMap()
         final def dataFolders = [
-                "fast5fail" : (folders.get("fast5fail") as DataFolder),
-                "fast5pass" : (folders.get("fast5pass") as DataFolder),
-                "fastqpass" : (folders.get("fastqpass") as DataFolder),
-                "fastqfail" : (folders.get("fastqfail") as DataFolder)
+                "fast5fail": (folders.get("fast5fail") as DataFolder),
+                "fast5pass": (folders.get("fast5pass") as DataFolder),
+                "fast5skip": (folders.get("fast5skip") as DataFolder),
+                "fastqpass": (folders.get("fastqpass") as DataFolder),
+                "fastqfail": (folders.get("fastqfail") as DataFolder),
+                "pod5pass": (folders.get("pod5pass") as DataFolder),
+                "pod5fail": (folders.get("pod5fail") as DataFolder),
+                "pod5skip": (folders.get("pod5skip") as DataFolder),
+                "bampass": (folders.get("bampass") as DataFolder),
+                "bamfail": (folders.get("bamfail") as DataFolder)
         ]
         if (hasBasecallingData) dataFolders.put("basecalling", (folders.get("basecalling") as DataFolder))
-        //Only add dorado based minimal required datafolders if present
-        if (folders.get("fast5skip") != null) {
-            dataFolders.put("fast5skip", (folders.get("fast5skip") as DataFolder))
-        }
-        if (folders.get("pod5skip") != null) {
-            dataFolders.put("pod5skip", (folders.get("pod5skip") as DataFolder))
-        }
-        if (folders.get("pod5fail") != null) {
-            dataFolders.put("pod5fail", (folders.get("pod5fail") as DataFolder))
-        }
-        if (folders.get("pod5pass") != null) {
-            dataFolders.put("pod5pass", (folders.get("pod5pass") as DataFolder))
-        }
         result.put(sampleId, dataFolders)
         return result
     }
