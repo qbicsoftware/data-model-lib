@@ -23,7 +23,8 @@ enum ProductUnit {
   PER_COMPARISON("Comparison"),
   PER_FLOW_CELL("Flow cell"),
   PER_BATCH("Batch"),
-  PER_VIAL("Vial")
+  PER_VIAL("Vial"),
+  PER_KIT("Kit")
 
   /**
    Holds the String value of the enum
