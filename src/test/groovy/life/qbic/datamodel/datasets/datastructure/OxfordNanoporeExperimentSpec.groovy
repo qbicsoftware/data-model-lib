@@ -62,7 +62,10 @@ class OxfordNanoporeExperimentSpec extends Specification {
     Map minimalDataStructurePooled
 
     @Shared
-    Map minimalDoradoDataStructure
+    Map minimalPod5DoradoDataStructure
+
+    @Shared
+    Map minimalBamDoradoDataStructure
 
     @Shared
     Map fullDoradoDataStructure
@@ -96,8 +99,12 @@ class OxfordNanoporeExperimentSpec extends Specification {
         stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-minimal-structure-pooled.json")
         minimalDataStructurePooled = (Map) new JsonSlurper().parse(stream)
         // read in minimal required example with dorado based basecalling
-        stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-minimal-structure-dorado-basecaller.json")
-        minimalDoradoDataStructure = (Map) new JsonSlurper().parse(stream)
+        stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-minimal-structure-pod5-dorado-basecaller.json")
+        minimalPod5DoradoDataStructure = (Map) new JsonSlurper().parse(stream)
+        stream.close()
+        // read in minimal required example with dorado based basecalling
+        stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-minimal-structure-bam-dorado-basecaller.json")
+        minimalBamDoradoDataStructure = (Map) new JsonSlurper().parse(stream)
         stream.close()
         // read in minimal required example with dorado based basecalling
         stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(folder+"valid-example-dorado-basecaller.json")
@@ -210,9 +217,9 @@ class OxfordNanoporeExperimentSpec extends Specification {
         assert measurements[0].asicTemp == "32.631687"
     }
 
-    def "Create sample Oxford Nanopore experiment successfully for dorado basecaller generated minimal structure"() {
+    def "Create sample Oxford Nanopore experiment successfully for pod5 generated minimal structure"() {
         given:
-        final def example = minimalDoradoDataStructure
+        final def example = minimalPod5DoradoDataStructure
 
         when:
         final def experiment = OxfordNanoporeExperiment.create(example)
@@ -222,8 +229,24 @@ class OxfordNanoporeExperimentSpec extends Specification {
         assert experiment.sampleCode == "QABCD001AB"
         assert measurements.size() == 1
         assert measurements[0].asicTemp == "32.631687"
-        assert measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").containsKey("pod5skip")
-        assert measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").containsKey("fast5skip")
+        assert measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").containsKey("pod5pass")
+        assert measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").containsKey("pod5fail")
+    }
+
+    def "Create sample Oxford Nanopore experiment successfully for bam generated minimal structure"() {
+        given:
+        final def example = minimalBamDoradoDataStructure
+
+        when:
+        final def experiment = OxfordNanoporeExperiment.create(example)
+        final def measurements = experiment.getMeasurements()
+
+        then:
+        assert experiment.sampleCode == "QABCD001AB"
+        assert measurements.size() == 1
+        assert measurements[0].asicTemp == "32.631687"
+        assert measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").containsKey("bampass")
+        assert measurements[0].getRawDataPerSample(experiment).get("QABCD001AB").containsKey("bamfail")
     }
 
     def "Create sample Oxford Nanopore experiment successfully for dorado basecaller generated full structure"() {

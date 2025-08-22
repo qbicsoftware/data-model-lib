@@ -244,6 +244,7 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
     FAST5_FILE(FQDN_FILES + ".Fast5File"),
     FASTQ_FILE(FQDN_FILES + ".FastQFile"),
     FASTQ_ZIPPED_FILE(FQDN_FILES + ".FastQZippedFile"),
+    BAM_FILE(FQDN_FILES + ".BamFile"),
     POD5_FILE(FQDN_FILES + ".Pod5File"),
     FINAL_SUMMARY_LOG(FQDN_FILES + ".FinalSummaryLog"),
     MUX_SCAN_DATA_LOG(FQDN_FILES + ".MuxScanDataLog"),
@@ -308,6 +309,8 @@ final class OxfordNanoporeExperiment implements ExperimentFolder {
     POD5_PASS_FOLDER(FQDN_FOLDERS + ".Pod5PassFolder"),
     POD5_FAIL_FOLDER(FQDN_FOLDERS + ".Pod5FailFolder"),
     POD5_SKIP_FOLDER(FQDN_FOLDERS + ".Pod5SkipFolder"),
+    BAM_PASS_FOLDER(FQDN_FOLDERS + ".BamPassFolder"),
+    BAM_FAIL_FOLDER(FQDN_FOLDERS + ".BamFailFolder"),
     OTHER_REPORTS_FOLDER(FQDN_FOLDERS + ".OtherReportsFolder"),
     BASECALLING_FOLDER(FQDN_FOLDERS + ".BasecallingFolder"),
 

@@ -2,8 +2,10 @@ package life.qbic.datamodel.datasets.datastructure
 
 import life.qbic.datamodel.datasets.ExperimentFolder
 import life.qbic.datamodel.datasets.OxfordNanoporeMeasurement
+import life.qbic.datamodel.datasets.datastructure.files.nanopore.BamFile
 import life.qbic.datamodel.datasets.datastructure.files.nanopore.Fast5File
 import life.qbic.datamodel.datasets.datastructure.files.nanopore.FastQFile
+import life.qbic.datamodel.datasets.datastructure.files.nanopore.Pod5File
 import life.qbic.datamodel.datasets.datastructure.folders.DataFolder
 import life.qbic.datamodel.datasets.datastructure.folders.nanopore.*
 import spock.lang.Shared
@@ -38,9 +40,13 @@ class OxfordNanoporeMeasurementSpec extends Specification {
     @Shared
     UnclassifiedFastQFolder unclassifiedFastQFolder
     @Shared
-    Pod5SkipFolder pod5SkipFolder
+    Pod5PassFolder pod5PassedFolder
     @Shared
-    Fast5SkipFolder fast5SkipFolder
+    Pod5FailFolder pod5FailedFolder
+    @Shared
+    BamPassFolder bamPassedFolder
+    @Shared
+    BamFailFolder bamFailedFolder
 
     @Shared
     Map metaData
@@ -62,6 +68,8 @@ class OxfordNanoporeMeasurementSpec extends Specification {
         ]
         def fast5File = Fast5File.create("test.fast5", "root/test.fast5")
         def fastQFile = FastQFile.create("test.fastq", "root/test.fastq")
+        def pod5File = Pod5File.create("test.pod5", "root/test.pod5")
+        def bamFile = BamFile.create("test.bam", "root/test.bam")
         fast5FailedFolder = Fast5FailFolder.create("fast5_fail","root/fast5_fail", [fast5File])
         fast5PassedFolder = Fast5PassFolder.create("fast5_pass","root/fast5_pass", [fast5File])
         fastQFailedFolder = FastQFailFolder.create("fastq_fail", "root/fastq_fail", [fastQFile])
@@ -74,6 +82,10 @@ class OxfordNanoporeMeasurementSpec extends Specification {
         // Content for the pooled samples including unclassified folders
         unclassifiedFast5Folder = UnclassifiedFast5Folder.create("unclassified", "fast5_fail/unclassified", [fast5File])
         unclassifiedFastQFolder = UnclassifiedFastQFolder.create("unclassified", "fastq_pass/unclassified", [fastQFile])
+        bamFailedFolder = BamFailFolder.create("bam_fail", "root/bam_fail", [bamFile])
+        bamPassedFolder = BamPassFolder.create("bam_pass","root/bam_pass", [bamFile])
+        pod5FailedFolder = Pod5FailFolder.create("pod5_fail", "root/pod5_fail", [pod5File])
+        pod5PassedFolder = Pod5PassFolder.create("pod5_pass","root/pod5_pass", [pod5File])
     }
 
     def "create simple measurement successfully"() {
@@ -235,16 +247,33 @@ class OxfordNanoporeMeasurementSpec extends Specification {
 
     }
 
-    def "If both pod5 skip and fast5 skip folder are empty, an IllegalStateException shall be thrown"() {
+    def "If both pod5 pass and pod5 fail folder are empty, an IllegalStateException shall be thrown"() {
         given:
-        def emptyPod5SkipFolder = Pod5SkipFolder.create("pod5_skip","root/pod5_skip", [])
-        def emptyFast5SkipFolder = Fast5SkipFolder.create("fast5_skip","root/fast5_skip", [])
+        def emptyPod5PassFolder = Pod5PassFolder.create("pod5_pass","root/pod5_pass", [])
+        def emptyPod5FailFolder = Pod5FailFolder.create("pod5_fail","root/pod5_fail", [])
 
         when:
         OxfordNanoporeMeasurement.create(
                 "20200219_1107_1-E3-H3_PAE26974_454b8dc6",
                 "path/20200219_1107_1-E3-H3_PAE26974_454b8dc6",
-                [emptyPod5SkipFolder, emptyFast5SkipFolder],
+                [emptyPod5PassFolder, emptyPod5FailFolder],
+                metaData)
+
+        then:
+        thrown(IllegalStateException)
+
+    }
+
+    def "If both bam pass and bam fail folder are empty, an IllegalStateException shall be thrown"() {
+        given:
+        def emptyBamPassFolder = BamPassFolder.create("bam_pass","root/bam_pass", [])
+        def emptyBamFailFolder = BamFailFolder.create("bam_fail","root/bam_fail", [])
+
+        when:
+        OxfordNanoporeMeasurement.create(
+                "20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+                "path/20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+                [emptyBamPassFolder, emptyBamFailFolder],
                 metaData)
 
         then:
@@ -281,6 +310,46 @@ class OxfordNanoporeMeasurementSpec extends Specification {
         then:
         noExceptionThrown()
     }
+
+    def "If either bam pass or bam folder is empty, no IllegalStateException shall be thrown"() {
+        given:
+        def emptyBamFailFolder = BamFailFolder.create("bam_fail","root/bam_fail", [])
+        def emptyBamPassFolder = BamPassFolder.create("bam_pass","root/bam_pass", [])
+        when:
+        OxfordNanoporeMeasurement.create(
+                "20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+                "path/20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+                [bamPassedFolder, emptyBamFailFolder],
+                metaData)
+        OxfordNanoporeMeasurement.create(
+                "20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+                "path/20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+                [emptyBamPassFolder, bamFailedFolder],
+                metaData)
+        then:
+        noExceptionThrown()
+    }
+
+    def "If either pod5 pass or pod5 folder is empty, no IllegalStateException shall be thrown"() {
+        given:
+        def emptyPod5FailedFolder = Pod5FailFolder.create("pod5_fail","root/pod5_fail", [])
+        def emptyPod5PassedFolder = Pod5PassFolder.create("pod5_pass","root/pod5_pass", [])
+        when:
+        OxfordNanoporeMeasurement.create(
+                "20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+                "path/20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+                [pod5PassedFolder, emptyPod5FailedFolder],
+                metaData)
+
+        OxfordNanoporeMeasurement.create(
+                "20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+                "path/20200219_1107_1-E3-H3_PAE26974_454b8dc6",
+                [emptyPod5PassedFolder, pod5FailedFolder],
+                metaData)
+        then:
+        noExceptionThrown()
+    }
+
 
     def "missing adapter metadata shall return an empty String and not be null"() {
         given:

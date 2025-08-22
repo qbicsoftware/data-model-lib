@@ -1,0 +1,139 @@
+{
+  "name": "QABCD001AB_E12A345a01_PAE12345",
+  "path": "./",
+  "children": [
+    {
+      "name": "20200122_1217_1-A1-B1-PAE12345_1234567a",
+      "metadata": {
+        "adapter": "flongle",
+        "asic_temp": "32.631687",
+        "base_caller": "",
+        "base_caller_version": "3.2.8+bd67289",
+        "device_type": "promethion",
+        "flow_cell_id": "PAE26306",
+        "flow_cell_product_code": "FLO-PRO002",
+        "flow_cell_position": "2-A3-D3",
+        "hostname": "PCT0094",
+        "protocol": "sequencing/sequencing_PRO002_DNA:FLO-PRO002:SQK-LSK109:True",
+        "started": "2020-02-11T15:52:10.465982+01:00"
+      },
+      "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a",
+      "children": [
+        {
+          "name": "report_.md",
+          "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/report_.md",
+          "file_type": "md"
+        },
+        {
+          "name": "final_summary_.txt",
+          "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/final_summary_.txt",
+          "file_type": "txt"
+        },
+        {
+          "name": "sequencing_summary_.txt",
+          "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/sequencing_summary_.txt",
+          "file_type": "txt"
+        },
+        {
+          "name": "additional_file_.new",
+          "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/additional_file_.new",
+          "file_type": "new"
+        },
+        {
+          "name": "not_relevant_file_.wow",
+          "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/not_relevant_file_.wow",
+          "file_type": "wow"
+        },
+        {
+          "name": "unknown_folder",
+          "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/unknown_folder",
+          "children": [
+            {
+              "name": "unknown_child_folder",
+              "path": "20200122_1217_1-A1-B1-PAE12345_1234567a/unknown_folder/unknown_child_folder",
+              "children": [
+                {
+                  "name": "unknown_file_.new",
+                  "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/unknown_folder/unknown_child_folder/unknown_file_.new",
+                  "file_type": "new"
+                }
+              ]
+            },
+            {
+              "name": "unknown_file_.new",
+              "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/unknown_folder/unknown_file_.new",
+              "file_type": "new"
+            }
+          ]
+        },
+        {
+          "name": "pod5_pass",
+          "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/pod5_pass/",
+          "children": [
+            {
+              "name": "myfile2.pod5",
+              "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/pod5_pass/myfile2.pod5",
+              "file_type": "pod5"
+            },
+            {
+              "name": "myfile4.pod5",
+              "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/pod5_pass/myfile4.pod5",
+              "file_type": "pod5"
+            },
+            {
+              "name": "myfile3.pod5",
+              "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/pod5_pass/myfile3.pod5",
+              "file_type": "pod5"
+            },
+            {
+              "name": "myfile5.pod5",
+              "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/pod5_pass/myfile5.pod5",
+              "file_type": "pod5"
+            },
+            {
+              "name": "myfile.pod5",
+              "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/pod5_pass/myfile.pod5",
+              "file_type": "pod5"
+            }
+          ]
+        },
+        {
+          "name": "pod5_fail",
+          "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/pod5_fail/",
+          "children": [
+            {
+              "name": "myfile2.pod5",
+              "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/pod5_fail/myfile2.pod5",
+              "file_type": "pod5"
+            },
+            {
+              "name": "myfile4.pod5",
+              "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/pod5_fail/myfile4.pod5",
+              "file_type": "pod5"
+            },
+            {
+              "name": "myfile3.pod5",
+              "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/pod5_fail/myfile3.pod5",
+              "file_type": "pod5"
+            },
+            {
+              "name": "myfile5.pod5",
+              "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/pod5_fail/myfile5.pod5",
+              "file_type": "pod5"
+            },
+            {
+              "name": "myfile.pod5",
+              "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/pod5_fail/myfile.pod5",
+              "file_type": "pod5"
+            }
+          ]
+        },
+        {
+          "name": "guppy_basecall_client_log*.log",
+          "path": "./20200122_1217_1-A1-B1-PAE12345_1234567a/basecalling/guppy_basecall_client_log*.log",
+          "file_type": "log"
+        }
+      ]
+    }
+  ]
+}
